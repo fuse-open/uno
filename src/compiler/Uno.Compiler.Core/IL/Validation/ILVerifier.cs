@@ -156,8 +156,7 @@ namespace Uno.Compiler.Core.IL.Validation
 
                 if (Backend.Has(TypeOptions.IgnoreProtection))
                     return true;
-                // TODO: Enable this again when shader generator doesn't generate invalid code because of 'virtual apply'
-                /*
+
                 if (!entity.IsAccessibleFrom(Type.Source))
                 {
                     Log.Error(src, ErrorCode.E0000,
@@ -165,7 +164,6 @@ namespace Uno.Compiler.Core.IL.Validation
                         entity.Package.Name + " isn't referenced by " + Type.Package.Name);
                     return false;
                 }
-                */
             }
 
             return VerifyAccessibleEntity(src, entity, Type, ((Entity)Function ?? Type) ?? Block, IsPublicMetaProperty);

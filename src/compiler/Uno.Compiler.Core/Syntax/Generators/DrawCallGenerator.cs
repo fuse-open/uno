@@ -161,12 +161,7 @@ namespace Uno.Compiler.Core.Syntax.Generators
 
                         foreach (var st in subArray.Reverse())
                         {
-                            // TODO: Enable this again when shader generator doesn't generate invalid code because of 'virtual apply'
-                            /*
                             if (st.IsAbstract || st.Block == null || !st.IsAccessibleFrom(apply.Source))
-                                continue;
-                            */
-                            if (st.IsAbstract || st.Block == null)
                                 continue;
 
                             var obj = new AsOp(apply.Object.Source, apply.Object, st);

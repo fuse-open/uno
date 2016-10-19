@@ -33,10 +33,10 @@ namespace Uno.Compiler.Backends.CIL
             Scheduler.AddTransform(new CilTransform(this));
         }
 
-        /*public override bool CanLink(SourcePackage upk)
+        public override bool CanLink(SourcePackage upk)
         {
             return Environment.IsUpToDate(upk, upk.Name + ".dll");
-        }*/
+        }
 
         public override bool CanLink(DataType dt)
         {

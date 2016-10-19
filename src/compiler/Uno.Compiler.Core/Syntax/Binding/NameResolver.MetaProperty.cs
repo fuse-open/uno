@@ -40,11 +40,7 @@ namespace Uno.Compiler.Core.Syntax.Binding
                         HashSet<DataType> subs;
                         if (_compiler.BlockBuilder.FlattenedTypes.TryGetValue(dt, out subs))
                             foreach (var st in subs)
-                                // TODO: Enable this again when shader generator doesn't generate invalid code because of 'virtual apply'
-                                /*
                                 if (st?.Block != null && st.IsAccessibleFrom(block.Source))
-                                */
-                                if (st?.Block != null)
                                     FindMetaPropertiesRecursive(st.Block, name, visited, result);
                     }
                 }
