@@ -28,11 +28,9 @@ namespace Uno.Compiler.Backends.CIL
             for (int i = 0, l = root.Types.Count; i < l; i++)
             {
                 var dt = root.Types[i];
-                // TODO: Enable this again when shader generator doesn't generate invalid code because of 'virtual apply'
-                /*
-                if (dt.Source.Package != _package)
+                if (dt.Package != _package)
                     continue;
-                */
+
                 var dotNetName = dt.HasAttribute(_essentials.DotNetTypeAttribute)
                     ? dt.TryGetAttributeString(_essentials.DotNetTypeAttribute) ?? dt.CilTypeName()
                     : null;

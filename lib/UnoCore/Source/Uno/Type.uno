@@ -4,14 +4,26 @@ using Uno.IO;
 
 namespace System.Reflection
 {
-    [extern(DOTNET) DotNetType("System.Reflection.Assembly")]
-    extern(DOTNET)
-    public class Assembly
+    [DotNetType]
+    extern(DOTNET) 
+    public abstract class Assembly
     {
+        public virtual extern string Location { get; }
+        public virtual extern bool GlobalAssemblyCache { get; }
+
         public virtual extern string[] GetManifestResourceNames();
         public virtual extern Stream GetManifestResourceStream(string filename);
-        public virtual extern string Location { get; }
+        public virtual extern AssemblyName GetName();
         public static extern Assembly GetEntryAssembly();
+        public static extern Assembly GetExecutingAssembly();
+        public static extern Assembly LoadFrom(string assemblyFile);
+    }
+
+    [DotNetType]
+    extern(DOTNET) 
+    public sealed class AssemblyName
+    {
+        public virtual extern string Name { get; }
     }
 }
 

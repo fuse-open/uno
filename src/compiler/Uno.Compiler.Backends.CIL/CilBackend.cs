@@ -113,10 +113,8 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
-        public override BackendResult Build()
+        public override BackendResult Build(SourcePackage package)
         {
-            var package = Input.Package;
-
             if (package.CanLink)
             {
                 package.Tag = _linker.AddAssemblyFile(Path.Combine(_outputDir, package.Name + ".dll"));
@@ -136,10 +134,7 @@ namespace Uno.Compiler.Backends.CIL
             using (Log.StartProfiler(g.GetType().FullName + ".Save"))
                 g.Save();
 
-            return new CilResult(
-                g.Assembly,
-                _linker.TypeMap,
-                g.Locations);
+            return new CilResult(g.Assembly, _linker.TypeMap, g.Locations);
         }
     }
 }

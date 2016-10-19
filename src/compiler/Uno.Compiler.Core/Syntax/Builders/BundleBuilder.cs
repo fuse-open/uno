@@ -71,29 +71,38 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     Emit(f);
             }
 
-            var index = new List<string>();
+            foreach (var e in _files)
+            {
+                e.Value.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
+
+                var index = new List<string>();
+                foreach (var f in e.Value)
+                    index.Add(f.BundleName + ":" + f.TargetName);
+
+                var bundleFile = Path.Combine(_env.CacheDirectory, e.Key.Name + ".bundle");
+                Directory.CreateDirectory(Path.GetDirectoryName(bundleFile));
+                File.WriteAllText(bundleFile, string.Join("\n", index));
+                _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(e.Key, e.Key.Name + ".bundle", bundleFile));
+            }
+
+            var bundles = new List<string>();
             var packages = _compiler.Input.Packages.ToArray();
             Array.Sort(packages, (a, b) => a.Name.CompareTo(b.Name));
 
             foreach (var e in packages)
             {
-                var line = new List<string> {e.Name};
+                var bundleFile = Path.Combine(_env.CacheDirectory, e.Name + ".bundle");
                 var files = _files.GetList(e);
                 files.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
 
-                foreach (var f in files)
-                {
-                    line.Add(f.BundleName);
-                    line.Add(f.TargetName);
-                }
-
-                index.Add(string.Join(":", line));
+                if (File.Exists(bundleFile))
+                    bundles.Add(e.Name);
             }
 
-            var bundleFile = Path.Combine(_env.CacheDirectory, "bundle");
-            using (var f = _compiler.Disk.CreateBufferedText(bundleFile))
-                f.Write(string.Join("\n", index));
-            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile("bundle", bundleFile));
+            var bundlesFile = Path.Combine(_env.CacheDirectory, "bundles");
+            using (var f = _compiler.Disk.CreateBufferedText(bundlesFile))
+                f.Write(string.Join("\n", bundles));
+            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundles", bundlesFile));
         }
 
         void Emit(Field field)
@@ -128,7 +137,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return AddCached("File",
                 () =>
                 {
-                    var file = CreateFile(src, filename).TargetName;
+                    var file = CreateFile(src, filename).BundleName;
                     return GetBundleFile(src, file);
                 },
                 filename);
@@ -203,7 +212,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             if (bundleName.StartsWith(FuseJSPrefix))
                 bundleName = bundleName.Substring(FuseJSPrefix.Length);
 
-            var result = new BundleFile(bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
+            var result = new BundleFile(src.Package, bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
             _files.Add(src.Package, result);
             _compiler.Data.Extensions.BundleFiles.Add(result);
             return result;
