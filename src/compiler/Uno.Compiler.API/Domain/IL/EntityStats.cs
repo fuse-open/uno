@@ -14,6 +14,7 @@ namespace Uno.Compiler.API.Domain.IL
         GenericMethodType = 1 << 7,
         ImplementsInterface = 1 << 8,
         ThrowsException = 1 << 9,
-        CanLink = 1 << 10
+        CanLink = 1 << 10,
+        IsCompiled = 1 << 11,
     }
 }
