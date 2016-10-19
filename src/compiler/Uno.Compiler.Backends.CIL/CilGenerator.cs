@@ -43,7 +43,7 @@ namespace Uno.Compiler.Backends.CIL
             _linker = linker;
             _outputDir = outputDir;
             _assembly = _linker.Universe.DefineDynamicAssembly(
-                new AssemblyName(package.Name) /*{Version = new Version(package.Version)}*/, 
+                new AssemblyName(package.Name) {Version = package.ParseVersion(Log)},
                 AssemblyBuilderAccess.Save,
                 outputDir);
             _module = _assembly.DefineDynamicModule(

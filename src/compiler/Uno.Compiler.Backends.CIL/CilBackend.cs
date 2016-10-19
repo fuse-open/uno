@@ -102,7 +102,7 @@ namespace Uno.Compiler.Backends.CIL
 
                 Log.Verbose("Creating executable: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
                 loader.SetAssemblyInfo(Input.Package.Name + "-loader",
-                    new Version(),
+                    Input.Package.ParseVersion(Log),
                     Environment.GetString);
                 loader.SetMainClass(Data.MainClass.CilTypeName(),
                     Path.Combine(_outputDir, Input.Package.Name + ".dll"),
