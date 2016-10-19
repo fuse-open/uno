@@ -23,6 +23,7 @@ namespace Uno.Compiler.Core
         internal BuildStep Step;
 
         public bool Debug => Options.Debug;
+        public bool Lazy => Options.Lazy;
         public bool Parallel => Options.Parallel;
         public bool Strip => Options.Strip;
         public bool IsConsole => IsDefined("CONSOLE");
@@ -31,6 +32,7 @@ namespace Uno.Compiler.Core
         public bool IsGeneratingCode => Step == BuildStep.Generating;
         public bool CanCacheIL => Options.CanCacheIL;
         public bool HasCustomEntrypoint => Options.MainClass != null;
+        public bool HasUpToDateOptions;
 
         public string CacheDirectory { get; }
         public string BundleDirectory { get; }
@@ -70,7 +72,7 @@ namespace Uno.Compiler.Core
 
         public bool IsUpToDate(SourceBundle bundle, string filename)
         {
-            if (!bundle.IsCached)
+            if (!bundle.IsCached || !HasUpToDateOptions)
                 return false;
 
             var file = Path.Combine(OutputDirectory, filename);

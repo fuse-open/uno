@@ -72,7 +72,9 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
                         if (pe == null)
                         {
-                            if (!dt.CanLink)
+                            if (!pt.CanLink && !pt.Bundle.CanLink && (
+                                    !_compiler.Environment.Lazy ||
+                                    !pt.Bundle.IsCached))
                                 Log.Warning(f.Name.Source, ErrorCode.IW3205, f.Name.Symbol.Quote() + " was not found in class scope");
                             continue;
                         }

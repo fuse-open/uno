@@ -792,6 +792,8 @@ namespace Uno.Compiler.Core.IL.Utilities
 
                     if (root is DataType)
                     {
+                        (root as DataType).PopulateMembers();
+
                         foreach (var m in (root as DataType).Constructors)
                             if (TryMatchParameterList(m, s.Arguments, parameters))
                                 return m;

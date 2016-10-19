@@ -103,6 +103,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 while (_populateMembersIndex < count)
                     if (_backend.CanLink(_enqueuedTypes[_populateMembersIndex]))
                         _enqueuedTypes[_populateMembersIndex++].Stats |= EntityStats.CanLink;
+                    else if (_env.Lazy && _env.Strip && _enqueuedTypes[_populateMembersIndex].Bundle.IsCached)
+                        _populateMembersIndex++;
                     else
                         _enqueuedTypes[_populateMembersIndex++].PopulateMembers();
 
@@ -156,7 +158,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
         public void BuildBlocks()
         {
             for (var i = 0; i < _enqueuedBlocks.Count; i++)
-                if (!_enqueuedBlocks[i].Source.Bundle.CanLink)
+                if (!_enqueuedBlocks[i].Source.Bundle.CanLink && (
+                        !_env.Lazy ||
+                        !_env.Strip ||
+                        !_enqueuedBlocks[i].Source.Bundle.IsCached))
                     _enqueuedBlocks[i].Populate();
 
             _enqueuedBlocks.Clear();

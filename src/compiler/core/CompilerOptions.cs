@@ -5,6 +5,7 @@ namespace Uno.Compiler.Core
         public bool Debug;
         public bool CanCacheIL;
         public bool CodeCompletionMode;
+        public bool Lazy;
         public bool Parallel;
         public bool Strip;
         public string OutputDirectory;
