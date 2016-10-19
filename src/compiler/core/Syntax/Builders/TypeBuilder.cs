@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.AST;
@@ -8,7 +8,6 @@ using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.Compiler.API.Domain.IL.Types;
 using Uno.Compiler.Core.IL.Utilities;
 using Uno.Compiler.Core.Syntax.Binding;
-using Uno.Compiler.Core.Syntax.Compilers;
 using Uno.Logging;
 
 namespace Uno.Compiler.Core.Syntax.Builders
@@ -19,113 +18,23 @@ namespace Uno.Compiler.Core.Syntax.Builders
         readonly ILFactory _ilf;
         readonly NameResolver _resolver;
         readonly Compiler _compiler;
+        readonly BuildQueue _queue;
         readonly Dictionary<AstClass, DataType> _cachedClasses = new Dictionary<AstClass, DataType>();
         readonly Dictionary<AstClass, AstClass> _flattenedClasses = new Dictionary<AstClass, AstClass>();
-        readonly List<FunctionCompiler> _enqueuedCompilers = new List<FunctionCompiler>();
-        readonly List<Entity> _enqueuedAttributes = new List<Entity>();
-        readonly List<DataType> _enqueuedTypes = new List<DataType>();
-        readonly List<Action> _enqueuedActions = new List<Action>();
-        int _assignBaseTypeIndex;
-        int _populateMembersIndex;
 
-        public TypeBuilder(
+        internal TypeBuilder(
             BuildEnvironment env,
             ILFactory ilf,
             NameResolver resolver,
-            Compiler compiler)
+            Compiler compiler,
+            BuildQueue queue)
             : base(compiler)
         {
             _env = env;
             _ilf = ilf;
             _resolver = resolver;
             _compiler = compiler;
-        }
-
-        void EnqueueCompiler(FunctionCompiler fc)
-        {
-            if (fc.Body != null)
-            {
-                _enqueuedCompilers.Add(fc);
-                fc.Function.Tag = fc;
-            }
-            else if (_compiler.Backend.CanLink(fc.Function))
-            {
-                fc.Function.Stats |= EntityStats.CanLink;
-            }
-        }
-
-        void EnqueueType(DataType dt, Action<DataType> assignBaseType, Action<DataType> populate)
-        {
-            dt.AssigningBaseType = assignBaseType;
-            dt.PopulatingMembers = x =>
-            {
-                populate(x);
-                x.Stats &= ~EntityStats.PopulatingMembers;
-            };
-            dt.Stats |= EntityStats.PopulatingMembers;
-            _enqueuedTypes.Add(dt);
-        }
-
-        void EnqueueAttributes(Entity e, Action<Entity> assign)
-        {
-            e.AssigningAttributes = assign;
-            _enqueuedAttributes.Add(e);
-        }
-
-        public void BuildTypes()
-        {
-            for (int count = 0, j = 0; count != _enqueuedTypes.Count && j < 10; j++)
-            {
-                count = _enqueuedTypes.Count;
-
-                while (_assignBaseTypeIndex < count)
-                    _enqueuedTypes[_assignBaseTypeIndex++].AssignBaseType();
-
-                for (int i = 0; i < _enqueuedAttributes.Count; i++)
-                    _enqueuedAttributes[i].AssignAttributes();
-
-                _enqueuedAttributes.Clear();
-
-                while (_populateMembersIndex < count)
-                {
-                    if (_compiler.Backend.CanLink(_enqueuedTypes[_populateMembersIndex]))
-                        _enqueuedTypes[_populateMembersIndex].Stats |= EntityStats.CanLink;
-
-                    _enqueuedTypes[_populateMembersIndex++].PopulateMembers();
-                }
-
-                for (int i = 0; i < _enqueuedActions.Count; i++)
-                    _enqueuedActions[i]();
-
-                _enqueuedActions.Clear();
-            }
-
-            for (; _populateMembersIndex < _enqueuedTypes.Count; _populateMembersIndex++)
-                Log.Warning(_enqueuedTypes[_populateMembersIndex].Source, ErrorCode.I0000, "Unable to parameterize " + _enqueuedTypes[_populateMembersIndex].Quote());
-
-            _assignBaseTypeIndex = _populateMembersIndex;
-        }
-
-        public void Build()
-        {
-            BuildTypes();
-
-            if (Log.HasErrors)
-                return;
-
-            for (int i = 0; i < _enqueuedCompilers.Count; i++)
-            {
-                BuildTypes();
-                _enqueuedCompilers[i].Compile();
-            }
-
-            BuildTypes();
-
-            _enqueuedCompilers.Clear();
-            _enqueuedTypes.Clear();
-
-            _assignBaseTypeIndex = 0;
-            _populateMembersIndex = 0;
+            _queue = queue;
         }
 
         public RefArrayType GetArray(DataType elementType)
@@ -141,7 +50,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
         Method CreateMethod(DataType owner, string name, DataType returnType, params Parameter[] parameterList)
         {
             return new Method(owner.Source, owner, null,
-                            Modifiers.Public | Modifiers.Intrinsic | Modifiers.Generated, 
+                            Modifiers.Public | Modifiers.Intrinsic | Modifiers.Generated,
                             name, returnType, parameterList);
         }
 
@@ -211,7 +120,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     if (c.Parameter.Symbol == p.Symbol)
                     {
                         if (c.BaseTypes != null)
-                            EnqueueType(result[i], x => CompileBaseTypes(x, c.BaseTypes), x => { });
+                            _queue.EnqueueType(result[i], x => CompileBaseTypes(x, c.BaseTypes), x => { });
 
                         if (c.Type != 0)
                             result[i].SetConstraintType((GenericConstraintType) c.Type);
@@ -224,7 +133,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 }
 
                 if (result[i].AssigningBaseType == null)
-                    EnqueueType(result[i], x => x.SetBase(_ilf.Essentials.Object), x => { });
+                    _queue.EnqueueType(result[i], x => x.SetBase(_ilf.Essentials.Object), x => { });
             }
 
             gt.MakeGenericDefinition(result);
@@ -232,10 +141,12 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
         internal static Modifiers GetTypeModifiers(Namescope parent, Modifiers modifiers)
         {
-            if ((modifiers & Modifiers.ProtectionModifiers) == 0)
-                modifiers |= parent is DataType ? Modifiers.Private : Modifiers.Internal;
-
-            return modifiers;
+            return (modifiers & Modifiers.ProtectionModifiers) == 0
+                ? modifiers | (
+                    parent is DataType
+                        ? Modifiers.Private
+                        : Modifiers.Internal)
+                : modifiers;
         }
 
         Modifiers GetMemberModifiers(Source src, DataType parent, Modifiers modifiers)

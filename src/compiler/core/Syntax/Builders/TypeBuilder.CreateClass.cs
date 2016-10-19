@@ -68,9 +68,9 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     _compiler.AstProcessor.CreateBlock(b as AstBlockBase, result, astClass.Members);
 
             if (astClass.Attributes.Count > 0)
-                EnqueueAttributes(result, x =>
+                _queue.EnqueueAttributes(result, x =>
                 {
-                    result.SetAttributes(_compiler.CompileAttributes(result.Parent, astClass.Attributes));
+                    result.SetAttributes(_compiler.CompileAttributes(parent, astClass.Attributes));
 
                     // Remove default constructor if TargetSpecificType
                     if (result.HasAttribute(_ilf.Essentials.TargetSpecificTypeAttribute) &&
@@ -78,7 +78,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                         result.Constructors.Clear();
                 });
 
-            EnqueueType(result,
+            _queue.EnqueueType(result,
                 x => CompileBaseTypes(x, astClass.Bases),
                 x => PopulateClass(astClass, x));
         }

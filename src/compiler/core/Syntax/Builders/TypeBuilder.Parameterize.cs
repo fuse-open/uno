@@ -186,9 +186,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
             result.SetMasterDefinition(definition.MasterDefinition);
             ParameterizeInnerTypes(definition, definition, map, result);
-            EnqueueType(result,
+            _queue.EnqueueType(result,
                 x => ParameterizeBaseType(definition, map, x),
                 x => ParameterizeMembers(definition, definition, map, x));
+
             return result;
         }
 
@@ -292,7 +293,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
             if (result != null)
             {
-                map.Add(arg, result);
+                map[arg] = result;
                 return result;
             }
 
@@ -361,17 +362,23 @@ namespace Uno.Compiler.Core.Syntax.Builders
             {
                 var e = current.NestedTypes[i];
                 var t = CreateParameterizableInnerType(e, result);
+                result.NestedTypes.Add(t);
 
                 if (e.IsGenericDefinition)
                     t.MakeGenericDefinition(e.GenericParameters);
 
                 t.SetMasterDefinition(e.MasterDefinition);
 
-                EnqueueType(t,
+                _queue.EnqueueType(t,
                     x => ParameterizeBaseType(e, map, x),
                     x => ParameterizeMembers(definition, e, map, x));
+            }
+
+            for (int i = 0; i < current.NestedTypes.Count; i++)
+            {
+                var e = current.NestedTypes[i];
+                var t = result.NestedTypes[i];
                 ParameterizeInnerTypes(definition, e, map, t);
-                result.NestedTypes.Add(t);
             }
         }
 

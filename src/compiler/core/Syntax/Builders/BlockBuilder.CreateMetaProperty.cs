@@ -58,12 +58,11 @@ namespace Uno.Compiler.Core.Syntax.Builders
             }
 
             var result = new MetaProperty(ast.Name.Source, parent, dt, ast.Name.Symbol, visibility);
-            _enqueuedProperties.Add(new KeyValuePair<AstMetaProperty, MetaProperty>(ast, result));
-
+            _queue.EnqueueMetaProperty(ast, result);
             return result;
         }
 
-        void CompileMetaPropertyDefinitions(AstMetaProperty ast, MetaProperty mp)
+        internal void CompileMetaPropertyDefinitions(AstMetaProperty ast, MetaProperty mp)
         {
             var defs = new MetaDefinition[ast.Definitions.Count];
 

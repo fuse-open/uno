@@ -39,10 +39,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 Log.Error(result.Source, ErrorCode.I3037, "'enum' is not allowed in this context");
 
             if (ast.Attributes.Count > 0)
-                EnqueueAttributes(result,
-                    x => result.SetAttributes(_compiler.CompileAttributes(result.Parent, ast.Attributes)));
+                _queue.EnqueueAttributes(result,
+                    _ => result.SetAttributes(_compiler.CompileAttributes(parent, ast.Attributes)));
 
-            EnqueueType(result,
+            _queue.EnqueueType(result,
                 assignBaseType: x =>
                 {
                     x.SetBase(ast.OptionalBaseType != null
@@ -102,7 +102,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                             s.DocComment, Modifiers.Public, parameterizedType, TypedEnumValue(parameterizedType.Base, value));
 
                         if (s.Attributes.Count > 0)
-                            EnqueueAttributes(literal,
+                            _queue.EnqueueAttributes(literal,
                                 _ => literal.SetAttributes(_compiler.CompileAttributes(result, s.Attributes)));
 
                         result.Literals.Add(literal);
