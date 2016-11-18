@@ -1810,27 +1810,6 @@ uArray* uArray::New(uType* type, size_t length, const void* optionalData)
     return array;
 }
 
-uThrowable::uThrowable(@{Uno.Exception} exception, const char* func, int line)
-    : Exception(exception)
-    , Function(func)
-    , Line(line)
-{
-    uRetain(Exception);
-}
-
-uThrowable::uThrowable(const uThrowable& copy)
-    : Exception(copy.Exception)
-    , Function(copy.Function)
-    , Line(copy.Line)
-{
-    uRetain(Exception);
-}
-
-uThrowable::~uThrowable() throw()
-{
-    uRelease(Exception);
-}
-
 const char* uThrowable::what() const throw()
 {
     return Exception->__type->FullName;

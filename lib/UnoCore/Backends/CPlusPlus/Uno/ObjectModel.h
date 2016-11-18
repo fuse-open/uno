@@ -251,13 +251,15 @@ uType* uVoid_typeof();
 */
 struct uThrowable : public std::exception
 {
-    @{Uno.Exception} Exception;
+    uStrong<@{Uno.Exception}> Exception;
     const char* Function;
     int Line;
 
-    uThrowable(@{Uno.Exception} exception, const char* func, int line);
-    uThrowable(const uThrowable& copy);
-    virtual ~uThrowable() throw();
+    uThrowable(@{Uno.Exception} exception, const char* func, int line)
+        : Exception(exception)
+        , Function(func)
+        , Line(line) {}
+    uThrowable(const uThrowable&) = default;
     virtual const char* what() const throw();
 
     static U_NORETURN void ThrowIndexOutOfRange(const char* func, int line);
