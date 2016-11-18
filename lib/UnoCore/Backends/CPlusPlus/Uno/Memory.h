@@ -224,14 +224,14 @@ struct uSStrong
     uStrongRef<T> operator &() {
         return &_object;
     }
-    operator T() {
+    operator T() const {
         return _object;
     }
-    T operator ->() {
+    T operator ->() const {
         return _object;
     }
     template<class U>
-    explicit operator U() {
+    explicit operator U() const {
         return (U)_object;
     }
 };
@@ -270,14 +270,14 @@ struct uSWeak
     uWeakRef<T> operator &() {
         return &_object;
     }
-    operator T() {
+    operator T() const {
         return (T)uLoadWeak(_object);
     }
-    T operator ->() {
+    T operator ->() const {
         return (T)uLoadWeak(_object);
     }
     template<class U>
-    explicit operator U() {
+    explicit operator U() const {
         return (U)uLoadWeak(_object);
     }
 };
