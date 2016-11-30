@@ -543,7 +543,7 @@ void uBuildMemory(uType* type)
     }
 
 #ifdef DEBUG_UNSAFE
-    uint8_t* layout = (uint8_t*)U_ALLOCA(type->ObjectSize);
+    uint8_t* layout = (uint8_t*)alloca(type->ObjectSize);
     memset(layout, 0, type->ObjectSize);
 
     for (size_t i = 0; i < type->FieldCount; i++)

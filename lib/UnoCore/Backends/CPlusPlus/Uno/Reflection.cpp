@@ -330,7 +330,7 @@ uObject* uFunction::Invoke(uObject* object, uArray* args)
     void* retval = nullptr;
     if (!U_IS_VOID(ReturnType))
     {
-        retval = U_ALLOCA(ReturnType->ValueSize);
+        retval = alloca(ReturnType->ValueSize);
         if (U_IS_VALUE(ReturnType))
             memset(retval, 0, ReturnType->ValueSize);
     }
@@ -344,7 +344,7 @@ uObject* uFunction::Invoke(uObject* object, uArray* args)
 
     void** stack;
     void** ptr = stack = count > 0
-            ? (void**)U_ALLOCA(count * sizeof(void*))
+            ? (void**)alloca(count * sizeof(void*))
             : nullptr;
 
     if (!(Flags & uFunctionFlagsStatic))

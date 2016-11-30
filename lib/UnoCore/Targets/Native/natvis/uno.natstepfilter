@@ -35,6 +35,6 @@
   <Function><Name>uSWeak&lt;.*</Name><Action>NoStepInto</Action></Function>
   <Function><Name>uStrongRef&lt;.*</Name><Action>NoStepInto</Action></Function>
   <Function><Name>.*_typeof</Name><Action>NoStepInto</Action></Function>
-  <!-- U_ALLOCA() translates to this in VC++ -->
+  <!-- alloca() translates to this in VC++ -->
   <Function><Name>_MallocaIsSizeInRange</Name><Action>NoStepInto</Action></Function>
 </StepFilter>

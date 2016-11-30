@@ -1572,7 +1572,7 @@ void uDelegate::Invoke(uTRef retval, void** args, size_t count)
     if (retval._address)
         count++;
 
-    void** stack = (void**)U_ALLOCA(count * sizeof(void*));
+    void** stack = (void**)alloca(count * sizeof(void*));
     void** ptr = stack;
 
     if (_this)
@@ -1594,7 +1594,7 @@ void uDelegate::Invoke(uTRef retval, size_t count, ...)
     va_list ap;
     va_start(ap, count);
     void** args = count > 0
-        ? (void**)U_ALLOCA(count * sizeof(void*))
+        ? (void**)alloca(count * sizeof(void*))
         : nullptr;
 
     for (size_t i = 0; i < count; i++)
@@ -1620,7 +1620,7 @@ uObject* uDelegate::Invoke(uArray* array)
 
         uObject** objects = (uObject**)array->Ptr();
         void** ptr = args = count > 0
-            ? (void**)U_ALLOCA(count * sizeof(void*))
+            ? (void**)alloca(count * sizeof(void*))
             : nullptr;
 
         for (size_t i = 0; i < count; i++)
@@ -1653,7 +1653,7 @@ uObject* uDelegate::Invoke(uArray* array)
 
     uType* returnType = type->ReturnType;
     void* retval = !U_IS_VOID(returnType)
-        ? U_ALLOCA(returnType->ValueSize)
+        ? alloca(returnType->ValueSize)
         : nullptr;
 
     Invoke(retval, args, count);
@@ -1665,7 +1665,7 @@ uObject* uDelegate::Invoke(size_t count, ...)
     va_list ap;
     va_start(ap, count);
     void** args = count > 0
-        ? (void**)U_ALLOCA(count * sizeof(void*))
+        ? (void**)alloca(count * sizeof(void*))
         : nullptr;
 
     for (size_t i = 0; i < count; i++)
@@ -1674,7 +1674,7 @@ uObject* uDelegate::Invoke(size_t count, ...)
     va_end(ap);
     uType* returnType = ((uDelegateType*)__type)->ReturnType;
     void* retval = !U_IS_VOID(returnType)
-        ? U_ALLOCA(returnType->ValueSize)
+        ? alloca(returnType->ValueSize)
         : nullptr;
 
     Invoke(retval, args, count);

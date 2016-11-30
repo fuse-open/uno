@@ -377,7 +377,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 WriteLine(GetTypeOf(f.DeclaringType) + "->Init();");
 
             foreach (var v in func.Constrained)
-                WriteLine("uT " + v.Name + "(" + GetTypeOf(v.ValueType) + ", U_ALLOCA(" + GetTypeOf(v.ValueType) + "->ValueSize));");
+                WriteLine("uT " + v.Name + "(" + GetTypeOf(v.ValueType) + ", alloca(" + GetTypeOf(v.ValueType) + "->ValueSize));");
 
             WriteFunctionBody(f, false);
             EndScope();
@@ -1440,7 +1440,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             WriteExpression(s);
 
             if (stack)
-                Write(", U_ALLOCA(" + GetTypeOf(s.ReturnType) + "->ObjectSize)");
+                Write(", alloca(" + GetTypeOf(s.ReturnType) + "->ObjectSize)");
 
             Write(")");
         }
