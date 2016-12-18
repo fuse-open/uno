@@ -119,7 +119,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void VisitType(DataType dt)
         {
-            if (dt.Stats.HasFlag(EntityStats.RefCount))
+            if (dt.HasRefCount)
                 return;
 
             dt.Stats |= EntityStats.RefCount;
@@ -191,7 +191,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void VisitFunction(Function f)
         {
-            if (f.Stats.HasFlag(EntityStats.RefCount))
+            if (f.HasRefCount)
                 return;
 
             f.Stats |= EntityStats.RefCount;
@@ -281,7 +281,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void VisitField(Field f)
         {
-            if (f.Stats.HasFlag(EntityStats.RefCount))
+            if (f.HasRefCount)
                 return;
 
             f.Stats |= EntityStats.RefCount;
@@ -435,7 +435,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void ConstrainOverridingMethod(Method m)
         {
-            if (m.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+            if (m.MasterDefinition.HasRefCount)
             {
                 ConstrainOverriddenMethod(m.OverriddenMethod);
                 return;
@@ -443,7 +443,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
             for (var om = m.OverriddenMethod; om != null; om = om.OverriddenMethod)
             {
-                if (om.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+                if (om.MasterDefinition.HasRefCount)
                 {
                     VisitFunction(m);
                     ConstrainOverriddenMethod(m.OverriddenMethod);
@@ -454,7 +454,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void ConstrainRefsRecursive(DataType dt)
         {
-            if (!dt.Stats.HasFlag(EntityStats.RefCount))
+            if (!dt.HasRefCount)
             {
                 // Visit generic parameterization used as base class
                 if (!dt.IsMasterDefinition && dt.Stats.HasFlag(EntityStats.RefCountAsBase) && !CanStrip(dt))
@@ -478,10 +478,10 @@ namespace Uno.Compiler.Core.IL.Optimizing
             if (!dt.IsMasterDefinition)
             {
                 foreach (var m in dt.EnumerateFields())
-                    if (m.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+                    if (m.MasterDefinition.HasRefCount)
                         VisitField(m);
                 foreach (var m in dt.EnumerateFunctions())
-                    if (m.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+                    if (m.MasterDefinition.HasRefCount)
                         VisitFunction(m);
             }
 
@@ -522,10 +522,10 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
             foreach (var m in dt.Events)
             {
-                if (m.Stats.HasFlag(EntityStats.RefCount) ||
-                    m.AddMethod != null && m.AddMethod.Stats.HasFlag(EntityStats.RefCount) ||
-                    m.RemoveMethod != null && m.RemoveMethod.Stats.HasFlag(EntityStats.RefCount) ||
-                    m.ImplicitField != null && m.ImplicitField.Stats.HasFlag(EntityStats.RefCount))
+                if (m.HasRefCount ||
+                    m.AddMethod != null && m.AddMethod.HasRefCount ||
+                    m.RemoveMethod != null && m.RemoveMethod.HasRefCount ||
+                    m.ImplicitField != null && m.ImplicitField.HasRefCount)
                 {
                     if (m.AddMethod != null)
                         VisitFunction(m.AddMethod);
@@ -552,10 +552,10 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
             foreach (var m in dt.Properties)
             {
-                if (m.Stats.HasFlag(EntityStats.RefCount) ||
-                    m.GetMethod != null && m.GetMethod.Stats.HasFlag(EntityStats.RefCount) ||
-                    m.SetMethod != null && m.SetMethod.Stats.HasFlag(EntityStats.RefCount) ||
-                    m.ImplicitField != null && m.ImplicitField.Stats.HasFlag(EntityStats.RefCount))
+                if (m.HasRefCount ||
+                    m.GetMethod != null && m.GetMethod.HasRefCount ||
+                    m.SetMethod != null && m.SetMethod.HasRefCount ||
+                    m.ImplicitField != null && m.ImplicitField.HasRefCount)
                 {
                     if (m.GetMethod != null)
                         VisitFunction(m.GetMethod);
@@ -593,7 +593,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
             foreach (var e in dt.InterfaceMethods)
                 if (!e.Value.IsPrototype &&
-                    e.Value.Prototype.Stats.HasFlag(EntityStats.RefCount))
+                    e.Value.Prototype.HasRefCount)
                     VisitFunction(e.Value);
 
             foreach (var it in dt.Interfaces)
@@ -602,7 +602,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
                 {
                     var decl = f as Method;
 
-                    if (decl == null || !decl.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+                    if (decl == null || !decl.MasterDefinition.HasRefCount)
                         continue;
 
                     for (var bt = dt; bt != null; bt = bt.Base)
@@ -642,7 +642,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void NormalizeRefsRecursive(DataType dt)
         {
-            if (!dt.Stats.HasFlag(EntityStats.RefCount))
+            if (!dt.HasRefCount)
                 return;
 
             if (dt.IsGenericDefinition)
@@ -694,13 +694,13 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         bool CanStrip(DataType dt)
         {
-            return Environment.Strip && !dt.MasterDefinition.Stats.HasFlag(EntityStats.RefCount) && !dt.Prototype.Stats.HasFlag(EntityStats.RefCount) ||
+            return Environment.Strip && !dt.MasterDefinition.HasRefCount && !dt.Prototype.HasRefCount ||
                 !Backend.CanExportDontExports && !Environment.CanExport(dt);
         }
 
         bool CanStrip(Member m)
         {
-            return Environment.Strip && !m.MasterDefinition.Stats.HasFlag(EntityStats.RefCount) && !m.Prototype.Stats.HasFlag(EntityStats.RefCount) ||
+            return Environment.Strip && !m.MasterDefinition.HasRefCount && !m.Prototype.HasRefCount ||
                 !Backend.CanExportDontExports && !Environment.CanExport(m);
         }
 

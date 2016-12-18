@@ -78,6 +78,7 @@ namespace Uno.Compiler.API.Domain.IL.Members
             }
         }
 
+        public bool HasRefCount => Stats.HasFlag(EntityStats.RefCount);
         public bool IsStripped => DeclaringType.MasterDefinition.StrippedMembers.Contains(MasterDefinition) || DeclaringType.IsStripped;
 
         Source IEntity.Source => Source;

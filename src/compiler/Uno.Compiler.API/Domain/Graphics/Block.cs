@@ -50,6 +50,7 @@ namespace Uno.Compiler.API.Domain.Graphics
         public SourcePackage Package => Source.Package;
         NewObject[] IEntity.Attributes => Attributes;
         string IEntity.DocComment => DocComment;
+        bool IEntity.HasRefCount => false;
         bool IEntity.IsStripped => true;
         public bool IsPublic => Modifiers.HasFlag(Modifiers.Public);
         bool IEntity.IsProtected => Modifiers.HasFlag(Modifiers.Protected);
