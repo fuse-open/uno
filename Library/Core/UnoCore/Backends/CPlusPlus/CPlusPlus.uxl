@@ -16,7 +16,6 @@
     <Declare TypeElement="Source.Declaration" />
     <Declare TypeElement="Source.Include" />
     <Declare TypeElement="Source.Import" />
-    <Declare TypeElement="Type.Initialization" />
     <Declare TypeProperty="ForwardDeclaration" />
     <Declare TypeProperty="Include" />
     <Declare TypeProperty="TypeName" />
@@ -53,8 +52,6 @@
 
     <!-- UnoCore extensions -->
     <Declare Element="Main.Include" />
-    <Declare Element="TypeExtension.Declaration" />
-    <Declare Element="TypeExtension.Initialization" />
     <Declare Element="TypeObjects.Declaration" />
     <Declare Element="TypeObjects.FunctionPointer" />
 
@@ -93,9 +90,6 @@
     <Deprecate iOS.PrefixHeader.Declaration="Xcode.PrefixHeader.Declaration" />
     <Deprecate Java.Extern.RegisterFunctions="Java.Extern.RegisterFunction" />
     <Deprecate Source.FileExtension="FileExtension" />
-    <Deprecate TypeInitialization="Type.Initialization" />
-    <Deprecate UnoCore.TypeExtension.Declaration="TypeExtension.Declaration" />
-    <Deprecate UnoCore.TypeExtension.Initialization="TypeExtension.Initialization" />
 
     <!-- Keywords -->
     <Set Keywords>

@@ -190,9 +190,6 @@ struct uType : uObject
     uReflection Reflection;
 #endif
 
-    // Extensions
-    @(TypeExtension.Declaration:Join())
-
     // V-table
     void(*fp_build_)(uType*);
     const void* fp_ctor_;
