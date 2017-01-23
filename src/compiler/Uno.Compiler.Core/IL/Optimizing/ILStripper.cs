@@ -615,6 +615,9 @@ namespace Uno.Compiler.Core.IL.Optimizing
                         }
                     }
                 }
+
+                if (!it.HasRefCount && !CanStrip(it))
+                    VisitType(it);
             }
         }
 
