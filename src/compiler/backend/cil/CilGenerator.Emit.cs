@@ -15,7 +15,7 @@ namespace Uno.Compiler.Backends.CIL
     {
         void EmitFunction(ILGenerator cil, Function f)
         {
-            var document = ResolveDocument(f.Source.FullPath);
+            var document = GetDocument(f.Source.FullPath);
 
             if (!f.HasBody)
             {
