@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Uno.Build.Packages;
-using Uno.Collections;
 using Uno.Compiler;
 using Uno.Compiler.API;
 using Uno.Compiler.Frontend;
 using Uno.IO;
 using Uno.Logging;
 
-namespace Uno.Build.Targets.Uno
+namespace Uno.Build.Targets.Generators
 {
     class PackageGenerator
     {

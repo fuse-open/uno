@@ -1,9 +1,9 @@
-using Uno.Build.Targets.Native;
+using Uno.Build.Targets.Generators;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.PInvoke;
 
-namespace Uno.Build.Targets.PInvoke
+namespace Uno.Build.Targets
 {
     public class PInvokeBuild : BuildTarget
     {

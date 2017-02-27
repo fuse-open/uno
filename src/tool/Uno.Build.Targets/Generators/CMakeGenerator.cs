@@ -2,7 +2,7 @@
 using Uno.Collections;
 using Uno.Compiler.API;
 
-namespace Uno.Build.Targets.Native
+namespace Uno.Build.Targets.Generators
 {
     class CMakeGenerator
     {

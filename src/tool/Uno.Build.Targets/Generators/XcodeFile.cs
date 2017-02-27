@@ -1,4 +1,4 @@
-namespace Uno.Build.Targets.Xcode
+namespace Uno.Build.Targets.Generators
 {
     class XcodeFile
     {

@@ -1,11 +1,12 @@
-﻿using Uno.Compiler.API;
+﻿using Uno.Build.Targets.Generators;
+using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.CPlusPlus;
 using Uno.Compiler.Backends.OpenGL;
 using Uno.Compiler.Extensions;
 using Uno.Diagnostics;
 
-namespace Uno.Build.Targets.Xcode
+namespace Uno.Build.Targets
 {
     public class iOSBuild : BuildTarget
     {

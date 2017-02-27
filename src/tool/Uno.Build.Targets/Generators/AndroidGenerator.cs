@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.Extensions;
-using Uno.IO;
 
-namespace Uno.Build.Targets.Android
+namespace Uno.Build.Targets.Generators
 {
     class AndroidGenerator
     {

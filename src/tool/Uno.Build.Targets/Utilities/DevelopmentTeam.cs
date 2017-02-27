@@ -5,7 +5,7 @@ using AppKit;
 using Foundation;
 using ObjCRuntime;
 
-namespace Uno.Build.Targets.Xcode
+namespace Uno.Build.Targets.Utilities
 {
     class DevTeam
     {

@@ -2,7 +2,7 @@
 using Uno.Compiler.Backends.Metadata;
 using Uno.Compiler.Backends.OpenGL;
 
-namespace Uno.Build.Targets.DotNet
+namespace Uno.Build.Targets
 {
     public class MetadataBuild : BuildTarget
     {

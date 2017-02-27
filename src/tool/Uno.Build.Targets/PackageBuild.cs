@@ -1,7 +1,8 @@
-﻿using Uno.Compiler.API;
+﻿using Uno.Build.Targets.Generators;
+using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 
-namespace Uno.Build.Targets.Uno
+namespace Uno.Build.Targets
 {
     public class PackageBuild : BuildTarget
     {

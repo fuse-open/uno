@@ -2,7 +2,7 @@
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.UnoDoc;
 
-namespace Uno.Build.Targets.Uno
+namespace Uno.Build.Targets
 {
     public class DocsBuild : BuildTarget
     {

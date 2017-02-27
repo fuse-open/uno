@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Uno.Build.Targets.Utilities;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Configuration;
 using Uno.Diagnostics;
 using Uno.Logging;
 
-namespace Uno.Build.Targets.Xcode
+namespace Uno.Build.Targets.Generators
 {
     class XcodeGenerator
     {
