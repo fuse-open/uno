@@ -1,4 +1,5 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Math;
 
 namespace Uno.Collections
 {
@@ -96,7 +97,7 @@ namespace Uno.Collections
                 _data = new T[2];
             else if (_used + 1 >= _data.Length)
             {
-                var newData = new T[Math.Max(2, _data.Length * 2)];
+                var newData = new T[Max(2, _data.Length * 2)];
 
                 if defined(CPLUSPLUS)
                 @{

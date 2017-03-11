@@ -55,7 +55,7 @@ namespace Uno
 
         public static float4 RotationAxis(float3 axisNormalized, float angleRadians)
         {
-            axisNormalized = Uno.Vector.Normalize(axisNormalized);
+            axisNormalized = Normalize(axisNormalized);
             float h = angleRadians * 0.5f;
             float s = Sin(h);
             float c = Cos(h);
@@ -116,9 +116,9 @@ namespace Uno
         public static float4 RotationAlignForward(float3 forwardDirection, float3 upDirection)
         {
             forwardDirection = -forwardDirection;
-            Uno.Vector.OrthoNormalize(ref forwardDirection, ref upDirection);
-            float3 right = Uno.Vector.Cross(upDirection, forwardDirection);
-            float W = Uno.Math.Sqrt(((1.0f + right.X) + upDirection.Y) + forwardDirection.Z) * 0.5f;
+            OrthoNormalize(ref forwardDirection, ref upDirection);
+            float3 right = Cross(upDirection, forwardDirection);
+            float W = Sqrt(((1.0f + right.X) + upDirection.Y) + forwardDirection.Z) * 0.5f;
             float w4_recip = 1.0f / (4.0f * W);
             float X = (forwardDirection.Y - upDirection.Z) * w4_recip;
             float Y = (right.Z - forwardDirection.X) * w4_recip;
@@ -143,14 +143,14 @@ namespace Uno
             yaw = tmp;
 
             float rollOver2 = roll * 0.5f;
-            float sinRollOver2 = Math.Sin(rollOver2);
-            float cosRollOver2 = Math.Cos(rollOver2);
+            float sinRollOver2 = Sin(rollOver2);
+            float cosRollOver2 = Cos(rollOver2);
             float yawOver2 = yaw * 0.5f;
-            float sinYawOver2 = Math.Sin(yawOver2);
-            float cosYawOver2 = Math.Cos(yawOver2);
+            float sinYawOver2 = Sin(yawOver2);
+            float cosYawOver2 = Cos(yawOver2);
             float pitchOver2 = pitch * 0.5f;
-            float sinPitchOver2 = Math.Sin(pitchOver2);
-            float cosPitchOver2 = Math.Cos(pitchOver2);
+            float sinPitchOver2 = Sin(pitchOver2);
+            float cosPitchOver2 = Cos(pitchOver2);
             float4 result;
             result.W = ((cosPitchOver2 * cosYawOver2) * cosRollOver2) + ((sinPitchOver2 * sinYawOver2) * sinRollOver2);
             result.X = ((cosPitchOver2 * sinYawOver2) * cosRollOver2) + ((sinPitchOver2 * cosYawOver2) * sinRollOver2);
@@ -166,7 +166,7 @@ namespace Uno
 
         public static float4 FromEulerAngleDegrees(float pitch, float yaw, float roll)
         {
-            return FromEulerAngle(Math.DegreesToRadians(pitch), Math.DegreesToRadians(yaw), Math.DegreesToRadians(roll));
+            return FromEulerAngle(DegreesToRadians(pitch), DegreesToRadians(yaw), DegreesToRadians(roll));
         }
 
         ///
@@ -184,22 +184,22 @@ namespace Uno
 
             if (test > 0.4995f * unit)
             { // singularity at north pole
-                v.Y = 2f * Math.Atan2(q1.Y, q1.X);
-                v.X = (float)Math.PI / 2;
+                v.Y = 2f * Atan2(q1.Y, q1.X);
+                v.X = (float)PI / 2;
                 v.Z = 0;
                 return v;
             }
             if (test < -0.4995f * unit)
             { // singularity at south pole
-                v.Y = -2f * Math.Atan2(q1.Y, q1.X);
-                v.X = -(float)Math.PI / 2;
+                v.Y = -2f * Atan2(q1.Y, q1.X);
+                v.X = -(float)PI / 2;
                 v.Z = 0;
                 return v;
             }
             float4 q = float4(q1.W, q1.Z, q1.X, q1.Y);
-            v.Y = (float)Math.Atan2(2f * q.X * q.W + 2f * q.Y * q.Z, 1 - 2f * (q.Z * q.Z + q.W * q.W));     // Yaw
-            v.X = (float)Math.Asin(2f * (q.X * q.Z - q.W * q.Y));                             // Pitch
-            v.Z = (float)Math.Atan2(2f * q.X * q.Y + 2f * q.Z * q.W, 1 - 2f * (q.Y * q.Y + q.Z * q.Z));      // Roll
+            v.Y = (float)Atan2(2f * q.X * q.W + 2f * q.Y * q.Z, 1 - 2f * (q.Z * q.Z + q.W * q.W));     // Yaw
+            v.X = (float)Asin(2f * (q.X * q.Z - q.W * q.Y));                             // Pitch
+            v.Z = (float)Atan2(2f * q.X * q.Y + 2f * q.Z * q.W, 1 - 2f * (q.Y * q.Y + q.Z * q.Z));      // Roll
             return v;
         }
 
@@ -208,7 +208,7 @@ namespace Uno
             // TODO: Why is this one wrapping the angles while the other one (ToEulerAngle) does not?
             // TODO: Why do we even provide these degree overloads (consistency?)
             var v = ToEulerAngle(q1);
-            return NormalizeAnglesDegrees(float3(Math.RadiansToDegrees(v.X), Math.RadiansToDegrees(v.Y), Math.RadiansToDegrees(v.Z)));
+            return NormalizeAnglesDegrees(float3(RadiansToDegrees(v.X), RadiansToDegrees(v.Y), RadiansToDegrees(v.Z)));
         }
 
         static float3 NormalizeAnglesDegrees(float3 angles)
@@ -237,7 +237,7 @@ namespace Uno
 
             if (scale > 0.0f)
             {
-                sqrt = Math.Sqrt(scale + 1.0f);
+                sqrt = Sqrt(scale + 1.0f);
                 result.W = sqrt * 0.5f;
                 sqrt = 0.5f / sqrt;
 
@@ -247,7 +247,7 @@ namespace Uno
             }
             else if ((matrix.M11 >= matrix.M22) && (matrix.M11 >= matrix.M33))
             {
-                sqrt = Math.Sqrt(1.0f + matrix.M11 - matrix.M22 - matrix.M33);
+                sqrt = Sqrt(1.0f + matrix.M11 - matrix.M22 - matrix.M33);
                 halff = 0.5f / sqrt;
 
                 result.X = 0.5f * sqrt;
@@ -257,7 +257,7 @@ namespace Uno
             }
             else if (matrix.M22 > matrix.M33)
             {
-                sqrt = Math.Sqrt(1.0f + matrix.M22 - matrix.M11 - matrix.M33);
+                sqrt = Sqrt(1.0f + matrix.M22 - matrix.M11 - matrix.M33);
                 halff = 0.5f / sqrt;
 
                 result.X = (matrix.M21 + matrix.M12) * halff;
@@ -267,7 +267,7 @@ namespace Uno
             }
             else
             {
-                sqrt = Math.Sqrt(1.0f + matrix.M33 - matrix.M11 - matrix.M22);
+                sqrt = Sqrt(1.0f + matrix.M33 - matrix.M11 - matrix.M22);
                 halff = 0.5f / sqrt;
 
                 result.X = (matrix.M31 + matrix.M13) * halff;
@@ -306,13 +306,13 @@ namespace Uno
         //http://lolengine.net/blog/2013/09/18/beautiful-maths-quaternion-from-vectors
         static public float4 RotationBetween( float3 from, float3 to )
         {
-            /*from = Vector.Normalize(from);
-            to = Vector.Normalize(to);
-            var angle = Math.Acos( Vector.Dot( from, to ) );
-            var vector = Vector.Normalize( Vector.Cross( from, to ) );
+            /*from = Normalize(from);
+            to = Normalize(to);
+            var angle = Acos( Dot( from, to ) );
+            var vector = Normalize( Cross( from, to ) );
             return Quaternion.RotationAxis( vector, angle );*/
-            float m = Math.Sqrt(2f + 2f * Vector.Dot(from, to));
-            float3 w = (1 / m) * Vector.Cross(from, to);
+            float m = Sqrt(2f + 2f * Dot(from, to));
+            float3 w = (1 / m) * Cross(from, to);
             return float4(w.X, w.Y, w.Z, 0.5f * m);
         }
 
@@ -320,11 +320,11 @@ namespace Uno
         public static float4 RotationAlign(float3 from, float3 to)
         {
             float4 q;
-            Vector3 a = Vector.Cross(from, to);
+            Vector3 a = Cross(from, to);
             q.X = a.X;
             q.Y = a.Y;
             q.Z = a.Z;
-            q.W = (float)Math.Sqrt(from.LengthSquared() * to.LengthSquared()) + Vector.Dot(from, to);
+            q.W = (float)Sqrt(from.LengthSquared() * to.LengthSquared()) + Dot(from, to);
             q.Normalize();
             return q;
         }
@@ -334,15 +334,15 @@ namespace Uno
             var u0 = axis;
             u0.Normalize();
             var v1 = from;
-            var u1 = v1 - Vector.Dot(v1, u0) * u0;
+            var u1 = v1 - Dot(v1, u0) * u0;
             u1.Normalize();
             var v2 = to;
-            var u2 = v2 - Vector.Dot(v2, u0) * u0 - Vector.Dot(v2, u1) * u1;
+            var u2 = v2 - Dot(v2, u0) * u0 - Dot(v2, u1) * u1;
             u2.Normalize();
 
-            float a = (float)Math.Atan2(Vector.Dot(to, u1), Vector.Dot(to, u2));
-            float b = (float)Math.Atan2(Vector.Dot(from, u1), Vector.Dot(from, u2));
-            float angle = Vector.Dot(axis, Vector.Cross(to, from)) < 0.0 ? a - b : b - a;
+            float a = (float)Atan2(Dot(to, u1), Dot(to, u2));
+            float b = (float)Atan2(Dot(from, u1), Dot(from, u2));
+            float angle = Dot(axis, Cross(to, from)) < 0.0 ? a - b : b - a;
 
             return Quaternion.RotationAxis(u0, angle);
         }

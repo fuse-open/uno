@@ -1,6 +1,6 @@
-
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Math;
 
 namespace Uno.Graphics
 {
@@ -64,20 +64,20 @@ namespace Uno.Graphics
                         var offsetScissor = new Recti(_scissor.Position + offset, _scissor.Size);
                         var currentScissor = _backend.GetBackbufferScissor();
                         var clippedScissor = new Recti(
-                            Uno.Math.Max(offsetScissor.Left, currentScissor.Left),
-                            Uno.Math.Max(offsetScissor.Top, currentScissor.Top),
-                            Uno.Math.Min(offsetScissor.Right, currentScissor.Right),
-                            Uno.Math.Min(offsetScissor.Bottom, currentScissor.Bottom)); // TODO: Some kind of Recti.Intersect[ion] would be better here
+                            Max(offsetScissor.Left, currentScissor.Left),
+                            Max(offsetScissor.Top, currentScissor.Top),
+                            Min(offsetScissor.Right, currentScissor.Right),
+                            Min(offsetScissor.Bottom, currentScissor.Bottom)); // TODO: Some kind of Recti.Intersect[ion] would be better here
 
                         GL.Scissor(clippedScissor.Left,
                             realFbHeight - clippedScissor.Bottom,
-                            Math.Max(0, clippedScissor.Size.X),
-                            Math.Max(0, clippedScissor.Size.Y));
+                            Max(0, clippedScissor.Size.X),
+                            Max(0, clippedScissor.Size.Y));
 
                     }
                     else
                     {
-                        GL.Scissor(_scissor.Left, _renderTarget.Size.Y - _scissor.Bottom, Math.Max(0, _scissor.Size.X), Math.Max(0, _scissor.Size.Y));
+                        GL.Scissor(_scissor.Left, _renderTarget.Size.Y - _scissor.Bottom, Max(0, _scissor.Size.X), Max(0, _scissor.Size.Y));
                     }
                 }
                 else
@@ -103,13 +103,13 @@ namespace Uno.Graphics
 
                         GL.Viewport(offsetViewport.Left,
                             realFbHeight - offsetViewport.Bottom,
-                            Math.Max(0, offsetViewport.Size.X),
-                            Math.Max(0, offsetViewport.Size.Y));
+                            Max(0, offsetViewport.Size.X),
+                            Max(0, offsetViewport.Size.Y));
 
                     }
                     else
                     {
-                        GL.Viewport(_viewport.Left, _renderTarget.Size.Y - _viewport.Bottom, Math.Max(0, _viewport.Size.X), Math.Max(0, _viewport.Size.Y));
+                        GL.Viewport(_viewport.Left, _renderTarget.Size.Y - _viewport.Bottom, Max(0, _viewport.Size.X), Max(0, _viewport.Size.Y));
                     }
                 }
                 else

@@ -1,4 +1,5 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Math;
 
 namespace Uno.Collections
 {
@@ -328,7 +329,7 @@ namespace Uno.Collections
             if (_count + _dummies > _buckets.Length / 2)
                 Rehash();
 
-            int x = Math.Abs(key.GetHashCode()) & (_buckets.Length - 1);
+            int x = Abs(key.GetHashCode()) & (_buckets.Length - 1);
 
             while (true)
             {
@@ -366,7 +367,7 @@ namespace Uno.Collections
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            int x = Math.Abs(key.GetHashCode()) & (_buckets.Length - 1);
+            int x = Abs(key.GetHashCode()) & (_buckets.Length - 1);
 
             while (true)
             {
@@ -393,7 +394,7 @@ namespace Uno.Collections
 
         public bool Remove(TKey key)
         {
-            int x = Math.Abs(key.GetHashCode()) & (_buckets.Length - 1);
+            int x = Abs(key.GetHashCode()) & (_buckets.Length - 1);
 
             while (true)
             {
@@ -424,7 +425,7 @@ namespace Uno.Collections
 
         public bool ContainsKey(TKey key)
         {
-            int x = Math.Abs(key.GetHashCode()) & (_buckets.Length - 1);
+            int x = Abs(key.GetHashCode()) & (_buckets.Length - 1);
 
             while (true)
             {
@@ -451,7 +452,7 @@ namespace Uno.Collections
         {
             get
             {
-                int x = Math.Abs(key.GetHashCode()) & (_buckets.Length - 1);
+                int x = Abs(key.GetHashCode()) & (_buckets.Length - 1);
 
                 while (true)
                 {
@@ -475,7 +476,7 @@ namespace Uno.Collections
             }
             set
             {
-                int x = Math.Abs(key.GetHashCode()) & (_buckets.Length - 1);
+                int x = Abs(key.GetHashCode()) & (_buckets.Length - 1);
 
                 while (true)
                 {

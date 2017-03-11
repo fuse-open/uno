@@ -1,4 +1,5 @@
 using Uno.Collections;
+using Uno.Math;
 
 namespace Uno.Graphics.Utils.Text
 {
@@ -29,14 +30,14 @@ namespace Uno.Graphics.Utils.Text
 
                     if (g.Data != null)
                     {
-                        maxSize = Math.Max(maxSize, g.Size.X);
-                        maxSize = Math.Max(maxSize, g.Size.Y);
+                        maxSize = Max(maxSize, g.Size.X);
+                        maxSize = Max(maxSize, g.Size.Y);
                     }
                 }
             }
 
-            var sideCount = (int)Math.Ceil(Math.Sqrt((float)glyphs.Count));
-            var sideSize = Math.NextPow2(sideCount * maxSize);
+            var sideCount = (int)Ceil(Sqrt((float)glyphs.Count));
+            var sideSize = NextPow2(sideCount * maxSize);
 
             var dst = new Bitmap(int2(sideSize, sideSize), Format.L8);
             var tex = new Texture2D(dst.Size, dst.Format, true);
@@ -45,9 +46,9 @@ namespace Uno.Graphics.Utils.Text
             {
                 Texture = tex,
 
-                Ascent = Math.Floor(font.GetAscender(size) + .5f),
-                Descent = Math.Floor(font.GetDescender(size) + .5f),
-                LineHeight = Math.Floor(font.GetLineHeight(size) + .5f),
+                Ascent = Floor(font.GetAscender(size) + .5f),
+                Descent = Floor(font.GetDescender(size) + .5f),
+                LineHeight = Floor(font.GetLineHeight(size) + .5f),
 
                 PixelSize = size,
                 PixelSpread = 0,
@@ -79,8 +80,8 @@ namespace Uno.Graphics.Utils.Text
                 }
 
                 BitmapFont.GlyphInfo g;
-                g.Advance = Math.Floor(e.Value.Advance.X + .5f);
-                g.Bearing = Math.Floor(e.Value.Bearing + .5f);
+                g.Advance = Floor(e.Value.Advance.X + .5f);
+                g.Bearing = Floor(e.Value.Bearing + .5f);
                 g.Size = (float2)srcSize;
                 g.UpperLeft.X = (ushort)((double)ushort.MaxValue * (double)(dstX) / (double)dst.Size.X);
                 g.UpperLeft.Y = (ushort)((double)ushort.MaxValue * (double)(dstY) / (double)dst.Size.Y);
@@ -105,7 +106,7 @@ namespace Uno.Graphics.Utils.Text
                     var right = charsetInclWs[j];
 
                     float2 kerning;
-                    if (font.TryGetKerning(size, left, right, out kerning) && Math.Abs(kerning.X) > 0)
+                    if (font.TryGetKerning(size, left, right, out kerning) && Abs(kerning.X) > 0)
                         result.Kernings[new BitmapFont.CharPair(left, right)] = kerning.X;
                 }
             }
