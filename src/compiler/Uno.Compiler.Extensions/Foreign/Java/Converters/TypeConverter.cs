@@ -238,7 +238,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java.Converters
 				}
 				else if (convert.Type.IsJavaObject(dt))
 				{
-					cast = "(" + unoTmpVarName + "==NULL ? NULL : U_JNIVAR->NewLocalRef(@{global::Android.Base.Wrappers.IJWrapper:Of((@{global::Android.Base.Wrappers.IJWrapper})" + unoTmpVarName + ")._GetJavaObject():Call()}))";
+					cast = "(" + unoTmpVarName + "==nullptr ? nullptr : U_JNIVAR->NewLocalRef(@{global::Android.Base.Wrappers.IJWrapper:Of((@{global::Android.Base.Wrappers.IJWrapper})" + unoTmpVarName + ")._GetJavaObject():Call()}))";
 				}
 				else if (dt.IsSubclassOfOrEqual(essentials.Delegate))
 				{
@@ -263,13 +263,13 @@ namespace Uno.Compiler.Extensions.Foreign.Java.Converters
 					switch (free)
 					{
 						case JniFreeingTechnique.Default:
-							Free = "if (" + JniVarName + "!=NULL) { U_JNIVAR->DeleteLocalRef(" + JniVarName + "); }";
+							Free = "if (" + JniVarName + "!=nullptr) { U_JNIVAR->DeleteLocalRef(" + JniVarName + "); }";
 							break;
 						case JniFreeingTechnique.WithScope:
 							if (dt.IsStruct) // no null check needed if is uno struct
 								cast = "U_JNIVAR->NewLocalRef((" + cast + "))";
 							else
-								cast = "(" + unoTmpVarName + "==NULL ? NULL : U_JNIVAR->NewLocalRef((" + cast + ")))";
+								cast = "(" + unoTmpVarName + "==nullptr ? nullptr : U_JNIVAR->NewLocalRef((" + cast + ")))";
 							Free = "";
 							break;
 						case JniFreeingTechnique.None:
