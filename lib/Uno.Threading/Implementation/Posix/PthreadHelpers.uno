@@ -46,7 +46,7 @@ namespace Uno.Threading
         @{
             uPosixSemaphore* semaphoreHandle = uPosixCreateSemaphore(initialCount, maxCount);
 
-            if (semaphoreHandle == NULL)
+            if (semaphoreHandle == nullptr)
                 U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPosixCreateSemaphore() failed!"))});
 
             return semaphoreHandle;
@@ -83,7 +83,7 @@ namespace Uno.Threading
         @{
             uPosixResetEvent *resetEventHandle = uPosixCreateResetEvent(initialState, autoReset);
 
-            if (resetEventHandle == NULL)
+            if (resetEventHandle == nullptr)
                 U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPosixCreateResetEvent() failed!"))});
 
             return resetEventHandle;
