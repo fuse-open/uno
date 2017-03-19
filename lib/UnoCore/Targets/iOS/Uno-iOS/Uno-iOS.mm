@@ -34,7 +34,7 @@ namespace uPlatform { namespace iOS {
 
     uObject *GetAssociatedUnoObject(id nativeObject)
     {
-        uObject *result = NULL;
+        uObject *result = nullptr;
 
         id<UnoObject> value = (id<UnoObject>)
             objc_getAssociatedObject(nativeObject, &UnoObjectAssociationKey);
@@ -55,7 +55,7 @@ namespace uPlatform { namespace iOS {
     uString *ToUno(NSString *str)
     {
         if (!str)
-            return NULL;
+            return nullptr;
 
         NSUInteger bytes = [str
             lengthOfBytesUsingEncoding:NativeUTF16Encoding];
@@ -70,7 +70,7 @@ namespace uPlatform { namespace iOS {
                 encoding:NativeUTF16Encoding
                 options:0
                 range:NSMakeRange(0, [str length])
-                remainingRange:NULL])
+                remainingRange:nullptr])
         {
             if (usedBytes != bytes) {
                 result->_length = int(usedBytes / sizeof(char16_t));
@@ -79,6 +79,6 @@ namespace uPlatform { namespace iOS {
             return result;
         }
 
-        return NULL;
+        return nullptr;
     }
 }} // namespace uPlatform::iOS

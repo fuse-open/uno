@@ -28,7 +28,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 return $$ == $0 || (
-                        $0 != NULL && (
+                        $0 != nullptr && (
                             $0->__type == $$->__type || (
                                 $0->__type->Type == uTypeTypeEnum &&
                                 $0->__type->Base == $$->__type

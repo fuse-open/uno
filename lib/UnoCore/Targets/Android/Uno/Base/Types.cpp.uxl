@@ -95,7 +95,7 @@
         <Method Signature="NewDirectByteBuffer(byte[]):ujobject">
             <Body>
 
-                         if (!$0) return NULL;
+                         if (!$0) return nullptr;
                          return @{JNI.GetEnvPtr():Call()}->NewDirectByteBuffer($0->Ptr(), (jlong)$0->Length());
 
             </Body>
@@ -104,7 +104,7 @@
         <Method Signature="NewDirectByteBuffer(sbyte[]):ujobject">
             <Body>
 
-                         if (!$0) return NULL;
+                         if (!$0) return nullptr;
                          return @{JNI.GetEnvPtr():Call()}->NewDirectByteBuffer($0->Ptr(), (jlong)$0->Length());
 
             </Body>
@@ -113,7 +113,7 @@
         <Method Signature="NewDirectByteBuffer(Uno.IntPtr,long):ujobject">
             <Body>
 
-                         if (!$0) return NULL;
+                         if (!$0) return nullptr;
                          return @{JNI.GetEnvPtr():Call()}->NewDirectByteBuffer($0, (jlong)$1);
 
             </Body>
@@ -122,7 +122,7 @@
         <Method Signature="ValidDirectByteBuffer(ujobject):bool">
             <Body>
 
-                         return (@{JNI.GetEnvPtr():Call()}->GetDirectBufferAddress($0) != NULL);
+                         return (@{JNI.GetEnvPtr():Call()}->GetDirectBufferAddress($0) != nullptr);
 
             </Body>
         </Method>
@@ -130,7 +130,7 @@
         <Method Signature="GetDirectBufferAddress(ujobject):Uno.IntPtr">
             <Body>
 
-                         if (!$0) return NULL;
+                         if (!$0) return nullptr;
                          return (@{Uno.IntPtr})@{JNI.GetEnvPtr():Call()}->GetDirectBufferAddress($0);
 
             </Body>
@@ -152,9 +152,9 @@
         <Method Signature="JavaToUno(JNIEnvPtr,ujobject):string">
             <Body>
 
-                         if (!$1) { return NULL; }
+                         if (!$1) { return nullptr; }
                          jobject str = $0->NewLocalRef($1);
-                         const jchar* raw =  $0->GetStringChars((jstring)str, NULL);
+                         const jchar* raw =  $0->GetStringChars((jstring)str, nullptr);
                          int len = $0->GetStringLength((jstring)str);
                          int size = len * sizeof(jchar);
                          uString* result = uString::New(len);
@@ -182,7 +182,7 @@
         <Method Signature="JavaToUnoBoolArray(ujobject,long):bool[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jbooleanArray jarr = (jbooleanArray)$0;
                      long len = $1;
@@ -195,7 +195,7 @@
         <Method Signature="JavaToUnoSByteArray(ujobject,long):sbyte[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jbyteArray jarr = (jbyteArray)$0;
                      long len = $1;
@@ -208,7 +208,7 @@
         <Method Signature="JavaToUnoByteArray(ujobject,long):byte[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jbyteArray jarr = (jbyteArray)$0;
                      long len = $1;
@@ -221,7 +221,7 @@
         <Method Signature="JavaToUnoCharArray(ujobject,long):char[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jcharArray jarr = (jcharArray)$0;
                      long len = $1;
@@ -234,7 +234,7 @@
         <Method Signature="JavaToUnoShortArray(ujobject,long):short[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jshortArray jarr = (jshortArray)$0;
                      long len = $1;
@@ -247,7 +247,7 @@
         <Method Signature="JavaToUnoIntArray(ujobject,long):int[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jintArray jarr = (jintArray)$0;
                      long len = $1;
@@ -260,7 +260,7 @@
         <Method Signature="JavaToUnoLongArray(ujobject,long):long[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jlongArray jarr = (jlongArray)$0;
                      long len = $1;
@@ -273,7 +273,7 @@
         <Method Signature="JavaToUnoFloatArray(ujobject,long):float[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jfloatArray jarr = (jfloatArray)$0;
                      long len = $1;
@@ -286,7 +286,7 @@
         <Method Signature="JavaToUnoDoubleArray(ujobject,long):double[]">
             <Body>
 
-                     if (!$0) return NULL;
+                     if (!$0) return nullptr;
                      @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
                      jdoubleArray jarr = (jdoubleArray)$0;
                      long len = $1;

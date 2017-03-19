@@ -39,7 +39,7 @@ struct uThreadData
         , AutoReleaseEnd(AutoReleaseStack + sizeof(AutoReleaseStack) / sizeof(AutoReleaseStack[0]))
         , CallStackPtr(CallStack - 1)
         , CallStackEnd(CallStack + sizeof(CallStack) / sizeof(CallStack[0]))
-        , CurrentType(NULL)
+        , CurrentType(nullptr)
     {
     }
 };
@@ -75,8 +75,8 @@ struct uTypeKey
     uType** Arguments;
 
     uTypeKey()
-        : Definition(NULL)
-        , Arguments(NULL)
+        : Definition(nullptr)
+        , Arguments(nullptr)
     {
     }
     uTypeKey(uType* def)
@@ -96,7 +96,7 @@ struct uTypeKey
         : Definition(copy.Definition)
     {
         if (!Definition)
-            Arguments = NULL;
+            Arguments = nullptr;
         else
         {
             U_ASSERT(copy.Arguments);
@@ -117,7 +117,7 @@ struct uTypeKey
         Definition = copy.Definition;
 
         if (!Definition)
-            Arguments = NULL;
+            Arguments = nullptr;
         else
         {
             Arguments = (uType**)malloc(Definition->GenericCount * sizeof(uType*));

@@ -17,7 +17,7 @@ EGLContext GLHelper::_eglWorkerThreadContext = EGL_NO_CONTEXT;
 
 GLuint GLHelper::_dummyTexture;
 jobject GLHelper::_dummyJavaSurface;
-ANativeWindow* GLHelper::_dummyNativeWindow = NULL;
+ANativeWindow* GLHelper::_dummyNativeWindow = nullptr;
 EGLSurface GLHelper::_eglDummySurface;
 
 const EGLint GLHelper::_contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
@@ -182,7 +182,7 @@ void GLHelper::CreateEGLSurfaceFromANativeWindow(ANativeWindow* nativeWindow, EG
     EGLint format;
     eglGetConfigAttrib(GLHelper::_eglDisplay, config, EGL_NATIVE_VISUAL_ID, &format);
     ANativeWindow_setBuffersGeometry(nativeWindow, 0, 0, format);
-    newSurface = eglCreateWindowSurface(GLHelper::_eglDisplay, config, nativeWindow, NULL);
+    newSurface = eglCreateWindowSurface(GLHelper::_eglDisplay, config, nativeWindow, nullptr);
     if (newSurface == EGL_NO_SURFACE) throw uBase::Exception("Unable to create EGL Surface");
 }
 

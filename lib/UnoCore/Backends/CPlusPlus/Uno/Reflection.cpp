@@ -11,7 +11,7 @@
 @{Uno.Type:IncludeDirective}
 
 uType* uGetParameterized(uType* type, uType* root);
-void uInvoke(const void* func, void** args = NULL, size_t count = 0);
+void uInvoke(const void* func, void** args = nullptr, size_t count = 0);
 
 static std::unordered_map<std::string, uType*>* _Types;
 
@@ -33,9 +33,9 @@ void uRegisterType(uType* type)
 void uRegisterIntrinsics()
 {
     @{object:TypeOf}->Reflection.SetFunctions(3,
-        new uFunction("Equals", NULL, NULL, offsetof(uType, fp_Equals), false, @{bool:TypeOf}, 1, @{object:TypeOf}),
-        new uFunction("GetHashCode", NULL, NULL, offsetof(uType, fp_GetHashCode), false, @{int:TypeOf}),
-        new uFunction("ToString", NULL, NULL, offsetof(uType, fp_ToString), false, @{string:TypeOf}));
+        new uFunction("Equals", nullptr, nullptr, offsetof(uType, fp_Equals), false, @{bool:TypeOf}, 1, @{object:TypeOf}),
+        new uFunction("GetHashCode", nullptr, nullptr, offsetof(uType, fp_GetHashCode), false, @{int:TypeOf}),
+        new uFunction("ToString", nullptr, nullptr, offsetof(uType, fp_ToString), false, @{string:TypeOf}));
 
     uRegisterType(@{object:TypeOf});
     uRegisterType(@{void:TypeOf});
@@ -76,7 +76,7 @@ void uBuildReflection(uType* type)
                 ? f->Generic->GenericCount > type->GenericCount
                     ? type->NewMethodType(f->Generic->GenericCount - type->GenericCount - 1)
                     : type
-                : NULL,
+                : nullptr,
             f->Flags,
             f->_func,
             uGetParameterized(f->ReturnType, type),
@@ -90,7 +90,7 @@ uType* uReflection::GetType(uString* name)
     auto it = _Types->find(cstr.Ptr);
     return it != _Types->end()
         ? it->second
-        : NULL;
+        : nullptr;
 }
 
 uArray* uReflection::GetTypes()
@@ -109,7 +109,7 @@ uArray* uReflection::GetTypes()
 uField* uReflection::GetField(uString* name)
 {
     if (!name)
-        return NULL;
+        return nullptr;
 
     uType* type = TYPE_PTR;
     U_ASSERT(type);
@@ -123,13 +123,13 @@ uField* uReflection::GetField(uString* name)
 
     return type->Base
         ? type->Base->Reflection.GetField(name)
-        : NULL;
+        : nullptr;
 }
 
 uFunction* uReflection::GetFunction(uString* name, uArray* parameterTypes)
 {
     if (!name)
-        return NULL;
+        return nullptr;
 
     uType* type = TYPE_PTR;
     U_ASSERT(type);
@@ -149,7 +149,7 @@ uFunction* uReflection::GetFunction(uString* name, uArray* parameterTypes)
 
     return type->Base
         ? type->Base->Reflection.GetFunction(name, parameterTypes)
-        : NULL;
+        : nullptr;
 }
 
 void uReflection::SetFields(size_t count, uField* first, ...)
@@ -196,7 +196,7 @@ void uReflection::SetFunctions(size_t count, uFunction* first, ...)
 
 uField::uField(const char* name, size_t index)
 {
-    DeclaringType = NULL; // Assigned by uReflection::SetFunctions()
+    DeclaringType = nullptr; // Assigned by uReflection::SetFunctions()
     Name = uString::Const(name);
     _index = index;
 }
@@ -223,7 +223,7 @@ uObject* uField::GetValue(uObject* object)
     U_ASSERT(DeclaringType);
     DeclaringType->Init();
     const uFieldInfo& field = Info();
-    return uBoxPtr(field.Type, FIELD_PTR, NULL, true);
+    return uBoxPtr(field.Type, FIELD_PTR, nullptr, true);
 }
 
 void uField::SetValue(uObject* object, uObject* value)
@@ -242,7 +242,7 @@ void uField::SetValue(uObject* object, uObject* value)
 uFunction::uFunction(const char* name, uType* generic, const void* func, size_t offset, bool isStatic, uType* returnType, size_t paramCount, ...)
 {
     U_ASSERT(name && returnType);
-    DeclaringType = NULL; // Assigned by uReflection::SetFunctions()
+    DeclaringType = nullptr; // Assigned by uReflection::SetFunctions()
     Name = uString::Const(name);
     Generic = generic;
     ReturnType = returnType;
@@ -320,14 +320,14 @@ uDelegate* uFunction::CreateDelegate(uType* type, uObject* object)
             ? uDelegate::New(type, uInterface(object, DeclaringType), _offset, Generic) :
         Flags & uFunctionFlagsVirtual
             ? uDelegate::New(type, object, _offset, Generic)
-            : uDelegate::New(type, _func, Flags & uFunctionFlagsStatic ? NULL : uPtr(object), Generic);
+            : uDelegate::New(type, _func, Flags & uFunctionFlagsStatic ? nullptr : uPtr(object), Generic);
 }
 
 uObject* uFunction::Invoke(uObject* object, uArray* args)
 {
     size_t count = ParameterTypes->Length();
 
-    void* retval = NULL;
+    void* retval = nullptr;
     if (!U_IS_VOID(ReturnType))
     {
         retval = U_ALLOCA(ReturnType->ValueSize);
@@ -345,7 +345,7 @@ uObject* uFunction::Invoke(uObject* object, uArray* args)
     void** stack;
     void** ptr = stack = count > 0
             ? (void**)U_ALLOCA(count * sizeof(void*))
-            : NULL;
+            : nullptr;
 
     if (!(Flags & uFunctionFlagsStatic))
         *ptr++ = !(Flags & uFunctionFlagsVirtual) && U_IS_VALUE(DeclaringType)
@@ -404,5 +404,5 @@ uObject* uFunction::Invoke(uObject* object, uArray* args)
             : _func,
         stack,
         count);
-    return uBoxPtr(ReturnType, retval, NULL, true);
+    return uBoxPtr(ReturnType, retval, nullptr, true);
 }

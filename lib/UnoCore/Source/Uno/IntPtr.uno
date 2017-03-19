@@ -4,7 +4,7 @@ namespace Uno
 {
     [extern(DOTNET) DotNetType("System.IntPtr")]
     [extern(CPLUSPLUS) Set("TypeName", "void*")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "NULL")]
+    [extern(CPLUSPLUS) Set("DefaultValue", "nullptr")]
     /** A platform-specific type that is used to represent a pointer or a handle. */
     public intrinsic struct IntPtr
     {

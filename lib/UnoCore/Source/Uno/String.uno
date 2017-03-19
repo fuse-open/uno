@@ -112,7 +112,7 @@ namespace Uno
 
         public override bool Equals(object other)
         @{
-            if ($0 != NULL && $$->__type == $0->__type)
+            if ($0 != nullptr && $$->__type == $0->__type)
             {
                 uString* str = (uString*)$0;
                 return $$->_length == str->_length &&

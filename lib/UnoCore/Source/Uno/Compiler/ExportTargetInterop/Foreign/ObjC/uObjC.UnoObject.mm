@@ -11,7 +11,7 @@
 
 + (instancetype)strongUnoObjectWithUnoObject:(uObject*)object
 {
-	if (object == NULL)
+	if (object == nullptr)
 	{
 		return nil;
 	}
@@ -33,7 +33,7 @@
 
 - (id)init
 {
-	return [self initWithUnoObject: NULL];
+	return [self initWithUnoObject: nullptr];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
@@ -66,7 +66,7 @@
 - (void)dealloc
 {
 	uRelease(_unoObject);
-	_unoObject = NULL;
+	_unoObject = nullptr;
 }
 @end
 
@@ -79,7 +79,7 @@
 
 + (instancetype)weakUnoObjectWithUnoObject:(uObject*)object
 {
-	if (object == NULL)
+	if (object == nullptr)
 	{
 		return nil;
 	}
@@ -91,7 +91,7 @@
 	self = [super init];
 	if (self)
 	{
-		_weakObject = NULL;
+		_weakObject = nullptr;
 		uStoreWeak(&_weakObject, object);
 	}
 	return self;
@@ -99,14 +99,14 @@
 
 - (id)init
 {
-	return [self initWithUnoObject: NULL];
+	return [self initWithUnoObject: nullptr];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
 	WeakUnoObject *newRef = [[[self class] allocWithZone:zone] init];
 
-	newRef->_weakObject = NULL;
+	newRef->_weakObject = nullptr;
 
 	uObject *object = uLoadWeak(_weakObject);
 	uStoreWeak(&newRef->_weakObject, object);
@@ -127,7 +127,7 @@
 
 - (void)dealloc
 {
-	uStoreWeak(&_weakObject, NULL);
+	uStoreWeak(&_weakObject, nullptr);
 }
 @end
 
@@ -138,7 +138,7 @@
 
 + (instancetype)unsafeUnoObjectWithUnoObject:(uObject*)object
 {
-	if (object == NULL)
+	if (object == nullptr)
 	{
 		return nil;
 	}
@@ -157,7 +157,7 @@
 
 - (id)init
 {
-	return [self initWithUnoObject: NULL];
+	return [self initWithUnoObject: nullptr];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone

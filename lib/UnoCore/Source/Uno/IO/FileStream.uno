@@ -243,7 +243,7 @@ namespace Uno.IO
                 if (!@{$$._fp})
                     return;
                 fclose(@{$$._fp});
-                @{$$._fp} = NULL;
+                @{$$._fp} = nullptr;
             @}
         }
 
