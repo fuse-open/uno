@@ -30,7 +30,7 @@
                 if (@{$$._requestHandle}->TryGetResponseHeader(uCString($0).Ptr, result))
                     return uString::Utf8(result.Ptr());
                 else
-                    return NULL;
+                    return nullptr;
             </Body>
         </Method>
 

@@ -16,7 +16,7 @@ class uXliHttpEventHandler: public Xli::HttpEventHandler
 
     static void CompleteUnoRequest(Xli::HttpRequest *request)
     {
-        request->SetUserData(NULL);
+        request->SetUserData(nullptr);
     }
 
 public:
@@ -29,7 +29,7 @@ public:
                 @{Uno.Net.Http.HttpMessageHandlerRequest} unoRequest
                     = GetUnoRequest(request);
 
-                if (unoRequest == NULL)
+                if (unoRequest == nullptr)
                     return;
 
                 uAutoReleasePool pool;
@@ -43,7 +43,7 @@ public:
                 @{Uno.Net.Http.HttpMessageHandlerRequest} unoRequest
                     = GetUnoRequest(request);
 
-                if (unoRequest == NULL)
+                if (unoRequest == nullptr)
                     return;
 
                 uAutoReleasePool pool;
@@ -62,7 +62,7 @@ public:
         @{Uno.Net.Http.HttpMessageHandlerRequest} unoRequest
             = GetUnoRequest(request);
 
-        if (unoRequest == NULL)
+        if (unoRequest == nullptr)
             return;
 
         uAutoReleasePool pool;
@@ -74,7 +74,7 @@ public:
         @{Uno.Net.Http.HttpMessageHandlerRequest} unoRequest
             = GetUnoRequest(request);
 
-        if (unoRequest == NULL)
+        if (unoRequest == nullptr)
             return;
 
         uAutoReleasePool pool;
@@ -87,7 +87,7 @@ public:
         @{Uno.Net.Http.HttpMessageHandlerRequest} unoRequest
             = GetUnoRequest(request);
 
-        if (unoRequest == NULL)
+        if (unoRequest == nullptr)
             return;
 
         uAutoReleasePool pool;
@@ -100,7 +100,7 @@ public:
         @{Uno.Net.Http.HttpMessageHandlerRequest} unoRequest
             = GetUnoRequest(request);
 
-        if (unoRequest == NULL)
+        if (unoRequest == nullptr)
             return;
 
         uAutoReleasePool pool;

@@ -17,7 +17,7 @@ namespace {
 
     NSString *uString2NSString(uString *str)
     {
-        if (str == NULL)
+        if (str == nullptr)
             return nil;
 
         return [NSString stringWithCharacters:(const unichar *)str->_ptr length:str->_length];
@@ -26,7 +26,7 @@ namespace {
     uString *NSString2uString(NSString *str)
     {
         if (str == nil)
-            return NULL;
+            return nullptr;
 
         NSUInteger length = str.length;
 
@@ -257,7 +257,7 @@ uString *HttpRequest::GetResponseHeaders() const
     }];
 
     if (resultLength == 0)
-        return NULL;
+        return nullptr;
 
     uString *result = uString::New((int) (resultLength - 1));
     __block char16_t *ptr = result->_ptr;
