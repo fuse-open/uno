@@ -37,7 +37,7 @@ struct uObject
 protected:
     uObject() {}
 private:
-    uObject& operator =(const uObject&);
+    uObject& operator =(const uObject&) = delete;
     uObject(const uObject&);
 };
 
@@ -269,7 +269,7 @@ struct uThrowable : public std::exception
     static U_NORETURN void ThrowNullReference(const char* func, int line);
 
 private:
-    uThrowable& operator =(const uThrowable&);
+    uThrowable& operator =(const uThrowable&) = delete;
     uThrowable();
 };
 
@@ -659,7 +659,7 @@ struct uTRef
     }
 
 private:
-    uTRef& operator =(const uTRef&);
+    uTRef& operator =(const uTRef&) = delete;
     uTRef();
 };
 
@@ -788,7 +788,7 @@ struct uTPtr
     }
 
 private:
-    uTPtr& operator =(const uTPtr&);
+    uTPtr& operator =(const uTPtr&) = delete;
     uTPtr();
 };
 
