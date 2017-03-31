@@ -38,7 +38,7 @@ protected:
     uObject() {}
 private:
     uObject& operator =(const uObject&) = delete;
-    uObject(const uObject&);
+    uObject(const uObject&) = delete;
 };
 
 enum uTypeType
@@ -270,7 +270,7 @@ struct uThrowable : public std::exception
 
 private:
     uThrowable& operator =(const uThrowable&) = delete;
-    uThrowable();
+    uThrowable() = delete;
 };
 
 #define U_THROW(exception) throw uThrowable((exception), U_FUNCTION, __LINE__)
@@ -660,7 +660,7 @@ struct uTRef
 
 private:
     uTRef& operator =(const uTRef&) = delete;
-    uTRef();
+    uTRef() = delete;
 };
 
 struct uTStrongRef : uTBase
@@ -789,7 +789,7 @@ struct uTPtr
 
 private:
     uTPtr& operator =(const uTPtr&) = delete;
-    uTPtr();
+    uTPtr() = delete;
 };
 
 template<class T>
