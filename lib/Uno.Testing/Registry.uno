@@ -6,7 +6,7 @@ namespace Uno.Testing
     {
         private List<NamedTestMethod> _tests = new List<NamedTestMethod>();
 
-        internal void Add(Action method, string name, bool ignore, string ignoreReason)
+        public void Add(Action method, string name, bool ignore, string ignoreReason)
         {
             _tests.Add(new NamedTestMethod(method, name, ignore, ignoreReason));
         }
