@@ -118,9 +118,7 @@ namespace Uno.Compiler.Core.IL.Validation
             {
                 if (MetaProperty != null && MetaProperty.IsPublic)
                 {
-                    var cn = Namescope;
-
-                    while (cn != null)
+                    for (var cn = Namescope; cn != null; cn = cn.Parent)
                     {
                         switch (cn.NamescopeType)
                         {
@@ -138,8 +136,6 @@ namespace Uno.Compiler.Core.IL.Validation
                             default:
                                 return false;
                         }
-
-                        cn = cn.Parent;
                     }
                 }
 
