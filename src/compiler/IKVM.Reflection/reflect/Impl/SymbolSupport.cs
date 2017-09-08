@@ -80,7 +80,7 @@ namespace IKVM.Reflection.Impl
 #if MONO
 				return new MdbWriter(moduleBuilder);
 #else
-				throw new NotSupportedException("IKVM.Reflection must be compiled with MONO defined to support writing Mono debugging symbols.");
+				return new DummySymbolWriter();
 #endif
 			}
 			else
@@ -100,4 +100,126 @@ namespace IKVM.Reflection.Impl
 			writer.RemapToken(oldToken, newToken);
 		}
 	}
+
+    class DummySymbolDocumentWriter : ISymbolDocumentWriter
+    {
+        public void SetSource(byte[] source)
+        {
+        }
+
+        public void SetCheckSum(Guid algorithmId, byte[] checkSum)
+        {
+        }
+    }
+
+    class DummySymbolWriter : ISymbolWriterImpl
+    {
+        public void Initialize(IntPtr emitter, string filename, bool fFullBuild)
+        {
+        }
+
+        public ISymbolDocumentWriter DefineDocument(string url, Guid language, Guid languageVendor, Guid documentType)
+        {
+            return new DummySymbolDocumentWriter();
+        }
+
+        public void SetUserEntryPoint(SymbolToken entryMethod)
+        {
+        }
+
+        public void OpenMethod(SymbolToken method)
+        {
+        }
+
+        public void CloseMethod()
+        {
+        }
+
+        public void DefineSequencePoints(ISymbolDocumentWriter document, int[] offsets, int[] lines, int[] columns, int[] endLines,
+            int[] endColumns)
+        {
+        }
+
+        public int OpenScope(int startOffset)
+        {
+            return 0;
+        }
+
+        public void CloseScope(int endOffset)
+        {
+        }
+
+        public void SetScopeRange(int scopeID, int startOffset, int endOffset)
+        {
+        }
+
+        public void DefineLocalVariable(string name, System.Reflection.FieldAttributes attributes, byte[] signature, SymAddressKind addrKind, int addr1,
+            int addr2, int addr3, int startOffset, int endOffset)
+        {
+        }
+
+        public void DefineParameter(string name, System.Reflection.ParameterAttributes attributes, int sequence, SymAddressKind addrKind, int addr1,
+            int addr2, int addr3)
+        {
+        }
+
+        public void DefineField(SymbolToken parent, string name, System.Reflection.FieldAttributes attributes, byte[] signature, SymAddressKind addrKind,
+            int addr1, int addr2, int addr3)
+        {
+        }
+
+        public void DefineGlobalVariable(string name, System.Reflection.FieldAttributes attributes, byte[] signature, SymAddressKind addrKind, int addr1,
+            int addr2, int addr3)
+        {
+        }
+
+        public void Close()
+        {
+        }
+
+        public void SetSymAttribute(SymbolToken parent, string name, byte[] data)
+        {
+        }
+
+        public void OpenNamespace(string name)
+        {
+        }
+
+        public void CloseNamespace()
+        {
+        }
+
+        public void UsingNamespace(string fullName)
+        {
+        }
+
+        public void SetMethodSourceRange(ISymbolDocumentWriter startDoc, int startLine, int startColumn, ISymbolDocumentWriter endDoc,
+            int endLine, int endColumn)
+        {
+        }
+
+        public void SetUnderlyingWriter(IntPtr underlyingWriter)
+        {
+        }
+
+        public byte[] GetDebugInfo(ref IMAGE_DEBUG_DIRECTORY idd)
+        {
+            return new byte[0];
+        }
+
+        public void RemapToken(int oldToken, int newToken)
+        {
+        }
+
+        public void DefineLocalVariable2(string name, FieldAttributes attributes, int signature, SymAddressKind addrKind, int addr1,
+            int addr2, int addr3, int startOffset, int endOffset)
+        {
+        }
+
+        public void OpenMethod(SymbolToken symbolToken, MethodBase mb)
+        {
+        }
+
+        public bool IsDeterministic => true;
+    }
 }
