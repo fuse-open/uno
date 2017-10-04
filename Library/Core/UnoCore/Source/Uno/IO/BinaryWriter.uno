@@ -1,4 +1,3 @@
-using Uno.Runtime.Implementation;
 using Uno.Text;
 
 namespace Uno.IO
@@ -63,49 +62,49 @@ namespace Uno.IO
 
         public void Write(short value)
         {
-            BufferImpl.SetShort(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 2);
         }
 
         public void Write(ushort value)
         {
-            BufferImpl.SetUShort(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 2);
         }
 
         public void Write(int value)
         {
-            BufferImpl.SetInt(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(uint value)
         {
-            BufferImpl.SetUInt(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(long value)
         {
-            BufferImpl.SetLong(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(ulong value)
         {
-            BufferImpl.SetULong(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(float value)
         {
-            BufferImpl.SetFloat(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(double value)
         {
-            BufferImpl.SetDouble(_buffer, 0, value, LittleEndian);
+            _buffer.Set(0, value, LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
@@ -140,70 +139,70 @@ namespace Uno.IO
         public void Write(short2 value)
         {
             for (int i = 0; i < 2; ++i)
-                BufferImpl.SetShort(_buffer, i*2, value[i], LittleEndian);
+                _buffer.Set(i*2, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(short4 value)
         {
             for (int i = 0; i < 4; ++i)
-                BufferImpl.SetShort(_buffer, i*2, value[i], LittleEndian);
+                _buffer.Set(i*2, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(ushort2 value)
         {
             for (int i = 0; i < 2; ++i)
-                BufferImpl.SetUShort(_buffer, i*2, value[i], LittleEndian);
+                _buffer.Set(i*2, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(ushort4 value)
         {
             for (int i = 0; i < 4; ++i)
-                BufferImpl.SetUShort(_buffer, i*2, value[i], LittleEndian);
+                _buffer.Set(i*2, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(int2 value)
         {
             for (int i = 0; i < 2; ++i)
-                BufferImpl.SetInt(_buffer, i*4, value[i], LittleEndian);
+                _buffer.Set(i*4, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(int3 value)
         {
             for (int i = 0; i < 3; ++i)
-                BufferImpl.SetInt(_buffer, i*4, value[i], LittleEndian);
+                _buffer.Set(i*4, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 12);
         }
 
         public void Write(int4 value)
         {
             for (int i = 0; i < 4; ++i)
-                BufferImpl.SetInt(_buffer, i*4, value[i], LittleEndian);
+                _buffer.Set(i*4, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 16);
         }
 
         public void Write(float2 value)
         {
             for (int i = 0; i < 2; ++i)
-                BufferImpl.SetFloat(_buffer, i*4, value[i], LittleEndian);
+                _buffer.Set(i*4, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(float3 value)
         {
             for (int i = 0; i < 3; ++i)
-                BufferImpl.SetFloat(_buffer, i*4, value[i], LittleEndian);
+                _buffer.Set(i*4, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 12);
         }
 
         public void Write(float4 value)
         {
             for (int i = 0; i < 4; ++i)
-                BufferImpl.SetFloat(_buffer, i*4, value[i], LittleEndian);
+                _buffer.Set(i*4, value[i], LittleEndian);
             _stream.Write(_buffer, 0, 16);
         }
 
