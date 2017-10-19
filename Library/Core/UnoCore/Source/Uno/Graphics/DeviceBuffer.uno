@@ -41,7 +41,6 @@ namespace Uno.Graphics
         {
             GLBufferTarget = target;
             GLBufferHandle = GL.CreateBuffer();
-
             SizeInBytes = sizeInBytes;
 
             GL.BindBuffer(GLBufferTarget, GLBufferHandle);
@@ -53,7 +52,6 @@ namespace Uno.Graphics
         {
             GLBufferTarget = target;
             GLBufferHandle = GL.CreateBuffer();
-
             SizeInBytes = data.Length;
 
             var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
@@ -68,7 +66,6 @@ namespace Uno.Graphics
         {
             GLBufferTarget = target;
             GLBufferHandle = GL.CreateBuffer();
-
             SizeInBytes = data.SizeInBytes;
 
             GCHandle pin;
@@ -92,8 +89,9 @@ namespace Uno.Graphics
         public void Dispose()
         {
             if (IsDisposed)
-                throw new ObjectDisposedException("DeviceBuffer");
-            else if defined(OPENGL)
+                return;
+
+            if defined(OPENGL)
                 GL.DeleteBuffer(GLBufferHandle);
             else
                 build_error;
@@ -103,11 +101,9 @@ namespace Uno.Graphics
 
         public void Update(byte[] data)
         {
-            if (IsDisposed)
-            {
-                throw new ObjectDisposedException("DeviceBuffer");
-            }
-            else if defined(OPENGL)
+            CheckDisposed();
+
+            if defined(OPENGL)
             {
                 var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
@@ -134,11 +130,9 @@ namespace Uno.Graphics
         [Obsolete("Use the byte[] overload instead")]
         public void Update(Buffer data)
         {
-            if (IsDisposed)
-            {
-                throw new ObjectDisposedException("DeviceBuffer");
-            }
-            else if defined(OPENGL)
+            CheckDisposed();
+
+            if defined(OPENGL)
             {
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
 
@@ -158,6 +152,12 @@ namespace Uno.Graphics
             {
                 build_error;
             }
+        }
+
+        protected void CheckDisposed()
+        {
+            if (IsDisposed)
+                throw new ObjectDisposedException(GetType() + " was disposed");
         }
     }
 }
