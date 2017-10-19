@@ -37,42 +37,16 @@ namespace Uno.Graphics
             GLBufferHandle = GL.CreateBuffer();
         }
 
-        protected extern(OPENGL) void GLInit(GLBufferTarget target, int sizeInBytes)
+        protected void Alloc(int sizeInBytes)
         {
-            GLBufferTarget = target;
-            GLBufferHandle = GL.CreateBuffer();
             SizeInBytes = sizeInBytes;
 
-            GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-            GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, GLInterop.ToGLBufferUsage(Usage));
-            GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
-        }
-
-        protected extern(OPENGL) void GLInit(GLBufferTarget target, byte[] data)
-        {
-            GLBufferTarget = target;
-            GLBufferHandle = GL.CreateBuffer();
-            SizeInBytes = data.Length;
-
-            var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-            GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-            GL.BufferData(GLBufferTarget, data.Length, pin.AddrOfPinnedObject(), GLInterop.ToGLBufferUsage(Usage));
-            GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
-            pin.Free();
-        }
-
-        [Obsolete("Use the byte[] overload instead")]
-        protected extern(OPENGL) void GLInit(GLBufferTarget target, Buffer data)
-        {
-            GLBufferTarget = target;
-            GLBufferHandle = GL.CreateBuffer();
-            SizeInBytes = data.SizeInBytes;
-
-            GCHandle pin;
-            GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-            GL.BufferData(GLBufferTarget, data.SizeInBytes, data.PinPtr(out pin), GLInterop.ToGLBufferUsage(Usage));
-            GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
-            pin.Free();
+            if defined(OPENGL)
+            {
+                GL.BindBuffer(GLBufferTarget, GLBufferHandle);
+                GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, GLInterop.ToGLBufferUsage(Usage));
+                GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
+            }
         }
 
         internal DeviceBuffer(BufferUsage usage)
@@ -99,32 +73,32 @@ namespace Uno.Graphics
             IsDisposed = true;
         }
 
-        public void Update(byte[] data)
+        public void Update(Array data, int elementSize)
         {
             CheckDisposed();
 
             if defined(OPENGL)
             {
+                var sizeInBytes = data.Length * elementSize;
                 var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
 
-                if (data.Length <= SizeInBytes)
-                {
-                    GL.BufferSubData(GLBufferTarget, 0, data.Length, pin.AddrOfPinnedObject());
-                }
+                if (sizeInBytes <= SizeInBytes)
+                    GL.BufferSubData(GLBufferTarget, 0, sizeInBytes, pin.AddrOfPinnedObject());
                 else
                 {
-                    GL.BufferData(GLBufferTarget, data.Length, pin.AddrOfPinnedObject(), GLInterop.ToGLBufferUsage(Usage));
-                    SizeInBytes = data.Length;
+                    GL.BufferData(GLBufferTarget, sizeInBytes, pin.AddrOfPinnedObject(), GLInterop.ToGLBufferUsage(Usage));
+                    SizeInBytes = sizeInBytes;
                 }
 
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
                 pin.Free();
             }
-            else
-            {
-                build_error;
-            }
+        }
+
+        public void Update(byte[] data)
+        {
+            Update(data, sizeof(byte));
         }
 
         [Obsolete("Use the byte[] overload instead")]

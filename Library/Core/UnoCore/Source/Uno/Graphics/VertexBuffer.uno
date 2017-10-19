@@ -15,31 +15,66 @@ namespace Uno.Graphics
         }
 
         public VertexBuffer(int sizeInBytes, BufferUsage usage)
-            : base(usage)
+            : this(usage)
         {
-            if defined(OPENGL)
-                GLInit(GLBufferTarget.ArrayBuffer, sizeInBytes);
-            else
-                build_error;
+            Alloc(sizeInBytes);
         }
 
         public VertexBuffer(byte[] data, BufferUsage usage)
-            : base(usage)
+            : this(usage)
         {
-            if defined(OPENGL)
-                GLInit(GLBufferTarget.ArrayBuffer, data);
-            else
-                build_error;
+            Update(data);
+        }
+
+        public VertexBuffer(float[] data, BufferUsage usage)
+            : this(usage)
+        {
+            Update(data);
+        }
+
+        public VertexBuffer(float2[] data, BufferUsage usage)
+            : this(usage)
+        {
+            Update(data);
+        }
+
+        public VertexBuffer(float3[] data, BufferUsage usage)
+            : this(usage)
+        {
+            Update(data);
+        }
+
+        public VertexBuffer(float4[] data, BufferUsage usage)
+            : this(usage)
+        {
+            Update(data);
         }
 
         [Obsolete("Use the byte[] overload instead")]
         public VertexBuffer(Buffer data, BufferUsage usage)
-            : base(usage)
+            : this(usage)
         {
-            if defined(OPENGL)
-                GLInit(GLBufferTarget.ArrayBuffer, data);
-            else
-                build_error;
+            Update(data);
+        }
+
+        public void Update(float[] data)
+        {
+            Update(data, sizeof(float));
+        }
+
+        public void Update(float2[] data)
+        {
+            Update(data, sizeof(float2));
+        }
+
+        public void Update(float3[] data)
+        {
+            Update(data, sizeof(float3));
+        }
+
+        public void Update(float4[] data)
+        {
+            Update(data, sizeof(float4));
         }
     }
 }
