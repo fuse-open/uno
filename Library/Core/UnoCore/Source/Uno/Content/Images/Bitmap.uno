@@ -3,6 +3,7 @@ using Uno.Graphics;
 
 namespace Uno.Content.Images
 {
+    [Obsolete]
     public class Bitmap
     {
         public int2 Size
