@@ -75,7 +75,11 @@ namespace Uno.IO
             Bundle = bundle;
             SourcePath = sourcePath;
             BundlePath = bundlePath;
-            IsFile = defined(CPLUSPLUS && !ANDROID) && bundlePath != null;
+
+            if defined(CPLUSPLUS && !ANDROID)
+                IsFile = bundlePath != null;
+            else
+                IsFile = false;
         }
 
         public Stream OpenRead()
