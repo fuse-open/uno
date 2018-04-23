@@ -21,8 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Commandlineparameters>build ios /Users/morten/uno/Library/fuselibs/Tests/ManualTests/ManualTestingApp/ManualTestingApp.unoproj -vv -f</Commandlineparameters>
-    <ConsolePause>false</ConsolePause>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
