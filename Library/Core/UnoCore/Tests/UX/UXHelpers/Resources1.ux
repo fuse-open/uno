@@ -1,0 +1,4 @@
+<ux:Resources>
+	<Uno.UX.Tests.TestPanel ux:Class="UXResourcesTest.FooPanel" Margin="UXResourcesTest.FooMargin" />
+	<float4 ux:Global="UXResourcesTest.FooMargin" ux:Value="10, 8, 9, 3" />
+</ux:Resources>

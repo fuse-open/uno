@@ -1,0 +1,7 @@
+require *.unoconfig
+IsRoot: false
+Assemblies.Plugins: Uno.Compiler.Extensions.dll
+Assemblies.Test: uno-test.exe
+Assemblies.TestGen: uno-test-gen.exe
+Assemblies.Uno: uno.exe
+Paths.AppLoader: .

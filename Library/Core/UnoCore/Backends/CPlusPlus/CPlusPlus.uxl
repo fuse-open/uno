@@ -1,0 +1,120 @@
+<Extensions Backend="CPlusPlus">
+
+    <Define REFLECTION="DEBUG_DUMPS" />
+    <Define DEBUG_NATIVE="O0" />
+
+    <!-- Output configuration -->
+    <Set BundleDirectory="data" IsDefault=true />
+    <Set HeaderDirectory="include" IsDefault=true />
+    <Set SourceDirectory="src" IsDefault=true />
+    <Set BinaryDirectory="." IsDefault=true />
+
+    <!-- Codegen extensions -->
+    <Declare TypeElement="Header.Declaration" />
+    <Declare TypeElement="Header.Include" />
+    <Declare TypeElement="Header.Import" />
+    <Declare TypeElement="Source.Declaration" />
+    <Declare TypeElement="Source.Include" />
+    <Declare TypeElement="Source.Import" />
+    <Declare TypeElement="Type.Initialization" />
+    <Declare TypeProperty="ForwardDeclaration" />
+    <Declare TypeProperty="Include" />
+    <Declare TypeProperty="TypeName" />
+    <Declare TypeProperty="DefaultValue" />
+    <Declare TypeProperty="TypeOfType" />
+    <Declare TypeProperty="TypeOfFunction" />
+    <Declare TypeProperty="BaseType" />
+    <Declare TypeProperty="BoxFunction" />
+    <Declare TypeProperty="FileExtension" />
+    <Declare MethodProperty="IsIntrinsic" />
+    <Declare MethodProperty="FunctionName" />
+
+    <!-- File types -->
+    <Declare Element="FontFile" TargetDirectory="@(BundleDirectory)" />
+    <Declare Element="HeaderFile" TargetDirectory="@(HeaderDirectory)" />
+    <Declare Element="SourceFile" TargetDirectory="@(SourceDirectory)" />
+
+    <!-- Build extensions -->
+    <Declare Element="IncludeDirectory" />
+    <Declare Element="LinkDirectory" />
+    <Declare Element="LinkLibrary" />
+    <Declare Element="PreprocessorDefinition" />
+    <Set CppStandard="c++11" IsDefault="true" />
+    <Set CStandard="c99" IsDefault="true" />
+
+    <Require PreprocessorDefinition="DEBUG_ARC=0" Condition="DEBUG_ARC0" />
+    <Require PreprocessorDefinition="DEBUG_ARC=1" Condition="DEBUG_ARC1" />
+    <Require PreprocessorDefinition="DEBUG_ARC=2" Condition="DEBUG_ARC2" />
+    <Require PreprocessorDefinition="DEBUG_ARC=3" Condition="DEBUG_ARC3" />
+    <Require PreprocessorDefinition="DEBUG_ARC=4" Condition="DEBUG_ARC4" />
+    <Require PreprocessorDefinition="DEBUG_DUMPS=1" Condition="DEBUG_DUMPS" />
+    <Require PreprocessorDefinition="DEBUG_GC=1" Condition="DEBUG_GC" />
+    <Require PreprocessorDefinition="DEBUG_UNSAFE=1" Condition="DEBUG_UNSAFE" />
+
+    <!-- UnoCore extensions -->
+    <Declare Element="Main.Include" />
+    <Declare Element="TypeExtension.Declaration" />
+    <Declare Element="TypeExtension.Initialization" />
+    <Declare Element="TypeObjects.Declaration" />
+    <Declare Element="TypeObjects.FunctionPointer" />
+
+    <!-- Native build -->
+    <Set Native.Configuration="@(DEBUG_NATIVE:Defined:Test('Debug', 'Release'))" />
+
+    <!-- Mobile settings -->
+    <Set Mobile.DisableStatusbar="@('@(MOBILE:Defined) && !@(Project.Mobile.ShowStatusbar)':Test(1, 0))" />
+    <Set Mobile.DisableBatterySaver="@('@(MOBILE:Defined) && @(Project.Mobile.KeepAlive)':Test(1, 0))" />
+    <Set Mobile.DisableBackgroundProcess="@('@(MOBILE:Defined) && !@(Project.Mobile.RunsInBackground)':Test(1, 0))" />
+
+    <!-- Deprecated -->
+    <Deprecate Android.Activity.Class.Declaration="Activity.Class.Declaration" />
+    <Deprecate Android.Activity.File.Declaration="Activity.File.Declaration" />
+    <Deprecate Android.Manifest.ApplicationElement="AndroidManifest.ApplicationElement" />
+    <Deprecate Android.Manifest.RootElement="AndroidManifest.RootElement" />
+    <Deprecate Android.Runtime.CatchCppExceptions="Runtime.CatchCppExceptions" />
+    <Deprecate Android.Runtime.CppMainLoop="Runtime.CppMainLoop" />
+    <Deprecate Android.Runtime.DebugPauseMilliseconds="Runtime.DebugPauseMilliseconds" />
+    <Deprecate Android.Runtime.KillActivityOnDestroy="Runtime.KillActivityOnDestroy" />
+    <Deprecate Android.Runtime.KillOnBackButton="Runtime.KillOnBackButton" />
+    <Deprecate Android.Runtime.SeperateUnoThread="Runtime.SeperateUnoThread" />
+    <Deprecate AndroidBuildBat.PreBuildLines="BuildBat.PreBuild" />
+    <Deprecate AndroidBuildSh.PreBuildLines="BuildSh.PreBuild" />
+    <Deprecate AndroidProjectFile.Properties="Project.Property" />
+    <Deprecate Build.HeaderFile="HeaderFile" />
+    <Deprecate Build.IncludeDirectory="IncludeDirectory" />
+    <Deprecate Build.LinkDirectory="LinkDirectory" />
+    <Deprecate Build.LinkLibrary="LinkLibrary" />
+    <Deprecate Build.PreprocessorDefinition="PreprocessorDefinition" />
+    <Deprecate Build.SourceFile="SourceFile" />
+    <Deprecate InstanceTypeName="TypeName" />
+    <Deprecate iOS.BackgroundModes="Project.iOS.PList.UIBackgroundModes" />
+    <Deprecate iOS.Build.Framework="Xcode.Framework" />
+    <Deprecate iOS.Framework="Xcode.Framework" />
+    <Deprecate iOS.PrefixHeader.Declaration="Xcode.PrefixHeader.Declaration" />
+    <Deprecate Java.Extern.RegisterFunctions="Java.Extern.RegisterFunction" />
+    <Deprecate Source.FileExtension="FileExtension" />
+    <Deprecate TypeInitialization="Type.Initialization" />
+    <Deprecate UnoCore.TypeExtension.Declaration="TypeExtension.Declaration" />
+    <Deprecate UnoCore.TypeExtension.Initialization="TypeExtension.Initialization" />
+
+    <!-- Keywords -->
+    <Set Keywords>
+        alignas alignof and and_eq asm auto bitand bitor bool
+        break case catch char char16_t char32_t class compl concept
+        const constexpr const_cast continue decltype default delete do
+        double dynamic_cast else enum explicit export extern false
+        float for friend goto if inline int long mutable namespace
+        new noexcept not not_eq nullptr operator or or_eq private
+        protected public register reinterpret_cast requires return short
+        signed sizeof static static_assert static_cast struct switch
+        template this thread_local throw true try typedef typeid
+        typename union unsigned using virtual void volatile wchar_t
+        while xor xor_eq
+
+        NULL
+        int8_t int16_t int32_t int64_t uint8_t uint16_t uint32_t
+        uint64_t DBL_MAX DBL_INF DBL_NAN FLT_INF FLT_NAN
+        op_Implicit op_Explicit
+    </Set>
+
+</Extensions>

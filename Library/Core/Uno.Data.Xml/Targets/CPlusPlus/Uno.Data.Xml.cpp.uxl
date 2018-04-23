@@ -1,0 +1,98 @@
+<Extensions Backend="CPlusPlus">
+
+    <Type Name="Uno.Data.Xml.TargetSpecificXmlNode" />
+    <Type Name="Uno.Data.Xml.XmlNodeHandle" />
+    <Type Name="Uno.Data.Xml.XmlAttributeHandle" />
+    <Type Name="Uno.Data.Xml.XmlNodeImpl">
+        <CopyFile Type="HeaderFile" Name="Source/pugixml.hpp" />
+        <CopyFile Type="HeaderFile" Name="Source/pugiconfig.hpp" />
+        <CopyFile Type="SourceFile" Name="Source/pugixml.cpp" />
+
+        <Require Source.Include="Uno/Support.h" />
+        <Require Source.Include="Source/pugixml.hpp" />
+
+        <Method Signature="Parse(string):XmlNodeHandle">
+            <Require Source.Include="@{Uno.Data.Xml.XmlException:Include}" />
+            <Body>
+                pugi::xml_document doc;
+                pugi::xml_parse_result parseResult = doc.load(uStringToXliString($0).Ptr(), pugi::parse_full);
+
+                if (parseResult.status == 0)
+                {
+                    pugi::xml_node root = doc.root();
+                    return @{Uno.Data.Xml.XmlNodeImpl.GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):Call(@{Uno.Data.Xml.TargetSpecificXmlNode:Of(&(root))})};
+                }
+                else
+                {
+                    const char * errorMessages[] = { "No error", "File was not found during load_file()", "Error reading from file/stream", "Could not allocate memory", "Internal error occurred", "Parser could not determine tag type",
+                                                     "Parsing error occurred while parsing document declaration/processing instruction", "Parsing error occurred while parsing comment", "Parsing error occurred while parsing CDATA section",
+                                                     "Parsing error occurred while parsing document type declaration", "Parsing error occurred while parsing PCDATA section", "Parsing error occurred while parsing start element tag",
+                                                     "Parsing error occurred while parsing element attribute", "Parsing error occurred while parsing end element tag",
+                                                     "There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)",
+                                                     "Unable to append nodes since root type is not node_element or node_document (exclusive to xml_node::append_buffer)", "Parsing resulted in a document without element nodes" };
+
+                    throw uThrowable(@{Uno.Data.Xml.XmlException(string):New(uStringFromXliString(errorMessages[parseResult.status]))}, U_FUNCTION, __LINE__);
+                }
+            </Body>
+        </Method>
+
+        <Method Signature="GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):XmlNodeHandle">
+            <Body>
+                pugi::xml_node node = *((pugi::xml_node*)$0);
+                @{Uno.Data.Xml.XmlNodeHandle} nodeHandle;
+
+                if (node.type() == pugi::node_declaration)
+                {
+                    return @{Uno.Data.Xml.XmlNodeHandle(string,string):New(uStringFromXliString(node.attribute("version").as_string()), uStringFromXliString(node.attribute("encoding").as_string()))};
+                }
+
+                if (node.type() == pugi::node_document)
+                {
+                    //create empty root element
+                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle():New()};
+                }
+                else
+                {
+                    int mappedNodeType = -1;
+                    switch(node.type())
+                    {
+                        case pugi::node_element:
+                            mappedNodeType = 3;
+                            break;
+                        case pugi::node_pcdata:
+                            mappedNodeType = 1;
+                            break;
+                        case pugi::node_cdata:
+                            mappedNodeType = 2;
+                            break;
+                        case pugi::node_comment:
+                            mappedNodeType = 5;
+                            break;
+                        case pugi::node_pi:
+                            mappedNodeType = 6;
+                            break;
+                    }
+
+                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle(string,string,int):New(uStringFromXliString(node.name()), uStringFromXliString(node.value()), mappedNodeType)};
+
+                    for (pugi::xml_attribute_iterator attrib = node.attributes_begin(); attrib != node.attributes_end(); attrib++)
+                    {
+                        pugi::xml_attribute attribute = (*attrib);
+                        @{Uno.Data.Xml.XmlAttributeHandle} attributeHandle = @{Uno.Data.Xml.XmlAttributeHandle(string,string):New(uStringFromXliString(attribute.name()), uStringFromXliString(attribute.value()))};
+                        @{Uno.Data.Xml.XmlNodeImpl.AddAttribute(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlAttributeHandle):Call(nodeHandle, attributeHandle)};
+                    }
+                }
+
+                for (pugi::xml_node_iterator child = node.children().begin(); child != node.children().end(); child++)
+                {
+                    pugi::xml_node childNode = (*child);
+                    @{Uno.Data.Xml.XmlNodeImpl.AppendChild(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlNodeHandle):Call(nodeHandle, @{Uno.Data.Xml.XmlNodeImpl.GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):Call(@{Uno.Data.Xml.TargetSpecificXmlNode:Of(&(childNode))})})};
+                }
+
+                return nodeHandle;
+            </Body>
+        </Method>
+
+    </Type>
+
+</Extensions>

@@ -1,0 +1,12 @@
+<resources>
+    <style name="AppTheme" parent="@(Project.Android.Theme:IsSet:Test('@android:style/@(Project.Android.Theme)', '@style/Theme.AppCompat.Light'))">
+        <item name="windowNoTitle">true</item>
+
+#if !@(Project.Mobile.ShowStatusbar)
+        <item name="android:windowFullscreen">true</item>
+#endif
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+</resources>

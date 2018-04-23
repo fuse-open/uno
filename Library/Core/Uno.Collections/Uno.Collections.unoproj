@@ -1,0 +1,16 @@
+{
+  "Copyright": "Copyright (c) Fusetools 2014",
+  "Description": "Collection extras",
+  "Publisher": "Fusetools AS",
+  "Includes": [
+    "Extensions/EmptyEnumerable.uno:Source",
+    "Extensions/EnumerableExtensions.uno:Source",
+    "Extensions/IListExtensions.uno:Source",
+    "Extensions/OfType.uno:Source",
+    "Extensions/OrderBy.uno:Source",
+    "Extensions/Select.uno:Source",
+    "Extensions/Union.uno:Source",
+    "Extensions/Where.uno:Source",
+    "ObservableList.uno:Source"
+  ]
+}

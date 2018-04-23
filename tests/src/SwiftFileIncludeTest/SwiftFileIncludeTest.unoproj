@@ -1,0 +1,12 @@
+{
+  "Packages": [
+    "Uno.Testing",
+  ],
+  "iOS": {
+    "SwiftVersion": 3.0,
+  },
+  "Includes": [
+    "Hello.swift:Swift:iOS",
+    "*"
+  ]
+}

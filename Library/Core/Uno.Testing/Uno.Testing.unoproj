@@ -1,0 +1,32 @@
+{
+  "Copyright": "Copyright (c) Fusetools 2014",
+  "Description": "Uno Testing Framwork",
+  "Publisher": "Fusetools AS",
+  "Package": {
+    "ProjectUrl": "https://github.com/fusetools/uno",
+    "LicenseUrl": "https://github.com/fusetools/uno/blob/master/LICENSE.txt"
+  },
+  "Projects": [
+    "../Uno.Net.Http/Uno.Net.Http.unoproj",
+    "../Uno.Threading/Uno.Threading.unoproj"
+  ],
+  "InternalsVisibleTo": [
+    "Uno.Testing.Test"
+  ],
+  "Includes": [
+    "Attributes/IgnoreAttribute.uno:Source",
+    "Attributes/TestAttribute.uno:Source",
+    "Exceptions/AssertionFailedException.uno:Source",
+    "Exceptions/IgnoreException.uno:Source",
+    "AbstractRunner.uno:Source",
+    "Assert.uno:Source",
+    "DebugLogMessageDispatcher.uno:Source",
+    "HttpMessageDispatcher.uno:Source",
+    "ITestRunnerMessageDispatcher.uno:Source",
+    "NamedTestMethod.uno:Source",
+    "Registry.uno:Source",
+    "RemoteRunner.uno:Source",
+    "TestingApp.uno:Source",
+    "TestSetup.uno:Source"
+  ]
+}

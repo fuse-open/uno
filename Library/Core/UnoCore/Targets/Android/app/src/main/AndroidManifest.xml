@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="@(Activity.Package)">
+
+    <uses-feature android:glEsVersion="0x00020000"/>
+
+    @(AndroidManifest.Permission:Join('\n    ', '<uses-permission android:name="', '" />'))
+    @(AndroidManifest.RootElement:Join('\n    '))
+
+#if @(LIBRARY:Defined)
+    <application android:description="@string/description">
+#else
+    <application android:label="@string/app_name"
+                 android:icon="@mipmap/icon"
+                 android:description="@string/description"
+                 android:largeHeap="@(Project.Android.LargeHeap:IsSet:Test(@(Project.Android.LargeHeap:Bool),false))"
+                 android:allowBackup="@(Project.Android.AllowBackup:IsSet:Test(@(Project.Android.AllowBackup:Bool),false))">
+
+        <activity android:name="@(Activity.Name:EscapeXml)"
+                  android:label="@(Project.Android.ApplicationLabel:EscapeXml)"
+                  android:launchMode="singleTask"
+#if @(AndroidManifest.DisableTheme:Defined)
+                  android:theme="@style/AppTheme"
+#else
+                  android:theme="@style/Theme.AppCompat"
+#endif
+                  android:taskAffinity=""
+                  android:windowSoftInputMode="adjustResize"
+                  android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
+#if @(Project.Mobile.Orientations:Equals('Portrait')) || @(Project.Mobile.Orientations:Equals('Landscape'))
+android:screenOrientation="@(Project.Mobile.Orientations:Replace('Landscape', 'landscape'):Replace('Portrait', 'portrait'))"
+#else
+android:screenOrientation="user"
+#endif
+                  android:windowActionBar="false">
+            <meta-data android:name="android.app.lib_name" android:value="@(Activity.Name:EscapeXml)" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+#if @(Project.Mobile.UriScheme:IsSet)
+                <data android:scheme="@(Project.Mobile.UriScheme)"/>
+#endif
+                @(AndroidManifest.Activity.ViewIntentFilter:Join('\n    ', '<data ', '/>'))
+            </intent-filter>
+
+            @(AndroidManifest.ActivityElement:Join('\n        '))
+        </activity>
+#endif
+
+        @(AndroidManifest.ApplicationElement:Join('\n        '))
+#if @(Project.Android.Geo.ApiKey:IsSet)
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="@(Project.Android.Geo.ApiKey)"/>
+#endif
+    </application>
+</manifest>

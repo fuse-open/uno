@@ -1,0 +1,27 @@
+// Common & SDK setup
+require config/common.unoconfig
+
+// Core config
+Assemblies.Plugins: src/compiler/Uno.Compiler.Extensions/bin/$(Configuration)/Uno.Compiler.Extensions.dll
+Assemblies.Test: src/testing/Uno.TestRunner.CLI/bin/$(Configuration)/uno-test.exe
+Assemblies.TestGen: src/testing/Uno.TestGenerator/bin/$(Configuration)/uno-test-gen.exe
+Assemblies.Uno: src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe
+
+if WIN32 {
+    Assemblies.Disasm: src/disasm/Uno.Disasm-WPF/bin/$(Configuration)/uno-disasm.exe
+    Paths.AppLoader: src/runtime/@(AppLoaderProj)/bin/$(Configuration)
+} else if MAC {
+    Paths.AppLoader: src/runtime/@(AppLoaderProj)/bin/$(Configuration)
+}
+
+// Package config
+Packages.InstallDirectory: prebuilt/lib
+Packages.SourcePaths += [
+    Library/Core
+    lib/fuselibs/Source
+    lib/premiumlibs/Source
+]
+
+// Avoid overriding core settings when running an uno.exe other than 'src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe',
+// to make sure assembly paths remain consistent.
+SkipIfNotRoot: true

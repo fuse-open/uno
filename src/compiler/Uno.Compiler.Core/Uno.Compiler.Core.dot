@@ -1,0 +1,60 @@
+digraph {
+    Backend [shape=box, style=dashed, color="1. .3 .7"];
+    BundleBuilder [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:IBundle</FONT>>];
+    Compiler [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:ICompiler,  IScheduler</FONT>>];
+    BuildData [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:IBuildData</FONT>>];
+    Decompiler [shape=box, style=dashed, color="1. .3 .7"];
+    BuildEnvironment [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:IEnvironment</FONT>>];
+    Essentials [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:IEssentials</FONT>>];
+    Extensions [color="1. .3 .7", style=dashed, xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:ExtensionRoot</FONT>>];
+    IL [color="1. .3 .7", style=dashed, xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:Namespace</FONT>>];
+    ILFactory [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:IILFactory</FONT>>];
+    Pass [shape=box, style=dashed, color=".7 .3 1."];
+    Plugin [shape=box, style=dashed, color=".7 .3 1."];
+    PluginCache -> Plugin [arrowhead=vee, style=dashed, color=".3 1. .7", label=<<FONT FACE="Times-Italic">«has many»</FONT>>, fontsize=10]
+    PluginCache [color=".3 1. .7", xlabel=<<FONT FACE="Arial" POINT-SIZE="10">:IPlugins</FONT>>];
+    Plugin -> BundleBuilder [arrowhead=empty, color=".7 .3 1."];
+    ShaderBackend [shape=box, style=dashed, color="1. .3 .7"];
+    UxlProcessor -> BuildEnvironment[color="1. .3 .3"];
+    Pass -> ILFactory [arrowhead=empty, color=".7 .3 1."];
+    Compiler -> Pass [arrowhead=vee, style=dashed, color=".3 1. .7", label=<<FONT FACE="Times-Italic">«has many»</FONT>>, fontsize=10];
+    Compiler -> BuildData [color=".3 1. .7"];
+    Compiler -> AstProcessor [color=".3 1. .7"];
+    Compiler -> UxlProcessor [color=".3 1. .7"];
+    BuildData -> Extensions [style=dashed, color=".3 1. .7"];
+    BuildData -> IL [style=dashed, color=".3 1. .7"];
+    BuildEnvironment -> MacroExpander [color=".3 1. .7"];
+    ILFactory -> Essentials [color=".3 1. .7"];
+    Plugin -> ILFactory [arrowhead=empty, color=".7 .3 1."];
+    NameResolver -> BlockBuilder [color="1. .3 .3"];
+    NameResolver -> TypeBuilder [color="1. .3 .3"];
+    MacroExpander -> BuildEnvironment [color="1. .3 .3"];
+    MacroExpander -> Decompiler [style=dashed, color="1. .3 .3"];
+    BlockBuilder -> NameResolver [color="1. .3 .3"];
+    BlockBuilder -> PluginCache [color="1. .3 .3"];
+    BlockBuilder -> TypeBuilder [color="1. .3 .3"];
+    BlockBuilder -> ShaderGenerator [arrowhead=vee, color="1. .3 .3", label=<<FONT FACE="Times-Italic">«instantiates»</FONT>>, fontsize=10];
+    TypeBuilder -> NameResolver [color="1. .3 .3"];
+    TypeBuilder -> BlockBuilder [color="1. .3 .3"];
+    TypeBuilder -> FunctionCompiler [arrowhead=vee, color="1. .3 .3", label=<<FONT FACE="Times-Italic">«instantiates»</FONT>>, fontsize=10];
+    AstProcessor -> BlockBuilder[color="1. .3 .3"];
+    AstProcessor -> TypeBuilder[color="1. .3 .3"];
+    AstProcessor -> NameResolver[color="1. .3 .3"];
+    ShaderGenerator -> ShaderBackend [arrowhead=empty, style=dashed, color="1. .3 .3"];
+    FunctionCompiler -> TypeBuilder [color="1. .3 .3"];
+    FunctionCompiler -> NameResolver [color="1. .3 .3"];
+    FunctionCompiler -> PluginCache [color="1. .3 .3"];
+    FunctionCompiler -> Backend [arrowhead=empty, style=dashed, color="1. .3 .3"];
+    AstProcessor [color="1. .3 .3"];
+    UxlProcessor [color="1. .3 .3"];
+    NameResolver [color="1. .3 .3"];
+    BlockBuilder [color="1. .3 .3"];
+    ShaderGenerator [color="1. .3 .3"];
+    TypeBuilder [color="1. .3 .3"];
+    FunctionCompiler [color="1. .3 .3"];
+    MacroExpander [color="1. .3 .3"];
+    { rank=same; Pass; Plugin }
+    { rank=same; BuildData; ILFactory }
+    { rank=same; NameResolver; FunctionCompiler }
+    { rank=same; Compiler; Backend }
+}

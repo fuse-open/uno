@@ -1,0 +1,113 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="Stuff" extensions=".stuff" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+    <Color name="Number" foreground="#FFCD22" />
+    <Color name="Comment" foreground="#66747B" />
+    <Color name="DocTag" foreground="#808080" />
+    <Color name="DocComment" foreground="#99A38A" />
+    <Color name="String" foreground="#EC7600" />
+    <Color name="Keyword" foreground="#93C763" />
+    <Color name="Literal" foreground="#A082BD" />
+    <Color name="Punctuation" foreground="#E8E2B7" />
+    <Color name="Preprocessor" foreground="#A082BD" />
+
+    <RuleSet ignoreCase="false">
+        <Span color="Preprocessor">
+            <Begin>\#</Begin>
+        </Span>
+
+        <Keywords color="Number">
+            <Word>false</Word>
+            <Word>null</Word>
+            <Word>true</Word>
+        </Keywords>
+
+        <Keywords color="Keyword">
+            <Word>else</Word>
+            <Word>if</Word>
+        </Keywords>
+
+        <Keywords color="Literal">
+            <Word>include</Word>
+            <Word>require</Word>
+        </Keywords>
+
+        <Span color="DocComment">
+            <Begin color="DocTag">///(?!/)</Begin>
+            <RuleSet>
+                <Rule color="DocTag">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Span color="Comment" ruleSet="CommentMarkerSet">
+            <Begin>//</Begin>
+        </Span>
+
+        <Span color="Comment" ruleSet="CommentMarkerSet" multiline="true">
+            <Begin>/\*</Begin>
+            <End>\*/</End>
+        </Span>
+
+        <Span color="String">
+            <Begin>"</Begin>
+            <End>"</End>
+            <RuleSet>
+                <!-- span for escape sequences -->
+                <Span color="Number" begin="\\" end="."/>
+                <Rule color="Punctuation">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Span color="String">
+            <Begin>'</Begin>
+            <End>'</End>
+            <RuleSet>
+                <!-- span for escape sequences -->
+                <Span color="Number" begin="\\" end="."/>
+            </RuleSet>
+        </Span>
+
+        <Span>
+            <Begin color="Preprocessor">
+                @\(
+            </Begin>
+            <End color="Preprocessor">
+                \)+
+            </End>
+            <RuleSet>
+                <Rule color="DocComment">
+                    \b[\d\w_]+
+                </Rule>
+                <Rule color="Preprocessor">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Rule color="DocComment">
+            @//
+        </Rule>
+
+        <Rule color="Number">
+            \b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9fF]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?([0-9a-fA-FulUL]+)?
+        </Rule>
+
+        <Rule color="Punctuation">
+            [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+        </Rule>
+    </RuleSet>
+
+    <RuleSet name="CommentMarkerSet">
+        <Keywords foreground="Red">
+            <Word>TODO</Word>
+            <Word>FIXME</Word>
+        </Keywords>
+        <Keywords foreground="#E0E000">
+            <Word>HACK</Word>
+            <Word>UNDONE</Word>
+        </Keywords>
+    </RuleSet>
+</SyntaxDefinition>

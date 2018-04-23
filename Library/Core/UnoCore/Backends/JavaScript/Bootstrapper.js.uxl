@@ -1,0 +1,6 @@
+<Extensions Backend="JavaScript">
+
+    <ProcessFile PreSourceFile="uno.js" />
+    <ProcessFile PostSourceFile="main.js" />
+
+</Extensions>

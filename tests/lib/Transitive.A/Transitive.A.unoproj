@@ -1,0 +1,6 @@
+{
+  "IsTransitive": true,
+  "Projects": [
+    "../Transitive.B/Transitive.B.unoproj"
+  ]
+}

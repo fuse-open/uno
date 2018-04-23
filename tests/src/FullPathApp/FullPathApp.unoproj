@@ -1,0 +1,11 @@
+{
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "*",
+    "C:/Program Files/*.fjøs",
+    "../UnoTest/Parser/Comment.uno"
+  ]
+}

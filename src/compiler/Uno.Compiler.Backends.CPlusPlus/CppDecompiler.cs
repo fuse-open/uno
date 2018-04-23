@@ -1,0 +1,41 @@
+﻿using System.Text;
+using Uno.Compiler.API.Backends.Decompilers;
+using Uno.Compiler.API.Domain.IL;
+
+namespace Uno.Compiler.Backends.CPlusPlus
+{
+    class CppDecompiler : Decompiler
+    {
+        readonly CppBackend _backend;
+
+        public CppDecompiler(CppBackend backend)
+        {
+            _backend = backend;
+        }
+
+        public override SourceWriter CreateWriter(Source src, StringBuilder sb, Function context)
+        {
+            return new CppWriter(_backend, sb, context);
+        }
+
+        public override string GetForwardDeclaration(Source src, DataType dt)
+        {
+            return _backend.GetForwardDeclaration(dt);
+        }
+
+        public override string GetInclude(Source src, DataType dt)
+        {
+            return _backend.GetIncludeFilename(dt);
+        }
+
+        public override string GetFunction(Source src, Function context, Function func)
+        {
+            return _backend.GetFunctionPointer(func, context?.DeclaringType);
+        }
+
+        public override string GetType(Source src, Function context, DataType dt)
+        {
+            return _backend.GetTypeDef(dt, context?.DeclaringType);
+        }
+    }
+}

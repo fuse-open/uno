@@ -1,0 +1,15 @@
+# Uncomment this line to define a global platform for your project
+#if @(Cocoapods.Platform.Name:IsSet)
+platform :@(Cocoapods.Platform.Name), '@(Cocoapods.Platform.Version:Or(''))'
+#endif
+
+@(Cocoapods.Podfile.Pre:Join('\n'))
+
+target '@(Project.Name)' do
+#if @(Pods.Frameworks:Defined)
+  use_frameworks!
+#endif
+  @(Cocoapods.Podfile.Target:Join('\n'))
+end
+
+@(Cocoapods.Podfile.Post:Join('\n'))

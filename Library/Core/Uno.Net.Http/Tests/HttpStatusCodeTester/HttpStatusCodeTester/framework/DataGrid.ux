@@ -1,0 +1,13 @@
+<DockPanel Margin="5, 5, 5, 5" ux:Class="DataGrid" ux:AutoCtor="false">
+	<Grid RowCount="1" DockPanel.Dock="Top" ux:Name="header">
+		<Rectangle ux:Binding="Appearance">
+			<LinearGradient>
+				<GradientStop Offset="0.0106383" Color="0.6666667, 0.6784314, 1, 1" />
+				<GradientStop Offset="0.9893617" Color="0.5490196, 0.5647059, 1, 1" />
+			</LinearGradient>
+		</Rectangle>
+	</Grid>
+	<ScrollViewer DockPanel.Dock="Fill" ux:Name="scrollViewer">
+		<StackPanel ux:Name="panel" />
+	</ScrollViewer>
+</DockPanel>

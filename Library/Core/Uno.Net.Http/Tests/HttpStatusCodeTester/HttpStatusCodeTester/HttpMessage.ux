@@ -1,0 +1,10 @@
+<Grid ux:Class="HttpMessage" RowCount="1" ColumnData="1*, 1*, 1*, 1*, 10*">
+	<Cell ux:Name="statusCode" Name="Status code" />
+	<Cell ux:Name="httpState" Name="State" />
+	<Cell ux:Name="a" Name="Last event" />
+	<Cell ux:Name="headers" Name="Headers" />
+	<Cell ux:Name="body" Name="Body" />
+	<Hovering>
+		<Change Target="statusCode.Color" Value="0.3, 0.3, 0.3, 1" />
+	</Hovering>
+</Grid>

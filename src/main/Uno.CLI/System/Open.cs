@@ -1,0 +1,341 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using Mono.Options;
+using Uno.Diagnostics;
+
+namespace Uno.CLI.System
+{
+    class Open : Command
+    {
+        public override string Name => "open";
+        public override string Description => "Open file(s) in external application.";
+        public override bool IsExperimental => true;
+
+        public override void Help()
+        {
+            WriteUsage("[options] <filename ...>");
+
+            WriteHead("Available options");
+            WriteRow("-a, --app=NAME",      "The name of the application to open");
+            WriteRow("-a, --exe=PATH",      "The path to the executable to open", true);
+            WriteRow("-t, --title=NAME",    "Look for an existing window with this title", true);
+            WriteRow("-n, --new",           "Create a new process");
+        }
+
+        public override void Execute(IEnumerable<string> args)
+        {
+            string app = null;
+            string exe = null;
+            string title = null;
+            var newWindow = false;
+            var files = new OptionSet {
+                    { "a=|app=", value => app = value.ParseString("app") },
+                    { "e=|exe=", value => exe = value.ParseString("exe") },
+                    { "t=|title=", value => title = value.ParseString("title") },
+                    { "n|new", value => newWindow = true },
+                }.Parse(args);
+
+            if (files.Count == 0)
+                Help(null);
+            else
+                foreach (var f in files)
+                    Start(f, app, exe, title, newWindow);
+        }
+
+        void Start(string filename, string app, string exe, string title, bool newWindow)
+        {
+            if (PlatformDetection.IsMac)
+            {
+                var args = new List<string>();
+
+                if (!string.IsNullOrEmpty(app))
+                    args.Add("-a" + app.QuoteSpace());
+                if (newWindow)
+                    args.Add("-n");
+                args.Add(filename.QuoteSpace());
+
+                Process.Start("open", string.Join(" ", args));
+                return;
+            }
+
+            if (PlatformDetection.IsWindows && (
+                    !string.IsNullOrEmpty(app) ||
+                    !string.IsNullOrEmpty(exe)
+                ))
+            {
+                if (string.IsNullOrEmpty(exe))
+                    exe = FindExe(app);
+
+                if (!File.Exists(exe))
+                    throw new FileNotFoundException("The executable " + exe.Quote() + " was not found");
+
+                if (!newWindow)
+                {
+                    if (string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(filename) &&
+                            filename.Last() != '\\' && filename.Last() != '/')
+                        title = Path.GetFileNameWithoutExtension(filename);
+
+                    // See if there's a window already open
+                    foreach (var proc in Process.GetProcesses())
+                    {
+                        try
+                        {
+                            if (proc.MainWindowHandle == IntPtr.Zero ||
+                                proc.MainModule.FileName.ToUpperInvariant() != exe.ToUpperInvariant() ||
+                                !proc.MainWindowTitle.StartsWith(title, StringComparison.InvariantCulture))
+                                continue;
+
+                            Log.Verbose("Found existing process: " + proc.Id);
+                            ForceForegroundWindow(proc.MainWindowHandle);
+                            return;
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Verbose("Exception: " + e.Message + " (" + proc.Id + ")");
+                        }
+                    }
+                }
+
+                Process.Start(exe, filename.QuoteSpace());
+                return;
+            }
+
+            Process.Start(filename);
+        }
+
+        static string FindExe(string app)
+        {
+            var lnk = FindShortcut(app, Environment.SpecialFolder.StartMenu) ??
+                      FindShortcut(app, Environment.SpecialFolder.CommonStartMenu);
+
+            if (string.IsNullOrEmpty(lnk))
+            {
+                if (app == "Visual Studio 2015")
+                {
+                    foreach (var alias in new[] {
+                            "Visual Studio 2013",
+                            "VS Express 2013 for Desktop"
+                        })
+                    {
+                        lnk = FindShortcut(alias, Environment.SpecialFolder.StartMenu) ??
+                              FindShortcut(alias, Environment.SpecialFolder.CommonStartMenu);
+
+                        if (!string.IsNullOrEmpty(lnk))
+                            return ResolveShortcut(lnk);
+                    }
+                }
+
+                throw new ArgumentException("The application " + app.Quote() + " was not found in the Start Menu");
+            }
+
+            return ResolveShortcut(lnk);
+        }
+
+        static string FindShortcut(string app, Environment.SpecialFolder folder)
+        {
+            foreach (var f in Directory.EnumerateFiles(Environment.GetFolderPath(folder), "*.lnk", SearchOption.AllDirectories))
+                if (Path.GetFileNameWithoutExtension(f) == app)
+                    return f;
+
+            return null;
+        }
+
+        // The following code was found on pinvoke.net.
+
+        internal static void ForceForegroundWindow(IntPtr hWnd)
+        {
+            var foreThread = GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero);
+            var appThread = GetWindowThreadProcessId(hWnd, IntPtr.Zero);
+
+            if (foreThread != appThread)
+            {
+                AttachThreadInput(foreThread, appThread, true);
+                BringWindowToTop(hWnd);
+                ShowWindow(hWnd, SW_SHOW);
+                AttachThreadInput(foreThread, appThread, false);
+            }
+            else
+            {
+                BringWindowToTop(hWnd);
+                ShowWindow(hWnd, SW_SHOW);
+            }
+        }
+
+        const uint SW_SHOW = 5;
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, uint nCmdShow);
+
+        [DllImport("user32.dll")]
+        static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool fAttach);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr pid);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern bool BringWindowToTop(IntPtr hWnd);
+
+        [Flags]
+        enum SLGP_FLAGS
+        {
+            /// <summary>Retrieves the standard short (8.3 format) file name</summary>
+            SLGP_SHORTPATH = 0x1,
+            /// <summary>Retrieves the Universal Naming Convention (UNC) path name of the file</summary>
+            SLGP_UNCPRIORITY = 0x2,
+            /// <summary>Retrieves the raw path name. A raw path is something that might not exist and may include environment variables that need to be expanded</summary>
+            SLGP_RAWPATH = 0x4
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        struct WIN32_FIND_DATAW
+        {
+            public readonly uint dwFileAttributes;
+            public readonly long ftCreationTime;
+            public readonly long ftLastAccessTime;
+            public readonly long ftLastWriteTime;
+            public readonly uint nFileSizeHigh;
+            public readonly uint nFileSizeLow;
+            public readonly uint dwReserved0;
+            public readonly uint dwReserved1;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+            public readonly string cFileName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
+            public readonly string cAlternateFileName;
+        }
+
+        [Flags]
+        enum SLR_FLAGS
+        {
+            /// <summary>
+            /// Do not display a dialog box if the link cannot be resolved. When SLR_NO_UI is set,
+            /// the high-order word of fFlags can be set to a time-out value that specifies the
+            /// maximum amount of time to be spent resolving the link. The function returns if the
+            /// link cannot be resolved within the time-out duration. If the high-order word is set
+            /// to zero, the time-out duration will be set to the default value of 3,000 milliseconds
+            /// (3 seconds). To specify a value, set the high word of fFlags to the desired time-out
+            /// duration, in milliseconds.
+            /// </summary>
+            SLR_NO_UI = 0x1,
+            /// <summary>Obsolete and no longer used</summary>
+            SLR_ANY_MATCH = 0x2,
+            /// <summary>If the link object has changed, update its path and list of identifiers.
+            /// If SLR_UPDATE is set, you do not need to call IPersistFile::IsDirty to determine
+            /// whether or not the link object has changed.</summary>
+            SLR_UPDATE = 0x4,
+            /// <summary>Do not update the link information</summary>
+            SLR_NOUPDATE = 0x8,
+            /// <summary>Do not execute the search heuristics</summary>
+            SLR_NOSEARCH = 0x10,
+            /// <summary>Do not use distributed link tracking</summary>
+            SLR_NOTRACK = 0x20,
+            /// <summary>Disable distributed link tracking. By default, distributed link tracking tracks
+            /// removable media across multiple devices based on the volume name. It also uses the
+            /// Universal Naming Convention (UNC) path to track remote file systems whose drive letter
+            /// has changed. Setting SLR_NOLINKINFO disables both types of tracking.</summary>
+            SLR_NOLINKINFO = 0x40,
+            /// <summary>Call the Microsoft Windows Installer</summary>
+            SLR_INVOKE_MSI = 0x80
+        }
+
+
+        /// <summary>The IShellLink interface allows Shell links to be created, modified, and resolved</summary>
+        [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("000214F9-0000-0000-C000-000000000046")]
+        interface IShellLinkW
+        {
+            /// <summary>Retrieves the path and file name of a Shell link object</summary>
+            void GetPath([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out WIN32_FIND_DATAW pfd, SLGP_FLAGS fFlags);
+            /// <summary>Retrieves the list of item identifiers for a Shell link object</summary>
+            void GetIDList(out IntPtr ppidl);
+            /// <summary>Sets the pointer to an item identifier list (PIDL) for a Shell link object.</summary>
+            void SetIDList(IntPtr pidl);
+            /// <summary>Retrieves the description string for a Shell link object</summary>
+            void GetDescription([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszName, int cchMaxName);
+            /// <summary>Sets the description for a Shell link object. The description can be any application-defined string</summary>
+            void SetDescription([MarshalAs(UnmanagedType.LPWStr)] string pszName);
+            /// <summary>Retrieves the name of the working directory for a Shell link object</summary>
+            void GetWorkingDirectory([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDir, int cchMaxPath);
+            /// <summary>Sets the name of the working directory for a Shell link object</summary>
+            void SetWorkingDirectory([MarshalAs(UnmanagedType.LPWStr)] string pszDir);
+            /// <summary>Retrieves the command-line arguments associated with a Shell link object</summary>
+            void GetArguments([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs, int cchMaxPath);
+            /// <summary>Sets the command-line arguments for a Shell link object</summary>
+            void SetArguments([MarshalAs(UnmanagedType.LPWStr)] string pszArgs);
+            /// <summary>Retrieves the hot key for a Shell link object</summary>
+            void GetHotkey(out short pwHotkey);
+            /// <summary>Sets a hot key for a Shell link object</summary>
+            void SetHotkey(short wHotkey);
+            /// <summary>Retrieves the show command for a Shell link object</summary>
+            void GetShowCmd(out int piShowCmd);
+            /// <summary>Sets the show command for a Shell link object. The show command sets the initial show state of the window.</summary>
+            void SetShowCmd(int iShowCmd);
+            /// <summary>Retrieves the location (path and index) of the icon for a Shell link object</summary>
+            void GetIconLocation([Out(), MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath,
+                int cchIconPath, out int piIcon);
+            /// <summary>Sets the location (path and index) of the icon for a Shell link object</summary>
+            void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string pszIconPath, int iIcon);
+            /// <summary>Sets the relative path to the Shell link object</summary>
+            void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, int dwReserved);
+            /// <summary>Attempts to find the target of a Shell link, even if it has been moved or renamed</summary>
+            void Resolve(IntPtr hwnd, SLR_FLAGS fFlags);
+            /// <summary>Sets the path and file name of a Shell link object</summary>
+            void SetPath([MarshalAs(UnmanagedType.LPWStr)] string pszFile);
+
+        }
+
+        [ComImport, Guid("0000010c-0000-0000-c000-000000000046"),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IPersist
+        {
+            [PreserveSig]
+            void GetClassID(out Guid pClassID);
+        }
+
+        [ComImport, Guid("0000010b-0000-0000-C000-000000000046"),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IPersistFile : IPersist
+        {
+            new void GetClassID(out Guid pClassID);
+            [PreserveSig]
+            int IsDirty();
+
+            [PreserveSig]
+            void Load([In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName, uint dwMode);
+
+            [PreserveSig]
+            void Save([In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName, [In, MarshalAs(UnmanagedType.Bool)] bool fRemember);
+
+            [PreserveSig]
+            void SaveCompleted([In, MarshalAs(UnmanagedType.LPWStr)] string pszFileName);
+
+            [PreserveSig]
+            void GetCurFile([In, MarshalAs(UnmanagedType.LPWStr)] string ppszFileName);
+        }
+
+        const uint STGM_READ = 0;
+        const int MAX_PATH = 260;
+
+        // CLSID_ShellLink from ShlGuid.h
+        [ComImport, Guid("00021401-0000-0000-C000-000000000046")]
+        public class ShellLink
+        {
+        }
+
+        public static string ResolveShortcut(string filename)
+        {
+            ShellLink link = new ShellLink();
+            ((IPersistFile)link).Load(filename, STGM_READ);
+            StringBuilder sb = new StringBuilder(MAX_PATH);
+            WIN32_FIND_DATAW data = new WIN32_FIND_DATAW();
+            ((IShellLinkW)link).GetPath(sb, sb.Capacity, out data, 0);
+            return sb.ToString();
+        }
+    }
+}

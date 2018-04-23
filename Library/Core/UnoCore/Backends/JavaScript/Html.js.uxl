@@ -1,0 +1,9 @@
+<Extensions Backend="JavaScript">
+
+    <Require Template="Html" />
+
+    <Template Name="Html" IsDefault=true>
+        <ProcessFile Name="index.html" />
+    </Template>
+
+</Extensions>

@@ -1,0 +1,13 @@
+{
+  "name": "fusejs-transpiler",
+  "version": "1.2.2",
+  "dependencies": {
+    "babel-standalone": "^6.26.0",
+    "browserify": "^14.4.0",
+    "uglify-js": "^3.1.0"
+  },
+  "scripts": {
+    "install": "browserify server.js --node | uglifyjs -c -m -o server.min.js",
+    "start": "node server.js 1337"
+  }
+}

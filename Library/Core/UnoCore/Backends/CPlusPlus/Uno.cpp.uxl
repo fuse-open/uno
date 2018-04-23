@@ -1,0 +1,28 @@
+<Extensions Backend="CPlusPlus">
+
+    <Require Template="XliPlatform" />
+    <Require Template="uImage" />
+
+    <ProcessFile HeaderFile="Uno.h" />
+    <ProcessFile HeaderFile="Uno/_config.h" />
+    <ProcessFile HeaderFile="Uno/_internal.h" />
+    <ProcessFile SourceFile="Uno/_invoke.cpp" />
+    <ProcessFile SourceFile="Uno/_main.cpp" Condition="!MOBILE"/>
+    <ProcessFile SourceFile="Uno/_mainMobile.cpp" Condition="MOBILE" />
+    <ProcessFile HeaderFile="Uno/GraphicsContext.h" />
+    <ProcessFile SourceFile="Uno/Memory.cpp" />
+    <ProcessFile HeaderFile="Uno/Memory.h" />
+    <ProcessFile SourceFile="Uno/NativeStackTrace.cpp" />
+    <ProcessFile SourceFile="Uno/ObjectModel.cpp" />
+    <ProcessFile HeaderFile="Uno/ObjectModel.h" />
+    <ProcessFile HeaderFile="Uno/ObjectMonitor.h" />
+    <ProcessFile SourceFile="Uno/Support.cpp" />
+    <ProcessFile HeaderFile="Uno/Support.h" />
+    <ProcessFile SourceFile="Uno/Support.mm" Condition="APPLE" />
+    <ProcessFile HeaderFile="Uno/Uno.h" />
+    <ProcessFile HeaderFile="Uno/WinAPIHelper.h" />
+    <ProcessFile HeaderFile="Uno/XliInterop.h" />
+    <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
+    <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
+
+</Extensions>

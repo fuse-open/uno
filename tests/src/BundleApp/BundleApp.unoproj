@@ -1,0 +1,12 @@
+{
+  "Packages": [
+    "BundleLib"
+  ],
+  "Projects": [
+    "SubProject/SubProject.unoproj"
+  ],
+  "Includes": [
+  	"BundleFile.pdf:Bundle",
+    "Main.uno:Source"
+  ]
+}

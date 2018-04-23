@@ -1,0 +1,10 @@
+{
+  "Packages": [
+    "Uno.Testing",
+    "UnoCore"
+  ],
+  "Includes": [
+    "BasicApp.ux:UX",
+    "BasicApp.ux.uno:Source"
+  ]
+}

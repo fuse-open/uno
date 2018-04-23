@@ -1,0 +1,16 @@
+{
+  "Copyright": "Copyright (C) 2014",
+  "Packages": [
+    "Uno.Collections",
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "ObservableList.Test.uno:Source",
+    "Extensions/IListExtensions.Test.uno:Source",
+    "Extensions/EnumerableExtensions.Test.uno:Source",
+    "Extensions/EmptyEnumerable.Test.uno:Source",
+    "Extensions/OfType.Test.uno:Source",
+    "Extensions/DummyItem.uno:Source",
+    "Extensions/Helpers.uno:Source"
+  ]
+}

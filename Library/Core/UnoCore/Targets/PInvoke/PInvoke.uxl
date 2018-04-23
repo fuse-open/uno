@@ -1,0 +1,34 @@
+<Extensions Backend="PInvoke">
+
+    <Define APPLE="HOST_MAC" />
+    <Define ARM="HOST_ARM" />
+    <Define LINUX="HOST_LINUX" />
+    <Define MAC="HOST_MAC" />
+    <Define OSX="HOST_OSX" />
+    <Define UNIX="HOST_UNIX" />
+    <Define WIN32="HOST_WIN32" />
+
+    <Set HeaderDirectory="include" />
+    <Set SourceDirectory="src" />
+    <Set Commands.Build="@(HOST_WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
+    <Set PInvoke.Configuration="@(DEBUG_NATIVE:Defined:Test('Debug', 'Release'))" />
+
+    <Declare Element="SourceFile" TargetDirectory="@(SourceDirectory)" />
+    <Declare Element="HeaderFile" TargetDirectory="@(HeaderDirectory)" />
+
+    <Declare Element="IncludeDirectory" />
+    <Declare Element="LinkDirectory" />
+    <Declare Element="LinkLibrary" />
+    <Declare Element="PreprocessorDefinition" />
+
+    <Set CppStandard="c++11" IsDefault="true" />
+    <Set CStandard="c99" IsDefault="true" />
+
+    <Declare Element="Xcode.Framework" />
+    <Declare Element="Xcode.FrameworkDirectory" />
+
+    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable=true />
+    <ProcessFile Name="build.bat" Condition="HOST_WIN32" />
+    <ProcessFile Name="CMakeLists.txt" />
+
+</Extensions>

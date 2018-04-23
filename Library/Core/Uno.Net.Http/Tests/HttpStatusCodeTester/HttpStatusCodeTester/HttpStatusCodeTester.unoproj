@@ -1,0 +1,36 @@
+{
+  "Packages": [
+    "Fuse.Animations",
+    "Fuse.BasicTheme",
+    "Fuse.Controls",
+    "Fuse.Designer",
+    "Fuse.Drawing",
+    "Fuse.Drawing.Primitives",
+    "Fuse.Effects",
+    "Fuse.Elements",
+    "Fuse.Entities",
+    "Fuse.Gestures",
+    "Fuse.Navigation",
+    "Fuse.Shapes",
+    "Fuse.Triggers",
+    "FuseCore",
+    "Uno.Collections",
+    "Uno.Geometry",
+    "Uno.Net.Http"
+  ],
+  "Includes": [
+    "Cell.ux:UX",
+    "Cell.ux.uno:Source",
+    "framework/DataGrid.ux:UX",
+    "framework/DataGrid.ux.uno:Source",
+    "framework/GridData.uno:Source",
+    "framework/TabControl.ux:UX",
+    "framework/TabControl.ux.layouts:File",
+    "HeadersTester.uno:Source",
+    "HttpMessage.ux:UX",
+    "HttpMessage.ux.uno:Source",
+    "HttpWrapper.uno:Source",
+    "MyApp.ux:UX",
+    "StatusCodeTester.uno:Source"
+  ]
+}

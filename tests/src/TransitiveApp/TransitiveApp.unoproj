@@ -1,0 +1,8 @@
+{
+  "Packages": [
+    "Transitive.A"
+  ],
+  "Includes": [
+    "TransitiveApp.uno"
+  ]
+}

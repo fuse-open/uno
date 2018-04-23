@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="uType">
+    <DisplayString Condition="Type == 1">enum {FullName,sb} {{size = {ValueSize}}}</DisplayString>
+    <DisplayString Condition="Type == 2">struct {FullName,sb} {{fields = {FieldCount}, size = {ValueSize}}}</DisplayString>
+    <DisplayString Condition="Type == 5">class {FullName,sb} {{fields = {FieldCount}}}</DisplayString>
+    <DisplayString Condition="Type == 6">delegate {FullName,sb}</DisplayString>
+    <DisplayString Condition="Type == 7">interface {FullName,sb}</DisplayString>
+    <DisplayString>{FullName,sb}</DisplayString>
+    <Expand>
+      <Item Name="Base" Condition="Base != 0">Base</Item>
+      <Synthetic Name="Interfaces" Condition="InterfaceCount != 0">
+        <DisplayString>[{InterfaceCount}] {{{Interfaces[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>InterfaceCount</Size>
+            <ValuePointer>Interfaces</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+      <Synthetic Name="Fields" Condition="FieldCount != 0">
+        <DisplayString>[{FieldCount}] {{{Fields[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>FieldCount</Size>
+            <ValuePointer>Fields</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+      <Synthetic Name="Generics" Condition="GenericCount != 0">
+        <DisplayString>[{GenericCount}] {{{Generics[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>GenericCount</Size>
+            <ValuePointer>Generics</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+      <Synthetic Name="MethodTypes" Condition="MethodTypeCount != 0">
+        <DisplayString>[{MethodTypeCount}] {{{MethodTypes[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>MethodTypeCount</Size>
+            <ValuePointer>MethodTypes</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+      <Synthetic Name="PrecalcTypes" Condition="PrecalcCount != 0">
+        <DisplayString>[{PrecalcCount}] {{{PrecalcTypes[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>PrecalcCount</Size>
+            <ValuePointer>PrecalcTypes</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+      <Synthetic Name="DependencyTypes" Condition="DependencyCount != 0">
+        <DisplayString>[{DependencyCount}] {{{DependencyTypes[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>DependencyCount</Size>
+            <ValuePointer>DependencyTypes</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+    </Expand>
+  </Type>
+  <Type Name="uReflection">
+    <Expand>
+      <Synthetic Name="Fields" Condition="FieldCount != 0">
+        <DisplayString>[{FieldCount}] {{{Fields[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>FieldCount</Size>
+            <ValuePointer>Fields</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+      <Synthetic Name="Functions" Condition="FunctionCount != 0">
+        <DisplayString>[{FunctionCount}] {{{Functions[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>FunctionCount</Size>
+            <ValuePointer>Functions</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+    </Expand>
+  </Type>
+  <Type Name="uField">
+    <DisplayString>{Name}</DisplayString>
+  </Type>
+  <Type Name="uFunction">
+    <DisplayString>{Name}</DisplayString>
+  </Type>
+  <Type Name="uFieldInfo">
+    <DisplayString Condition="(Flags &amp; (1 &lt;&lt; 1)) != 0">{Type} @{Offset} (inherited)</DisplayString>
+    <DisplayString Condition="(Flags &amp; (1 &lt;&lt; 2)) != 0">{Type} @{Offset} (static)</DisplayString>
+    <DisplayString Condition="(Flags &amp; (1 &lt;&lt; 3)) != 0">{Type} @{Offset} (weak)</DisplayString>
+    <DisplayString>{Type} @{Offset}</DisplayString>
+  </Type>
+  <Type Name="uInterfaceInfo">
+    <DisplayString>{Type} @{Offset}</DisplayString>
+  </Type>
+  <Type Name="uString">
+    <DisplayString>{_ptr,su} {{retains = {__retains}}}</DisplayString>
+    <StringView>_ptr,su</StringView>
+  </Type>
+  <Type Name="uArray">
+    <DisplayString>{((uArrayType*)__type)->ElementType->FullName,sb}[{_length}] {{retains = {__retains}}}</DisplayString>
+    <Expand>
+      <Item Name="ElementType">((uArrayType*)__type)->ElementType</Item>
+      <ArrayItems Condition="((uArrayType*)__type)->ElementType->Type >= 5">
+        <Size>_length</Size>
+        <ValuePointer>(uObject**)_ptr</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+  <Type Name="uDelegate">
+    <DisplayString Condition="_func != 0">{_func} {{retains = {__retains}}}</DisplayString>
+    <DisplayString>{__type->FullName,sb} {{retains = {__retains}}}</DisplayString>
+    <Expand>
+      <Item Name="_generic" Condition="_generic._object != 0">_generic._object</Item>
+      <Item Name="_object" Condition="_object._object != 0">_object._object</Item>
+      <Item Name="_prev" Condition="_prev._object != 0">_prev._object</Item>
+      <Item Name="ReturnType">((uDelegateType*)__type)->ReturnType</Item>
+      <Synthetic Name="ParameterTypes" Condition="((uDelegateType*)__type)->ParameterCount != 0">
+        <DisplayString>[{((uDelegateType*)__type)->ParameterCount}] {{{((uDelegateType*)__type)->ParameterTypes[0]}, ...}}</DisplayString>
+        <Expand>
+          <ArrayItems>
+            <Size>((uDelegateType*)__type)->ParameterCount</Size>
+            <ValuePointer>((uDelegateType*)__type)->ParameterTypes</ValuePointer>
+          </ArrayItems>
+        </Expand>
+      </Synthetic>
+    </Expand>
+  </Type>
+  <Type Name="uObject">
+    <DisplayString>{__type->FullName,sb} {{retains = {__retains}}}</DisplayString>
+  </Type>
+  <Type Name="uTBase">
+    <DisplayString Condition="_type->Type >= 5">*(uObject**)_address</DisplayString>
+    <DisplayString>{_type}</DisplayString>
+    <Expand>
+      <ExpandedItem Condition="_type->Type >= 5">*(uObject**)_address</ExpandedItem>
+      <ExpandedItem>_type</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uTPtr">
+    <DisplayString>{_ptr}</DisplayString>
+    <Expand>
+      <ExpandedItem>_ptr</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uTRef">
+    <DisplayString>{_address}</DisplayString>
+    <Expand>
+      <ExpandedItem>_address</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uStrongRef">
+    <DisplayString>{_address}</DisplayString>
+    <Expand>
+      <ExpandedItem>_address</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uWeakRef">
+    <DisplayString>{_value}</DisplayString>
+    <Expand>
+      <ExpandedItem>_value</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uStrong&lt;*&gt;">
+    <DisplayString>{_object}</DisplayString>
+    <Expand>
+      <ExpandedItem>_object</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uSStrong&lt;*&gt;">
+    <DisplayString>{_object}</DisplayString>
+    <Expand>
+      <ExpandedItem>_object</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uWeak&lt;*&gt;">
+    <DisplayString>{_object}</DisplayString>
+    <Expand>
+      <ExpandedItem>_object</ExpandedItem>
+    </Expand>
+  </Type>
+  <Type Name="uSWeak&lt;*&gt;">
+    <DisplayString>{_object}</DisplayString>
+    <Expand>
+      <ExpandedItem>_object</ExpandedItem>
+    </Expand>
+  </Type>
+</AutoVisualizer>

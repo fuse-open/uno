@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Net.Http.Implementation", "Uno.Net.Http.Implementation\Uno.Net.Http.Implementation.csproj", "{D20C6CE2-B067-4911-ACB1-3EE928C297A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Net.Http.Implementation.Test", "Uno.Net.Http.Implementation.Test\Uno.Net.Http.Implementation.Test.csproj", "{9AA47731-A7CE-4113-9A78-C8FAD8862D90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D20C6CE2-B067-4911-ACB1-3EE928C297A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20C6CE2-B067-4911-ACB1-3EE928C297A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20C6CE2-B067-4911-ACB1-3EE928C297A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20C6CE2-B067-4911-ACB1-3EE928C297A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA47731-A7CE-4113-9A78-C8FAD8862D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA47731-A7CE-4113-9A78-C8FAD8862D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA47731-A7CE-4113-9A78-C8FAD8862D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA47731-A7CE-4113-9A78-C8FAD8862D90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

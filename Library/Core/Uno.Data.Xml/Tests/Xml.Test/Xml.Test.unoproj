@@ -1,0 +1,9 @@
+{
+  "Packages": [
+    "Uno.Data.Xml",
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "XmlDocumentTests.uno:Source"
+  ]
+}

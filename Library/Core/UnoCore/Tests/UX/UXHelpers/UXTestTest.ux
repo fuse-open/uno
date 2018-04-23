@@ -1,0 +1,3 @@
+<Uno.UX.Tests.UXTestFoo ux:Test="UXHelpers.UXTestTest">
+	<Uno.UX.Tests.UXTestBar ux:Name="innerObj" />
+</Uno.UX.Tests.UXTestFoo>

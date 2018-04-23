@@ -1,0 +1,9 @@
+<UXHelpers.ParentObject ux:Class="UXHelpers.DependencyBasics">
+
+    <UXHelpers.ParentObject ux:Class="DependencyHolder">
+        <float ux:Dependency="MyFloat" />
+        <UXHelpers.ReadHelper ux:Name="ReadHelper" Object="MyFloat" />
+    </UXHelpers.ParentObject>
+
+    <DependencyHolder ux:Name="Foo" MyFloat="1337" />
+</UXHelpers.ParentObject>

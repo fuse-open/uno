@@ -1,0 +1,4 @@
+<object ux:Class="UXHelpers.AttachedPropertyTest">
+	<Uno.UX.Tests.AttachedPropertyTest.Foo ux:Name="foo" ux:AutoBind="false" />
+	<Uno.UX.Tests.AttachedPropertyTest.Bar ux:Name="bar" Target="foo.Baz" ux:AutoBind="false" />
+</object>

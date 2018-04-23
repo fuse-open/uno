@@ -1,0 +1,11 @@
+<UXHelpers.RootObject ux:Class="UXHelpers.NestedTemplateRef">
+    <UXHelpers.TemplateParent>
+        <UXHelpers.RootObject ux:Template="temp">
+            <object ux:Name="theObj" />
+
+            <UXHelpers.TemplateParent>
+                <UXHelpers.RefObject ux:Template="temp" Object="theObj" />
+            </UXHelpers.TemplateParent>
+        </UXHelpers.RootObject>
+    </UXHelpers.TemplateParent>
+</UXHelpers.RootObject>

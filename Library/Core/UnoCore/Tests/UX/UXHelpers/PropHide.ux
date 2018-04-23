@@ -1,0 +1,7 @@
+<UXHelpers.ParentObject ux:Class="UXHelpers.PropHide">
+    <UXHelpers.PropHideBase ux:Class="UXHelpers.PropHideClass">
+        <string ux:Property="X" /> <!-- This property hides PropHideBase.X and has a different type -->
+    </UXHelpers.PropHideBase>
+
+    <UXHelpers.PropHideClass ux:Name="Phc" X="Hello" /> <!-- `X` here should refer to PropHideClass.X, _not_ PropHideBase.X -->
+</UXHelpers.ParentObject>

@@ -1,0 +1,8 @@
+{
+  "Packages": [
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "App.uno:Source"
+  ]
+}

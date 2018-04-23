@@ -1,0 +1,10 @@
+<Panel ux:Class="Cell" ux:AutoCtor="false">
+	<TextBlock ux:Name="_text" IsMultiline="false" TextWrapping="Wrap" Text="" MaxHeight="45" />
+	<Rectangle ux:Binding="Appearance" ux:Name="_background">
+		<SolidColor Color="1, 1, 1, 1" />
+	</Rectangle>
+	<!--<Pressed>
+		<HttpStatusCodeTester.ChangeBool Target="_text.IsMultiline" Value="true" Duration="0" DurationBack="0" DelayBack="1" />
+		<HttpStatusCodeTester.ChangeTextWrapping Target="_text.TextWrapping" Value="Wrap" Duration="0" DurationBack="0" DelayBack="1" />
+	</Pressed>-->
+</Panel>

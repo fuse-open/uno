@@ -1,0 +1,9 @@
+{
+  "Packages": [
+    "Uno.Net.Http",
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "UriTests.uno:Source"
+  ]
+}

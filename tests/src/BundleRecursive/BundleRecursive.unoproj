@@ -1,0 +1,9 @@
+{
+  "Packages": [
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "Assets/**:Bundle",
+    "App.uno"
+  ]
+}

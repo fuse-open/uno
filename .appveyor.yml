@@ -1,0 +1,36 @@
+version: '{build}'
+
+environment:
+  matrix:
+  - TARGET: dotnet
+  - TARGET: native
+
+install:
+  - ps: |
+      if ($env:Target -eq "native") {
+        Invoke-WebRequest https://files.fusetools.com/tooling/iyVp8kwQ0vLn-mesa-17.2.3.500.zip -OutFile mesa.zip
+        Expand-Archive mesa.zip mesa
+      }
+
+build_script:
+  - nuget restore uno-win32.sln
+  - bash scripts/build.sh
+
+before_test:
+  - ps: |
+      if ($env:Target -eq "native") {
+        Get-ChildItem -Path Library -Recurse -Include *Test.unoproj | Select-Object -ExpandProperty DirectoryName | Foreach-Object {
+          $buildDir = Join-Path $_ build\Test\Native
+          New-Item -Force -ItemType directory -Path $buildDir | Out-Null
+          Copy-Item -Path mesa\x64\opengl32.dll -Destination (Join-Path $buildDir opengl32.dll)
+        }
+      }
+  - prebuilt\uno test-gen Library\Core %TEMP%\PackageCompilationTest
+
+test_script:
+  - nunit3-console
+      src\testing\Uno.TestRunner.Tests\bin\Debug\Uno.TestRunner.Tests.dll
+      src\ux\Uno.UX.Markup.AST\Tests\bin\Debug\Uno.UX.Markup.AST.Tests.dll
+      src\ux\Uno.UX.Markup.UXIL\Tests\bin\Debug\Uno.UX.Markup.UXIL.Tests.dll
+  - prebuilt\uno test --target=%TARGET% Library
+  - prebuilt\uno build --target=%TARGET% --no-strip %TEMP%\PackageCompilationTest

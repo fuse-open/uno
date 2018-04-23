@@ -1,0 +1,41 @@
+{
+  "Copyright": "Copyright (c) Fusetools 2015",
+  "Description": "XML parser",
+  "Publisher": "Fusetools AS",
+  "Projects": [
+    "../Uno.Collections/Uno.Collections.unoproj"
+  ],
+  "Includes": [
+    "Targets/CIL/Uno.Data.Xml.cil.uxl:Extensions",
+    "Targets/JavaScript/Uno.Data.Xml.js.uxl:Extensions",
+    "Targets/CPlusPlus/Uno.Data.Xml.cpp.uxl:Extensions",
+    "Targets/CPlusPlus/Source/pugiconfig.hpp:File",
+    "Targets/CPlusPlus/Source/pugixml.cpp:File",
+    "Targets/CPlusPlus/Source/pugixml.hpp:File",
+    "Source/System.Xml.uno:Source",
+    "Source/XmlException.uno:Source",
+    "Source/XmlNodeImpl.uno:Source",
+    "Source/XmlNodeHandle.uno:Source",
+    "Source/XmlAttributeHandle.uno:Source",
+    "Source/XmlEnums.uno:Source",
+    "Source/Elements/XmlAttribute.uno:Source",
+    "Source/Elements/XmlValue.uno:Source",
+    "Source/Elements/XmlText.uno:Source",
+    "Source/Elements/XmlProcessingInstruction.uno:Source",
+    "Source/Elements/XmlNode.uno:Source",
+    "Source/Elements/XmlLinkedNode.uno:Source",
+    "Source/Elements/XmlElement.uno:Source",
+    "Source/Elements/XmlDocumentElement.uno:Source",
+    "Source/Elements/XmlDocument.uno:Source",
+    "Source/Elements/XmlDeclaration.uno:Source",
+    "Source/Elements/XmlComment.uno:Source",
+    "Source/Elements/XmlCharacterData.uno:Source",
+    "Source/Collections/XmlNodeCollectionBase.uno:Source",
+    "Source/Collections/XmlAttributeCollection.uno:Source",
+    "Source/Collections/XmlLinkedNodeCollection.uno:Source",
+    "Source/Helpers/AttributeHandleConverter.uno:Source",
+    "Source/Helpers/ValidationHelper.uno:Source",
+    "Source/Helpers/XmlEncodingHelper.uno:Source",
+    "Source/Helpers/XmlNodeHandleConverter.uno:Source"
+  ]
+}

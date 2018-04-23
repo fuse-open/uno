@@ -1,0 +1,21 @@
+<UXHelpers.ParentObject ux:Class="UXHelpers.RefTest">
+
+    <UXHelpers.ParentObject ux:Name="p1" />
+
+    <UXHelpers.ParentObject ux:Class="UXHelpers.RefPanel">
+        <UXHelpers.ParentObject ux:Dependency="depPanel" />
+        <UXHelpers.ParentObject ux:Name="innerPanel">
+            <UXHelpers.ParentObject ux:Ref="depPanel" ux:Binding="Children" />
+        </UXHelpers.ParentObject>
+    </UXHelpers.ParentObject>
+
+    <UXHelpers.RefPanel ux:Name="refPanel" depPanel="p1" />
+
+    <!-- Testing specific regression reported as https://github.com/Duckers/Fuse.MaterialDesign/issues/11 
+         The introduction of ux:Test accidentially broke ux:Ref, testing that they both work at the same time.
+
+         This node shoudl not be added to the parent node.
+    -->
+    <UXHelpers.ParentObject ux:Test="testPanel" ux:Name="lol" />
+
+</UXHelpers.ParentObject>

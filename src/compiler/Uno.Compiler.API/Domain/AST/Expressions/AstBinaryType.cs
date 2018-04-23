@@ -1,0 +1,41 @@
+namespace Uno.Compiler.API.Domain.AST.Expressions
+{
+    public enum AstBinaryType : byte
+    {
+        As = AstExpressionType.As,
+        Is = AstExpressionType.Is,
+        Add = AstExpressionType.Add,
+        Sub = AstExpressionType.Sub,
+        Mul = AstExpressionType.Mul,
+        Div = AstExpressionType.Div,
+        Mod = AstExpressionType.Mod,
+        Null = AstExpressionType.NullOp,
+        LogAnd = AstExpressionType.LogAnd,
+        LogOr = AstExpressionType.LogOr,
+        Equal = AstExpressionType.Equal,
+        NotEqual = AstExpressionType.NotEqual,
+        LessThan = AstExpressionType.LessThan,
+        LessThanOrEqual = AstExpressionType.LessThanOrEqual,
+        GreaterThan = AstExpressionType.GreaterThan,
+        GreaterThanOrEqual = AstExpressionType.GreaterThanOrEqual,
+        BitwiseAnd = AstExpressionType.BitwiseAnd,
+        BitwiseOr = AstExpressionType.BitwiseOr,
+        BitwiseXor = AstExpressionType.BitwiseXor,
+        ShiftLeft = AstExpressionType.ShiftLeft,
+        ShiftRight = AstExpressionType.ShiftRight,
+        Sequence = AstExpressionType.Sequence,
+        Assign = AstExpressionType.Assign,
+        AddAssign = AstExpressionType.AddAssign,
+        SubAssign = AstExpressionType.SubAssign,
+        MulAssign = AstExpressionType.MulAssign,
+        DivAssign = AstExpressionType.DivAssign,
+        ModAssign = AstExpressionType.ModAssign,
+        BitwiseAndAssign = AstExpressionType.BitwiseAndAssign,
+        BitwiseOrAssign = AstExpressionType.BitwiseOrAssign,
+        BitwiseXorAssign = AstExpressionType.BitwiseXorAssign,
+        ShiftLeftAssign = AstExpressionType.ShiftLeftAssign,
+        ShiftRightAssign = AstExpressionType.ShiftRightAssign,
+        LogAndAssign = AstExpressionType.LogAndAssign,
+        LogOrAssign = AstExpressionType.LogOrAssign
+    }
+}

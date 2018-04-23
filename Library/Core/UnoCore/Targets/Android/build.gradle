@@ -1,0 +1,24 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+       jcenter()
+       mavenCentral()
+       @(Gradle.BuildScript.Repository:Join('\n'))
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+        @(Gradle.Dependency.ClassPath:Join('\n', 'classpath \'', '\''))
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        @(Gradle.AllProjects.Repository:Join('\n'))
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

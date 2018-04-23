@@ -1,0 +1,4 @@
+<Extensions Backend="CPlusPlus">
+    <Define REFLECTION />
+    <Define ARC_DEBUG />
+</Extensions>

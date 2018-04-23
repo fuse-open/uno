@@ -1,0 +1,11 @@
+{
+  "Packages": [
+    "Uno.Testing",
+    "UnoCore"
+  ],
+  "Includes": [
+    "*.uno",
+    "FileInclude.h:ObjCHeader:FOREIGN_OBJC_SUPPORTED",
+    "FileInclude.mm:ObjCSource:FOREIGN_OBJC_SUPPORTED",
+  ]
+}

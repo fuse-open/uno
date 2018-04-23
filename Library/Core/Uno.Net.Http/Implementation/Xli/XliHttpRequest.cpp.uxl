@@ -1,0 +1,56 @@
+<Extensions Backend="CPlusPlus" Condition="LINUX || MSVC12">
+
+    <Using Namespace="Uno.Net.Http.Implementation" />
+
+    <Type Name="XliHttpClientHandle"
+        TypeName="::Xli::HttpClient*"
+        Include="XliHttpClient/HttpClient.h" />
+
+    <Type Name="XliHttpRequestHandle"
+        TypeName="::Xli::HttpRequest*"
+        Include="XliHttpClient/HttpClient.h" />
+
+    <Type Name="XliHttpMessageHandler">
+        <ProcessFile HeaderFile="XliHttpEventHandler.h" />
+
+        <Require Source.Include="XliHttpClient/HttpClient.h" />
+        <Require Source.Include="XliHttpEventHandler.h" />
+        <Require Source.Include="Uno/Support.h" />
+    </Type>
+
+    <Type Name="XliHttpRequest">
+        <Require Template="XliHttpClient" />
+
+        <Require Source.Include="XliHttpClient/HttpClient.h" />
+        <Require Source.Include="Uno/Support.h" />
+
+        <Method Signature="GetResponseHeader(string):string">
+            <Body>
+                uBase::String result;
+                if (@{$$._requestHandle}->TryGetResponseHeader(uStringToXliString($0), result))
+                    return uStringFromXliString(result);
+                else
+                    return NULL;
+            </Body>
+        </Method>
+
+        <Method Signature="GetResponseHeaders():string">
+            <Body>
+                Xli::HttpRequest* req = @{$$._requestHandle};
+                uBase::String result = "";
+                bool first = true;
+                for (int it = req->ResponseHeadersBegin(); it != req->ResponseHeadersEnd(); it = req->ResponseHeadersNext(it))
+                {
+                    if (!first) result += "\n";
+                    first = false;
+                    result += req->GetResponseHeaderKey(it);
+                    result += ":";
+                    result += req->GetResponseHeaderValue(it);
+                }
+
+                return uStringFromXliString(result);
+            </Body>
+        </Method>
+    </Type>
+
+</Extensions>

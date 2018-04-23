@@ -1,0 +1,22 @@
+<Extensions Backend="CPlusPlus" Condition="APPLE">
+    <Using Namespace="Uno.Net.Http.Implementation" />
+
+    <Type Name="iOSHttpRequestHandle"
+        TypeName="::Uno::Net::Http::iOS::HttpRequest*"
+        Include="HttpRequest.h" />
+
+    <Type Name="iOSHttpRequest">
+        <ProcessFile HeaderFile="HttpRequest.h" />
+        <ProcessFile SourceFile="HttpRequest.mm" />
+
+        <Require Condition="IOS" Xcode.Plist.Element>
+            <![CDATA[
+                <key>NSAppTransportSecurity</key>
+                <dict>
+                    <key>NSAllowsArbitraryLoads</key>
+                    <true/>
+                </dict>
+            ]]>
+        </Require>
+    </Type>
+</Extensions>

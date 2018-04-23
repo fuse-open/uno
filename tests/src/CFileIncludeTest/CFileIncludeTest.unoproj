@@ -1,0 +1,10 @@
+{
+  "Packages": [
+    "Uno.Testing",
+  ],
+  "Includes": [
+    "example.h:CHeader",
+    "example.cpp:CSource",
+    "*"
+  ]
+}

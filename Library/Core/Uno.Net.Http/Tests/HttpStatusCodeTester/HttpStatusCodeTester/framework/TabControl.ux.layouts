@@ -1,0 +1,8 @@
+<Layouts>
+  <ViewportLayout Name="CustomLayout1">
+    <Window>
+      <DecoratedViewport DecoratorType="IPhone" />
+    </Window>
+  </ViewportLayout>
+  <Node RefId="this" Default="this.Children" />
+</Layouts>

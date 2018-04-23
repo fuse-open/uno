@@ -1,0 +1,50 @@
+<Extensions Backend="CPlusPlus" Condition="NATIVE">
+
+    <!-- Platform -->
+    <Define APPLE="HOST_MAC" />
+    <Define LINUX="HOST_LINUX" />
+    <Define MAC="HOST_MAC" />
+    <Define OSX="HOST_OSX" />
+    <Define UNIX="HOST_UNIX" />
+    <Define WIN32="HOST_WIN32" />
+
+    <!-- Environment -->
+    <Define MSVC="HOST_WIN32" />
+    <Define MSVC12="HOST_WIN32" />
+
+    <!-- Architecture (override by -DX86 or -DX64) -->
+    <Define ARM="HOST_ARM" />
+    <Define X86="HOST_X86 && !X64" />
+    <Define X64="HOST_X64 && !X86" />
+
+    <!-- Build system -->
+    <Declare Element="SharedLibrary" />
+    <Declare Element="SharedLibrary.x86" />
+    <Declare Element="SharedLibrary.x64" />
+    <Declare Element="Xcode.Framework" />
+
+    <Set AppDirectory="@(Project.Name).app" Condition="MAC" />
+    <Set BinaryDirectory="@(AppDirectory)/MacOS" Condition="MAC" />
+    <Set BundleDirectory="@(BinaryDirectory)/data" Condition="MAC" />
+    <Set Product="@(BinaryDirectory)/@(Project.Name)@(WIN32:Defined:Test('.exe', ''))" />
+    <Set Condition="WIN32" CMake.Generator="Visual Studio 12 2013@(X64:Defined:Test(' Win64', ''))" />
+
+    <Set Commands.Build="@(WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
+    <Set Commands.Run="@(WIN32:Defined:Test('run.bat', 'bash run.sh'))" />
+    <Set CMake="@(@(Config.Tools.CMake || 'cmake'):QuoteSpace)" />
+
+    <ProcessFile Name="build.sh" Condition="UNIX" IsExecutable=true />
+    <ProcessFile Name="run.sh" Condition="UNIX" IsExecutable=true />
+    <ProcessFile Name="build.bat" Condition="WIN32" />
+    <ProcessFile Name="run.bat" Condition="WIN32" />
+    <ProcessFile Name="CMakeLists.txt" />
+
+    <!-- macOS bundle -->
+    <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="MAC" />
+    <CopyFile Name="@//Assets/Icon.icns" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="MAC" />
+
+    <!-- VC++ debugger visualizers -->
+    <CopyFile Condition="MSVC" Name="natvis/uno.natstepfilter" />
+    <CopyFile Condition="MSVC" Name="natvis/uno.natvis" />
+
+</Extensions>

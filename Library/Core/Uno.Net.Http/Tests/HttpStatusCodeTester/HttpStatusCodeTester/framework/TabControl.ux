@@ -1,0 +1,4 @@
+<!--<DockPanel ux:ClassName="TabControl">
+	<StackPanel Orientation="Horizontal" ux:Name="tabHeaders" DockPanel.Dock="Top" />
+	<Panel ux:Name="currentTab" DockPanel.Dock="Bottom" />
+</DockPanel>-->

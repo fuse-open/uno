@@ -1,0 +1,12 @@
+if ANDROID {
+    "Android": "https://files.fusetools.com/tooling/ByWkWr0ycr5B-uno-base-0.8.730-android.zip",
+}
+if IOS {
+    "iOS": "https://files.fusetools.com/tooling/PzOS0jxo8U5Q-uno-base-0.8.730-iOS.zip"
+}
+if OSX {
+    "OSX": "https://files.fusetools.com/tooling/vFhFA3cAEUOi-uno-base-0.8.730-OSX.zip"
+}
+if WIN32 {
+    "Win32": "https://files.fusetools.com/tooling/mtSIgVQTaTJL-uno-base-0.8.730-win32.zip"
+}

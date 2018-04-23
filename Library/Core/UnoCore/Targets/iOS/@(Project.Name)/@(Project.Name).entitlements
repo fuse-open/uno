@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+#if @('@(DEBUG:Defined) && @(Project.iOS.SystemCapabilities.Push:IsSet)':Test(@(Project.iOS.SystemCapabilities.Push),0))
+	<key>aps-environment</key>
+	<string>development</string>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.PersonalVPN:IsSet:Test(@(Project.iOS.SystemCapabilities.PersonalVPN),0))
+	<key>com.apple.developer.networking.vpn.api</key>
+	<array>
+		<string>allow-vpn</string>
+	</array>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.InterAppAudio:IsSet:Test(@(Project.iOS.SystemCapabilities.InterAppAudio),0))
+	<key>inter-app-audio</key>
+	<true/>
+    #endif
+
+#if @(Project.iOS.SystemCapabilities.HomeKit:IsSet:Test(@(Project.iOS.SystemCapabilities.HomeKit),0))
+	<key>com.apple.developer.homekit</key>
+	<true/>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.HealthKit:IsSet:Test(@(Project.iOS.SystemCapabilities.HealthKit),0))
+	<key>com.apple.developer.healthkit</key>
+	<true/>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.WirelessAccessoryConfiguration:IsSet:Test(@(Project.iOS.SystemCapabilities.WirelessAccessoryConfiguration),0))
+	<key>com.apple.external-accessory.wireless-configuration</key>
+	<true/>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.Siri:IsSet:Test(@(Project.iOS.SystemCapabilities.Siri),0))
+	<key>com.apple.developer.siri</key>
+	<true/>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.DataProtection:IsSet:Test(@(Project.iOS.SystemCapabilities.DataProtection),0))
+	<key>com.apple.developer.default-data-protection</key>
+	<string>NSFileProtectionComplete</string>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.ApplicationGroups:IsSet)
+	<key>com.apple.security.application-groups</key>
+	<array>
+        @(Project.iOS.SystemCapabilities.ApplicationGroups:SplitAndJoin('\n\t\t', '<string>','</string>'))
+	</array>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.AssociatedDomains:IsSet)
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+        @(Project.iOS.SystemCapabilities.AssociatedDomains:SplitAndJoin('\n\t\t', '<string>','</string>'))
+	</array>
+#endif
+
+#if @(Project.iOS.SystemCapabilities.KeychainSharing:IsSet)
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+        @(Project.iOS.SystemCapabilities.KeychainSharing:SplitAndJoin('\n\t\t', '<string>$(AppIdentifierPrefix)','</string>'))
+	</array>
+#endif
+
+
+</dict>
+</plist>

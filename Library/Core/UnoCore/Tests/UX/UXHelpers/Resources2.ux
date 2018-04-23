@@ -1,0 +1,5 @@
+<ux:Resources>
+	<!-- similar to Resources1.ux, included to test that it works to have multiple ux:Resources in a project -->
+	<Uno.UX.Tests.TestPanel ux:Class="UXResourcesTest2.FooPanel" Margin="UXResourcesTest2.FooMargin" />
+	<float4 ux:Global="UXResourcesTest2.FooMargin" ux:Value="10, 4, 9, 3" />
+</ux:Resources>

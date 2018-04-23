@@ -1,0 +1,6 @@
+if DOTNET && HOST_WIN32 {
+    /* 1.44MB */ Uno.Native: "https://files.fusetools.com/tooling/PWRYkbaWRH9W-Uno.Native-180312-bf6027-Win32.zip"
+}
+if DOTNET && HOST_MAC {
+    /* 1.08MB */ Uno.Native: "https://files.fusetools.com/tooling/NEGisK9vdA37-Uno.Native-180312-4a5f15-macOS.zip"
+}

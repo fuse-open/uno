@@ -1,0 +1,8 @@
+{
+  "Projects": [
+    "projects/**/*.unoproj"
+  ],
+  "Includes": [
+    "*"
+  ]
+}

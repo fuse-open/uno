@@ -1,0 +1,12 @@
+<Extensions Backend="CPlusPlus" Condition="Android">
+    <Type Name="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject">
+        <Require Source.Declaration>
+//~
+void __JavaUnoObject_Finalizer(JNIEnv *env , jclass clazz, jlong ptr)
+{
+    uAutoReleasePool pool;
+    uRelease((@{JavaUnoObject})ptr);
+}
+        </Require>
+    </Type>
+</Extensions>

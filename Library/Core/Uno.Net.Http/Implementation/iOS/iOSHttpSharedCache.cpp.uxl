@@ -1,0 +1,14 @@
+<Extensions Backend="CPlusPlus" Condition="APPLE">
+    <Using Namespace="Uno.Net.Http.Implementation" />
+
+    <Type Name="iOSHttpSharedCache">
+        <Require Source.Include="HttpRequest.h" />
+
+        <Method Signature="SetupSharedCache(bool,long)">
+            <Expression>::Uno::Net::Http::iOS::SetupSharedCache($0, size_t($1))</Expression>
+        </Method>
+        <Method Signature="PurgeSharedCache()">
+            <Expression>::Uno::Net::Http::iOS::PurgeSharedCache()</Expression>
+        </Method>
+    </Type>
+</Extensions>

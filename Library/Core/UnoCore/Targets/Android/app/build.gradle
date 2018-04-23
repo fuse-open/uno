@@ -1,0 +1,122 @@
+#if @(LIBRARY:Defined)
+apply plugin: 'com.android.library'
+#else
+apply plugin: 'com.android.application'
+#endif
+
+dependencies {
+    compile fileTree(dir: 'src/main/libs', include: ['*.jar'])
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+#if @(Gradle.Dependency.Compile:IsRequired)
+    @(Gradle.Dependency.Compile:Join('\n', 'compile \'', '\''))
+#endif
+#if @(Gradle.Dependency:IsRequired)
+    @(Gradle.Dependency:Join('\n'))
+#endif
+}
+
+
+task copySharedLibraries {
+    @(JNI.SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/armeabi-v7a')\n    }'))
+}
+
+build.dependsOn copySharedLibraries
+
+#if @(Gradle.Repository:IsRequired)
+repositories {
+    @(Gradle.Repository:Join('\n'))
+}
+#endif
+
+
+repositories {
+#if @(JNI.SystemLibrary:IsSet || JNI.SharedLibrary:IsSet)
+    libs(PrebuiltLibraries) {
+        prebuilt {
+            binaries.withType(SharedLibraryBinary) {
+                @(JNI.SystemLibrary:Join('\n                    ', 'sharedLibraryFile = file(\'', '\')'))
+                @(JNI.SharedLibrary:Join('\n                    ', 'sharedLibraryFile = file(\'', '\')'))
+            }
+        }
+    }
+#endif
+#if @(Gradle.Model.Repository:IsRequired)
+    @(Gradle.Model.Repository:Join('\n'))
+#endif
+}
+
+android.lintOptions {
+    checkReleaseBuilds = false
+}
+
+android {
+    compileSdkVersion = @(SDK.CompileVersion)
+    buildToolsVersion = "@(SDK.BuildToolsVersion)"
+
+    defaultConfig {
+#if !@(LIBRARY:Defined)
+        applicationId = "@(Activity.Package)"
+#endif
+        minSdkVersion = @(SDK.MinVersion)
+        targetSdkVersion = @(SDK.TargetVersion)
+        versionCode = @(Project.Android.VersionCode)
+        versionName = "@(Project.Android.VersionName)"
+        ndk {
+            abiFilters = []
+            abiFilters.add("armeabi-v7a")
+        }
+
+        externalNativeBuild {
+            cmake {
+                // The build configuration of the native binary might differ from the build
+                // configuration of the APK. For performance reasons, we don't want to use the
+                // Fuse Simulator on the significantly slower debug binaries, so building debug by
+                // default means we are giving users a bad experience by default. Native debug
+                // binaries are only really useful when actually debugging generated C++ code.
+                // Running 'uno build android --debug' will produce debuggable C++ code.
+                arguments "-DCMAKE_BUILD_TYPE=@(Native.Configuration)",
+                    "-DANDROID_STL=@(STL)",
+                    "-DANDROID_PLATFORM=android-@(NDK.PlatformVersion)",
+                    "-DANDROID_TOOLCHAIN=clang",
+                    "-DANDROID_NDK=@(NDK.Directory)"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/CMakeLists.txt"
+        }
+    }
+
+#if @(Project.Android.Key.Store:IsSet)
+    signingConfigs {
+        release {
+            keyAlias "@(Project.Android.Key.Alias)"
+            keyPassword "@(Project.Android.Key.AliasPassword)"
+            storeFile file("@(Project.Android.Key.Store:Path)")
+            storePassword "@(Project.Android.Key.StorePassword)"
+        }
+    }
+#endif
+
+    buildTypes {
+        release {
+#if @(DEBUG:Defined)
+            debuggable = true
+#elif @(Project.Android.Key.Store:IsSet)
+            signingConfig = signingConfigs.release
+#endif
+            minifyEnabled = false
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+}
+
+@(Gradle.BuildFile.End:Join('\n'))

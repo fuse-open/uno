@@ -1,0 +1,57 @@
+{
+  "Copyright": "Copyright (c) Fusetools AS 2015",
+  "Description": "Uno.Net.Http",
+  "Publisher": "Fusetools AS",
+  "Package": {
+    "ProjectUrl": "https://github.com/fusetools/uno",
+    "LicenseUrl": "https://github.com/fusetools/uno/blob/master/LICENSE.txt",
+  },
+  "Projects": [
+    "../Uno.Threading/Uno.Threading.unoproj"
+  ],
+  "InternalsVisibleTo" : [
+    "Http.Test"
+  ],
+  "Includes": [
+    "HttpMessageCache.uno:Source",
+    "HttpMessageHandler.uno:Source",
+    "HttpMessageHandlerRequest.uno:Source",
+    "HttpRequestState.uno:Source",
+    "HttpResponseType.uno:Source",
+    "HttpStatusReasonPhrase.uno:Source",
+    "HttpDefaultDispatcher.uno:Source",
+    "Implementation/Android/AndroidHttpRequest.uno:Source",
+    "Implementation/Android/ExperimentalHttp/Android_com_fuse_ExperimentalHttp_HttpRequest.java:File",
+    "Implementation/Android/ExperimentalHttp/DownloadTask.java:File",
+    "Implementation/Android/ExperimentalHttp/HttpRequest.cpp.uxl:Extensions",
+    "Implementation/Android/ExperimentalHttp/HttpRequest.java:File",
+    "Implementation/Android/ExperimentalHttp/HttpRequest.uno:Source",
+    "Implementation/Android/ExperimentalHttp/PRNGFixes.java:File",
+    "Implementation/Android/ExperimentalHttp/UploadTask.java:File",
+    "Implementation/Cil/CilHttpRequest.cil.uxl:Extensions",
+    "Implementation/Cil/CilHttpRequest.uno:Source",
+    "Implementation/Cil/Uno.Net.Http.Implementation.dll:File",
+    "Implementation/IHttpRequest.uno:Source",
+    "Implementation/iOS/HttpRequest.h:File",
+    "Implementation/iOS/HttpRequest.mm:File",
+    "Implementation/iOS/iOSHttpRequest.cpp.uxl:Extensions",
+    "Implementation/iOS/iOSHttpRequest.uno:Source",
+    "Implementation/iOS/iOSHttpSharedCache.cpp.uxl:Extensions",
+    "Implementation/iOS/iOSHttpSharedCache.uno:Source",
+    "Implementation/JavaScript/JsHttpRequest.js.uxl:Extensions",
+    "Implementation/JavaScript/JsHttpRequest.uno:Source",
+    "Implementation/Xli/XliHttpEventHandler.h:File",
+    "Implementation/Xli/XliHttpRequest.cpp.uxl:Extensions",
+    "Implementation/Xli/XliHttpRequest.uno:Source",
+    "Uri.uno:Source",
+    "UriFormatException.uno:Source",
+    "UriHelper.uno:Source",
+    "UriScheme.uno:Source",
+    "UriParsers/FragmentParser.uno:Source",
+    "UriParsers/HostInfoParser.uno:Source",
+    "UriParsers/QueryParser.uno:Source",
+    "UriParsers/SchemeParser.uno:Source",
+    "UriParsers/SegmentsParser.uno:Source",
+    "UriParsers/UserInfoParser.uno:Source"
+  ]
+}

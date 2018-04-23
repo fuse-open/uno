@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copy this file to %USERPROFILE%\Documents\Visual Studio 2015\Visualizers -->
+<!-- https://visualstudio.uservoice.com/forums/121579-visual-studio-2015/suggestions/9487539-allow-per-project-natstepfilter-files -->
+<StepFilter xmlns="http://schemas.microsoft.com/vstudio/debugger/natstepfilter/2010">
+  <Function><Name>uNew</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uCopy</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uRetain</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uRelease</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uAutoRelease</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uAs.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uIs.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uCast.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uPtr.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uBox.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uConstrain.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uCRef.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uDefault.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uUnbox.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uArray::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uDelegate::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uEnum::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uInterface::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uObject::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uString::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uType::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uT::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uTBase::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uTField::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uTPtr::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uTRef::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uTStrongRef::.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uStrong&lt;.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uSStrong&lt;.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uWeak&lt;.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uSWeak&lt;.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>uStrongRef&lt;.*</Name><Action>NoStepInto</Action></Function>
+  <Function><Name>.*_typeof</Name><Action>NoStepInto</Action></Function>
+  <!-- U_ALLOCA() translates to this in VC++ -->
+  <Function><Name>_MallocaIsSizeInRange</Name><Action>NoStepInto</Action></Function>
+</StepFilter>

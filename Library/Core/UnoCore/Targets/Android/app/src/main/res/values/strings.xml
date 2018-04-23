@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">@(Project.Android.ApplicationLabel:EscapeXml)</string>
+    <string name="description">@(Project.Android.Description)</string>
+    @(Android.ResStrings.Declaration:Join('\n    '))
+</resources>

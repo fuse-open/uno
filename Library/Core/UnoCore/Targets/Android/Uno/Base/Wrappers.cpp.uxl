@@ -1,0 +1,159 @@
+<Extensions Backend="CPlusPlus" Condition="ANDROID">
+    <Using Namespace="Android.Base" />
+    <Using Namespace="Android.Base.Wrappers" />
+    <Using Namespace="Android.Base.Primitives" />
+
+    <Type Name="Android.Base.Wrappers.JWrapper">
+        <Require Header.Include="@{Android.Base.JNI:Include}" />
+        <Require Header.Include="@{Uno.Exception:Include}" />
+
+        <Require Entity="IJWrapper._GetJavaObject()" />
+        <Require Entity="IJWrapper._IsSubclassed()" />
+
+        <Require Entity="JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool)" />
+        <Require Entity="JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool,bool)" />
+        <Require Entity="JWrapper._GetJavaObject()" />
+        <Require Entity="JWrapper._IsSubclassed()" />
+        <Require Entity="JWrapper.SetInternalObj(ujobject,bool)" />
+        <Require Entity="Android.Base.Primitives.ConstCharPtr" />
+        <Require Entity="Android.Base.Primitives.JNIEnvPtr" />
+        <Require Entity="Android.Base.Primitives.jweak" />
+        <Require Entity="Android.Base.Primitives.uweakptr" />
+        <Require Entity="Android.Base.Primitives.ujclass" />
+        <Require Entity="Android.Base.Primitives.ujvalue" />
+        <Require Entity="Android.Base.Primitives.ujobject" />
+        <Require Entity="Android.Base.Primitives.ujstring" />
+        <Require Entity="Android.Base.Primitives.ujboolean" />
+        <Require Entity="Android.Base.Primitives.ujbyte" />
+        <Require Entity="Android.Base.Primitives.ujchar" />
+        <Require Entity="Android.Base.Primitives.ujshort" />
+        <Require Entity="Android.Base.Primitives.ujint" />
+        <Require Entity="Android.Base.Primitives.ujlong" />
+        <Require Entity="Android.Base.Primitives.ujfloat" />
+        <Require Entity="Android.Base.Primitives.ujdouble" />
+        <Require Entity="Android.Base.Primitives.JNINativeMethod" />
+        <Require Entity="Android.Base.Primitives.jmethodID" />
+        <Require Entity="Android.Base.Primitives.jfieldID" />
+        <Require Entity="Android.Base.AndroidBindingMacros" />
+        <Require Entity="JNI.LoadClass(JNIEnvPtr,ConstCharPtr)" />
+        <Require Header.Include="@{Android.Base.AndroidBindingMacros:Include}" />
+        <Require Header.Declaration>
+        //~
+        #define MAYBEPROXIFYARG(NUM,ID,NEW) bool subclassed ## NUM = (!ID) ? false : (@{Android.Base.Wrappers.IJWrapper:Of(ID)._IsSubclassed():Call()}); jobject _iProx ## NUM = (!ID) ? NULL : (subclassed ## NUM ? NEW : @{Android.Base.Wrappers.IJWrapper:Of(ID)._GetJavaObject():Call()});
+
+        #define FREEPROXIED(NUM)if (subclassed ## NUM) { U_JNIVAR->DeleteLocalRef(_iProx ## NUM); }
+
+        #define UNOCALLANDRETURN(CALL) @{Android.Base.Primitives.JNIEnvPtr} _cb_jni = @{Android.Base.JNI.GetEnvPtr():Call()};@{Android.Base.Wrappers.JWrapper} _res = (@{Android.Base.Wrappers.JWrapper})CALL;if (_res) { return _cb_jni->NewLocalRef(@{Android.Base.Wrappers.JWrapper:Of(_res)._javaObject}); } else { return NULL; }
+
+        #define NEW_UNO(LINE,RETURNVAR,TYPEOF,UNOTYPE,FALLBACK,RESOLVE) U_JOBJECT tmpRes = LINE; @{Android.Base.JNI.CheckException():Call()}; @{long} unoRef = @{Android.Base.JNI.GetUnoRef(Android.Base.Primitives.ujobject):Call(tmpRes)}; if (unoRef==0) { RETURNVAR = NULL; } else if (unoRef>0) { RETURNVAR = (UNOTYPE)uLoadWeak((uWeakObject*)unoRef); @{Android.Base.Primitives.JNIEnvPtr} __cb_jni = @{Android.Base.JNI.GetEnvPtr():Call()}; if (__cb_jni->GetObjectRefType(tmpRes)==JNILocalRefType) { __cb_jni->DeleteLocalRef(tmpRes); }} else { RETURNVAR = ((UNOTYPE)@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool):New(tmpRes, (@{Uno.Type})TYPEOF, FALLBACK, RESOLVE)}); }
+        </Require>
+
+        <Method Signature="_DisposeJavaObject()">
+            <Body>
+
+                     if (!@{$$._javaObject}) return;
+                     @{JNI.DeleteGlobalRef(ujobject):Call(@{$$._javaObject})};
+                     @{$$._javaObject} = 0;
+
+            </Body>
+        </Method>
+
+        <Method Signature="_Init()">
+            <Body>
+if (@{_jlangObjectClass}) { return; }
+INIT_JNI;
+@{_jlangObjectClass} = NEW_GLOBAL_REF(jclass,LOAD_SYS_CLASS("java/lang/Object"));
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+if (!@{_jlangObjectClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'java.lang.Object' for JWrapper", 53); }
+</Body>
+        </Method>
+
+        <Method Signature="equals(JWrapper):bool">
+            <Body>
+
+INIT_JNI;
+jobject _obArg2 = ((!$0) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
+CLASS_INIT(@{_jlangObjectClass},@{_Init():Call()});
+CACHE_METHOD(@{_jlangObjectEqualsMid},@{_jlangObjectClass},"equals","(Ljava/lang/Object;)Z",GetMethodID,"Id for method java.lang.Object.equals could not be cached for jwrapper",79);
+@{bool} result = ((@{bool})U_JNIVAR->CallBooleanMethod(@{$$._javaObject}, @{_jlangObjectEqualsMid}, _obArg2));
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+return result;
+
+
+            </Body>
+        </Method>
+
+        <Method Signature="hashCode():int">
+            <Body>
+
+INIT_JNI;
+CLASS_INIT(@{_jlangObjectClass},@{_Init():Call()});
+CACHE_METHOD(@{_jlangObjectHashCodeMid},@{_jlangObjectClass},"hashCode","()I",GetMethodID,"Id for method java.lang.Object.hashCode could not be cached for jwrapper",81);
+@{int} result = ((@{int})U_JNIVAR->CallIntMethod(@{$$._javaObject}, @{_jlangObjectHashCodeMid}));
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+return result;
+
+            </Body>
+        </Method>
+
+        <Require Source.Declaration>
+//~
+        bool __JWrapper_WeakCallback(uWeakStateIntercept::Event e, uObject* obj)
+        {
+            @{Android.Base.JNI.CheckException():Call()};
+            @{JWrapper} wrapper = (@{JWrapper})obj;
+            jobject jobj = @{JWrapper:Of(wrapper)._javaObject};
+            if (!jobj) return true;
+
+            bool subclassed = @{JWrapper:Of(wrapper)._subclassed};
+
+            if (e == uWeakStateIntercept::OnLoad) {
+                // retain went from 0 to 1
+                if (subclassed) {
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                    @{JWrapper:Of(wrapper)._javaObject} = jni->NewGlobalRef(jobj);
+                    jni->DeleteWeakGlobalRef(jobj);
+                    return true;
+                } else {
+                    return true;
+                }
+            } else {
+                // retain went from 1 to 0
+                if (subclassed) {
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                    @{JWrapper:Of(wrapper)._javaObject} = jni->NewWeakGlobalRef(jobj);
+                    jni->DeleteGlobalRef(jobj);
+                    return false;
+                } else {
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                    jni->DeleteGlobalRef(jobj);
+                    return true;
+                }
+            }
+            return false;
+        }
+        </Require>
+        <Require Source.Declaration>
+//~
+        bool __JWrapper_Callbacks_Registered = false;
+        void __JWrapper_Finalizer(JNIEnv *env , jclass clazz, jlong ptr)
+        {
+        uWeakObject* weak = (uWeakObject*)ptr;
+        uAutoReleasePool pool;
+        @{JWrapper} wrapper = (@{JWrapper})uLoadWeak(weak);
+        uStoreWeak(&weak, 0);
+        }
+        void __Register_Finalizer()
+        {
+            @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+            JNINativeMethod nativeFunc = {(char* const)"Finalize", (char* const)"(J)V", (void *)&__JWrapper_Finalizer};
+            jclass cls = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr):Call(@{JNI.GetEnvPtr():Call()}, "com.Bindings.UnoHelper")}));
+            jint attached = @{JNI.GetEnvPtr():Call()}->RegisterNatives(cls, &nativeFunc, 1);
+            if (attached < 0) {
+                U_THROW(@{Uno.Exception(string):New(uString::Utf8("Could not register the instantiation callback function",54))});
+            }
+        }
+        </Require>
+    </Type>
+
+</Extensions>

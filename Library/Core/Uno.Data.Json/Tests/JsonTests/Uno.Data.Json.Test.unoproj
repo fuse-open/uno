@@ -1,0 +1,14 @@
+{
+  "Packages": [
+    "Uno.Data.Json",
+    "Uno.Data.Json",
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "JsonTests.uno:Source",
+    "TestData/test1.json:File",
+    "TestData/test2.json:File",
+    "TestData/test3.json:File",
+    "TestData/test4.json:File"
+  ]
+}

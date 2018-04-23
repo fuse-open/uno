@@ -1,0 +1,4 @@
+<UXTests.CustomApp xmlns:ux="http://schemas.fusetools.com/ux" ux:Class="UXTests.BasicApp">
+	<UXTests.InnerClass ux:Class="Foo" />
+	<Foo ux:Name="Bar" />
+</UXTests.CustomApp>

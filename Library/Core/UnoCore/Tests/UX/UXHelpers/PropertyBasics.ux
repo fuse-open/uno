@@ -1,0 +1,8 @@
+<UXHelpers.ParentObject ux:Class="UXHelpers.PropertyBasics">
+
+    <UXHelpers.ParentObject ux:Class="PropertyHolder">
+        <float ux:Property="MyFloat" />
+    </UXHelpers.ParentObject>
+
+    <PropertyHolder ux:Name="Foo" MyFloat="1337" />
+</UXHelpers.ParentObject>

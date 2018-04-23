@@ -1,0 +1,97 @@
+<Extensions Backend="PInvoke">
+
+    <Set Base.Directory="@('Android':Path)" Condition="ANDROID" />
+    <Set Base.Directory="@('iOS':Path)" Condition="IOS" />
+    <Set Base.Directory="@('OSX':Path)" Condition="OSX" />
+    <Set Base.Directory="@('Win32':Path)" Condition="WIN32" />
+    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/@(ABI)" Condition="ANDROID" />
+    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" Condition="IOS" />
+    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib" />
+    <Set Base.IncludeDirectory="@(Base.Directory:Path)/include" />
+
+    <Require IncludeDirectory="@(Base.IncludeDirectory)" />
+    <Require LinkDirectory="@(Base.LinkDirectory)" />
+
+    <Template Name="freetype">
+        <Require LinkLibrary="freetype" Condition="!ANDROID" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libfreetype.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="jpeg">
+        <Require LinkLibrary="jpeg" Condition="!ANDROID" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libjpeg.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="png">
+        <Require LinkLibrary="png" Condition="!ANDROID" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libpng.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="uBase">
+        <Require LinkLibrary="uBase" Condition="!ANDROID" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libuBase.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="uImage">
+        <Require Template="uBase" />
+        <Require Template="freetype" />
+        <Require Template="jpeg" />
+        <Require Template="png" />
+        <Require LinkLibrary="uImage" Condition="!ANDROID" />
+        <Require LinkLibrary="z" />
+        <Require LinkLibrary="bz2" Condition="OSX" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libuImage.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="XliPlatform">
+        <Require Template="uBase" />
+        <Require LinkLibrary="XliPlatform" Condition="!ANDROID" />
+        <Require LinkLibrary="EGL" Condition="ANDROID || LINUX && ARM" />
+        <Require LinkLibrary="GLESv2" Condition="ANDROID || LINUX && ARM" />
+        <Require LinkLibrary="GLEW" Condition="OSX || LINUX && !ARM || WIN32" />
+        <Require LinkLibrary="SDL2" Condition="OSX || LINUX" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libXliPlatform.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="XliHttpClient">
+        <Require Template="uBase" />
+        <Require LinkLibrary="XliHttpClient" Condition="!ANDROID" />
+        <Require LinkLibrary="curl" Condition="OSX || LINUX || WIN32" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libXliHttpClient.a" Condition="ANDROID" />
+    </Template>
+
+    <Template Name="XliSoundPlayer">
+        <Require Template="uBase" />
+        <Require LinkLibrary="XliSoundPlayer" Condition="!ANDROID" />
+        <Require LinkLibrary="OpenSLES" Condition="ANDROID" />
+        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libXliSoundPlayer.a" Condition="ANDROID" />
+    </Template>
+
+    <Require Condition="ANDROID" LinkLibrary="android" />
+    <Require Condition="ANDROID" LinkLibrary="log" />
+
+    <Require Condition="IOS" Xcode.Framework="AudioToolbox" />
+    <Require Condition="IOS" Xcode.Framework="AVFoundation" />
+    <Require Condition="IOS" Xcode.Framework="CFNetwork" />
+    <Require Condition="IOS" Xcode.Framework="CoreAudio" />
+    <Require Condition="IOS" Xcode.Framework="CoreGraphics" />
+    <Require Condition="IOS" Xcode.Framework="CoreMotion" />
+    <Require Condition="IOS" Xcode.Framework="Foundation" />
+    <Require Condition="IOS" Xcode.Framework="OpenGLES" />
+    <Require Condition="IOS" Xcode.Framework="QuartzCore" />
+    <Require Condition="IOS" Xcode.Framework="UIKit" />
+
+    <Require Condition="OSX" LinkLibrary="m" />
+    <Require Condition="OSX" LinkLibrary="iconv" />
+    <Require Condition="OSX" Xcode.Framework="OpenGL" />
+    <Require Condition="OSX" Xcode.Framework="ForceFeedback" />
+    <Require Condition="OSX" Xcode.Framework="Cocoa" />
+    <Require Condition="OSX" Xcode.Framework="Carbon" />
+    <Require Condition="OSX" Xcode.Framework="IOKit" />
+    <Require Condition="OSX" Xcode.Framework="CoreAudio" />
+    <Require Condition="OSX" Xcode.Framework="CoreVideo" />
+    <Require Condition="OSX" Xcode.Framework="AudioToolbox" />
+    <Require Condition="OSX" Xcode.Framework="AudioUnit" />
+    <Require Condition="OSX" Xcode.Framework="AVFoundation" />
+
+</Extensions>

@@ -1,0 +1,17 @@
+// SDK config
+if WIN32 {
+    require %LOCALAPPDATA%/Fusetools/Fuse/Android/.sdkconfig
+} else {
+    require "%HOME%/Library/Application Support/Fusetools/Fuse/Android/.sdkconfig"
+}
+
+// Project defaults
+Packages.Default += [
+    Fuse
+    FuseJS
+]
+
+// Package feeds
+Packages.Feeds += [
+    "https://www.myget.org/F/fuse/api/v2"
+]

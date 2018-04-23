@@ -1,0 +1,462 @@
+<Extensions Backend="CPlusPlus" Condition="ANDROID">
+    <Using Namespace="Android.Base" />
+    <Using Namespace="Android.Base.Primitives" />
+    <Using Namespace="Android.Base.Wrappers" />
+
+    <Require Entity="Android.Base.Primitives.JNIEnvPtr" />
+
+    <Require Entity="Uno.Exception" />
+    <Require Entity="Uno.Exception.Message" />
+
+    <Require Entity="Android.Base.Wrappers.IJWrapper" />
+    <Require Entity="Android.Base.Wrappers.IJWrapper._IsSubclassed()" />
+    <Require Entity="Android.Base.Wrappers.IJWrapper._GetJavaObject()" />
+
+    <Require Entity="Android.Base.Wrappers.JWrapper" />
+    <Require Entity="Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool)" />
+
+    <Require Entity="Android.Base.JNI.GetEnvPtr()" />
+    <Require Entity="Android.Base.JNI.GetUnoRef(Android.Base.Primitives.ujobject)" />
+    <Require Entity="Android.Base.JNI.ThrowNewException(string)" />
+    <Require Entity="Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr)" />
+
+    <Type Name="JNI">
+        <Require Header.Include="android/log.h" />
+        <Require Header.Include="jni.h" />
+        <Require Header.Include="Uno/JNIHelper.h" />
+        <Require Header.Include="@{Uno.Exception:Include}" />
+        <Require Entity="Android.Base.Types.Bridge" />
+        <Require Entity="Android.Base.Types.ByteBuffer" />
+        <Require Entity="Android.Base.Types.String" />
+        <Require Entity="Android.Base.Types.Arrays" />
+        <Require Entity="Android.Base.Wrappers.JWrapper" />
+        <Require Entity="Android.Base.Wrappers.IJWrapper" />
+
+        <Require Entity="JNI.GetVM()" />
+        <Require Entity="JNI.GetEnvPtr()" />
+        <Require Entity="JNI.GetActivityObject()" />
+        <Require Entity="JNI.GetActivityClass()" />
+        <Require Entity="JNI.NewGlobalRef(ujobject)" />
+        <Require Entity="JNI.NewWeakGlobalRef(ujobject)" />
+        <Require Entity="JNI.DeleteGlobalRef(ujobject)" />
+        <Require Entity="JNI.DeleteWeakGlobalRef(ujobject)" />
+        <Require Entity="JNI.IsSameObject(ujobject,ujobject)" />
+        <Require Entity="JNI.CheckException(JNIEnvPtr)" />
+        <Require Entity="JNI.ThrowNewException(string)" />
+
+        <Method Signature="GetEnvPtr():JNIEnvPtr">
+            <Body>
+
+                     JNIEnv* jni;
+                     JniHelper::GetVM()->AttachCurrentThread(&jni, NULL);
+                     return jni;
+
+            </Body>
+        </Method>
+
+        <Method Signature="GetVM():JavaVMPtr">
+            <Body>
+
+                     return JniHelper::GetVM();
+
+            </Body>
+        </Method>
+
+        <Method Signature="NewWeakGlobalRef(ujobject):ujobject">
+            <Body>
+
+                     return (jobject)reinterpret_cast<jweak>(@{GetEnvPtr():Call()}->NewWeakGlobalRef($0));
+
+            </Body>
+        </Method>
+
+        <Method Signature="DeleteGlobalRef(ujobject)">
+            <Body>
+
+                     @{GetEnvPtr():Call()}->DeleteGlobalRef($0);
+
+            </Body>
+        </Method>
+
+        <Method Signature="DeleteWeakGlobalRef(ujobject)">
+            <Body>
+
+                     @{GetEnvPtr():Call()}->DeleteWeakGlobalRef($0);
+
+            </Body>
+        </Method>
+
+        <Method Signature="IsSameObject(ujobject,ujobject):bool">
+            <Body>
+
+                     return (bool)@{GetEnvPtr():Call()}->IsSameObject($0,$1);
+
+            </Body>
+        </Method>
+
+        <Method Signature="ThrowNewException(string)">
+            <Body>
+
+                         char* message = uAllocCStr($0);
+                         LOGD("%s", message);
+                         @{GetEnvPtr():Call()}->ThrowNew(@{exceptionClass}, message);
+                         free(message);
+
+            </Body>
+        </Method>
+
+        <Method Signature="GetArrayLength(ujobject):int">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     return (int)jni->GetArrayLength((jarray)$0);
+
+            </Body>
+        </Method>
+        <Method Signature="NewBooleanArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewBooleanArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewByteArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewByteArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewCharArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewCharArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewShortArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewShortArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewIntArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewIntArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewLongArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewLongArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewFloatArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewFloatArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewDoubleArray(int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewDoubleArray((jsize)$0);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="NewObjectArray(ujclass,int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jobject rtn = jni->NewObjectArray((jsize)$1, $0, NULL);
+                     jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
+                     jni->DeleteLocalRef(rtn);
+                     return newArray;
+
+            </Body>
+        </Method>
+        <Method Signature="GetBooleanArrayElement(IJWrapper,int):bool">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jboolean result;
+                     jni->GetBooleanArrayRegion((jbooleanArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (bool)result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetByteArrayElement(IJWrapper,int):sbyte">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jbyte result;
+                     jni->GetByteArrayRegion((jbyteArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{sbyte})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetCharArrayElement(IJWrapper,int):char">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jchar result;
+                     jni->GetCharArrayRegion((jcharArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{char})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetShortArrayElement(IJWrapper,int):short">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jshort result;
+                     jni->GetShortArrayRegion((jshortArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{short})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetIntArrayElement(IJWrapper,int):int">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jint result;
+                     jni->GetIntArrayRegion((jintArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{int})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetLongArrayElement(IJWrapper,int):long">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jlong result;
+                     jni->GetLongArrayRegion((jlongArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{long})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetFloatArrayElement(IJWrapper,int):float">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jfloat result;
+                     jni->GetFloatArrayRegion((jfloatArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{float})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetDoubleArrayElement(IJWrapper,int):double">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jdouble result;
+                     jni->GetDoubleArrayRegion((jdoubleArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &result);
+                     return (@{double})result;
+
+            </Body>
+        </Method>
+        <Method Signature="GetObjectArrayElement(IJWrapper,int):ujobject">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     return reinterpret_cast<jobject>(jni->NewGlobalRef(jni->GetObjectArrayElement((jobjectArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1)));
+
+            </Body>
+        </Method>
+        <Method Signature="SetBooleanArrayElement(IJWrapper,int,bool)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jboolean val = (jboolean)$2;
+                     jni->SetBooleanArrayRegion((jbooleanArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetByteArrayElement(IJWrapper,int,sbyte)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jbyte val = (jbyte)$2;
+                     jni->SetByteArrayRegion((jbyteArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetByteArrayElement(IJWrapper,int,byte)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jbyte val = (jbyte)(@{sbyte})$2;
+                     jni->SetByteArrayRegion((jbyteArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetCharArrayElement(IJWrapper,int,char)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jchar val = (jchar)$2;
+                     jni->SetCharArrayRegion((jcharArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetShortArrayElement(IJWrapper,int,short)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jshort val = (jshort)$2;
+                     jni->SetShortArrayRegion((jshortArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetIntArrayElement(IJWrapper,int,int)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jint val = (jint)$2;
+                     jni->SetIntArrayRegion((jintArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetLongArrayElement(IJWrapper,int,long)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jlong val = (jlong)$2;
+                     jni->SetLongArrayRegion((jlongArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetFloatArrayElement(IJWrapper,int,float)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jfloat val = (jfloat)$2;
+                     jni->SetFloatArrayRegion((jfloatArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetDoubleArrayElement(IJWrapper,int,double)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jdouble val = (jdouble)$2;
+                     jni->SetDoubleArrayRegion((jdoubleArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, 1, &val);
+
+            </Body>
+        </Method>
+        <Method Signature="SetObjectArrayElement(IJWrapper,int,ujobject)">
+            <Body>
+
+                     @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
+                     jni->SetObjectArrayElement((jobjectArray)@{IJWrapper:Of($0)._GetJavaObject():Call()}, $1, $2);
+
+            </Body>
+        </Method>
+
+        <Method Signature="GetDefaultObject():ujobject">
+            <Body>
+
+                    return (jobject)0;
+
+            </Body>
+        </Method>
+        <Method Signature="GetDefaultType():Uno.Type">
+            <Body>
+
+                    return (@{Uno.Type})0;
+
+            </Body>
+        </Method>
+
+    </Type>
+
+    <Type Name="AndroidBindingMacros">
+        <Require Header.Declaration>
+        #include <jni.h>
+        #include <@{Uno.Type:Include}>
+        #include <@{Uno.Exception:Include}>
+
+        #define U_JNIVAR jni
+        #define U_JOBJECT @{Android.Base.Primitives.ujobject}
+        #define U_JCLASS @{Android.Base.Primitives.ujclass}
+        #define U_JMETHODID @{Android.Base.Primitives.jmethodID}
+        #define U_JFIELDID @{Android.Base.Primitives.jfieldID}
+
+        #define UNO_TO_JAVA_EXCEPTION(VAR) uString* str = uString::Ansi("Unknown Uno Exception", 21); if (VAR.Exception && @{Uno.Exception:Of(VAR.Exception).Message:Get()}) { str = @{Uno.Exception:Of(VAR.Exception).Message:Get()}; } @{Android.Base.JNI.ThrowNewException(string):Call(str)};
+
+        #define BEGIN_REG_MTD(COUNT) JNINativeMethod funcs[COUNT]; JNINativeMethod tmp; int count = 0;
+
+        #define COMMIT_REG_MTD(PROXYCLASS) if (count > 0) { bool attached = ((jni->RegisterNatives(PROXYCLASS, funcs, (jint)count)) == 0); if (!attached) { THROW_UNO_EXCEPTION("Could not attach native callbacks", 33); } }
+
+        #define REG_MTD(ID,NAMESTR,SIGSTR,CBFUNC) JNINativeMethod tmp ## ID = {(char* const)NAMESTR, (char* const)SIGSTR, (void *)&CBFUNC}; funcs[count] = tmp ## ID; count += 1;
+
+        #define INITCALLBACK(PTRNAME,UNOTYPE) if (!ujPtr) THROW_UNO_EXCEPTION("Callback recieved null ptr from proxy", 37); INIT_JNI; uAutoReleasePool pool; UNOTYPE PTRNAME = (UNOTYPE)uLoadWeak((uWeakObject*)ujPtr);
+
+        #define INIT_JNI @{Android.Base.Primitives.JNIEnvPtr} U_JNIVAR = @{Android.Base.JNI.GetEnvPtr():Call()}
+
+        #define LOAD_SYS_CLASS(CLASSSIG) @{Android.Base.JNI.LoadClass(JNIEnvPtr,ConstCharPtr,bool):Call(U_JNIVAR, CLASSSIG, false)}
+
+        #define LOAD_CLASS(CLASSSIG) @{Android.Base.JNI.LoadClass(JNIEnvPtr,ConstCharPtr,bool):Call(U_JNIVAR, CLASSSIG, false)}
+
+        #define CHECK_JNI_EXCEPTIONS @{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)}
+
+        #define THROW_UNO_EXCEPTION(MSGSTRING,MSGLEN) U_THROW(@{Uno.Exception(string):New(uString::Utf8( MSGSTRING, MSGLEN))})
+
+        #define NEW_GLOBAL_REF(TYPE,LINE) reinterpret_cast<TYPE>(U_JNIVAR->NewGlobalRef(LINE))
+
+        #define CLASS_INIT(CLASS,INITCALL) if (uEnterCriticalIfNull(&CLASS)) { INITCALL; uExitCritical(); }
+
+        #define JARG_TO_UNO(ARG,UNOTYPE,NEWUNO) UNOTYPE tmp ## ARG = (ARG==0 ? NULL : (ARG == -1 ? NEWUNO : (UNOTYPE)uLoadWeak((uWeakObject*)ARG)));
+
+        #define JNFUN(RETURNTYPE,FUNCNAME,...) RETURNTYPE JNICALL FUNCNAME(JNIEnv *env, jclass clazz, ##__VA_ARGS__)
+
+        #define JTRY try{
+        #define JCATCH } catch (const uThrowable& __t) { uAutoReleasePool pool; JniHelper jni; jni->ExceptionClear(); @{Uno.String} message; if (uIs(__t.Exception, @{Uno.Exception:TypeOf})) { @{Uno.Exception} e = (@{Uno.Exception})__t.Exception; message = @{Uno.Exception:Of(e).ToString():Call()}; } else { message = uString::Ansi("Unhandled c++ error"); } @{Android.Base.JNI.ThrowNewException(string):Call(message)}; } catch (...) { uAutoReleasePool pool; JniHelper jni; jni->ExceptionClear(); @{Uno.String} message = uString::Ansi("Unhandled c++ error"); @{Android.Base.JNI.ThrowNewException(string):Call(message)}; }
+
+        #define CACHE_FALLBACK_METHOD(ID,CLSSIGSTR,NAMESTR,SIGSTR,MTDGETFUNC,MTDEXCEPTIONMSG,MTDEXCEPTIONLEN) if (uEnterCriticalIfNull(&ID)) { U_JCLASS jcls = (jclass)NEW_GLOBAL_REF(jclass, LOAD_CLASS(CLSSIGSTR)); ID = U_JNIVAR->MTDGETFUNC (jcls, NAMESTR, SIGSTR); CHECK_JNI_EXCEPTIONS; if (((long)ID) == 0) { THROW_UNO_EXCEPTION(MTDEXCEPTIONMSG,MTDEXCEPTIONLEN); } uExitCritical(); }
+
+        #define CACHE_METHOD(ID,CLASSFIELD,NAMESTR,SIGSTR,MTDGETFUNC,MTDEXCEPTIONMSG,MTDEXCEPTIONLEN) if (uEnterCriticalIfNull(&ID)) { ID = U_JNIVAR->MTDGETFUNC (CLASSFIELD, NAMESTR, SIGSTR); CHECK_JNI_EXCEPTIONS; if (((long)ID) == 0) { THROW_UNO_EXCEPTION(MTDEXCEPTIONMSG,MTDEXCEPTIONLEN); } uExitCritical(); }
+
+        #define CACHE_FIELD(ID,CLASSFIELD,NAMESTR,SIGSTR,FLDGETFUNC,MTDEXCEPTIONMSG,MTDEXCEPTIONLEN) if (uEnterCriticalIfNull(&ID)) { ID = U_JNIVAR->FLDGETFUNC(CLASSFIELD, NAMESTR, SIGSTR); CHECK_JNI_EXCEPTIONS; if (((long)ID) == 0) { THROW_UNO_EXCEPTION(MTDEXCEPTIONMSG,MTDEXCEPTIONLEN); } uExitCritical(); }
+
+        #define STATICACHE_FIELD(ID,CLASSFIELD,NAMESTR,SIGSTR,FLDGETFUNC,MTDEXCEPTIONMSG,MTDEXCEPTIONLEN) static jfieldID ID = U_JNIVAR->FLDGETFUNC(CLASSFIELD, NAMESTR, SIGSTR); if (uEnterCriticalIfNull(&ID)) { CHECK_JNI_EXCEPTIONS; if (!ID) { THROW_UNO_EXCEPTION(MTDEXCEPTIONMSG,MTDEXCEPTIONLEN); } uExitCritical(); }
+        </Require>
+    </Type>
+</Extensions>

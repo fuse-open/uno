@@ -1,0 +1,338 @@
+﻿<SyntaxDefinition name="UXL" extensions=".uxl" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+    <Color name="Comment" foreground="#66747B" />
+    <Color name="DocTag" foreground="#808080" />
+    <Color name="DocComment" foreground="#99A38A" />
+    <Color foreground="#93C763" name="XmlTag" />
+    <Color foreground="#678CB1" name="AttributeName" />
+    <Color foreground="#EC7600" name="AttributeValue" />
+    <Color foreground="#8C8CB4" name="Entity" />
+    <Color foreground="#E8E2B7" name="Punctuation" />
+    <Color name="Number" foreground="#FFCD22" />
+    <Color name="Keyword" foreground="#93C763" />
+    <Color name="BuiltinType" foreground="#99DAF9" />
+    <Color name="Preprocessor" foreground="#A082BD" />
+    <Color name="String" foreground="#EC7600" />
+    <Color name="Default" foreground="#FFFFFF" />
+
+    <RuleSet>
+        <Span color="DocComment" multiline="true">
+            <Begin>&lt;!--</Begin>
+            <End>--&gt;</End>
+        </Span>
+
+        <Span color="DocComment" multiline="true">
+            <Begin>&lt;!\[CDATA\[</Begin>
+            <End>]]&gt;</End>
+        </Span>
+
+        <Span color="DocComment" multiline="true">
+            <Begin>&lt;!DOCTYPE</Begin>
+            <End>&gt;</End>
+        </Span>
+
+        <Span color="DocComment" multiline="true">
+            <Begin>&lt;\?</Begin>
+            <End>\?&gt;</End>
+        </Span>
+
+        <Span color="DocComment">
+            <Begin color="DocTag">///(?!/)</Begin>
+            <RuleSet>
+                <Rule color="DocTag">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Span multiline="true">
+            <Begin>&lt;</Begin>
+            <End>&gt;</End>
+            <RuleSet>
+                <Span color="DocComment" multiline="true">
+                    <Begin>&lt;!--</Begin>
+                    <End>--&gt;</End>
+                </Span>
+
+                <Span color="AttributeValue" multiline="true">
+                    <Begin>"</Begin>
+                    <End>"|(?=(\s*&lt;))</End>
+                    <RuleSet>
+                        <Rule color="String">
+                            \b[\d\w_]+
+                        </Rule>
+                        <Import ruleSet="EntitySet" />
+                    </RuleSet>
+                </Span>
+
+                <Span color="AttributeValue" multiline="true">
+                    <Begin>'</Begin>
+                    <End>'|(?=(\s*&lt;))</End>
+                    <RuleSet>
+                        <Rule color="String">
+                            \b[\d\w_]+
+                        </Rule>
+                        <Import ruleSet="EntitySet" />
+                    </RuleSet>
+                </Span>
+
+                <Rule color="AttributeName">
+                    [\d\w_\-\.\:]+(?=(\s*=))
+                </Rule>
+
+                <Rule color="XmlTag">
+                    [\d\w_\.\:]+
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Import ruleSet="EntitySet" />
+
+        <Span color="String">
+            <Begin>"</Begin>
+            <End>"</End>
+            <RuleSet>
+                <!-- span for escape sequences -->
+                <Span color="Number" begin="\\" end="."/>
+                <Span>
+                    <Begin color="Preprocessor">
+                        @\(
+                    </Begin>
+                    <End color="Preprocessor">
+                        \)+
+                    </End>
+                    <RuleSet>
+                        <Rule color="DocComment">
+                            \b[\d\w_]+
+                        </Rule>
+                        <Rule color="Preprocessor">
+                            [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                        </Rule>
+                    </RuleSet>
+                </Span>
+            </RuleSet>
+        </Span>
+
+        <Span color="String">
+            <Begin>'</Begin>
+            <End>'</End>
+            <RuleSet>
+                <!-- span for escape sequences -->
+                <Span color="Number" begin="\\" end="."/>
+            </RuleSet>
+        </Span>
+    </RuleSet>
+
+    <RuleSet name="EntitySet">
+        <Rule color="Entity">
+            @
+            [\w\d\#]+
+            ;
+        </Rule>
+
+        <Rule color="Punctuation">
+            @
+            [\w\d\#]*
+            #missing ;
+        </Rule>
+
+        <Span>
+            <Begin color="Preprocessor">
+                \#\s*(define|undef|if|ifdef|ifndef|include|elif|else|endif|line|region|endregion|error|warning|pragma)\b
+            </Begin>
+            <RuleSet>
+                <Rule color="Punctuation">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Span color="Preprocessor">
+            <Begin>\#</Begin>
+            <RuleSet>
+                <Rule color="Punctuation">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Span>
+            <Begin color="Preprocessor">
+                @\(
+            </Begin>
+            <End color="Preprocessor">
+                \)+
+            </End>
+            <RuleSet>
+                <Rule color="DocComment">
+                    \b[\d\w_]+
+                </Rule>
+                <Rule color="Preprocessor">
+                    [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+                </Rule>
+            </RuleSet>
+        </Span>
+
+        <Rule color="DocTag">
+            ::
+        </Rule>
+
+        <Rule color="Preprocessor">
+            @//|\$\@|\$\$|\$[0-9]+
+        </Rule>
+
+        <Span color="Comment" ruleSet="CommentMarkerSet">
+            <Begin>//</Begin>
+        </Span>
+
+        <Span color="Comment" ruleSet="CommentMarkerSet" multiline="true">
+            <Begin>/\*</Begin>
+            <End>\*/</End>
+        </Span>
+
+        <Span color="Number" multiline="true">
+            <Begin>@"</Begin>
+            <End>"</End>
+            <RuleSet>
+                <!-- span for escape sequences -->
+                <Span begin='""' end=""/>
+            </RuleSet>
+        </Span>
+
+        <Rule color="Number">
+            \b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9fF]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?([0-9a-fA-FulUL]+)?
+        </Rule>
+
+        <Keywords color="Preprocessor">
+            <Word>assert</Word>
+            <Word>const_cast</Word>
+            <Word>dynamic_cast</Word>
+            <Word>goto</Word>
+            <Word>import</Word>
+            <Word>instanceof</Word>
+            <Word>nameof</Word>
+            <Word>offsetof</Word>
+            <Word>reinterpret_cast</Word>
+            <Word>sizeof</Word>
+            <Word>static_cast</Word>
+            <Word>template</Word>
+            <Word>throws</Word>
+            <Word>typeof</Word>
+            <Word>undefined</Word>
+            <Word>using</Word>
+        </Keywords>
+
+        <Keywords color="Number">
+            <Word>false</Word>
+            <Word>null</Word>
+            <Word>NULL</Word>
+            <Word>true</Word>
+        </Keywords>
+
+        <Keywords color="Punctuation">
+            <Word>package</Word>
+        </Keywords>
+
+        <Keywords color="DocComment">
+            <Word>base</Word>
+            <Word>this</Word>
+        </Keywords>
+
+        <Keywords color="BuiltinType">
+            <Word>bool</Word>
+            <Word>boolean</Word>
+            <Word>byte</Word>
+            <Word>char</Word>
+            <Word>double</Word>
+            <Word>float</Word>
+            <Word>int</Word>
+            <Word>int16_t</Word>
+            <Word>int32_t</Word>
+            <Word>int64_t</Word>
+            <Word>int8_t</Word>
+            <Word>intptr_t</Word>
+            <Word>long</Word>
+            <Word>sbyte</Word>
+            <Word>short</Word>
+            <Word>size_t</Word>
+            <Word>uint</Word>
+            <Word>uint16_t</Word>
+            <Word>uint32_t</Word>
+            <Word>uint64_t</Word>
+            <Word>uint8_t</Word>
+            <Word>uintptr_t</Word>
+            <Word>unsigned</Word>
+            <Word>var</Word>
+            <Word>void</Word>
+            <Word>wchar_t</Word>
+        </Keywords>
+
+        <Keywords color="Keyword">
+            <Word>abstract</Word>
+            <Word>as</Word>
+            <Word>break</Word>
+            <Word>case</Word>
+            <Word>catch</Word>
+            <Word>class</Word>
+            <Word>continue</Word>
+            <Word>const</Word>
+            <Word>default</Word>
+            <Word>delete</Word>
+            <Word>do</Word>
+            <Word>else</Word>
+            <Word>enum</Word>
+            <Word>event</Word>
+            <Word>export</Word>
+            <Word>extern</Word>
+            <Word>extends</Word>
+            <Word>final</Word>
+            <Word>finally</Word>
+            <Word>for</Word>
+            <Word>foreach</Word>
+            <Word>function</Word>
+            <Word>if</Word>
+            <Word>in</Word>
+            <Word>inline</Word>
+            <Word>interface</Word>
+            <Word>internal</Word>
+            <Word>is</Word>
+            <Word>namespace</Word>
+            <Word>native</Word>
+            <Word>new</Word>
+            <Word>operator</Word>
+            <Word>partial</Word>
+            <Word>private</Word>
+            <Word>protected</Word>
+            <Word>public</Word>
+            <Word>return</Word>
+            <Word>static</Word>
+            <Word>struct</Word>
+            <Word>super</Word>
+            <Word>switch</Word>
+            <Word>synchronized</Word>
+            <Word>throw</Word>
+            <Word>try</Word>
+            <Word>typedef</Word>
+            <Word>typename</Word>
+            <Word>union</Word>
+            <Word>virtual</Word>
+            <Word>volatile</Word>
+            <Word>where</Word>
+            <Word>while</Word>
+        </Keywords>
+
+        <Rule color="Punctuation">
+            [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|@=:$"']
+        </Rule>
+    </RuleSet>
+
+    <RuleSet name="CommentMarkerSet">
+        <Keywords foreground="Red">
+            <Word>TODO</Word>
+            <Word>FIXME</Word>
+        </Keywords>
+        <Keywords foreground="#E0E000">
+            <Word>HACK</Word>
+            <Word>UNDONE</Word>
+        </Keywords>
+    </RuleSet>
+</SyntaxDefinition>

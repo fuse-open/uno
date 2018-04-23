@@ -1,0 +1,30 @@
+<Extensions Backend="JavaScript">
+
+    <Using Namespace="Uno.Net.Http.Implementation" />
+
+    <Type Name="JsHttpRequest">
+        <Method Signature="CreateHandle(HttpMessageHandlerRequest,string,string):JsHttpRequestHandle">
+            <Body>
+                var r = new XMLHttpRequest();
+
+                r.onabort = function(e) { @{$0.OnAborted():Call(r)}; }
+                r.onerror = function(e) {
+                    @{$0.OnError(string):Call("Security, network or browser error. Check output from the browser to debug further.")};
+                }
+                r.ontimeout = function(e) { @{$0.OnTimeout():Call()}; }
+                r.onload = function(e) { @{$0.OnDone():Call()}; }
+                r.onreadystatechange = function(e) {
+                    if (r.readyState == 2)
+                        @{$0.OnHeadersReceived():Call()};
+                }
+                r.onprogress = function(e) {
+                    @{$0.OnProgress(int,int,bool):Call(e.loaded, e.total, e.lengthComputable)};
+                }
+
+                r.open($1, $2, true);
+                return r;
+            </Body>
+        </Method>
+    </Type>
+
+</Extensions>

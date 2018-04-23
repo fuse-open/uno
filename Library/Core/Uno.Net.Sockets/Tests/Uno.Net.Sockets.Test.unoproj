@@ -1,0 +1,13 @@
+{
+  "Copyright": "Copyright (C) 2015",
+  "Packages": [
+    "Uno.Net.Sockets",
+    "Uno.Testing"
+  ],
+  "Includes": [
+    "Dns.Test.uno:Source",
+    "IPAddress.Test.uno:Source",
+    "Socket.Test.uno:Source",
+    "TcpListener.Test.uno:Source"
+  ]
+}

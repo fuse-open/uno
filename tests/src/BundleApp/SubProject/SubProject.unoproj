@@ -1,0 +1,6 @@
+{
+  "Includes": [
+    "js/*:Bundle",
+    "Test.uno:Source"
+  ]
+}

@@ -1,0 +1,300 @@
+<Extensions Backend="CPlusPlus" Condition="ANDROID">
+    <Using Namespace="Android.Base.Types" />
+    <Using Namespace="Android.Base.Primitives" />
+    <Using Namespace="Android.Base.Wrappers" />
+
+    <Type Name="Bridge">
+        <ProcessFile Name="UnoHelper.java" TargetName="@(Java.SourceDirectory)/com/Bindings/UnoHelper.java" />
+        <Require Header.Include="android/log.h" />
+        <Require Header.Include="@{Android.Base.JNI:Include}" />
+        <Require Header.Include="@{Uno.Exception:Include}" />
+
+        <Method Signature="Init()">
+            <Body>
+
+                    if (@{_inited}) { return; }
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                    @{_helperCls} = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr,bool):Call(@{JNI.GetEnvPtr():Call()}, "com.Bindings.UnoHelper", false)}));
+                    if (!@{_helperCls}) {
+                        U_THROW(@{Uno.Exception(string):New(uString::Utf8("Could not cache class for UnoHelper",35))});
+                    }
+
+                    @{_registerTypeMid} = jni->GetStaticMethodID(@{_helperCls}, "RegisterUnoType", "(Ljava/lang/String;J)V");
+                    @{_registerFallbackMid} = jni->GetStaticMethodID(@{_helperCls}, "RegisterUnoFallback", "(Ljava/lang/String;J)V");
+                    @{_javaToUnoMid} = jni->GetStaticMethodID(@{_helperCls}, "JavaToUnoType", "(Ljava/lang/Object;JZ)J");
+                    @{_unoToJavaMid} = jni->GetStaticMethodID(@{_helperCls}, "UnoToJavaType", "(J)Ljava/lang/Class;");
+
+                    if ((!@{_registerTypeMid}) || (!@{_registerFallbackMid}) || (!@{_javaToUnoMid}) || (!@{_unoToJavaMid})) {
+                        U_THROW(@{Uno.Exception(string):New(uString::Utf8("Could not cache methods for UnoHelper", 37))});
+                    }
+                    @{_inited} = true;
+
+            </Body>
+        </Method>
+
+        <Method Signature="RegisterUnoType(ConstCharPtr,int,Uno.Type)">
+            <Body>
+
+                     if (!@{_inited}) { @{Bridge.Init():Call()}; }
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+
+                     char *buf = (char*)malloc($1 + 1);
+                     strcpy(buf, $0);
+                     jstring javaTypeName = jni->NewStringUTF(buf);
+
+                     jni->CallStaticVoidMethod(@{_helperCls}, @{_registerTypeMid}, javaTypeName, ((jlong)$2));
+                     @{JNI.CheckException(JNIEnvPtr):Call(jni)};
+                     jni->DeleteLocalRef(javaTypeName);
+                     free(buf);
+
+            </Body>
+        </Method>
+
+        <Method Signature="RegisterUnoFallback(ConstCharPtr,int,Uno.Type)">
+            <Body>
+
+                     if (!@{_inited}) { @{Bridge.Init():Call()}; }
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+
+                     char *buf = (char*)malloc($1 + 1);
+                     strcpy(buf, $0);
+                     jstring javaTypeName = jni->NewStringUTF(buf);
+
+                     jni->CallStaticVoidMethod(@{_helperCls}, @{_registerFallbackMid}, javaTypeName, ((jlong)$2));
+                     @{JNI.CheckException(JNIEnvPtr):Call(jni)};
+                     jni->DeleteLocalRef(javaTypeName);
+                     free(buf);
+
+            </Body>
+        </Method>
+
+        <Method Signature="SetWrapperType(JWrapper,ujobject,Uno.Type,bool,bool)">
+            <Body>
+
+                     if (!$0) {
+                         U_THROW(@{Uno.Exception(string):New(uString::Utf8("Trying to set type of null object",33))});
+                     } else if ((!$1) && $4) {
+                         U_THROW(@{Uno.Exception(string):New(uString::Utf8("Have requested to infer type from jobject but jobject is null",61))});
+                     } else {
+                         if ($2) {
+                             $0->__type = $2;
+                         }
+                         if ($1 && $4) {
+                             $0->__type = ((uType*)@{JavaToUnoType(ujobject,Uno.Type,bool):Call($1, $0->__type, $3)});
+                         }
+                     }
+
+            </Body>
+        </Method>
+    </Type>
+
+    <Type Name="ByteBuffer">
+        <Require Header.Include="android/log.h" />
+        <Require Header.Include="@{Android.Base.JNI:Include}" />
+
+        <Method Signature="NewDirectByteBuffer(byte[]):ujobject">
+            <Body>
+
+                         if (!$0) return NULL;
+                         return @{JNI.GetEnvPtr():Call()}->NewDirectByteBuffer($0->Ptr(), (jlong)$0->Length());
+
+            </Body>
+        </Method>
+
+        <Method Signature="NewDirectByteBuffer(sbyte[]):ujobject">
+            <Body>
+
+                         if (!$0) return NULL;
+                         return @{JNI.GetEnvPtr():Call()}->NewDirectByteBuffer($0->Ptr(), (jlong)$0->Length());
+
+            </Body>
+        </Method>
+
+        <Method Signature="NewDirectByteBuffer(Uno.IntPtr,long):ujobject">
+            <Body>
+
+                         if (!$0) return NULL;
+                         return @{JNI.GetEnvPtr():Call()}->NewDirectByteBuffer($0, (jlong)$1);
+
+            </Body>
+        </Method>
+
+        <Method Signature="ValidDirectByteBuffer(ujobject):bool">
+            <Body>
+
+                         return (@{JNI.GetEnvPtr():Call()}->GetDirectBufferAddress($0) != NULL);
+
+            </Body>
+        </Method>
+
+        <Method Signature="GetDirectBufferAddress(ujobject):Uno.IntPtr">
+            <Body>
+
+                         if (!$0) return NULL;
+                         return (@{Uno.IntPtr})@{JNI.GetEnvPtr():Call()}->GetDirectBufferAddress($0);
+
+            </Body>
+        </Method>
+
+        <Method Signature="GetDirectBufferCapacity(ujobject):long">
+            <Body>
+
+                         return (@{long})@{JNI.GetEnvPtr():Call()}->GetDirectBufferCapacity($0);
+
+            </Body>
+        </Method>
+    </Type>
+
+    <Type Name="String">
+        <Require Header.Include="android/log.h" />
+        <Require Header.Include="@{Android.Base.JNI:Include}" />
+
+        <Method Signature="JavaToUno(JNIEnvPtr,ujobject):string">
+            <Body>
+
+                         if (!$1) { return NULL; }
+                         jobject str = $0->NewLocalRef($1);
+                         const jchar* raw =  $0->GetStringChars((jstring)str, NULL);
+                         int len = $0->GetStringLength((jstring)str);
+                         int size = len * sizeof(jchar);
+                         uString* result = uString::New(len);
+                         memcpy(result->_ptr, (void*)raw, size);
+                         $0->ReleaseStringChars((jstring)str, raw);
+                         $0->DeleteLocalRef(str);
+                         return result;
+
+            </Body>
+        </Method>
+
+        <Method Signature="UnoToJava(JNIEnvPtr,string):ujobject">
+            <Body>
+
+                         return (jobject)($0->NewString((const jchar*) $1->_ptr, $1->_length));
+
+            </Body>
+        </Method>
+    </Type>
+
+    <Type Name="Arrays">
+        <Require Header.Include="android/log.h" />
+        <Require Header.Include="@{Android.Base.JNI:Include}" />
+
+        <Method Signature="JavaToUnoBoolArray(ujobject,long):bool[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jbooleanArray jarr = (jbooleanArray)$0;
+                     long len = $1;
+                     uArray* arr = @{bool[]:New(len)};
+                     jni->GetBooleanArrayRegion(jarr, 0, len, (jboolean*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoSByteArray(ujobject,long):sbyte[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jbyteArray jarr = (jbyteArray)$0;
+                     long len = $1;
+                     uArray* arr = @{sbyte[]:New(len)};
+                     jni->GetByteArrayRegion(jarr, 0, len, (jbyte*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoByteArray(ujobject,long):byte[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jbyteArray jarr = (jbyteArray)$0;
+                     long len = $1;
+                     uArray* arr = @{byte[]:New(len)};
+                     jni->GetByteArrayRegion(jarr, 0, len, (jbyte*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoCharArray(ujobject,long):char[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jcharArray jarr = (jcharArray)$0;
+                     long len = $1;
+                     uArray* arr = @{char[]:New(len)};
+                     jni->GetCharArrayRegion(jarr, 0, len, (jchar*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoShortArray(ujobject,long):short[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jshortArray jarr = (jshortArray)$0;
+                     long len = $1;
+                     uArray* arr = @{short[]:New(len)};
+                     jni->GetShortArrayRegion(jarr, 0, len, (jshort*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoIntArray(ujobject,long):int[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jintArray jarr = (jintArray)$0;
+                     long len = $1;
+                     uArray* arr = @{int[]:New(len)};
+                     jni->GetIntArrayRegion(jarr, 0, len, (jint*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoLongArray(ujobject,long):long[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jlongArray jarr = (jlongArray)$0;
+                     long len = $1;
+                     uArray* arr = @{long[]:New(len)};
+                     jni->GetLongArrayRegion(jarr, 0, len, (jlong*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoFloatArray(ujobject,long):float[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jfloatArray jarr = (jfloatArray)$0;
+                     long len = $1;
+                     uArray* arr = @{float[]:New(len)};
+                     jni->GetFloatArrayRegion(jarr, 0, len, (jfloat*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+        <Method Signature="JavaToUnoDoubleArray(ujobject,long):double[]">
+            <Body>
+
+                     if (!$0) return NULL;
+                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                     jdoubleArray jarr = (jdoubleArray)$0;
+                     long len = $1;
+                     uArray* arr = @{double[]:New(len)};
+                     jni->GetDoubleArrayRegion(jarr, 0, len, (jdouble*)arr->_ptr);
+                     return arr;
+
+            </Body>
+        </Method>
+    </Type>
+</Extensions>

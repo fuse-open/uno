@@ -1,0 +1,12 @@
+<Extensions Backend="CPlusPlus" Condition="iOS">
+
+    <ProcessFile HeaderFile="Uno-iOS/AppDelegate.h" />
+    <ProcessFile SourceFile="Uno-iOS/AppDelegate.mm" />
+    <ProcessFile HeaderFile="Uno-iOS/Context.h" />
+    <CopyFile SourceFile="Uno-iOS/Main.mm" />
+    <ProcessFile HeaderFile="Uno-iOS/Uno-iOS.h" />
+    <ProcessFile SourceFile="Uno-iOS/Uno-iOS.mm" />
+
+    <Require Condition="LIBRARY" Xcode.PublicHeader="Uno-iOS/Context.h" />
+
+</Extensions>

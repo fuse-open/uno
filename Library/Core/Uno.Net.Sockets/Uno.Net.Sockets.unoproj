@@ -1,0 +1,13 @@
+{
+  "Copyright": "Copyright (c) Fusetools 2014",
+  "Description": "Uno native socket abstraction",
+  "Publisher": "Fusetools AS",
+  "Includes": [
+    "Dns.uno:Source",
+    "IPAddress.uno:Source",
+    "NetworkHelpers.uno:Source",
+    "NetworkStream.uno:Source",
+    "Socket.uno:Source",
+    "TcpListener.uno:Source"
+  ]
+}

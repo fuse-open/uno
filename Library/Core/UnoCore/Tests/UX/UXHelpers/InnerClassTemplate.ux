@@ -1,0 +1,6 @@
+<UXHelpers.RootObject ux:Class="UXHelpers.InnerClassTemplate">
+    <object ux:InnerClass="SomeInnerClass" />
+
+    <!-- This class simply ensures we can create templates out of ux:InnerClass-generated classes -->
+    <SomeInnerClass ux:Template="InnerClassTemplate" />
+</UXHelpers.RootObject>

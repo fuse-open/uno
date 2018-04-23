@@ -1,0 +1,4 @@
+<UXHelpers.RootObject ux:Class="UXHelpers.SealedClassTemplate">
+    <!-- This class simply ensures we can create templates out of sealed base classes -->
+    <UXHelpers.SealedClass ux:Template="SealedClassTemplate" />
+</UXHelpers.RootObject>

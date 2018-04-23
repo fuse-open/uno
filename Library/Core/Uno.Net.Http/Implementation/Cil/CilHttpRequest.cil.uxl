@@ -1,0 +1,5 @@
+<Extensions Backend="CIL">
+
+    <Require Assembly="Uno.Net.Http.Implementation.dll" />
+
+</Extensions>

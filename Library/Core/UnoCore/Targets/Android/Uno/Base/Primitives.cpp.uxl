@@ -1,0 +1,81 @@
+<Extensions Backend="CPlusPlus" Condition="ANDROID">
+    <Using Namespace="Android.Base.Primitives" />
+
+    <Type Name="ujvalue" Condition="ANDROID"
+          TypeName="jvalue"
+          Include="jni.h" />
+
+    <Type Name="ConstCharPtr" Condition="ANDROID"
+          TypeName="const char*" />
+
+    <Type Name="JavaVMPtr" Condition="ANDROID"
+          TypeName="JavaVM*"
+          Include="jni.h" />
+
+    <Type Name="JNIEnvPtr" Condition="ANDROID"
+          TypeName="JNIEnv*"
+          Include="jni.h" />
+
+    <Type Name="ujobject" Condition="ANDROID"
+          TypeName="jobject"
+          Include="jni.h" />
+
+    <Type Name="ujboolean" Condition="ANDROID"
+          TypeName="jboolean"
+          Include="jni.h" />
+
+    <Type Name="ujbyte" Condition="ANDROID"
+          TypeName="jbyte"
+          Include="jni.h" />
+
+    <Type Name="ujchar" Condition="ANDROID"
+          TypeName="jchar"
+          Include="jni.h" />
+
+    <Type Name="ujshort" Condition="ANDROID"
+          TypeName="jshort"
+          Include="jni.h" />
+
+    <Type Name="ujint" Condition="ANDROID"
+          TypeName="jint"
+          Include="jni.h" />
+
+    <Type Name="ujlong" Condition="ANDROID"
+          TypeName="jlong"
+          Include="jni.h" />
+
+    <Type Name="ujfloat" Condition="ANDROID"
+          TypeName="jfloat"
+          Include="jni.h" />
+
+    <Type Name="ujdouble" Condition="ANDROID"
+          TypeName="jdouble"
+          Include="jni.h" />
+
+    <Type Name="jweak" Condition="ANDROID"
+          TypeName="jweak"
+          Include="jni.h" />
+
+    <Type Name="uweakptr" Condition="ANDROID"
+          TypeName="uWeakObject*" />
+
+    <Type Name="ujstring" Condition="ANDROID"
+          TypeName="jstring"
+          Include="jni.h" />
+
+    <Type Name="ujclass" Condition="ANDROID"
+          TypeName="jclass"
+          Include="jni.h" />
+
+    <Type Name="jmethodID" Condition="ANDROID"
+          TypeName="jmethodID"
+          Include="jni.h" />
+
+    <Type Name="jfieldID" Condition="ANDROID"
+          TypeName="jfieldID"
+          Include="jni.h" />
+
+    <Type Name="JNINativeMethod" Condition="ANDROID"
+          TypeName="JNINativeMethod"
+          Include="jni.h" />
+</Extensions>

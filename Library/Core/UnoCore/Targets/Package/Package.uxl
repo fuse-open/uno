@@ -1,0 +1,6 @@
+<Extensions Backend="Uno" Condition="PACKAGE">
+    <Declare Element="Nuspec.DependencyElement" />
+    <Declare Element="Nuspec.FileElement" />
+    <!-- *.nuspec files cause confusion in NuGet packages, rename in target directory -->
+    <ProcessFile Name="nuspec.xml" TargetName="@(Project.Name).nuspec" />
+</Extensions>

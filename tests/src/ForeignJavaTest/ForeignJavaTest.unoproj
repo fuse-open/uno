@@ -1,0 +1,12 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+    "Uno.Threading",
+    "Uno.Testing",
+    "UnoCore"
+  ],
+  "Includes": [
+    "*.uno",
+    "TestJava.java:Java:android",
+  ]
+}

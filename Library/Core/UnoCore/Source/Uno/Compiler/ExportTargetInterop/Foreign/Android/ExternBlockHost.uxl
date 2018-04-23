@@ -1,0 +1,25 @@
+<Extensions Backend="CPlusPlus" Condition="Android">
+    <Using Namespace="Uno.Compiler.ExportTargetInterop.Foreign.Android" />
+
+    <Type Name="ExternBlockHost" Condition="Android">
+        <ProcessFile Name="UnoObject.java" TargetName="@(Java.SourceDirectory)/com/uno/UnoObject.java" />
+        <ProcessFile Name="BoolArray.java" TargetName="@(Java.SourceDirectory)/com/uno/BoolArray.java" />
+        <ProcessFile Name="ByteArray.java" TargetName="@(Java.SourceDirectory)/com/uno/ByteArray.java" />
+        <ProcessFile Name="CharArray.java" TargetName="@(Java.SourceDirectory)/com/uno/CharArray.java" />
+        <ProcessFile Name="ShortArray.java" TargetName="@(Java.SourceDirectory)/com/uno/ShortArray.java" />
+        <ProcessFile Name="IntArray.java" TargetName="@(Java.SourceDirectory)/com/uno/IntArray.java" />
+        <ProcessFile Name="LongArray.java" TargetName="@(Java.SourceDirectory)/com/uno/LongArray.java" />
+        <ProcessFile Name="FloatArray.java" TargetName="@(Java.SourceDirectory)/com/uno/FloatArray.java" />
+        <ProcessFile Name="DoubleArray.java" TargetName="@(Java.SourceDirectory)/com/uno/DoubleArray.java" />
+        <ProcessFile Name="StringArray.java" TargetName="@(Java.SourceDirectory)/com/uno/StringArray.java" />
+        <ProcessFile Name="ObjectArray.java" TargetName="@(Java.SourceDirectory)/com/uno/ObjectArray.java" />
+        <ProcessFile Name="UnoBackedByteBuffer.java" TargetName="@(Java.SourceDirectory)/com/uno/UnoBackedByteBuffer.java" />
+
+        <Method Signature="RegisterFunctions()">
+            <Body><![CDATA[
+                JniHelper jni;
+                @(Java.Extern.RegisterFunction:Join('\n'):Trim())
+            ]]></Body>
+        </Method>
+    </Type>
+</Extensions>
