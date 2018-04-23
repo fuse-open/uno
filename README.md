@@ -125,7 +125,7 @@ conduct, and the process for submitting pull requests to us.
 
 ### Reporting issues
 
-Please report issues [here](https://github.com/fusetools/uno/issues).
+Please report issues [here](https://github.com/fuse-open/uno/issues).
 
 ## Configuration
 
