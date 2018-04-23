@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project name="ikvm" default="managed">
+    <include buildfile="ikvm.include" />
+    <target name="native">
+        <nant buildfile="native/native.build" />
+    </target>
+    <target name="signed">
+         <property name="signed" value="SIGNCODE" />
+         <property name="signoption" value="-key:ikvm-key" />
+         <property name="ilasm_signoption" value="/key:@ikvm-key" />
+         <call target="managed" />
+    </target>
+    <target name="managed" depends="clean-managed CommonAssemblyInfo">
+        <nant buildfile="tools/tools.build" />
+        <nant buildfile="reflect/reflect.build" />
+        <nant buildfile="ikvmstub/ikvmstub.build" />
+        <nant buildfile="runtime/runtime.build" target="first-pass" />
+        <nant buildfile="awt/awt.build" target="first-pass" />
+        <nant buildfile="ikvmc/ikvmc.build" />
+        <nant buildfile="openjdk/openjdk.build" />
+        <nant buildfile="runtime/runtime.build" />
+        <nant buildfile="openjdk/openjdk.build" target="tools" />
+        <nant buildfile="ikvm/ikvm.build" />
+        <nant buildfile="awt/awt.build" />
+        <nant buildfile="jvm/jvm.build" />
+    </target>
+    <target name="CommonAssemblyInfo">
+        <copy file="CommonAssemblyInfo.cs.in" tofile="CommonAssemblyInfo.cs" overwrite="true">
+            <filterchain>
+                <replacetokens>
+                    <token key="BUILD" value="${timespan::get-days(datetime::now() - datetime::parse('2000-01-01'))}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+    <target name="clean" depends="clean-managed clean-native" />
+    <target name="clean-managed">
+        <delete failonerror="false">
+            <fileset>
+                <include name="bin/IKVM.AWT.WinForms.dll" />
+                <include name="bin/IKVM.MSBuild.dll" />
+                <include name="bin/IKVM.MSBuild.Java.Targets" />
+                <include name="bin/IKVM.Reflection.dll" />
+                <include name="bin/IKVM.Runtime.dll" />
+                <include name="bin/IKVM.Runtime.JNI.dll" />
+                <include name="bin/IKVM.OpenJDK.*.dll" />
+                <include name="bin/ikvm.exe" />
+                <include name="bin/ikvm.exe.config" />
+                <include name="bin/ikvmc.exe" />
+                <include name="bin/ikvmc.exe.config" />
+                <include name="bin/ikvmstub.exe" />
+                <include name="bin/ikvmstub.exe.config" />
+                <include name="bin-x64/JVM.DLL" />
+                <include name="bin-x86/JVM.DLL" />
+                <include name="classpath/**.class" />
+                <include name="lib/ikvm-api.jar" />
+                <include name="openjdk/*.dll" />
+                <include name="openjdk/*.jar" />
+                <include name="openjdk/allsources.gen.lst" />
+                <include name="openjdk/AssemblyInfo.java" />
+                <include name="openjdk/response.gen.txt" />
+                <include name="openjdk/tools.gen.rsp" />
+                <include name="openjdk/vfs.zip" />
+                <include name="openjdk/**.class" />
+                <include name="runtime/*.dll" />
+                <include name="runtime/*.jar" />
+                <include name="tools/asmref.exe" />
+                <include name="tools/depcheck.exe" />
+                <include name="tools/pubkey.exe" />
+                <include name="tools/pubkey.txt" />
+                <include name="tools/updbaseaddresses.exe" />
+                <include name="tools/writeappconfig.exe" />
+            </fileset>
+        </delete>
+    </target>
+    <target name="clean-native">
+        <delete failonerror="false">
+            <fileset>
+                <include name="bin/libikvm-native.so" />
+                <include name="bin/ikvm-native-win32-x64.dll" />
+                <include name="bin/ikvm-native-win32-x86.dll" />
+                <include name="native/Release-x64/ikvm-native.dll" />
+                <include name="native/Release-x64/*.obj" />
+                <include name="native/Release-x86/ikvm-native.dll" />
+                <include name="native/Release-x86/*.obj" />
+            </fileset>
+        </delete>
+    </target>
+</project>
