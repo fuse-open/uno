@@ -63,7 +63,6 @@ MonoBundle
 # Misc
 buildlog.txt
 TMP_DL
-/Duckers.unoconfig
 GeneratedTestData
 temp.unoproj
 *.rfile
