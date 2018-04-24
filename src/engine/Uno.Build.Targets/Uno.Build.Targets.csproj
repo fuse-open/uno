@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Condition=" ('$(OS)' == 'Unix') And Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props') " Project="..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -13,6 +14,8 @@
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -40,12 +43,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Mac" Condition=" '$(OS)' == 'Unix' ">
-      <HintPath>..\..\..\prebuilt\XamMac\Xamarin.Mac.dll</HintPath>
+    <Reference Condition=" '$(OS)' == 'Unix' " Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\lib\net45\Xamarin.Mac.dll</HintPath>
     </Reference>
-    <Content Include="..\..\..\prebuilt\XamMac\libxammac.dylib" Condition=" '$(OS)' == 'Unix' ">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Reference Condition=" '$(OS)' == 'Unix' " Include="OpenTK, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\lib\net45\OpenTK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
@@ -140,6 +143,13 @@
   -->
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props'))" />
+  </Target>
 </Project>

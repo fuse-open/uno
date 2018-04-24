@@ -60,8 +60,7 @@ p cp -R Library/Core/build/* $LIB
 # Platform specific
 case $OSTYPE in
 darwin*)
-    p cp prebuilt/XamMac/*.dylib $BIN
-    p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe} $BIN
+    p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $BIN
     p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $BIN
     ;;
 msys*)
