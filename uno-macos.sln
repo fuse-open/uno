@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D400}"
 EndProject
@@ -90,6 +89,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup.UXIL", "src\ux\Uno.UX.Markup.UXIL\Uno.UX.Markup.UXIL.csproj", "{1A7E3CC0-8881-4C29-AE67-349226AC7167}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup.UXIL.Tests", "src\ux\Uno.UX.Markup.UXIL\Tests\Uno.UX.Markup.UXIL.Tests.csproj", "{C0A5C992-E028-4191-B68F-2D4D052E21C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\compiler\IKVM.Reflection\reflect\IKVM.Reflection.csproj", "{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -245,6 +246,10 @@ Global
 		{C0A5C992-E028-4191-B68F-2D4D052E21C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0A5C992-E028-4191-B68F-2D4D052E21C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0A5C992-E028-4191-B68F-2D4D052E21C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,5 +292,9 @@ Global
 		{C28D3D51-8427-4C74-AEDC-AE4CC568F0FC} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D407}
 		{1A7E3CC0-8881-4C29-AE67-349226AC7167} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D407}
 		{C0A5C992-E028-4191-B68F-2D4D052E21C5} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D407}
+		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D15DC351-6B94-4114-A50F-9CEC779CBD86}
 	EndGlobalSection
 EndGlobal

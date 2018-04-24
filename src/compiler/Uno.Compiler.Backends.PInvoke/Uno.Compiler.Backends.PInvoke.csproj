@@ -27,9 +27,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IKVM.Reflection">
-      <HintPath>..\..\..\prebuilt\uno-dependencies\IKVM.Reflection.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +38,10 @@
     <Compile Include="PInvokeWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IKVM.Reflection\reflect\IKVM.Reflection.csproj">
+      <Project>{4cb170ef-dfe6-4a56-9e1b-a85449e827a7}</Project>
+      <Name>IKVM.Reflection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Uno.Compiler.API\Uno.Compiler.API.csproj">
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
