@@ -1,6 +1,6 @@
 # Uno Core Platform
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/l325eqx7byr400uh/branch/master?svg=true)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
-[![Travis CI Build Status](https://travis-ci.com/fusetools/uno.svg?token=eE9qUU9YXyokaZsAsV2P&branch=master)](https://travis-ci.com/fusetools/uno)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/0loj5orsrrb1bn8e/branch/master?svg=true)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
+[![Travis CI Build Status](https://travis-ci.com/fuse-open/uno.svg?token=eE9qUU9YXyokaZsAsV2P&branch=master)](https://travis-ci.com/fuse-open/uno)
 
 Welcome to Uno.
 
@@ -125,7 +125,7 @@ conduct, and the process for submitting pull requests to us.
 
 ### Reporting issues
 
-Please report issues [here](https://github.com/fusetools/uno/issues).
+Please report issues [here](https://github.com/fuse-open/uno/issues).
 
 ## Configuration
 
