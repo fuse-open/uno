@@ -33,10 +33,9 @@ if [ -n "$SUFFIX" ]; then
     VERSION="$VERSION-$SUFFIX"
 fi
 
-# Build & verify version numbers
+# Build
 if [ "$1" != --no-build ]; then
     bash scripts/build.sh --release; echo ""
-    bash prebuilt/Devtools/update-version-numbers.sh --verify
 fi
 
 h1 "Creating distribution ($PLATFORM)"
