@@ -53,5 +53,8 @@
       <Name>Uno.ProjectFormat</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Uno.Compiler.Backends.PInvoke.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
