@@ -41,10 +41,6 @@ function dotnet-clr {
     fi
 }
 
-function stuff {
-    dotnet-clr prebuilt/stuff.exe "$@"
-}
-
 function uno {
     dotnet-clr prebuilt/uno.exe "$@"
 }
