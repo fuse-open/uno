@@ -60,9 +60,6 @@
     <Reference Include="NuGet.Versioning, Version=4.5.0.4, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NuGet.Versioning.4.5.0\lib\net45\NuGet.Versioning.dll</HintPath>
     </Reference>
-    <Reference Include="stuff">
-      <HintPath>..\..\..\prebuilt\stuff.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -132,6 +129,10 @@
     <ProjectReference Include="..\Uno.Configuration\Uno.Configuration.csproj">
       <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
       <Name>Uno.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uno.Stuff\Uno.Stuff.csproj">
+      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
+      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="stuff">
-      <HintPath>..\..\..\prebuilt\stuff.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +46,10 @@
     <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
       <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
       <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uno.Stuff\Uno.Stuff.csproj">
+      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
+      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
