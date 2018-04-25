@@ -26,12 +26,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
         readonly Dictionary<Field, Expression> _fields = new Dictionary<Field, Expression>();
         readonly HashSet<Field> _emittedFields = new HashSet<Field>();
 
-        int _blobCount;
-        List<byte> _blobBytes;
-        List<SubBlob> _subBlobs;
-        string _blobFilename;
-        Expression _blob;
-
         readonly Backend _backend;
         readonly BuildEnvironment _env;
         readonly ILFactory _ilf;
@@ -65,16 +59,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     if (_compiler.Disk.GetFullPath(upk.Source, upk.SourceDirectory, ref filename))
                         CreateFile(upk.Source, ContentType.BundleFile, filename);
                 }
-            }
-
-            if (_blob != null)
-            {
-                var file = CreateFile(_compiler.Input.Package.Source, ContentType.Blob, Path.Combine(_env.CacheDirectory, _blobFilename), _blobFilename);
-
-                using (var f = _compiler.Disk.CreateBufferedBinary(file.SourcePath))
-                    f.Write(_blobBytes.ToArray());
-
-                _blob = null;
             }
 
             // Emit fields and statements in sorted order for deterministic build result

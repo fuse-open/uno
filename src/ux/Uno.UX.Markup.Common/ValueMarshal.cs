@@ -42,7 +42,7 @@ namespace Uno.UX
                 {
                     return Enum.Parse(type, value);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
