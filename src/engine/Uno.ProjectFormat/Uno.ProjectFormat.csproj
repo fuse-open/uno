@@ -38,9 +38,6 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="stuff">
-      <HintPath>..\..\..\prebuilt\stuff.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -78,6 +75,10 @@
     <ProjectReference Include="..\Uno.Configuration\Uno.Configuration.csproj">
       <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
       <Name>Uno.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uno.Stuff\Uno.Stuff.csproj">
+      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
+      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -36,9 +36,6 @@
     <Reference Include="Mono.Options, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Mono.Options.5.3.0.1\lib\net4-client\Mono.Options.dll</HintPath>
     </Reference>
-    <Reference Include="stuff">
-      <HintPath>..\..\..\prebuilt\stuff.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -102,6 +99,10 @@
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
       <Name>Uno.Compiler.Frontend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\engine\Uno.Stuff\Uno.Stuff.csproj">
+      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
+      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

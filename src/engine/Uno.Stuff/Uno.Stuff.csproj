@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33DFB596-4314-4EA9-B00E-65E18D818A97}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stuff</RootNamespace>
+    <AssemblyName>stuff</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(SolutionDir)</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Arguments.cs" />
+    <Compile Include="Commands\Clean.cs" />
+    <Compile Include="Commands\GC.cs" />
+    <Compile Include="Commands\Install.cs" />
+    <Compile Include="Commands\Pack.cs" />
+    <Compile Include="Commands\Parse.cs" />
+    <Compile Include="Commands\Symlink.cs" />
+    <Compile Include="Commands\Push.cs" />
+    <Compile Include="Core\LongPathZipFile.cs" />
+    <Compile Include="Core\StuffWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Disk.cs" />
+    <Compile Include="FileLock.cs" />
+    <Compile Include="Format\Extensions.cs" />
+    <Compile Include="Format\Parser.cs" />
+    <Compile Include="Format\StuffFile.cs" />
+    <Compile Include="Format\Lexer.cs" />
+    <Compile Include="Format\Serializer.cs" />
+    <Compile Include="Format\Strings.cs" />
+    <Compile Include="Format\StuffFlags.cs" />
+    <Compile Include="Format\StuffItem.cs" />
+    <Compile Include="Format\StuffItemType.cs" />
+    <Compile Include="Format\StuffMap.cs" />
+    <Compile Include="Format\StuffObject.cs" />
+    <Compile Include="Format\Token.cs" />
+    <Compile Include="Format\TokenType.cs" />
+    <Compile Include="IOEvent.cs" />
+    <Compile Include="LongPathDisk.cs" />
+    <Compile Include="Mono.Options\Options.cs" />
+    <Compile Include="PlatformDetection.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Core\Packer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Core\DownloadCache.cs" />
+    <Compile Include="Core\Installer.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="Shell.cs" />
+    <Compile Include="Commands\Sln.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -56,9 +56,6 @@ for arg in "$@"; do
     esac
 done
 
-# Begin build
-stuff install prebuilt
-
 if [ "$BUILD_UNOCORE" = 1 ]; then
     h1 "Building Uno.Runtime.Core.csproj"
     SRC_DIR="Library/Core/UnoCore"

@@ -79,7 +79,7 @@ echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
 echo "bin" > $DST/.unopath
 
 # Create Stuff package for Uno
-stuff pack $DST \
+uno stuff pack $DST \
     --name=uno-$PLATFORM \
     --suffix=-$VERSION-$PLATFORM \
     --out-dir=$OUT \
