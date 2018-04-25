@@ -79,6 +79,14 @@ p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN/apploader-win
 p cp config/pack.unoconfig $BIN/.unoconfig
 cat config/common.unoconfig >> $BIN/.unoconfig
 
+echo "Making NuGet packages"
+
+for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
+    p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
+done
+
+p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
+
 # Generate launcher
 p cp prebuilt/uno prebuilt/uno.exe $DST
 echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
