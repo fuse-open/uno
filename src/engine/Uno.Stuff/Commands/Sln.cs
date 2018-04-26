@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Stuff.Format;
-using Stuff.Options;
+using Mono.Options;
 
 namespace Stuff.Commands
 {

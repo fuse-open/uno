@@ -46,9 +46,6 @@
     <Reference Condition=" '$(OS)' == 'Unix' " Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\lib\net45\Xamarin.Mac.dll</HintPath>
     </Reference>
-    <Reference Condition=" '$(OS)' == 'Unix' " Include="OpenTK, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\lib\net45\OpenTK.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">

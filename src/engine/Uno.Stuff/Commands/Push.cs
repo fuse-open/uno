@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using Stuff.Format;
-using Stuff.Options;
+using Mono.Options;
 
 namespace Stuff.Commands
 {
