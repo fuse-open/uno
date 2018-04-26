@@ -19,7 +19,7 @@ before_script:
 script:
   - scripts/build.sh
   - |
-    mono NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe \
+    mono NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --agents=1 \
       src/testing/Uno.TestRunner.Tests/bin/Debug/Uno.TestRunner.Tests.dll \
       src/ux/Uno.UX.Markup.AST/Tests/bin/Debug/Uno.UX.Markup.AST.Tests.dll \
       src/ux/Uno.UX.Markup.UXIL/Tests/bin/Debug/Uno.UX.Markup.UXIL.Tests.dll
