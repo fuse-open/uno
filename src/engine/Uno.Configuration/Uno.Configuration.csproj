@@ -34,10 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="UnoConfigFile.cs" />
     <Compile Include="UnoConfig.cs" />
     <Compile Include="UnoConfigString.cs" />

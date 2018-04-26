@@ -51,10 +51,8 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Microsoft.Ink" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="DpiAwareness.cs" />
     <Compile Include="DummyApp.cs" />
     <Compile Include="MainForm.cs">
