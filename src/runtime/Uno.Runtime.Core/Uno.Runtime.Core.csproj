@@ -36,10 +36,8 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="OpenGL\GL.cs" />
     <Compile Include="OpenGL\GLBlendEquation.cs" />
     <Compile Include="OpenGL\GLBlendingFactor.cs" />

@@ -47,10 +47,8 @@
       <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\lib\net45\Xamarin.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Android\AndroidBuild.cs" />
     <Compile Include="Android\AndroidGenerator.cs" />
     <Compile Include="Browser\WebServer.cs" />

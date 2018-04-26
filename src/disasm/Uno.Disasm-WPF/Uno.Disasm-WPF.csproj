@@ -65,10 +65,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="TreeState.cs" />
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>

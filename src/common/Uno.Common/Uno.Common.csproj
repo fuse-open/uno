@@ -36,10 +36,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="CLI\Arguments.cs" />
     <Compile Include="CLI\Command.cs" />
     <Compile Include="CLI\DotNetCommand.cs" />

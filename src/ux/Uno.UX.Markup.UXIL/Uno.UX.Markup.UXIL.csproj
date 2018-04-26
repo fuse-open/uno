@@ -35,10 +35,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Expressions\Lexer\Lexer.cs" />
     <Compile Include="Expressions\Lexer\LexerBuilder.cs" />
     <Compile Include="Expressions\Lexer\Token.cs" />

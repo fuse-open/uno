@@ -36,10 +36,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="AttachedPropertyRegistry.cs" />
     <Compile Include="CompilerReflection.cs" />
     <Compile Include="Helpers.cs" />
