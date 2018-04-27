@@ -1,7 +1,5 @@
 ﻿using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.CPlusPlus;
-using Uno.Compiler.Backends.OpenGL;
 using Uno.Compiler.Extensions;
 using Uno.Diagnostics;
 
@@ -15,7 +13,7 @@ namespace Uno.Build.Targets.Xcode
 
         public override Backend CreateBackend()
         {
-            return new CppBackend(new GLBackend(), new CppExtension());
+            return BackendFactory.NewCppBackend(BackendFactory.NewGLBackend(), new CppExtension());
         }
 
         public override void Configure(ICompiler compiler)

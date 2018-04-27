@@ -1,6 +1,5 @@
 ﻿using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.UnoDoc;
 
 namespace Uno.Build.Targets.Uno
 {
@@ -14,7 +13,7 @@ namespace Uno.Build.Targets.Uno
 
         public override Backend CreateBackend()
         {
-            return new UnoDocBackend();
+            return BackendFactory.NewUnoDocBackend();
         }
 
         public override void Initialize(IEnvironment env)

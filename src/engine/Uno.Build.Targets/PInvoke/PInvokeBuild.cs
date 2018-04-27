@@ -1,7 +1,6 @@
 using Uno.Build.Targets.Native;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.PInvoke;
 
 namespace Uno.Build.Targets.PInvoke
 {
@@ -14,7 +13,9 @@ namespace Uno.Build.Targets.PInvoke
 
         public override Backend CreateBackend()
         {
-            return new PInvokeBackend(ShaderBackend.Dummy) { BuildType = BuildType.Library };
+            var backend = BackendFactory.NewPInvokeBackend(ShaderBackend.Dummy);
+            backend.BuildType = BuildType.Library;
+            return backend;
         }
 
         public override void Configure(ICompiler compiler)

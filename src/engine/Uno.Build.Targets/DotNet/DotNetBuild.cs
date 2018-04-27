@@ -1,6 +1,4 @@
 ﻿using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.CIL;
-using Uno.Compiler.Backends.OpenGL;
 
 namespace Uno.Build.Targets.DotNet
 {
@@ -13,7 +11,7 @@ namespace Uno.Build.Targets.DotNet
 
         public override Backend CreateBackend()
         {
-            return new CilBackend(new GLBackend());
+            return BackendFactory.NewCilBackend(BackendFactory.NewGLBackend());
         }
     }
 }

@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\..\..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE4B5DFC-F0FA-46A0-9ADB-C284E70A7BA5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0C72D134-F5EF-4878-912B-46C6BF30DA82}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Uno.CLI.Main</RootNamespace>
-    <AssemblyName>uno</AssemblyName>
+    <RootNamespace>Uno.Build.Targets.Tests</RootNamespace>
+    <AssemblyName>Uno.Build.Targets.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,75 +23,86 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="BackendFactoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
-      <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
-      <Name>Uno.Common</Name>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
+      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
+      <Name>Uno.Compiler.API</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CIL\Uno.Compiler.Backends.CIL.csproj">
-      <Project>{b3b455c8-dd3d-4655-b10c-3c6be878911e}</Project>
+      <Project>{B3B455C8-DD3D-4655-B10C-3C6BE878911E}</Project>
       <Name>Uno.Compiler.Backends.CIL</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CPlusPlus\Uno.Compiler.Backends.CPlusPlus.csproj">
-      <Project>{9e0318a1-528e-4afd-ab87-c8d58e0cd060}</Project>
+      <Project>{9E0318A1-528E-4AFD-AB87-C8D58E0CD060}</Project>
       <Name>Uno.Compiler.Backends.CPlusPlus</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CSharp\Uno.Compiler.Backends.CSharp.csproj">
-      <Project>{90d050f9-b619-4f5f-8cfe-27c2b94ccd1b}</Project>
+      <Project>{90D050F9-B619-4F5F-8CFE-27C2B94CCD1B}</Project>
       <Name>Uno.Compiler.Backends.CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.JavaScript\Uno.Compiler.Backends.JavaScript.csproj">
-      <Project>{b0fa7d6b-a96c-4ae0-863a-e4b061e56fb3}</Project>
+      <Project>{B0FA7D6B-A96C-4AE0-863A-E4B061E56FB3}</Project>
       <Name>Uno.Compiler.Backends.JavaScript</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.OpenGL\Uno.Compiler.Backends.OpenGL.csproj">
-      <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
+      <Project>{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}</Project>
       <Name>Uno.Compiler.Backends.OpenGL</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj">
-      <Project>{089a6b84-6e72-4bc9-b379-c4829dcf41cc}</Project>
+      <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
       <Name>Uno.Compiler.Backends.PInvoke</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.UnoDoc\Uno.Compiler.Backends.UnoDoc.csproj">
-      <Project>{eb7a1bf1-f78f-41ec-933d-e3a44c021e3d}</Project>
-      <Name>Uno.Compiler.Backends.UnoDoc</Name>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Extensions\Uno.Compiler.Extensions.csproj">
+      <Project>{853ABAB6-9FFD-4749-9D32-0A205C5E72B3}</Project>
+      <Name>Uno.Compiler.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.CLI\Uno.CLI.csproj">
-      <Project>{5813caee-0804-45c2-a0c7-e30720efbb45}</Project>
-      <Name>Uno.CLI</Name>
+    <ProjectReference Include="..\Uno.Build.Targets\Uno.Build.Targets.csproj">
+      <Project>{387C856A-FB1A-4926-BD42-CABFE51485D8}</Project>
+      <Name>Uno.Build.Targets</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit.3.10.1\build\NUnit.props'))" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
