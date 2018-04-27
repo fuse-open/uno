@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Condition=" ('$(OS)' == 'Unix') And Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props') " Project="..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props" />
+  <Import Project="..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props" Condition="Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -43,8 +43,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Condition=" '$(OS)' == 'Unix' " Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\lib\net45\Xamarin.Mac.dll</HintPath>
+    <Reference Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\lib\net45\Xamarin.Mac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +147,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0\build\net45\FuseOpen.Xamarin.Mac.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props'))" />
   </Target>
 </Project>
