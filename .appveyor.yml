@@ -1,4 +1,5 @@
 version: '{build}'
+image: Visual Studio 2017
 
 environment:
   matrix:
@@ -11,6 +12,7 @@ install:
         Invoke-WebRequest https://files.fusetools.com/tooling/iyVp8kwQ0vLn-mesa-17.2.3.500.zip -OutFile mesa.zip
         Expand-Archive mesa.zip mesa
       }
+  - choco install vswhere
 
 build_script:
   - nuget restore uno-win32.sln
