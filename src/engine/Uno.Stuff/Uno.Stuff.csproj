@@ -36,6 +36,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Options, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Mono.Options.5.3.0.1\lib\net4-client\Mono.Options.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
@@ -74,7 +77,6 @@
     <Compile Include="Format\TokenType.cs" />
     <Compile Include="IOEvent.cs" />
     <Compile Include="LongPathDisk.cs" />
-    <Compile Include="Mono.Options\Options.cs" />
     <Compile Include="PlatformDetection.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Core\Packer.cs" />
@@ -84,6 +86,9 @@
     <Compile Include="Command.cs" />
     <Compile Include="Shell.cs" />
     <Compile Include="Commands\Sln.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

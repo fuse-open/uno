@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Stuff.Core;
 using Stuff.Format;
-using Stuff.Options;
+using Mono.Options;
 
 namespace Stuff.Commands
 {
