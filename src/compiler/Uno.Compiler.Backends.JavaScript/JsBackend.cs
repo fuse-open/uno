@@ -11,14 +11,14 @@ using System.Linq;
 
 namespace Uno.Compiler.Backends.JavaScript
 {
-    public class JsBackend : SourceBackend
+    public class JsBackend : SourceBackend, IJsBackend
     {
         public override string Name => "JavaScript";
 
         public bool Minify => !Environment.Debug;
         public bool Obfuscate => !Environment.Debug;
         internal string SourceDirectory { get; private set; }
-        public readonly List<string> SourceFiles = new List<string>();
+        public List<string> SourceFiles { get; } = new List<string>();
 
         internal readonly Dictionary<IEntity, string> Globals = new Dictionary<IEntity, string>();
         internal readonly Dictionary<IEntity, string> Members = new Dictionary<IEntity, string>();

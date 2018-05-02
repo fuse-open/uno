@@ -1,5 +1,4 @@
 ﻿using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.CSharp;
 
 namespace Uno.Build.Targets.Uno
 {
@@ -13,7 +12,9 @@ namespace Uno.Build.Targets.Uno
 
         public override Backend CreateBackend()
         {
-            return new CsBackend { BuildType = BuildType.Library };
+            var backend = BackendFactory.NewCsBackend();
+            backend.BuildType = BuildType.Library;
+            return backend;
         }
     }
 }

@@ -7,8 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.JavaScript;
-using Uno.Compiler.Backends.OpenGL;
 using Uno.Diagnostics;
 
 namespace Uno.Build.Targets.Browser
@@ -22,15 +20,15 @@ namespace Uno.Build.Targets.Browser
 
         public override Backend CreateBackend()
         {
-            return new JsBackend(new GLBackend());
+            return BackendFactory.NewJsBackend(BackendFactory.NewGLBackend());
         }
 
         public override void Configure(ICompiler compiler)
         {
-            compiler.Environment.Set("Html.ScriptElements", GetScriptElements((JsBackend)compiler.Backend));
+            compiler.Environment.Set("Html.ScriptElements", GetScriptElements((IJsBackend)compiler.Backend));
         }
 
-        string GetScriptElements(JsBackend backend)
+        string GetScriptElements(IJsBackend backend)
         {
             if (backend.Minify)
                 return "<script type=\"text/javascript\" src=\"app.js\" defer=\"defer\"></script>";

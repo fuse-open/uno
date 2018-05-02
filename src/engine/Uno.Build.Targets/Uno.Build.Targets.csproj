@@ -53,12 +53,14 @@
     </Compile>
     <Compile Include="Android\AndroidBuild.cs" />
     <Compile Include="Android\AndroidGenerator.cs" />
+    <Compile Include="BackendFactory.cs" />
     <Compile Include="Browser\WebServer.cs" />
     <Compile Include="BuildTargets.cs" />
     <Compile Include="DotNet\DotNetDllBuild.cs" />
     <Compile Include="DotNet\DotNetBuild.cs" />
     <Compile Include="Browser\FirefoxOSBuild.cs" />
     <Compile Include="Native\CMakeGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Uno\DocsBuild.cs" />
     <Compile Include="Uno\PackageGenerator.cs" />
     <Compile Include="Xcode\iOSBuild.cs" />
@@ -76,30 +78,6 @@
     <ProjectReference Include="..\..\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CIL\Uno.Compiler.Backends.CIL.csproj">
-      <Project>{B3B455C8-DD3D-4655-B10C-3C6BE878911E}</Project>
-      <Name>Uno.Compiler.Backends.CIL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CPlusPlus\Uno.Compiler.Backends.CPlusPlus.csproj">
-      <Project>{9E0318A1-528E-4AFD-AB87-C8D58E0CD060}</Project>
-      <Name>Uno.Compiler.Backends.CPlusPlus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CSharp\Uno.Compiler.Backends.CSharp.csproj">
-      <Project>{90D050F9-B619-4F5F-8CFE-27C2B94CCD1B}</Project>
-      <Name>Uno.Compiler.Backends.CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.JavaScript\Uno.Compiler.Backends.JavaScript.csproj">
-      <Project>{B0FA7D6B-A96C-4AE0-863A-E4B061E56FB3}</Project>
-      <Name>Uno.Compiler.Backends.JavaScript</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.OpenGL\Uno.Compiler.Backends.OpenGL.csproj">
-      <Project>{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}</Project>
-      <Name>Uno.Compiler.Backends.OpenGL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.UnoDoc\Uno.Compiler.Backends.UnoDoc.csproj">
-      <Project>{EB7A1BF1-F78F-41EC-933D-E3A44C021E3D}</Project>
-      <Name>Uno.Compiler.Backends.UnoDoc</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
@@ -124,10 +102,6 @@
     <ProjectReference Include="..\Uno.Configuration\Uno.Configuration.csproj">
       <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
       <Name>Uno.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj">
-      <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
-      <Name>Uno.Compiler.Backends.PInvoke</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
