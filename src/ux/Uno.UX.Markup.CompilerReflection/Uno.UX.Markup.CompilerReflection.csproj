@@ -36,10 +36,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="AttachedPropertyRegistry.cs" />
     <Compile Include="CompilerReflection.cs" />
     <Compile Include="Helpers.cs" />
@@ -76,6 +74,9 @@
       <Project>{C28D3D51-8427-4C74-AEDC-AE4CC568F0FC}</Project>
       <Name>Uno.UX.Markup.Reflection</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Uno.UX.Markup.CompilerReflection.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

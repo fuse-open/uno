@@ -33,6 +33,15 @@ if [ -n "$SUFFIX" ]; then
     VERSION="$VERSION-$SUFFIX"
 fi
 
+# Extract the X.Y.Z part of version, removing the suffix if any
+VERSION_TRIPLET=`echo $VERSION | sed -n -e 's/\([^-]*\).*/\1/p'`
+
+# Start with updating the local GlobalAssemblyInfo.Override.cs
+sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
+      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
+      -e 's/\(AssemblyInformationalVersion("\)[^"]*\(")\)/\1'$VERSION'\2/' \
+      src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
+
 # Build
 if [ "$1" != --no-build ]; then
     bash scripts/build.sh --release; echo ""
@@ -73,6 +82,14 @@ esac
 p cp config/pack.unoconfig $BIN/.unoconfig
 cat config/common.unoconfig >> $BIN/.unoconfig
 
+echo "Making NuGet packages"
+
+for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
+    p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
+done
+
+p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
+
 # Generate launcher
 p cp prebuilt/uno prebuilt/uno.exe $DST
 echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
@@ -95,3 +112,6 @@ for f in Library/Core/*; do
             $SUFFIX_OPT
     fi
 done
+
+# Remove GlobalAssemblyInfo Override
+rm -f src/GlobalAssemblyInfo.Override.cs

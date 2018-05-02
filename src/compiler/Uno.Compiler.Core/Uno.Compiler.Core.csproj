@@ -41,10 +41,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Compiler.cs" />
     <Compile Include="BuildEnvironment.cs" />
     <Compile Include="CompilerOptions.cs" />
@@ -245,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IL\Validation\ILVerifier.Name.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Uno.Compiler.Core.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

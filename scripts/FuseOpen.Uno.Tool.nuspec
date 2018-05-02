@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>FuseOpen.Uno.Tool</id>
+        <version>$version$</version>
+        <title>Uno compiler tool package</title>
+        <authors>FuseOpen</authors>
+        <owners>FuseOpen</owners>
+        <licenseUrl>https://github.com/fuse-open/uno/blob/master/LICENSE.txt</licenseUrl>
+        <projectUrl>https://github.com/fuse-open/uno</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Uno compiler tool package</description>
+        <copyright>Copyright FuseOpen 2018</copyright>
+        <tags>uno fuse ux</tags>
+    </metadata>
+    <files>
+        <file src="..\release\bin\**\*.*" target="tools" />
+    </files>
+</package>

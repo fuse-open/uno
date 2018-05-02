@@ -34,10 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="UnoConfigFile.cs" />
     <Compile Include="UnoConfig.cs" />
     <Compile Include="UnoConfigString.cs" />
@@ -51,6 +49,9 @@
       <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
       <Name>Uno.Stuff</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Uno.Configuration.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

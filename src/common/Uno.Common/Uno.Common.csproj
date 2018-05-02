@@ -36,10 +36,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="CLI\Arguments.cs" />
     <Compile Include="CLI\Command.cs" />
     <Compile Include="CLI\DotNetCommand.cs" />
@@ -85,7 +83,9 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Diagnostics\UnoVersion.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Uno.Common.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

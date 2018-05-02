@@ -43,10 +43,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Builders\AttachedMemberCache.cs" />
     <Compile Include="Builders\AttachedUxEvent.cs" />
     <Compile Include="Builders\AttachedUxEventEqualityComparer.cs" />
@@ -164,5 +162,6 @@
   -->
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Uno.Compiler.Backends.UnoDoc.nuspec" />
   </ItemGroup>
 </Project>

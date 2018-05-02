@@ -37,10 +37,8 @@
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Generator.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Parser.cs" />
@@ -58,6 +56,9 @@
       <Project>{05538951-C4A9-4298-BBA7-FE9F96E3DDC1}</Project>
       <Name>Uno.UX.Markup.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Uno.UX.Markup.AST.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

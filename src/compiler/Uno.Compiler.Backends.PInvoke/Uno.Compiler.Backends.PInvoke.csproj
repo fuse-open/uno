@@ -29,10 +29,8 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="PInvokeDecompiler.cs" />
     <Compile Include="PInvokeBackend.cs" />
     <Compile Include="PInvokeWriter.cs" />
@@ -54,6 +52,9 @@
       <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
       <Name>Uno.ProjectFormat</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Uno.Compiler.Backends.PInvoke.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
