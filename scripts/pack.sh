@@ -57,7 +57,7 @@ mkdir -p $BIN $LIB $OUT
 touch $BIN/uno.stuff-pack
 
 # Core assemblies
-p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe} $BIN
+p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $BIN
 p cp -f src/testing/Uno.CompilerTestRunner/bin/Release/uno-compiler-test.exe $BIN
 p cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $BIN
 p cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $BIN
@@ -65,18 +65,15 @@ p cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $BIN
 # Core packages (used for testing)
 p cp -R Library/Core/build/* $LIB
 
-# Platform specific
-case $OSTYPE in
-darwin*)
-    p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $BIN
-    p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $BIN
-    ;;
-msys*)
-    p cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $BIN
-    p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $BIN
-    p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN
-    ;;
-esac
+# Put app loaders for macOS and Windows in subdirectories, to avoid conflicts
+mkdir -p $BIN/apploader-mac
+p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $BIN/apploader-mac
+p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $BIN/apploader-mac
+
+mkdir -p $BIN/apploader-win
+p cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $BIN/apploader-win
+p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $BIN/apploader-win
+p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN/apploader-win
 
 # Generate config
 p cp config/pack.unoconfig $BIN/.unoconfig
