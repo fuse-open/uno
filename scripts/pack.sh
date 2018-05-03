@@ -33,6 +33,15 @@ if [ -n "$SUFFIX" ]; then
     VERSION="$VERSION-$SUFFIX"
 fi
 
+# Extract the X.Y.Z part of version, removing the suffix if any
+VERSION_TRIPLET=`echo $VERSION | sed -n -e 's/\([^-]*\).*/\1/p'`
+
+# Start with updating the local GlobalAssemblyInfo.Override.cs
+sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
+      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
+      -e 's/\(AssemblyInformationalVersion("\)[^"]*\(")\)/\1'$VERSION'\2/' \
+      src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
+
 # Build
 if [ "$1" != --no-build ]; then
     bash scripts/build.sh --release; echo ""
@@ -91,7 +100,11 @@ for f in Library/Core/*; do
     PROJECT=$f/$NAME.unoproj
     if [ -f "$PROJECT" ]; then
         uno pack $PROJECT \
+            --version $VERSION_TRIPLET \
             --out-dir $OUT \
             $SUFFIX_OPT
     fi
 done
+
+# Remove GlobalAssemblyInfo Override
+rm -f src/GlobalAssemblyInfo.Override.cs
