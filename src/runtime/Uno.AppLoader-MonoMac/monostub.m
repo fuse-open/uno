@@ -1,4 +1,6 @@
-//clang -m64 monostub.m -o monostub -framework AppKit -mmacosx-version-min=10.6
+// We include a precompiled monostub to make compilation of solution possible on non-mac platforms,
+// so if this file is modified, it needs to be manually recompiled:
+//     clang -m64 monostub.m -o monostub -framework AppKit -mmacosx-version-min=10.6
 #import <Foundation/Foundation.h>
 #include <dlfcn.h>
 
