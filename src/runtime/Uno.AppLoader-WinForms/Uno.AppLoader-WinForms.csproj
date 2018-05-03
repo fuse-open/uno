@@ -49,7 +49,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Microsoft.Ink" />
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />  
   <ItemGroup>
@@ -62,8 +61,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="TouchEventAdapter.cs" />
-    <Compile Include="TouchEventArgs.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

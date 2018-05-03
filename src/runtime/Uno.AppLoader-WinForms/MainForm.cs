@@ -28,23 +28,6 @@ namespace Uno.AppLoader
             var dpi = DpiAwareness.GetDpi(Handle);
             _control.SetDensity((float)dpi);
             ClientSize = new Size((int)(375*dpi), (int)(667*dpi));
-
-            try
-            {
-                var touch = new TouchEventAdapter(_control);
-
-                touch.TouchDown += (sender, e) =>
-                    Bootstrapper.OnTouchDown(_control.CoreWindow, e.X, e.Y, e.Index);
-                touch.TouchMove += (sender, e) =>
-                    Bootstrapper.OnTouchMove(_control.CoreWindow, e.X, e.Y, e.Index);
-                touch.TouchUp += (sender, e) =>
-                    Bootstrapper.OnTouchUp(_control.CoreWindow, e.X, e.Y, e.Index);
-            }
-            catch
-            {
-                Console.Error.WriteLine("Failed to create TouchEventAdapter, touch-inputs are unavailable.");
-            }
-
             FormClosing += (sender, e) => e.Cancel = _control.OnClosing();
             FormClosed += (sender, e) => _control.OnClosed();
             Title = GetAssemblyTitle();
