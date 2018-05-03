@@ -1,5 +1,4 @@
-﻿#if UNIX
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using AppKit;
@@ -186,5 +185,3 @@ namespace Uno.Build.Targets.Xcode
         public static extern IntPtr SecCertificateCopyValues(IntPtr certRef, IntPtr keys, IntPtr errors);
     }
 }
-
-#endif

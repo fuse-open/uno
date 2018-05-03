@@ -6,6 +6,7 @@ using System.Text;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Configuration;
+using Uno.Diagnostics;
 using Uno.Logging;
 
 namespace Uno.Build.Targets.Xcode
@@ -204,7 +205,13 @@ namespace Uno.Build.Targets.Xcode
 
         static string FindCodeSigningDevelopmentTeam()
         {
-#if UNIX
+            // Can only run on Mac
+            if (!PlatformDetection.IsMac)
+            {
+                Log.Default.Warning("Finding a development team for signing failed: This operation is only supported on macOS.");
+                return null;
+            }
+
             // Avoid getting SIGSEGV when not running a 64-bit process.
             if (IntPtr.Size != 8)
             {
@@ -226,9 +233,6 @@ namespace Uno.Build.Targets.Xcode
                 Log.Default.Warning("Finding a development team for signing failed: " + e);
                 return null;
             }
-#else
-            return null;
-#endif
         }
     }
 }
