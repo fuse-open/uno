@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>FuseOpen.$id$</id>
+        <version>$version$</version>
+        <title>$title$</title>
+        <authors>$author$</authors>
+        <owners>$author$</owners>
+        <licenseUrl>https://github.com/fuse-open/uno/blob/master/LICENSE.txt</licenseUrl>
+        <projectUrl>https://github.com/fuse-open/uno</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>$description$</description>
+        <copyright>Copyright FuseOpen 2018</copyright>
+        <tags>uno fuse ux</tags>
+    </metadata>
+</package>
