@@ -94,6 +94,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Stuff", "src\engine\Uno.Stuff\Uno.Stuff.csproj", "{33DFB596-4314-4EA9-B00E-65E18D818A97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.AppLoader-WinForms", "src\runtime\Uno.AppLoader-WinForms\Uno.AppLoader-WinForms.csproj", "{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -256,6 +258,10 @@ Global
 		{33DFB596-4314-4EA9-B00E-65E18D818A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33DFB596-4314-4EA9-B00E-65E18D818A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33DFB596-4314-4EA9-B00E-65E18D818A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -300,6 +306,7 @@ Global
 		{C0A5C992-E028-4191-B68F-2D4D052E21C5} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D407}
 		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}
 		{33DFB596-4314-4EA9-B00E-65E18D818A97} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D404}
+		{21D956DB-8735-4EE6-BA7E-1D6CD77521F4} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D405}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D15DC351-6B94-4114-A50F-9CEC779CBD86}
