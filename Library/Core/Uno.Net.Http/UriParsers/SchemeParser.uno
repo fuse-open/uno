@@ -37,12 +37,12 @@ namespace Uno.Net.Http
             result.Scheme = uriString.Substring(idx, end - idx).ToLower();
             result.Type = UriScheme.GetSchemeType(result.Scheme);
 
+            idx = end + 1;
             if (result.Type == UriSchemeType.Unknown)
             {
                 return result;//throw new UriFormatException("Unknown scheme specified in uriString.");
             }
 
-            idx = end + 1;
             hasDoubleSlash = false;
 
             // next 2 characters are "//"

@@ -14,10 +14,13 @@ namespace Uno.Net.Http
             {
                 var schemePrefix = string.Format("{0}:{1}", Scheme, _hasDoubleSlash ? "//" : string.Empty);
 
-                if (UserInfo != string.Empty)
+                if (!string.IsNullOrEmpty(UserInfo))
                     schemePrefix = string.Format("{0}{1}@", schemePrefix, UserInfo);
 
-                return string.Format("{0}{1}{2}{3}", schemePrefix, Authority, PathAndQuery, Fragment);
+                return string.Format("{0}{1}{2}{3}", schemePrefix,
+                    Authority ?? string.Empty,
+                    PathAndQuery,
+                    Fragment ?? string.Empty);
             }
         }
 
@@ -98,6 +101,9 @@ namespace Uno.Net.Http
 
             if (schemeResult.Type == UriSchemeType.Unknown)
             {
+                // HACK: at least make sure we convey the path for custom URIs.
+                Segments = new string[] { uriString.Substring(idx, uriString.Length - idx) };
+
                 return;
             }
 

@@ -44,6 +44,7 @@ namespace Http.Test
             Assert.AreEqual("http://username:password@test.com:1337/test?foo=bar#baz", new Uri("http://username:password@test.com:1337/test?foo=bar#baz").AbsoluteUri);
             Assert.AreEqual("mailto:foo@test.com", new Uri("mailto:foo@test.com").AbsoluteUri);
             Assert.AreEqual("mailto://test.com", new Uri("mailto://test.com").AbsoluteUri);
+            Assert.AreEqual("tel:12345678", new Uri("tel:12345678").AbsoluteUri);
         }
 
         [Test]
@@ -143,6 +144,7 @@ namespace Http.Test
 
             Assert.AreEqual(new string[] { }, new Uri("mailto:username@test.com").Segments);
             Assert.AreEqual(new string[] { "/", "foo/", "bar" }, new Uri("mailto:username@test.com/foo/bar").Segments);
+            Assert.AreEqual(new string[] { "12345678" }, new Uri("tel:12345678").Segments);
         }
 
         [Test]
