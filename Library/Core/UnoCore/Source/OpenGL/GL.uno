@@ -437,7 +437,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("BufferDatai")]
         public static void BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)
         {
             if defined(CPLUSPLUS)
@@ -944,7 +943,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("TexParameteri")]
         public static void TexParameter(GLTextureTarget target, GLTextureParameterName pname, GLTextureParameterValue param)
         {
             if defined(CPLUSPLUS)
@@ -1318,7 +1316,7 @@ namespace OpenGL
 
         //public static any GetVertexAttrib(uint index, enum pname);
         //public static int GetVertexAttribOffset(uint index, enum pname);
-        [ExportName("Uniform1i")]
+
         public static void Uniform1(int location, int value)
         {
             if defined(CPLUSPLUS)
@@ -1333,7 +1331,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform2i")]
         public static void Uniform2(int location, int2 value)
         {
             if defined(CPLUSPLUS)
@@ -1348,7 +1345,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform3i")]
         public static void Uniform3(int location, int3 value)
         {
             if defined(CPLUSPLUS)
@@ -1363,7 +1359,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform4i")]
         public static void Uniform4(int location, int4 value)
         {
             if defined(CPLUSPLUS)
@@ -1378,7 +1373,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform1f")]
         public static void Uniform1(int location, float value)
         {
             if defined(CPLUSPLUS)
@@ -1393,7 +1387,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform2f")]
         public static void Uniform2(int location, float2 value)
         {
             if defined(CPLUSPLUS)
@@ -1408,7 +1401,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform3f")]
         public static void Uniform3(int location, float3 value)
         {
             if defined(CPLUSPLUS)
@@ -1423,7 +1415,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform4f")]
         public static void Uniform4(int location, float4 value)
         {
             if defined(CPLUSPLUS)
@@ -1438,7 +1429,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("UniformMatrix2f")]
         public static void UniformMatrix2(int location, bool transpose, float2x2 value)
         {
             if defined(CPLUSPLUS)
@@ -1453,7 +1443,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("UniformMatrix3f")]
         public static void UniformMatrix3(int location, bool transpose, float3x3 value)
         {
             if defined(CPLUSPLUS)
@@ -1468,7 +1457,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("UniformMatrix4f")]
         public static void UniformMatrix4(int location, bool transpose, float4x4 value)
         {
             if defined(CPLUSPLUS)
@@ -1483,7 +1471,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform1iv")]
         public static void Uniform1(int location, int[] value)
         {
             if defined(CPLUSPLUS)
@@ -1498,7 +1485,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform2iv")]
         public static void Uniform2(int location, int2[] value)
         {
             if defined(CPLUSPLUS)
@@ -1513,7 +1499,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform3iv")]
         public static void Uniform3(int location, int3[] value)
         {
             if defined(CPLUSPLUS)
@@ -1528,7 +1513,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform4iv")]
         public static void Uniform4(int location, int4[] value)
         {
             if defined(CPLUSPLUS)
@@ -1543,7 +1527,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform1fv")]
         public static void Uniform1(int location, float[] value)
         {
             if defined(CPLUSPLUS)
@@ -1558,7 +1541,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform2fv")]
         public static void Uniform2(int location, float2[] value)
         {
             if defined(CPLUSPLUS)
@@ -1573,7 +1555,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform3fv")]
         public static void Uniform3(int location, float3[] value)
         {
             if defined(CPLUSPLUS)
@@ -1588,7 +1569,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("Uniform4fv")]
         public static void Uniform4(int location, float4[] value)
         {
             if defined(CPLUSPLUS)
@@ -1603,7 +1583,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("UniformMatrix2fv")]
         public static void UniformMatrix2(int location, bool transpose, float2x2[] value)
         {
             if defined(CPLUSPLUS)
@@ -1618,7 +1597,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("UniformMatrix3fv")]
         public static void UniformMatrix3(int location, bool transpose, float3x3[] value)
         {
             if defined(CPLUSPLUS)
@@ -1633,7 +1611,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [ExportName("UniformMatrix4fv")]
         public static void UniformMatrix4(int location, bool transpose, float4x4[] value)
         {
             if defined(CPLUSPLUS)

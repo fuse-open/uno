@@ -143,7 +143,6 @@ namespace OpenGL
             GL._gl.BindBuffer(target, buffer);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("BufferDatai")]
         public static void BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)
         {
             GL._gl.BufferData(target, sizeInBytes, global::System.IntPtr.Zero, usage);
@@ -273,7 +272,6 @@ namespace OpenGL
             GL._gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, data);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("TexParameteri")]
         public static void TexParameter(GLTextureTarget target, GLTextureParameterName pname, GLTextureParameterValue param)
         {
             GL._gl.TexParameter(target, pname, param);
@@ -379,133 +377,111 @@ namespace OpenGL
             return GL._gl.GetUniformLocation(program, name);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform1i")]
         public static void Uniform1(int location, int value)
         {
             GL._gl.Uniform1(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform2i")]
         public static void Uniform2(int location, global::Uno.Int2 value)
         {
             GL._gl.Uniform2(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform3i")]
         public static void Uniform3(int location, global::Uno.Int3 value)
         {
             GL._gl.Uniform3(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform4i")]
         public static void Uniform4(int location, global::Uno.Int4 value)
         {
             GL._gl.Uniform4(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform1f")]
         public static void Uniform1(int location, float value)
         {
             GL._gl.Uniform1(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform2f")]
         public static void Uniform2(int location, global::Uno.Float2 value)
         {
             GL._gl.Uniform2(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform3f")]
         public static void Uniform3(int location, global::Uno.Float3 value)
         {
             GL._gl.Uniform3(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform4f")]
         public static void Uniform4(int location, global::Uno.Float4 value)
         {
             GL._gl.Uniform4(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("UniformMatrix2f")]
         public static void UniformMatrix2(int location, bool transpose, global::Uno.Float2x2 value)
         {
             GL._gl.UniformMatrix2(location, transpose, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("UniformMatrix3f")]
         public static void UniformMatrix3(int location, bool transpose, global::Uno.Float3x3 value)
         {
             GL._gl.UniformMatrix3(location, transpose, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("UniformMatrix4f")]
         public static void UniformMatrix4(int location, bool transpose, global::Uno.Float4x4 value)
         {
             GL._gl.UniformMatrix4(location, transpose, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform1iv")]
         public static void Uniform1(int location, int[] value)
         {
             GL._gl.Uniform1(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform2iv")]
         public static void Uniform2(int location, global::Uno.Int2[] value)
         {
             GL._gl.Uniform2(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform3iv")]
         public static void Uniform3(int location, global::Uno.Int3[] value)
         {
             GL._gl.Uniform3(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform4iv")]
         public static void Uniform4(int location, global::Uno.Int4[] value)
         {
             GL._gl.Uniform4(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform1fv")]
         public static void Uniform1(int location, float[] value)
         {
             GL._gl.Uniform1(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform2fv")]
         public static void Uniform2(int location, global::Uno.Float2[] value)
         {
             GL._gl.Uniform2(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform3fv")]
         public static void Uniform3(int location, global::Uno.Float3[] value)
         {
             GL._gl.Uniform3(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("Uniform4fv")]
         public static void Uniform4(int location, global::Uno.Float4[] value)
         {
             GL._gl.Uniform4(location, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("UniformMatrix2fv")]
         public static void UniformMatrix2(int location, bool transpose, global::Uno.Float2x2[] value)
         {
             GL._gl.UniformMatrix2(location, transpose, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("UniformMatrix3fv")]
         public static void UniformMatrix3(int location, bool transpose, global::Uno.Float3x3[] value)
         {
             GL._gl.UniformMatrix3(location, transpose, value);
         }
 
-        [global::Uno.Compiler.ExportTargetInterop.ExportNameAttribute("UniformMatrix4fv")]
         public static void UniformMatrix4(int location, bool transpose, global::Uno.Float4x4[] value)
         {
             GL._gl.UniformMatrix4(location, transpose, value);

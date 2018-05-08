@@ -101,7 +101,6 @@ namespace Uno
             return (sbyte)_data[_offset + offset];
         }
 
-        [ExportName("SetSByte")]
         public void Set(int offset, sbyte value)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(sbyte))
@@ -115,7 +114,6 @@ namespace Uno
             return sbyte2(GetSByte(offset + 0), GetSByte(offset + 1));
         }
 
-        [ExportName("SetSByte2")]
         public void Set(int offset, sbyte2 value)
         {
             Set(offset + 0, value.X);
@@ -127,7 +125,6 @@ namespace Uno
             return sbyte4(GetSByte(offset + 0), GetSByte(offset + 1), GetSByte(offset + 2), GetSByte(offset + 3));
         }
 
-        [ExportName("SetSByte4")]
         public void Set(int offset, sbyte4 value)
         {
             Set(offset + 0, value.X);
@@ -144,7 +141,6 @@ namespace Uno
             return _data[_offset + offset];
         }
 
-        [ExportName("SetByte")]
         public void Set(int offset, byte value)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(byte))
@@ -158,7 +154,6 @@ namespace Uno
             return byte2(GetByte(offset + 0), GetByte(offset + 1));
         }
 
-        [ExportName("SetByte2")]
         public void Set(int offset, byte2 value)
         {
             Set(offset + 0, value.X);
@@ -170,7 +165,6 @@ namespace Uno
             return byte4(GetByte(offset + 0), GetByte(offset + 1), GetByte(offset + 2), GetByte(offset + 3));
         }
 
-        [ExportName("SetByte4")]
         public void Set(int offset, byte4 value)
         {
             Set(offset + 0, value.X);
@@ -187,7 +181,6 @@ namespace Uno
             return BufferImpl.GetShort(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetShort")]
         public void Set(int offset, short value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(short))
@@ -201,7 +194,6 @@ namespace Uno
             return short2(GetShort(offset + 0, littleEndian), GetShort(offset + 2, littleEndian));
         }
 
-        [ExportName("SetShort2")]
         public void Set(int offset, short2 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -213,7 +205,6 @@ namespace Uno
             return short4(GetShort(offset + 0, littleEndian), GetShort(offset + 2, littleEndian), GetShort(offset + 4, littleEndian), GetShort(offset + 6, littleEndian));
         }
 
-        [ExportName("SetShort4")]
         public void Set(int offset, short4 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -230,7 +221,6 @@ namespace Uno
             return BufferImpl.GetUShort(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetUShort")]
         public void Set(int offset, ushort value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(ushort))
@@ -244,7 +234,6 @@ namespace Uno
             return ushort2(GetUShort(offset + 0, littleEndian), GetUShort(offset + 2, littleEndian));
         }
 
-        [ExportName("SetUShort2")]
         public void Set(int offset, ushort2 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -256,7 +245,6 @@ namespace Uno
             return ushort4(GetUShort(offset + 0, littleEndian), GetUShort(offset + 2, littleEndian), GetUShort(offset + 4, littleEndian), GetUShort(offset + 6, littleEndian));
         }
 
-        [ExportName("SetUShort4")]
         public void Set(int offset, ushort4 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -273,7 +261,6 @@ namespace Uno
             return BufferImpl.GetInt(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetInt")]
         public void Set(int offset, int value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(int))
@@ -287,7 +274,6 @@ namespace Uno
             return int2(GetInt(offset + 0, littleEndian), GetInt(offset + 4, littleEndian));
         }
 
-        [ExportName("SetInt2")]
         public void Set(int offset, int2 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -299,7 +285,6 @@ namespace Uno
             return int3(GetInt(offset + 0, littleEndian), GetInt(offset + 4, littleEndian), GetInt(offset + 8, littleEndian));
         }
 
-        [ExportName("SetInt3")]
         public void Set(int offset, int3 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -312,7 +297,6 @@ namespace Uno
             return int4(GetInt(offset + 0, littleEndian), GetInt(offset + 4, littleEndian), GetInt(offset + 8, littleEndian), GetInt(offset + 12, littleEndian));
         }
 
-        [ExportName("SetInt4")]
         public void Set(int offset, int4 value, bool littleEndian = true)
         {
             Set(offset + 00, value.X, littleEndian);
@@ -329,7 +313,6 @@ namespace Uno
             return BufferImpl.GetUInt(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetUInt")]
         public void Set(int offset, uint value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(uint))
@@ -346,7 +329,6 @@ namespace Uno
             return BufferImpl.GetLong(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetLong")]
         public void Set(int offset, long value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(long))
@@ -363,7 +345,6 @@ namespace Uno
             return BufferImpl.GetULong(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetULong")]
         public void Set(int offset, ulong value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(ulong))
@@ -380,7 +361,6 @@ namespace Uno
             return BufferImpl.GetFloat(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetFloat")]
         public void Set(int offset, float value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(float))
@@ -394,7 +374,6 @@ namespace Uno
             return float2(GetFloat(offset + 0, littleEndian), GetFloat(offset + 4, littleEndian));
         }
 
-        [ExportName("SetFloat2")]
         public void Set(int offset, float2 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -406,7 +385,6 @@ namespace Uno
             return float3(GetFloat(offset + 0, littleEndian), GetFloat(offset + 4, littleEndian), GetFloat(offset + 8, littleEndian));
         }
 
-        [ExportName("SetFloat3")]
         public void Set(int offset, float3 value, bool littleEndian = true)
         {
             Set(offset + 0, value.X, littleEndian);
@@ -419,7 +397,6 @@ namespace Uno
             return float4(GetFloat(offset + 0, littleEndian), GetFloat(offset + 4, littleEndian), GetFloat(offset + 8, littleEndian), GetFloat(offset + 12, littleEndian));
         }
 
-        [ExportName("SetFloat4")]
         public void Set(int offset, float4 value, bool littleEndian = true)
         {
             Set(offset + 00, value.X, littleEndian);
@@ -436,7 +413,6 @@ namespace Uno
                 GetFloat(offset + 24, littleEndian), GetFloat(offset + 28, littleEndian), GetFloat(offset + 32, littleEndian));
         }
 
-        [ExportName("SetFloat3x3")]
         public void Set(int offset, float3x3 value, bool littleEndian = true)
         {
             Set(offset + 00, value.M11, littleEndian);
@@ -459,7 +435,6 @@ namespace Uno
                 GetFloat(offset + 48, littleEndian), GetFloat(offset + 52, littleEndian), GetFloat(offset + 56, littleEndian), GetFloat(offset + 60, littleEndian));
         }
 
-        [ExportName("SetFloat4x4")]
         public void Set(int offset, float4x4 value, bool littleEndian = true)
         {
             Set(offset + 00, value.M11, littleEndian);
@@ -488,7 +463,6 @@ namespace Uno
             return BufferImpl.GetDouble(_data, _offset + offset, littleEndian);
         }
 
-        [ExportName("SetDouble")]
         public void Set(int offset, double value, bool littleEndian = true)
         {
             if (offset < 0 || _sizeInBytes < offset + sizeof(double))
