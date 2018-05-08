@@ -5,8 +5,6 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.Byte")]
     [extern(CPLUSPLUS) Set("TypeName", "uint8_t")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** Represents an 8-bit unsigned integer.
         The value can only be in the range 0 to 255. Storage size is 1 byte. */
     public intrinsic struct Byte
@@ -14,13 +12,11 @@ namespace Uno
         public const byte MinValue = 0;
         public const byte MaxValue = 0xff;
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -32,7 +28,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

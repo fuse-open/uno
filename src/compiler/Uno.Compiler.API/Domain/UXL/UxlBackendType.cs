@@ -6,7 +6,6 @@ namespace Uno.Compiler.API.Domain.UXL
         CIL,
         CPlusPlus,
         CSharp,
-        JavaScript,
         Uno,
         PInvoke,
     }

@@ -5,22 +5,17 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.SByte")]
     [extern(CPLUSPLUS) Set("TypeName", "int8_t")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** Represents an 8-bit signed integer. */
     public intrinsic struct SByte
     {
         public const sbyte MinValue = -0x80;
         public const sbyte MaxValue = 0x7f;
 
-
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -32,7 +27,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

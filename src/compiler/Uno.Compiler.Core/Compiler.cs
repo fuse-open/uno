@@ -180,9 +180,6 @@ namespace Uno.Compiler.Core
 
             Run(new ControlFlowVerifier(Pass));
 
-            if (Backend.Has(TypeOptions.CopyStructs))
-                Run(new StructCopyTransform(Pass));
-
             if (Environment.Options.OptimizeLevel >= 1)
                 Run(new O1(Pass));
 

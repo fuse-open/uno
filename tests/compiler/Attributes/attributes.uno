@@ -1,19 +1,24 @@
 class Main : Uno.Application {}
 
-[Uno.Compiler.ExportTargetInterop.DontCopyStruct]
+[AttributeUsage(AttributeTargets.Struct)]
+class StructAttribute : Attribute
+{
+}
+
+[Struct]
 struct Test
 {
-    [Uno.Compiler.ExportTargetInterop.DontCopyStruct] // $E0000 Attribute [Uno.Compiler.ExportTargetInterop.DontCopyStruct] can only be used on 'struct'
+    [Struct] // $E0000 Attribute [Struct] can only be used on 'struct'
     public bool Field;
 
-    [Uno.Compiler.ExportTargetInterop.DontCopyStruct] // $E0000 Attribute [Uno.Compiler.ExportTargetInterop.DontCopyStruct] can only be used on 'struct'
+    [Struct] // $E0000 Attribute [Struct] can only be used on 'struct'
     public void Method()
     {
 
     }
 }
 
-[Uno.Compiler.ExportTargetInterop.DontCopyStruct] // $E0000 Attribute [Uno.Compiler.ExportTargetInterop.DontCopyStruct] can only be used on 'struct'
+[Struct] // $E0000 Attribute [Struct] can only be used on 'struct'
 class Test2
 {
 }

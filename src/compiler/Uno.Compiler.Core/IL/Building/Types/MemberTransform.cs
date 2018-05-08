@@ -72,8 +72,6 @@ namespace Uno.Compiler.Core.IL.Building.Types
 
                             if (dt.IsClass)
                                 var.OptionalValue = new AllocObject(src, dt);
-                            else if (Backend.Has(TypeOptions.CopyStructs))
-                                var.OptionalValue = new Default(src, dt);
 
                             factory.Body.Statements.Add(new VariableDeclaration(var));
 

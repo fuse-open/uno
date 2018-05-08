@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using Mono.Options;
 using Uno.Build;
 using Uno.Build.Targets;
-using Uno.Build.Targets.Browser;
 
 namespace Uno.TestRunner.BasicTypes
 {
@@ -49,8 +48,7 @@ namespace Uno.TestRunner.BasicTypes
                 { "h|?|help", "Show help", v => help = v != null },
                 { "r|reporter=", "Reporter type. teamcity|console", v => commandOptions.Reporter = v },
                 { "l|logfile=", "Write output to this file instead of stdout", v => commandOptions.LogFileName = v },
-                { "t|target=", "Build target. Currently supports DotNet|WebGL|Android|CMake", v => targetName = v },
-                { "webgl-browser=", "Location of browser (only used for webgl targets, defaults to OS default browser)", v => commandOptions.Browser = v },
+                { "t|target=", "Build target. Currently supports DotNet|Android|CMake", v => targetName = v },
                 { "v|verbose", "Verbose, always prints output from compiler and debug_log", v => verbose = v != null },
                 { "q|quiet", "Quiet, only prints output from compiler and debug_log in case of errors.", v => quiet = v != null },
                 { "f|filter=", "Only run tests matching this string", v => commandOptions.Filter = Regex.Escape(v) },
@@ -77,9 +75,6 @@ namespace Uno.TestRunner.BasicTypes
 
                 if (verbose && quiet)
                     throw new ArgumentException("Cannot specify both -q and -v");
-
-                if (commandOptions.Target is WebGLBuild && commandOptions.RunLocal)
-                    throw new ArgumentException("--run-local does not work with the WebGL target");
 
                 if (commandOptions.AllowDebugger || commandOptions.OpenDebugger)
                 {

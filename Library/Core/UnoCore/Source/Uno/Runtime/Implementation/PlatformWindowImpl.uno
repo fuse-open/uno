@@ -35,10 +35,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return global::Uno.ApplicationContext.AppHost.GetPlatformWindow();
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return canvas;
-            @}
             else
                 build_error;
         }
@@ -52,10 +48,6 @@ namespace Uno.Runtime.Implementation
             else if defined(CSHARP)
             @{
                 ($0).Close();
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                close();
             @}
             else
                 build_error;
@@ -71,10 +63,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return ($0).GetTitle();
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return document.title;
-            @}
             else
                 build_error;
         }
@@ -88,10 +76,6 @@ namespace Uno.Runtime.Implementation
             else if defined(CSHARP)
             @{
                 ($0).SetTitle($1);
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                document.title = $1;
             @}
             else
                 build_error;
@@ -107,10 +91,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return ($0).GetClientSize();
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return @{int2(int,int):New($0.width, $0.height)};
-            @}
             else
                 build_error;
         }
@@ -124,10 +104,6 @@ namespace Uno.Runtime.Implementation
             else if defined(CSHARP)
             @{
                 ($0).SetClientSize($1);
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                resizeTo(@{$1.X},@{$1.Y});
             @}
             else
                 build_error;
@@ -143,10 +119,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return ($0).GetFullscreen();
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $GetFullscreen();
-            @}
             else
                 build_error;
         }
@@ -160,10 +132,6 @@ namespace Uno.Runtime.Implementation
             else if defined(CSHARP)
             @{
                 ($0).SetFullscreen($1);
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                $SetFullscreen($1);
             @}
             else
                 build_error;
@@ -205,10 +173,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return ($0).GetMouseButtonState($1);
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $PressedButtons[$1];
-            @}
             else
                 build_error;
         }
@@ -222,10 +186,6 @@ namespace Uno.Runtime.Implementation
             else if defined(CSHARP)
             @{
                 return ($0).GetKeyState($1);
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $PressedKeys[$1];
             @}
             else
                 build_error;

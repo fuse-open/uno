@@ -5,8 +5,6 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.Single")]
     [extern(CPLUSPLUS) Set("TypeName", "float")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** Represents a single-precision floating-point number. */
     public intrinsic struct Float
     {
@@ -19,13 +17,11 @@ namespace Uno
         [Obsolete]
         public const float ZeroTolerance = 1e-05f;
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -42,7 +38,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)
@@ -80,10 +75,6 @@ namespace Uno
 
                 return (float)retval;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $ParseStringToNumeric($0, 'float', @{MinValue}, @{MaxValue});
-            @}
             else
                 build_error;
         }
@@ -120,12 +111,6 @@ namespace Uno
                 *$1 = (float)retval;
                 return true;
             @}
-            else if defined(JAVASCRIPT)
-            {
-                var uxlRes = extern<object> "$TryParseStringToNumeric($0, 'float', @{MinValue}, @{MaxValue})";
-                result = extern<float>(uxlRes) "$0.result";
-                return extern<bool>(uxlRes) "$0.success";
-            }
             else
                 build_error;
         }

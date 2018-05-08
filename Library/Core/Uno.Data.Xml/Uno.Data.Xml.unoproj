@@ -7,7 +7,6 @@
   ],
   "Includes": [
     "Targets/CIL/Uno.Data.Xml.cil.uxl:Extensions",
-    "Targets/JavaScript/Uno.Data.Xml.js.uxl:Extensions",
     "Targets/CPlusPlus/Uno.Data.Xml.cpp.uxl:Extensions",
     "Targets/CPlusPlus/Source/pugiconfig.hpp:File",
     "Targets/CPlusPlus/Source/pugixml.cpp:File",

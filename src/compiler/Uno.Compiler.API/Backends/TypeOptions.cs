@@ -12,7 +12,6 @@ namespace Uno.Compiler.API.Backends
         FlattenEvents = 1 << 4,
         FlattenProperties = 1 << 5,
         FlattenOperators = 1 << 6,
-        FlattenCasts = 1 << 7,
-        CopyStructs = 1 << 8
+        FlattenCasts = 1 << 7
     }
 }

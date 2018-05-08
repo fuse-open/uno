@@ -15,10 +15,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToInt16(buffer.GetBytes(offset, 2, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return new DataView($0.buffer).getInt16($1, $2);
-            @}
             else
                 build_error;
         }
@@ -33,10 +29,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                new DataView($0.buffer).setInt16($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -51,10 +43,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToUInt16(buffer.GetBytes(offset, 2, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return new DataView($0.buffer).getUint16($1, $2);
-            @}
             else
                 build_error;
         }
@@ -69,10 +57,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                new DataView($0.buffer).setUint16($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -87,10 +71,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToInt32(buffer.GetBytes(offset, 4, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return new DataView($0.buffer).getInt32($1, $2);
-            @}
             else
                 build_error;
         }
@@ -105,10 +85,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                new DataView($0.buffer).setInt32($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -123,10 +99,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToUInt32(buffer.GetBytes(offset, 4, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return new DataView($0.buffer).getUint32($1, $2);
-            @}
             else
                 build_error;
         }
@@ -141,10 +113,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                new DataView($0.buffer).setUint32($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -159,11 +127,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToInt64(buffer.GetBytes(offset, 8, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                // TODO
-                return new DataView($0.buffer).getInt32($1, $2);
-            @}
             else
                 build_error;
         }
@@ -178,11 +141,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                // TODO
-                new DataView($0.buffer).setInt32($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -197,11 +155,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToUInt64(buffer.GetBytes(offset, 8, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                // TODO
-                return new DataView($0.buffer).getInt32($1, $2);
-            @}
             else
                 build_error;
         }
@@ -216,11 +169,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                // TODO
-                new DataView($0.buffer).setInt32($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -235,10 +183,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToSingle(buffer.GetBytes(offset, 4, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return new DataView($0.buffer).getFloat32($1, $2);
-            @}
             else
                 build_error;
         }
@@ -253,10 +197,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                new DataView($0.buffer).setFloat32($1, $2, $3);
-            @}
             else
                 build_error;
         }
@@ -271,10 +211,6 @@ namespace Uno.Runtime.Implementation
             {
                 return System.BitConverter.ToDouble(buffer.GetBytes(offset, 8, littleEndian), 0);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return new DataView($0.buffer).getFloat64($1, $2);
-            @}
             else
                 build_error;
         }
@@ -289,10 +225,6 @@ namespace Uno.Runtime.Implementation
             {
                 buffer.SetBytes(offset, System.BitConverter.GetBytes(value), littleEndian);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                new DataView($0.buffer).setFloat64($1, $2, $3);
-            @}
             else
                 build_error;
         }

@@ -11,18 +11,13 @@ namespace Uno.Runtime.Implementation.Internal
         //
         // Not allowed on android or ios, but possible of course
         // We have tests that we rely on being able to kill like this
-        public static extern(!Android && !iOS && !javascript) void Quit()
+        public static extern(!Android && !iOS) void Quit()
         {
             if (CoreApp.Current is Application)
                 Application.Current.Window.Close();
             else
                 debug_log "\n\n-- DIDNT QUIT, fix this --\n\n"; // {TODO}
         }
-
-        public static extern(javascript) void Quit()
-        @{
-            close();
-        @}
 
         [Foreign(Language.ObjC)]
         public static extern(iOS) void Quit()

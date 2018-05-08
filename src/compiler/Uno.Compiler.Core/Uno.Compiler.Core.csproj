@@ -105,7 +105,6 @@
     <Compile Include="IL\Building\Types\FixedArrayTransform.cs" />
     <Compile Include="IL\Building\Types\MemberTransform.cs" />
     <Compile Include="IL\Building\Types\NameTransform.cs" />
-    <Compile Include="IL\Building\Types\StructCopyTransform.cs" />
     <Compile Include="IL\EntitySwapper.cs" />
     <Compile Include="Syntax\Builders\BundleBuilder.cs" />
     <Compile Include="Syntax\AstILNode.cs" />

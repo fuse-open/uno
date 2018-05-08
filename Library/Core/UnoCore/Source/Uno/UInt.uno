@@ -5,20 +5,16 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.UInt32")]
     [extern(CPLUSPLUS) Set("TypeName", "uint32_t")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     public intrinsic struct UInt
     {
         public const uint MinValue = 0;
         public const uint MaxValue = 0xffffffff;
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -30,7 +26,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

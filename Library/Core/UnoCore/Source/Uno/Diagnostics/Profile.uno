@@ -103,10 +103,6 @@ namespace Uno.Diagnostics
                     fs.Write(bytes, offset, count);
                 }
             }
-            else if defined(JAVASCRIPT)
-            @{
-                /* TODO */
-            @}
             else
                 build_error;
         }

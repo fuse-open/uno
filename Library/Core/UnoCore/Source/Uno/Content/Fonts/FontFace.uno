@@ -11,8 +11,6 @@ namespace Uno.Content.Fonts
         {
             if defined(CPLUSPLUS)
                 return new CppFontFace(file);
-            else if defined(JAVASCRIPT)
-                return new CanvasFontFace(file.Name);
             else if defined(DOTNET)
                 using (var s = file.OpenRead())
                     return new DotNetFontFace(s);
@@ -25,8 +23,6 @@ namespace Uno.Content.Fonts
         {
             if defined(CPLUSPLUS)
                 return new CppFontFace(data, offset, length);
-            else if defined(JAVASCRIPT)
-                return new CanvasFontFace(name);
             else if defined(DOTNET)
             {
                 if (data == null)

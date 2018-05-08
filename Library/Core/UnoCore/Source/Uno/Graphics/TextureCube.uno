@@ -10,10 +10,7 @@ namespace Uno.Graphics
     {
         public static TextureCube Load(BundleFile file)
         {
-            if defined(JAVASCRIPT)
-                return JsTexture.LoadCube(file.BundlePath);
-            else
-                return Load(file.Name, file.ReadAllBytes());
+            return Load(file.Name, file.ReadAllBytes());
         }
 
         public static TextureCube Load(string filename)

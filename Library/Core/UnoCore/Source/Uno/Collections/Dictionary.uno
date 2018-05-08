@@ -12,7 +12,6 @@ namespace Uno.Collections
             Dummy,
         }
 
-        [DontCopyStruct]
         internal struct Bucket
         {
             public TKey Key;

@@ -38,8 +38,6 @@
     "Implementation/iOS/iOSHttpRequest.uno:Source",
     "Implementation/iOS/iOSHttpSharedCache.cpp.uxl:Extensions",
     "Implementation/iOS/iOSHttpSharedCache.uno:Source",
-    "Implementation/JavaScript/JsHttpRequest.js.uxl:Extensions",
-    "Implementation/JavaScript/JsHttpRequest.uno:Source",
     "Implementation/Xli/XliHttpEventHandler.h:File",
     "Implementation/Xli/XliHttpRequest.cpp.uxl:Extensions",
     "Implementation/Xli/XliHttpRequest.uno:Source",

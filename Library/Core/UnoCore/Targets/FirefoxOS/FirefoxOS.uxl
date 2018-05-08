@@ -1,6 +1,0 @@
-<Extensions Backend="JavaScript" Condition="FirefoxOS">
-
-    <ProcessFile Name="manifest.webapp" />
-    <CopyFile Name="img/ico128.png" />
-
-</Extensions>

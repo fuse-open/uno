@@ -5,21 +5,17 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.Int64")]
     [extern(CPLUSPLUS) Set("TypeName", "int64_t")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** Represents a 64-bit signed integer. */
     public intrinsic struct Long
     {
         public const long MinValue = -(long)(0x8000000000000000 - 1) - 1;
         public const long MaxValue = 0x7fffffffffffffff;
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -34,7 +30,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)
@@ -76,10 +71,6 @@ namespace Uno
 
                 return (int64_t)retval;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $ParseStringToNumeric($0, 'long', @{MinValue}, @{MaxValue});
-            @}
             else
                 build_error;
         }
@@ -115,12 +106,6 @@ namespace Uno
                 *$1 = (int64_t)retval;
                 return true;
             @}
-            else if defined(JAVASCRIPT)
-            {
-                var uxlRes = extern<object> "$TryParseStringToNumeric($0, 'long', @{MinValue}, @{MaxValue})";
-                result = extern<long>(uxlRes) "$0.result";
-                return extern<bool>(uxlRes) "$0.success";
-            }
             else
                 build_error;
         }

@@ -25,7 +25,6 @@ namespace Uno.Build.Targets.Uno
             env.Define("CPLUSPLUS");
             env.Define("DOTNET");
             env.Define("IOS");
-            env.Define("JAVASCRIPT");
             env.Define("MAC");
             env.Define("WIN32");
             */

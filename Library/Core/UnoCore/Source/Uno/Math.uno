@@ -30,14 +30,12 @@ namespace Uno
 
         public static double Sin(double radians) {
             if defined(DOTNET) return System.Math.Sin(radians);
-            else if defined(JAVASCRIPT) return extern<double> "Math.sin($@)";
             else if defined(CPLUSPLUS) return extern<double> "sin($@)";
             else build_error;
         }
         [GlslIntrinsic("sin")]
         public static float Sin(float radians) {
             if defined(DOTNET) return (float)System.Math.Sin(radians);
-            else if defined(JAVASCRIPT) return extern<float> "Math.sin($@)";
             else if defined(CPLUSPLUS) return extern<float> "sinf($@)";
             else build_error;
         }
@@ -47,14 +45,12 @@ namespace Uno
 
         public static double Cos(double radians) {
             if defined(DOTNET) return System.Math.Cos(radians);
-            else if defined(JAVASCRIPT) return extern<double> "Math.cos($@)";
             else if defined(CPLUSPLUS) return extern<double> "cos($@)";
             else build_error;
         }
         [GlslIntrinsic("cos")]
         public static float Cos(float radians) {
             if defined(DOTNET) return (float)System.Math.Cos(radians);
-            else if defined(JAVASCRIPT) return extern<float> "Math.cos($@)";
             else if defined(CPLUSPLUS) return extern<float> "cosf($@)";
             else build_error;
         }
@@ -65,13 +61,11 @@ namespace Uno
         public static double Tan(double radians) {
             if defined(DOTNET) return System.Math.Tan(radians);
             else if defined(CPLUSPLUS) return extern<double> "tan($@)";
-            else if defined(JAVASCRIPT) return extern<double> "Math.tan($@)";
             else build_error;
         }
         [GlslIntrinsic("tan")]
         public static float Tan(float radians) {
             if defined(DOTNET) return (float)System.Math.Tan(radians);
-            else if defined(JAVASCRIPT) return extern<float> "Math.tan($@)";
             else if defined(CPLUSPLUS) return extern<float> "tanf($@)";
             else build_error;
         }
@@ -81,14 +75,12 @@ namespace Uno
 
         public static double Asin(double radians) {
             if defined(DOTNET) return System.Math.Asin(radians);
-            else if defined(JAVASCRIPT) return extern<double> "Math.asin($@)";
             else if defined(CPLUSPLUS) return extern<double> "asin($@)";
             else build_error;
         }
         [GlslIntrinsic("asin")]
         public static float Asin(float radians) {
             if defined(DOTNET) return (float)System.Math.Asin(radians);
-            else if defined(JAVASCRIPT) return extern<float> "Math.asin($@)";
             else if defined(CPLUSPLUS) return extern<float> "asinf($@)";
             else build_error;
         }
@@ -98,14 +90,12 @@ namespace Uno
 
         public static double Acos(double radians) {
             if defined(DOTNET) return System.Math.Acos(radians);
-            else if defined(JAVASCRIPT) return extern<double> "Math.acos($@)";
             else if defined(CPLUSPLUS) return extern<double> "acos($@)";
             else build_error;
         }
         [GlslIntrinsic("acos")]
         public static float Acos(float radians) {
             if defined(DOTNET) return (float)System.Math.Acos(radians);
-            else if defined(JAVASCRIPT) return extern<float> "Math.acos($@)";
             else if defined(CPLUSPLUS) return extern<float> "acosf($@)";
             else build_error;
         }
@@ -115,14 +105,12 @@ namespace Uno
 
         public static double Atan(double radians) {
             if defined(DOTNET) return System.Math.Atan(radians);
-            else if defined(JAVASCRIPT) return extern<double> "Math.atan($@)";
             else if defined(CPLUSPLUS) return extern<double> "atan($@)";
             else build_error;
         }
         [GlslIntrinsic("atan")]
         public static float Atan(float radians) {
             if defined(DOTNET) return (float)System.Math.Atan(radians);
-            else if defined(JAVASCRIPT) return extern<float> "Math.atan($@)";
             else if defined(CPLUSPLUS) return extern<float> "atanf($@)";
             else build_error;
         }
@@ -132,14 +120,12 @@ namespace Uno
 
         public static double Atan2(double y, double x) {
             if defined(DOTNET) return System.Math.Atan2(y, x);
-            else if defined(JAVASCRIPT) return extern<double> "Math.atan2($@)";
             else if defined(CPLUSPLUS) return extern<double> "atan2($@)";
             else build_error;
         }
         [GlslIntrinsic("atan")]
         public static float Atan2(float y, float x) {
             if defined(DOTNET) return (float)System.Math.Atan2(y, x);
-            else if defined(JAVASCRIPT) return extern<float> "Math.atan2($@)";
             else if defined(CPLUSPLUS) return extern<float> "atan2f($@)";
             else build_error;
         }
@@ -152,14 +138,12 @@ namespace Uno
 
         public static double Pow(double x, double y) {
             if defined(DOTNET) return System.Math.Pow(x, y);
-            else if defined(JAVASCRIPT) return extern<double> "Math.pow($@)";
             else if defined(CPLUSPLUS) return extern<double> "pow($@)";
             else build_error;
         }
         [GlslIntrinsic("pow")]
         public static float Pow(float x, float y) {
             if defined(DOTNET) return (float)System.Math.Pow(x, y);
-            else if defined(JAVASCRIPT) return extern<float> "Math.pow($@)";
             else if defined(CPLUSPLUS) return extern<float> "powf($@)";
             else build_error;
         }
@@ -175,14 +159,12 @@ namespace Uno
 
         public static double Log(double x) {
             if defined(DOTNET) return System.Math.Log(x);
-            else if defined(JAVASCRIPT) return extern<double> "Math.log($@)";
             else if defined(CPLUSPLUS) return extern<double> "log($@)";
             else build_error;
         }
         [GlslIntrinsic("log")]
         public static float Log(float x) {
             if defined(DOTNET) return (float)System.Math.Log(x);
-            else if defined(JAVASCRIPT) return extern<float> "Math.log($@)";
             else if defined(CPLUSPLUS) return extern<float> "logf($@)";
             else build_error;
         }
@@ -213,14 +195,12 @@ namespace Uno
 
         public static double Sqrt(double x) {
             if defined(DOTNET) return System.Math.Sqrt(x);
-            else if defined(JAVASCRIPT) return extern<double> "Math.sqrt($@)";
             else if defined(CPLUSPLUS) return extern<double> "sqrt($@)";
             else build_error;
         }
         [GlslIntrinsic("sqrt")]
         public static float Sqrt(float x) {
             if defined(DOTNET) return (float)System.Math.Sqrt(x);
-            else if defined(JAVASCRIPT) return extern<float> "Math.sqrt($@)";
             else if defined(CPLUSPLUS) return extern<float> "sqrtf($@)";
             else build_error;
         }
@@ -306,14 +286,12 @@ namespace Uno
 
         public static double Floor(double x) {
             if defined(DOTNET) return System.Math.Floor(x);
-            else if defined(JAVASCRIPT) return extern<double> "Math.floor($@)";
             else if defined(CPLUSPLUS) return extern<double> "floor($@)";
             else build_error;
         }
         [GlslIntrinsic("floor")]
         public static float Floor(float x) {
             if defined(DOTNET) return (float)System.Math.Floor(x);
-            else if defined(JAVASCRIPT) return extern<float> "Math.floor($@)";
             else if defined(CPLUSPLUS) return extern<float> "floorf($@)";
             else build_error;
         }
@@ -323,14 +301,12 @@ namespace Uno
 
         public static double Ceil(double x) {
             if defined(DOTNET) return System.Math.Ceiling(x);
-            else if defined(JAVASCRIPT) return extern<double> "Math.ceil($@)";
             else if defined(CPLUSPLUS) return extern<double> "ceil($@)";
             else build_error;
         }
         [GlslIntrinsic("ceil")]
         public static float Ceil(float x) {
             if defined(DOTNET) return (float)System.Math.Ceiling(x);
-            else if defined(JAVASCRIPT) return extern<float> "Math.ceil($@)";
             else if defined(CPLUSPLUS) return extern<float> "ceilf($@)";
             else build_error;
         }

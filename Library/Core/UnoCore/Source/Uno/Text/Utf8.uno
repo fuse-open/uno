@@ -300,15 +300,6 @@ namespace Uno.Text
             @}
             else if defined(DOTNET)
                 return Encoding.UTF8.GetBytes(value);
-            else if defined(JAVASCRIPT)
-            @{
-                var encodedStr = unescape(encodeURIComponent($0));
-                var bytes = [];
-                for (var i = 0; i < encodedStr.length; i++)
-                    bytes.push(encodedStr.charCodeAt(i));
-
-                return bytes;
-            @}
             else
                 build_error;
         }
@@ -322,10 +313,6 @@ namespace Uno.Text
             @}
             else if defined(DOTNET)
                 return Encoding.UTF8.GetString(value);
-            else if defined(JAVASCRIPT)
-            @{
-                return decodeURIComponent(escape(String.FromArray($0)));
-            @}
             else
                 build_error;
         }
