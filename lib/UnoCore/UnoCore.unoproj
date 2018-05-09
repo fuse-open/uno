@@ -4,11 +4,7 @@
   "Publisher": "Fuse Open",
   "UnoCoreReference": false,
   "InternalsVisibleTo": [
-    "Experimental.Http",
-    "Fuse.Common",
-    "Fuse.GeoLocation",
     "Fuse.Nodes",
-    "FuseCore",
     "UnoCore.Test"
   ],
   "Includes": [
