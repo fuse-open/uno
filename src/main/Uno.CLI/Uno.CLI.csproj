@@ -39,7 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="Android\AdbDevice.cs" />
     <Compile Include="Android\Android.cs" />
@@ -60,7 +60,6 @@
     <Compile Include="Packages\Stuff.cs" />
     <Compile Include="Testing\Test.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Projects\Disasm.cs" />
     <Compile Include="Projects\BuildArguments.cs" />
     <Compile Include="Diagnostics\Config.cs" />
     <Compile Include="Projects\Create.cs" />
@@ -107,6 +106,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Uno.CLI.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

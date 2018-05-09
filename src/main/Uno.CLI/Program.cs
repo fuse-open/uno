@@ -19,9 +19,6 @@ namespace Uno.CLI
             new Projects.BuildCommand(),
             new Projects.NoBuild(),
             new Projects.Clean(),
-#if DEBUG
-            new Projects.Disasm(),
-#endif
             new Testing.Test(),
             new Testing.TestGen(),
             new Packages.Doctor(),

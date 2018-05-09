@@ -25,7 +25,6 @@ Available commands
 
 Experimental commands
   no-build       Invoke generated build steps without triggering a build
-  disasm         Open frontend for inspecting generated code
   test-gen       Generate compilation tests
   install        Install Uno package(s) to the local cache
   uninstall      Uninstall Uno package(s) from the local cache
@@ -181,14 +180,6 @@ Delete generated build and cache directories in project(s).
 
 Available options
   -r, --recursive       Look for project files recursively
-```
-
-## $ uno disasm
-```
-Usage: uno disasm [options] [project-path]
-
-Open frontend for inspecting generated code.
-This command uses the same options as build -- see "uno build --help".
 ```
 
 ## $ uno test
