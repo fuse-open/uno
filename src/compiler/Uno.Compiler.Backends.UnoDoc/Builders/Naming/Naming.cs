@@ -18,10 +18,10 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
             var typeNames = parameterTypes.Select(type =>
             {
                 var suffix = "";
-                if (type.IsArray)
+                while (type.IsArray)
                 {
                     type = type.ElementType;
-                    suffix = "[]";
+                    suffix += "[]";
                 }
                 var name = fullyQualified
                                    ? new EntityNaming().GetFullIndexTitle(type)
