@@ -194,6 +194,23 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return member.DeclaringType.GetUri() == dataType.GetUri() ? member.GetUri() : null;
         }
 
+        ParameterViewModel GetParameterViewModelForParameter(Parameter param)
+        {
+            var suffix = "";
+            var elementType = param.Type;
+            while (elementType.IsArray)
+            {
+                elementType = elementType.ElementType;
+                suffix += "[]";
+            }
+
+            return new ParameterViewModel(param.Name,
+                                    GetDataTypeUri(elementType),
+                                    elementType.IsVirtualType(),
+                                    Naming.GetIndexTitle(elementType) + suffix,
+                                    Naming.GetFullIndexTitle(elementType) + suffix);
+        }
+
         private ParametersViewModel GetParameters(Member member)
         {
             var parameters = member.GetParametersOrNull();
@@ -217,18 +234,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                 throw new Exception($"Found {invisibleParams.Count} parameters for member {member.FullName} that have non-exportable types: {string.Join(", ", names)}");
             }
 
-            var list = parameters.Select(param => param.Type.IsArray
-                                                          ? new ParameterViewModel(param.Name,
-                                                                                   GetDataTypeUri(param.Type.ElementType),
-                                                                                   param.Type.ElementType.IsVirtualType(),
-                                                                                   Naming.GetIndexTitle(param.Type.ElementType) + "[]",
-                                                                                   Naming.GetFullIndexTitle(param.Type.ElementType) + "[]")
-                                                          : new ParameterViewModel(param.Name,
-                                                                                   GetDataTypeUri(param.Type),
-                                                                                   param.Type.IsVirtualType(),
-                                                                                   Naming.GetIndexTitle(param.Type),
-                                                                                   Naming.GetFullIndexTitle(param.Type)))
-                                 .ToList();
+            var list = parameters.Select(param => GetParameterViewModelForParameter(param)).ToList();
             return new ParametersViewModel(list);
         }
 

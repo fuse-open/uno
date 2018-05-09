@@ -104,6 +104,21 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
             return "<" + string.Join(", ", parameterNames) + ">";
         }
 
+        string GetDataTypeString(DataType dataType)
+        {
+            var suffix = "";
+            while (dataType.IsArray)
+            {
+                dataType = dataType.ElementType;
+                suffix += "[]";
+            }
+
+            if (dataType.IsGenericParameter)
+                return dataType.Name + suffix;
+            else
+                return new EntityNaming().GetFullIndexTitle(dataType) + suffix;
+        }
+
         protected string BuildParameters(List<Parameter> parameters, DataType context, bool useSquareBrackets = false)
         {
             if (parameters == null) return null;
@@ -115,25 +130,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
                 var sb = new StringBuilder();
                 sb.Append(string.Join(" ", param.GetModifierNames()));
                 sb.Append(" ");
-
-                if (param.Type.IsArray)
-                {
-                    if (param.Type.IsGenericParameter)
-                    {
-                        sb.Append(param.Type.Name + "[]");
-                    }
-                    else
-                    {
-                        sb.Append(new EntityNaming().GetFullIndexTitle(param.Type.ElementType) + "[]");
-                    }
-                }
-                else
-                {
-                    sb.Append(param.Type.IsGenericParameter
-                                      ? param.Type.Name
-                                      : new EntityNaming().GetFullIndexTitle(param.Type));
-                }
-
+                sb.Append(GetDataTypeString(param.Type));
                 sb.Append(" " + param.Name);
 
                 if (param.OptionalDefault != null)
