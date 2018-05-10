@@ -3,6 +3,10 @@
 
 #include <Uno/ObjectModel.h>
 
+// See @{Uno.Environment.GetCommandLineArgs():Call()}
+int uArgc = 0;
+char** uArgv = nullptr;
+
 @(TypeObjects.Declaration:JoinSorted())
 void uInitRtti(uType*(*factories[])());
 

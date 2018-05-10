@@ -6,6 +6,8 @@
 #include <Rpc.h>
 // Needed for SHGetKnownFolderPath()
 #include <ShlObj.h>
+// Needed for CommandLineToArgvW()
+#include <Shellapi.h>
 
 // windows.h is mean, and define pre-processor symbols that cause problems :(
 
