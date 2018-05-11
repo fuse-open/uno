@@ -10,11 +10,6 @@ BUILD_LIBRARY=1
 CONFIGURATION="Debug"
 REBUILD_LIBRARY=0
 
-# Allow CI system to set the correct SHA when there are multiple VCS roots in the build
-if [ "$BUILD_SHA" ]; then
-    BUILD_VCS_NUMBER=$BUILD_SHA
-fi
-
 # Parse options
 for arg in "$@"; do
     case $arg in
@@ -77,12 +72,6 @@ fi
 
 if [ "$BUILD_PLATFORM" = 1 ]; then
     h1 "Building platform tools"
-    if [ -n "$BUILD_NUMBER" ]; then
-        # BUILD_NUMBER is substring after '+' in value from TC
-        BUILD_NUMBER=`echo $BUILD_NUMBER | grep -o "+.*"`
-        BUILD_NUMBER=${BUILD_NUMBER:1}
-        SLN_ARGS="-b$BUILD_NUMBER -c$BUILD_VCS_NUMBER"
-    fi
 
     # Get version number
     VERSION=`cat VERSION.txt`

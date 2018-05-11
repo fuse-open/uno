@@ -52,7 +52,7 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
 
 # Build
 if [ "$1" != --no-build ]; then
-    bash scripts/build.sh --release; echo ""
+    bash scripts/build.sh --release
 fi
 
 h1 "Creating distribution ($PLATFORM)"
