@@ -47,7 +47,6 @@ namespace Uno.CLI.Projects
             WriteRow("-D, --define=STRING",         "Add define, to enable a feature");
             WriteRow("-U, --undefine=STRING",       "Remove define, to disable a feature");
             WriteRow("-E, --max-errors=NUMBER",     "Set max error count (0 = disable)");
-            WriteRow("-O<0..3>",                    "Set optimization level (0 = disable)");
             WriteRow("-W<0..3>",                    "Set warning level (0 = disable)");
 
             WriteHead("C++ options", 26);
@@ -111,7 +110,6 @@ namespace Uno.CLI.Projects
                     { "S|e|no-strip",           value => options.Strip = false },
                     { "E=|max-errors=",         value => Log.MaxErrorCount = value.ParseInt("E") },
                     { "W=",                     value => options.WarningLevel = value.ParseInt("W") },
-                    { "O=",                     value => options.OptimizeLevel = value.ParseInt("O") },
                     { "D=|define=",             options.Defines.Add },
                     { "U=|undefine=",           options.Undefines.Add },
                     { "release",                value => options.Configuration = BuildConfiguration.Release },

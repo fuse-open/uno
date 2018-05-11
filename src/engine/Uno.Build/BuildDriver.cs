@@ -81,8 +81,7 @@ namespace Uno.Build
                 Debug = _options.Configuration != BuildConfiguration.Release,
                 Parallel = _options.Parallel,
                 Strip = _options.Strip ?? _target.DefaultStrip,
-                CanCacheIL = _options.PackageCache != null,
-                OptimizeLevel = _options.OptimizeLevel
+                CanCacheIL = _options.PackageCache != null
             };
 
             if (_options.Test)
@@ -142,8 +141,6 @@ namespace Uno.Build
                 _env.Define(_target.FormerName);
             if (_options.Defines.Contains("HEADLESS"))
                 _env.Define("HEADLESS");
-            if (_options.OptimizeLevel == 0)
-                _options.Defines.Add("O0"); // disables native optimizations
             if (_compilerOptions.Debug)
                 _env.Define("DEBUG");
             if (_options.Configuration != BuildConfiguration.Debug)
