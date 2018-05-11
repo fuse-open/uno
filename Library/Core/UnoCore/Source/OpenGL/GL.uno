@@ -764,9 +764,9 @@ namespace OpenGL
                 glBindTexture($@);
             @}
             else if defined(DOTNET)
-            @{
-                _gl.BindTexture($@);
-            @}
+            {
+                _gl.BindTexture(target, texture);
+            }
             else
                 build_error;
         }
