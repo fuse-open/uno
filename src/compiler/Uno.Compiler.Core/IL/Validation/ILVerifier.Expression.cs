@@ -591,6 +591,11 @@ namespace Uno.Compiler.Core.IL.Validation
                     _lambdas.Push((Lambda) e);
                     break;
                 }
+                case ExpressionType.ExternOp:
+                {
+                    VerifyExtern(e);
+                    break;
+                }
             }
         }
 

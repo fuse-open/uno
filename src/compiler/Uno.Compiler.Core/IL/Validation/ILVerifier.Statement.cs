@@ -1,4 +1,6 @@
-﻿using Uno.Compiler.API.Domain.IL;
+﻿using Uno.Compiler.API.Backends;
+using Uno.Compiler.API.Domain.Graphics;
+using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Expressions;
 using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.Compiler.API.Domain.IL.Types;
@@ -170,7 +172,20 @@ namespace Uno.Compiler.Core.IL.Validation
 
                     break;
                 }
+                case StatementType.ExternScope:
+                {
+                    VerifyExtern(e);
+                    break;
+                }
             }
+        }
+
+        void VerifyExtern(Statement e)
+        {
+            if (Function is ShaderFunction)
+                return;
+            if (Backend.Has(FunctionOptions.Bytecode))
+                Log.Error(e.Source, ErrorCode.E0000, "This backend does not support 'extern' code");
         }
 
         void VerifySwitchCaseValue(Constant a, Constant b)
