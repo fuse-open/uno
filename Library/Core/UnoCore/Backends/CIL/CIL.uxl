@@ -25,7 +25,6 @@
     <!-- Core assemblies -->
     <Require Assembly="System" />
     <Require Assembly="System.Core" />
-    <Require Assembly="System.Xml" />
     <Require Assembly="@(EXE_DIR)/Uno.Runtime.Core.dll" />
     
     <!-- Native libraries -->
