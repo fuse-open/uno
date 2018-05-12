@@ -27,7 +27,7 @@
     <Set BinaryDirectory="@(AppDirectory)/MacOS" Condition="MAC" />
     <Set BundleDirectory="@(BinaryDirectory)/data" Condition="MAC" />
     <Set Product="@(BinaryDirectory)/@(Project.Name)@(WIN32:Defined:Test('.exe', ''))" />
-    <Set Condition="WIN32" CMake.Generator="Visual Studio 12 2013@(X64:Defined:Test(' Win64', ''))" />
+    <Set Condition="WIN32" CMake.Generator="Visual Studio 15 2017@(X64:Defined:Test(' Win64', ''))" />
 
     <Set Commands.Build="@(WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
     <Set Commands.Run="@(WIN32:Defined:Test('run.bat', 'bash run.sh'))" />
