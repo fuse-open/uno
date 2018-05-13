@@ -129,6 +129,12 @@ namespace Uno.Compiler.Frontend.Preprocessor
 
         public static bool TryParseCondition(string value, out bool result)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                result = false;
+                return false;
+            }
+
             var log = new Log(TextWriter.Null);
             var e = Parser.ParseExpression(log, Source.Unknown, value.ToLower());
 
