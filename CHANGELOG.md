@@ -4,7 +4,7 @@ Uno Changelog
 Unreleased
 ----------
 
-### UnoCore
+#### UnoCore
 - Marked the following methods as obsolete. To get the old behavior, use `Uno.Math.Floor(x + 0.5f)` instead.
     * `Uno.Math.Round(float)`
     * `Uno.Math.Round(float2)`
@@ -33,7 +33,7 @@ Unreleased
     * TextureCubeFileImporter
     * TextureCubeImporter
     * VertexBufferImporter
-- Marked the following methods as obsolete. This pulls in a big dependency that is currently unused.
+- Marked the following methods as obsolete. Those pulled in a big dependency that is currently unused.
     * `Uno.Graphics.Texture2D.Load(BundleFile)`
     * `Uno.Graphics.Texture2D.Load(string)`
     * `Uno.Graphics.Texture2D.Load(string, byte[])`
