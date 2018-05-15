@@ -3,7 +3,7 @@
 
 #include <Uno/_internal.h>
 #include <Uno/ObjectMonitor.h>
-#include <uBase/Thread.h>
+#include <Uno/Support.h>
 #include <string>
 #include <sstream>
 @{Uno.Type:IncludeDirective}
@@ -11,7 +11,7 @@
 
 static bool _Initialized;
 static std::mutex _Mutex;
-static uBase::ThreadLocal* _ThreadLocal;
+static uThreadLocal* _Storage;
 
 #ifdef DEBUG_DUMPS
 static std::unordered_map<uObject*, bool>* _HeapObjects;
@@ -31,12 +31,12 @@ void uFreeSupport();
 
 static uThreadData* uGetThreadData()
 {
-    void* value = uBase::GetThreadLocal(_ThreadLocal);
+    void* value = uGetThreadLocal(_Storage);
 
     if (!value)
     {
         value = new uThreadData();
-        uBase::SetThreadLocal(_ThreadLocal, value);
+        uSetThreadLocal(_Storage, value);
     }
 
     return (uThreadData*)value;
@@ -53,7 +53,7 @@ uRuntime::uRuntime()
         uFatal(NULL, "There is only room for one Uno Runtime object in this process.");
 
     _Initialized = true;
-    _ThreadLocal = uBase::CreateThreadLocal(uFreeThreadData);
+    _Storage = uCreateThreadLocal(uFreeThreadData);
 #ifdef DEBUG_DUMPS
     _HeapObjects = new std::unordered_map<uObject*, bool>();
 #endif
@@ -77,7 +77,7 @@ uRuntime::~uRuntime()
 #ifdef DEBUG_DUMPS
     delete _HeapObjects;
 #endif
-    uBase::DeleteThreadLocal(_ThreadLocal);
+    uDeleteThreadLocal(_Storage);
 }
 
 uStackFrame::uStackFrame(const char* type, const char* function)
