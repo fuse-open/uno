@@ -105,9 +105,8 @@ for f in Library/Core/*; do
     PROJECT=$f/$NAME.unoproj
     if [ -f "$PROJECT" ]; then
         uno pack $PROJECT \
-            --version $VERSION_TRIPLET \
-            --out-dir $OUT \
-            $SUFFIX_OPT
+            --version $VERSION \
+            --out-dir $OUT
     fi
 done
 
