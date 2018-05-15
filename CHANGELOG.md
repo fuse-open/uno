@@ -1,8 +1,8 @@
 Uno Changelog
 =============
 
-Unreleased
-----------
+1.9
+---
 
 #### UnoCore
 - Marked the following methods as obsolete. To get the old behavior, use `Uno.Math.Floor(x + 0.5f)` instead.
