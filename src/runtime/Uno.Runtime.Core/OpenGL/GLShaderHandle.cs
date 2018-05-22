@@ -1,4 +1,4 @@
-// This file was generated based on Library/Core/UnoCore/Source/OpenGL/GLShaderHandle.uno.
+// This file was generated based on lib/UnoCore/Source/OpenGL/GLShaderHandle.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace OpenGL

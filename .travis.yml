@@ -22,8 +22,8 @@ script:
       src/testing/Uno.TestRunner.Tests/bin/Debug/Uno.TestRunner.Tests.dll \
       src/ux/Uno.UX.Markup.AST/Tests/bin/Debug/Uno.UX.Markup.AST.Tests.dll \
       src/ux/Uno.UX.Markup.UXIL/Tests/bin/Debug/Uno.UX.Markup.UXIL.Tests.dll
-  - prebuilt/uno test --target=$TARGET Library
-  - prebuilt/uno test-gen Library/Core /tmp/PackageCompilationTest
+  - prebuilt/uno test --target=$TARGET lib
+  - prebuilt/uno test-gen lib /tmp/PackageCompilationTest
   - prebuilt/uno build --target=$TARGET --no-strip /tmp/PackageCompilationTest
 
 after_failure:

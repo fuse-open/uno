@@ -1,4 +1,4 @@
-// This file was generated based on Library/Core/UnoCore/Source/Uno/UX/Attributes/UXParameterAttribute.uno.
+// This file was generated based on lib/UnoCore/Source/Uno/UX/Attributes/UXParameterAttribute.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace Uno.UX

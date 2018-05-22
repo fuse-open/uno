@@ -1,4 +1,4 @@
-// This file was generated based on Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno.
+// This file was generated based on lib/UnoCore/Source/Uno/Platform/CoreApp.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace Uno.Platform
@@ -41,7 +41,7 @@ namespace Uno.Platform
             }
 
             assert1 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert1 == ApplicationState.Uninitialized, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Uninitialized", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 74, new object[] { (object)assert1, (object)ApplicationState.Uninitialized});
+            global::Uno.Diagnostics.Debug.Assert(assert1 == ApplicationState.Uninitialized, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Uninitialized", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 74, new object[] { (object)assert1, (object)ApplicationState.Uninitialized});
             CoreApp.State = ApplicationState.Background;
             ApplicationStateTransitionHandler handler = CoreApp.Started;
 
@@ -49,7 +49,7 @@ namespace Uno.Platform
                 handler(CoreApp.State);
 
             assert2 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert2 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 84, new object[] { (object)assert2, (object)ApplicationState.Background});
+            global::Uno.Diagnostics.Debug.Assert(assert2 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 84, new object[] { (object)assert2, (object)ApplicationState.Background});
         }
 
         public static void EnterForeground()
@@ -61,12 +61,12 @@ namespace Uno.Platform
             {
                 case ApplicationState.Terminating:
                 {
-                    global::Uno.Diagnostics.Debug.Log("EnterForeground() called on terminating application", global::Uno.Diagnostics.DebugMessageType.Debug, "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 92);
+                    global::Uno.Diagnostics.Debug.Log("EnterForeground() called on terminating application", global::Uno.Diagnostics.DebugMessageType.Debug, "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 92);
                     return;
                 }
                 case ApplicationState.Uninitialized:
                 {
-                    global::Uno.Diagnostics.Debug.Log("EnterForeground() called on uninitialized application", global::Uno.Diagnostics.DebugMessageType.Debug, "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 96);
+                    global::Uno.Diagnostics.Debug.Log("EnterForeground() called on uninitialized application", global::Uno.Diagnostics.DebugMessageType.Debug, "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 96);
                     return;
                 }
                 case ApplicationState.Background:
@@ -77,7 +77,7 @@ namespace Uno.Platform
             }
 
             assert3 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert3 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 108, new object[] { (object)assert3, (object)ApplicationState.Background});
+            global::Uno.Diagnostics.Debug.Assert(assert3 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 108, new object[] { (object)assert3, (object)ApplicationState.Background});
             CoreApp.State = ApplicationState.Foreground;
             ApplicationStateTransitionHandler handler = CoreApp.EnteringForeground;
 
@@ -85,7 +85,7 @@ namespace Uno.Platform
                 handler(CoreApp.State);
 
             assert4 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert4 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 116, new object[] { (object)assert4, (object)ApplicationState.Foreground});
+            global::Uno.Diagnostics.Debug.Assert(assert4 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 116, new object[] { (object)assert4, (object)ApplicationState.Foreground});
         }
 
         public static void EnterInteractive()
@@ -97,12 +97,12 @@ namespace Uno.Platform
             {
                 case ApplicationState.Terminating:
                 {
-                    global::Uno.Diagnostics.Debug.Log("EnterInteractive() called on terminating application", global::Uno.Diagnostics.DebugMessageType.Debug, "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 128);
+                    global::Uno.Diagnostics.Debug.Log("EnterInteractive() called on terminating application", global::Uno.Diagnostics.DebugMessageType.Debug, "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 128);
                     return;
                 }
                 case ApplicationState.Uninitialized:
                 {
-                    global::Uno.Diagnostics.Debug.Log("EnterInteractive() called on uninitialized application", global::Uno.Diagnostics.DebugMessageType.Debug, "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 132);
+                    global::Uno.Diagnostics.Debug.Log("EnterInteractive() called on uninitialized application", global::Uno.Diagnostics.DebugMessageType.Debug, "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 132);
                     return;
                 }
                 case ApplicationState.Background:
@@ -117,7 +117,7 @@ namespace Uno.Platform
             }
 
             assert5 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert5 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 146, new object[] { (object)assert5, (object)ApplicationState.Foreground});
+            global::Uno.Diagnostics.Debug.Assert(assert5 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 146, new object[] { (object)assert5, (object)ApplicationState.Foreground});
             CoreApp.State = ApplicationState.Interactive;
             ApplicationStateTransitionHandler handler = CoreApp.EnteringInteractive;
 
@@ -125,7 +125,7 @@ namespace Uno.Platform
                 handler(CoreApp.State);
 
             assert6 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert6 == ApplicationState.Interactive, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Interactive", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 154, new object[] { (object)assert6, (object)ApplicationState.Interactive});
+            global::Uno.Diagnostics.Debug.Assert(assert6 == ApplicationState.Interactive, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Interactive", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 154, new object[] { (object)assert6, (object)ApplicationState.Interactive});
         }
 
         public static void ExitInteractive()
@@ -147,7 +147,7 @@ namespace Uno.Platform
             }
 
             assert7 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert7 == ApplicationState.Interactive, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Interactive", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 178, new object[] { (object)assert7, (object)ApplicationState.Interactive});
+            global::Uno.Diagnostics.Debug.Assert(assert7 == ApplicationState.Interactive, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Interactive", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 178, new object[] { (object)assert7, (object)ApplicationState.Interactive});
             CoreApp.State = ApplicationState.Foreground;
             ApplicationStateTransitionHandler handler = CoreApp.ExitedInteractive;
 
@@ -155,7 +155,7 @@ namespace Uno.Platform
                 handler(CoreApp.State);
 
             assert8 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert8 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 186, new object[] { (object)assert8, (object)ApplicationState.Foreground});
+            global::Uno.Diagnostics.Debug.Assert(assert8 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 186, new object[] { (object)assert8, (object)ApplicationState.Foreground});
         }
 
         public static void EnterBackground()
@@ -181,7 +181,7 @@ namespace Uno.Platform
             }
 
             assert9 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert9 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 210, new object[] { (object)assert9, (object)ApplicationState.Foreground});
+            global::Uno.Diagnostics.Debug.Assert(assert9 == ApplicationState.Foreground, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Foreground", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 210, new object[] { (object)assert9, (object)ApplicationState.Foreground});
             CoreApp.State = ApplicationState.Background;
             ApplicationStateTransitionHandler handler = CoreApp.EnteringBackground;
 
@@ -189,7 +189,7 @@ namespace Uno.Platform
                 handler(CoreApp.State);
 
             assert10 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert10 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 218, new object[] { (object)assert10, (object)ApplicationState.Background});
+            global::Uno.Diagnostics.Debug.Assert(assert10 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 218, new object[] { (object)assert10, (object)ApplicationState.Background});
         }
 
         public static void Terminate()
@@ -213,7 +213,7 @@ namespace Uno.Platform
             }
 
             assert11 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert11 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 238, new object[] { (object)assert11, (object)ApplicationState.Background});
+            global::Uno.Diagnostics.Debug.Assert(assert11 == ApplicationState.Background, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Background", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 238, new object[] { (object)assert11, (object)ApplicationState.Background});
             CoreApp.State = ApplicationState.Terminating;
             ApplicationStateTransitionHandler handler = CoreApp.Terminating;
 
@@ -221,7 +221,7 @@ namespace Uno.Platform
                 handler(CoreApp.State);
 
             assert12 = CoreApp.State;
-            global::Uno.Diagnostics.Debug.Assert(assert12 == ApplicationState.Terminating, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Terminating", "Library/Core/UnoCore/Source/Uno/Platform/CoreApp.uno", 246, new object[] { (object)assert12, (object)ApplicationState.Terminating});
+            global::Uno.Diagnostics.Debug.Assert(assert12 == ApplicationState.Terminating, "Uno.Platform.CoreApp.State == Uno.Platform.ApplicationState.Terminating", "lib/UnoCore/Source/Uno/Platform/CoreApp.uno", 246, new object[] { (object)assert12, (object)ApplicationState.Terminating});
             CoreApp.State = ApplicationState.Uninitialized;
         }
 

@@ -1,4 +1,4 @@
-// This file was generated based on Library/Core/UnoCore/Source/Uno/Compiler/ExportTargetInterop/TargetSpecificTypeAttribute.uno.
+// This file was generated based on lib/UnoCore/Source/Uno/Compiler/ExportTargetInterop/TargetSpecificTypeAttribute.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace Uno.Compiler.ExportTargetInterop

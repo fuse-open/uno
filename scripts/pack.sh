@@ -71,7 +71,7 @@ p cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $BIN
 p cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $BIN
 
 # Core packages (used for testing)
-p cp -R Library/Core/build/* $LIB
+p cp -R lib/build/* $LIB
 
 # Put app loaders for macOS and Windows in subdirectories, to avoid conflicts
 mkdir -p $BIN/apploader-mac
@@ -108,7 +108,7 @@ uno stuff pack $DST \
     --modular
 
 # Create Uno packages
-for f in Library/Core/*; do
+for f in lib/*; do
     NAME=`basename "$f"`
     PROJECT=$f/$NAME.unoproj
     if [ -f "$PROJECT" ]; then

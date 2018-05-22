@@ -16,7 +16,7 @@ if WIN32 {
 // Package config
 Packages.InstallDirectory: prebuilt/lib
 Packages.SourcePaths += [
-    Library/Core
+    lib
     lib/fuselibs/Source
     lib/premiumlibs/Source
 ]

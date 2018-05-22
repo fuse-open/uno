@@ -1,4 +1,4 @@
-// This file was generated based on Library/Core/UnoCore/Source/Uno/Platform2/Internal/Application.uno.
+// This file was generated based on lib/UnoCore/Source/Uno/Platform2/Internal/Application.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace Uno.Platform2.Internal

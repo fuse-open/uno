@@ -1,4 +1,4 @@
-// This file was generated based on Library/Core/UnoCore/Source/OpenGL/IGL.uno.
+// This file was generated based on lib/UnoCore/Source/OpenGL/IGL.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace OpenGL

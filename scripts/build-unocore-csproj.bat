@@ -3,7 +3,7 @@
 :: Non-cmd.exe users should use 'make unocore' or 'bash build.sh --unocore' instead.
 :: This Windows port is only for the weak.
 pushd "%~dp0.."
-set SRC_DIR=Library\Core\UnoCore
+set SRC_DIR=lib\UnoCore
 set OUT_DIR=%SRC_DIR%\build\corelib\Debug
 set DST_DIR=src\runtime\Uno.Runtime.Core
 set MSBUILD=%PROGRAMFILES(X86)%\MSBuild\14.0\bin\MSBuild
