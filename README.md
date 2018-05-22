@@ -100,9 +100,9 @@ is included with the installer as of Visual Studio 2017 Update 2 and later.
 
 ## Running
 
-To run `uno` in your terminal, type `<current-directory>/prebuilt/uno`.
+To run `uno` in your terminal, type `<current-directory>/bin/uno`.
 
-Add `<current-directory>/prebuilt` to your *PATH* to get `uno` (alias `uno-dev`) globally available in your environment.
+Add `<current-directory>/bin` to your *PATH* to get `uno` (alias `uno-dev`) globally available in your environment.
 
 You can also type `make install` if you want symlinks in `/usr/local/bin`.
 

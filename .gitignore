@@ -45,7 +45,7 @@ build/
 .stuff/
 .unobuild
 .vs/
-bin/
+**/bin/
 obj/
 /diagrams/
 /packages/

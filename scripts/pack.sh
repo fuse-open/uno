@@ -96,7 +96,7 @@ done
 p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
 
 # Generate launcher
-p cp prebuilt/uno prebuilt/uno.exe $DST
+p cp bin/uno bin/uno.exe $DST
 echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
 echo "bin" > $DST/.unopath
 

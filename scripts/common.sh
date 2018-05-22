@@ -42,7 +42,7 @@ function dotnet-clr {
 }
 
 function uno {
-    dotnet-clr prebuilt/uno.exe "$@"
+    dotnet-clr bin/uno.exe "$@"
 }
 
 function h1 {
