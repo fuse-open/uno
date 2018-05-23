@@ -57,9 +57,6 @@ MonoBundle
 *.sublime-project
 *.sublime-workspace
 
-# VSCode files
-.vscode/
-
 # Misc
 buildlog.txt
 TMP_DL
