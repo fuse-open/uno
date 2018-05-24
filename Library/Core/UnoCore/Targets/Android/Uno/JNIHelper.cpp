@@ -18,7 +18,7 @@ void JniHelper::Init(JavaVM* vm, JNIEnv* env, jclass activityClass, jclass nativ
 {
     VM = vm;
     if (pthread_key_create(&JniThreadKey, JniDestroyThread))
-        LOGD("JNI ERROR: Unable to create pthread key"); // Not fatal
+        U_LOG("JNI ERROR: Unable to create pthread key"); // Not fatal
 
     ActivityClass = reinterpret_cast<jclass>(env->NewGlobalRef(activityClass));
     NativeExternClass = reinterpret_cast<jclass>(env->NewGlobalRef(nativeExternClass));
