@@ -138,5 +138,5 @@ set up uno's configuration files for your build-environment.
 Please read [the command-line reference documentation][doc2] for details on how to
 use uno's command-line interface.
 
-[doc1]: Documentation/Configuration.md
-[doc2]: Documentation/CommandLineReference.md
+[doc1]: docs/configuration.md
+[doc2]: docs/command-line-reference.md
