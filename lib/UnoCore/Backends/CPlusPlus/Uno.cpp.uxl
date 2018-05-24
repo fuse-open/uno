@@ -10,6 +10,7 @@
     <ProcessFile SourceFile="Uno/_main.cpp" Condition="!MOBILE"/>
     <ProcessFile SourceFile="Uno/_mainMobile.cpp" Condition="MOBILE" />
     <ProcessFile HeaderFile="Uno/GraphicsContext.h" />
+    <ProcessFile HeaderFile="Uno/GLHelper.h" Condition="OPENGL" />
     <ProcessFile SourceFile="Uno/Memory.cpp" />
     <ProcessFile HeaderFile="Uno/Memory.h" />
     <ProcessFile SourceFile="Uno/NativeStackTrace.cpp" />
@@ -20,7 +21,7 @@
     <ProcessFile HeaderFile="Uno/Support.h" />
     <ProcessFile SourceFile="Uno/SupportApple.mm" Condition="APPLE" />
     <ProcessFile HeaderFile="Uno/Uno.h" />
-    <ProcessFile HeaderFile="Uno/WinAPIHelper.h" />
+    <ProcessFile HeaderFile="Uno/WinAPIHelper.h" Condition="WIN32" />
     <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
     <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
 
