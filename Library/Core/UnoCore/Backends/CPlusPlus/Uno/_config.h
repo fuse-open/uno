@@ -26,7 +26,7 @@ const float FLT_NAN = (float)DBL_NAN;
 // Source info
 #define U_STR1(STR) #STR
 #define U_STR2(STR) U_STR1(STR)
-#define U_SOURCE __FILE__ ":" U_STR2(__LINE__)
+#define U_SOURCE __FILE__ "(" U_STR2(__LINE__) ")"
 
 // Logging
 enum uLogLevel {
