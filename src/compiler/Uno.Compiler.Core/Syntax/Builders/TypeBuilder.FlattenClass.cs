@@ -21,6 +21,9 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 var cd = item as AstClass;
                 if (cd != null && cd.Modifiers.HasFlag(Modifiers.Partial) && cd.Name.Symbol == astClass.Name.Symbol)
                 {
+                    if (!_env.Test(cd.Name.Source, cd.OptionalCondition))
+                        continue;
+
                     if (astClass.OptionalGeneric != null && cd.OptionalGeneric == null ||
                         cd.OptionalGeneric != null && astClass.OptionalGeneric == null)
                         continue;
@@ -72,9 +75,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     Log.Error(part.Name.Source, ErrorCode.E0000, "Partial class cannot specify 'sealed', because it is declared 'abstract' somewhere else");
                 else if (part.Modifiers.HasFlag(Modifiers.Abstract) && modifiers.HasFlag(Modifiers.Sealed))
                     Log.Error(part.Name.Source, ErrorCode.E0000, "Partial class cannot specify 'abstract', because it is declared 'sealed' somewhere else");
-
-                if (part.OptionalCondition != null)
-                    Log.Error(part.Name.Source, ErrorCode.E0000, "Partial class does not support 'extern(CONDITION)'");
 
                 if (part.OptionalGeneric != null && part != astClass)
                 {
