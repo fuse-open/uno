@@ -7,8 +7,8 @@
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 
-#define WITH_STATIC_JAVA_METHOD(HANDLEVAR,JCLASS,METHODNAMESTR,METHODSIGSTR) JniHelper __jni; static jmethodID HANDLEVAR; if (uEnterCriticalIfNull(&HANDLEVAR)) { HANDLEVAR = __jni->GetStaticMethodID(JCLASS, METHODNAMESTR, METHODSIGSTR); uExitCritical(); if (!HANDLEVAR) {LOGD("Cannot cache mid for " METHODNAMESTR); throw uBase::Exception("Cannot cache mid for " METHODNAMESTR);}}
-#define WITH_STATIC_JAVA_METHOD_USEJNI(HANDLEVAR,JCLASS,METHODNAMESTR,METHODSIGSTR) static jmethodID HANDLEVAR; if (uEnterCriticalIfNull(&HANDLEVAR)) { HANDLEVAR = __jni->GetStaticMethodID(JCLASS, METHODNAMESTR, METHODSIGSTR); uExitCritical(); if (!HANDLEVAR) { LOGD("Cannot cache mid for " METHODNAMESTR); throw uBase::Exception("Cannot cache mid for " METHODNAMESTR); } }
+#define WITH_STATIC_JAVA_METHOD(HANDLEVAR,JCLASS,METHODNAMESTR,METHODSIGSTR) JniHelper __jni; static jmethodID HANDLEVAR; if (uEnterCriticalIfNull(&HANDLEVAR)) { HANDLEVAR = __jni->GetStaticMethodID(JCLASS, METHODNAMESTR, METHODSIGSTR); uExitCritical(); if (!HANDLEVAR) {LOGD("Cannot cache mid for " METHODNAMESTR); U_FATAL("Cannot cache mid for " METHODNAMESTR);}}
+#define WITH_STATIC_JAVA_METHOD_USEJNI(HANDLEVAR,JCLASS,METHODNAMESTR,METHODSIGSTR) static jmethodID HANDLEVAR; if (uEnterCriticalIfNull(&HANDLEVAR)) { HANDLEVAR = __jni->GetStaticMethodID(JCLASS, METHODNAMESTR, METHODSIGSTR); uExitCritical(); if (!HANDLEVAR) { LOGD("Cannot cache mid for " METHODNAMESTR); U_FATAL("Cannot cache mid for " METHODNAMESTR); } }
 
 #if @(Runtime.CatchCppExceptions)==2
 #define JNI_TRY try{

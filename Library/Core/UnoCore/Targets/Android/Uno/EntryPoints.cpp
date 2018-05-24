@@ -177,7 +177,7 @@ void AttachNativeCallbacks(JNIEnv* jni, jclass entryPointClass)
     int attached = (int)jni->RegisterNatives(entryPointClass, native_activity_funcs, 11);
     if (attached < 0) {
         LOGD("COULD NOT REGISTER NATIVE ACTIVITY FUNCTIONS");
-        throw uBase::Exception("COULD NOT REGISTER NATIVE ACTIVITY FUNCTIONS");
+        U_FATAL("COULD NOT REGISTER NATIVE ACTIVITY FUNCTIONS");
     }
 }
 
@@ -205,15 +205,15 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
 
     if (!activityClass) {
         LOGD("COULD NOT FIND ACTIVITY CLASS");
-        throw uBase::Exception("COULD NOT FIND ACTIVITY CLASS");
+        U_FATAL("COULD NOT FIND ACTIVITY CLASS");
     }
     if (!entryPointsClass) {
         LOGD("COULD NOT FIND ENTRYPOINTS CLASS");
-        throw uBase::Exception("COULD NOT FIND ENTRYPOINTS CLASS");
+        U_FATAL("COULD NOT FIND ENTRYPOINTS CLASS");
     }
     if (!nativeExternClass) {
         LOGD("COULD NOT FIND NATIVEEXTERNCLASS CLASS");
-        throw uBase::Exception("COULD NOT FIND NATIVEEXTERNCLASS CLASS");
+        U_FATAL("COULD NOT FIND NATIVEEXTERNCLASS CLASS");
     }
 
     // systems

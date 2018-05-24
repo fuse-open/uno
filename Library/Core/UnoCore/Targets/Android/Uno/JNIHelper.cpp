@@ -34,7 +34,7 @@ JniHelper::JniHelper()
     {
         status_ = (int)VM->AttachCurrentThread(&env, NULL);
         if (status_ != JNI_OK)
-            throw uBase::Exception("JNI ERROR: Failed to attach current thread");
+            U_FATAL("JNI ERROR: Failed to attach current thread");
     }
     if (!pthread_getspecific(JniThreadKey))
     {
