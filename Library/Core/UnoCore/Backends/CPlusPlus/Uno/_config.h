@@ -42,7 +42,7 @@ void uLogv(int level, const char* format, va_list args);
 
 // Kill switch
 U_NORETURN void uFatal(const char* src = NULL, const char* msg = NULL);
-#define U_FATAL() uFatal(U_SOURCE)
+#define U_FATAL(...) uFatal(U_SOURCE, "" __VA_ARGS__)
 
 // Asserts
 #ifdef DEBUG_UNSAFE
