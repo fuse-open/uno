@@ -61,6 +61,8 @@
         TargetWidth="40" TargetName="@(Icons)/iPhone_20_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPhone_20_3x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="60" TargetName="@(Icons)/iPhone_20_3x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPhone_29_1x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="29" TargetName="@(Icons)/iPhone_29_1x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPhone_29_2x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="58" TargetName="@(Icons)/iPhone_29_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPhone_29_3x:Path || '@//Assets/DefaultIcon.png')"
@@ -69,6 +71,10 @@
         TargetWidth="80" TargetName="@(Icons)/iPhone_40_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPhone_40_3x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="120" TargetName="@(Icons)/iPhone_40_3x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPhone_57_1x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="57" TargetName="@(Icons)/iPhone_57_1x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPhone_57_2x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="114" TargetName="@(Icons)/iPhone_57_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPhone_60_2x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="120" TargetName="@(Icons)/iPhone_60_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPhone_60_3x:Path || '@//Assets/DefaultIcon.png')"
@@ -85,6 +91,14 @@
         TargetWidth="40" TargetName="@(Icons)/iPad_40_1x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPad_40_2x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="80" TargetName="@(Icons)/iPad_40_2x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPad_50_1x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="50" TargetName="@(Icons)/iPad_50_1x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPad_50_2x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="100" TargetName="@(Icons)/iPad_50_2x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPad_72_1x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="72" TargetName="@(Icons)/iPad_72_1x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iPad_72_2x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="144" TargetName="@(Icons)/iPad_72_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPad_76_1x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="76" TargetName="@(Icons)/iPad_76_1x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPad_76_2x:Path || '@//Assets/DefaultIcon.png')"

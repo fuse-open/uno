@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-#if @('@(DEBUG:Defined) && @(Project.iOS.SystemCapabilities.Push:IsSet)':Test(@(Project.iOS.SystemCapabilities.Push),0))
+#if @(@(Project.iOS.SystemCapabilities.Push:IsSet):Test(@(Project.iOS.SystemCapabilities.Push),0))
 	<key>aps-environment</key>
 	<string>development</string>
 #endif
