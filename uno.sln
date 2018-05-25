@@ -4,11 +4,11 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D400}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI.Main", "src\main\Uno.CLI.Main\Uno.CLI.Main.csproj", "{AE4B5DFC-F0FA-46A0-9ADB-C284E70A7BA5}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI", "src\main\Uno.CLI\Uno.CLI.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI.Loader", "src\main\Uno.CLI.Loader\Uno.CLI.Loader.csproj", "{8AE4FBD3-302B-46AC-B0AB-5E8B7604DBCC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI.Main", "src\main\Uno.CLI.Main\Uno.CLI.Main.csproj", "{AE4B5DFC-F0FA-46A0-9ADB-C284E70A7BA5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D401}"
 EndProject
