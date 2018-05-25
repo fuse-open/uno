@@ -8,7 +8,6 @@ Assemblies.TestGen: src/testing/Uno.TestGenerator/bin/$(Configuration)/uno-test-
 Assemblies.Uno: src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe
 
 if WIN32 {
-    Assemblies.Disasm: src/disasm/Uno.Disasm-WPF/bin/$(Configuration)/uno-disasm.exe
     Paths.AppLoader: src/runtime/@(AppLoaderProj)/bin/$(Configuration)
 } else if MAC {
     Paths.AppLoader: src/runtime/@(AppLoaderProj)/bin/$(Configuration)
