@@ -9,7 +9,7 @@ echo WARNING: This script is deprecated, please run 'make' or 'bash scripts/buil
 echo.
 
 :: Do required things || goto ERROR
-"%MSBUILD%" /m uno-win32.sln || goto MSBUILD_ERROR
+"%MSBUILD%" /m uno.sln || goto MSBUILD_ERROR
 %UNO% doctor -e || goto ERROR
 popd && exit /b 0
 

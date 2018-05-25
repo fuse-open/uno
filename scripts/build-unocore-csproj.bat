@@ -10,7 +10,7 @@ set MSBUILD=%PROGRAMFILES(X86)%\MSBuild\14.0\bin\MSBuild
 set UNO=prebuilt\uno
 
 :: Build uno.exe
-"%MSBUILD%" /m /p:Configuration=Debug uno-win32.sln || goto ERROR
+"%MSBUILD%" /m /p:Configuration=Debug uno.sln || goto ERROR
 
 :: Build Uno project
 %UNO% build corelib %SRC_DIR% || goto ERROR

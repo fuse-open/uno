@@ -9,7 +9,7 @@ env:
     - TARGET=native
 
 install:
-  - nuget restore uno-macos.sln
+  - nuget restore uno.sln
   - nuget install NUnit.ConsoleRunner -Version 3.8.0
 
 before_script:

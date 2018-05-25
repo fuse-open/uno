@@ -87,19 +87,8 @@ if [ "$BUILD_PLATFORM" = 1 ]; then
     # Get version number
     VERSION=`cat VERSION.txt`
 
-   case $OSTYPE in
-    msys*)
-        # Build C# solution
-        csharp-build uno-win32.sln
-
-        ;;
-
-    darwin*)
-        # Build C# solution
-        csharp-build uno-macos.sln
-
-        ;;
-    esac
+    # Build C# solution
+    csharp-build uno.sln
 fi
 
 if [ "$BUILD_LIBRARY" = 1 ]; then
