@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
@@ -628,6 +629,11 @@ namespace Uno.Compiler.Core.Syntax
                         {
                             graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                             graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                            if (_env.GetString("Target").ToUpper() == "IOS")
+                            {
+                                graphics.Clear(Color.White);
+                                graphics.CompositingMode = CompositingMode.SourceOver;
+                            }
                             graphics.DrawImage(originalImg, new Rectangle(0, 0, width, height));
                             resizedImg.Save(dst);
                         }
