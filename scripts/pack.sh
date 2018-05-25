@@ -8,7 +8,21 @@ DST="release"
 BIN="$DST/bin"
 LIB="$DST/lib"
 OUT="upload"
-PLATFORM=`get-platform`
+
+case $OSTYPE in
+  darwin*)
+    PLATFORM="macOS"
+    ;;
+  msys*)
+    PLATFORM="win32"
+    ;;
+  linux*)
+    PLATFORM="linux"
+    ;;
+  *)
+    echo "ERROR: unknown OSTYPE: '$OSTYPE'" >&2
+    exit 1
+esac
 
 # Detect version
 if [ -n "$RELEASE_VERSION" ]; then
