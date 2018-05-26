@@ -139,13 +139,25 @@ namespace Uno.Compiler.Core.IL.Bytecode
                     break;
 
                 case ExpressionType.This:
-                case ExpressionType.Base:
                     {
                         if (pop) return;
                         Emit(Opcodes.This);
 
                         if (!addressMode && Function.DeclaringType.IsValueType)
                             Emit(Opcodes.LoadObj, Function.DeclaringType);
+                    }
+                    break;
+
+                case ExpressionType.Base:
+                    {
+                        if (pop) return;
+                        Emit(Opcodes.This);
+
+                        if (!Function.DeclaringType.IsValueType)
+                            return;
+
+                        Emit(Opcodes.LoadObj, Function.DeclaringType);
+                        Emit(Opcodes.Box, Function.DeclaringType);
                     }
                     break;
 
