@@ -9,10 +9,6 @@ namespace Uno
     [extern(CPLUSPLUS) Set("TypeOfFunction", "uObject_typeof")]
     public intrinsic class Object
     {
-        public Object()
-        {
-        }
-
         public Type GetType()
         {
             if defined(CPLUSPLUS)

@@ -501,6 +501,9 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 _enqueuedActions.Add(() =>
                     {
                         parameterizedType.AssignBaseType();
+                        if (parameterizedType.Base == null)
+                            return;
+
                         parameterizedType.Base.PopulateMembers();
 
                         Constructor callCtor = null;
