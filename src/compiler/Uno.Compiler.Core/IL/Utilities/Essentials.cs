@@ -57,6 +57,7 @@ namespace Uno.Compiler.Core.IL.Utilities
         public DataType StringEnumerable { get; private set; }
         public DataType Bundle { get; private set; }
         public DataType Monitor { get; private set; }
+        public DataType ValueType { get; private set; }
 
         public DataType Importer_T { get; private set; }
         public DataType BlockFactory { get; private set; }
@@ -151,6 +152,7 @@ namespace Uno.Compiler.Core.IL.Utilities
             StringEnumerable = ilf.GetType("Uno.Runtime.Implementation.Internal.StringEnumerable");
             Bundle = ilf.GetType("Uno.IO.Bundle");
             Monitor = ilf.GetType("Uno.Threading.Monitor");
+            ValueType = ilf.GetType("Uno.ValueType");
 
             FilenameAttribute = ilf.GetType("Uno.Compiler.ImportServices.FilenameAttribute");
             DontExportAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.DontExportAttribute");

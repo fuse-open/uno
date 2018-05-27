@@ -98,6 +98,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
             if (baseType != null)
                 parameterizedType.SetBase(baseType);
+            else if (parameterizedType.IsStruct)
+                parameterizedType.SetBase(_ilf.Essentials.ValueType);
             else if (parameterizedType != _ilf.Essentials.Object && !parameterizedType.IsStatic)
                 parameterizedType.SetBase(_ilf.Essentials.Object);
 
