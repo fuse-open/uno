@@ -54,9 +54,7 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             @{
-                return $$->__type->Type == uTypeTypeEnum
-                    ? uEnum::GetString($$->__type, (uint8_t*)$$ + sizeof(uObject))
-                    : uString::Const($$->__type->FullName);
+                return uString::Const($$->__type->FullName);
             @}
             else
                 build_error;

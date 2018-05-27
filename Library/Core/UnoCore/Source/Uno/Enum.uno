@@ -3,8 +3,19 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Enum")]
-    public static class Enum
+    [extern(CPLUSPLUS) Set("TypeName", "uObject*")]
+    public abstract class Enum : ValueType
     {
+        public override string ToString()
+        {
+            if defined(CPLUSPLUS)
+            @{
+                return uEnum::GetString($$->__type, (uint8_t*)$$ + sizeof(uObject));
+            @}
+            else
+                build_error;
+        }
+
         public static object Parse(Type type, string str, bool ignoreCase)
         {
             if defined(CPLUSPLUS)

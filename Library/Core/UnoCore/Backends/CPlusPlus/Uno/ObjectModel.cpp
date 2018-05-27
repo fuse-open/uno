@@ -21,6 +21,7 @@
 @{Uno.ArgumentNullException:IncludeDirective}
 @{Uno.ArgumentOutOfRangeException:IncludeDirective}
 @{Uno.Delegate:IncludeDirective}
+@{Uno.Enum:IncludeDirective}
 @{Uno.IndexOutOfRangeException:IncludeDirective}
 @{Uno.InvalidCastException:IncludeDirective}
 @{Uno.InvalidOperationException:IncludeDirective}
@@ -1201,6 +1202,7 @@ uEnumType* uEnumType::New(const char* name, uType* base, size_t literalCount)
     type->Literals = (uEnumLiteral*)((uint8_t*)type + sizeof(uEnumType));
     type->fp_GetHashCode = @{Uno.ValueType.GetHashCode():Function};
     type->fp_Equals = @{Uno.ValueType.Equals(object):Function};
+    type->fp_ToString = @{Uno.Enum.ToString():Function};
 
 #if @(REFLECTION:Defined)
     uRegisterType(type);
