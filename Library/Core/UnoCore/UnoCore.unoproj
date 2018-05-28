@@ -468,7 +468,6 @@
     "Targets/Android/run.bat:File",
     "Targets/Android/run.sh:File",
     "Targets/Android/settings.gradle:File",
-    "Targets/Android/Uno/AndroidCommon.h:File",
     "Targets/Android/Uno/Base/Bootstrapper.cpp.uxl:Extensions",
     "Targets/Android/Uno/Base/Bootstrapper.uno:Source",
     "Targets/Android/Uno/Base/BootstrapperImpl_Android.cpp:File",

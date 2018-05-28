@@ -3,7 +3,6 @@
 #include <uBase/BaseLib.h>
 #include <XliPlatform/PlatformSpecific/Android.h>
 
-#include <Uno/AndroidCommon.h>
 #include <Uno/JNIHelper.h>
 #include <Uno/Graphics/GLHelper.h>
 

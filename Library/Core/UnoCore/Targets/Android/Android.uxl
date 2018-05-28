@@ -90,7 +90,6 @@
 
     <!-- C++ source -->
 
-    <ProcessFile HeaderFile="Uno/AndroidCommon.h" />
     <ProcessFile SourceFile="Uno/EntryPoints.cpp" />
     <ProcessFile HeaderFile="Uno/JNIHelper.h" />
     <ProcessFile SourceFile="Uno/JNIHelper.cpp" />

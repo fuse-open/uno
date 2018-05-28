@@ -2,7 +2,6 @@
 #include <jni.h>
 #include <pthread.h>
 #include <Uno/Uno.h>
-#include <Uno/AndroidCommon.h>
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 
