@@ -1,6 +1,9 @@
 Uno Changelog
 =============
 
+#### Uno Compiler
+- `uno disasm` has been removed on Windows, as it's not very useful to end-users, and it complicates project maintainence.
+
 1.9
 ---
 

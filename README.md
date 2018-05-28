@@ -112,7 +112,7 @@ On Windows, some additional runtimes might be needed.
 ## Debugging
 
 When Uno is built, a C# solution is generated in `<current-directory>`.
-To debug, open `uno-win32.sln` or `uno-macos.sln` in a capable
+To debug, open `uno.sln` in a capable
 IDE<sup>[1]</sup> and go from there. Use `main/Uno.CLI.Main` as startup
 project to launch `uno`'s main method.
 
