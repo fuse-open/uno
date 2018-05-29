@@ -68,15 +68,6 @@ JNIEnv* JniHelper::operator->()
     return env;
 }
 
-uBase::String JniHelper::GetString(jobject str)
-{
-    JniHelper jni;
-    const char* utf8 = jni->GetStringUTFChars((jstring)str, NULL);
-    uBase::String result = utf8;
-    jni->ReleaseStringUTFChars((jstring)str, utf8);
-    return result;
-}
-
 @{string} JniHelper::JavaToUnoString(jstring jstr)
 {
     JniHelper jni;

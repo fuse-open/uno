@@ -1,6 +1,5 @@
 #pragma once
 #include <jni.h>
-#include <uBase/String.h>
 #include <pthread.h>
 #include <Uno/Uno.h>
 #include <Uno/AndroidCommon.h>
@@ -38,7 +37,6 @@ public:
 
     static jclass GetActivityClass();
     static jclass GetNativeExternClass();
-    static uBase::String GetString(jobject jstr);
     static @{string} JavaToUnoString(jstring jstr);
     static jstring UnoToJavaString(@{string} ustr);
     static float GetDensity();
