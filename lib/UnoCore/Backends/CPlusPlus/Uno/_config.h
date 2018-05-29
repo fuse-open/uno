@@ -6,7 +6,6 @@
 #include <cstring>
 #include <stdint.h>
 #include <stdarg.h>
-#include <uBase/Config.h>
 
 // Debugging
 //#define DEBUG_ARC 0 // 0..4
@@ -14,8 +13,17 @@
 //#define DEBUG_UNSAFE 1
 //#define DEBUG_GENERICS 1
 
+// Attributes
+#ifdef _MSC_VER
+# define U_FUNCTION __FUNCTION__
+# define U_NORETURN __declspec(noreturn)
+#else
+# define U_FUNCTION __PRETTY_FUNCTION__
+# define U_NORETURN __attribute__((noreturn))
+#endif
+
 // Constants
-#if MSVC
+#ifdef _MSC_VER
 #pragma warning( disable : 4756 ) // overflow in constant arithmetic
 #endif
 const double DBL_INF = (double)(DBL_MAX + DBL_MAX);
@@ -60,7 +68,7 @@ T uAssertPtr(T ptr, const char* src, const char* msg) {
 #endif
 
 // Stack alloc
-#if MSVC
+#ifdef _MSC_VER
 #include <malloc.h>
 #else
 #include <alloca.h>
