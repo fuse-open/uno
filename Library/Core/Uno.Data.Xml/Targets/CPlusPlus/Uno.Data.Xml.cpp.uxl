@@ -15,7 +15,7 @@
             <Require Source.Include="@{Uno.Data.Xml.XmlException:Include}" />
             <Body>
                 pugi::xml_document doc;
-                pugi::xml_parse_result parseResult = doc.load(uStringToXliString($0).Ptr(), pugi::parse_full);
+                pugi::xml_parse_result parseResult = doc.load(uCString($0).Ptr, pugi::parse_full);
 
                 if (parseResult.status == 0)
                 {
@@ -31,7 +31,7 @@
                                                      "There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)",
                                                      "Unable to append nodes since root type is not node_element or node_document (exclusive to xml_node::append_buffer)", "Parsing resulted in a document without element nodes" };
 
-                    throw uThrowable(@{Uno.Data.Xml.XmlException(string):New(uStringFromXliString(errorMessages[parseResult.status]))}, U_FUNCTION, __LINE__);
+                    U_THROW(@{Uno.Data.Xml.XmlException(string):New(uString::Utf8(errorMessages[parseResult.status]))});
                 }
             </Body>
         </Method>
@@ -43,7 +43,7 @@
 
                 if (node.type() == pugi::node_declaration)
                 {
-                    return @{Uno.Data.Xml.XmlNodeHandle(string,string):New(uStringFromXliString(node.attribute("version").as_string()), uStringFromXliString(node.attribute("encoding").as_string()))};
+                    return @{Uno.Data.Xml.XmlNodeHandle(string,string):New(uString::Utf8(node.attribute("version").as_string()), uString::Utf8(node.attribute("encoding").as_string()))};
                 }
 
                 if (node.type() == pugi::node_document)
@@ -73,12 +73,12 @@
                             break;
                     }
 
-                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle(string,string,int):New(uStringFromXliString(node.name()), uStringFromXliString(node.value()), mappedNodeType)};
+                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle(string,string,int):New(uString::Utf8(node.name()), uString::Utf8(node.value()), mappedNodeType)};
 
                     for (pugi::xml_attribute_iterator attrib = node.attributes_begin(); attrib != node.attributes_end(); attrib++)
                     {
                         pugi::xml_attribute attribute = (*attrib);
-                        @{Uno.Data.Xml.XmlAttributeHandle} attributeHandle = @{Uno.Data.Xml.XmlAttributeHandle(string,string):New(uStringFromXliString(attribute.name()), uStringFromXliString(attribute.value()))};
+                        @{Uno.Data.Xml.XmlAttributeHandle} attributeHandle = @{Uno.Data.Xml.XmlAttributeHandle(string,string):New(uString::Utf8(attribute.name()), uString::Utf8(attribute.value()))};
                         @{Uno.Data.Xml.XmlNodeImpl.AddAttribute(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlAttributeHandle):Call(nodeHandle, attributeHandle)};
                     }
                 }
