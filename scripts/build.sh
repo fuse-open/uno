@@ -71,6 +71,9 @@ if [ "$BUILD_UNOCORE" = 1 ]; then
 fi
 
 if [ "$BUILD_PLATFORM" = 1 ]; then
+    h1 "Installing packages"
+    nuget restore uno.sln
+
     h1 "Building platform tools"
 
     # Get version number

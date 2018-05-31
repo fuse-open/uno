@@ -74,6 +74,7 @@ Uno is built using the command-line on macOS or Windows. Linux is not yet suppor
 - [Mono](http://www.mono-project.com/download/) / [Visual Studio](https://www.visualstudio.com/downloads/)<sup>[1](#win-prereq-1)</sup>
 - [Bash](http://www.msys2.org/) and [Make](http://gnuwin32.sourceforge.net/packages/make.htm)<sup>[2](#win-prereq-2)</sup>
 - [Node.js](https://nodejs.org/en/download/)
+- [NuGet](https://www.nuget.org/downloads/)
 
 | Build command                       | Action                                                                  |
 |:------------------------------------|:------------------------------------------------------------------------|
