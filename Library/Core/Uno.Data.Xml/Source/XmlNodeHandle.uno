@@ -1,6 +1,5 @@
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Collections;
-using Uno.Platform;
 using Uno.IO;
 using Uno;
 
