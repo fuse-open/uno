@@ -95,10 +95,15 @@ namespace Uno.Compiler.Core.IL.Testing
                                           InvokeName(method),
                                           DataType.Void,
                                           ParameterList.Empty);
+            var testVar = new Variable(_source, invokeMethod, "obj", method.DeclaringType,
+                                       VariableType.Default, InstantiateTestFixture(method));
+            invokeMethod.SetBody(new Scope(_source, 
+                new VariableDeclaration(testVar),
+                new CallMethod(_source, new LoadLocal(_source, testVar), method)));
 
-            var testInstance = InstantiateTestFixture(method);
-            var runTest = new CallMethod(_source, testInstance, method);
-            invokeMethod.SetBody(new Scope(_source, runTest));
+            var dispose = method.DeclaringType.TryGetMethod("Dispose", true);
+            if (dispose != null)
+                invokeMethod.Body.Statements.Add(new CallMethod(_source, new LoadLocal(_source, testVar), dispose));
 
             _mainClass.Methods.Add(invokeMethod);
             return invokeMethod;
