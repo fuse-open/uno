@@ -1,5 +1,4 @@
 using Uno;
-using Uno.Platform;
 using Uno.Testing;
 
 namespace UnoTest.General

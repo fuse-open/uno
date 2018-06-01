@@ -2,7 +2,6 @@ using Uno;
 using Uno;
 using Foo;
 using Foo2;
-using Uno.Platform;
 using Uno.Testing;
 
 namespace Foo2
