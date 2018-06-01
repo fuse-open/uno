@@ -104,7 +104,7 @@ public:
             return;
 
         uAutoReleasePool pool;
-        @{Uno.Net.Http.HttpMessageHandlerRequest:Of(unoRequest).OnError(string):Call(uStringFromXliString(message))};
+        @{Uno.Net.Http.HttpMessageHandlerRequest:Of(unoRequest).OnError(string):Call(uString::Utf8(message.Ptr()))};
         CompleteUnoRequest(request);
     }
 };

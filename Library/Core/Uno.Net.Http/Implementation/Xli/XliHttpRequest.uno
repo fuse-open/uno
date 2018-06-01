@@ -44,7 +44,7 @@ namespace Uno.Net.Http.Implementation
             _request = request; // Retain request object so it's not deleted in the process
             _requestHandle = extern<XliHttpRequestHandle>(
                     XliHttpMessageHandler._clientHandle, method, url)
-                "$0->CreateRequest(uStringToXliString($1), uStringToXliString($2))";
+                "$0->CreateRequest(uCString($1).Ptr, uCString($2).Ptr)";
 
             extern(_requestHandle, request) "$0->SetUserData($1)";
         }
@@ -64,7 +64,7 @@ namespace Uno.Net.Http.Implementation
         public void SetHeader(string name, string value)
         {
             extern(_requestHandle, name, value)
-                "$0->SetHeader(uStringToXliString($1), uStringToXliString($2))";
+                "$0->SetHeader(uCString($1).Ptr, uCString($2).Ptr)";
         }
 
         public void SetTimeout(int timeoutInMilliseconds)
@@ -82,7 +82,7 @@ namespace Uno.Net.Http.Implementation
         public void SendAsync(string data)
         {
             extern(_requestHandle, data)
-                "$0->SendAsync(uStringToXliString($1))";
+                "$0->SendAsync(uCString($1).Ptr)";
         }
 
         public void SendAsync()
