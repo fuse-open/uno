@@ -4,8 +4,6 @@
 
 #if !@{Uno.Threading.Thread.Start():IsStripped} || !@{Uno.Threading.Thread.CurrentThread:IsStripped}
 
-#if IOS
-
 static pthread_key_t currentThread;
 void EnsureInitialized()
 {
@@ -15,12 +13,6 @@ void EnsureInitialized()
         uExitCritical();
     }
 }
-
-#else
-
-static __thread @{Uno.Threading.Thread} currentThread;
-
-#endif
 
 #endif // !@{Uno.Threading.Thread.Start():IsStripped} || !@{Uno.Threading.Thread.CurrentThread:IsStripped}
 
@@ -34,23 +26,13 @@ static void* ThreadStartup(void* arg)
     uDelegate* threadStart = @{Uno.Threading.Thread:Of(thread)._threadStart:Get()};
     assert(threadStart != NULL);
 
-#if IOS
     EnsureInitialized();
     pthread_setspecific(currentThread, (void*)thread);
-#else
-    currentThread = thread;
-#endif
 
     @{Uno.Action:Of(threadStart):Call()};
 
-#if IOS
     pthread_setspecific(currentThread, NULL);
-#else
-    currentThread = NULL;
-#endif
-
     uRelease(thread);
-
     return 0;
 }
 
@@ -70,23 +52,14 @@ bool uPthreadsCreateThread(@{Uno.Threading.Thread} thread, pthread_t* threadHand
 
 @{Uno.Threading.Thread} uPthreadsGetCurrentThread()
 {
-#if IOS
     EnsureInitialized();
     return (@{Uno.Threading.Thread})pthread_getspecific(currentThread);
-#else
-    return currentThread;
-#endif
 }
 
 void uPthreadsSetCurrentThread(@{Uno.Threading.Thread} thread)
 {
-#if IOS
     EnsureInitialized();
     pthread_setspecific(currentThread, (void*)thread);
-#else
-    currentThread = thread;
-#endif
 }
-
 
 #endif // !@{Uno.Threading.Thread.CurrentThread:IsStripped}
