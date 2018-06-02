@@ -29,11 +29,7 @@
     "Implementation/Posix/posix_reset_event.h:CHeader:UNIX && !PInvoke",
     "Implementation/Posix/posix_semaphore.cpp:CSource:UNIX && !PInvoke",
     "Implementation/Posix/posix_semaphore.h:CHeader:UNIX && !PInvoke",
-    "Implementation/Posix/posix_thread.cpp:CSource:UNIX && !PInvoke",
-    "Implementation/Posix/posix_thread.h:CHeader:UNIX && !PInvoke",
     "Implementation/Posix/PthreadHelpers.uno:Source",
-    "Implementation/Win32/win32_helpers.cpp:CSource:Win32 && !PInvoke",
-    "Implementation/Win32/win32_helpers.h:CHeader:Win32 && !PInvoke",
     "Implementation/Win32/Win32Helpers.uno:Source",
   ]
 }
