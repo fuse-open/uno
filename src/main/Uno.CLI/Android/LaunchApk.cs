@@ -94,8 +94,17 @@ namespace Uno.CLI.Android
                 timer.Elapsed += (s, e) => {
                     timer.Stop();
                     Shell.KillAll();
-                    // -d: Dump log and exit
-                    NdkStack(masterDevice.Logcat(package, "-d"), symbolDir);
+                    
+                    try
+                    {
+                        // -d: Dump log and exit
+                        NdkStack(masterDevice.Logcat(package, "-d"), symbolDir);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Trace(ex);
+                    }
+
                     Log.Error("Process " + package + " did not start.");
                     Environment.Exit(1);
                 };
@@ -109,12 +118,21 @@ namespace Uno.CLI.Android
             using (var timer = new Timer(1000))
             {
                 timer.Elapsed += (s, e) => {
-                    if (!masterDevice.IsRunning(package))
+                    try
                     {
-                        timer.Stop();
-                        Shell.KillAll();
-                        Log.Message("Process " + package + " terminated.");
-                        Environment.Exit(0);
+                        if (!masterDevice.IsRunning(package))
+                        {
+                            timer.Stop();
+                            Shell.KillAll();
+                            Log.Message("Process " + package + " terminated.");
+                            Environment.Exit(0);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Trace(ex);
+                        Log.Error("Unhandled exception: " + ex.Message + " (pass --trace for stack trace)");
+                        Environment.Exit(1);
                     }
                 };
 
