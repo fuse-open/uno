@@ -171,7 +171,7 @@ namespace Uno.IO
             return Utf8.GetString(ReadAllBytes());
         }
 
-        [MainThread]
+        /** Must be called from Main-thread */
         extern(PREVIEW)
         public void Update(byte[] bytes)
         {
@@ -197,7 +197,7 @@ namespace Uno.IO
         // Listen for when preview creates a file
         public event Action<BundleFile> Created;
 
-        [MainThread]
+        /** Must be called from Main-thread */
         extern(PREVIEW)
         public BundleFile CreateFile(string path, byte[] bytes)
         {
