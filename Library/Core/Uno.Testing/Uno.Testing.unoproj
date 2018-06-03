@@ -7,8 +7,7 @@
     "LicenseUrl": "https://github.com/fusetools/uno/blob/master/LICENSE.txt"
   },
   "Projects": [
-    "../Uno.Net.Http/Uno.Net.Http.unoproj",
-    "../Uno.Threading/Uno.Threading.unoproj"
+    "../Uno.Net.Http/Uno.Net.Http.unoproj"
   ],
   "InternalsVisibleTo": [
     "Uno.Testing.Test"
