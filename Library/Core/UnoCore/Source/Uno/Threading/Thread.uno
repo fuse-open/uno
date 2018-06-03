@@ -1,6 +1,7 @@
 using Uno;
 using Uno.Collections;
 using Uno.Compiler.ExportTargetInterop;
+using System.Globalization;
 
 namespace Uno.Threading
 {
@@ -165,5 +166,18 @@ namespace Uno.Threading
                 ::Sleep($0);
             @}
         }
+
+        extern(DOTNET)
+        public CultureInfo CurrentCulture { get; set; }
+    }
+}
+
+namespace System.Globalization
+{
+    [DotNetType]
+    extern(DOTNET)
+    public class CultureInfo
+    {
+        public static extern CultureInfo InvariantCulture { get; }
     }
 }

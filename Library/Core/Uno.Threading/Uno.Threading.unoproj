@@ -20,7 +20,6 @@
     "Promise.uno:Source",
     "Semaphore.uno:Source",
     "SyncDispatcher.uno:Source",
-    "Thread.uno:Source",
     "ThreadPool.uno:Source",
     "Tasks/Tasks.uno:Source",
     "Implementation/Posix/posix_mutex.cpp:CSource:UNIX && !PInvoke",

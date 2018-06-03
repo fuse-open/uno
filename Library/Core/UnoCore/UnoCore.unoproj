@@ -352,6 +352,7 @@
     "Source/Uno/Text/Utf8.uno:Source",
     "Source/Uno/Threading/MainThreadAttribute.uno:Source",
     "Source/Uno/Threading/Monitor.uno:Source",
+    "Source/Uno/Threading/Thread.uno:Source",
     "Source/Uno/Time/Calendars/Era.uno:Source",
     "Source/Uno/Time/Calendars/GregorianYearMonthDayCalculator.uno:Source",
     "Source/Uno/Time/Calendars/TimeOfDayCalculator.uno:Source",

@@ -21,6 +21,5 @@
     "PromiseTests_2_3_2.uno:Source",
     "PromiseTests_2_3_4.uno:Source",
     "SemaphoreTests.uno:Source",
-    "ThreadTests.uno:Source",
   ]
 }
