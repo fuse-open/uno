@@ -344,11 +344,12 @@ namespace Uno.Compiler.Core.IL.Bytecode
                         var s = e as StoreThis;
 
                         Emit(Opcodes.This);
-                        CompileExpression(s.Value);
-                        Emit(Opcodes.StoreObj, s.Value.ReturnType);
 
                         if (!pop & addressMode)
-                            CreateIndirection(s.ReturnType);
+                            Emit(Opcodes.Dup);
+
+                        CompileExpression(s.Value);
+                        Emit(Opcodes.StoreObj, s.Value.ReturnType);
                     }
                     break;
 
