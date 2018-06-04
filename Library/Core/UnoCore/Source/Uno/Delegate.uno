@@ -31,28 +31,6 @@ namespace Uno
                 prev->_prev = $0;
                 return copy._prev;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                if (!$1)
-                    return $0;
-                if (!$0)
-                    return $1;
-
-                if ($0.GetType() != $1.GetType())
-                    throw @{Uno.InvalidCastException():New()};
-
-                var clone = { P: null };
-                var prev = clone;
-
-                for (var d = $1; d; d = d.P)
-                {
-                    prev.P = $CreateDelegate(d.$, d.F, d.GetType());
-                    prev = prev.P;
-                }
-
-                prev.P = $0;
-                return clone.P;
-            @}
             else
                 build_error;
         }
@@ -97,46 +75,6 @@ namespace Uno
 
                 return $0;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                if (!$0 || !$1)
-                    return $0;
-
-                if ($0.GetType() != $1.GetType())
-                    throw @{Uno.InvalidCastException():New()};
-
-                for (var first = $0; first; first = first.P)
-                {
-                    var match = true;
-                    var last = first;
-
-                    for (var d = $1; d; d = d.P, last = last.P)
-                    {
-                        if (!last || d.F != last.F || d.$ != last.$)
-                        {
-                            match = false;
-                            break;
-                        }
-                    }
-
-                    if (match)
-                    {
-                        var temp = { P: null };
-                        var prev = temp;
-
-                        for (var e = $0; e != first; e = e.P)
-                        {
-                            prev.P = $CreateDelegate(e.$, e.F, e.GetType());
-                            prev = prev.P;
-                        }
-
-                        prev.P = last;
-                        return temp.P;
-                    }
-                }
-
-                return $0;
-            @}
             else
                 build_error;
         }
@@ -152,10 +90,6 @@ namespace Uno
                         $0->_this == $1->_this &&
                         @{object.Equals(object,object):Call($0->_prev, $1->_prev)}
                     );
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                return @{object.Equals(object,object):Call($@)};
             @}
             else
                 build_error;

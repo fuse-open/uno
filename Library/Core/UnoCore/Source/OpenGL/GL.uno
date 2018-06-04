@@ -2,7 +2,6 @@ using Uno;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Diagnostics;
 using Uno.Runtime.InteropServices;
-using HTML5;
 
 namespace OpenGL
 {
@@ -25,10 +24,6 @@ namespace OpenGL
             {
                 return _gl.GetInteger(name);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getParameter($@) | 0;
-            @}
             else
                 build_error;
         }
@@ -45,11 +40,6 @@ namespace OpenGL
             {
                 return _gl.GetInteger(name);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                var p = gl.getParameter($@);
-                return @{int4(int,int,int,int):New(p[0] | 0, p[1] | 0, p[2] | 0, p[3] | 0)};
-            @}
             else
                 build_error;
         }
@@ -66,10 +56,6 @@ namespace OpenGL
             {
                 _gl.Disable(cap);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.disable($@);
-            @}
             else
                 build_error;
         }
@@ -84,10 +70,6 @@ namespace OpenGL
             {
                 _gl.Enable(cap);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.enable($@);
-            @}
             else
                 build_error;
         }
@@ -102,10 +84,6 @@ namespace OpenGL
             {
                 _gl.Finish();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.finish();
-            @}
             else
                 build_error;
         }
@@ -121,10 +99,6 @@ namespace OpenGL
             {
                 _gl.Flush();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.flush();
-            @}
             else
                 build_error;
         }
@@ -139,10 +113,6 @@ namespace OpenGL
             {
                 return _gl.GetError();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getError();
-            @}
             else
                 build_error;
         }
@@ -159,10 +129,6 @@ namespace OpenGL
             {
                 return _gl.GetString(name);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return "" + gl.getParameter($@);
-            @}
             else
                 build_error;
         }
@@ -180,10 +146,6 @@ namespace OpenGL
             {
                 _gl.PixelStore(pname, param);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.pixelStorei($@);
-            @}
             else
                 build_error;
         }
@@ -201,10 +163,6 @@ namespace OpenGL
             {
                 _gl.Clear(mask);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.clear($@);
-            @}
             else
                 build_error;
         }
@@ -219,10 +177,6 @@ namespace OpenGL
             {
                 _gl.ClearColor(red, green, blue, alpha);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.clearColor($@);
-            @}
             else
                 build_error;
         }
@@ -241,10 +195,6 @@ namespace OpenGL
             {
                 _gl.ClearDepth(depth);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.clearDepth($@);
-            @}
             else
                 build_error;
         }
@@ -260,10 +210,6 @@ namespace OpenGL
             {
                 _gl.ColorMask(red, green, blue, alpha);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.colorMask($@);
-            @}
             else
                 build_error;
         }
@@ -278,10 +224,6 @@ namespace OpenGL
             {
                 _gl.DepthMask(flag);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.depthMask($@);
-            @}
             else
                 build_error;
         }
@@ -304,10 +246,6 @@ namespace OpenGL
             {
                 _gl.BlendEquation(mode);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.blendEquation($@);
-            @}
             else
                 build_error;
         }
@@ -322,10 +260,6 @@ namespace OpenGL
             {
                 _gl.BlendEquationSeparate(modeRgb, modeAlpha);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.blendEquationSeparate($@);
-            @}
             else
                 build_error;
         }
@@ -340,10 +274,6 @@ namespace OpenGL
             {
                 _gl.BlendFunc(src, dst);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.blendFunc($@);
-            @}
             else
                 build_error;
         }
@@ -358,10 +288,6 @@ namespace OpenGL
             {
                 _gl.BlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.blendFuncSeparate($@);
-            @}
             else
                 build_error;
         }
@@ -376,10 +302,6 @@ namespace OpenGL
             {
                 _gl.DepthFunc(func);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.depthFunc($@);
-            @}
             else
                 build_error;
         }
@@ -403,10 +325,6 @@ namespace OpenGL
             {
                 _gl.CullFace(mode);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.cullFace($@);
-            @}
             else
                 build_error;
         }
@@ -421,10 +339,6 @@ namespace OpenGL
             {
                 _gl.FrontFace(mode);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.frontFace($@);
-            @}
             else
                 build_error;
         }
@@ -439,10 +353,6 @@ namespace OpenGL
             {
                 _gl.LineWidth(width);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.lineWidth($@);
-            @}
             else
                 build_error;
         }
@@ -457,10 +367,6 @@ namespace OpenGL
             {
                 _gl.PolygonOffset(factor, units);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.polygonOffset($@);
-            @}
             else
                 build_error;
         }
@@ -482,10 +388,6 @@ namespace OpenGL
             {
                 _gl.DepthRange(zNear, zFar);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.depthRange($@);
-            @}
             else
                 build_error;
         }
@@ -500,10 +402,6 @@ namespace OpenGL
             {
                 _gl.Scissor(x, y, width, height);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.scissor($@);
-            @}
             else
                 build_error;
         }
@@ -518,10 +416,6 @@ namespace OpenGL
             {
                 _gl.Viewport(x, y, width, height);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.viewport($@);
-            @}
             else
                 build_error;
         }
@@ -539,15 +433,10 @@ namespace OpenGL
             {
                 _gl.BindBuffer(target, buffer);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bindBuffer($@);
-            @}
             else
                 build_error;
         }
 
-        [ExportName("BufferDatai")]
         public static void BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)
         {
             if defined(CPLUSPLUS)
@@ -558,10 +447,6 @@ namespace OpenGL
             {
                 _gl.BufferData(target, sizeInBytes, IntPtr.Zero, usage);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bufferData($@);
-            @}
             else
                 build_error;
         }
@@ -579,10 +464,6 @@ namespace OpenGL
                 _gl.BufferData(target, data.Length, pin.AddrOfPinnedObject(), usage);
                 pin.Free();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bufferData($@);
-            @}
             else
                 build_error;
         }
@@ -600,10 +481,6 @@ namespace OpenGL
                 _gl.BufferData(target, data.SizeInBytes, data.PinPtr(out pin), usage);
                 pin.Free();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bufferData($0, @{Uint8Array.Create(Uno.Buffer):Call($1)}, $2);
-            @}
             else
                 build_error;
         }
@@ -621,10 +498,6 @@ namespace OpenGL
                 _gl.BufferSubData(target, offset, data.Length, pin.AddrOfPinnedObject());
                 pin.Free();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bufferSubData($@);
-            @}
             else
                 build_error;
         }
@@ -642,10 +515,6 @@ namespace OpenGL
                 _gl.BufferSubData(target, offset, data.SizeInBytes, data.PinPtr(out pin));
                 pin.Free();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bufferSubData($0, $1, @{Uint8Array.Create(Uno.Buffer):Call($2)});
-            @}
             else
                 build_error;
         }
@@ -662,10 +531,6 @@ namespace OpenGL
             {
                 return _gl.CreateBuffer();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.createBuffer();
-            @}
             else
                 build_error;
         }
@@ -680,10 +545,6 @@ namespace OpenGL
             {
                 _gl.DeleteBuffer(buffer);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.deleteBuffer($@);
-            @}
             else
                 build_error;
         }
@@ -704,10 +565,6 @@ namespace OpenGL
             {
                 _gl.BindFramebuffer(target, fb);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bindFramebuffer($@);
-            @}
             else
                 build_error;
         }
@@ -722,10 +579,6 @@ namespace OpenGL
             {
                 return _gl.CheckFramebufferStatus(target);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.checkFramebufferStatus($@);
-            @}
             else
                 build_error;
         }
@@ -742,10 +595,6 @@ namespace OpenGL
             {
                 return _gl.CreateFramebuffer();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.createFramebuffer();
-            @}
             else
                 build_error;
         }
@@ -760,10 +609,6 @@ namespace OpenGL
             {
                 _gl.DeleteFramebuffer(fb);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.deleteFramebuffer($@);
-            @}
             else
                 build_error;
         }
@@ -778,10 +623,6 @@ namespace OpenGL
             {
                 _gl.FramebufferTexture2D(target, attachment, textarget, texture, level);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.framebufferTexture2D($@);
-            @}
             else
                 build_error;
         }
@@ -796,10 +637,6 @@ namespace OpenGL
             {
                 _gl.FramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.framebufferRenderbuffer($@);
-            @}
             else
                 build_error;
         }
@@ -819,10 +656,6 @@ namespace OpenGL
             {
                 return _gl.GetFramebufferBinding();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getParameter(gl.FRAMEBUFFER_BINDING);
-            @}
             else
                 build_error;
         }
@@ -840,10 +673,6 @@ namespace OpenGL
             {
                 _gl.BindRenderbuffer(target, renderbuffer);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bindRenderbuffer($@);
-            @}
             else
                 build_error;
         }
@@ -860,10 +689,6 @@ namespace OpenGL
             {
                 return _gl.CreateRenderbuffer();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.createRenderbuffer();
-            @}
             else
                 build_error;
         }
@@ -878,10 +703,6 @@ namespace OpenGL
             {
                 _gl.DeleteRenderbuffer(renderbuffer);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.deleteRenderbuffer($@);
-            @}
             else
                 build_error;
         }
@@ -899,10 +720,6 @@ namespace OpenGL
             {
                 _gl.RenderbufferStorage(target, internalFormat, width, height);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.renderbufferStorage($@);
-            @}
             else
                 build_error;
         }
@@ -919,10 +736,6 @@ namespace OpenGL
             {
                 return _gl.GetRenderbufferBinding();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getParameter(gl.RENDERBUFFER_BINDING);
-            @}
             else
                 build_error;
         }
@@ -940,10 +753,6 @@ namespace OpenGL
             {
                 _gl.ActiveTexture(texture);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.activeTexture($@);
-            @}
             else
                 build_error;
         }
@@ -957,10 +766,6 @@ namespace OpenGL
             else if defined(DOTNET)
             @{
                 _gl.BindTexture($@);
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                gl.bindTexture($@);
             @}
             else
                 build_error;
@@ -981,10 +786,6 @@ namespace OpenGL
             {
                 return _gl.CreateTexture();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.createTexture();
-            @}
             else
                 build_error;
         }
@@ -999,10 +800,6 @@ namespace OpenGL
             {
                 _gl.DeleteTexture(texture);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.deleteTexture($@);
-            @}
             else
                 build_error;
         }
@@ -1017,10 +814,6 @@ namespace OpenGL
             {
                 _gl.GenerateMipmap(target);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.generateMipmap($@);
-            @}
             else
                 build_error;
         }
@@ -1059,10 +852,6 @@ namespace OpenGL
                         format, type, IntPtr.Zero);
                 }
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.texImage2D($@);
-            @}
             else
                 build_error;
         }
@@ -1092,10 +881,6 @@ namespace OpenGL
                         format, type, IntPtr.Zero);
                 }
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.texImage2D($0,$1,$2,$3,$4,$5,$6,$7,@{Uint8Array.Create(Uno.Buffer):Call($8)});
-            @}
             else
                 build_error;
         }
@@ -1110,10 +895,6 @@ namespace OpenGL
             {
                 _gl.TexImage2D(target, level, internalFormat, width, height, border, format, type, data);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.texImage2D($@);
-            @}
             else
                 build_error;
         }
@@ -1144,10 +925,6 @@ namespace OpenGL
                     _gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, IntPtr.Zero);
                 }
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.texSubImage2D($@);
-            @}
             else
                 build_error;
         }
@@ -1162,15 +939,10 @@ namespace OpenGL
             {
                 _gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, data);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.texSubImage2D($@);
-            @}
             else
                 build_error;
         }
 
-        [ExportName("TexParameteri")]
         public static void TexParameter(GLTextureTarget target, GLTextureParameterName pname, GLTextureParameterValue param)
         {
             if defined(CPLUSPLUS)
@@ -1181,10 +953,6 @@ namespace OpenGL
             {
                 _gl.TexParameter(target, pname, param);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.texParameteri($@);
-            @}
             else
                 build_error;
         }
@@ -1204,10 +972,6 @@ namespace OpenGL
             {
                 _gl.AttachShader(program, shader);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.attachShader($@);
-            @}
             else
                 build_error;
         }
@@ -1222,10 +986,6 @@ namespace OpenGL
             {
                 _gl.BindAttribLocation(handle, index, name);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.getAttribLocation($@);
-            @}
             else
                 build_error;
         }
@@ -1240,10 +1000,6 @@ namespace OpenGL
             {
                 _gl.CompileShader(shader);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.compileShader($@);
-            @}
             else
                 build_error;
         }
@@ -1258,10 +1014,6 @@ namespace OpenGL
             {
                 return _gl.CreateProgram();
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.createProgram($@);
-            @}
             else
                 build_error;
         }
@@ -1276,10 +1028,6 @@ namespace OpenGL
             {
                 return _gl.CreateShader(type);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.createShader($@);
-            @}
             else
                 build_error;
         }
@@ -1294,10 +1042,6 @@ namespace OpenGL
             {
                 _gl.DeleteProgram(program);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.deleteProgram($@);
-            @}
             else
                 build_error;
         }
@@ -1312,10 +1056,6 @@ namespace OpenGL
             {
                 _gl.DeleteShader(shader);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.deleteShader($@);
-            @}
             else
                 build_error;
         }
@@ -1330,10 +1070,6 @@ namespace OpenGL
             {
                 _gl.DetachShader(program, shader);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.detachShader($@);;
-            @}
             else
                 build_error;
         }
@@ -1352,10 +1088,6 @@ namespace OpenGL
             {
                 return _gl.GetProgramParameter(program, pname);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getProgramParameter($@);
-            @}
             else
                 build_error;
         }
@@ -1374,10 +1106,6 @@ namespace OpenGL
             {
                 return _gl.GetProgramInfoLog(program);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getProgramInfoLog($@);
-            @}
             else
                 build_error;
         }
@@ -1394,10 +1122,6 @@ namespace OpenGL
             {
                 return _gl.GetShaderParameter(shader, pname);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getShaderParameter($@);
-            @}
             else
                 build_error;
         }
@@ -1416,10 +1140,6 @@ namespace OpenGL
             {
                 return _gl.GetShaderInfoLog(shader);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getShaderInfoLog($@);
-            @}
             else
                 build_error;
         }
@@ -1438,10 +1158,6 @@ namespace OpenGL
             {
                 _gl.LinkProgram(program);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.linkProgram($@);
-            @}
             else
                 build_error;
         }
@@ -1474,10 +1190,6 @@ namespace OpenGL
             {
                 _gl.ShaderSource(shader, source);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.shaderSource($@);
-            @}
             else
                 build_error;
         }
@@ -1492,10 +1204,6 @@ namespace OpenGL
             {
                 _gl.UseProgram(program);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.useProgram($@);
-            @}
             else
                 build_error;
         }
@@ -1518,10 +1226,6 @@ namespace OpenGL
                 {
                     return _gl.HasGetShaderPrecisionFormat;
                 }
-                else if defined(JAVASCRIPT)
-                @{
-                    return true;
-                @}
                 else
                     build_error;
             }
@@ -1543,11 +1247,6 @@ namespace OpenGL
             {
                 return _gl.GetShaderPrecisionFormat(shaderType, precision);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                var result = gl.getShaderPrecisionFormat($@);
-                return @{GLShaderPrecisionFormat(int, int, int):New(result.rangeMin, result.rangeMax, result.precision)};
-            @}
             else
                 build_error;
         }
@@ -1564,10 +1263,6 @@ namespace OpenGL
             {
                 _gl.DisableVertexAttribArray(index);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.disableVertexAttribArray($@);
-            @}
             else
                 build_error;
         }
@@ -1582,10 +1277,6 @@ namespace OpenGL
             {
                 _gl.EnableVertexAttribArray(index);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.enableVertexAttribArray($@);
-            @}
             else
                 build_error;
         }
@@ -1603,10 +1294,6 @@ namespace OpenGL
             {
                 return _gl.GetAttribLocation(program, name);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getAttribLocation($@);
-            @}
             else
                 build_error;
         }
@@ -1623,17 +1310,13 @@ namespace OpenGL
             {
                 return _gl.GetUniformLocation(program, name);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return gl.getUniformLocation($@);
-            @}
             else
                 build_error;
         }
 
         //public static any GetVertexAttrib(uint index, enum pname);
         //public static int GetVertexAttribOffset(uint index, enum pname);
-        [ExportName("Uniform1i")]
+
         public static void Uniform1(int location, int value)
         {
             if defined(CPLUSPLUS)
@@ -1644,15 +1327,10 @@ namespace OpenGL
             {
                 _gl.Uniform1(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform1i($0, $1);
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform2i")]
         public static void Uniform2(int location, int2 value)
         {
             if defined(CPLUSPLUS)
@@ -1663,15 +1341,10 @@ namespace OpenGL
             {
                 _gl.Uniform2(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform1i($0, @{$1.X}, @{$1.Y});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform3i")]
         public static void Uniform3(int location, int3 value)
         {
             if defined(CPLUSPLUS)
@@ -1682,15 +1355,10 @@ namespace OpenGL
             {
                 _gl.Uniform3(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform3i($0, @{$1.X}, @{$1.Y}, @{$1.Z});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform4i")]
         public static void Uniform4(int location, int4 value)
         {
             if defined(CPLUSPLUS)
@@ -1701,15 +1369,10 @@ namespace OpenGL
             {
                 _gl.Uniform4(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform4i($0, @{$1.X}, @{$1.Y}, @{$1.Z}, @{$1.W});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform1f")]
         public static void Uniform1(int location, float value)
         {
             if defined(CPLUSPLUS)
@@ -1720,15 +1383,10 @@ namespace OpenGL
             {
                 _gl.Uniform1(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform1f($0, $1);
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform2f")]
         public static void Uniform2(int location, float2 value)
         {
             if defined(CPLUSPLUS)
@@ -1739,15 +1397,10 @@ namespace OpenGL
             {
                 _gl.Uniform2(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform2f($0, @{$1.X}, @{$1.Y});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform3f")]
         public static void Uniform3(int location, float3 value)
         {
             if defined(CPLUSPLUS)
@@ -1758,15 +1411,10 @@ namespace OpenGL
             {
                 _gl.Uniform3(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform3f($0, @{$1.X}, @{$1.Y}, @{$1.Z});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform4f")]
         public static void Uniform4(int location, float4 value)
         {
             if defined(CPLUSPLUS)
@@ -1777,15 +1425,10 @@ namespace OpenGL
             {
                 _gl.Uniform4(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform4f($0, @{$1.X}, @{$1.Y}, @{$1.Z}, @{$1.W});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("UniformMatrix2f")]
         public static void UniformMatrix2(int location, bool transpose, float2x2 value)
         {
             if defined(CPLUSPLUS)
@@ -1796,15 +1439,10 @@ namespace OpenGL
             {
                 _gl.UniformMatrix2(location, transpose, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniformMatrix2fv($0, $1, @{Float32Array.Create(float2x2):Call($2)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("UniformMatrix3f")]
         public static void UniformMatrix3(int location, bool transpose, float3x3 value)
         {
             if defined(CPLUSPLUS)
@@ -1815,15 +1453,10 @@ namespace OpenGL
             {
                 _gl.UniformMatrix3(location, transpose, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniformMatrix3fv($0, $1, @{Float32Array.Create(float3x3):Call($2)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("UniformMatrix4f")]
         public static void UniformMatrix4(int location, bool transpose, float4x4 value)
         {
             if defined(CPLUSPLUS)
@@ -1834,15 +1467,10 @@ namespace OpenGL
             {
                 _gl.UniformMatrix4(location, transpose, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniformMatrix4fv($0, $1, @{Float32Array.Create(float4x4):Call($2)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform1iv")]
         public static void Uniform1(int location, int[] value)
         {
             if defined(CPLUSPLUS)
@@ -1853,15 +1481,10 @@ namespace OpenGL
             {
                 _gl.Uniform1(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform1iv($0, @{Int32Array.Create(int[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform2iv")]
         public static void Uniform2(int location, int2[] value)
         {
             if defined(CPLUSPLUS)
@@ -1872,15 +1495,10 @@ namespace OpenGL
             {
                 _gl.Uniform2(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform2iv($0, @{Int32Array.Create(int2[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform3iv")]
         public static void Uniform3(int location, int3[] value)
         {
             if defined(CPLUSPLUS)
@@ -1891,15 +1509,10 @@ namespace OpenGL
             {
                 _gl.Uniform3(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform3iv($0, @{Int32Array.Create(int3[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform4iv")]
         public static void Uniform4(int location, int4[] value)
         {
             if defined(CPLUSPLUS)
@@ -1910,15 +1523,10 @@ namespace OpenGL
             {
                 _gl.Uniform4(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform4iv($0, @{Int32Array.Create(int4[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform1fv")]
         public static void Uniform1(int location, float[] value)
         {
             if defined(CPLUSPLUS)
@@ -1929,15 +1537,10 @@ namespace OpenGL
             {
                 _gl.Uniform1(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform1fv($0, @{Float32Array.Create(float[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform2fv")]
         public static void Uniform2(int location, float2[] value)
         {
             if defined(CPLUSPLUS)
@@ -1948,15 +1551,10 @@ namespace OpenGL
             {
                 _gl.Uniform2(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform2fv($0, @{Float32Array.Create(float2[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform3fv")]
         public static void Uniform3(int location, float3[] value)
         {
             if defined(CPLUSPLUS)
@@ -1967,15 +1565,10 @@ namespace OpenGL
             {
                 _gl.Uniform3(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform3fv($0, @{Float32Array.Create(float3[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("Uniform4fv")]
         public static void Uniform4(int location, float4[] value)
         {
             if defined(CPLUSPLUS)
@@ -1986,15 +1579,10 @@ namespace OpenGL
             {
                 _gl.Uniform4(location, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniform4fv($0, @{Float32Array.Create(float4[]):Call($1)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("UniformMatrix2fv")]
         public static void UniformMatrix2(int location, bool transpose, float2x2[] value)
         {
             if defined(CPLUSPLUS)
@@ -2005,15 +1593,10 @@ namespace OpenGL
             {
                 _gl.UniformMatrix2(location, transpose, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniformMatrix2fv($0, $1, @{Float32Array.Create(float2x2[]):Call($2)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("UniformMatrix3fv")]
         public static void UniformMatrix3(int location, bool transpose, float3x3[] value)
         {
             if defined(CPLUSPLUS)
@@ -2024,15 +1607,10 @@ namespace OpenGL
             {
                 _gl.UniformMatrix3(location, transpose, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniformMatrix3fv($0, $1, @{Float32Array.Create(float3x3[]):Call($2)});
-            @}
             else
                 build_error;
         }
 
-        [ExportName("UniformMatrix4fv")]
         public static void UniformMatrix4(int location, bool transpose, float4x4[] value)
         {
             if defined(CPLUSPLUS)
@@ -2043,10 +1621,6 @@ namespace OpenGL
             {
                 _gl.UniformMatrix4(location, transpose, value);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.uniformMatrix4fv($0, $1, @{Float32Array.Create(float4x4[]):Call($2)});
-            @}
             else
                 build_error;
         }
@@ -2063,10 +1637,6 @@ namespace OpenGL
             {
                 _gl.VertexAttribPointer(index, size, type, normalized, stride, offset);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.vertexAttribPointer($@);
-            @}
             else
                 build_error;
         }
@@ -2083,10 +1653,6 @@ namespace OpenGL
             {
                 _gl.DrawArrays(mode, first, count);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.drawArrays($@);
-            @}
             else
                 build_error;
         }
@@ -2101,10 +1667,6 @@ namespace OpenGL
             {
                 _gl.DrawElements(mode, count, type, offset);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.drawElements($@);
-            @}
             else
                 build_error;
         }
@@ -2121,10 +1683,6 @@ namespace OpenGL
             {
                 _gl.ReadPixels(x, y, width, height, format, type, data);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                gl.readPixels($@);
-            @}
             else
                 build_error;
         }

@@ -152,18 +152,11 @@ namespace Uno.IO
 
         public byte[] ReadAllBytes()
         {
-            if defined(JAVASCRIPT)
-            @{
-                return $BundleBuffers[@{$$._BundlePath}];
-            @}
-            else
+            using (var stream = OpenRead())
             {
-                using (var stream = OpenRead())
-                {
-                    var result = new byte[(int)stream.Length];
-                    stream.Read(result, 0, result.Length);
-                    return result;
-                }
+                var result = new byte[(int)stream.Length];
+                stream.Read(result, 0, result.Length);
+                return result;
             }
         }
 

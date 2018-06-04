@@ -7,27 +7,26 @@ namespace Uno
 {
     [extern(DOTNET) DotNetType("System.String")]
     [extern(CPLUSPLUS) Set("TypeName", "uString*")]
-    [extern(JAVASCRIPT) Set("TargetTypeName", "String")]
     /** Represents text as a sequence of UTF-16 code units. */
     public sealed intrinsic class String
     {
         public static readonly string Empty = "";
 
         [extern(CPLUSPLUS) Set("FunctionName", "uString::CharArray")]
-        [extern(CPLUSPLUS || JAVASCRIPT) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
         public extern String(char[] str);
 
         [extern(CPLUSPLUS) Set("FunctionName", "uString::CharArrayRange")]
         [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
         public extern String(char[] str, int startIndex, int length);
 
-        [extern(CPLUSPLUS || JAVASCRIPT) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
         public extern int Length
         {
             get;
         }
 
-        [extern(CPLUSPLUS || JAVASCRIPT) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
         public extern char this[int index] { get; }
 
         public override int GetHashCode()
@@ -97,36 +96,22 @@ namespace Uno
 
         public string ToLower()
         {
-            if defined(JAVASCRIPT)
-            @{
-                return $$.toLowerCase();
-            @}
-            else
+            var chars = new char[Length];
+            for (int i = 0; i < Length; i++)
             {
-                var chars = new char[Length];
-                for (int i = 0; i < Length; i++)
-                {
-                    chars[i] = Char.ToLower(this[i]);
-                }
-                return new string(chars);
+                chars[i] = Char.ToLower(this[i]);
             }
+            return new string(chars);
         }
 
         public string ToUpper()
         {
-            if defined(JAVASCRIPT)
-            @{
-                return $$.toUpperCase();
-            @}
-            else
+            var chars = new char[Length];
+            for (int i = 0; i < Length; i++)
             {
-                var chars = new char[Length];
-                for (int i = 0; i < Length; i++)
-                {
-                    chars[i] = Char.ToUpper(this[i]);
-                }
-                return new string(chars);
+                chars[i] = Char.ToUpper(this[i]);
             }
+            return new string(chars);
         }
 
         public override bool Equals(object other)
@@ -181,45 +166,25 @@ namespace Uno
 
         public static string Concat(string a, string b)
         {
-            if defined(JAVASCRIPT)
-            @{
-                var an = @{Uno.Object.ReferenceEquals(object,object):Call($0,null)};
-                var bn = @{Uno.Object.ReferenceEquals(object,object):Call($1,null)};
-                if (an == true && bn == true)
-                    return @{string.Empty};
-                if (an == true)
-                    return $1;
-                if (bn == true)
-                    return $0;
-                var c = new Array($0.length + $1.length);
-                for (var i = 0; i < $0.length; i++)
-                    c[i] = $0.charCodeAt(i);
-                for (var i = 0; i < $1.length; i++)
-                    c[i + $0.length] = $1.charCodeAt(i);
-                return @{string(char[]):New(c)};
-            @}
-            else
-            {
-                if (object.ReferenceEquals(a, null) &&
-                    object.ReferenceEquals(b, null))
-                    return Empty;
+            if (object.ReferenceEquals(a, null) &&
+                object.ReferenceEquals(b, null))
+                return Empty;
 
-                if (object.ReferenceEquals(a, null))
-                    return b;
+            if (object.ReferenceEquals(a, null))
+                return b;
 
-                if (object.ReferenceEquals(b, null))
-                    return a;
+            if (object.ReferenceEquals(b, null))
+                return a;
 
-                var s = new char[a.Length + b.Length];
+            var s = new char[a.Length + b.Length];
 
-                for (int i = 0; i < a.Length; i++)
-                    s[i] = a[i];
+            for (int i = 0; i < a.Length; i++)
+                s[i] = a[i];
 
-                for (int i = 0; i < b.Length; i++)
-                    s[a.Length + i] = b[i];
+            for (int i = 0; i < b.Length; i++)
+                s[a.Length + i] = b[i];
 
-                return new string(s);
-            }
+            return new string(s);
         }
 
         public static string Concat(object a, object b)
@@ -250,22 +215,15 @@ namespace Uno
             if (startIndex > Length - length || length < 0)
                 throw new ArgumentOutOfRangeException(nameof(length));
 
-            if defined(JAVASCRIPT)
-            @{
-                return $$.substr($0, $1);
-            @}
-            else
-            {
-                if (startIndex == Length && length == 0)
-                    return Empty;
+            if (startIndex == Length && length == 0)
+                return Empty;
 
-                var s = new char[length];
+            var s = new char[length];
 
-                for (int i = 0; i < length; i++)
-                    s[i] = this[startIndex + i];
+            for (int i = 0; i < length; i++)
+                s[i] = this[startIndex + i];
 
-                return new string(s);
-            }
+            return new string(s);
         }
 
         public string Substring(int start)

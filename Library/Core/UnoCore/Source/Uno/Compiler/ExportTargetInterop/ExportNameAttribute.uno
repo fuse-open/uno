@@ -1,6 +1,6 @@
 namespace Uno.Compiler.ExportTargetInterop
 {
-    [extern(DOTNET) DotNetType]
+    [Obsolete("Legacy from the old JavaScript backend")]
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class ExportNameAttribute : Attribute
     {

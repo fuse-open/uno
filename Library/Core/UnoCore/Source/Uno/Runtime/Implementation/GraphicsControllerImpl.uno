@@ -27,10 +27,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return global::Uno.ApplicationContext.AppHost.GetGraphicsContext();
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return {};
-            @}
             else
                 build_error;
         }
@@ -46,10 +42,6 @@ namespace Uno.Runtime.Implementation
             @{
                 return ($0).GetBackbufferGLHandle();
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return null;
-            @}
             else
                 build_error;
         }
@@ -63,10 +55,6 @@ namespace Uno.Runtime.Implementation
             else if defined(CSHARP)
             @{
                 return ($0).GetBackbufferSize();
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                return @{int2(int,int):New(canvas.width, canvas.height)};
             @}
             else
                 build_error;

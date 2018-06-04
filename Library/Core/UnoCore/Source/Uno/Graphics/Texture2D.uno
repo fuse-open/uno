@@ -12,10 +12,7 @@ namespace Uno.Graphics
         [Obsolete]
         public static Texture2D Load(BundleFile file)
         {
-            if defined(JAVASCRIPT)
-                return JsTexture.Load2D(file.BundlePath);
-            else
-                return Load(file.Name, file.ReadAllBytes());
+            return Load(file.Name, file.ReadAllBytes());
         }
 
         [Obsolete]

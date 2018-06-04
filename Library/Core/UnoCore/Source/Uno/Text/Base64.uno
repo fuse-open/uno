@@ -13,14 +13,6 @@ namespace Uno.Text
         {
             if defined(DOTNET)
                 return Convert.FromBase64String(value);
-            else if defined(JAVASCRIPT)
-            @{
-                var decodedStr = window.atob($0);
-                var bytes = [];
-                for (var i = 0; i < decodedStr.length; i++)
-                    bytes.push(decodedStr.charCodeAt(i));
-                return bytes;
-            @}
             else
             {
                 var addidionalSymbols = 0;
@@ -137,14 +129,6 @@ namespace Uno.Text
             @}
             else if defined(DOTNET)
                 return Convert.ToBase64String(value);
-            else if defined(JAVASCRIPT)
-            @{
-                var encodedString = "";
-                for (var i = 0; i < $0.length; i++)
-                    encodedString += String.fromCharCode($0[i]);
-
-                return window.btoa(encodedString);
-            @}
             else
             {
                 var addidionalSymbols = 0;

@@ -7,7 +7,6 @@ namespace OpenGL
     [extern(!DOTNET) TargetSpecificType]
     [extern(CPLUSPLUS) Set("TypeName", "uint32_t")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "null")]
     public extern(OPENGL) struct GLFramebufferHandle
     {
         public static readonly GLFramebufferHandle Zero;

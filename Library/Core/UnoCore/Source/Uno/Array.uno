@@ -5,7 +5,6 @@ namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Array")]
     [extern(CPLUSPLUS) Set("TypeName", "uArray*")]
-    [extern(JAVASCRIPT) Set("TypeName", "Array")]
     public class Array
     {
         [DotNetOverride]

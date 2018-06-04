@@ -7,27 +7,22 @@ namespace Uno
     [extern(CPLUSPLUS) Set("BaseType", "uObject")]
     [extern(CPLUSPLUS) Set("TypeOfType", "uType")]
     [extern(CPLUSPLUS) Set("TypeOfFunction", "uObject_typeof")]
-    [extern(JAVASCRIPT) Set("TargetTypeName", "Object")]
     public intrinsic class Object
     {
         public Object()
         {
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public Type GetType()
         {
             if defined(CPLUSPLUS)
             @{
                 return $$->__type;
             @}
-            else if defined(JAVASCRIPT)
-                throw new NotImplementedException();
             else
                 build_error;
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public virtual int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -57,13 +52,10 @@ namespace Uno
 
                 return hash;
             @}
-            else if defined(JAVASCRIPT)
-                throw new NotImplementedException();
             else
                 build_error;
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public virtual bool Equals(object o)
         {
             if defined(CPLUSPLUS)
@@ -85,13 +77,10 @@ namespace Uno
                     return $$ == $0;
                 }
             @}
-            else if defined(JAVASCRIPT)
-                throw new NotImplementedException();
             else
                 build_error;
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public virtual string ToString()
         {
             if defined(CPLUSPLUS)
@@ -100,8 +89,6 @@ namespace Uno
                     ? uEnum::GetString($$->__type, (uint8_t*)$$ + sizeof(uObject))
                     : uString::Const($$->__type->FullName);
             @}
-            else if defined(JAVASCRIPT)
-                throw new NotImplementedException();
             else
                 build_error;
         }

@@ -5,8 +5,6 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.Double")]
     [extern(CPLUSPLUS) Set("TypeName", "double")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** Represents a double-precision floating-point number. */
     public intrinsic struct Double
     {
@@ -16,13 +14,11 @@ namespace Uno
         public const double PositiveInfinity = 1./.0;
         public const double NegativeInfinity = -1./.0;
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -40,7 +36,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)
@@ -106,10 +101,6 @@ namespace Uno
 
                 return retval;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $ParseStringToNumeric($0, 'double', @{MinValue}, @{MaxValue});
-            @}
             else
                 build_error;
         }
@@ -144,12 +135,6 @@ namespace Uno
 
                 return true;
             @}
-            else if defined(JAVASCRIPT)
-            {
-                var uxlRes = extern<object> "$TryParseStringToNumeric($0, 'double', @{MinValue}, @{MaxValue})";
-                result = extern<double>(uxlRes) "$0.result";
-                return extern<bool>(uxlRes) "$0.success";
-            }
             else
                 build_error;
         }

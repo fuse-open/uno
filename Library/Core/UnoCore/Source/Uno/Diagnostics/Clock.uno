@@ -48,10 +48,6 @@ namespace Uno.Diagnostics
             @}
             else if defined(DOTNET)
                 return _watch.Elapsed.TotalSeconds;
-            else if defined(JAVASCRIPT)
-            @{
-                return new Date().getTime() / 1000.0;
-            @}
             else
                 build_error;
         }
@@ -66,10 +62,6 @@ namespace Uno.Diagnostics
             @}
             else if defined(DOTNET)
                 return DateTime.UtcNow.Ticks - 621355968000000000;
-            else if defined(JAVASCRIPT)
-            @{
-                return new Date().getTime() * 10;
-            @}
             else
                 build_error;
         }
@@ -107,10 +99,6 @@ namespace Uno.Diagnostics
             @}
             else if defined(DOTNET)
                 return (int) System.TimeZoneInfo.Local.GetUtcOffset(new DateTime(year, month, day)).TotalMinutes;
-            else if defined(JAVASCRIPT)
-            @{
-                return -new Date($0, $1, $2).getTimezoneOffset();
-            @}
             else
                 build_error;
         }

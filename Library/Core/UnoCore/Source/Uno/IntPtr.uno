@@ -5,8 +5,6 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.IntPtr")]
     [extern(CPLUSPLUS) Set("TypeName", "void*")]
     [extern(CPLUSPLUS) Set("DefaultValue", "NULL")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** A platform-specific type that is used to represent a pointer or a handle. */
     public intrinsic struct IntPtr
     {
@@ -20,10 +18,6 @@ namespace Uno
                 @{
                     return sizeof(void*);
                 @}
-                else if defined(JAVASCRIPT)
-                @{
-                    return -1;
-                @}
                 else
                     build_error;
             }
@@ -31,7 +25,7 @@ namespace Uno
 
         public static bool operator == (IntPtr left, IntPtr right)
         {
-            if defined(CPLUSPLUS || JAVASCRIPT)
+            if defined(CPLUSPLUS)
             @{
                 return $0 == $1;
             @}
@@ -41,7 +35,7 @@ namespace Uno
 
         public static bool operator != (IntPtr left, IntPtr right)
         {
-            if defined(CPLUSPLUS || JAVASCRIPT)
+            if defined(CPLUSPLUS)
             @{
                 return $0 != $1;
             @}
@@ -69,13 +63,11 @@ namespace Uno
                 throw new NotSupportedException();
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -93,15 +85,10 @@ namespace Uno
                 else
                     return (int)(intptr_t)*$$;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $$;
-            @}
             else
                 return base.GetHashCode();
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         [extern(CPLUSPLUS) Require("Source.Include", "inttypes.h")] // Needed for PRIxPTR
         [extern(ANDROID) Require("PreprocessorDefinition", "__STDC_FORMAT_MACROS")] // Needed for PRIxPTR
         public override string ToString()
@@ -111,10 +98,6 @@ namespace Uno
                 char buf[19];
                 int len = snprintf(buf, sizeof(buf), "0x%" PRIxPTR, *(intptr_t*)$$);
                 return uString::Ansi(buf, len);
-            @}
-            else if defined(JAVASCRIPT)
-            @{
-                return "IntPtr";
             @}
             else
                 return base.ToString();

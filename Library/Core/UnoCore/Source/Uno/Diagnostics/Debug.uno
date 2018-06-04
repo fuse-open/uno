@@ -105,10 +105,6 @@ namespace Uno.Diagnostics
                 else
                     Console.Error.WriteLine(type + ": " + message);
             }
-            else if defined(JAVASCRIPT)
-            @{
-                console.log($0);
-            @}
             else
                 build_error;
         }
@@ -122,10 +118,6 @@ namespace Uno.Diagnostics
             else if defined(DOTNET)
             {
             }
-            else if defined(JAVASCRIPT)
-            @{
-                alert($0);
-            @}
             else
                 build_error;
         }
@@ -149,10 +141,6 @@ namespace Uno.Diagnostics
             {
                 return false;
             }
-            else if defined(JAVASCRIPT)
-            @{
-                return confirm($0);
-            @}
             else
                 build_error;
         }

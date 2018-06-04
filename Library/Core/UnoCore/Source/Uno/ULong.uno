@@ -5,20 +5,16 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.UInt64")]
     [extern(CPLUSPLUS) Set("TypeName", "uint64_t")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     public intrinsic struct ULong
     {
         public const ulong MinValue = 0;
         public const ulong MaxValue = 0xffffffffffffffff;
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -33,7 +29,6 @@ namespace Uno
         }
 
         [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)
@@ -75,10 +70,6 @@ namespace Uno
 
                 return (uint64_t)retval;
             @}
-            else if defined(JAVASCRIPT)
-            @{
-                return $ParseStringToNumeric($0, 'ulong', @{MinValue}, @{MaxValue});
-            @}
             else
                 build_error;
         }
@@ -115,12 +106,6 @@ namespace Uno
                 *$1 = (uint64_t)retval;
                 return true;
             @}
-            else if defined(JAVASCRIPT)
-            {
-                var uxlRes = extern<object> "$TryParseStringToNumeric($0, 'ulong', @{MinValue}, @{MaxValue})";
-                result = extern<ulong>(uxlRes) "$0.result";
-                return extern<bool>(uxlRes) "$0.success";
-            }
             else
                 build_error;
         }

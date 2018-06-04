@@ -20,8 +20,6 @@ namespace Uno.Threading
                 $0->__monitor->Mutex.lock();
                 $0->__monitor->LockCount++;
             @}
-            else if defined(JAVASCRIPT)
-                return;
             else
                 throw new NotImplementedException();
         }
@@ -38,8 +36,6 @@ namespace Uno.Threading
                 uPtr(uPtr($0)->__monitor)->LockCount--;
                 $0->__monitor->Mutex.unlock();
             @}
-            else if defined(JAVASCRIPT)
-                return;
             else
                 throw new NotImplementedException();
         }
@@ -60,8 +56,6 @@ namespace Uno.Threading
             @{
                 uPtr(uPtr($0)->__monitor)->Cond.notify_one();
             @}
-            else if defined(JAVASCRIPT)
-                return;
             else
                 throw new NotImplementedException();
         }
@@ -72,8 +66,6 @@ namespace Uno.Threading
             @{
                 uPtr(uPtr($0)->__monitor)->Cond.notify_all();
             @}
-            else if defined(JAVASCRIPT)
-                return;
             else
                 throw new NotImplementedException();
         }
@@ -94,8 +86,6 @@ namespace Uno.Threading
                 $0->__monitor->LockCount++;
                 return true;
             @}
-            else if defined(JAVASCRIPT)
-                return true;
             else
                 throw new NotImplementedException();
         }
@@ -125,8 +115,6 @@ namespace Uno.Threading
                 uFatal(U_SOURCE, "std::recursive_timed_mutex is not implemented (on Android, API >= 21 is required).");
 #endif
             @}
-            else if defined(JAVASCRIPT)
-                return true;
             else
                 throw new NotImplementedException();
         }
@@ -154,8 +142,6 @@ namespace Uno.Threading
                 $0->__monitor->Cond.wait(lock);
                 return true;
             @}
-            else if defined(JAVASCRIPT)
-                return true;
             else
                 throw new NotImplementedException();
         }
@@ -178,8 +164,6 @@ namespace Uno.Threading
                 uFatal(U_SOURCE, "std::recursive_timed_mutex is not implemented (on Android, API >= 21 is required).");
 #endif
             @}
-            else if defined(JAVASCRIPT)
-                return true;
             else
                 throw new NotImplementedException();
         }

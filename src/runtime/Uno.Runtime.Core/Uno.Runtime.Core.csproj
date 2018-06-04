@@ -85,7 +85,6 @@
     <Compile Include="Uno\Byte2.cs" />
     <Compile Include="Uno\Byte4.cs" />
     <Compile Include="Uno\Compiler\ExportTargetInterop\DotNetTypeAttribute.cs" />
-    <Compile Include="Uno\Compiler\ExportTargetInterop\ExportNameAttribute.cs" />
     <Compile Include="Uno\Compiler\ExportTargetInterop\GlslIntrinsicAttribute.cs" />
     <Compile Include="Uno\Compiler\ExportTargetInterop\TargetSpecificImplementationAttribute.cs" />
     <Compile Include="Uno\Compiler\ExportTargetInterop\TargetSpecificTypeAttribute.cs" />

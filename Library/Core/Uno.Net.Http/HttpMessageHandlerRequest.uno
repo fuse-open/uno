@@ -28,7 +28,6 @@ namespace Uno.Net.Http
 
             method = method.ToUpper();
 
-            //TODO:  If(Defined(Javascript)) Validate method according to the following JS rules
             /*
             From: https://dvcs.w3.org/hg/xhr/raw-file/default/xhr-1/Overview.html
             If any code point in method is higher than U+00FF LATIN SMALL LETTER Y WITH DIAERESIS or after deflating method it does not match the Method token production, throw a "SyntaxError" exception and terminate these steps. Otherwise let method be the result of deflating method.
@@ -45,8 +44,6 @@ namespace Uno.Net.Http
                 _httpRequest = new XliHttpRequest(this, method, url);
             if defined(APPLE)
                 _httpRequest = new iOSHttpRequest(this, method, url);
-            if defined(JAVASCRIPT)
-                _httpRequest = new JsHttpRequest(this, method, url);
 
             if defined(CIL)
             {
@@ -305,8 +302,6 @@ namespace Uno.Net.Http
 
             _responseType = responseType;
 
-            if defined(JAVASCRIPT)
-                (_httpRequest as JsHttpRequest).SetResponseType(responseType);
             if defined(ANDROID)
                 (_httpRequest as AndroidHttpRequest).SetResponseType(responseType);
         }
@@ -414,7 +409,6 @@ namespace Uno.Net.Http
                     || (int)State > (int)HttpRequestState.Done)
                 return "";
 
-            // If(Defined(Javascript)) Return all response headers, excluding headers that are a case-insensitive match for Set-Cookie or Set-Cookie2, as a single string, with each header line separated by a U+000D CR U+000A LF pair, excluding the status line, and with each header name and header value separated by a U+003A COLON U+0020 SPACE pair.
             return _httpRequest.GetResponseHeaders();
         }
 
@@ -449,43 +443,6 @@ namespace Uno.Net.Http
 
         static bool IsHeaderValid(string name, string value)
         {
-            if defined(JAVASCRIPT)
-            {
-                // NOTE: https://dvcs.w3.org/hg/xhr/raw-file/default/xhr-1/Overview.html#the-setrequestheader%28%29-method
-                var userAgentControlledHeaders =  new []
-                {
-                    "Accept-Charset",
-                    "Accept-Encoding",
-                    "Access-Control-Request-Headers",
-                    "Access-Control-Request-Method",
-                    "Connection",
-                    "Content-Length",
-                    "Cookie",
-                    "Cookie2",
-                    "Content-Transfer-Encoding",
-                    "Date",
-                    "Expect",
-                    "Host",
-                    "Keep-Alive",
-                    "Origin",
-                    "Referer",
-                    "TE",
-                    "Trailer",
-                    "Transfer-Encoding",
-                    "Upgrade",
-                    "User-Agent",
-                    "Via"
-                };
-
-                foreach(var headerKey in userAgentControlledHeaders)
-                    if(headerKey.ToLower() == name.ToLower())
-                        return false;
-                /*
-                … or if the start of header is a case-insensitive match for Proxy- or Sec- (including when header is just Proxy- or Sec-).
-                The above headers are controlled by the user agent to let it control those aspects of transport. This guarantees data integrity to some extent.
-                Header names starting with Sec- are not allowed to be set to allow new headers to be minted that are guaranteed not to come from XMLHttpRequest.
-                */
-            }
             /*
             TODO: Validate header according to http://www.rfc-editor.org/rfc/rfc7231.txt
             */

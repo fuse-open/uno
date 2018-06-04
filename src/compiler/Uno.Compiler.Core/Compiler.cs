@@ -179,10 +179,6 @@ namespace Uno.Compiler.Core
             Run(ConstantFolder);
 
             Run(new ControlFlowVerifier(Pass));
-
-            if (Backend.Has(TypeOptions.CopyStructs))
-                Run(new StructCopyTransform(Pass));
-
             Run(new BackendTransform(Pass));
             Run(new MemberTransform(Pass));
 

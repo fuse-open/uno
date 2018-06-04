@@ -20,10 +20,6 @@ namespace Uno
             @}
             else if defined(DOTNET)
                 return EqualityComparer<T>.Default.Equals(left, right);
-            else if defined(JAVASCRIPT)
-            @{
-                return $EqOp($@);
-            @}
             else
                 build_error;
         }

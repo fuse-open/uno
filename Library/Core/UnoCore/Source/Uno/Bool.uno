@@ -5,18 +5,14 @@ namespace Uno
     [extern(DOTNET) DotNetType("System.Boolean")]
     [extern(CPLUSPLUS) Set("TypeName", "bool")]
     [extern(CPLUSPLUS) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("DefaultValue", "0")]
-    [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
     /** Represents a boolean (`true` or `false`) value */
     public intrinsic struct Bool
     {
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override bool Equals(object o)
         {
             return base.Equals(o);
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override int GetHashCode()
         {
             if defined(CPLUSPLUS)
@@ -27,7 +23,6 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(JAVASCRIPT) Set("IsIntrinsic", "true")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)
