@@ -51,6 +51,7 @@
     "General/TypeOf.uno:Source",
     "General/UsingBlocks.uno:Source",
     "General/UsingStatic.uno:Source",
+    "General/ValueTypes.uno:Source",
     "Issues/1001_190_93_183.uno:Source",
     "Issues/1406.uno:Source",
     "Issues/1406Standalone.uno:Source",
