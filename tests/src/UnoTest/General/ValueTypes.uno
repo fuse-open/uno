@@ -27,7 +27,6 @@ namespace UnoTest.General
     class ValueTypes
     {
         [Test]
-        [Ignore("Fails on .NET", "DOTNET")]
         public static void Test()
         {
             var a = (object) new Value(1, 2);
