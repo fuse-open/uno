@@ -89,10 +89,10 @@ namespace Uno.Compiler.Core.IL.Validation
             foreach (var field in dt.Fields)
                 EnsureExsits(field);
 
-            if (HasEqualOrInEqualOperator(dt) && !OverridesEquals(dt) && !dt.IsEnum)
+            if (HasEqualityOrInequalityOperator(dt) && !OverridesEquals(dt) && !dt.IsEnum)
                 Log.Warning(dt.Source, ErrorCode.W0000, dt.Quote() + " defines operator == or operator != but does not override object.Equals(object o)");
 
-            if (HasEqualOrInEqualOperator(dt) && !OverridesGetHashCode(dt) && !dt.IsEnum)
+            if (HasEqualityOrInequalityOperator(dt) && !OverridesGetHashCode(dt) && !dt.IsEnum)
                 Log.Warning(dt.Source, ErrorCode.W0000, dt.Quote() + " defines operator == or operator != but does not override object.GetHashCode()");
 
             if (OverridesEquals(dt) && !OverridesGetHashCode(dt))
@@ -113,9 +113,10 @@ namespace Uno.Compiler.Core.IL.Validation
             return true;
         }
 
-        private static bool HasEqualOrInEqualOperator(DataType dt)
+        private static bool HasEqualityOrInequalityOperator(DataType dt)
         {
-            return dt.Operators.Any(op => op.Name == "op_Equality" || op.Name == "op_Inequality");
+            return dt.Operators.Any(op => (op.Name == "op_Equality" || op.Name == "op_Inequality") && 
+                    op.Parameters.Length == 2 && op.Parameters[0].Type == dt && op.Parameters[1].Type == dt);
         }
 
         private bool OverridesGetHashCode(DataType dt)
