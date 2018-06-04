@@ -183,9 +183,6 @@ namespace Uno.Compiler.Core
             if (Backend.Has(TypeOptions.CopyStructs))
                 Run(new StructCopyTransform(Pass));
 
-            if (Environment.Options.OptimizeLevel >= 1)
-                Run(new O1(Pass));
-
             Run(new BackendTransform(Pass));
             Run(new MemberTransform(Pass));
 

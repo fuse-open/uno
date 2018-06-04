@@ -121,7 +121,6 @@ Compiler options
   -D, --define=STRING         Add define, to enable a feature
   -U, --undefine=STRING       Remove define, to disable a feature
   -E, --max-errors=NUMBER     Set max error count (0 = disable)
-  -O<0..3>                    Set optimization level (0 = disable)
   -W<0..3>                    Set warning level (0 = disable)
 
 C++ options
