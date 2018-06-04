@@ -76,7 +76,11 @@ public final class Permissions {
             _currentRequest.requestID);
     }
 
-    public static void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public static void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) 
+    {
+        if( _currentRequest == null) 
+            return;
+
         if (_currentRequest.requestID == requestCode && _currentRequest.promise != null && grantResults.length > 0) 
         {
             boolean ok = true;

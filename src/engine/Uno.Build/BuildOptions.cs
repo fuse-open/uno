@@ -16,7 +16,6 @@ namespace Uno.Build
         public bool Test;
         public bool PrintInternals;
         public int WarningLevel = 2;
-        public int OptimizeLevel = 1;
         public int MaxErrorCount = 500;
         public string OutputDirectory;
         public string MainClass;
@@ -36,7 +35,6 @@ namespace Uno.Build
             hash = 3 * hash + Library.NullableHashCode();
             hash = 3 * hash + Strip.NullableHashCode();
             hash = 2 * hash + Test.GetHashCode();
-            hash = 13 * hash + OptimizeLevel.GetHashCode();
             hash = 13 * hash + MainClass.NullableHashCode();
             hash = 13 * hash + TestFilter.NullableHashCode();
             hash = 13 * hash + TestServerUrl.NullableHashCode();

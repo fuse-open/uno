@@ -7,7 +7,6 @@ namespace Uno.Compiler.Core
         public bool CodeCompletionMode;
         public bool Parallel;
         public bool Strip;
-        public int OptimizeLevel;
         public string OutputDirectory;
         public string MainClass;
         public string BuildTarget;

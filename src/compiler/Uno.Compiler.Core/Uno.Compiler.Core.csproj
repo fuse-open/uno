@@ -220,7 +220,6 @@
     <Compile Include="IL\Validation\Visibilities.cs" />
     <Compile Include="IL\Validation\Visibility.cs" />
     <Compile Include="IL\Validation\VisibilityLevel.cs" />
-    <Compile Include="IL\Optimizing\O1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uno.Compiler.API\Uno.Compiler.API.csproj">

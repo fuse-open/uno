@@ -179,10 +179,6 @@ namespace Uno.Compiler.Core
             Run(ConstantFolder);
 
             Run(new ControlFlowVerifier(Pass));
-
-            if (Environment.Options.OptimizeLevel >= 1)
-                Run(new O1(Pass));
-
             Run(new BackendTransform(Pass));
             Run(new MemberTransform(Pass));
 
