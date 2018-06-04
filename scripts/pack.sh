@@ -8,18 +8,26 @@ DST="release"
 BIN="$DST/bin"
 LIB="$DST/lib"
 OUT="upload"
-PLATFORM=`get-platform`
+
+case $OSTYPE in
+  darwin*)
+    PLATFORM="macOS"
+    ;;
+  msys*)
+    PLATFORM="win32"
+    ;;
+  linux*)
+    PLATFORM="linux"
+    ;;
+  *)
+    echo "ERROR: unknown OSTYPE: '$OSTYPE'" >&2
+    exit 1
+esac
 
 # Detect version
-if [ -n "$RELEASE_VERSION" ]; then
-    # BRANCH is set by TeamCity
-    COMMIT="$BUILD_VCS_NUMBER"
-    VERSION="$RELEASE_VERSION"
-else
-    BRANCH=`git rev-parse --abbrev-ref HEAD`
-    COMMIT=`git rev-parse HEAD`
-    VERSION=`cat VERSION.txt`
-fi
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+COMMIT=`git rev-parse HEAD`
+VERSION=`cat VERSION.txt`
 
 # Use {dev, master}-COMMIT as prerelease suffix on non-release branches
 if [ "$BRANCH" = master ]; then

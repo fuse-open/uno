@@ -45,23 +45,6 @@ function uno {
     dotnet-clr prebuilt/uno.exe "$@"
 }
 
-function get-platform {
-    case $OSTYPE in
-    darwin*)
-        echo "macOS"
-        ;;
-    msys*)
-        echo "win32"
-        ;;
-    linux*)
-        echo "linux"
-        ;;
-    *)
-        echo "unsupported"
-        ;;
-    esac
-}
-
 function h1 {
     str="$@"
     printf "\n\e[92m$str\n"
