@@ -9,10 +9,6 @@ namespace Uno
     [extern(CPLUSPLUS) Set("TypeOfFunction", "uObject_typeof")]
     public intrinsic class Object
     {
-        public Object()
-        {
-        }
-
         public Type GetType()
         {
             if defined(CPLUSPLUS)
@@ -27,30 +23,18 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             @{
-                if (U_IS_OBJECT($$->__type))
+                if (sizeof(void*) > 4)
                 {
-                    if (sizeof(void*) > 4)
+                    union
                     {
-                        union
-                        {
-                            void *ptr;
-                            uint32_t data[2];
-                        } u;
-                        u.ptr = $$;
-                        return u.data[0] ^ u.data[1];
-                    }
-                    else
-                        return (int)(intptr_t)$$;
+                        void *ptr;
+                        uint32_t data[2];
+                    } u;
+                    u.ptr = $$;
+                    return u.data[0] ^ u.data[1];
                 }
-
-                const uint8_t* data = (const uint8_t*)$$ + sizeof(uObject);
-                size_t size = $$->__type->ValueSize;
-                int hash = 5381;
-
-                for (size_t i = 0; i < size; i++)
-                    hash = ((hash << 5) + hash) ^ data[i];
-
-                return hash;
+                else
+                    return (int)(intptr_t)$$;
             @}
             else
                 build_error;
@@ -60,22 +44,7 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             @{
-                switch ($$->__type->Type)
-                {
-                case uTypeTypeEnum:
-                case uTypeTypeStruct:
-                    return $$ == $0 || (
-                            $0 != NULL && (
-                                $0->__type == $$->__type || (
-                                    $0->__type->Type == uTypeTypeEnum &&
-                                    $0->__type->Base == $$->__type
-                                )
-                            ) &&
-                            memcmp((const uint8_t*)$$ + sizeof(uObject), (const uint8_t*)$0 + sizeof(uObject), $$->__type->ValueSize) == 0
-                        );
-                default:
-                    return $$ == $0;
-                }
+                return $$ == $0;
             @}
             else
                 build_error;
@@ -85,9 +54,7 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             @{
-                return $$->__type->Type == uTypeTypeEnum
-                    ? uEnum::GetString($$->__type, (uint8_t*)$$ + sizeof(uObject))
-                    : uString::Const($$->__type->FullName);
+                return uString::Const($$->__type->FullName);
             @}
             else
                 build_error;

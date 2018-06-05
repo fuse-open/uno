@@ -21,12 +21,14 @@
 @{Uno.ArgumentNullException:IncludeDirective}
 @{Uno.ArgumentOutOfRangeException:IncludeDirective}
 @{Uno.Delegate:IncludeDirective}
+@{Uno.Enum:IncludeDirective}
 @{Uno.IndexOutOfRangeException:IncludeDirective}
 @{Uno.InvalidCastException:IncludeDirective}
 @{Uno.InvalidOperationException:IncludeDirective}
 @{Uno.NullReferenceException:IncludeDirective}
 @{Uno.TypeInitializationException:IncludeDirective}
 @{Uno.Type:IncludeDirective}
+@{Uno.ValueType:IncludeDirective}
 
 #ifdef DEBUG_GENERICS
 #include <sstream>
@@ -1198,6 +1200,9 @@ uEnumType* uEnumType::New(const char* name, uType* base, size_t literalCount)
     type->Base = base;
     type->LiteralCount = literalCount;
     type->Literals = (uEnumLiteral*)((uint8_t*)type + sizeof(uEnumType));
+    type->fp_GetHashCode = @{Uno.ValueType.GetHashCode():Function};
+    type->fp_Equals = @{Uno.ValueType.Equals(object):Function};
+    type->fp_ToString = @{Uno.Enum.ToString():Function};
 
 #if @(REFLECTION:Defined)
     uRegisterType(type);
@@ -1319,7 +1324,7 @@ static void uStruct_GetHashCode(uObject* object, int32_t* result)
     uStructType* type = (uStructType*)object->__type;
     type->fp_GetHashCode_struct
         ? (*type->fp_GetHashCode_struct)((uint8_t*)object + sizeof(uObject), type, result)
-        : @{object.GetHashCode():Function}(object, result);
+        : @{Uno.ValueType.GetHashCode():Function}(object, result);
 }
 
 static void uStruct_Equals(uObject* obj1, uObject* obj2, bool* result)
@@ -1328,7 +1333,7 @@ static void uStruct_Equals(uObject* obj1, uObject* obj2, bool* result)
     uStructType* type = (uStructType*)obj1->__type;
     type->fp_Equals_struct
         ? (*type->fp_Equals_struct)((uint8_t*)obj1 + sizeof(uObject), type, obj2, result)
-        : @{object.Equals(object):Function}(obj1, obj2, result);
+        : @{Uno.ValueType.Equals(object):Function}(obj1, obj2, result);
 }
 
 static void uStruct_ToString(uObject* object, uString** result)

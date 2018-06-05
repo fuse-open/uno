@@ -391,6 +391,7 @@
     "Source/Uno/UShort.uno:Source",
     "Source/Uno/UShort2.uno:Source",
     "Source/Uno/UShort4.uno:Source",
+    "Source/Uno/ValueType.uno:Source",
     "Source/Uno/UX/Attributes/UXAttachedEventAdderAttribute.uno:Source",
     "Source/Uno/UX/Attributes/UXAttachedEventRemoverAttribute.uno:Source",
     "Source/Uno/UX/Attributes/UXAttachedPropertyGetterAttribute.uno:Source",
