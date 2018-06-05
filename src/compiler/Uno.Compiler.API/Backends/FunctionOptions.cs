@@ -13,5 +13,6 @@ namespace Uno.Compiler.API.Backends
         MakeNativeCode = 1 << 7,
         Analyze = 1 << 8,
         ClosureConvert = 1 << 9,
+        Bytecode = 1 << 10
     }
 }

@@ -21,7 +21,8 @@ namespace Uno.Compiler.Backends.CIL
                 FunctionOptions.DecodeEnumOps |
                 FunctionOptions.DecodeDelegateOps |
                 FunctionOptions.DecodeSwizzles |
-                FunctionOptions.ClosureConvert;
+                FunctionOptions.ClosureConvert |
+                FunctionOptions.Bytecode;
             Options =
                 BackendOptions.ExportFiles |
                 BackendOptions.ExportMergedBlob;
