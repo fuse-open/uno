@@ -1,7 +1,6 @@
 using Uno;
 using Uno.IO;
 using Uno.Collections;
-using Uno.Platform;
 
 namespace Uno.Data.Json
 {

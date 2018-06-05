@@ -27,8 +27,8 @@
         <Method Signature="GetResponseHeader(string):string">
             <Body>
                 uBase::String result;
-                if (@{$$._requestHandle}->TryGetResponseHeader(uStringToXliString($0), result))
-                    return uStringFromXliString(result);
+                if (@{$$._requestHandle}->TryGetResponseHeader(uCString($0).Ptr, result))
+                    return uString::Utf8(result.Ptr());
                 else
                     return NULL;
             </Body>
@@ -48,7 +48,7 @@
                     result += req->GetResponseHeaderValue(it);
                 }
 
-                return uStringFromXliString(result);
+                return uString::Utf8(result.Ptr());
             </Body>
         </Method>
     </Type>
