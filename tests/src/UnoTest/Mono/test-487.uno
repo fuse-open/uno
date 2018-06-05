@@ -19,7 +19,7 @@ namespace Mono.test_487
             
             pass = (n == 2);
         }
-        [Uno.Testing.Ignore, Uno.Testing.Test] public static void test_487() { Uno.Testing.Assert.AreEqual(0, Main()); }
+        [Uno.Testing.Test] public static void test_487() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {
             new X (null);
