@@ -75,15 +75,13 @@ if [ "$BUILD_PLATFORM" = 1 ]; then
     nuget restore uno.sln
 
     h1 "Building platform tools"
-
-    # Get version number
-    VERSION=`cat VERSION.txt`
-
-    # Build C# solution
     csharp-build uno.sln
 fi
 
 if [ "$BUILD_LIBRARY" = 1 ]; then
+    # Get version number
+    VERSION=`cat VERSION.txt`
+
     h1 "Building standard library"
     if [ "$REBUILD_LIBRARY" = 1 ]; then
         uno doctor -ac$CONFIGURATION --build-number=$VERSION
