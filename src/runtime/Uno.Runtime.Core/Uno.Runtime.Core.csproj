@@ -35,7 +35,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <Import Project="..\..\GlobalAssemblyInfo.targets" Condition="Exists('..\..\GlobalAssemblyInfo.targets')" />
   <ItemGroup>
     <Compile Include="OpenGL\GL.cs" />
     <Compile Include="OpenGL\GLBlendEquation.cs" />

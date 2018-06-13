@@ -53,10 +53,8 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine(@"    <Reference Include=""System.Core"" />");
                 w.WriteLine(@"    <Reference Include=""Microsoft.CSharp"" />");
                 w.WriteLine(@"  </ItemGroup>");
+                w.WriteLine(@"  <Import Project=""..\..\GlobalAssemblyInfo.targets"" Condition=""Exists('..\..\GlobalAssemblyInfo.targets')"" />");
                 w.WriteLine(@"  <ItemGroup>");
-                w.WriteLine( "    <Compile Include=\"..\\..\\GlobalAssemblyInfo.cs\">");
-                w.WriteLine(@"      <Link>Properties\GlobalAssemblyInfo.cs</Link>");
-                w.WriteLine( "    </Compile>");
 
                 var sourceFiles = SourceFiles.Select(x => x.Replace('/', '\\')).ToList();
                 sourceFiles.Sort(StringComparer.InvariantCulture);
@@ -91,11 +89,6 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine("        HideSolutionNode = FALSE");
                 w.WriteLine("    EndGlobalSection");
                 w.WriteLine("EndGlobal");
-            }
-
-            using (var w = Disk.CreateBufferedText(Environment.Combine("..", "..", "GlobalAssemblyInfo.cs"), NewLine.Lf))
-            {
-                w.WriteLine("// Dummy file");
             }
         }
     }
