@@ -20,7 +20,7 @@ namespace Uno
         {
         }
 
-        public static Application Current
+        public static new Application Current
         {
             get { return (Application)Platform.CoreApp.Current; }
         }

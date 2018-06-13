@@ -66,6 +66,8 @@ namespace Uno.Compiler.Backends.CSharp
                 Write("abstract ");
             if (tm.HasFlag(Modifiers.Sealed))
                 Write("sealed ");
+            if (tm.HasFlag(Modifiers.New))
+                Write("new ");
         }
 
         public void WriteFieldModifiers(FieldModifiers tm)
