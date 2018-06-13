@@ -13,6 +13,7 @@ namespace Uno.Compiler.Backends.CSharp
         {
             var projFilename = "Uno.Runtime.Core.csproj";
             var slnFilename = "Uno.Runtime.Core.sln";
+            var nuspecFilename = "Uno.Runtime.Core.nuspec";
 
             using (var w = Disk.CreateBufferedText(Environment.Combine(projFilename), NewLine.CrLf))
             {
@@ -63,6 +64,9 @@ namespace Uno.Compiler.Backends.CSharp
                     w.WriteLine("    <Compile Include=\"" + f + "\" />");
 
                 w.WriteLine(@"  </ItemGroup>");
+                w.WriteLine(@"  <ItemGroup>");
+                w.WriteLine(@"    <None Include=""Uno.Runtime.Core.nuspec"" />");
+                w.WriteLine(@"  </ItemGroup>");
                 w.WriteLine("  <Import Project=\"$(MSBuildToolsPath)\\Microsoft.CSharp.targets\" />");
                 w.Write("</Project>");
             }
@@ -89,6 +93,26 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine("        HideSolutionNode = FALSE");
                 w.WriteLine("    EndGlobalSection");
                 w.WriteLine("EndGlobal");
+            }
+
+            using (var w = Disk.CreateBufferedText(Environment.Combine(nuspecFilename), NewLine.CrLf))
+            {
+                w.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
+                w.WriteLine(@"<package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">");
+                w.WriteLine(@"    <metadata>");
+                w.WriteLine(@"        <id>FuseOpen.$id$</id>");
+                w.WriteLine(@"        <version>$version$</version>");
+                w.WriteLine(@"        <title>$title$</title>");
+                w.WriteLine(@"        <authors>$author$</authors>");
+                w.WriteLine(@"        <owners>$author$</owners>");
+                w.WriteLine(@"        <licenseUrl>https://github.com/fuse-open/uno/blob/master/LICENSE.txt</licenseUrl>");
+                w.WriteLine(@"        <projectUrl>https://github.com/fuse-open/uno</projectUrl>");
+                w.WriteLine(@"        <requireLicenseAcceptance>false</requireLicenseAcceptance>");
+                w.WriteLine(@"        <description>$description$</description>");
+                w.WriteLine(@"        <copyright>Copyright FuseOpen 2018</copyright>");
+                w.WriteLine(@"        <tags>uno fuse ux</tags>");
+                w.WriteLine(@"    </metadata>");
+                w.Write(@"</package>");
             }
         }
     }
