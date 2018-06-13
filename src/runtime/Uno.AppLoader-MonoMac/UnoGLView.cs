@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using Foundation;
 using AppKit;
 using OpenTK.Graphics.OpenGL;
 using Uno.Diagnostics;
 using Uno.Platform;
 using Uno.Runtime.Implementation.Internal;
-using MonoMacGameView = OpenTK.Platform.MacOS.MonoMacGameView;
 using CoreGraphics;
 
 namespace Uno.Support.MonoMac
