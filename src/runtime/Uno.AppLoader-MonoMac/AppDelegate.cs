@@ -1,9 +1,6 @@
-using System;
-using System.Drawing;
 using Foundation;
 using AppKit;
 using Uno.Support.MonoMac;
-using System.Reflection;
 using System.Linq;
 using CoreGraphics;
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
-using Foundation;
 using AppKit;
 using ObjCRuntime;
 using System.Runtime.InteropServices;
