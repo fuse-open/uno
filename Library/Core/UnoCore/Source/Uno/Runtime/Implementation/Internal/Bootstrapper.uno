@@ -22,7 +22,7 @@ namespace Uno.Runtime.Implementation.Internal
 
         static bool IsPrimaryFinger(PlatformWindowHandle handle, int fingerId)
         {
-            return _lastPrimaryFingerId == fingerId && (defined(Android) || defined(iOS) || defined(FirefoxOS));
+            return _lastPrimaryFingerId == fingerId && (defined(Android) || defined(iOS));
         }
 
         static EventModifiers GetEventModifiers(PlatformWindowHandle handle)
