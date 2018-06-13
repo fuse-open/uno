@@ -225,7 +225,7 @@ namespace OpenGL
 
         public static void BindTexture(GLTextureTarget target, GLTextureHandle texture)
         {
-            _gl.BindTexture(target, texture);
+            GL._gl.BindTexture(target, texture);
         }
 
         public static GLTextureHandle CreateTexture()
