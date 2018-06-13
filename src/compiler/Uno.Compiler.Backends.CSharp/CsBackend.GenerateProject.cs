@@ -17,7 +17,7 @@ namespace Uno.Compiler.Backends.CSharp
 
             using (var w = Disk.CreateBufferedText(Environment.Combine(projFilename), NewLine.CrLf))
             {
-                w.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
+                w.WriteLine("\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 w.WriteLine(@"<Project ToolsVersion=""14.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">");
                 w.WriteLine(@"  <PropertyGroup>");
                 w.WriteLine(@"    <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>");
