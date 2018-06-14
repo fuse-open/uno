@@ -13,10 +13,11 @@ namespace Uno.Compiler.Backends.CSharp
         {
             var projFilename = "Uno.Runtime.Core.csproj";
             var slnFilename = "Uno.Runtime.Core.sln";
+            var nuspecFilename = "Uno.Runtime.Core.nuspec";
 
             using (var w = Disk.CreateBufferedText(Environment.Combine(projFilename), NewLine.CrLf))
             {
-                w.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
+                w.WriteLine("\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 w.WriteLine(@"<Project ToolsVersion=""14.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">");
                 w.WriteLine(@"  <PropertyGroup>");
                 w.WriteLine(@"    <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>");
@@ -53,10 +54,8 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine(@"    <Reference Include=""System.Core"" />");
                 w.WriteLine(@"    <Reference Include=""Microsoft.CSharp"" />");
                 w.WriteLine(@"  </ItemGroup>");
+                w.WriteLine(@"  <Import Project=""..\..\GlobalAssemblyInfo.targets"" Condition=""Exists('..\..\GlobalAssemblyInfo.targets')"" />");
                 w.WriteLine(@"  <ItemGroup>");
-                w.WriteLine( "    <Compile Include=\"..\\..\\GlobalAssemblyInfo.cs\">");
-                w.WriteLine(@"      <Link>Properties\GlobalAssemblyInfo.cs</Link>");
-                w.WriteLine( "    </Compile>");
 
                 var sourceFiles = SourceFiles.Select(x => x.Replace('/', '\\')).ToList();
                 sourceFiles.Sort(StringComparer.InvariantCulture);
@@ -64,6 +63,9 @@ namespace Uno.Compiler.Backends.CSharp
                 foreach (var f in sourceFiles)
                     w.WriteLine("    <Compile Include=\"" + f + "\" />");
 
+                w.WriteLine(@"  </ItemGroup>");
+                w.WriteLine(@"  <ItemGroup>");
+                w.WriteLine(@"    <None Include=""Uno.Runtime.Core.nuspec"" />");
                 w.WriteLine(@"  </ItemGroup>");
                 w.WriteLine("  <Import Project=\"$(MSBuildToolsPath)\\Microsoft.CSharp.targets\" />");
                 w.Write("</Project>");
@@ -93,9 +95,24 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine("EndGlobal");
             }
 
-            using (var w = Disk.CreateBufferedText(Environment.Combine("..", "..", "GlobalAssemblyInfo.cs"), NewLine.Lf))
+            using (var w = Disk.CreateBufferedText(Environment.Combine(nuspecFilename), NewLine.CrLf))
             {
-                w.WriteLine("// Dummy file");
+                w.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
+                w.WriteLine(@"<package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">");
+                w.WriteLine(@"    <metadata>");
+                w.WriteLine(@"        <id>FuseOpen.$id$</id>");
+                w.WriteLine(@"        <version>$version$</version>");
+                w.WriteLine(@"        <title>$title$</title>");
+                w.WriteLine(@"        <authors>$author$</authors>");
+                w.WriteLine(@"        <owners>$author$</owners>");
+                w.WriteLine(@"        <licenseUrl>https://github.com/fuse-open/uno/blob/master/LICENSE.txt</licenseUrl>");
+                w.WriteLine(@"        <projectUrl>https://github.com/fuse-open/uno</projectUrl>");
+                w.WriteLine(@"        <requireLicenseAcceptance>false</requireLicenseAcceptance>");
+                w.WriteLine(@"        <description>$description$</description>");
+                w.WriteLine(@"        <copyright>Copyright FuseOpen 2018</copyright>");
+                w.WriteLine(@"        <tags>uno fuse ux</tags>");
+                w.WriteLine(@"    </metadata>");
+                w.Write(@"</package>");
             }
         }
     }
