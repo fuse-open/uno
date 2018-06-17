@@ -15,7 +15,6 @@ install:
   - choco install vswhere
 
 build_script:
-  - nuget restore uno.sln
   - bash scripts/build.sh
 
 before_test:
