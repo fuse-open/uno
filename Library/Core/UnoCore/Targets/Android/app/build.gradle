@@ -7,8 +7,8 @@ apply plugin: 'com.android.application'
 dependencies {
     compile fileTree(dir: 'src/main/libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:appcompat-v7:26.0.2'
+    compile 'com.android.support:design:26.0.2'
 #if @(Gradle.Dependency.Compile:IsRequired)
     @(Gradle.Dependency.Compile:Join('\n', 'compile \'', '\''))
 #endif
@@ -26,6 +26,7 @@ build.dependsOn copySharedLibraries
 
 #if @(Gradle.Repository:IsRequired)
 repositories {
+    maven { url 'https://maven.google.com' }
     @(Gradle.Repository:Join('\n'))
 }
 #endif
