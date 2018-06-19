@@ -184,7 +184,7 @@ namespace Uno.Compiler.Core.IL.Validation
         {
             if (Function is ShaderFunction)
                 return;
-            if (Backend.Has(FunctionOptions.Bytecode))
+            if (Backend.Has(FunctionOptions.Bytecode) && !Backend.IsPInvokable(Essentials, Function))
                 Log.Error(e.Source, ErrorCode.E0000, "This backend does not support 'extern' code");
         }
 
