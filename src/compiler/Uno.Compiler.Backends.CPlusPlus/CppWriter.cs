@@ -613,6 +613,11 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 WriteExpression(s);
                 Write(")->" + member);
             }
+            else if (s.ReturnType.IsValueType && declType != null && declType.IsReferenceType)
+            {
+                WriteBox(s.Source, declType, s.ActualValue, true, ExpressionUsage.Object);
+                Write("->" + member);
+            }
             else
             {
                 WriteExpression(s, ExpressionUsage.Object);
