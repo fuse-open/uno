@@ -42,7 +42,7 @@ The following foreign languages are supported:
 * [Objective-C] (iOS, macOS)
 * [Swift] (iOS)
 
-[Fuse]: https://www.fusetools.com/
+[Fuse]: https://fuse-open.github.io/
 [C#]: https://en.wikipedia.org/wiki/C_Sharp_(programming_language)
 [C++11]: https://en.wikipedia.org/wiki/C++11
 [C99]: https://en.wikipedia.org/wiki/C99
@@ -63,7 +63,7 @@ The following foreign languages are supported:
 [generics]: https://en.wikipedia.org/wiki/Generic_programming
 [reflection]: https://en.wikipedia.org/wiki/Reflection_(computer_programming)
 
-See https://www.fusetools.com/docs for more information about the Uno/UX (and JavaScript) stack.
+See https://fuse-open.github.io/docs/ for more information about the Uno/UX (and JavaScript) stack.
 
 ## Building
 
