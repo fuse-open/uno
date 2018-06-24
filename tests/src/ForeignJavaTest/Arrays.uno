@@ -1,7 +1,6 @@
 using Uno;
 using Uno.Testing;
 using Uno.Graphics;
-using Uno.Platform;
 using Uno.Collections;
 using Uno.Compiler.ExportTargetInterop;
 
