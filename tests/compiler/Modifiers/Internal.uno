@@ -1,6 +1,6 @@
 namespace A
 {
-    class Bar : Uno.Application
+    class Bar
     {
         public Bar()
         {

@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 abstract public class Bar
 {
     virtual protected void F() {}

@@ -1,5 +1,3 @@
-public class Main : Uno.Application {}
-
 static class Bar {}
 
 static class Foo : Bar // $E3015

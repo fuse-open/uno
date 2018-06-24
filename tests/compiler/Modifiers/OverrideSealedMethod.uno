@@ -1,4 +1,3 @@
-class Main : Uno.Application {}
 class A
 {
     public virtual void F() {}

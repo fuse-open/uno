@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 [AttributeUsage(AttributeTargets.Struct)]
 class StructAttribute : Attribute
 {

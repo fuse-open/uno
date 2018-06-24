@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 abstract class Foo
 {
     public override int f()   // $E4018

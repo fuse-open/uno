@@ -1,4 +1,4 @@
-class Main : Uno.Application
+class Main
 {
    public static void Main() // $E 'Main': Member names cannot be the same as their enclosing types
    {

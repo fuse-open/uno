@@ -1,4 +1,4 @@
-class Main : Uno.Application
+class Main
 {
     public void Method(ref int i) {} // $E [Ignore] Cannot define overloaded method 'Method' because it differs from another method only on ref and out
     public void Method(out int i) {} // $E4121 $E4513 [Ignore]

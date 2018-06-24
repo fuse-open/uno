@@ -13,7 +13,7 @@ static class Foo1
     static Foo1() {}
 }
 
-public class Main : Uno.Application
+public class Main
 {
     public Main()
     {

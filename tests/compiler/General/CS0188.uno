@@ -1,4 +1,4 @@
-class Main : Uno.Application
+class Main
 {
     struct S
     {

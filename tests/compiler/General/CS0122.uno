@@ -3,7 +3,7 @@ public class Foo
     void PrivateMethod() {}
 }
 
-public class Main : Uno.Application
+public class Main
 {
     public static void Main()   // $E 'Main': Member names cannot be the same as their enclosing types
     {

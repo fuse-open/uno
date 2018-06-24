@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 struct Bar
 {
     public string field;

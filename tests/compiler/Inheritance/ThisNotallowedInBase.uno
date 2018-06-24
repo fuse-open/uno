@@ -7,8 +7,3 @@ public class B : A
 {
     public B() : base(this) {} // $E4111
 }
-
-class Main: Uno.Application
-{
-
-}

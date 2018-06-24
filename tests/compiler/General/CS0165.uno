@@ -3,7 +3,7 @@ class Foo
     public int i;
 }
 
-class MainHest : Uno.Application
+class MainHest
 {
     public static void Main(string[] args)
     {

@@ -8,7 +8,7 @@ public struct Bar
     public int x, y;
 }
 
-class Main : Uno.Application
+class Main
 {
     public void Method1(out Foo foo)
     {

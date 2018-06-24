@@ -1,4 +1,4 @@
-class Main : Uno.Application
+class Main
 {
     private int x = 0;
 

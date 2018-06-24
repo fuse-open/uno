@@ -8,7 +8,7 @@ public class TestClass2
     public void DisplaySomething(string s) {}
 }
 
-public class Main : Uno.Application
+public class Main
 {
     public Main()
     {

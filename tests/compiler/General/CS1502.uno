@@ -1,4 +1,4 @@
-public class Foo : Uno.Application
+public class Foo
 {
     public Foo(char i) {}
 

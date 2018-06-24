@@ -1,6 +1,6 @@
 using Uno;
 
-public class Main : Uno.Application
+public class Main
 {
     public void Main() // $E0000 'Main': Member names cannot be the same as their enclosing types
     {

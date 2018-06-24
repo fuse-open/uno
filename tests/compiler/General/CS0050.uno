@@ -1,6 +1,6 @@
 class Foo {} // Check that defaults to internal is valid (c# has private as default)
 
-public class Main : Uno.Application
+public class Main
 {
     public static Foo MyMethod() // $E4128
     {

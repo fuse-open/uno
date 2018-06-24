@@ -16,7 +16,7 @@ class TestClass
     }
 }
 
-class Main : Uno.Application
+class Main
 {
     public void Main()
     {
