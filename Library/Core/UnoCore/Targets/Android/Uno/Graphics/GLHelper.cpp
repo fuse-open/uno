@@ -156,19 +156,19 @@ void GLHelper::SwapBackToPBufferSurface(EGLSurface surface)
 
 void GLHelper::SwapBackToPBufferSurface()
 {
-    if (!_eglPBufferSurface) LOGD("PBuffer has somehow been destroyed (or was not created)");
+    if (!_eglPBufferSurface) U_LOG("PBuffer has somehow been destroyed (or was not created)");
     MakeCurrent(_eglPBufferContext, _eglPBufferSurface);
 }
 
 void GLHelper::SwapToDummySurface()
 {
-    if (!_eglDummySurface) LOGD("The DummySurface has somehow been destroyed (or was not created)");
+    if (!_eglDummySurface) U_LOG("The DummySurface has somehow been destroyed (or was not created)");
     MakeCurrent(_eglSurfaceContext, _eglDummySurface);
 }
 
 void GLHelper::MakeWorkerThreadContextCurrent()
 {
-    if (!_eglPBufferSurface) LOGD("PBuffer has somehow been destroyed (or was not created)");
+    if (!_eglPBufferSurface) U_LOG("PBuffer has somehow been destroyed (or was not created)");
     MakeCurrent(_eglWorkerThreadContext, _eglPBufferSurface);
 }
 

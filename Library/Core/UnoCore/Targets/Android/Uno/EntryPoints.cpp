@@ -194,7 +194,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     // vm & activityClass
     JNIEnv* env;
     if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-        LOGD ("&&&&&&& GetEnv failed &&&&&&");
+        U_LOG("&&&&&&& GetEnv failed &&&&&&");
         return -1;
     }
     jclass activityClass = env->FindClass("@(Activity.Package:Replace('.', '/'))/@(Activity.Name)");
