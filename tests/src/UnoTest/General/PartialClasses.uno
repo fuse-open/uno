@@ -31,4 +31,16 @@ namespace UnoTest.General
 
 
     }
+
+    extern(IOS)
+    partial class PartialClass
+    {
+        // iOS specific members here...
+    }
+
+    extern(ANDROID)
+    partial class PartialClass
+    {
+        // Android specific members here...
+    }
 }
