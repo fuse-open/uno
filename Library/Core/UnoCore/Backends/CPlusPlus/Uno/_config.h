@@ -69,7 +69,6 @@ T uAssertPtr(T ptr, const char* src, const char* msg) {
 // C++11 compatibility
 #ifdef _MSC_VER
 #define alignof __alignof
-#define snprintf _snprintf
 #endif
 
 // Deprecation

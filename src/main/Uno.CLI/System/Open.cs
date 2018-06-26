@@ -113,24 +113,7 @@ namespace Uno.CLI.System
                       FindShortcut(app, Environment.SpecialFolder.CommonStartMenu);
 
             if (string.IsNullOrEmpty(lnk))
-            {
-                if (app == "Visual Studio 2015")
-                {
-                    foreach (var alias in new[] {
-                            "Visual Studio 2013",
-                            "VS Express 2013 for Desktop"
-                        })
-                    {
-                        lnk = FindShortcut(alias, Environment.SpecialFolder.StartMenu) ??
-                              FindShortcut(alias, Environment.SpecialFolder.CommonStartMenu);
-
-                        if (!string.IsNullOrEmpty(lnk))
-                            return ResolveShortcut(lnk);
-                    }
-                }
-
                 throw new ArgumentException("The application " + app.Quote() + " was not found in the Start Menu");
-            }
 
             return ResolveShortcut(lnk);
         }
