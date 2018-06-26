@@ -1,6 +1,6 @@
 class Main {}
 
-partial class Main : Uno.Application {}
+partial class Main {}
 
 private partial class Main {} // $E3025
 

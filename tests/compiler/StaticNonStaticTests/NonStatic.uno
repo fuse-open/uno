@@ -1,4 +1,4 @@
-class Main : Uno.Application
+class Main
 {
     // Non-static field
     public int field;

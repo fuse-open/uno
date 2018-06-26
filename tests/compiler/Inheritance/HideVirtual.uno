@@ -1,4 +1,4 @@
-abstract class SomethingBase : Uno.Application {
+abstract class SomethingBase {
     protected virtual void Foo() { }
 }
 

@@ -4,7 +4,7 @@ public class
     void MethodA() {}
 }
 
-public class Main : Uno.Application
+public class Main
 {
     enum Colors /* : int */ // Uno does not support this atm
     {

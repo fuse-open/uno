@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 struct Foo
 {
     public Foo() {} // $E4037

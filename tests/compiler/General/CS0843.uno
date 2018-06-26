@@ -1,5 +1,3 @@
-public class Main : Uno.Application {}
-
 struct S
 {
     public int AIProp { get; set; }

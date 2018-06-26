@@ -9,5 +9,3 @@ using myAliasName2 = Uno.Collections.List<int>;
 
 
 */
-
-class Main : Uno.Application {}

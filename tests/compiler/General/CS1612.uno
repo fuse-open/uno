@@ -14,7 +14,7 @@ public class ListView
     }
 }
 
-class Main : Uno.Application
+class Main
 {
     public Main()
     {

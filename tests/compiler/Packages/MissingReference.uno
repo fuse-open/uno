@@ -1,6 +1,6 @@
 using UnoTull; // $E3114
 
-class Main : Uno.Application
+class Main
 {
     public Main()
     {

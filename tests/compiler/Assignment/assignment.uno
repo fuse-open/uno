@@ -1,6 +1,6 @@
 namespace foo
 {
-    public class App : Uno.Application
+    public class App
     {
     }
 

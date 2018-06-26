@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 static class Foo4 : null // $E Expected type following ':' -- found 'null' (Null)
 {}
 

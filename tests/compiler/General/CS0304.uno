@@ -1,6 +1,6 @@
 using Uno;
 
-class C<T> : Application
+class C<T>
 {
     T t = new T(); // $E 'T' has no default constructor
 

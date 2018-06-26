@@ -1,6 +1,6 @@
 class Foo {}
 
-class Main : Uno.Application
+class Main
 {
    const Foo test = new Foo();   // $E0059
 

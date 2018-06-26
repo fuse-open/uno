@@ -10,7 +10,7 @@ class C: A
 {
 }
 
-class Main : Uno.Application
+class Main
 {
     static void Main() // $E0000 'Main': Member names cannot be the same as their enclosing types
     {

@@ -1,4 +1,5 @@
 using Uno;
+using Uno.Graphics;
 using Uno.Testing;
 
 namespace UnoTest.General
@@ -54,7 +55,7 @@ namespace UnoTest.General
                 PixelColor:
                     {
                         // sample will force this to pixel stage
-                        var p = sample(texture2D.Load(import("../Assets/Copter_Diffuse.png")), TexCoord);
+                        var p = sample(new texture2D(int2(256), Format.RGBA8888, true), TexCoord);
 
                         for (int i = 0; i < FixedField.Length; i++)
                             p.X += FixedField[i];

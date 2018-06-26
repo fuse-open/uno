@@ -1,6 +1,6 @@
 using Uno;
 
-public class App : Application
+public class App
 {
     public App()
     {

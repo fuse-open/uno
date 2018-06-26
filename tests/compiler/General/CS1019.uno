@@ -6,7 +6,7 @@ class ii
     }
 }
 
-public class a : Uno.Application
+public class a
 {
     public int i;
     public static a operator ii(a aa) // $E Expected overloadable unary operator -- found 'ii' (Identifier)

@@ -1,4 +1,4 @@
-public class Main : Uno.Application
+public class Main
 {
     public static implicit operator int(Main x)
     {

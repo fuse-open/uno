@@ -1,5 +1,5 @@
 
-class Main: Uno.Application
+class Main
 {
     apply A;
 

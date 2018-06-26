@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 class C {}
 
 class a : C

@@ -1,2 +1,2 @@
-public sealed class Main : Uno.Application {}
+public sealed class Main {}
 public class Foo : Main {} // $E4009

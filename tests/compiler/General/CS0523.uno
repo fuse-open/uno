@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 struct RecursiveLayoutStruct1
 {
     public RecursiveLayoutStruct2 field; // $E4129

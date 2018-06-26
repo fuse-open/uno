@@ -1,5 +1,3 @@
-class Main : Uno.Application {}
-
 struct GStruct1<T, U>
 {
     public int dummyField;

@@ -6,7 +6,7 @@
     "SubProject/SubProject.unoproj"
   ],
   "Includes": [
-  	"BundleFile.pdf:Bundle",
+    "BundleFile.pdf:Bundle",
     "Main.uno:Source"
   ]
 }

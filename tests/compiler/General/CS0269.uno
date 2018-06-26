@@ -1,6 +1,6 @@
 using Uno;
 
-class Main : Application
+class Main
 {
     public static void F(out int i)
     {

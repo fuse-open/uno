@@ -1,4 +1,4 @@
-class Bar : Uno.Application {}
+class Bar {}
 {
    public virtual int Property // $E Expected type or block following 'virtual' -- found 'int' (Int)
    {

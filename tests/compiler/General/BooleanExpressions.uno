@@ -1,4 +1,4 @@
-class Main : Uno.Application {
+class Main {
     public Main() {
         var validExpression = 1 < 1;
         if(validExpression) {}
