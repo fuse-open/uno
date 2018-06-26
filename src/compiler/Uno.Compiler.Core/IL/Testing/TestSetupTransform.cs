@@ -88,17 +88,36 @@ namespace Uno.Compiler.Core.IL.Testing
 
         Method CreateInvoker(Method method)
         {
+            if (!method.ReturnType.IsVoid || method.Parameters.Length > 0)
+            {
+                Log.Error(method.Source, null, "Tests must take zero parameters and return void");
+                return Function.Null;
+            }
+
+            // Promote non-public test methods to internal, to avoid accessibility problems
+            PromoteToInternal(method);
+
+            // Early-out on static methods, and classes with generated constructor not IDisposable
+            var ctor = method.DeclaringType.TryGetDefaultConstructor();
+            if (method.IsStatic || ctor.IsGenerated && !method.DeclaringType.IsImplementingInterface(Essentials.IDisposable))
+                return method;
+
             var invokeMethod = new Method(_source,
                                           _mainClass,
                                           null,
-                                          Modifiers.Generated | Modifiers.Public | Modifiers.Static,
-                                          InvokeName(method),
+                                          Modifiers.Generated | Modifiers.Private | Modifiers.Static,
+                                          method.FullName.Replace('.', '_').ToIdentifier(),
                                           DataType.Void,
                                           ParameterList.Empty);
+            var testVar = new Variable(_source, invokeMethod, "obj", method.DeclaringType,
+                                       VariableType.Default, InstantiateTestFixture(method));
+            invokeMethod.SetBody(new Scope(_source, 
+                new VariableDeclaration(testVar),
+                new CallMethod(_source, new LoadLocal(_source, testVar), method)));
 
-            var testInstance = InstantiateTestFixture(method);
-            var runTest = new CallMethod(_source, testInstance, method);
-            invokeMethod.SetBody(new Scope(_source, runTest));
+            var dispose = method.DeclaringType.TryGetMethod("Dispose", true);
+            if (dispose != null)
+                invokeMethod.Body.Statements.Add(new CallMethod(_source, new LoadLocal(_source, testVar), dispose));
 
             _mainClass.Methods.Add(invokeMethod);
             return invokeMethod;
@@ -109,8 +128,13 @@ namespace Uno.Compiler.Core.IL.Testing
             if (method.IsStatic)
                 return null;
 
-            var ctor = (Constructor)method.DeclaringType.TryGetDefaultConstructor();
-            return ctor != null ? new NewObject(_source, ctor, Expressions.Empty) : null;
+            var ctor = method.DeclaringType.TryGetDefaultConstructor() as Constructor;
+
+            if (ctor != null)
+                return new NewObject(_source, ctor, Expressions.Empty);
+
+            Log.Error(method.Source, null, "No default constructor found on " + method.DeclaringType.Quote());
+            return Expression.Invalid;
         }
 
         bool ShouldIgnoreForThisPlatform(Method method, Expression[] args)
@@ -121,25 +145,18 @@ namespace Uno.Compiler.Core.IL.Testing
             return Environment.Test(method.Source, condition);
         }
 
-        public static string TestName(Method method)
-        {
-            return method.FullName;
-        }
-
         public TestMethod CreateTestMethod(Method method)
         {
-            var name = TestName(method);
-
             var ignoreAttribs = method.Attributes.Where(x => x.ReturnType == _ignoreAttributeType).ToList();
             if (ignoreAttribs.Count == 0)
-                return new TestMethod(name, false, "");
+                return new TestMethod(method.FullName, false, "");
 
             if (ignoreAttribs.Count == 1)
             {
                 var args = ignoreAttribs[0].Arguments;
                 var ignoreReason = args.Length > 0 ? args[0].ToString().Trim('"') : null;
-                bool ignoreOnPlatform = ShouldIgnoreForThisPlatform(method, args);
-                return new TestMethod(name, ignoreOnPlatform, ignoreReason);
+                var ignoreOnPlatform = ShouldIgnoreForThisPlatform(method, args);
+                return new TestMethod(method.FullName, ignoreOnPlatform, ignoreReason);
             }
 
             throw new SourceException(method.Source, "Can not specify more than one Ignore attribute.");
@@ -166,9 +183,12 @@ namespace Uno.Compiler.Core.IL.Testing
             foreach (var method in methods)
             {
                 var testMethod = CreateTestMethod(method);
+                var invokerMethod = CreateInvoker(method);
+                var invokerInstance = InstantiateTestFixture(invokerMethod);
                 var testExpression = RegisterTest(testMethod,
                              new LoadLocal(_source, registryVariable),
-                             new NewDelegate(_source, _actionType, null, CreateInvoker(method)));
+                             new NewDelegate(_source, _actionType, 
+                                             invokerInstance, invokerMethod));
 
                 body.Statements.Add(testExpression);
                 ret.Add(testMethod);
@@ -191,9 +211,43 @@ namespace Uno.Compiler.Core.IL.Testing
                                         testNameExpr, ignoreExpr, ignoreReasonExpr);
         }
 
-        private static string InvokeName(Method method)
+        void PromoteToInternal(Method method)
         {
-            return "Invoke___" + method.FullName.Replace('.', '_').ToIdentifier();
+            if (!method.IsMasterDefinition)
+                method = (Method) method.MasterDefinition;
+            if (!method.IsPublic)
+                PromoteToInternal(ref method.Modifiers);
+
+            for (var pt = method.DeclaringType; pt != null; pt = pt.ParentType)
+            {
+                if (pt.IsPublic)
+                    continue;
+                if (!pt.IsMasterDefinition)
+                    pt = pt.MasterDefinition;
+
+                PromoteToInternal(ref pt.Modifiers);
+
+                for (var bt = pt.Base; bt != null; bt = bt.Base)
+                {
+                    if (!bt.Package.IsStartup)
+                        break;
+                    if (bt.IsPublic)
+                        continue;
+                    if (!bt.IsMasterDefinition)
+                        bt = bt.MasterDefinition;
+
+                    PromoteToInternal(ref bt.Modifiers);
+                }
+            }
+        }
+
+        void PromoteToInternal(ref Modifiers modifiers)
+        {
+            // 1) protected -> protected internal
+            // 2) * -> internal
+            var wasProtected = modifiers & Modifiers.Protected;
+            modifiers &= ~Modifiers.ProtectionModifiers;
+            modifiers |= Modifiers.Internal | wasProtected;
         }
     }
 }
