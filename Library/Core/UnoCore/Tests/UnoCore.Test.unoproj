@@ -37,6 +37,7 @@
     "IO/TestData/int4.bin:File",
     "IO/TestData/long.bin:File",
     "IO/TestData/string.bin:File",
+    "Threading/ThreadTests.uno:Source",
     "Time/CalendarTests.uno:Source",
     "Time/DeviceTimeZoneMock.uno:Source",
     "Time/DurationTests.uno:Source",

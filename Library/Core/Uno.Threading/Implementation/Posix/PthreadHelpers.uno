@@ -6,36 +6,6 @@ namespace Uno.Threading
     {
         [TargetSpecificType]
         [Set("Include", "pthread.h")]
-        [Set("TypeName", "pthread_t")]
-        public struct ThreadHandle
-        {
-        }
-
-        [Require("Source.Include", "Implementation/Posix/posix_thread.h")]
-        [Require("Source.Include", "@{Uno.Exception:Include}")]
-        public static ThreadHandle CreateThread(Thread thread)
-        @{
-            pthread_t threadHandle;
-            if (!uPthreadsCreateThread(thread, &threadHandle))
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPthreadsCreateThread failed!"))});
-
-            return threadHandle;
-        @}
-
-        public static void JoinThread(ThreadHandle threadHandle)
-        @{
-            pthread_join(threadHandle, NULL);
-        @}
-
-        [Require("Source.Include", "unistd.h")]
-        public static void Sleep(int millis)
-        @{
-            // TODO: deal with long sleeps (overflow in the multiplication)!
-            usleep(millis * 1000);
-        @}
-
-        [TargetSpecificType]
-        [Set("Include", "pthread.h")]
         [Set("TypeName", "pthread_mutex_t")]
         public struct MutexHandle
         {
@@ -137,18 +107,6 @@ namespace Uno.Threading
         public static void DisposeResetEvent(ResetEventHandle resetEventHandle)
         @{
             uPosixDisposeResetEvent(resetEventHandle);
-        @}
-
-        [Require("Source.Include", "Implementation/Posix/posix_thread.h")]
-        public static Thread GetCurrentThread()
-        @{
-            return uPthreadsGetCurrentThread();
-        @}
-
-        [Require("Source.Include", "Implementation/Posix/posix_thread.h")]
-        public static void SetCurrentThread(Thread thread)
-        @{
-            uPthreadsSetCurrentThread(thread);
         @}
     }
 }
