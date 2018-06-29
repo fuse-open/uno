@@ -3,7 +3,6 @@
 #include <uBase/BaseLib.h>
 #include <XliPlatform/PlatformSpecific/Android.h>
 
-#include <Uno/AndroidCommon.h>
 #include <Uno/JNIHelper.h>
 #include <Uno/Graphics/GLHelper.h>
 
@@ -175,10 +174,8 @@ void AttachNativeCallbacks(JNIEnv* jni, jclass entryPointClass)
     };
     // the last argument is the number of native functions
     int attached = (int)jni->RegisterNatives(entryPointClass, native_activity_funcs, 11);
-    if (attached < 0) {
-        LOGD("COULD NOT REGISTER NATIVE ACTIVITY FUNCTIONS");
-        throw uBase::Exception("COULD NOT REGISTER NATIVE ACTIVITY FUNCTIONS");
-    }
+    if (attached < 0)
+        U_FATAL("COULD NOT REGISTER NATIVE ACTIVITY FUNCTIONS");
 }
 
 static void uInitRuntime()
@@ -196,25 +193,19 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     // vm & activityClass
     JNIEnv* env;
     if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-        LOGD ("&&&&&&& GetEnv failed &&&&&&");
+        U_LOG("&&&&&&& GetEnv failed &&&&&&");
         return -1;
     }
     jclass activityClass = env->FindClass("@(Activity.Package:Replace('.', '/'))/@(Activity.Name)");
     jclass entryPointsClass = env->FindClass("com/fuse/ActivityNativeEntryPoints");
     jclass nativeExternClass = env->FindClass("com/Bindings/ExternedBlockHost");
 
-    if (!activityClass) {
-        LOGD("COULD NOT FIND ACTIVITY CLASS");
-        throw uBase::Exception("COULD NOT FIND ACTIVITY CLASS");
-    }
-    if (!entryPointsClass) {
-        LOGD("COULD NOT FIND ENTRYPOINTS CLASS");
-        throw uBase::Exception("COULD NOT FIND ENTRYPOINTS CLASS");
-    }
-    if (!nativeExternClass) {
-        LOGD("COULD NOT FIND NATIVEEXTERNCLASS CLASS");
-        throw uBase::Exception("COULD NOT FIND NATIVEEXTERNCLASS CLASS");
-    }
+    if (!activityClass)
+        U_FATAL("COULD NOT FIND ACTIVITY CLASS");
+    if (!entryPointsClass)
+        U_FATAL("COULD NOT FIND ENTRYPOINTS CLASS");
+    if (!nativeExternClass)
+        U_FATAL("COULD NOT FIND NATIVEEXTERNCLASS CLASS");
 
     // systems
     JniHelper::Init(vm, env, activityClass, nativeExternClass);

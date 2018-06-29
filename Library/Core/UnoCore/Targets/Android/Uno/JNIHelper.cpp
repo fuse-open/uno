@@ -18,7 +18,7 @@ void JniHelper::Init(JavaVM* vm, JNIEnv* env, jclass activityClass, jclass nativ
 {
     VM = vm;
     if (pthread_key_create(&JniThreadKey, JniDestroyThread))
-        LOGD("JNI ERROR: Unable to create pthread key"); // Not fatal
+        U_LOG("JNI ERROR: Unable to create pthread key"); // Not fatal
 
     ActivityClass = reinterpret_cast<jclass>(env->NewGlobalRef(activityClass));
     NativeExternClass = reinterpret_cast<jclass>(env->NewGlobalRef(nativeExternClass));
@@ -34,7 +34,7 @@ JniHelper::JniHelper()
     {
         status_ = (int)VM->AttachCurrentThread(&env, NULL);
         if (status_ != JNI_OK)
-            throw uBase::Exception("JNI ERROR: Failed to attach current thread");
+            U_FATAL("JNI ERROR: Failed to attach current thread");
     }
     if (!pthread_getspecific(JniThreadKey))
     {
@@ -66,15 +66,6 @@ JNIEnv* JniHelper::operator->()
 {
     // TODO: Check jni exceptions
     return env;
-}
-
-uBase::String JniHelper::GetString(jobject str)
-{
-    JniHelper jni;
-    const char* utf8 = jni->GetStringUTFChars((jstring)str, NULL);
-    uBase::String result = utf8;
-    jni->ReleaseStringUTFChars((jstring)str, utf8);
-    return result;
 }
 
 @{string} JniHelper::JavaToUnoString(jstring jstr)

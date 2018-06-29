@@ -92,7 +92,9 @@ void uLog(int level, const char* format, ...)
 
 void uFatal(const char* src, const char* msg)
 {
-    uLog(uLogLevelFatal, "Runtime Error: %s: %s", src ? src : "(unknown)", msg ? msg : "(no message)");
+    uLog(uLogLevelFatal, "Runtime Error in %s: %s",
+        src && strlen(src) ? src : "(unknown)",
+        msg && strlen(msg) ? msg : "(no message)");
     Xli::MessageBox::Show(NULL, "The application has crashed.", "Fatal Error", Xli::DialogButtonsOK, Xli::DialogHintsError);
     abort();
 }

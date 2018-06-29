@@ -136,8 +136,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 			lines.Add("};");
 			lines.Add("int funcCount = " + NativeRegistrations.Count + ";");
 			lines.Add("if ((int)jni->RegisterNatives(JniHelper::GetNativeExternClass(), native_activity_funcs, funcCount)<0) {");
-			lines.Add("LOGD(\"COULD NOT REGISTER NATIVE EXTERN FUNCTIONS\");");
-			lines.Add("throw uBase::Exception(\"COULD NOT REGISTER NATIVE EXTERN FUNCTIONS\");");
+			lines.Add("U_FATAL(\"COULD NOT REGISTER NATIVE EXTERN FUNCTIONS\");");
 			lines.Add("}");
 			var finalCode = string.Join("\n", lines);
 

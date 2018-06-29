@@ -1,5 +1,4 @@
 #pragma once
-#include <Uno/AndroidCommon.h>
 #include <android/native_activity.h>
 #include <android/native_window.h>
 #include <android/native_window_jni.h>

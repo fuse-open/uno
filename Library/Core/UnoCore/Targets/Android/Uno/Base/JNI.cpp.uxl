@@ -98,7 +98,6 @@
             <Body>
 
                          char* message = uAllocCStr($0);
-                         LOGD("%s", message);
                          @{GetEnvPtr():Call()}->ThrowNew(@{exceptionClass}, message);
                          free(message);
 
