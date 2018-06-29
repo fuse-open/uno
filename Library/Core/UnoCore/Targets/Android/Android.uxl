@@ -18,7 +18,7 @@
     <Set JDK.Directory="@(Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
     <Set NDK.Directory="@(Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
     <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '9')" />
-    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '26.0.2')" />
+    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '27.0.3')" />
     <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '26')" />
     <Set SDK.Directory="@(Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
     <Set SDK.MinVersion="@(Project.Android.SDK.MinVersion || Config.Android.SDK.MinVersion || '16')" />
@@ -64,7 +64,7 @@
 
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
-    <Set APK.BuildName="app/build/outputs/apk/app-@(APK.Configuration:ToLower).apk" />
+    <Set APK.BuildName="app/build/outputs/apk/@(APK.Configuration:ToLower)/app-@(APK.Configuration:ToLower).apk" />
     <Set APK.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
     <Set Gradle.Task="assemble@(APK.Configuration)" />
     <Set Runtime.CatchCppExceptions=2 />
