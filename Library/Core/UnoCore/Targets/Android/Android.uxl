@@ -64,7 +64,7 @@
 
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
-    <Set APK.BuildName="app/build/outputs/apk/app-@(APK.Configuration:ToLower).apk" />
+    <Set APK.BuildName="app/build/outputs/apk/@(APK.Configuration:ToLower)/app-@(APK.Configuration:ToLower).apk" />
     <Set APK.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
     <Set Gradle.Task="assemble@(APK.Configuration)" />
     <Set Runtime.CatchCppExceptions=2 />
