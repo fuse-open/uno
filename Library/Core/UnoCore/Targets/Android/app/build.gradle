@@ -116,6 +116,10 @@ android {
     aaptOptions {
         cruncherEnabled = false
     }
+
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libgnustl_shared.so'
+    }
 }
 
 @(Gradle.BuildFile.End:Join('\n'))
