@@ -24,12 +24,10 @@ task copySharedLibraries {
 
 build.dependsOn copySharedLibraries
 
-#if @(Gradle.Repository:IsRequired)
 repositories {
     maven { url 'https://maven.google.com' }
     @(Gradle.Repository:Join('\n'))
 }
-#endif
 
 
 repositories {
