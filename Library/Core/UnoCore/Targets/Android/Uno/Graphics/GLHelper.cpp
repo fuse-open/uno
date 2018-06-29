@@ -240,7 +240,7 @@ void GLHelper::_setEGLConfig(bool forPBuffer)
         eglGetConfigAttrib(_eglDisplay, configs[i], EGL_SAMPLES, &samples);
 
         if (samples >= cs && depth >= cd && buffer >= cb &&
-            samples <= samples && r <= colorBits.R && g <= colorBits.G && b <= colorBits.B && a <= colorBits.A)
+            r <= colorBits.R && g <= colorBits.G && b <= colorBits.B && a <= colorBits.A)
         {
             cs = samples;
             cd = depth;
