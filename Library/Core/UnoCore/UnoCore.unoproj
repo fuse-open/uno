@@ -464,8 +464,6 @@
     "Targets/Android/gradlew:File",
     "Targets/Android/gradlew.bat:File",
     "Targets/Android/local.properties:File",
-    "Targets/Android/log.bat:File",
-    "Targets/Android/log.sh:File",
     "Targets/Android/run.bat:File",
     "Targets/Android/run.sh:File",
     "Targets/Android/settings.gradle:File",
