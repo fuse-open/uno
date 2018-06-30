@@ -13,6 +13,7 @@
 #undef CopyFile
 #undef CreateDirectory
 #undef CreateMutex
+#undef CreateSemaphore
 #undef DeleteFile
 #undef FindFirstFile
 #undef GetCurrentDirectory
