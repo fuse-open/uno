@@ -18,8 +18,10 @@
 #undef GetCurrentDirectory
 #undef GetEnvironmentVariable
 #undef GetMessage
+#undef GetObject
 #undef GetSystemDirectory
 #undef GetTempPath
 #undef MessageBox
 #undef MoveFile
+#undef RegisterClass
 #undef SetCurrentDirectory
