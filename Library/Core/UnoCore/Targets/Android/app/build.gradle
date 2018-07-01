@@ -37,9 +37,6 @@ repositories {
         }
     }
 #endif
-#if @(Gradle.Model.Repository:IsRequired)
-    @(Gradle.Model.Repository:Join('\n'))
-#endif
 }
 
 android.lintOptions {
