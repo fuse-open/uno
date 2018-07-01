@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using Uno.Collections;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
@@ -178,6 +179,27 @@ namespace Uno.Compiler.Core.Syntax
 
         void CompileRequirements(ExtensionEntity ext)
         {
+            ListDictionary<string, Element> deprecated = null;
+
+            foreach (var e in ext.Requirements)
+            {
+                string key;
+                if (_deprecated.TryGetValue(e.Key, out key))
+                {
+                    foreach (var req in e.Value)
+                        Log.Warning(req.Source, ErrorCode.W0000, e.Key.Quote() + " is deprecated -- please replace with " + key.Quote());
+
+                    if (deprecated == null)
+                        deprecated = new ListDictionary<string, Element>();
+
+                    deprecated.Add(key, e.Value);
+                }
+            }
+
+            if (deprecated != null)
+                foreach (var e in deprecated)
+                    ext.Requirements.AddRange(e.Key, e.Value);
+
             List<Element> elms;
             if (ext.Requirements.TryGetValue("Entity", out elms))
                 foreach (var e in elms)
