@@ -9,7 +9,7 @@ dependencies {
     implementation 'com.android.support:support-v4:23.4.0'
     implementation 'com.android.support:appcompat-v7:26.0.2'
     implementation 'com.android.support:design:26.0.2'
-    @(Gradle.Dependency.Compile:Join('\n', 'implementation \'', '\''))
+    @(Gradle.Dependency.Implementation:Join('\n', 'implementation \'', '\''))
     @(Gradle.Dependency:Join('\n'))
 }
 
