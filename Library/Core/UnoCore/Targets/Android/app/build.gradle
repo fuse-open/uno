@@ -23,10 +23,7 @@ build.dependsOn copySharedLibraries
 repositories {
     maven { url 'https://maven.google.com' }
     @(Gradle.Repository:Join('\n'))
-}
 
-
-repositories {
 #if @(JNI.SystemLibrary:IsSet || JNI.SharedLibrary:IsSet)
     libs(PrebuiltLibraries) {
         prebuilt {
