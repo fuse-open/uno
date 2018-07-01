@@ -623,9 +623,9 @@ namespace Uno.Compiler.Core.Syntax
                     if (_env.IsDefined("iOS") && Image.IsAlphaPixelFormat(originalImg.PixelFormat) )
                     {
                         var source = new Source(src);
-                        Log.Warning(source, ErrorCode.E0000, "iOS App Store doesn't accept Images with transparency.");
+                        Log.Warning(source, ErrorCode.W0000, "iOS App Store doesn't accept Images with transparency.");
                     }
-                  
+
                     int width = f.TargetWidth ?? f.TargetHeight ?? originalImg.Width;
                     int height = f.TargetHeight ?? f.TargetWidth ?? originalImg.Height;
 
