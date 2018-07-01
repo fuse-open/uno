@@ -55,10 +55,10 @@ namespace Uno.Threading
         [Require("Source.Include", "Uno/WinAPIHelper.h")]
         public static SemaphoreHandle CreateSemaphore(int initialCount, int maxCount)
         @{
-            HANDLE semaphoreHandle = ::CreateSemaphore(NULL, $0, $1, NULL);
+            HANDLE semaphoreHandle = ::CreateSemaphoreW(NULL, $0, $1, NULL);
 
             if (semaphoreHandle == NULL)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("CreateSemaphore failed!"))});
+                U_THROW(@{Uno.Exception(string):New(uString::Utf8("CreateSemaphoreW failed!"))});
 
             return semaphoreHandle;
         @}

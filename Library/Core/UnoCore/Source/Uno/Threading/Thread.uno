@@ -8,8 +8,7 @@ namespace Uno.Threading
     [TargetSpecificType]
     [extern(UNIX) Set("Include", "pthread.h")]
     [extern(UNIX) Set("TypeName", "pthread_t")]
-    [extern(WIN32) Set("Include", "Uno/WinAPIHelper.h")]
-    [extern(WIN32) Set("TypeName", "HANDLE")]
+    [extern(WIN32) Set("TypeName", "void*")] // "HANDLE" in WinAPI
     extern(CPLUSPLUS) struct ThreadHandle
     {
     }
@@ -35,6 +34,7 @@ namespace Uno.Threading
     [DotNetType("System.Threading.Thread")]
     [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):Call((@{Thread}) arg)}; return NULL; }")]
     [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):Call((@{Thread}) lpParam)}; return 0; }")]
+    [extern(WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
     public sealed class Thread
     {
         extern(CPLUSPLUS) static ThreadLocal _currentThread;
