@@ -234,8 +234,6 @@
     <ProcessFile Name="build.bat" Condition="HOST_WIN32" />
     <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable=true />
 
-    <ProcessFile Name="log.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="log.sh" Condition="HOST_UNIX" IsExecutable=true />
     <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
     <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable=true />
     <ProcessFile Name="local.properties" />
