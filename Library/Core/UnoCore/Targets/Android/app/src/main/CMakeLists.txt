@@ -14,6 +14,11 @@ if (CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -s")
 endif()
 
+# Find libraries extracted from AARs, if applicable.
+#if @(Gradle.Dependency.NativeImplementation:IsRequired)
+link_directories(@(OutputDirectory:Path)/app/build/native/jni/@(ABI))
+#endif
+
 add_library(@(Activity.Name) SHARED
     @(HeaderFile:Join('\n    ', '"include/', '"'))
     @(SourceFile:Join('\n    ', '"jni/', '"')))
