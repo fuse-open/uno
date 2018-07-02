@@ -228,7 +228,7 @@ namespace Android.Base
             extern "free(cMethodName)";
             extern "free(cMethodSig)";
             JNI.CheckException();
-            if (extern<bool>(mid)"($0==0)")
+            if (extern<bool>(mid)"$0==0")
                 throw new Exception("Java method id for " + methodName + " is null");
             return mid;
         }
