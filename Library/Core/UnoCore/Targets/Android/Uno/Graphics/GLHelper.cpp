@@ -226,7 +226,7 @@ void GLHelper::_setEGLConfig(bool forPBuffer)
     int cc = 0;
 
     const uBase::Vector4i& colorBits = uBase::Vector4i(8, 8, 8, 8);
-    int samples = 4;
+
     for (int i = 0; i < numConfigs; i++)
     {
         EGLint samples, depth, stencil, buffer, r, g, b, a, render;
