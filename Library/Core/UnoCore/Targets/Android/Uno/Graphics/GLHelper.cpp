@@ -226,7 +226,7 @@ void GLHelper::_setEGLConfig(bool forPBuffer)
     int cc = 0;
 
     const uBase::Vector4i& colorBits = uBase::Vector4i(8, 8, 8, 8);
-    int samples = 4;
+
     for (int i = 0; i < numConfigs; i++)
     {
         EGLint samples, depth, stencil, buffer, r, g, b, a, render;
@@ -240,7 +240,7 @@ void GLHelper::_setEGLConfig(bool forPBuffer)
         eglGetConfigAttrib(_eglDisplay, configs[i], EGL_SAMPLES, &samples);
 
         if (samples >= cs && depth >= cd && buffer >= cb &&
-            samples <= samples && r <= colorBits.R && g <= colorBits.G && b <= colorBits.B && a <= colorBits.A)
+            r <= colorBits.R && g <= colorBits.G && b <= colorBits.B && a <= colorBits.A)
         {
             cs = samples;
             cd = depth;
