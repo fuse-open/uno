@@ -61,8 +61,8 @@ android {
 #if !@(LIBRARY:Defined)
         applicationId = '@(Activity.Package)'
 #endif
-        minSdkVersion = @(SDK.MinVersion)
-        targetSdkVersion = @(SDK.TargetVersion)
+        minSdkVersion @(SDK.MinVersion)
+        targetSdkVersion @(SDK.TargetVersion)
         versionCode = @(Project.Android.VersionCode)
         versionName = '@(Project.Android.VersionName)'
         ndk {
