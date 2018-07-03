@@ -55,7 +55,7 @@ android {
         versionCode = @(Project.Android.VersionCode)
         versionName = '@(Project.Android.VersionName)'
         ndk {
-            abiFilters = ['armeabi-v7a']
+            abiFilters = ['@(ABI)']
         }
 
         externalNativeBuild {
