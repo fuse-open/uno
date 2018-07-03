@@ -40,17 +40,6 @@ tasks.whenTaskAdded {
 
 repositories {
     @(Gradle.Repository:Join('\n    '))
-
-#if @(JNI.SystemLibrary:IsSet || JNI.SharedLibrary:IsSet)
-    libs(PrebuiltLibraries) {
-        prebuilt {
-            binaries.withType(SharedLibraryBinary) {
-                @(JNI.SystemLibrary:Join('\n                    ', 'sharedLibraryFile = file(\'', '\')'))
-                @(JNI.SharedLibrary:Join('\n                    ', 'sharedLibraryFile = file(\'', '\')'))
-            }
-        }
-    }
-#endif
 }
 
 android {
