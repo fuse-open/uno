@@ -30,15 +30,15 @@ task extractNativeLibraries() {
         configurations.native_implementation.files.each { f ->
             copy {
                 from zipTree(f)
-                into "${buildDir}/native"
-                include "jni/**/*"
+                into '${buildDir}/native'
+                include 'jni/**/*'
             }
         }
     }
 }
 
 tasks.whenTaskAdded {
-    task-> if (task.name.contains("external") && !task.name.contains("Clean")) {
+    task-> if (task.name.contains('external') && !task.name.contains('Clean')) {
         task.dependsOn(extractNativeLibraries)
     }
 }
@@ -69,15 +69,15 @@ android {
 
     defaultConfig {
 #if !@(LIBRARY:Defined)
-        applicationId = "@(Activity.Package)"
+        applicationId = '@(Activity.Package)'
 #endif
         minSdkVersion = @(SDK.MinVersion)
         targetSdkVersion = @(SDK.TargetVersion)
         versionCode = @(Project.Android.VersionCode)
-        versionName = "@(Project.Android.VersionName)"
+        versionName = '@(Project.Android.VersionName)'
         ndk {
             abiFilters = []
-            abiFilters.add("armeabi-v7a")
+            abiFilters.add('armeabi-v7a')
         }
 
         externalNativeBuild {
@@ -88,28 +88,28 @@ android {
                 // default means we are giving users a bad experience by default. Native debug
                 // binaries are only really useful when actually debugging generated C++ code.
                 // Running 'uno build android --debug' will produce debuggable C++ code.
-                arguments "-DCMAKE_BUILD_TYPE=@(Native.Configuration)",
-                    "-DANDROID_STL=@(STL)",
-                    "-DANDROID_PLATFORM=android-@(NDK.PlatformVersion)",
-                    "-DANDROID_TOOLCHAIN=clang",
-                    "-DANDROID_NDK=@(NDK.Directory)"
+                arguments '-DCMAKE_BUILD_TYPE=@(Native.Configuration)',
+                    '-DANDROID_STL=@(STL)',
+                    '-DANDROID_PLATFORM=android-@(NDK.PlatformVersion)',
+                    '-DANDROID_TOOLCHAIN=clang',
+                    '-DANDROID_NDK=@(NDK.Directory)'
             }
         }
     }
 
     externalNativeBuild {
         cmake {
-            path "src/main/CMakeLists.txt"
+            path 'src/main/CMakeLists.txt'
         }
     }
 
 #if @(Project.Android.Key.Store:IsSet)
     signingConfigs {
         release {
-            keyAlias "@(Project.Android.Key.Alias)"
-            keyPassword "@(Project.Android.Key.AliasPassword)"
-            storeFile file("@(Project.Android.Key.Store:Path)")
-            storePassword "@(Project.Android.Key.StorePassword)"
+            keyAlias '@(Project.Android.Key.Alias)'
+            keyPassword '@(Project.Android.Key.AliasPassword)'
+            storeFile file('@(Project.Android.Key.Store:Path)')
+            storePassword '@(Project.Android.Key.StorePassword)'
         }
     }
 #endif
