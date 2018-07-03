@@ -53,10 +53,6 @@ repositories {
 #endif
 }
 
-android.lintOptions {
-    checkReleaseBuilds = false
-}
-
 android {
     compileSdkVersion = @(SDK.CompileVersion)
     buildToolsVersion = '@(SDK.BuildToolsVersion)'
@@ -122,6 +118,10 @@ android {
 
     aaptOptions {
         cruncherEnabled = false
+    }
+
+    lintOptions {
+        checkReleaseBuilds = false
     }
 
     packagingOptions {
