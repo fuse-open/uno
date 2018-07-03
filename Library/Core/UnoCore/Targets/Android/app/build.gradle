@@ -1,9 +1,6 @@
 apply plugin: 'com.android.@(LIBRARY:Defined:Test('library', 'application'))'
 
-// A configuration to mark AARs to extract native libraries from
-#if @(Gradle.Dependency.NativeImplementation:IsRequired)
 configurations { native_implementation }
-#endif
 
 dependencies {
     implementation fileTree(dir: 'src/main/libs', include: ['*.jar'])
@@ -16,11 +13,8 @@ task copySharedLibraries {
     @(JNI.SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/armeabi-v7a')\n    }'))
 }
 
-build.dependsOn copySharedLibraries
-
 // Extracts native libraries from AARs in the native_implementation configuration.
 // This is done so that the NDK can access these libraries.
-#if @(Gradle.Dependency.NativeImplementation:IsRequired)
 task extractNativeLibraries() {
     doFirst {
         configurations.native_implementation.files.each { f ->
@@ -35,10 +29,14 @@ task extractNativeLibraries() {
 
 tasks.whenTaskAdded {
     task-> if (task.name.contains('external') && !task.name.contains('Clean')) {
+#if @(JNI.SharedLibrary:IsRequired)
+        task.dependsOn(copySharedLibraries)
+#endif
+#if @(Gradle.Dependency.NativeImplementation:IsRequired)
         task.dependsOn(extractNativeLibraries)
+#endif
     }
 }
-#endif
 
 repositories {
     @(Gradle.Repository:Join('\n'))
