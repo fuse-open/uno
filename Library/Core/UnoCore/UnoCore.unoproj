@@ -459,6 +459,7 @@
     "Targets/Android/build.bat:File",
     "Targets/Android/build.gradle:File",
     "Targets/Android/build.sh:File",
+    "Targets/Android/Dependencies.uxl:Extensions",
     "Targets/Android/gradle/wrapper/gradle-wrapper.jar:File",
     "Targets/Android/gradle/wrapper/gradle-wrapper.properties:File",
     "Targets/Android/gradlew:File",
