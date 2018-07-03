@@ -1,8 +1,4 @@
-#if @(LIBRARY:Defined)
-apply plugin: 'com.android.library'
-#else
-apply plugin: 'com.android.application'
-#endif
+apply plugin: 'com.android.@(LIBRARY:Defined:Test('library', 'application'))'
 
 // A configuration to mark AARs to extract native libraries from
 #if @(Gradle.Dependency.NativeImplementation:IsRequired)
