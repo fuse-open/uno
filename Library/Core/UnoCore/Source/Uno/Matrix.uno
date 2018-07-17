@@ -97,7 +97,6 @@ namespace Uno
             return Look(eye, xaxis, yaxis, zaxis);
         }
 
-        // TODO: What is this?
         public static float4x4 Look(float3 eye, float3 xaxis, float3 yaxis, float3 zaxis)
         {
             zaxis = Vector.Normalize(zaxis);
@@ -133,42 +132,6 @@ namespace Uno
             return result;
         }
 
-/*
-        Learn to math, we don't need two matrix multiplications to do this. see above.
-
-
-        public static float4x4 PerspectiveRH(float fov, float aspect, float znear, float zfar)
-        {
-            float yScale = 1.0f / Math.Tan(fov * 0.5f);
-            float xScale = yScale / aspect;
-
-            float halfWidth = znear / xScale;
-            float halfHeight = znear / yScale;
-
-            float left = -halfWidth;
-            float right = halfWidth;
-            float bottom = -halfHeight;
-            float top = halfHeight;
-
-            float zRange = zfar / (zfar - znear);
-
-            float4x4 result = default(float4x4);
-            result.M11 = 2.0f * znear / (right - left);
-            result.M22 = 2.0f * znear / (top - bottom);
-            result.M31 = (left + right) / (left - right);
-            result.M32 = (top + bottom) / (bottom - top);
-            result.M33 = zRange;
-            result.M34 = 1.0f;
-            result.M43 = -znear * zRange;
-
-            result.M31 = -result.M31;
-            result.M32 = -result.M32;
-            result.M33 = -result.M33;
-            result.M34 = -result.M34;
-
-            return UnsignedZToClipSpace(result);
-        }
-*/
         public static float4x4 Scaling(float3 scale)
         {
             float4x4 result = float4x4.Identity;
