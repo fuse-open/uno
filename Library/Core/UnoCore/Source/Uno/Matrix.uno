@@ -9,12 +9,6 @@ namespace Uno
     {
         const float ZeroTolerance = 1e-05f;
 
-        // TODO: Remove this
-        static float4x4 UnsignedZToClipSpace(float4x4 m)
-        {
-            return Mul(Mul(m, Scaling(1.0f, 1.0f, 2.0f)), Translation(0.0f, 0.0f, -1.0f));
-        }
-
         public static float4x4 LookAtLH(float3 eye, float3 target, float3 up)
         {
             float3 zaxis = Vector.Normalize(target - eye);
@@ -37,7 +31,6 @@ namespace Uno
             return result;
         }
 
-        // TODO: Learn to math2: Optimize similar to PerspectiveRH()
         public static float4x4 PerspectiveLH(float fovRadians, float aspect, float znear, float zfar)
         {
             float yScale = 1.0f / Math.Tan(fovRadians * 0.5f);
@@ -62,7 +55,8 @@ namespace Uno
             result.M34 = 1.0f;
             result.M43 = -znear * zRange;
 
-            return UnsignedZToClipSpace(result);
+            // TODO: Get rid of these extra Mul-s (see PerspectiveRH)
+            return Mul(Mul(result, Scaling(1.0f, 1.0f, 2.0f)), Translation(0.0f, 0.0f, -1.0f));
         }
 
         public static float4x4 OrthoLH(float width, float height, float zNear, float zFar)
