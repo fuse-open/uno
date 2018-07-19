@@ -1,6 +1,7 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Runtime.InteropServices;
 
 namespace Uno.Graphics
 {
@@ -44,7 +45,7 @@ namespace Uno.Graphics
             SizeInBytes = sizeInBytes;
 
             GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-            GL.BufferData(GLBufferTarget, sizeInBytes, GLInterop.ToGLBufferUsage(Usage));
+            GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, GLInterop.ToGLBufferUsage(Usage));
             GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
         }
 
@@ -55,9 +56,11 @@ namespace Uno.Graphics
 
             SizeInBytes = data.Length;
 
+            var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
             GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-            GL.BufferData(GLBufferTarget, data, GLInterop.ToGLBufferUsage(Usage));
+            GL.BufferData(GLBufferTarget, data.Length, pin.AddrOfPinnedObject(), GLInterop.ToGLBufferUsage(Usage));
             GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
+            pin.Free();
         }
 
         [Obsolete("Use the byte[] overload instead")]
@@ -68,9 +71,11 @@ namespace Uno.Graphics
 
             SizeInBytes = data.SizeInBytes;
 
+            GCHandle pin;
             GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-            GL.BufferData(GLBufferTarget, data, GLInterop.ToGLBufferUsage(Usage));
+            GL.BufferData(GLBufferTarget, data.SizeInBytes, data.PinPtr(out pin), GLInterop.ToGLBufferUsage(Usage));
             GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
+            pin.Free();
         }
 
         internal DeviceBuffer(BufferUsage usage)
@@ -104,19 +109,21 @@ namespace Uno.Graphics
             }
             else if defined(OPENGL)
             {
+                var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
 
                 if (data.Length <= SizeInBytes)
                 {
-                    GL.BufferSubData(GLBufferTarget, 0, data);
+                    GL.BufferSubData(GLBufferTarget, 0, data.Length, pin.AddrOfPinnedObject());
                 }
                 else
                 {
-                    GL.BufferData(GLBufferTarget, data, GLInterop.ToGLBufferUsage(Usage));
+                    GL.BufferData(GLBufferTarget, data.Length, pin.AddrOfPinnedObject(), GLInterop.ToGLBufferUsage(Usage));
                     SizeInBytes = data.Length;
                 }
 
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
+                pin.Free();
             }
             else
             {
