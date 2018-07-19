@@ -817,17 +817,11 @@ namespace OpenGL
             if (data != null)
             {
                 GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-                try
-                {
-                    TexImage2D(target, level,
-                        internalFormat, width, height, border,
-                        format, type,
-                        pin.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    pin.Free();
-                }
+                TexImage2D(target, level,
+                    internalFormat, width, height, border,
+                    format, type,
+                    pin.AddrOfPinnedObject());
+                pin.Free();
             }
             else
             {
@@ -878,14 +872,8 @@ namespace OpenGL
             if (data != null)
             {
                 GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-                try
-                {
-                    TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pin.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    pin.Free();
-                }
+                TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pin.AddrOfPinnedObject());
+                pin.Free();
             }
             else
             {
