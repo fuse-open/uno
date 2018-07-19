@@ -471,7 +471,6 @@ namespace Uno
             BufferImpl.SetDouble(_data, _offset + offset, value, littleEndian);
         }
 
-        extern(DOTNET)
         public IntPtr PinPtr(out GCHandle pin)
         {
             pin = GCHandle.Alloc(_data, GCHandleType.Pinned);
