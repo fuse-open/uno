@@ -1,4 +1,5 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Graphics;
 using Uno.IO;
 
 namespace Uno.Content.Fonts
@@ -78,23 +79,21 @@ namespace Uno.Content.Fonts
             return @{$$._handle}->ContainsGlyph($0, $1);
         @}
 
-        [Require("Source.Include", "@{int2:Include}")]
-        [Require("Source.Include", "@{float2:Include}")]
-        [Require("Source.Include", "@{Uno.Content.Images.Bitmap:Include}")]
-        [Require("Source.Include", "@{Uno.Content.Fonts.RenderedGlyph:Include}")]
         [Require("Source.Include", "uImage/Bitmap.h")]
         public override RenderedGlyph RenderGlyph(float size, char glyph)
         @{
             uBase::Vector2 advance, bearing;
             uBase::Auto<uImage::Bitmap> bitmap = @{$$._handle}->RenderGlyph($0, $1, uImage::FontRenderModeNormal, &advance, &bearing);
+            uArray* bytes = uArray::New(@{byte[]:TypeOf}, bitmap->GetSizeInBytes(), bitmap->GetPtr());
 
-            @{Uno.Buffer} resultBuffer = uBufferFromXliDataAccessor(bitmap);
-            @{Uno.Content.Images.Bitmap} resultBitmap = @{Uno.Content.Images.Bitmap(int2,Uno.Graphics.Format,Uno.Buffer):New(@{int2(int,int):New(bitmap->GetWidth(), bitmap->GetHeight())}, @{Uno.Graphics.Format.L8}, resultBuffer)};
-
-            return @{Uno.Content.Fonts.RenderedGlyph(float2,float2,Uno.Content.Images.Bitmap):New(@{float2(float,float):New(advance.X, advance.Y)}, @{float2(float,float):New(bearing.X, bearing.Y)}, resultBitmap)};
+            return @{Uno.Content.Fonts.RenderedGlyph(float2,float2,int2,Format,byte[]):New(
+                @{float2(float,float):New(advance.X, advance.Y)},
+                @{float2(float,float):New(bearing.X, bearing.Y)},
+                @{int2(int,int):New(bitmap->GetWidth(), bitmap->GetHeight())},
+                @{Uno.Graphics.Format.L8},
+                bytes)};
         @}
 
-        [Require("Source.Include", "@{float2:Include}")]
         public override bool TryGetKerning(float size, char left, char right, out float2 result)
         @{
             uBase::Vector2 kerning;

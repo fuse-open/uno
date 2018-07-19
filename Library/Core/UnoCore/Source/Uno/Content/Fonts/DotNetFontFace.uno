@@ -47,11 +47,13 @@ namespace Uno.Content.Fonts
 
             // TODO: Format is hardcoded
 
-            return new RenderedGlyph()
+            return new RenderedGlyph
             {
                 Advance = new Float2(g.AdvanceX, g.AdvanceY),
                 Bearing = new Float2(g.BearingX, g.BearingY),
-                Bitmap = new Bitmap(new Int2(g.Width, g.Height), Format.L8, new Buffer(g.Bitmap)),
+                Size = new Int2(g.Width, g.Height),
+                Format = Format.L8,
+                Data = g.Bitmap
             };
         }
 
