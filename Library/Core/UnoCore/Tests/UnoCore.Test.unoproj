@@ -95,6 +95,7 @@
     "Bool.Test.uno:Source",
     "Buffer.Test.uno:Source",
     "Byte.Test.uno:Source",
+    "ByteArrayExtensions.Test.uno:Source",
     "Char.Test.uno:Source",
     "Color.Test.uno:Source",
     "DateTime.Test.uno:Source",
