@@ -167,13 +167,6 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
                 var log = GL.GetProgramInfoLog(handle);
                 throw new GLException("Error linking shader program:\n\n" + log);
             }
-            // try
-            // {
-            //     debug_log "GL.LinkProgram Log: "+GL.GetProgramInfoLog(handle);
-            // } catch (Exception e) {
-            //     debug_log "Threw exception while trying to get ProgramInfoLog. Trying to continue";
-            // }
-
 
             GL.UseProgram(handle);
 
