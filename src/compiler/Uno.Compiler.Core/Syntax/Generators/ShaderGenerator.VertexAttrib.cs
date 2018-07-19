@@ -25,15 +25,6 @@ namespace Uno.Compiler.Core.Syntax.Generators
             DetectedVertexCounts.Add(c);
         }
 
-        Expression CreateByteArray(Expression buf)
-        {
-            return ILFactory.CallMethod(
-                    buf.ReturnType.Equals(ILFactory.GetType(buf.Source, "Uno.Buffer")) ?
-                        buf :
-                        ILFactory.CallMethod(buf.Source, "Uno.Runtime.Implementation.Internal.BufferConverters", "ToBuffer", buf), 
-                "GetBytes");
-        }
-
         void ProcessIndexBuffer(Source vaSrc, StageValue indexBuffer, StageValue indexType)
         {
             if (IndexBuffer == null && indexBuffer.Value == null && IndexType == null && indexType.Value == null ||
@@ -93,13 +84,13 @@ namespace Uno.Compiler.Core.Syntax.Generators
 
                 FrameScope.Statements.Add(
                     ILFactory.CallMethod(src, new LoadField(src, new This(src, owner), field), "Update",
-                        CreateByteArray(indexBuffer.Value)));
+                        indexBuffer.Value));
             }
             else
             {
                 InitScope.Statements.Add(
                     new StoreField(src, new This(src, owner), field, ILFactory.NewObject(src, "Uno.Graphics.IndexBuffer",
-                        CreateByteArray(indexBuffer.Value),
+                        indexBuffer.Value,
                         ILFactory.GetExpression(src, "Uno.Graphics.BufferUsage.Immutable"))));
             }
 
@@ -148,14 +139,14 @@ namespace Uno.Compiler.Core.Syntax.Generators
 
                     FrameScope.Statements.Add(
                         ILFactory.CallMethod(src, new LoadField(src, new This(src, owner), field), "Update",
-                            CreateByteArray(vertexBuffer.Value)));
+                            vertexBuffer.Value));
                 }
                 else
                 {
                     InitScope.Statements.Add(
                         new StoreField(src, new This(src, owner), field,
                             ILFactory.NewObject(src, "Uno.Graphics.VertexBuffer",
-                                CreateByteArray(vertexBuffer.Value),
+                                vertexBuffer.Value,
                                 ILFactory.GetExpression(src, "Uno.Graphics.BufferUsage.Immutable"))));
                 }
 
