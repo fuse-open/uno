@@ -1,5 +1,6 @@
 namespace Uno.Runtime.Implementation.Internal
 {
+    [Obsolete]
     public static class BufferConverters
     {
         public static Buffer ToBuffer(float[] data)
