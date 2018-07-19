@@ -8,16 +8,19 @@ namespace Uno.Graphics
 {
     public sealed intrinsic class TextureCube : IDisposable
     {
+        [Obsolete]
         public static TextureCube Load(BundleFile file)
         {
             return Load(file.Name, file.ReadAllBytes());
         }
 
+        [Obsolete]
         public static TextureCube Load(string filename)
         {
             return Load(filename, File.ReadAllBytes(filename));
         }
 
+        [Obsolete]
         public static TextureCube Load(string filename, byte[] bytes)
         {
             if defined(CPLUSPLUS)
