@@ -69,6 +69,13 @@ namespace Uno.Runtime.InteropServices
         public static explicit operator GCHandle(IntPtr ptr) { return FromIntPtr(ptr); }
         public static explicit operator IntPtr(GCHandle handle) { return ToIntPtr(handle); }
 
-        extern(DOTNET) public IntPtr AddrOfPinnedObject();
+        public IntPtr AddrOfPinnedObject()
+        {
+            var obj = Target;
+            var arr = obj as Array;
+            return arr != null
+                ? extern<IntPtr>(arr) "$0->Ptr()"
+                : extern<IntPtr>(obj) "$0";
+        }
     }
 }
