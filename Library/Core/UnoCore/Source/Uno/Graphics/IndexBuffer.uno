@@ -15,31 +15,33 @@ namespace Uno.Graphics
         }
 
         public IndexBuffer(int sizeInBytes, BufferUsage usage)
-            : base(usage)
+            : this(usage)
         {
-            if defined(OPENGL)
-                GLInit(GLBufferTarget.ElementArrayBuffer, sizeInBytes);
-            else
-                build_error;
+            Alloc(sizeInBytes);
         }
 
         public IndexBuffer(byte[] data, BufferUsage usage)
-            : base(usage)
+            : this(usage)
         {
-            if defined(OPENGL)
-                GLInit(GLBufferTarget.ElementArrayBuffer, data);
-            else
-                build_error;
+            Update(data);
+        }
+
+        public IndexBuffer(ushort[] data, BufferUsage usage)
+            : this(usage)
+        {
+            Update(data);
         }
 
         [Obsolete("Use the byte[] overload instead")]
         public IndexBuffer(Buffer data, BufferUsage usage)
-            : base(usage)
+            : this(usage)
         {
-            if defined(OPENGL)
-                GLInit(GLBufferTarget.ElementArrayBuffer, data);
-            else
-                build_error;
+            Update(data);
+        }
+
+        public void Update(ushort[] data)
+        {
+            Update(data, sizeof(ushort));
         }
     }
 }

@@ -143,9 +143,14 @@ namespace OpenGL
             GL._gl.BindBuffer(target, buffer);
         }
 
-        public static void BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)
+        public static void BufferData(GLBufferTarget target, int sizeInBytes, global::System.IntPtr data, GLBufferUsage usage)
         {
-            GL._gl.BufferData(target, sizeInBytes, global::System.IntPtr.Zero, usage);
+            GL._gl.BufferData(target, sizeInBytes, data, usage);
+        }
+
+        public static void BufferSubData(GLBufferTarget target, int offset, int sizeInBytes, global::System.IntPtr data)
+        {
+            GL._gl.BufferSubData(target, offset, sizeInBytes, data);
         }
 
         public static GLBufferHandle CreateBuffer()
@@ -246,25 +251,6 @@ namespace OpenGL
         public static void TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, global::System.IntPtr data)
         {
             GL._gl.TexImage2D(target, level, internalFormat, width, height, border, format, type, data);
-        }
-
-        public static void TexSubImage2D(GLTextureTarget target, int level, int xoffset, int yoffset, int width, int height, GLPixelFormat format, GLPixelType type, byte[] data)
-        {
-            if (data != null)
-            {
-                global::System.Runtime.InteropServices.GCHandle pin = global::System.Runtime.InteropServices.GCHandle.Alloc(data, global::System.Runtime.InteropServices.GCHandleType.Pinned);
-
-                try
-                {
-                    GL._gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pin.AddrOfPinnedObject());
-                }
-                finally
-                {
-                    pin.Free();
-                }
-            }
-            else
-                GL._gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, global::System.IntPtr.Zero);
         }
 
         public static void TexSubImage2D(GLTextureTarget target, int level, int xoffset, int yoffset, int width, int height, GLPixelFormat format, GLPixelType type, global::System.IntPtr data)

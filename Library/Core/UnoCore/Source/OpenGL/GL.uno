@@ -6,7 +6,6 @@ using Uno.Runtime.InteropServices;
 namespace OpenGL
 {
     [extern(DOTNET) DotNetType]
-    [extern(CPLUSPLUS) Require("Source.Include", "Uno/Support.h")]
     [extern(CPLUSPLUS) Require("Source.Include", "XliPlatform/GL.h")]
     extern(OPENGL) public static class GL
     {
@@ -437,86 +436,75 @@ namespace OpenGL
                 build_error;
         }
 
+        public static void BufferData(GLBufferTarget target, int sizeInBytes, IntPtr data, GLBufferUsage usage)
+        {
+            if defined(CPLUSPLUS)
+            @{
+                glBufferData($@);
+            @}
+            else if defined(DOTNET)
+            {
+                _gl.BufferData(target, sizeInBytes, data, usage);
+            }
+            else
+                build_error;
+        }
+
+        [DotNetOverride]
+        [Obsolete("Use GL.BufferData(GLBufferTarget,int,IntPtr,GLBufferUsage) instead")]
         public static void BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glBufferData($0, $1, NULL, $2);
-            @}
-            else if defined(DOTNET)
-            {
-                _gl.BufferData(target, sizeInBytes, IntPtr.Zero, usage);
-            }
-            else
-                build_error;
+            BufferData(target, sizeInBytes, IntPtr.Zero, usage);
         }
 
         [DotNetOverride]
+        [Obsolete("Use GL.BufferData(GLBufferTarget,int,IntPtr,GLBufferUsage) instead")]
         public static void BufferData(GLBufferTarget target, byte[] data, GLBufferUsage usage)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glBufferData($0, $1->Length(), $1->Ptr(), $2);
-            @}
-            else if defined(DOTNET)
-            {
-                GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-                _gl.BufferData(target, data.Length, pin.AddrOfPinnedObject(), usage);
-                pin.Free();
-            }
-            else
-                build_error;
+            GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+            BufferData(target, data.Length, pin.AddrOfPinnedObject(), usage);
+            pin.Free();
         }
 
-        [DotNetOverride, Obsolete("Use the byte[] overload instead")]
+        [DotNetOverride]
+        [Obsolete("Use GL.BufferData(GLBufferTarget,int,IntPtr,GLBufferUsage) instead")]
         public static void BufferData(GLBufferTarget target, Buffer data, GLBufferUsage usage)
+        {
+            GCHandle pin;
+            BufferData(target, data.SizeInBytes, data.PinPtr(out pin), usage);
+            pin.Free();
+        }
+
+        public static void BufferSubData(GLBufferTarget target, int offset, int sizeInBytes, IntPtr data)
         {
             if defined(CPLUSPLUS)
             @{
-                glBufferData($0, U_BUFFER_SIZE($1), U_BUFFER_PTR($1), $2);
+                glBufferSubData($@);
             @}
             else if defined(DOTNET)
             {
-                GCHandle pin;
-                _gl.BufferData(target, data.SizeInBytes, data.PinPtr(out pin), usage);
-                pin.Free();
+                _gl.BufferSubData(target, offset, sizeInBytes, data);
             }
             else
                 build_error;
         }
 
         [DotNetOverride]
+        [Obsolete("Use GL.BufferSubData(GLBufferTarget,int,int,IntPtr) instead")]
         public static void BufferSubData(GLBufferTarget target, int offset, byte[] data)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glBufferSubData($0, $1, $2->Length(), $2->Ptr());
-            @}
-            else if defined(DOTNET)
-            {
-                GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-                _gl.BufferSubData(target, offset, data.Length, pin.AddrOfPinnedObject());
-                pin.Free();
-            }
-            else
-                build_error;
+            GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+            BufferSubData(target, offset, data.Length, pin.AddrOfPinnedObject());
+            pin.Free();
         }
 
-        [DotNetOverride, Obsolete("Use the byte[] overload instead")]
+        [DotNetOverride]
+        [Obsolete("Use GL.BufferSubData(GLBufferTarget,int,int,IntPtr) instead")]
         public static void BufferSubData(GLBufferTarget target, int offset, Buffer data)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glBufferSubData($0, $1, U_BUFFER_SIZE($2), U_BUFFER_PTR($2));
-            @}
-            else if defined(DOTNET)
-            {
-                GCHandle pin;
-                _gl.BufferSubData(target, offset, data.SizeInBytes, data.PinPtr(out pin));
-                pin.Free();
-            }
-            else
-                build_error;
+            GCHandle pin;
+            BufferSubData(target, offset, data.SizeInBytes, data.PinPtr(out pin));
+            pin.Free();
         }
 
         public static GLBufferHandle CreateBuffer()
@@ -822,67 +810,44 @@ namespace OpenGL
         // IsTexture
 
         [DotNetOverride]
+        [Obsolete("Use GL.TexImage2D(GLTextureTarget,int,GLPixelFormat,int,int,int,GLPixelFormat,GLPixelType,IntPtr) instead")]
         public static void TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, byte[] data)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glTexImage2D($0, $1, $2, $3, $4, $5, $6, $7, $8 ? $8->Ptr() : NULL);
-            @}
-            else if defined(DOTNET)
+            if (data != null)
             {
-                if (data != null)
-                {
-                    GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-                    try
-                    {
-                        _gl.TexImage2D(target, level,
-                            internalFormat, width, height, border,
-                            format, type,
-                            pin.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        pin.Free();
-                    }
-                }
-                else
-                {
-                    _gl.TexImage2D(target, level,
-                        internalFormat, width, height, border,
-                        format, type, IntPtr.Zero);
-                }
+                GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+                TexImage2D(target, level,
+                    internalFormat, width, height, border,
+                    format, type,
+                    pin.AddrOfPinnedObject());
+                pin.Free();
             }
             else
-                build_error;
+            {
+                TexImage2D(target, level,
+                    internalFormat, width, height, border,
+                    format, type, IntPtr.Zero);
+            }
         }
 
-        [DotNetOverride, Obsolete("Use the byte[] overload instead")]
+        [DotNetOverride]
+        [Obsolete("Use GL.TexImage2D(GLTextureTarget,int,GLPixelFormat,int,int,int,GLPixelFormat,GLPixelType,IntPtr) instead")]
         public static void TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, Buffer data)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glTexImage2D($0, $1, $2, $3, $4, $5, $6, $7, $8 ? U_BUFFER_PTR($8) : NULL);
-            @}
-            else if defined(DOTNET)
+            if (data != null)
             {
-                if (data != null)
-                {
-                    GCHandle pin;
-                    _gl.TexImage2D(target, level,
-                        internalFormat, width, height, border,
-                        format, type,
-                        data.PinPtr(out pin));
-                    pin.Free();
-                }
-                else
-                {
-                    _gl.TexImage2D(target, level,
-                        internalFormat, width, height, border,
-                        format, type, IntPtr.Zero);
-                }
+                GCHandle pin;
+                TexImage2D(target, level,
+                    internalFormat, width, height, border,
+                    format, type, data.PinPtr(out pin));
+                pin.Free();
             }
             else
-                build_error;
+            {
+                TexImage2D(target, level,
+                    internalFormat, width, height, border,
+                    format, type, IntPtr.Zero);
+            }
         }
 
         public static void TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, IntPtr data)
@@ -899,34 +864,21 @@ namespace OpenGL
                 build_error;
         }
 
+        [DotNetOverride]
+        [Obsolete("Use GL.TexSubImage2D(GLTextureTarget,int,int,int,int,int,GLPixelFormat,GLPixelType,IntPtr) instead")]
         public static void TexSubImage2D(GLTextureTarget target, int level, int xoffset, int yoffset, int width, int height, GLPixelFormat format, GLPixelType type, byte[] data)
         {
-            if defined(CPLUSPLUS)
-            @{
-                glTexSubImage2D($0, $1, $2, $3, $4, $5, $6, $7, $8 ? $8->Ptr() : NULL);
-            @}
-            else if defined(DOTNET)
+            if (data != null)
             {
-                if(data != null)
-                {
-                    GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
-                    try
-                    {
-                        _gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pin.AddrOfPinnedObject());
-                    }
-                    finally
-                    {
-                        pin.Free();
-                    }
-                }
-                else
-                {
-                    // The data pointer for glTexSubImage2D can be zero in case of 'GL_PIXEL_UNPACK_BUFFER'
-                    _gl.TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, IntPtr.Zero);
-                }
+                GCHandle pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+                TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pin.AddrOfPinnedObject());
+                pin.Free();
             }
             else
-                build_error;
+            {
+                // The data pointer for glTexSubImage2D can be zero in case of 'GL_PIXEL_UNPACK_BUFFER'
+                TexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, IntPtr.Zero);
+            }
         }
 
         public static void TexSubImage2D(GLTextureTarget target, int level, int xoffset, int yoffset, int width, int height, GLPixelFormat format, GLPixelType type, IntPtr data)

@@ -5,6 +5,7 @@ using Uno.Native.Textures;
 
 namespace Uno.Graphics.Support
 {
+    [Obsolete]
     extern(DOTNET)
     static class DotNetTexture
     {

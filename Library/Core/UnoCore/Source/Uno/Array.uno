@@ -7,6 +7,11 @@ namespace Uno
     [extern(CPLUSPLUS) Set("TypeName", "uArray*")]
     public class Array
     {
+        public int Length
+        { 
+            get @{ return $$->Length(); @}
+        }
+
         [DotNetOverride]
         public static void Copy<T>(T[] sourceArray, T[] destinationArray, int length)
         {

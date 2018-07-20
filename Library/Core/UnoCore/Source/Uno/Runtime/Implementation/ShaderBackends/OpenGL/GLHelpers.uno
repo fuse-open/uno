@@ -2,6 +2,7 @@ using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Graphics;
 using Uno.Diagnostics;
+using Uno.Runtime.InteropServices;
 
 namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
 {
@@ -25,68 +26,31 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
 
         public static void TexImage2DFromBytes(GLTextureTarget target, int w, int h, int mip, Format format, byte[] data)
         {
-            switch (format)
+            var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+
+            try
             {
-            case Format.L8:
-                GL.TexImage2D(target, mip, GLPixelFormat.Luminance, w, h, 0, GLPixelFormat.Luminance, GLPixelType.UnsignedByte, data);
-                break;
-
-            case Format.LA88:
-                GL.TexImage2D(target, mip, GLPixelFormat.LuminanceAlpha, w, h, 0, GLPixelFormat.LuminanceAlpha, GLPixelType.UnsignedByte, data);
-                break;
-
-            case Format.RGBA8888:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgba, w, h, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedByte, data);
-                break;
-
-            case Format.RGBA4444:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgba, w, h, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedShort4444, data);
-                break;
-
-            case Format.RGBA5551:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgba, w, h, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedShort5551, data);
-                break;
-
-            case Format.RGB565:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgb, w, h, 0, GLPixelFormat.Rgb, GLPixelType.UnsignedShort565, data);
-                break;
-
-            default:
-                throw new GLException("Unsupported texture format");
+                TexImage2DFromIntPtr(target, w, h, mip, format, pin.AddrOfPinnedObject());
+            }
+            finally
+            {
+                pin.Free();
             }
         }
 
         [Obsolete("Use the byte[] overload instead")]
         public static void TexImage2DFromBuffer(GLTextureTarget target, int w, int h, int mip, Format format, Buffer data)
         {
-            switch (format)
+            GCHandle pin;
+            var addr = data.PinPtr(out pin);
+
+            try
             {
-            case Format.L8:
-                GL.TexImage2D(target, mip, GLPixelFormat.Luminance, w, h, 0, GLPixelFormat.Luminance, GLPixelType.UnsignedByte, data);
-                break;
-
-            case Format.LA88:
-                GL.TexImage2D(target, mip, GLPixelFormat.LuminanceAlpha, w, h, 0, GLPixelFormat.LuminanceAlpha, GLPixelType.UnsignedByte, data);
-                break;
-
-            case Format.RGBA8888:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgba, w, h, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedByte, data);
-                break;
-
-            case Format.RGBA4444:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgba, w, h, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedShort4444, data);
-                break;
-
-            case Format.RGBA5551:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgba, w, h, 0, GLPixelFormat.Rgba, GLPixelType.UnsignedShort5551, data);
-                break;
-
-            case Format.RGB565:
-                GL.TexImage2D(target, mip, GLPixelFormat.Rgb, w, h, 0, GLPixelFormat.Rgb, GLPixelType.UnsignedShort565, data);
-                break;
-
-            default:
-                throw new GLException("Unsupported texture format");
+                TexImage2DFromIntPtr(target, w, h, mip, format, addr);
+            }
+            finally
+            {
+                pin.Free();
             }
         }
 
@@ -203,13 +167,6 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
                 var log = GL.GetProgramInfoLog(handle);
                 throw new GLException("Error linking shader program:\n\n" + log);
             }
-            // try
-            // {
-            //     debug_log "GL.LinkProgram Log: "+GL.GetProgramInfoLog(handle);
-            // } catch (Exception e) {
-            //     debug_log "Threw exception while trying to get ProgramInfoLog. Trying to continue";
-            // }
-
 
             GL.UseProgram(handle);
 
