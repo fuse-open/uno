@@ -1,5 +1,6 @@
 namespace Uno.Diagnostics
 {
+    [Obsolete]
     public class FreeEvent : ProfileEvent
     {
         public readonly int Class;
