@@ -200,12 +200,14 @@ namespace Uno
             if (startIndex == Length && length == 0)
                 return Empty;
 
-            var s = new char[length];
+            @{
+                uString* s = uString::New($1);
 
-            for (int i = 0; i < length; i++)
-                s[i] = this[startIndex + i];
+                for (int i = 0; i < $1; i++)
+                    s->_ptr[i] = $$->_ptr[$0 + i];
 
-            return new string(s);
+                return s;
+            @}
         }
 
         public string Substring(int start)
