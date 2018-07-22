@@ -529,21 +529,17 @@ namespace Uno
         }
 
         public string PadRight(int totalLength, char paddingSymbol)
-        {
-            if (totalLength <= Length)
-                return this;
-            var result = new char[totalLength];
+        @{
+            if ($0 <= $$->_length)
+                return $$;
+            uString* result = uString::New($0);
             int index = 0;
-            for (var i = 0; i < Length; i++)
-            {
-                result[index++] = this[i];
-            }
-            for (; index < totalLength; index++)
-            {
-                result[index] = paddingSymbol;
-            }
-            return new string(result);
-        }
+            for (int i = 0; i < $$->_length; i++)
+                result->_ptr[index++] = $$->_ptr[i];
+            for (; index < $0; index++)
+                result->_ptr[index] = $1;
+            return result;
+        @}
 
         public string Trim()
         {
