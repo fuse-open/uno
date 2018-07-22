@@ -93,14 +93,12 @@ namespace Uno
         }
 
         public string ToLower()
-        {
-            var chars = new char[Length];
-            for (int i = 0; i < Length; i++)
-            {
-                chars[i] = Char.ToLower(this[i]);
-            }
-            return new string(chars);
-        }
+        @{
+            uString* s = uString::New($$->_length);
+            for (int i = 0; i < $$->_length; i++)
+                s->_ptr[i] = @{Char.ToLower(char):Call($$->_ptr[i])};
+            return s;
+        @}
 
         public string ToUpper()
         {
