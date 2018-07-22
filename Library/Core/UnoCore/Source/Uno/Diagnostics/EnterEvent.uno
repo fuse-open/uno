@@ -1,5 +1,6 @@
 namespace Uno.Diagnostics
 {
+    [Obsolete]
     public class EnterEvent : ProfileEvent
     {
         public readonly int Id;

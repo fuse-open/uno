@@ -1,5 +1,6 @@
 namespace Uno.Diagnostics
 {
+    [Obsolete]
     public class AllocateEvent : ProfileEvent
     {
         public readonly int Class;
