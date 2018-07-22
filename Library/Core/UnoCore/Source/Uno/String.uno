@@ -109,21 +109,16 @@ namespace Uno
         @}
 
         public override bool Equals(object other)
-        {
-            if defined(CPLUSPLUS)
-            @{
-                if ($0 != NULL && $$->__type == $0->__type)
-                {
-                    uString* str = (uString*)$0;
-                    return $$->_length == str->_length &&
-                        !memcmp($$->_ptr, str->_ptr, sizeof(char16_t) * $$->_length);
-                }
+        @{
+            if ($0 != NULL && $$->__type == $0->__type)
+            {
+                uString* str = (uString*)$0;
+                return $$->_length == str->_length &&
+                    !memcmp($$->_ptr, str->_ptr, sizeof(char16_t) * $$->_length);
+            }
 
-                return false;
-            @}
-            else
-                return Equals(this, other as string);
-        }
+            return false;
+        @}
 
         public bool Equals(string other)
         {
