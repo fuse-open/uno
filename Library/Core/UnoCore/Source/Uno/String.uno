@@ -148,27 +148,26 @@ namespace Uno
         }
 
         public static string Concat(string a, string b)
-        {
-            if (object.ReferenceEquals(a, null) &&
-                object.ReferenceEquals(b, null))
-                return Empty;
+        @{
+            if (!$0 && !$1)
+                return @{Empty};
 
-            if (object.ReferenceEquals(a, null))
-                return b;
+            if (!$0)
+                return $1;
 
-            if (object.ReferenceEquals(b, null))
-                return a;
+            if (!$1)
+                return $0;
 
-            var s = new char[a.Length + b.Length];
+            uString* s = uString::New($0->_length + $1->_length);
 
-            for (int i = 0; i < a.Length; i++)
-                s[i] = a[i];
+            for (int i = 0; i < $0->_length; i++)
+                s->_ptr[i] = $0->_ptr[i];
 
-            for (int i = 0; i < b.Length; i++)
-                s[a.Length + i] = b[i];
+            for (int i = 0; i < $1->_length; i++)
+                s->_ptr[$0->_length + i] = $1->_ptr[i];
 
-            return new string(s);
-        }
+            return s;
+        @}
 
         public static string Concat(object a, object b)
         {
