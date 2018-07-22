@@ -126,23 +126,16 @@ namespace Uno
         }
 
         public static bool Equals(string left, string right)
-        {
-            if (object.ReferenceEquals(left, right))
+        @{
+            if ($0 == $1)
                 return true;
 
-            if (object.ReferenceEquals(left, null) ||
-                object.ReferenceEquals(right, null))
+            if (!$0 || !$1)
                 return false;
 
-            if (left.Length != right.Length)
-                return false;
-
-            for (int i = 0; i < left.Length; i++)
-                if (left[i] != right[i])
-                    return false;
-
-            return true;
-        }
+            return $0->_length == $1->_length &&
+                !memcmp($0->_ptr, $1->_ptr, sizeof(char16_t) * $0->_length);
+        @}
 
         public static bool operator == (string left, string right)
         {
