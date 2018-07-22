@@ -510,22 +510,18 @@ namespace Uno
         }
 
         public string PadLeft(int totalLength, char paddingSymbol)
-        {
-            int padLength = totalLength - Length;
+        @{
+            int padLength = $0 - $$->_length;
             if (padLength <= 0)
-                return this;
-            var result = new char[totalLength];
+                return $$;
+            uString* result = uString::New($0);
             int index;
             for (index = 0; index < padLength; index++)
-            {
-                result[index] = paddingSymbol;
-            }
-            for (var i = 0; i < Length; i++)
-            {
-                result[index++] = this[i];
-            }
-            return new string(result);
-        }
+                result->_ptr[index] = $1;
+            for (int i = 0; i < $$->_length; i++)
+                result->_ptr[index++] = $$->_ptr[i];
+            return result;
+        @}
 
         public string PadRight(int totalLength)
         {
