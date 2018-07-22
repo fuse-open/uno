@@ -670,14 +670,16 @@ namespace Uno
             if (this.Length == 0)
                 return str;
 
-            var s = new char[this.Length + str.Length];
-            for (int i = 0; i < pos; i++)
-                s[i] = this[i];
-            for (int i = 0; i < str.Length; i++)
-                s[i+pos] = str[i];
-            for (int i = pos; i < this.Length; i++)
-                s[i+str.Length] = this[i];
-            return new string(s);
+            @{
+                uString* s = uString::New($$->_length + $1->_length);
+                for (int i = 0; i < pos; i++)
+                    s->_ptr[i] = $$->_ptr[i];
+                for (int i = 0; i < $1->_length; i++)
+                    s->_ptr[i + pos] = $1->_ptr[i];
+                for (int i = pos; i < $$->_length; i++)
+                    s->_ptr[i + $1->_length] = $$->_ptr[i];
+                return s;
+            @}
         }
 
         public int IndexOf(string str, int startIndex=0)
