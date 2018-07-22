@@ -196,7 +196,7 @@ static uType* uNewType(uint32_t type, const char* name, const uTypeOptions& opti
         memcpy((uint8_t*)result + offset, (uint8_t*)base + offset, base->TypeSize - offset);
         result->Base = base;
     }
-    @(TypeExtension.Initialization:Join())
+
     _RuntimeTypes->push_back(result);
     return result;
 }

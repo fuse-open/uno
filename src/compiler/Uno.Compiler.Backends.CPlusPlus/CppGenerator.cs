@@ -135,16 +135,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
             foreach (var ext in extTypes)
             {
-                // Workaround that disables merging of Obj-C files because of duplicated defines produced by binding generator.
-                // TODO: Find a way to generate bindings without these defines
-                if (ext.Key == "mm")
-                {
-                    foreach (var dt in ext.Value)
-                        ExportType(_env, _essentials, _backend, dt);
-
-                    continue;
-                }
-
                 var count = ext.Value.Count;
                 var types = new CppType[count];
                 var declSet = new HashSet<string>();
@@ -463,7 +453,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     _cpp.Unindent();
                 }
 
-                WriteTypeInitialization(dt);
                 _cpp.EndScope();
 
                 _cpp.WriteLine(type.TypeOfType + "* " + type.TypeOfFunction + "()");
@@ -648,7 +637,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 _cpp.Unindent();
             }
 
-            WriteTypeInitialization(dt);
             _cpp.WriteLine("return type;");
             _cpp.EndScope();
             _h.Skip();
@@ -717,9 +705,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
             _cpp.EndLine(");");
             _cpp.Unindent();
-
-            WriteTypeInitialization(dt);
-
             _cpp.WriteLine("return type;");
             _cpp.EndScope();
         }
@@ -758,8 +743,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 _cpp.Unindent();
                 _cpp.EndLine(");");
             }
-
-            WriteTypeInitialization(dt);
 
             _cpp.WriteLine("return type;");
             _cpp.EndScope();
@@ -1152,29 +1135,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 " " + _backend.GetStaticName(f.DeclaringType, f.DeclaringType) +
                 "::" + _backend.GetMemberName(f) + GetParameterList(f, ParameterFlags.ObjectByRef));
             _h.WriteInterfaceMethodBody(f);
-        }
-
-        void WriteTypeInitialization(DataType dt)
-        {
-            bool hasTypeInitializer = false;
-
-            foreach (var e in _env.GetSet(dt, "Type.Initialization"))
-            {
-                if (!hasTypeInitializer)
-                {
-                    _cpp.Skip();
-                    _cpp.BeginScope();
-                    hasTypeInitializer = true;
-                }
-
-                _cpp.WriteLines(e);
-            }
-
-            if (hasTypeInitializer)
-            {
-                _cpp.EndScope();
-                _cpp.Skip();
-            }
         }
 
         string GetFunctionDeclaration(Function f, string suffix = "_fn")
