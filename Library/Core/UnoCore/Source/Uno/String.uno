@@ -197,7 +197,7 @@ namespace Uno
             if (startIndex > Length - length || length < 0)
                 throw new ArgumentOutOfRangeException(nameof(length));
 
-            if (startIndex == Length && length == 0)
+            if (length == 0)
                 return Empty;
 
             @{
