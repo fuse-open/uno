@@ -21,10 +21,7 @@ namespace Uno
         public extern String(char[] str, int startIndex, int length);
 
         [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
-        public extern int Length
-        {
-            get;
-        }
+        public extern int Length { get; }
 
         [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
         public extern char this[int index] { get; }
@@ -50,7 +47,8 @@ namespace Uno
             for (int i = 0; i < Length; i++)
             {
                 s[i] = this[i];
-                if (s[i] == oldChar) s[i] = newChar;
+                if (s[i] == oldChar)
+                    s[i] = newChar;
             }
             return new string(s);
         }
@@ -74,12 +72,12 @@ namespace Uno
 
             while (index != -1)
             {
-                sb.Append(SubCharArray(pos, index-pos));
+                sb.Append(SubCharArray(pos, index - pos));
                 sb.Append(newValue);
                 pos = index + oldValue.Length;
                 index = IndexOf(oldValue, pos);
             }
-            sb.Append(SubCharArray(pos, Length-pos));
+            sb.Append(SubCharArray(pos, Length - pos));
 
             return sb.ToString();
         }
@@ -89,7 +87,7 @@ namespace Uno
             var chars = new char[len];
             for (int i = 0; i < len; i++)
             {
-                chars[i]= this[start+i];
+                chars[i] = this[start + i];
             }
             return chars;
         }
@@ -121,7 +119,8 @@ namespace Uno
                 if ($0 != NULL && $$->__type == $0->__type)
                 {
                     uString* str = (uString*)$0;
-                    return $$->_length == str->_length && !memcmp($$->_ptr, str->_ptr, sizeof(char16_t) * $$->_length);
+                    return $$->_length == str->_length &&
+                        !memcmp($$->_ptr, str->_ptr, sizeof(char16_t) * $$->_length);
                 }
 
                 return false;
@@ -651,7 +650,7 @@ namespace Uno
 
         int IndexOfLastNotInSet(char[] charSet)
         {
-            for (int i = Length-1; i >= 0; i--)
+            for (int i = Length - 1; i >= 0; i--)
                 if (!InSet(this[i], charSet))
                     return i;
             return -1;
@@ -659,7 +658,9 @@ namespace Uno
 
         bool InSet(char c, char[] charSet)
         {
-            for (int i = 0; i < charSet.Length; i++) if (charSet[i] == c) return true;
+            for (int i = 0; i < charSet.Length; i++)
+                if (charSet[i] == c)
+                    return true;
             return false;
         }
 
@@ -673,7 +674,7 @@ namespace Uno
 
         private int IndexOfLastNotWhiteSpace()
         {
-            for (int i = Length-1; i >= 0; i--)
+            for (int i = Length - 1; i >= 0; i--)
                 if (!char.IsWhiteSpace(this[i]))
                     return i;
             return -1;
@@ -713,7 +714,7 @@ namespace Uno
             if (startIndex > Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
 
-            for (int hay=startIndex; hay < Length; hay++)
+            for (int hay = startIndex; hay < Length; hay++)
             {
                 if (str.Length > (Length - hay))
                     return -1;
@@ -735,11 +736,15 @@ namespace Uno
         {
             for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
             {
-                if (a[i] < b[i]) return -1;
-                if (b[i] < a[i]) return 1;
+                if (a[i] < b[i])
+                    return -1;
+                if (b[i] < a[i])
+                    return 1;
             }
-            if (a.Length < b.Length) return -1;
-            if (b.Length < a.Length) return 1;
+            if (a.Length < b.Length)
+                return -1;
+            if (b.Length < a.Length)
+                return 1;
             return 0;
         }
 
