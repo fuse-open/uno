@@ -6,6 +6,7 @@ using Uno.Testing.Assert;
 
 namespace Uno.Test
 {
+    [Obsolete]
     public class BufferTest
     {
         static byte[] GetRandomTestData(int bytes)
