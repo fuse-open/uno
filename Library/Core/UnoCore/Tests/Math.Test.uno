@@ -8,8 +8,8 @@ namespace Uno.Test
 {
     public class MathTest
     {
-
         [Test]
+        [Obsolete]
         public void RoundingMode()
         {
             Assert.AreEqual(1, Math.Round(1.5 - 1e-10), 0);
@@ -35,6 +35,7 @@ namespace Uno.Test
         }
 
         [Test]
+        [Obsolete]
         public void RoundWithDecimals()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Math.Round(Math.PI, -1));
@@ -71,6 +72,7 @@ namespace Uno.Test
         }
 
         [Test]
+        [Obsolete]
         public void RoundsVectorsWithNoDecimals()
         {
             Assert.AreEqual(float2(1,3), Math.Round(float2(1.4f, 2.9f)), 0);
@@ -79,6 +81,7 @@ namespace Uno.Test
         }
 
         [Test]
+        [Obsolete]
         public void RoundsVectorsWithDecimals()
         {
             Assert.AreEqual(float2(1, 3), Math.Round(float2(1.4f, 2.9f), 0), 0);

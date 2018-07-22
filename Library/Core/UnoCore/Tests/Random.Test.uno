@@ -60,6 +60,7 @@ namespace Uno.Test
         }
 
         [Test]
+        [Obsolete]
         public void FloatOnZeroRange_ReturnsThatNumber()
         {
             var r = new Random(1337);
@@ -67,11 +68,13 @@ namespace Uno.Test
         }
 
         [Test]
+        [Obsolete]
         public void FloatWhenHighIsLowerThanLow_Throws()
         {
             Assert.Throws<ArgumentOutOfRangeException>(FloatHighIsLowerThanLow);
         }
 
+        [Obsolete]
         private void FloatHighIsLowerThanLow()
         {
             var r = new Random(1337);

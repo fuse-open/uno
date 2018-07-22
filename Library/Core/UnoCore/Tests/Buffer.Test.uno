@@ -8,7 +8,6 @@ namespace Uno.Test
 {
     public class BufferTest
     {
-
         static byte[] GetRandomTestData(int bytes)
         {
             var data = new byte[bytes];
@@ -45,7 +44,7 @@ namespace Uno.Test
         public void CreateReadOnlySubBuffer()
         {
             var buffer = new Buffer(GetRandomTestData(100));
-            var subBuffer = buffer.CreateReadOnlySubBuffer(25, 50);
+            var subBuffer = buffer.CreateSubBuffer(25, 50);
 
             Assert.AreEqual(subBuffer.SizeInBytes, 50);
 

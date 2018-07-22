@@ -113,6 +113,7 @@ namespace Uno.Test
         }
 
         [Test]
+        [Obsolete]
         public void FromHex()
         {
             Assert.AreEqual(Color.FromRgba(0xAABBCCFF), Color.FromHex("ABC"));
@@ -134,11 +135,13 @@ namespace Uno.Test
             Assert.AreEqual((float4)int4(0xAA,0xBB,0xCC,0xFF) / 255f, Color.FromHex("ABC"));
         }
 
+        [Obsolete]
         void _FromHexWithIllegal()
         {
             Color.FromHex("EFG");
         }
 
+        [Obsolete]
         void _FromHexWithSign()
         {
             Color.FromHex("---");
