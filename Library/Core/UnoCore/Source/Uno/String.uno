@@ -42,16 +42,16 @@ namespace Uno
         }
 
         public string Replace(char oldChar, char newChar)
-        {
-            var s = new char[Length];
-            for (int i = 0; i < Length; i++)
+        @{
+            uString* s = uString::New($$->_length);
+            for (int i = 0; i < $$->_length; i++)
             {
-                s[i] = this[i];
-                if (s[i] == oldChar)
-                    s[i] = newChar;
+                s->_ptr[i] = $$->_ptr[i];
+                if (s->_ptr[i] == oldChar)
+                    s->_ptr[i] = newChar;
             }
-            return new string(s);
-        }
+            return s;
+        @}
 
         public string Replace(string oldValue, string newValue)
         {
