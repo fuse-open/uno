@@ -21,10 +21,7 @@ namespace Uno
         public extern String(char[] str, int startIndex, int length);
 
         [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
-        public extern int Length
-        {
-            get;
-        }
+        public extern int Length { get; }
 
         [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
         public extern char this[int index] { get; }
@@ -45,15 +42,16 @@ namespace Uno
         }
 
         public string Replace(char oldChar, char newChar)
-        {
-            var s = new char[Length];
-            for (int i = 0; i < Length; i++)
+        @{
+            uString* s = uString::New($$->_length);
+            for (int i = 0; i < $$->_length; i++)
             {
-                s[i] = this[i];
-                if (s[i] == oldChar) s[i] = newChar;
+                s->_ptr[i] = $$->_ptr[i];
+                if (s->_ptr[i] == oldChar)
+                    s->_ptr[i] = newChar;
             }
-            return new string(s);
-        }
+            return s;
+        @}
 
         public string Replace(string oldValue, string newValue)
         {
@@ -74,12 +72,12 @@ namespace Uno
 
             while (index != -1)
             {
-                sb.Append(SubCharArray(pos, index-pos));
+                sb.Append(SubCharArray(pos, index - pos));
                 sb.Append(newValue);
                 pos = index + oldValue.Length;
                 index = IndexOf(oldValue, pos);
             }
-            sb.Append(SubCharArray(pos, Length-pos));
+            sb.Append(SubCharArray(pos, Length - pos));
 
             return sb.ToString();
         }
@@ -89,46 +87,38 @@ namespace Uno
             var chars = new char[len];
             for (int i = 0; i < len; i++)
             {
-                chars[i]= this[start+i];
+                chars[i] = this[start + i];
             }
             return chars;
         }
 
         public string ToLower()
-        {
-            var chars = new char[Length];
-            for (int i = 0; i < Length; i++)
-            {
-                chars[i] = Char.ToLower(this[i]);
-            }
-            return new string(chars);
-        }
+        @{
+            uString* s = uString::New($$->_length);
+            for (int i = 0; i < $$->_length; i++)
+                s->_ptr[i] = @{Char.ToLower(char):Call($$->_ptr[i])};
+            return s;
+        @}
 
         public string ToUpper()
-        {
-            var chars = new char[Length];
-            for (int i = 0; i < Length; i++)
-            {
-                chars[i] = Char.ToUpper(this[i]);
-            }
-            return new string(chars);
-        }
+        @{
+            uString* s = uString::New($$->_length);
+            for (int i = 0; i < $$->_length; i++)
+                s->_ptr[i] = @{Char.ToUpper(char):Call($$->_ptr[i])};
+            return s;
+        @}
 
         public override bool Equals(object other)
-        {
-            if defined(CPLUSPLUS)
-            @{
-                if ($0 != NULL && $$->__type == $0->__type)
-                {
-                    uString* str = (uString*)$0;
-                    return $$->_length == str->_length && !memcmp($$->_ptr, str->_ptr, sizeof(char16_t) * $$->_length);
-                }
+        @{
+            if ($0 != NULL && $$->__type == $0->__type)
+            {
+                uString* str = (uString*)$0;
+                return $$->_length == str->_length &&
+                    !memcmp($$->_ptr, str->_ptr, sizeof(char16_t) * $$->_length);
+            }
 
-                return false;
-            @}
-            else
-                return Equals(this, other as string);
-        }
+            return false;
+        @}
 
         public bool Equals(string other)
         {
@@ -136,23 +126,16 @@ namespace Uno
         }
 
         public static bool Equals(string left, string right)
-        {
-            if (object.ReferenceEquals(left, right))
+        @{
+            if ($0 == $1)
                 return true;
 
-            if (object.ReferenceEquals(left, null) ||
-                object.ReferenceEquals(right, null))
+            if (!$0 || !$1)
                 return false;
 
-            if (left.Length != right.Length)
-                return false;
-
-            for (int i = 0; i < left.Length; i++)
-                if (left[i] != right[i])
-                    return false;
-
-            return true;
-        }
+            return $0->_length == $1->_length &&
+                !memcmp($0->_ptr, $1->_ptr, sizeof(char16_t) * $0->_length);
+        @}
 
         public static bool operator == (string left, string right)
         {
@@ -165,27 +148,26 @@ namespace Uno
         }
 
         public static string Concat(string a, string b)
-        {
-            if (object.ReferenceEquals(a, null) &&
-                object.ReferenceEquals(b, null))
-                return Empty;
+        @{
+            if (!$0 && !$1)
+                return @{Empty};
 
-            if (object.ReferenceEquals(a, null))
-                return b;
+            if (!$0)
+                return $1;
 
-            if (object.ReferenceEquals(b, null))
-                return a;
+            if (!$1)
+                return $0;
 
-            var s = new char[a.Length + b.Length];
+            uString* s = uString::New($0->_length + $1->_length);
 
-            for (int i = 0; i < a.Length; i++)
-                s[i] = a[i];
+            for (int i = 0; i < $0->_length; i++)
+                s->_ptr[i] = $0->_ptr[i];
 
-            for (int i = 0; i < b.Length; i++)
-                s[a.Length + i] = b[i];
+            for (int i = 0; i < $1->_length; i++)
+                s->_ptr[$0->_length + i] = $1->_ptr[i];
 
-            return new string(s);
-        }
+            return s;
+        @}
 
         public static string Concat(object a, object b)
         {
@@ -215,15 +197,17 @@ namespace Uno
             if (startIndex > Length - length || length < 0)
                 throw new ArgumentOutOfRangeException(nameof(length));
 
-            if (startIndex == Length && length == 0)
+            if (length == 0)
                 return Empty;
 
-            var s = new char[length];
+            @{
+                uString* s = uString::New($1);
 
-            for (int i = 0; i < length; i++)
-                s[i] = this[startIndex + i];
+                for (int i = 0; i < $1; i++)
+                    s->_ptr[i] = $$->_ptr[$0 + i];
 
-            return new string(s);
+                return s;
+            @}
         }
 
         public string Substring(int start)
@@ -526,22 +510,18 @@ namespace Uno
         }
 
         public string PadLeft(int totalLength, char paddingSymbol)
-        {
-            int padLength = totalLength - Length;
+        @{
+            int padLength = $0 - $$->_length;
             if (padLength <= 0)
-                return this;
-            var result = new char[totalLength];
+                return $$;
+            uString* result = uString::New($0);
             int index;
             for (index = 0; index < padLength; index++)
-            {
-                result[index] = paddingSymbol;
-            }
-            for (var i = 0; i < Length; i++)
-            {
-                result[index++] = this[i];
-            }
-            return new string(result);
-        }
+                result->_ptr[index] = $1;
+            for (int i = 0; i < $$->_length; i++)
+                result->_ptr[index++] = $$->_ptr[i];
+            return result;
+        @}
 
         public string PadRight(int totalLength)
         {
@@ -549,21 +529,17 @@ namespace Uno
         }
 
         public string PadRight(int totalLength, char paddingSymbol)
-        {
-            if (totalLength <= Length)
-                return this;
-            var result = new char[totalLength];
+        @{
+            if ($0 <= $$->_length)
+                return $$;
+            uString* result = uString::New($0);
             int index = 0;
-            for (var i = 0; i < Length; i++)
-            {
-                result[index++] = this[i];
-            }
-            for (; index < totalLength; index++)
-            {
-                result[index] = paddingSymbol;
-            }
-            return new string(result);
-        }
+            for (int i = 0; i < $$->_length; i++)
+                result->_ptr[index++] = $$->_ptr[i];
+            for (; index < $0; index++)
+                result->_ptr[index] = $1;
+            return result;
+        @}
 
         public string Trim()
         {
@@ -651,7 +627,7 @@ namespace Uno
 
         int IndexOfLastNotInSet(char[] charSet)
         {
-            for (int i = Length-1; i >= 0; i--)
+            for (int i = Length - 1; i >= 0; i--)
                 if (!InSet(this[i], charSet))
                     return i;
             return -1;
@@ -659,7 +635,9 @@ namespace Uno
 
         bool InSet(char c, char[] charSet)
         {
-            for (int i = 0; i < charSet.Length; i++) if (charSet[i] == c) return true;
+            for (int i = 0; i < charSet.Length; i++)
+                if (charSet[i] == c)
+                    return true;
             return false;
         }
 
@@ -673,7 +651,7 @@ namespace Uno
 
         private int IndexOfLastNotWhiteSpace()
         {
-            for (int i = Length-1; i >= 0; i--)
+            for (int i = Length - 1; i >= 0; i--)
                 if (!char.IsWhiteSpace(this[i]))
                     return i;
             return -1;
@@ -692,14 +670,16 @@ namespace Uno
             if (this.Length == 0)
                 return str;
 
-            var s = new char[this.Length + str.Length];
-            for (int i = 0; i < pos; i++)
-                s[i] = this[i];
-            for (int i = 0; i < str.Length; i++)
-                s[i+pos] = str[i];
-            for (int i = pos; i < this.Length; i++)
-                s[i+str.Length] = this[i];
-            return new string(s);
+            @{
+                uString* s = uString::New($$->_length + $1->_length);
+                for (int i = 0; i < pos; i++)
+                    s->_ptr[i] = $$->_ptr[i];
+                for (int i = 0; i < $1->_length; i++)
+                    s->_ptr[i + pos] = $1->_ptr[i];
+                for (int i = pos; i < $$->_length; i++)
+                    s->_ptr[i + $1->_length] = $$->_ptr[i];
+                return s;
+            @}
         }
 
         public int IndexOf(string str, int startIndex=0)
@@ -713,7 +693,7 @@ namespace Uno
             if (startIndex > Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
 
-            for (int hay=startIndex; hay < Length; hay++)
+            for (int hay = startIndex; hay < Length; hay++)
             {
                 if (str.Length > (Length - hay))
                     return -1;
@@ -735,11 +715,15 @@ namespace Uno
         {
             for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
             {
-                if (a[i] < b[i]) return -1;
-                if (b[i] < a[i]) return 1;
+                if (a[i] < b[i])
+                    return -1;
+                if (b[i] < a[i])
+                    return 1;
             }
-            if (a.Length < b.Length) return -1;
-            if (b.Length < a.Length) return 1;
+            if (a.Length < b.Length)
+                return -1;
+            if (b.Length < a.Length)
+                return 1;
             return 0;
         }
 
