@@ -101,14 +101,12 @@ namespace Uno
         @}
 
         public string ToUpper()
-        {
-            var chars = new char[Length];
-            for (int i = 0; i < Length; i++)
-            {
-                chars[i] = Char.ToUpper(this[i]);
-            }
-            return new string(chars);
-        }
+        @{
+            uString* s = uString::New($$->_length);
+            for (int i = 0; i < $$->_length; i++)
+                s->_ptr[i] = @{Char.ToUpper(char):Call($$->_ptr[i])};
+            return s;
+        @}
 
         public override bool Equals(object other)
         {
