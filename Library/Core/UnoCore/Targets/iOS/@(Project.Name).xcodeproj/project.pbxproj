@@ -458,10 +458,31 @@
 #if @(LIBRARY:Defined)
                 MACH_O_TYPE = mh_dylib;
 #endif
+
+#if @(Project.iOS.SpecialCapabilities.CPPImport:IsSet)
+    #if @(Project.iOS.SpecialCapabilities.CPPImport:Test(1,0))
+                OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fmodules",
+					"-fcxx-modules",
+				);
+    #endif
+#endif
+#if @(Project.iOS.SpecialCapabilities.AllowSwiftModules:IsSet)
+    #if @(Project.iOS.SpecialCapabilities.AllowSwiftModules:Test(1,0))
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+    #endif
+#endif
+#if @(Project.iOS.SpecialCapabilities.AllowNonModularModules:IsSet)
+    #if @(Project.iOS.SpecialCapabilities.AllowNonModularModules:Test(1,0))
+                CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+    #endif
+#endif
                 OTHER_LDFLAGS = (
                     "$(inherited)",
                     "@(Pbxproj.LinkLibraries)"
                 );
+
                 PRODUCT_NAME = "$(TARGET_NAME)";
                 SWIFT_VERSION = @(Project.iOS.SwiftVersion || "3.0");
             };
@@ -505,6 +526,26 @@
                 LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 #if @(LIBRARY:Defined)
                 MACH_O_TYPE = mh_dylib;
+#endif
+
+#if @(Project.iOS.SpecialCapabilities.CPPImport:IsSet)
+    #if @(Project.iOS.SpecialCapabilities.CPPImport:Test(1,0))
+                OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fmodules",
+					"-fcxx-modules",
+				);
+    #endif
+#endif
+#if @(Project.iOS.SpecialCapabilities.AllowSwiftModules:IsSet)
+    #if @(Project.iOS.SpecialCapabilities.AllowSwiftModules:Test(1,0))
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+    #endif
+#endif
+#if @(Project.iOS.SpecialCapabilities.AllowNonModularModules:IsSet)
+    #if @(Project.iOS.SpecialCapabilities.AllowNonModularModules:Test(1,0))
+                CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+    #endif
 #endif
                 OTHER_LDFLAGS = (
                     "$(inherited)",
