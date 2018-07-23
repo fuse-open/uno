@@ -129,7 +129,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return elementType.RefArray ?? (
                    elementType.RefArray =
                         elementType.Equals(_ilf.Essentials.Array)
-                            ? RefArrayType.CreateMaster(_ilf.Essentials.Array)
+                            ? RefArrayType.CreateMaster(_ilf.Essentials.Int, _ilf.Essentials.Array)
                             : RefArrayType.Create(GetArray(_ilf.Essentials.Array), elementType)
                 );
         }
