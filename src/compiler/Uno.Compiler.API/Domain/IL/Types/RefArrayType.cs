@@ -4,9 +4,9 @@ namespace Uno.Compiler.API.Domain.IL.Types
 {
     public sealed class RefArrayType : ArrayType
     {
-        public static RefArrayType CreateMaster(DataType baseType)
+        public static RefArrayType CreateMaster(DataType intType, DataType objectType)
         {
-            return new RefArrayType(baseType.Source, baseType, baseType);
+            return new RefArrayType(objectType.Source, objectType, objectType);
         }
 
         public static RefArrayType Create(RefArrayType master, DataType elmType)
