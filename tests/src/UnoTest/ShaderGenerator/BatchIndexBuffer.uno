@@ -30,21 +30,21 @@ namespace UnoTest
             this.usage = staticBatch ? BufferUsage.Immutable : BufferUsage.Dynamic;
         }
 
-        public BatchIndexBuffer(IndexType type, Buffer data)
+        public BatchIndexBuffer(IndexType type, byte[] data)
         {
             this.DataType = type;
             this.usage = BufferUsage.Immutable;
-            this.buf = new Uno.Buffer(data.SizeInBytes);
-            for (int i =0; i<buf.SizeInBytes; i++)
+            this.buf = new byte[data.Length];
+            for (int i =0; i<buf.Length; i++)
                 this.buf[i] = data[i];
         }
 
-        Buffer buf;
-        public Buffer Buffer
+        byte[] buf;
+        public byte[] Buffer
         {
             get
             {
-                if (buf == null) buf = new Buffer(maxIndices * StrideInBytes);
+                if (buf == null) buf = new byte[maxIndices * StrideInBytes];
                 return buf;
             }
         }
@@ -78,7 +78,7 @@ namespace UnoTest
                     return null;
 
                 if (ibo == null)
-                    this.ibo = new IndexBuffer(Buffer.SizeInBytes, usage);
+                    this.ibo = new IndexBuffer(Buffer.Length, usage);
 
                 Flush();
                 return ibo;

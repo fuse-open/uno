@@ -1,5 +1,4 @@
 using Uno.Collections;
-using Uno.Runtime.Implementation;
 using Uno.Text;
 
 namespace Uno.IO
@@ -121,49 +120,49 @@ namespace Uno.IO
         public short ReadShort()
         {
             FillBuffer(2);
-            return BufferImpl.GetShort(_buffer, 0, LittleEndian);
+            return _buffer.GetShort(0, LittleEndian);
         }
 
         public ushort ReadUShort()
         {
             FillBuffer(2);
-            return BufferImpl.GetUShort(_buffer, 0, LittleEndian);
+            return _buffer.GetUShort(0, LittleEndian);
         }
 
         public int ReadInt()
         {
             FillBuffer(4);
-            return BufferImpl.GetInt(_buffer, 0, LittleEndian);
+            return _buffer.GetInt(0, LittleEndian);
         }
 
         public uint ReadUInt()
         {
             FillBuffer(4);
-            return BufferImpl.GetUInt(_buffer, 0, LittleEndian);
+            return _buffer.GetUInt(0, LittleEndian);
         }
 
         public long ReadLong()
         {
             FillBuffer(8);
-            return BufferImpl.GetLong(_buffer, 0, LittleEndian);
+            return _buffer.GetLong(0, LittleEndian);
         }
 
         public ulong ReadULong()
         {
             FillBuffer(8);
-            return BufferImpl.GetULong(_buffer, 0, LittleEndian);
+            return _buffer.GetULong(0, LittleEndian);
         }
 
         public float ReadFloat()
         {
             FillBuffer(4);
-            return BufferImpl.GetFloat(_buffer, 0, LittleEndian);
+            return _buffer.GetFloat(0, LittleEndian);
         }
 
         public double ReadDouble()
         {
             FillBuffer(8);
-            return BufferImpl.GetDouble(_buffer, 0, LittleEndian);
+            return _buffer.GetDouble(0, LittleEndian);
         }
 
         public sbyte2 ReadSByte2()
@@ -206,127 +205,127 @@ namespace Uno.IO
         {
             FillBuffer(4);
             return short2(
-                BufferImpl.GetShort(_buffer, 0, LittleEndian),
-                BufferImpl.GetShort(_buffer, 2, LittleEndian));
+                _buffer.GetShort(0, LittleEndian),
+                _buffer.GetShort(2, LittleEndian));
         }
 
         public short4 ReadShort4()
         {
             FillBuffer(8);
             return short4(
-                BufferImpl.GetShort(_buffer, 0, LittleEndian),
-                BufferImpl.GetShort(_buffer, 2, LittleEndian),
-                BufferImpl.GetShort(_buffer, 4, LittleEndian),
-                BufferImpl.GetShort(_buffer, 6, LittleEndian));
+                _buffer.GetShort(0, LittleEndian),
+                _buffer.GetShort(2, LittleEndian),
+                _buffer.GetShort(4, LittleEndian),
+                _buffer.GetShort(6, LittleEndian));
         }
 
         public ushort2 ReadUShort2()
         {
             FillBuffer(4);
             return ushort2(
-                BufferImpl.GetUShort(_buffer, 0, LittleEndian),
-                BufferImpl.GetUShort(_buffer, 2, LittleEndian));
+                _buffer.GetUShort(0, LittleEndian),
+                _buffer.GetUShort(2, LittleEndian));
         }
 
         public ushort4 ReadUShort4()
         {
             FillBuffer(8);
             return ushort4(
-                BufferImpl.GetUShort(_buffer, 0, LittleEndian),
-                BufferImpl.GetUShort(_buffer, 2, LittleEndian),
-                BufferImpl.GetUShort(_buffer, 4, LittleEndian),
-                BufferImpl.GetUShort(_buffer, 6, LittleEndian));
+                _buffer.GetUShort(0, LittleEndian),
+                _buffer.GetUShort(2, LittleEndian),
+                _buffer.GetUShort(4, LittleEndian),
+                _buffer.GetUShort(6, LittleEndian));
         }
 
         public int2 ReadInt2()
         {
             FillBuffer(8);
             return int2(
-                BufferImpl.GetInt(_buffer, 0, LittleEndian),
-                BufferImpl.GetInt(_buffer, 4, LittleEndian));
+                _buffer.GetInt(0, LittleEndian),
+                _buffer.GetInt(4, LittleEndian));
         }
 
         public int3 ReadInt3()
         {
             FillBuffer(12);
             return int3(
-                BufferImpl.GetInt(_buffer, 00, LittleEndian),
-                BufferImpl.GetInt(_buffer, 04, LittleEndian),
-                BufferImpl.GetInt(_buffer, 08, LittleEndian));
+                _buffer.GetInt(00, LittleEndian),
+                _buffer.GetInt(04, LittleEndian),
+                _buffer.GetInt(08, LittleEndian));
         }
 
         public int4 ReadInt4()
         {
             FillBuffer(16);
             return int4(
-                BufferImpl.GetInt(_buffer, 00, LittleEndian),
-                BufferImpl.GetInt(_buffer, 04, LittleEndian),
-                BufferImpl.GetInt(_buffer, 08, LittleEndian),
-                BufferImpl.GetInt(_buffer, 12, LittleEndian));
+                _buffer.GetInt(00, LittleEndian),
+                _buffer.GetInt(04, LittleEndian),
+                _buffer.GetInt(08, LittleEndian),
+                _buffer.GetInt(12, LittleEndian));
         }
 
         public float2 ReadFloat2()
         {
             FillBuffer(8);
             return float2(
-                BufferImpl.GetFloat(_buffer, 0, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 4, LittleEndian));
+                _buffer.GetFloat(0, LittleEndian),
+                _buffer.GetFloat(4, LittleEndian));
         }
 
         public float3 ReadFloat3()
         {
             FillBuffer(12);
             return float3(
-                BufferImpl.GetFloat(_buffer, 0, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 4, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 8, LittleEndian));
+                _buffer.GetFloat(0, LittleEndian),
+                _buffer.GetFloat(4, LittleEndian),
+                _buffer.GetFloat(8, LittleEndian));
         }
 
         public float4 ReadFloat4()
         {
             FillBuffer(16);
             return float4(
-                BufferImpl.GetFloat(_buffer, 00, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 04, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 08, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 12, LittleEndian));
+                _buffer.GetFloat(00, LittleEndian),
+                _buffer.GetFloat(04, LittleEndian),
+                _buffer.GetFloat(08, LittleEndian),
+                _buffer.GetFloat(12, LittleEndian));
         }
 
         public float3x3 ReadFloat3x3()
         {
             FillBuffer(36);
             return float3x3(
-                BufferImpl.GetFloat(_buffer, 00, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 04, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 08, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 12, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 16, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 20, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 24, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 28, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 32, LittleEndian));
+                _buffer.GetFloat(00, LittleEndian),
+                _buffer.GetFloat(04, LittleEndian),
+                _buffer.GetFloat(08, LittleEndian),
+                _buffer.GetFloat(12, LittleEndian),
+                _buffer.GetFloat(16, LittleEndian),
+                _buffer.GetFloat(20, LittleEndian),
+                _buffer.GetFloat(24, LittleEndian),
+                _buffer.GetFloat(28, LittleEndian),
+                _buffer.GetFloat(32, LittleEndian));
         }
 
         public float4x4 ReadFloat4x4()
         {
             FillBuffer(64);
             return float4x4(
-                BufferImpl.GetFloat(_buffer, 00, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 04, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 08, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 12, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 16, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 20, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 24, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 28, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 32, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 36, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 40, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 44, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 48, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 52, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 56, LittleEndian),
-                BufferImpl.GetFloat(_buffer, 60, LittleEndian));
+                _buffer.GetFloat(00, LittleEndian),
+                _buffer.GetFloat(04, LittleEndian),
+                _buffer.GetFloat(08, LittleEndian),
+                _buffer.GetFloat(12, LittleEndian),
+                _buffer.GetFloat(16, LittleEndian),
+                _buffer.GetFloat(20, LittleEndian),
+                _buffer.GetFloat(24, LittleEndian),
+                _buffer.GetFloat(28, LittleEndian),
+                _buffer.GetFloat(32, LittleEndian),
+                _buffer.GetFloat(36, LittleEndian),
+                _buffer.GetFloat(40, LittleEndian),
+                _buffer.GetFloat(44, LittleEndian),
+                _buffer.GetFloat(48, LittleEndian),
+                _buffer.GetFloat(52, LittleEndian),
+                _buffer.GetFloat(56, LittleEndian),
+                _buffer.GetFloat(60, LittleEndian));
         }
 
         protected internal int Read7BitEncodedInt()

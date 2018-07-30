@@ -82,6 +82,7 @@
     "Source/Uno/Byte.uno:Source",
     "Source/Uno/Byte2.uno:Source",
     "Source/Uno/Byte4.uno:Source",
+    "Source/Uno/ByteArrayExtensions.uno:Source",
     "Source/Uno/Char.uno:Source",
     "Source/Uno/CharPunctuationChecker.uno:Source",
     "Source/Uno/Collections/Dictionary.uno:Source",

@@ -70,14 +70,14 @@ unsigned int uCreateGLTexture(uImage::Texture* texData, bool generateMipmap = tr
 #define U_BUFFER_PTR(buffer) ((uint8_t*)(buffer)->_data->_ptr + (buffer)->_offset)
 #define U_BUFFER_SIZE(buffer) (buffer)->_sizeInBytes
 
-void uReverseBytes(uint8_t* ptr, size_t size);
+void DEPRECATED("This method will be removed in a future version") uReverseBytes(uint8_t* ptr, size_t size);
 
 template<class T>
-void uReverseBytes(T& ref) {
+void DEPRECATED("This method will be removed in a future version") uReverseBytes(T& ref) {
     uReverseBytes((uint8_t*)&ref, sizeof(T));
 }
 template<class T>
-T uLoadBytes(uint8_t* ptr, bool littleEndian) {
+T DEPRECATED("This method will be removed in a future version") uLoadBytes(uint8_t* ptr, bool littleEndian) {
     T result;
     memcpy(&result, ptr, sizeof(T));
 
@@ -87,7 +87,7 @@ T uLoadBytes(uint8_t* ptr, bool littleEndian) {
     return result;
 }
 template<class T>
-void uStoreBytes(uint8_t* ptr, T value, bool littleEndian) {
+void DEPRECATED("This method will be removed in a future version") uStoreBytes(uint8_t* ptr, T value, bool littleEndian) {
     if (!littleEndian)
         uReverseBytes(value);
 
