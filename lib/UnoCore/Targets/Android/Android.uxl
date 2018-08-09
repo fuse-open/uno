@@ -87,8 +87,6 @@
     <Set STL.IncludeDirectory="@(STL.Directory)/include" />
     <Require JNI.SharedLibrary="@(STL.Directory)/libs/@(ABI)/libgnustl_shared.so" />
 
-    <Require LinkDirectory="@(STL.Directory)/libs/@(ABI)" />
-    <Require LinkLibrary="@(STL)" />
     <Require IncludeDirectory="@(NDK.Directory)/sources/android/support/include" />
 
     <!-- HACK: uno-base needs stlport_static -->
