@@ -17,7 +17,7 @@
 
     <Set JDK.Directory="@(Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
     <Set NDK.Directory="@(Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
-    <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '9')" />
+    <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '14')" />
     <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '27.0.3')" />
     <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '26')" />
     <Set SDK.Directory="@(Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
