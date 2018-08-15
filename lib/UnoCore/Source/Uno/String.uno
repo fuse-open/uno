@@ -44,12 +44,14 @@ namespace Uno
         public string Replace(char oldChar, char newChar)
         @{
             uString* s = uString::New($$->_length);
+
             for (int i = 0; i < $$->_length; i++)
             {
                 s->_ptr[i] = $$->_ptr[i];
                 if (s->_ptr[i] == oldChar)
                     s->_ptr[i] = newChar;
             }
+
             return s;
         @}
 
@@ -63,9 +65,7 @@ namespace Uno
 
             var index = IndexOf(oldValue);
             if (index == -1)
-            {
                 return this;
-            }
 
             var sb = new StringBuilder();
             int pos = 0;
@@ -77,34 +77,38 @@ namespace Uno
                 pos = index + oldValue.Length;
                 index = IndexOf(oldValue, pos);
             }
-            sb.Append(SubCharArray(pos, Length - pos));
 
+            sb.Append(SubCharArray(pos, Length - pos));
             return sb.ToString();
         }
 
         private char[] SubCharArray(int start, int len)
         {
             var chars = new char[len];
+
             for (int i = 0; i < len; i++)
-            {
                 chars[i] = this[start + i];
-            }
+
             return chars;
         }
 
         public string ToLower()
         @{
             uString* s = uString::New($$->_length);
+
             for (int i = 0; i < $$->_length; i++)
                 s->_ptr[i] = @{Char.ToLower(char):Call($$->_ptr[i])};
+
             return s;
         @}
 
         public string ToUpper()
         @{
             uString* s = uString::New($$->_length);
+
             for (int i = 0; i < $$->_length; i++)
                 s->_ptr[i] = @{Char.ToUpper(char):Call($$->_ptr[i])};
+
             return s;
         @}
 
@@ -369,13 +373,14 @@ namespace Uno
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
+
             if (Length < value.Length)
                 return false;
+
             for (var i = 0; i < value.Length; i++)
-            {
                 if (this[i] != value[i])
                     return false;
-            }
+
             return true;
         }
 
@@ -383,14 +388,15 @@ namespace Uno
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
+
             if (Length < value.Length)
                 return false;
+
             var index = Length - value.Length;
             for (var i = 0; i < value.Length; i++)
-            {
                 if (this[index++] != value[i])
                     return false;
-            }
+
             return true;
         }
 
@@ -488,11 +494,11 @@ namespace Uno
         {
             if (value == null)
                 return true;
+
             for (int i = 0; i < value.Length; i++)
-            {
                 if (!char.IsWhiteSpace(value[i]))
                     return false;
-            }
+
             return true;
         }
 
@@ -506,9 +512,12 @@ namespace Uno
             int padLength = $0 - $$->_length;
             if (padLength <= 0)
                 return $$;
+
             uString* result = uString::New($0);
+
             for (int i = 0; i < padLength; i++)
                 result->_ptr[i] = $1;
+
             memcpy(result->_ptr + padLength, $$->_ptr, $$->_length * sizeof(@{char}));
             return result;
         @}
@@ -522,10 +531,13 @@ namespace Uno
         @{
             if ($0 <= $$->_length)
                 return $$;
+
             uString* result = uString::New($0);
             memcpy(result->_ptr, $$->_ptr, $$->_length * sizeof(@{char}));
+
             for (int i = $$->_length; i < $0; i++)
                 result->_ptr[i] = $1;
+
             return result;
         @}
 
@@ -610,6 +622,7 @@ namespace Uno
             for (int i = 0; i < Length; i++)
                 if (!InSet(this[i], charSet))
                     return i;
+
             return -1;
         }
 
@@ -618,6 +631,7 @@ namespace Uno
             for (int i = Length - 1; i >= 0; i--)
                 if (!InSet(this[i], charSet))
                     return i;
+
             return -1;
         }
 
@@ -626,6 +640,7 @@ namespace Uno
             for (int i = 0; i < charSet.Length; i++)
                 if (charSet[i] == c)
                     return true;
+
             return false;
         }
 
@@ -634,6 +649,7 @@ namespace Uno
             for (int i = 0; i < Length; i++)
                 if (!char.IsWhiteSpace(this[i]))
                     return i;
+
             return -1;
         }
 
@@ -642,6 +658,7 @@ namespace Uno
             for (int i = Length - 1; i >= 0; i--)
                 if (!char.IsWhiteSpace(this[i]))
                     return i;
+
             return -1;
         }
 
@@ -655,6 +672,7 @@ namespace Uno
 
             if (str.Length == 0)
                 return this;
+
             if (Length == 0)
                 return str;
 
@@ -685,6 +703,7 @@ namespace Uno
                 if (MatchesAt(str, hay))
                     return hay;
             }
+
             return -1;
         }
 
@@ -693,6 +712,7 @@ namespace Uno
             for (int i = 0; i < str.Length; i++)
                 if (pos + i == Length || this[pos+i] != str[i])
                     return false;
+
             return true;
         }
 
@@ -702,13 +722,17 @@ namespace Uno
             {
                 if (a[i] < b[i])
                     return -1;
+
                 if (b[i] < a[i])
                     return 1;
             }
+
             if (a.Length < b.Length)
                 return -1;
+
             if (b.Length < a.Length)
                 return 1;
+
             return 0;
         }
 
@@ -717,10 +741,10 @@ namespace Uno
         {
             var builder = new StringBuilder();
             var tokens = FormatStringTokenizer.TokenizeFormatString(str);
+
             foreach (var token in tokens)
-            {
                 builder.Append(token.ToString(objs));
-            }
+
             return builder.ToString();
         }
 
