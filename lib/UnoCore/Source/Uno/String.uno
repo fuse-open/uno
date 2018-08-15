@@ -159,13 +159,8 @@ namespace Uno
                 return $0;
 
             uString* s = uString::New($0->_length + $1->_length);
-
-            for (int i = 0; i < $0->_length; i++)
-                s->_ptr[i] = $0->_ptr[i];
-
-            for (int i = 0; i < $1->_length; i++)
-                s->_ptr[$0->_length + i] = $1->_ptr[i];
-
+            memcpy(s->_ptr, $0->_ptr, $0->_length * sizeof(@{char}));
+            memcpy(s->_ptr + $0->_length, $1->_ptr, $1->_length * sizeof(@{char}));
             return s;
         @}
 
@@ -202,10 +197,7 @@ namespace Uno
 
             @{
                 uString* s = uString::New($1);
-
-                for (int i = 0; i < $1; i++)
-                    s->_ptr[i] = $$->_ptr[$0 + i];
-
+                memcpy(s->_ptr, $$->_ptr + $0, $1 * sizeof(@{char}));
                 return s;
             @}
         }
@@ -515,11 +507,9 @@ namespace Uno
             if (padLength <= 0)
                 return $$;
             uString* result = uString::New($0);
-            int index;
-            for (index = 0; index < padLength; index++)
-                result->_ptr[index] = $1;
-            for (int i = 0; i < $$->_length; i++)
-                result->_ptr[index++] = $$->_ptr[i];
+            for (int i = 0; i < padLength; i++)
+                result->_ptr[i] = $1;
+            memcpy(result->_ptr + padLength, $$->_ptr, $$->_length * sizeof(@{char}));
             return result;
         @}
 
@@ -533,11 +523,9 @@ namespace Uno
             if ($0 <= $$->_length)
                 return $$;
             uString* result = uString::New($0);
-            int index = 0;
-            for (int i = 0; i < $$->_length; i++)
-                result->_ptr[index++] = $$->_ptr[i];
-            for (; index < $0; index++)
-                result->_ptr[index] = $1;
+            memcpy(result->_ptr, $$->_ptr, $$->_length * sizeof(@{char}));
+            for (int i = $$->_length; i < $0; i++)
+                result->_ptr[i] = $1;
             return result;
         @}
 
@@ -672,12 +660,9 @@ namespace Uno
 
             @{
                 uString* s = uString::New($$->_length + $1->_length);
-                for (int i = 0; i < pos; i++)
-                    s->_ptr[i] = $$->_ptr[i];
-                for (int i = 0; i < $1->_length; i++)
-                    s->_ptr[i + pos] = $1->_ptr[i];
-                for (int i = pos; i < $$->_length; i++)
-                    s->_ptr[i + $1->_length] = $$->_ptr[i];
+                memcpy(s->_ptr, $$->_ptr, pos * sizeof(@{char}));
+                memcpy(s->_ptr + pos, $1->_ptr, $1->_length * sizeof(@{char}));
+                memcpy(s->_ptr + pos + $1->_length, $$->_ptr + pos, ($$->_length - pos) * sizeof(@{char}));
                 return s;
             @}
         }
