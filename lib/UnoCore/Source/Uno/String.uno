@@ -286,12 +286,12 @@ namespace Uno
 
         public int LastIndexOf(char c)
         {
-            return LastIndexOfUnchecked(c, this.Length - 1, this.Length);
+            return LastIndexOfUnchecked(c, Length - 1, Length);
         }
 
         public int LastIndexOf(char c, int startIndex)
         {
-            if (this.Length == 0)
+            if (Length == 0)
                 return -1;
 
             if (startIndex < 0 || startIndex >= Length)
@@ -302,7 +302,7 @@ namespace Uno
 
         public int LastIndexOf(char c, int startIndex, int count)
         {
-            if (this.Length == 0)
+            if (Length == 0)
                 return -1;
 
             if (startIndex < 0 || startIndex >= Length)
@@ -650,12 +650,12 @@ namespace Uno
             if (str == null)
                 throw new ArgumentNullException(nameof(str));
 
-            if (pos < 0 || pos > this.Length)
+            if (pos < 0 || pos > Length)
                 throw new ArgumentOutOfRangeException(nameof(pos));
 
             if (str.Length == 0)
                 return this;
-            if (this.Length == 0)
+            if (Length == 0)
                 return str;
 
             @{
