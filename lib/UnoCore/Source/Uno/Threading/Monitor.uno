@@ -112,7 +112,7 @@ namespace Uno.Threading
                 $0->__monitor->LockCount++;
                 return true;
 #else
-                uFatal(U_SOURCE, "std::recursive_timed_mutex is not implemented (on Android, API >= 21 is required).");
+                U_FATAL("std::recursive_timed_mutex is not implemented (on Android, API >= 21 is required).");
 #endif
             @}
             else
@@ -161,7 +161,7 @@ namespace Uno.Threading
                 $0->__monitor->Cond.wait_for(lock, std::chrono::milliseconds($1));
                 return true;
 #else
-                uFatal(U_SOURCE, "std::recursive_timed_mutex is not implemented (on Android, API >= 21 is required).");
+                U_FATAL("std::recursive_timed_mutex is not implemented (on Android, API >= 21 is required).");
 #endif
             @}
             else
