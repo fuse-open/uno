@@ -14,22 +14,22 @@
 
     <Template Name="freetype">
         <Require LinkLibrary="freetype" Condition="!ANDROID" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libfreetype.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libfreetype.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="jpeg">
         <Require LinkLibrary="jpeg" Condition="!ANDROID" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libjpeg.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libjpeg.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="png">
         <Require LinkLibrary="png" Condition="!ANDROID" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libpng.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libpng.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="uBase">
         <Require LinkLibrary="uBase" Condition="!ANDROID" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libuBase.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libuBase.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="uImage">
@@ -40,7 +40,7 @@
         <Require LinkLibrary="uImage" Condition="!ANDROID" />
         <Require LinkLibrary="z" />
         <Require LinkLibrary="bz2" Condition="OSX" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libuImage.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libuImage.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="XliPlatform">
@@ -50,7 +50,7 @@
         <Require LinkLibrary="GLESv2" Condition="ANDROID || LINUX && ARM" />
         <Require LinkLibrary="GLEW" Condition="OSX || LINUX && !ARM || WIN32" />
         <Require LinkLibrary="SDL2" Condition="OSX || LINUX" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libXliPlatform.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libXliPlatform.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="XliHttpClient">
@@ -60,14 +60,14 @@
         <Require LinkLibrary="ws2_32" Condition="MSVC" />
         <Require LinkLibrary="wldap32" Condition="MSVC" />
         <Require LinkLibrary="advapi32" Condition="MSVC" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libXliHttpClient.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libXliHttpClient.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="XliSoundPlayer">
         <Require Template="uBase" />
         <Require LinkLibrary="XliSoundPlayer" Condition="!ANDROID" />
         <Require LinkLibrary="OpenSLES" Condition="ANDROID" />
-        <Require JNI.StaticLibrary="@(Base.LinkDirectory)/libXliSoundPlayer.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(Base.LinkDirectory)/libXliSoundPlayer.a" Condition="ANDROID" />
     </Template>
 
     <Require Condition="ANDROID" LinkLibrary="android" />

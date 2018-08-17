@@ -29,7 +29,7 @@ namespace Uno.Build.Targets.Android
                 jniLibs[i] = GetModuleName(jniLibs[i]).ToLiteral();
 
             _env.Set("JNI.LoadStrings", string.Join(", ", jniLibs));
-            _env.Set("JNI.StaticLibraries", string.Join("\n", GetLibraries("JNI.StaticLibrary", true)));
+            _env.Set("JNI.StaticLibraries", string.Join("\n", GetLibraries("StaticLibrary", true)));
         }
 
         List<string> GetLibraries(string type, bool reverse = false)
