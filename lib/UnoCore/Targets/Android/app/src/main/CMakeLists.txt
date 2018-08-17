@@ -26,4 +26,4 @@ add_library(@(Activity.Name) SHARED
 target_link_libraries(@(Activity.Name)
     @(LinkLibrary:Join('\n    ', '"', '"'))
     @(SharedLibrary:Join('\n    ', '"', '"'))
-    @(JNI.StaticLibraries:Join('\n    ', '"', '"')))
+    @(LinkOrderedStaticLibraries:Join('\n    ', '"', '"')))
