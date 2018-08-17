@@ -39,6 +39,7 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine(@"    <ErrorReport>prompt</ErrorReport>");
                 w.WriteLine(@"    <WarningLevel>4</WarningLevel>");
                 w.WriteLine(@"    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>");
+                w.WriteLine(@"    <NoWarn>CS0067</NoWarn>");
                 w.WriteLine(@"  </PropertyGroup>");
                 w.WriteLine(@"  <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "">");
                 w.WriteLine(@"    <DebugType>pdbonly</DebugType>");
@@ -48,6 +49,7 @@ namespace Uno.Compiler.Backends.CSharp
                 w.WriteLine(@"    <ErrorReport>prompt</ErrorReport>");
                 w.WriteLine(@"    <WarningLevel>4</WarningLevel>");
                 w.WriteLine(@"    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>");
+                w.WriteLine(@"    <NoWarn>CS0067</NoWarn>");
                 w.WriteLine(@"  </PropertyGroup>");
                 w.WriteLine(@"  <ItemGroup>");
                 w.WriteLine(@"    <Reference Include=""System"" />");
