@@ -27,7 +27,7 @@ namespace Http.Test
             Assert.AreEqual("\u00B1\u0950", Uri.UnescapeDataString("%c2%b1%e0%a5%90"));
         }
 
-        [Test]
+        [Test, Obsolete]
         public void Combine()
         {
             Assert.AreEqual("http://test.com/test/uri", Uri.Combine("http://test.com", "test/uri"));
@@ -192,7 +192,7 @@ namespace Http.Test
             Assert.AreEqual("/somecontroller/index", new Uri("http://username:password@test.com/somecontroller/index#action?test=123").PathAndQuery);
         }
 
-        [Test]
+        [Test, Obsolete]
         public void GetQueryParameters()
         {
             var uri = new Uri("http://username:password@test.com/somecontroller/index?a=1&b=2&cdef=test#action");
