@@ -54,7 +54,7 @@
     <Declare Element="Java.Extern.RegisterFunction" />
     <Declare Element="SharedLibrary" />
     <Declare Element="StaticLibrary" />
-    <Declare Element="JNI.SystemLibrary" />
+    <Declare Element="LoadLibrary" />
     <Declare Element="Project.Property" />
 
     <Require AndroidManifest.Permission="android.permission.WAKE_LOCK" />
@@ -81,6 +81,7 @@
     <Deprecate Gradle.Model.Repository="Gradle.Repository" />
     <Deprecate JNI.SharedLibrary="SharedLibrary" />
     <Deprecate JNI.StaticLibrary="StaticLibrary" />
+    <Deprecate JNI.SystemLibrary="LoadLibrary" />
 
     <!-- STL config -->
 

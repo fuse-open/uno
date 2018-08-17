@@ -22,7 +22,7 @@ namespace Uno.Build.Targets.Android
         public void Configure()
         {
             // List of string literals given to @(Activity).java for dlload()-ing
-            var jniLibs = GetLibraries("JNI.SystemLibrary");
+            var jniLibs = GetLibraries("LoadLibrary");
             jniLibs.AddRange(GetLibraries("SharedLibrary"));
 
             for (int i = 0; i < jniLibs.Count; i++)
