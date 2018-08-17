@@ -23,7 +23,7 @@ namespace Uno.Build.Targets.Android
         {
             // List of string literals given to @(Activity).java for dlload()-ing
             var jniLibs = GetLibraries("JNI.SystemLibrary");
-            jniLibs.AddRange(GetLibraries("JNI.SharedLibrary"));
+            jniLibs.AddRange(GetLibraries("SharedLibrary"));
 
             for (int i = 0; i < jniLibs.Count; i++)
                 jniLibs[i] = GetModuleName(jniLibs[i]).ToLiteral();
