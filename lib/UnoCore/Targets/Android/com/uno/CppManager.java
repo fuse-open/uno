@@ -7,7 +7,7 @@ public class CppManager {
     @SuppressWarnings("unused")
     public static void LoadLibraries()
     {
-        String[] libs = new String[] { @(JNI.LoadStrings) };
+        String[] libs = new String[] { @(LoadLibraryStrings) };
         Log.d("@(Activity.Name)","SDK: "+Build.VERSION.SDK_INT);
 
         if (loadLibrariesInternal(libs) != 0)
