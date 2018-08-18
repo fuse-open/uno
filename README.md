@@ -69,26 +69,25 @@ See https://fuseopen.com/docs/ for more information about the Uno/UX (and JavaSc
 
 ## Building
 
-Uno is built using the command-line on macOS or Windows. Linux is not yet supported.
+Uno is built using the command-line on Linux, macOS or Windows – or [from inside an IDE](#building-from-ide).
 
 ### Prerequisites
 
-- [Mono](http://www.mono-project.com/download/) / [Visual Studio](https://www.visualstudio.com/downloads/)<sup>[1](#win-prereq-1)</sup>
-- [Bash](http://www.msys2.org/) and [Make](http://gnuwin32.sourceforge.net/packages/make.htm)<sup>[2](#win-prereq-2)</sup>
+- [Mono](http://www.mono-project.com/download/) / [Visual Studio](https://www.visualstudio.com/downloads/)<sup>[1]</sup>
+- [Bash](http://www.msys2.org/) and [Make](http://gnuwin32.sourceforge.net/packages/make.htm)<sup>[2]</sup>
 - [Node.js](https://nodejs.org/en/download/)
 - [NuGet](https://www.nuget.org/downloads/)
 
-| Build command                       | Action                                                                  |
-|:------------------------------------|:------------------------------------------------------------------------|
-| `make`<sup>[3](#win-prereq-3)</sup> | Builds `uno` and standard library. Works on all platforms.              |
+| Build command         | Action                                                            |
+|:----------------------|:------------------------------------------------------------------|
+| `make`<sup>[3]</sup>  | Builds `uno` and standard library. Works on all platforms.        |
 
-<a name="win-prereq-1">1</a>: We need `vswhere` to locate your Visual Studio 2017 installation. Please make sure we can find `vswhere` in *PATH*
-or at `%PROGRAMFILES(x86)%\Microsoft Visual Studio\Installer`. [This program](https://github.com/Microsoft/vswhere)
-is included with the installer as of Visual Studio 2017 Update 2 and later.
+ 1. On Windows, we need [vswhere] to locate your Visual Studio 2017 installation. Please make sure we can find `vswhere` in
+    `%PATH%` or at `%PROGRAMFILES(x86)%\Microsoft Visual Studio\Installer`.
+ 2. Our cross-platform build scripts are written in `bash`, and `make` is a convenient way to invoke the different build tasks.
+ 3. You also can run `bash scripts/build.sh` directly if you don't have `make`.
 
-<a name="win-prereq-2">2</a>: Our cross-platform build scripts are written in `bash`, and `make` is a convenient way to invoke the different build tasks.
-
-<a name="win-prereq-3">3</a>: You also can run `bash scripts/build.sh` directly if you don't have `make`.
+[vswhere]: https://github.com/Microsoft/vswhere
 
 ### Additional make targets
 
@@ -100,26 +99,25 @@ is included with the installer as of Visual Studio 2017 Update 2 and later.
 | `make clean`    | Removes build artifacts from the repository and `Packages.SourcePaths`. |
 | `make check`    | Runs the local test suite.                                              |
 
+### Building from IDE
+
+Open `uno.sln` in a capable C# 6.0 IDE, such as Visual Studio 2015+ or JetBrains Rider. Dependencies will be automatically
+installed when building, so you don't really need to use the command-line.
+
+When debugging, make sure to use `main/Uno.CLI.Main` as startup project to launch `uno`'s entrypoint.
+
+### Building the standard library
+
+To build uno's standard library, run `<uno-root>/bin/uno doctor` – or pass `doctor` as parameter to the
+`main/Uno.CLI.Main` project when running from an IDE.
+
 ## Running
 
-To run `uno` in your terminal, type `<current-directory>/bin/uno`.
-
-Add `<current-directory>/bin` to your *PATH* to get `uno` (alias `uno-dev`) globally available in your environment.
-
-You can also type `make install` if you want symlinks in `/usr/local/bin`.
+To run `uno` in your terminal, type `<uno-root>/bin/uno`.
 
 On Windows, some additional runtimes might be needed.
 * VCRedist 2010: [x86](https://www.microsoft.com/en-us/download/details.aspx?id=5555), [x64](https://www.microsoft.com/en-US/Download/confirmation.aspx?id=14632)
 * [VCRedist 2013](https://www.microsoft.com/en-gb/download/details.aspx?id=40784)
-
-## Debugging
-
-When Uno is built, a C# solution is generated in `<current-directory>`.
-To debug, open `uno.sln` in a capable
-IDE<sup>[1]</sup> and go from there. Use `main/Uno.CLI.Main` as startup
-project to launch `uno`'s main method.
-
-<sup>[1]</sup> Such as Visual Studio 2015+ or JetBrains Rider.
 
 ## Contributing
 
