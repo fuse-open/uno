@@ -132,13 +132,13 @@ Please report issues [here](https://github.com/fuse-open/uno/issues).
 
 ## Configuration
 
-Please read [the configuration reference documentation][1] for details on how to
+Please read [the configuration reference documentation][doc1] for details on how to
 set up uno's configuration files for your build-environment.
 
 ## Command Line Reference
 
-Please read [the command-line reference documentation][2] for details on how to
+Please read [the command-line reference documentation][doc2] for details on how to
 use uno's command-line interface.
 
-[1]: Documentation/Configuration.md
-[2]: Documentation/CommandLineReference.md
+[doc1]: Documentation/Configuration.md
+[doc2]: Documentation/CommandLineReference.md
