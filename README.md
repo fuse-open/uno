@@ -1,6 +1,8 @@
 # Uno Core Platform
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/github/fuse-open/uno?branch=master&svg=true)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
 [![Tracis CI Build Status](https://travis-ci.org/fuse-open/uno.svg?branch=master)](https://travis-ci.org/fuse-open/uno)
+[![license: MIT](https://img.shields.io/github/license/fuse-open/uno.svg)](LICENSE.txt)
+[![Slack](https://img.shields.io/badge/chat-on%20slack-blue.svg)](https://slackcommunity.fusetools.com/)
 
 Welcome to Uno.
 
