@@ -4,7 +4,7 @@
 
 Welcome to Uno.
 
-We're here to help [Fuse] development by building and maintaining several related pieces of core technology.
+We're here to help [Fuse Open Source] development by building and maintaining several related pieces of core technology.
 * Cross-platform tools for building and running applications
 * Core libraries and platform abstraction
 * Uno programming language and compiler
@@ -42,7 +42,7 @@ The following foreign languages are supported:
 * [Objective-C] (iOS, macOS)
 * [Swift] (iOS)
 
-[Fuse]: https://fuse-open.github.io/
+[Fuse Open Source]: https://fuseopen.com/
 [C#]: https://en.wikipedia.org/wiki/C_Sharp_(programming_language)
 [C++11]: https://en.wikipedia.org/wiki/C++11
 [C99]: https://en.wikipedia.org/wiki/C99
@@ -63,7 +63,7 @@ The following foreign languages are supported:
 [generics]: https://en.wikipedia.org/wiki/Generic_programming
 [reflection]: https://en.wikipedia.org/wiki/Reflection_(computer_programming)
 
-See https://fuse-open.github.io/docs/ for more information about the Uno/UX (and JavaScript) stack.
+See https://fuseopen.com/docs/ for more information about the Uno/UX (and JavaScript) stack.
 
 ## Building
 
