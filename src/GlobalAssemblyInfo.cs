@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Fast, native C# dialect and cross-compiler.")]
 [assembly: AssemblyDescription("Fast, native C# dialect and cross-compiler.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fusetools")]
+[assembly: AssemblyCompany("Fuse Open")]
 [assembly: AssemblyProduct("uno")]
-[assembly: AssemblyCopyright("Copyright © 2015-2018 Fusetools")]
+[assembly: AssemblyCopyright("Copyright © 2018-present Fuse Open")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
