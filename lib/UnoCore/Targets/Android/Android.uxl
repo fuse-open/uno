@@ -193,6 +193,8 @@
     <Set Java.SourceDirectory="@(Java.ProjectDirectory)/main/java" />
     <Set Java.PackageDirectory="@(Java.SourceDirectory)/@(Activity.Package:Replace('.', '/'))" />
 
+    <Declare Element="JavaFile" TargetDirectory="@(Java.SourceDirectory)" />
+
     <ProcessFile Name="@(Java.PackageDirectory)/@(Activity.Name).java" />
     <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/ActivityNativeEntryPoints.java" />
     <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/ActivityState.java" />
