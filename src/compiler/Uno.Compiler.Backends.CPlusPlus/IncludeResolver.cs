@@ -90,14 +90,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
             foreach (var e in cppTypes)
                 cppIncludes.Add(_backend.GetIncludeFilename(e));
 
-            foreach (var e in hIncludes)
-            {
-                cppIncludes.Remove(e);
-                incIncludes.Remove(e);
-            }
-            foreach (var e in incIncludes)
-                cppIncludes.Remove(e);
-
             if (hIncludes.Count == 0)
                 hIncludes.Add("Uno.h");
 
@@ -120,6 +112,14 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 hDeclarations.Add(val.String.Trim());
             if (_env.TryGetValue(dt, "Include", out val))
                 hIncludes.Add(val.String.Trim());
+
+            foreach (var e in hIncludes)
+            {
+                cppIncludes.Remove(e);
+                incIncludes.Remove(e);
+            }
+            foreach (var e in incIncludes)
+                cppIncludes.Remove(e);
 
             foreach (var e in hIncludes)
                 hDeclarations.Add("#include <" + e + ">");
