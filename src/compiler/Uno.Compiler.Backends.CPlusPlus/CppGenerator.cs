@@ -526,6 +526,18 @@ namespace Uno.Compiler.Backends.CPlusPlus
             foreach (var f in type.Functions)
                 DefineFunction(f);
 
+            // Early-out on empty opaque structs
+            if (dt.IsStruct &&
+                type.Fields.Count == 0 &&
+                type.InstanceMethods.Count == 0 &&
+                type.StaticMethods.Count == 0 &&
+                _env.HasProperty(dt, "TypeName"))
+            {
+                _cpp.EndType();
+                _h.EndType();
+                return;
+            }
+
             _h.Skip();
 
             // Struct declaration
