@@ -7,7 +7,7 @@
     "uglify-js": "^3.1.0"
   },
   "scripts": {
-    "install": "browserify server.js --node | uglifyjs -c -m -o server.min.js",
+    "build": "browserify server.js --node | uglifyjs -c -m -o ../server.min.js",
     "start": "node server.js 1337"
   }
 }
