@@ -368,14 +368,9 @@ void uRelease(uObject* object)
                              address += elmType->ValueSize)
                             uReleaseStruct(elmType, address);
                     break;
-
-                default:
-                    break;
                 }
                 break;
             }
-            default:
-                break;
             }
 
             delete object->__monitor;
