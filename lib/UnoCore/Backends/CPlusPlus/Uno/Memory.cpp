@@ -400,7 +400,7 @@ void uRelease(uObject* object)
             U_LOG("*** BAD OBJECT: %s #%d (%d retains) ***%s",
                   object->__type->FullName, object->__id, object->__retains, uGetCaller().c_str());
 #else
-            U_LOG("*** BAD OBJECT: 0x%llx ***", (uintptr_t)object);
+            U_LOG("*** BAD OBJECT: 0x%p ***", object);
 #endif
             U_FATAL();
         }
