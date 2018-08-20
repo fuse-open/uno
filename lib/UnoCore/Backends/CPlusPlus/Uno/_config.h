@@ -38,7 +38,8 @@ enum uLogLevel {
 };
 void uLog(int level, const char* format, ...);
 void uLogv(int level, const char* format, va_list args);
-#define U_LOG(...) uLog(0, __VA_ARGS__)
+#define U_LOG(...) uLog(uLogLevelDebug, __VA_ARGS__)
+#define U_ERROR(...) uLog(uLogLevelError, __VA_ARGS__)
 
 // Kill switch
 U_NORETURN void uFatal(const char* src = NULL, const char* msg = NULL);
