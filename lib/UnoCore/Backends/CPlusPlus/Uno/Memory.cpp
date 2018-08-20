@@ -50,7 +50,7 @@ static void uFreeThreadData(void* value)
 uRuntime::uRuntime()
 {
     if (_Initialized)
-        uFatal(NULL, "There is only room for one Uno Runtime object in this process.");
+        U_FATAL("There is only room for one Uno Runtime object in this process.");
 
     _Initialized = true;
     _Storage = uCreateThreadLocal(uFreeThreadData);
