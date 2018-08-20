@@ -318,8 +318,14 @@ void uRelease(uObject* object)
                 {
                     if (baseType->fp_Finalize)
                     {
-                        try { (*baseType->fp_Finalize)(object); }
-                        catch (const std::exception& e) { U_ERROR("Runtime Error: Unhandled exception in finalizer for %s: %s", baseType->FullName, e.what()); }
+                        try
+                        {
+                            (*baseType->fp_Finalize)(object);
+                        }
+                        catch (const std::exception& e)
+                        {
+                            U_ERROR("Runtime Error: Unhandled exception in finalizer for %s: %s", baseType->FullName, e.what());
+                        }
                     }
                 } while ((baseType = baseType->Base));
                 uReleaseStruct(type, object);
