@@ -228,9 +228,9 @@ void uAutoRelease(uObject* object)
         int retainCount = object->__retains - releaseCount;
         if (retainCount < 0)
         {
-            U_LOG("*** BAD AUTORELEASE: %s #%d (%d bytes, %d retains) ***%s",
-                  object->__type->FullName, object->__id, object->__size, retainCount, uGetCaller().c_str());
-            U_FATAL();
+            U_ERROR("*** BAD AUTORELEASE: %s #%d (%d bytes, %d retains) ***%s",
+                    object->__type->FullName, object->__id, object->__size, retainCount, uGetCaller().c_str());
+            U_FATAL("Attempted to auto release invalid object");
         }
 #endif
 #if DEBUG_ARC >= 4
