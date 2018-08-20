@@ -397,12 +397,12 @@ void uRelease(uObject* object)
         if (object->__retains < 0)
         {
 #if DEBUG_ARC >= 4
-            U_LOG("*** BAD OBJECT: %s #%d (%d retains) ***%s",
-                  object->__type->FullName, object->__id, object->__retains, uGetCaller().c_str());
+            U_ERROR("*** BAD OBJECT: %s #%d (%d retains) ***%s",
+                    object->__type->FullName, object->__id, object->__retains, uGetCaller().c_str());
 #else
-            U_LOG("*** BAD OBJECT: 0x%p ***", object);
+            U_ERROR("*** BAD OBJECT: 0x%p ***", object);
 #endif
-            U_FATAL();
+            U_FATAL("Attempted to free invalid object");
         }
         else
         {
