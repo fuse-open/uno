@@ -61,7 +61,6 @@
     <Compile Include="Uno\PackageBuild.cs" />
     <Compile Include="Uno\CorelibBuild.cs" />
     <Compile Include="Xcode\XcodeFile.cs" />
-    <Compile Include="Uno\DefaultBuild.cs" />
     <Compile Include="Native\NativeBuild.cs" />
     <Compile Include="Xcode\XcodeGenerator.cs" />
     <Compile Include="PInvoke\PInvokeBuild.cs" />

@@ -140,11 +140,10 @@ Testing options (-x)
   --test-list-file=PATH       File to write list of discovered tests
 
 Available build targets
-  * (default)          Produces nothing. Use for validation.
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
   * ios        (-x)    (Objective-)C++/GLES2 code and Xcode project. (macOS only)
-  * dotnet             .NET/GL bytecode and executable.
+  * dotnet             .NET/GL bytecode and executable. (default)
   * corelib    (-x)    C# implementation of Uno corelib.
   * docs       (-x)    Uno documentation files.
   * pinvoke    (-x)    PInvoke libraries.

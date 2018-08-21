@@ -8,17 +8,16 @@ namespace Uno.Build.Targets
 {
     public static class BuildTargets
     {
-        public static readonly BuildTarget Default = new Uno.DefaultBuild();
+        public static readonly BuildTarget Default = new DotNet.DotNetBuild();
         public static readonly BuildTarget Package = new Uno.PackageBuild();
 
         public static readonly BuildTarget[] All =
         {
-            Default,
             new Android.AndroidBuild(),
             new Native.NativeBuild(),
             new Xcode.iOSBuild(),
             new DotNet.DotNetDllBuild(),
-            new DotNet.DotNetBuild(),
+            Default,
             new Uno.CorelibBuild(),
             new Uno.DocsBuild(),
             new PInvoke.PInvokeBuild(),

@@ -8,7 +8,7 @@ namespace Uno.Build.Targets.DotNet
     {
         public override string Identifier => "DotNet";
         public override string FormerName => "DotNetExe";
-        public override string Description => ".NET/GL bytecode and executable.";
+        public override string Description => ".NET/GL bytecode and executable. (default)";
         public override bool DefaultStrip => false;
 
         public override Backend CreateBackend()
