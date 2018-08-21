@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Uno.Compiler.API.Backends.Decompilers;
 using Uno.Compiler.API.Domain.IL;
+using Uno.Compiler.API.Domain.IL.Members;
 
 namespace Uno.Compiler.Backends.CPlusPlus
 {
@@ -16,6 +17,15 @@ namespace Uno.Compiler.Backends.CPlusPlus
         public override SourceWriter CreateWriter(Source src, StringBuilder sb, Function context)
         {
             return new CppWriter(_backend, sb, context);
+        }
+
+        public override string GetEntity(Source src, Function context, IEntity entity)
+        {
+            var member = entity as Member;
+            if (member == null)
+                throw NotSupported(src);
+
+            return _backend.GetStaticName(member, context?.DeclaringType);
         }
 
         public override string GetForwardDeclaration(Source src, DataType dt)
