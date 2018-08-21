@@ -365,7 +365,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
                                     ev.SetAttributes(_compiler.CompileAttributes(parameterizedType, ed.Attributes));
                                     ev.AddMethod?.SetAttributes(ev.Attributes);
                                     ev.RemoveMethod?.SetAttributes(ev.Attributes);
-                                    ev.ImplicitField?.SetAttributes(ev.Attributes);
                                 });
 
                         // Implicit implementation
