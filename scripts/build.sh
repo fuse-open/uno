@@ -53,7 +53,7 @@ done
 
 if [ "$BUILD_UNOCORE" = 1 ]; then
     h1 "Building Uno.Runtime.Core.csproj"
-    SRC_DIR="Library/Core/UnoCore"
+    SRC_DIR="lib/UnoCore"
     OUT_DIR="$SRC_DIR/build/corelib/Debug"
     DST_DIR="src/runtime/Uno.Runtime.Core"
 
