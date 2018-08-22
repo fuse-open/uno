@@ -22,18 +22,18 @@ namespace Uno.TestRunner.Loggers
             ColorHelper.SetForeground(ConsoleColor.Green);
             if (test.Microseconds != -1)
             {
-                Write("OK:      {0}.{1} ({2:#,0} μs)", ProjectName, test.Name, test.Microseconds);
+                Write("OK:      {0} ({1:#,0} μs)", test.Name, test.Microseconds);
                 _microseconds += test.Microseconds;
             }
             else
-                Write("OK:      {0}.{1}", ProjectName, test.Name);
+                Write("OK:      {0}", test.Name);
             ColorHelper.SetDefault();
         }
 
         public override void TestAsserted(Test test)
         {
             ColorHelper.SetForeground(ConsoleColor.Red);
-            Write("FAILED:  {0}.{1}", ProjectName, test.Name);
+            Write("FAILED:  {0}", test.Name);
             ColorHelper.SetDefault();
             Write("         Assertion failed in '{0}', at {1}:{2}", test.Assertion.Membername, test.Assertion.Filename, test.Assertion.Line);
             Write("           Expected: {0}", test.Assertion.Expected);
@@ -43,7 +43,7 @@ namespace Uno.TestRunner.Loggers
         public override void TestThrew(Test test)
         {
             ColorHelper.SetForeground(ConsoleColor.Red);
-            Write("FAILED:  {0}.{1}", ProjectName, test.Name);
+            Write("FAILED:  {0}", test.Name);
             ColorHelper.SetDefault();
             Write("         Exception was thrown: {0}", test.Exception);
         }
@@ -51,7 +51,7 @@ namespace Uno.TestRunner.Loggers
         public override void TestIgnored(Test test)
         {
             ColorHelper.SetForeground(ConsoleColor.Yellow);
-            Write("IGNORED: {0}.{1}", ProjectName, test.Name);
+            Write("IGNORED: {0}", test.Name);
             ColorHelper.SetDefault();
             Write("         " + test.IgnoreReason);
         }

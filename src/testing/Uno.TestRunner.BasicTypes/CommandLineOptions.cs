@@ -69,7 +69,7 @@ namespace Uno.TestRunner.BasicTypes
             try
             {
                 var extra = p.Parse(args);
-                commandOptions.Target = BuildTargets.Get(targetName, extra, DefaultTarget);
+                commandOptions.Target = BuildTargets.Get(targetName, extra);
                 commandOptions.Paths = extra;
                 commandOptions.Verbose = verbose;
 
@@ -116,16 +116,6 @@ namespace Uno.TestRunner.BasicTypes
             Console.WriteLine(@"  uno test Path\Projects\FooTest.unoproj Path\Projects\BarTest.unoproj");
             Console.WriteLine(@"  uno test Path\Projects Path\OtherProjects\FooTest.unoproj");
             Console.WriteLine(@"  uno test -t=dotnet -r=teamcity -v Path\Projects");
-        }
-
-        public static string DefaultTarget
-        {
-            get
-            {
-                return Path.DirectorySeparatorChar == '\\'
-                    ? "DotNet"
-                    : "CMake";
-            }
         }
     }
 }
