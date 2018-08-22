@@ -11,8 +11,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/@(BinaryDirecto
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/@(BinaryDirectory))
 
 if (UNIX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-invalid-offsetof -Wno-unused-value -Wno-dangling-else --std=@(CppStandard)")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --std=@(CStandard)")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=@(CppStandard)")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-invalid-offsetof -Wno-unused-value -Wno-dangling-else -Wno-switch")
 endif()
 
 if (APPLE)
@@ -35,7 +36,9 @@ add_executable(@(Project.Name:QuoteSpace)
     @(SourceFile:Join('\n    ', '"@(SourceDirectory)/', '"'))
     ${EXTRA_FILES})
 
-target_link_libraries(@(Project.Name:QuoteSpace) @(LinkLibrary:Join(' ')))
+target_link_libraries(@(Project.Name:QuoteSpace) @(LinkLibrary:Join(' '))
+    @(LinkLibrary.Debug:Join(' ', 'debug '))
+    @(LinkLibrary.Release:Join(' ', 'optimized ')))
 
 @(SharedLibrary:Join('\n', 'file(COPY "', '" DESTINATION ${PROJECT_SOURCE_DIR}/@(BinaryDirectory))'))
 #if @(X64:Defined)

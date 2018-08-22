@@ -18,6 +18,8 @@
     <Define X64="HOST_X64 && !X86" />
 
     <!-- Build system -->
+    <Declare Element="LinkLibrary.Debug" />
+    <Declare Element="LinkLibrary.Release" />
     <Declare Element="SharedLibrary" />
     <Declare Element="SharedLibrary.x86" />
     <Declare Element="SharedLibrary.x64" />
