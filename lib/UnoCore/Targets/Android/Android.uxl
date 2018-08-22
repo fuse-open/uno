@@ -193,17 +193,19 @@
     <Set Java.SourceDirectory="@(Java.ProjectDirectory)/main/java" />
     <Set Java.PackageDirectory="@(Java.SourceDirectory)/@(Activity.Package:Replace('.', '/'))" />
 
+    <Declare Element="JavaFile" TargetDirectory="@(Java.SourceDirectory)" />
+
     <ProcessFile Name="@(Java.PackageDirectory)/@(Activity.Name).java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/ActivityNativeEntryPoints.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/ActivityState.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/AppRuntimeSettings.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/App.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/uno/CppManager.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/deprecated/MessageBoxHelper.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/Bindings/UnoWrapped.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/Activity.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/fuse/R.java" />
-    <ProcessFile Name="@(Java.SourceDirectory)/com/uno/Debug.java" />
+    <ProcessFile JavaFile="com/fuse/ActivityNativeEntryPoints.java" />
+    <ProcessFile JavaFile="com/fuse/ActivityState.java" />
+    <ProcessFile JavaFile="com/fuse/AppRuntimeSettings.java" />
+    <ProcessFile JavaFile="com/fuse/App.java" />
+    <ProcessFile JavaFile="com/uno/CppManager.java" />
+    <ProcessFile JavaFile="com/fuse/deprecated/MessageBoxHelper.java" />
+    <ProcessFile JavaFile="com/Bindings/UnoWrapped.java" />
+    <ProcessFile JavaFile="com/fuse/Activity.java" />
+    <ProcessFile JavaFile="com/fuse/R.java" />
+    <ProcessFile JavaFile="com/uno/Debug.java" />
 
     <!-- Icons -->
 
