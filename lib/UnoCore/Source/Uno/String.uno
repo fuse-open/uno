@@ -46,11 +46,9 @@ namespace Uno
             uString* s = uString::New($$->_length);
 
             for (int i = 0; i < $$->_length; i++)
-            {
-                s->_ptr[i] = $$->_ptr[i];
-                if (s->_ptr[i] == oldChar)
-                    s->_ptr[i] = newChar;
-            }
+                s->_ptr[i] = $$->_ptr[i] == oldChar
+                    ? newChar
+                    : $$->_ptr[i];
 
             return s;
         @}
