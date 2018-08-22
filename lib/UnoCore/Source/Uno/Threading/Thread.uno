@@ -37,12 +37,7 @@ namespace Uno.Threading
     [extern(WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
     public sealed class Thread
     {
-        extern(CPLUSPLUS) static ThreadLocal _currentThread;
-
-        extern(CPLUSPLUS) static Thread()
-        {
-            _currentThread = extern<ThreadLocal> "uCreateThreadLocal(NULL)";
-        }
+        extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(NULL)";
 
         extern(CPLUSPLUS) static void ThreadMain(Thread thread)
         {
