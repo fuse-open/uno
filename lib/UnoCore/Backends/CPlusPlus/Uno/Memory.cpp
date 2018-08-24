@@ -50,7 +50,7 @@ static void uFreeThreadData(void* value)
 uRuntime::uRuntime()
 {
     if (_Initialized)
-        uFatal(NULL, "There is only room for one Uno Runtime object in this process.");
+        U_FATAL("There is only room for one Uno Runtime object in this process.");
 
     _Initialized = true;
     _Storage = uCreateThreadLocal(uFreeThreadData);
@@ -228,9 +228,9 @@ void uAutoRelease(uObject* object)
         int retainCount = object->__retains - releaseCount;
         if (retainCount < 0)
         {
-            U_LOG("*** BAD AUTORELEASE: %s #%d (%d bytes, %d retains) ***%s",
-                  object->__type->FullName, object->__id, object->__size, retainCount, uGetCaller().c_str());
-            U_FATAL();
+            U_ERROR("*** BAD AUTORELEASE: %s #%d (%d bytes, %d retains) ***%s",
+                    object->__type->FullName, object->__id, object->__size, retainCount, uGetCaller().c_str());
+            U_FATAL("Attempted to auto release invalid object");
         }
 #endif
 #if DEBUG_ARC >= 4
@@ -318,8 +318,14 @@ void uRelease(uObject* object)
                 {
                     if (baseType->fp_Finalize)
                     {
-                        try { (*baseType->fp_Finalize)(object); }
-                        catch (const std::exception& e) { uLog(uLogLevelError, "Runtime Error: Unhandled exception in finalizer for %s: %s", baseType->FullName, e.what()); }
+                        try
+                        {
+                            (*baseType->fp_Finalize)(object);
+                        }
+                        catch (const std::exception& e)
+                        {
+                            U_ERROR("Runtime Error: Unhandled exception in finalizer for %s: %s", baseType->FullName, e.what());
+                        }
                     }
                 } while ((baseType = baseType->Base));
                 uReleaseStruct(type, object);
@@ -362,14 +368,9 @@ void uRelease(uObject* object)
                              address += elmType->ValueSize)
                             uReleaseStruct(elmType, address);
                     break;
-
-                default:
-                    break;
                 }
                 break;
             }
-            default:
-                break;
             }
 
             delete object->__monitor;
@@ -391,12 +392,12 @@ void uRelease(uObject* object)
         if (object->__retains < 0)
         {
 #if DEBUG_ARC >= 4
-            U_LOG("*** BAD OBJECT: %s #%d (%d retains) ***%s",
-                  object->__type->FullName, object->__id, object->__retains, uGetCaller().c_str());
+            U_ERROR("*** BAD OBJECT: %s #%d (%d retains) ***%s",
+                    object->__type->FullName, object->__id, object->__retains, uGetCaller().c_str());
 #else
-            U_LOG("*** BAD OBJECT: 0x%llx ***", (uintptr_t)object);
+            U_ERROR("*** BAD OBJECT: 0x%p ***", object);
 #endif
-            U_FATAL();
+            U_FATAL("Attempted to free invalid object");
         }
         else
         {
