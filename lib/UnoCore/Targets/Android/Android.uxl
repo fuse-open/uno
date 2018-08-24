@@ -52,9 +52,9 @@
     <Declare Element="Gradle.BuildScript.Repository" />
     <Declare Element="Gradle.AllProjects.Repository" />
     <Declare Element="Java.Extern.RegisterFunction" />
-    <Declare Element="JNI.SharedLibrary" />
-    <Declare Element="JNI.StaticLibrary" />
-    <Declare Element="JNI.SystemLibrary" />
+    <Declare Element="SharedLibrary" />
+    <Declare Element="StaticLibrary" />
+    <Declare Element="LoadLibrary" />
     <Declare Element="Project.Property" />
 
     <Require AndroidManifest.Permission="android.permission.WAKE_LOCK" />
@@ -79,18 +79,21 @@
 
     <Deprecate Gradle.Dependency.Compile="Gradle.Dependency.Implementation" />
     <Deprecate Gradle.Model.Repository="Gradle.Repository" />
+    <Deprecate JNI.SharedLibrary="SharedLibrary" />
+    <Deprecate JNI.StaticLibrary="StaticLibrary" />
+    <Deprecate JNI.SystemLibrary="LoadLibrary" />
 
     <!-- STL config -->
 
     <Set STL="gnustl_shared" />
     <Set STL.Directory="@(NDK.Directory)/sources/cxx-stl/gnu-libstdc++/4.9" />
     <Set STL.IncludeDirectory="@(STL.Directory)/include" />
-    <Require JNI.SharedLibrary="@(STL.Directory)/libs/@(ABI)/libgnustl_shared.so" />
+    <Require SharedLibrary="@(STL.Directory)/libs/@(ABI)/libgnustl_shared.so" />
 
     <Require IncludeDirectory="@(NDK.Directory)/sources/android/support/include" />
 
     <!-- HACK: uno-base needs stlport_static -->
-    <Require JNI.StaticLibrary="@(NDK.Directory)/sources/cxx-stl/stlport/libs/@(ABI)/libstlport_static.a" />
+    <Require StaticLibrary="@(NDK.Directory)/sources/cxx-stl/stlport/libs/@(ABI)/libstlport_static.a" />
 
     <!-- C++ source -->
 

@@ -22,14 +22,14 @@ namespace Uno.Build.Targets.Android
         public void Configure()
         {
             // List of string literals given to @(Activity).java for dlload()-ing
-            var jniLibs = GetLibraries("JNI.SystemLibrary");
-            jniLibs.AddRange(GetLibraries("JNI.SharedLibrary"));
+            var jniLibs = GetLibraries("LoadLibrary");
+            jniLibs.AddRange(GetLibraries("SharedLibrary"));
 
             for (int i = 0; i < jniLibs.Count; i++)
                 jniLibs[i] = GetModuleName(jniLibs[i]).ToLiteral();
 
-            _env.Set("JNI.LoadStrings", string.Join(", ", jniLibs));
-            _env.Set("JNI.StaticLibraries", string.Join("\n", GetLibraries("JNI.StaticLibrary", true)));
+            _env.Set("LoadLibraryStrings", string.Join(", ", jniLibs));
+            _env.Set("LinkOrderedStaticLibraries", string.Join("\n", GetLibraries("StaticLibrary", true)));
         }
 
         List<string> GetLibraries(string type, bool reverse = false)

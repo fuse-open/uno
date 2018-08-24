@@ -10,7 +10,7 @@ dependencies {
 }
 
 task copySharedLibraries {
-    @(JNI.SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/armeabi-v7a')\n    }'))
+    @(SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/armeabi-v7a')\n    }'))
 }
 
 // Extracts native libraries from AARs in the native_implementation configuration.
@@ -29,7 +29,7 @@ task extractNativeLibraries() {
 
 tasks.whenTaskAdded {
     task-> if (task.name.contains('external') && !task.name.contains('Clean')) {
-#if @(JNI.SharedLibrary:IsRequired)
+#if @(SharedLibrary:IsRequired)
         task.dependsOn(copySharedLibraries)
 #endif
 #if @(Gradle.Dependency.NativeImplementation:IsRequired)
