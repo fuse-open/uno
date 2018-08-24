@@ -7,7 +7,7 @@ set SRC_DIR=lib\UnoCore
 set OUT_DIR=%SRC_DIR%\build\corelib\Debug
 set DST_DIR=src\runtime\Uno.Runtime.Core
 set MSBUILD=%PROGRAMFILES(X86)%\MSBuild\14.0\bin\MSBuild
-set UNO=prebuilt\uno
+set UNO=bin\uno
 
 :: Build uno.exe
 "%MSBUILD%" /m /p:Configuration=Debug uno.sln || goto ERROR

@@ -2,7 +2,7 @@
 :: Please see Makefile for more build options. They also work on Windows. Usually.
 pushd "%~dp0"
 set MSBUILD=%PROGRAMFILES(X86)%\MSBuild\14.0\bin\MSBuild
-set UNO=prebuilt\uno
+set UNO=bin\uno
 
 echo.
 echo WARNING: This script is deprecated, please run 'make' or 'bash scripts/build.sh' instead
