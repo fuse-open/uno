@@ -1,5 +1,5 @@
 # Uno Core Platform
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/0loj5orsrrb1bn8e/branch/master?svg=true)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/github/fuse-open/uno?branch=master&svg=true)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
 [![Tracis CI Build Status](https://travis-ci.org/fuse-open/uno.svg?branch=master)](https://travis-ci.org/fuse-open/uno)
 
 Welcome to Uno.
