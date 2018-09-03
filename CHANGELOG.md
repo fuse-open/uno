@@ -1,8 +1,91 @@
 Uno Changelog
 =============
 
-#### Uno Compiler
-- `uno disasm` has been removed on Windows, as it's not very useful to end-users, and it complicates project maintainence.
+#### Command-line tool
+- `uno disasm` has been removed, as it's not very useful to end-users, and it complicates project maintainence.
+- The JavaScript backend including WebGL and FirefoxOS build targets has been removed after being broken and unmaintained for a long time.
+- Fixed a bug causing `uno launch-apk` to hang if an Android app crashes early.
+- `dotnet` is now the default build target for `uno build` and `uno test` on all platforms.
+- Removed the `-O` flag on `uno build`, as using it has no effect.
+
+#### Android build target
+- Upgraded to Gradle 4.4, and Gradle-plugin 3.1.3.
+- Upgraded build tools to version 27.0.3.
+- Upgraded support libraries to version 27.1.1.
+- Upgraded NDK platform version to 14.
+- Upgraded SDK compile and target versions to 26.
+- Added the following build property for linking native libraries from downloaded AAR packages. This makes it possible to integrate for example the ARCore SDK.
+    * `Gradle.Dependency.NativeImplementation`
+- Added the following UXL file type to more conveniently include java files in generated projects.
+    * `JavaFile`
+- Renamed the following build properties. Using the old names will now produce deprecation warnings.
+    * `Gradle.Dependency.{Compile -> Implementation}`
+    * `JNI.SharedLibrary -> SharedLibrary`
+    * `JNI.StaticLibrary -> StaticLibrary`
+    * `JNI.SystemLibrary -> LoadLibrary`
+- Marked the following build property as obsolete.
+    * `Gradle.Model.Repository`
+
+#### Native build target
+- Upgraded to VS2017 C++ compilers when building on Windows.
+- Added the following build properties
+    * `LinkLibrary.Debug`
+    * `LinkLibrary.Release`
+
+#### C++ API
+- Added optional argument on the `U_FATAL(message)` macro.
+- Added `U_ERROR(format, ...)` macro to more conveniently report errors.
+- The `@{Method()}` macro now expands to the qualified name of the generated method, and can be used to pass callbacks to C APIs.
+
+#### Uno syntax
+- The `extern(CONDITION)` modifier is now accepted on `partial` classes.
+
+#### UnoCore
+- Moved the following class from the `Uno.Threading` package.
+    * `Uno.Threading.Thread`
+- Added the following classes.
+    * `Uno.ByteArrayExtensions`
+    * `Uno.ValueType`
+- Added the following property.
+    * `Uno.Array.Length`
+- Added the following methods.
+    * `OpenGL.GL.BufferData(GLBufferTarget target, int sizeInBytes, IntPtr data, GLBufferUsage usage)`
+    * `OpenGL.GL.BufferSubData(GLBufferTarget target, int offset, int sizeInBytes, IntPtr data)`
+    * `Uno.Graphics.DeviceBuffer.Update(Array data, int elementSize)`
+    * `Uno.Graphics.IndexBuffer.Update(ushort[] data)`
+    * `Uno.Graphics.VertexBuffer.Update(float[] data)`
+    * `Uno.Graphics.VertexBuffer.Update(float2[] data)`
+    * `Uno.Graphics.VertexBuffer.Update(float3[] data)`
+    * `Uno.Graphics.VertexBuffer.Update(float4[] data)`
+- Added the following constructors.
+    * `Uno.Graphics.IndexBuffer(ushort[] data, BufferUsage usage)`
+    * `Uno.Graphics.VertexBuffer(float[] data, BufferUsage usage)`
+    * `Uno.Graphics.VertexBuffer(float2[] data, BufferUsage usage)`
+    * `Uno.Graphics.VertexBuffer(float3[] data, BufferUsage usage)`
+    * `Uno.Graphics.VertexBuffer(float4[] data, BufferUsage usage)`
+- Implemented the following methods on C++.
+    * `Uno.Buffer.PinPtr()`
+    * `Uno.Runtime.InteropServices.GCHandle.AddrOfPinnedObject()`
+- Marked the following methods as obsolete.
+    * `OpenGL.GL.BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)`
+    * `OpenGL.GL.BufferData(GLBufferTarget target, byte[] data, GLBufferUsage usage)`
+    * `OpenGL.GL.BufferSubData(GLBufferTarget target, int offset, byte[] data)`
+    * `OpenGL.GL.TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, byte[] data)`
+    * `OpenGL.GL.TexSubImage2D(GLTextureTarget target, int level, int xoffset, int yoffset, int width, int height, GLPixelFormat format, GLPixelType type, byte[] data)`
+    * `Uno.Graphics.TextureCube.Load(BundleFile)`
+    * `Uno.Graphics.TextureCube.Load(string)`
+    * `Uno.Graphics.TextureCube.Load(string, byte[])`
+- Marked the following classes as obsolete.
+    * `Uno.Buffer`
+    * `Uno.Compiler.ExportTargetInterop.DontCopyStructAttribute`
+    * `Uno.Compiler.ExportTargetInterop.ExportNameAttribute`
+    * `Uno.Content.Images.Bitmap`
+    * `Uno.Diagnostics.EnterEvent`
+    * `Uno.Diagnostics.ExitEvent`
+    * `Uno.Diagnostics.FreeEvent`
+    * `Uno.Runtime.Implementation.BufferImpl`
+    * `Uno.Runtime.Implementation.Internal.BufferConverters`
+    * `Uno.Threading.MainThreadAttribute`
 
 1.9
 ---
