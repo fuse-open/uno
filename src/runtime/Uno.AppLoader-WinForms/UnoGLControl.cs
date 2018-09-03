@@ -97,10 +97,8 @@ namespace Uno.Support.WinForms
             {
                 MouseButton button;
                 if (!WinFormsHelper.TryGetUnoMouseButton(e.Button, out button))
-                {
-                    Console.Error.WriteLine("WARNING: Unrecognized mouse button: " + e.Button);
                     return;
-                }
+
                 _hasDown = true;
                 _lastX = e.X;
                 _lastY = e.Y;
@@ -112,10 +110,7 @@ namespace Uno.Support.WinForms
             {
                 MouseButton button;
                 if (!WinFormsHelper.TryGetUnoMouseButton(e.Button, out button))
-                {
-                    Console.Error.WriteLine("WARNING: Unrecognized mouse button: " + e.Button);
                     return;
-                }
 
                 Bootstrapper.OnMouseUp(CoreWindow, e.X, e.Y, button);
                 _hasDown = false;
@@ -178,10 +173,7 @@ namespace Uno.Support.WinForms
             {
                 Key key;
                 if (!WinFormsHelper.TryGetUnoKey(e.KeyCode, out key))
-                {
-                    Console.Error.WriteLine("WARNING: Unrecognized key code: " + e.KeyCode);
                     return;
-                }
 
                 e.Handled = Bootstrapper.OnKeyDown(CoreWindow, key);
 
@@ -193,10 +185,7 @@ namespace Uno.Support.WinForms
             {
                 Key key;
                 if (!WinFormsHelper.TryGetUnoKey(e.KeyCode, out key))
-                {
-                    Console.Error.WriteLine("WARNING: Unrecognized key code: " + e.KeyCode);
                     return;
-                }
 
                 e.Handled = Bootstrapper.OnKeyUp(CoreWindow, key);
             };
