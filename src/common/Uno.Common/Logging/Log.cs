@@ -147,6 +147,10 @@ namespace Uno.Logging
                 WarningLevel == 0)
                 return;
 
+            // Silence warnings from UX generated code (unless -W3 was passed)
+            if (src.FullPath.EndsWith(".g.uno") && WarningLevel < 3)
+                return;
+
             var str = code?.ToString() ?? "W0000";
             Report(src, str, msg, ConsoleColor.Yellow);
 
