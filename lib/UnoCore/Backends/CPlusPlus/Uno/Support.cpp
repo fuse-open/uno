@@ -210,9 +210,9 @@ uBase::Vector2 uFloat2ToXliVector2(const @{float2}& vec)
 uImage::Texture* uLoadXliTexture(const uBase::String& filename, uArray* data)
 {
     uBase::String fnUpper = filename.ToUpper();
-    uBase::Auto<uImage::ImageReader> ir;
     uBase::BufferPtr buffer(data->Ptr(), data->Length(), false);
     uBase::BufferStream stream(&buffer, true, false);
+    uBase::Auto<uImage::ImageReader> ir;
 
     if (fnUpper.EndsWith(".PNG"))
         ir = uImage::Png::CreateReader(&stream);
