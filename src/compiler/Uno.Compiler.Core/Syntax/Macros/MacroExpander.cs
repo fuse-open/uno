@@ -379,7 +379,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                     if (call.Arguments != null && call.Arguments.Count == 2)
                     {
                         var root = ExpandConfigRoot(src, calls, index, context);
-                        return new SourceValue(src, GetBool(src, root.String) ?
+                        return new SourceValue(src, !string.IsNullOrEmpty(root.String) && GetBool(src, root.String) ?
                             GetArgumentOrNull(src, call, 0, context) :
                             GetArgumentOrNull(src, call, 1, context));
                     }
