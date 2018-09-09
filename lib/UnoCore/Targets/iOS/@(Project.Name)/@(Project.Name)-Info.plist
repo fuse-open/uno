@@ -31,7 +31,7 @@
 				<string>@(Project.Mobile.UriScheme)</string>
 #endif
 #if @(Project.iOS.PList.UriSchemes:IsSet)
-                @(Project.iOS.PList.UriSchemes:SplitAndJoin('\n\t\t\t\t', '<string>','</string>'))
+                @(Project.iOS.PList.UriSchemes:SplitAndJoin('\n\t\t\t\t', '<string>', '</string>'))
 #endif
 			</array>
 		</dict>
@@ -47,7 +47,7 @@
 	<array>
 		<string>armv7</string>
 #if @(Project.iOS.PList.UIRequiredDeviceCapabilities:IsSet)
-        @(Project.iOS.PList.UIRequiredDeviceCapabilities:SplitAndJoin('\n\t\t', '<string>','</string>'))
+        @(Project.iOS.PList.UIRequiredDeviceCapabilities:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 #endif
 	</array>
 
@@ -76,7 +76,6 @@
 
 	@(Xcode.Plist.Element:Join('\n\t'))
 
-
 	<key>NSCameraUsageDescription</key>
 	<string>@(Project.iOS.PList.NSCameraUsageDescription || PListDefaults.NSCameraUsageDescription)</string>
 
@@ -86,11 +85,10 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>@(Project.iOS.PList.NSPhotoLibraryUsageDescription || PListDefaults.NSPhotoLibraryUsageDescription)</string>
 
-
 #if @(Project.iOS.PList.MKDirectionsApplicationSupportedModes:IsSet)
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array>
-    @(Project.iOS.PList.MKDirectionsApplicationSupportedModes:SplitAndJoin('\n\t\t', '<string>','</string>'))
+        @(Project.iOS.PList.MKDirectionsApplicationSupportedModes:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 	</array>
 #endif
 
@@ -113,7 +111,6 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>@(Project.iOS.PList.NSBluetoothPeripheralUsageDescription)</string>
 #endif
-
 
 #if @(Project.iOS.PList.NSAppleMusicUsageDescription:IsSet)
 	<key>NSAppleMusicUsageDescription</key>
@@ -150,7 +147,6 @@
 	<string>@(Project.iOS.PList.NSMotionUsageDescription)</string>
 #endif
 
-
 #if @(FontFile:IsRequired)
 	<key>UIAppFonts</key>
 	<array>
@@ -160,68 +156,44 @@
 
 #if @(Project.iOS.PList.UIApplicationExitsOnSuspend:IsSet)
 	<key>UIApplicationExitsOnSuspend</key>
-#if @(Project.iOS.PList.UIApplicationExitsOnSuspend)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UIApplicationExitsOnSuspend:Bool)/>
 #endif
 
-<key>UIBackgroundModes</key>
-<array>
+	<key>UIBackgroundModes</key>
+	<array>
 #if @(iOS.BackgroundModes:IsRequired)
-	@(iOS.BackgroundModes:Join('\n\t\t', '<string>','</string>'))
+		@(iOS.BackgroundModes:Join('\n\t\t', '<string>', '</string>'))
 #endif
 #if @(Project.iOS.PList.UIBackgroundModes:IsSet)
-	@(Project.iOS.PList.UIBackgroundModes:SplitAndJoin('\n\t\t', '<string>','</string>'))
+		@(Project.iOS.PList.UIBackgroundModes:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 #endif
-#if @(Project.iOS.SystemCapabilities.Push:Test(1,0))
+#if @(Project.iOS.SystemCapabilities.Push:Test(1, 0))
 		<string>remote-notification</string>
 #endif
-</array>
+	</array>
 
 #if @(Project.iOS.PList.UIFileSharingEnabled:IsSet)
 	<key>UIFileSharingEnabled</key>
-#if @(Project.iOS.PList.UIFileSharingEnabled)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UIFileSharingEnabled:Bool)/>
 #endif
 
 #if @(Project.iOS.PList.UINewsstandApp:IsSet)
 	<key>UINewsstandApp</key>
-#if @(Project.iOS.PList.UINewsstandApp)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UINewsstandApp:Bool)/>
 #endif
 
 #if @(Project.iOS.PList.UIPrerenderedIcon:IsSet)
 	<key>UIPrerenderedIcon</key>
-#if @(Project.iOS.PList.UIPrerenderedIcon)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UIPrerenderedIcon:Bool)/>
 #endif
 
 #if @(Project.iOS.PList.UIRequiresPersistentWiFi:IsSet)
 	<key>UIRequiresPersistentWiFi</key>
-#if @(Project.iOS.PList.UIRequiresPersistentWiFi)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UIRequiresPersistentWiFi:Bool)/>
 #endif
 
     <key>UIStatusBarHidden</key>
-#if @(Mobile.DisableStatusbar:Bool)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Mobile.DisableStatusbar:Bool)/>
 
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
@@ -229,26 +201,18 @@
 #if @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:IsSet)
 	<key>UISupportedExternalAccessoryProtocols</key>
 	<array>
-    @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:SplitAndJoin('\n\t\t', '<string>','</string>'))
+        @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 	</array>
 #endif
 
 #if @(Project.iOS.PList.UIViewControllerBasedStatusBarAppearance:IsSet)
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-#if @(Project.iOS.PList.UIViewControllerBasedStatusBarAppearance)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UIViewControllerBasedStatusBarAppearance:Bool)/>
 #endif
 
 #if @(Project.iOS.PList.UIViewEdgeAntialiasing:IsSet)
 	<key>UIViewEdgeAntialiasing</key>
-#if @(Project.iOS.PList.UIViewEdgeAntialiasing)
-	<true/>
-#else
-	<false/>
-#endif
+	<@(Project.iOS.PList.UIViewEdgeAntialiasing:Bool)/>
 #endif
 
 </dict>
