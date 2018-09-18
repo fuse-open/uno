@@ -423,6 +423,7 @@ namespace Uno.Compiler.Frontend.Preprocessor
                 case ".JS":
                 case ".M":
                 case ".MM":
+                case ".PBXPROJ":
                 case ".UNO":
                 case ".UXL":
                     prefix = "//";
