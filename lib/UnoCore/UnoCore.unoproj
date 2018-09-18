@@ -39,7 +39,7 @@
     "Backends/CPlusPlus/Uno/Reflection.h:File",
     "Backends/CPlusPlus/Uno/Support.cpp:File",
     "Backends/CPlusPlus/Uno/Support.h:File",
-    "Backends/CPlusPlus/Uno/Support.mm:File",
+    "Backends/CPlusPlus/Uno/SupportApple.mm:File",
     "Backends/CPlusPlus/Uno/Uno.h:File",
     "Backends/CPlusPlus/Uno/WinAPIHelper.h:File",
     "Backends/CPlusPlus/Uno/XliInterop.h:File",
