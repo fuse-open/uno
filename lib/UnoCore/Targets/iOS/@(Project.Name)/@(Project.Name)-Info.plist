@@ -20,7 +20,7 @@
 	<string>@(Project.Version)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-    <key>CFBundleURLTypes</key>
+	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
@@ -31,7 +31,7 @@
 				<string>@(Project.Mobile.UriScheme)</string>
 #endif
 #if @(Project.iOS.PList.UriSchemes:IsSet)
-                @(Project.iOS.PList.UriSchemes:SplitAndJoin('\n\t\t\t\t', '<string>', '</string>'))
+				@(Project.iOS.PList.UriSchemes:SplitAndJoin('\n\t\t\t\t', '<string>', '</string>'))
 #endif
 			</array>
 		</dict>
@@ -40,14 +40,14 @@
 	<key>CFBundleVersion</key>
 	<string>@(Project.iOS.BundleVersion)</string>
 	<key>LSRequiresIPhoneOS</key>
-    <true/>
+	<true/>
 	<key>UIRequiresFullScreen</key>
-   	<true/>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 #if @(Project.iOS.PList.UIRequiredDeviceCapabilities:IsSet)
-        @(Project.iOS.PList.UIRequiredDeviceCapabilities:SplitAndJoin('\n\t\t', '<string>', '</string>'))
+		@(Project.iOS.PList.UIRequiredDeviceCapabilities:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 #endif
 	</array>
 
@@ -88,7 +88,7 @@
 #if @(Project.iOS.PList.MKDirectionsApplicationSupportedModes:IsSet)
 	<key>MKDirectionsApplicationSupportedModes</key>
 	<array>
-        @(Project.iOS.PList.MKDirectionsApplicationSupportedModes:SplitAndJoin('\n\t\t', '<string>', '</string>'))
+		@(Project.iOS.PList.MKDirectionsApplicationSupportedModes:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 	</array>
 #endif
 
@@ -192,7 +192,7 @@
 	<@(Project.iOS.PList.UIRequiresPersistentWiFi:Bool)/>
 #endif
 
-    <key>UIStatusBarHidden</key>
+	<key>UIStatusBarHidden</key>
 	<@(Mobile.DisableStatusbar:Bool)/>
 
 	<key>UIStatusBarStyle</key>
@@ -201,7 +201,7 @@
 #if @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:IsSet)
 	<key>UISupportedExternalAccessoryProtocols</key>
 	<array>
-        @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:SplitAndJoin('\n\t\t', '<string>', '</string>'))
+		@(Project.iOS.PList.UISupportedExternalAccessoryProtocols:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 	</array>
 #endif
 
