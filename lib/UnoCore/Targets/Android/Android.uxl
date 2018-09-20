@@ -87,8 +87,6 @@
 
     <Set STL="c++_static" />
 
-    <Require IncludeDirectory="@(NDK.Directory)/sources/android/support/include" />
-
     <!-- C++ source -->
 
     <ProcessFile SourceFile="Uno/EntryPoints.cpp" />
