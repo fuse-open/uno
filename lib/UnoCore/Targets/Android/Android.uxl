@@ -85,10 +85,7 @@
 
     <!-- STL config -->
 
-    <Set STL="gnustl_shared" />
-    <Set STL.Directory="@(NDK.Directory)/sources/cxx-stl/gnu-libstdc++/4.9" />
-    <Set STL.IncludeDirectory="@(STL.Directory)/include" />
-    <Require SharedLibrary="@(STL.Directory)/libs/@(ABI)/libgnustl_shared.so" />
+    <Set STL="c++_static" />
 
     <Require IncludeDirectory="@(NDK.Directory)/sources/android/support/include" />
 
