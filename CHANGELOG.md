@@ -12,8 +12,9 @@ Uno Changelog
 - Upgraded to Gradle 4.4, and Gradle-plugin 3.1.3.
 - Upgraded build tools to version 27.0.3.
 - Upgraded support libraries to version 27.1.1.
-- Upgraded NDK platform version to 14.
+- Upgraded NDK platform version to 16.
 - Upgraded SDK compile and target versions to 26.
+- Fixed issues when building against the new NDK r18.
 - Added the following build property for linking native libraries from downloaded AAR packages. This makes it possible to integrate for example the ARCore SDK.
     * `Gradle.Dependency.NativeImplementation`
 - Added the following UXL file type to more conveniently include java files in generated projects.
