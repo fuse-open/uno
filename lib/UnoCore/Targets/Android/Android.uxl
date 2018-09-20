@@ -92,9 +92,6 @@
 
     <Require IncludeDirectory="@(NDK.Directory)/sources/android/support/include" />
 
-    <!-- HACK: uno-base needs stlport_static -->
-    <Require StaticLibrary="@(NDK.Directory)/sources/cxx-stl/stlport/libs/@(ABI)/libstlport_static.a" />
-
     <!-- C++ source -->
 
     <ProcessFile SourceFile="Uno/EntryPoints.cpp" />
