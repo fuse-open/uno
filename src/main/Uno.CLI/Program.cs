@@ -32,7 +32,6 @@ namespace Uno.CLI
             new Diagnostics.Ls(),
             new Diagnostics.Lint(),
             new Android.Adb(),
-            new Android.Android(),
             new Android.SDKManager(),
             new Android.LaunchApk(),
             new System.Open(),
