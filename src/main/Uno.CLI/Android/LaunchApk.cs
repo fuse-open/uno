@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Mono.Options;
+using Uno.Configuration;
 using Uno.Diagnostics;
 using Timer = System.Timers.Timer;
 
@@ -10,6 +11,8 @@ namespace Uno.CLI.Android
 {
     class LaunchApk : Command
     {
+        static string NdkDirectory => UnoConfig.Current.GetFullPath("Android.NDK.Directory", "AndroidNdkDirectory");
+
         const int Timeout = 7;
 
         public override string Name => "launch-apk";
@@ -145,9 +148,7 @@ namespace Uno.CLI.Android
 
         static void NdkStack(string input, string symbolDir)
         {
-            var filename = Path.Combine(
-                    SDKManager.NdkDirectory,
-                    "ndk-stack");
+            var filename = Path.Combine(NdkDirectory, "ndk-stack");
 
             if (PlatformDetection.IsWindows)
                 filename = File.Exists(filename + ".exe")

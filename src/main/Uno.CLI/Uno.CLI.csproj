@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Android\AdbDevice.cs" />
     <Compile Include="Android\Adb.cs" />
-    <Compile Include="Android\SDKManager.cs" />
     <Compile Include="Diagnostics\Ls.cs" />
     <Compile Include="Packages\Doctor.cs" />
     <Compile Include="Packages\Feed.cs" />
