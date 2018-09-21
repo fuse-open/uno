@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.plist": "xml",
         "*.uxl": "xml"
     },
     "files.exclude": {
