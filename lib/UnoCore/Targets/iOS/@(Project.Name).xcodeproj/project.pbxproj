@@ -462,6 +462,7 @@
 					"$(inherited)",
 					"@(Pbxproj.LinkLibraries)"
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = @(BundleIdentifier);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = @(Project.iOS.SwiftVersion || "3.0");
 			};
@@ -510,6 +511,7 @@
 					"$(inherited)",
 					"@(Pbxproj.LinkLibraries)"
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = @(BundleIdentifier);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = @(Project.iOS.SwiftVersion || "3.0");
 #if @(LIBRARY:Defined)
