@@ -415,7 +415,7 @@ namespace Uno.Net.Sockets
         {
             if defined(CPLUSPLUS)
             {
-                var ret = extern<int>(_handle, buffer, offset, length)"send($0, (char *)$1->Ptr() + $2, $3, 0)";
+                var ret = extern<int>(_handle, buffer, offset, length)"(@{int})send($0, (char *)$1->Ptr() + $2, $3, 0)";
                 if (ret < 0)
                     throw new SocketException(NetworkHelpers.GetError());
 
@@ -436,7 +436,7 @@ namespace Uno.Net.Sockets
 
             if defined(CPLUSPLUS)
             {
-                var ret = extern<int>(_handle, buffer, offset, length)"recv($0, (char *)$1->Ptr() + $2, $3, 0)";
+                var ret = extern<int>(_handle, buffer, offset, length)"(@{int})recv($0, (char *)$1->Ptr() + $2, $3, 0)";
                 if (ret < 0)
                     throw new SocketException(NetworkHelpers.GetError());
 

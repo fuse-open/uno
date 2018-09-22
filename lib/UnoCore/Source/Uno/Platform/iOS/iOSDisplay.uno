@@ -66,7 +66,7 @@ namespace Uno.Platform
         extern(!LIBRARY)
         static internal Display WrapMainDisplay()
         @{
-            uWindow* window = [[uContext sharedContext] window];
+            uWindow* window = (uWindow*)[[uContext sharedContext] window];
             window.rootViewController = (UIViewController*)[[UIApplication sharedApplication] delegate];
             [window makeKeyAndVisible];
             return @{iOSDisplay(ObjC.Object):New(window)};

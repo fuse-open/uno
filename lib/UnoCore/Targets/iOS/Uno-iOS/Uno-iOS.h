@@ -1,8 +1,5 @@
 #pragma once
 
-#include <uBase/Config.h>
-#include <Uno/Uno.h>
-
 @{Uno.Byte:IncludeDirective}
 @{Uno.Int2:IncludeDirective}
 @{Uno.Float2:IncludeDirective}

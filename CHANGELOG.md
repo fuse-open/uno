@@ -28,6 +28,11 @@ Uno Changelog
 - Marked the following build property as obsolete.
     * `Gradle.Model.Repository`
 
+#### iOS build target
+- Upgraded to latest Xcode project format.
+- Fixed build errors when linking against `GStreamer.framework`.
+- Fixed build warnings.
+
 #### Native build target
 - Upgraded to VS2017 C++ compilers when building on Windows.
 - Added the following build properties

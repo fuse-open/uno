@@ -67,7 +67,7 @@ namespace Uno.Build.Targets.Xcode
                     var fileReferences = new StringBuilder();
                     foreach (var f in allFiles)
                         fileReferences.AppendLine(
-                            Indent(8) + f.FileReferenceUUID +
+                            Indent(2) + f.FileReferenceUUID +
                             " /* " + f.Path + " */ = {isa = PBXFileReference; name = " + f.Name.QuoteSpace() +
                             "; path = " + f.Path.QuoteSpace() +
                             "; sourceTree = " + f.SourceTree.QuoteSpace() + "; };");
@@ -78,7 +78,7 @@ namespace Uno.Build.Targets.Xcode
                     var buildFiles = new StringBuilder();
                     foreach (var f in allFiles)
                         buildFiles.AppendLine(
-                            Indent(8) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category +
+                            Indent(2) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category +
                             " */ = {isa = PBXBuildFile; fileRef = " + f.FileReferenceUUID + " /* " + f.Name + " */; " +
                             (f.Settings == null ? "" : "settings = " + f.Settings + "; ") + "};");
 
@@ -90,9 +90,9 @@ namespace Uno.Build.Targets.Xcode
                     var sourcesBuildPhaseFiles = new StringBuilder();
                     foreach (var f in sources)
                     {
-                        groupSources.AppendLine(Indent(16) + f.FileReferenceUUID + " /* " + f.Path + " */,");
+                        groupSources.AppendLine(Indent(4) + f.FileReferenceUUID + " /* " + f.Path + " */,");
                         sourcesBuildPhaseFiles.AppendLine(
-                            Indent(16) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
+                            Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
 
                     env.Set("Pbxproj.PBXGroupSources", groupSources.ToString().Trim());
@@ -104,9 +104,9 @@ namespace Uno.Build.Targets.Xcode
                     var headersBuildPhaseFiles = new StringBuilder();
                     foreach (var f in headers)
                     {
-                        groupHeaders.AppendLine(Indent(16) + f.FileReferenceUUID + " /* " + f.Path + " */,");
+                        groupHeaders.AppendLine(Indent(4) + f.FileReferenceUUID + " /* " + f.Path + " */,");
                         headersBuildPhaseFiles.AppendLine(
-                            Indent(16) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
+                            Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
 
                     env.Set("Pbxproj.PBXGroupHeaders", groupHeaders.ToString().Trim());
@@ -119,13 +119,13 @@ namespace Uno.Build.Targets.Xcode
                     var embedFrameworksBuildPhaseFiles = new StringBuilder();
                     foreach (var f in frameworks)
                     {
-                        groupFrameworks.AppendLine(Indent(16) + f.FileReferenceUUID + " /* " + f.Path + " */,");
-                        frameworksBuildPhaseFiles.AppendLine(Indent(16) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
+                        groupFrameworks.AppendLine(Indent(4) + f.FileReferenceUUID + " /* " + f.Path + " */,");
+                        frameworksBuildPhaseFiles.AppendLine(Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
                     foreach (var f in embeddedFrameworks)
                     {
-                        groupFrameworks.AppendLine(Indent(16) + f.FileReferenceUUID + " /* " + f.Path + " */,");
-                        embedFrameworksBuildPhaseFiles.AppendLine(Indent(16) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
+                        groupFrameworks.AppendLine(Indent(4) + f.FileReferenceUUID + " /* " + f.Path + " */,");
+                        embedFrameworksBuildPhaseFiles.AppendLine(Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
                     env.Set("Pbxproj.PBXGroupFrameworks", groupFrameworks.ToString().Trim());
                     env.Set("Pbxproj.PBXFrameworksBuildPhaseFiles", frameworksBuildPhaseFiles.ToString().Trim());
@@ -153,8 +153,8 @@ namespace Uno.Build.Targets.Xcode
                 foreach (var script in env.GetSet("Xcode.ShellScript"))
                 {
                     var uuid = XcodeFile.CreateUUID();
-                    buildPhases.AppendLine(Indent(16) + uuid + " /* ShellScript */,");
-                    shellScripts.AppendLine(Indent(8) + uuid +
+                    buildPhases.AppendLine(Indent(4) + uuid + " /* ShellScript */,");
+                    shellScripts.AppendLine(Indent(2) + uuid +
                         " /* ShellScript */ = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (); inputPaths = (); outputPaths = (); runOnlyForDeploymentPostprocessing = 0; shellPath = /bin/sh; shellScript = " +
                         script.ToLiteral() + "; };");
                 }
@@ -165,9 +165,9 @@ namespace Uno.Build.Targets.Xcode
             {
                 // Include dirs
                 var includeDirs = new StringBuilder();
-                includeDirs.AppendLine(Indent(20) + "@(HeaderDirectory),");
+                includeDirs.AppendLine(Indent(5) + "@(HeaderDirectory),");
                 foreach (var e in env.GetSet("IncludeDirectory", true))
-                    includeDirs.AppendLine(Indent(20) + e.QuoteSpace().QuoteSpace() + ",");
+                    includeDirs.AppendLine(Indent(5) + e.QuoteSpace().QuoteSpace() + ",");
                 env.Set("Pbxproj.IncludeDirectories", includeDirs.ToString().Trim());
             }
 
@@ -175,7 +175,7 @@ namespace Uno.Build.Targets.Xcode
                 // Link dirs
                 var linkDirs = new StringBuilder();
                 foreach (var e in env.GetSet("LinkDirectory", true))
-                    linkDirs.AppendLine(Indent(20) + e.QuoteSpace().QuoteSpace() + ",");
+                    linkDirs.AppendLine(Indent(5) + e.QuoteSpace().QuoteSpace() + ",");
                 env.Set("Pbxproj.LinkDirectories", linkDirs.ToString().Trim());
             }
 
@@ -201,7 +201,7 @@ namespace Uno.Build.Targets.Xcode
                 }
         }
 
-        static string Indent(int c) => new string(' ', c);
+        static string Indent(int c) => new string('\t', c);
 
         static string FindCodeSigningDevelopmentTeam()
         {
