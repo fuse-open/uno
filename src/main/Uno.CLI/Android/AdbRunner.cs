@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Configuration;
 using Uno.Diagnostics;
 
 namespace Uno.CLI.Android
 {
     class AdbRunner
     {
+        static string SdkDirectory => UnoConfig.Current.GetFullPath("Android.SDK.Directory", "AndroidSdkDirectory");
+
         readonly Shell _shell;
-        readonly string _adb = Path.Combine(SDKManager.SdkDirectory,
+        readonly string _adb = Path.Combine(SdkDirectory,
             "platform-tools", PlatformDetection.IsWindows ? "adb.exe" : "adb");
 
         public AdbRunner(Shell shell)

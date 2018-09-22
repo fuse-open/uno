@@ -34,8 +34,6 @@ Experimental commands
   stuff          Built-in simple package manager
   lint           Parses uno source files and output syntax errors
   adb            Use Android Debug Bridge (adb)
-  android        Open Deprecated Android SDK Manager
-  sdkmanager     Interact with Android's CLI SDK Manager
   launch-apk     Deploy and start APK on a connected device
   open           Open file(s) in external application
 
@@ -379,20 +377,6 @@ Use Android Debug Bridge (adb).
 This commands forwards given arguments to 'adb', which is a tool included in the Android SDK.
 
 Type 'uno adb' to see what's available.
-```
-
-## $ uno android
-```
-Usage: uno android
-
-Open Deprecated Android SDK Manager.
-```
-
-## $ uno sdkmanager
-```
-Usage: uno sdkmanager [arguments ...]
-
-Interact with Android's CLI SDK Manager.
 ```
 
 ## $ uno launch-apk

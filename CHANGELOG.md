@@ -7,6 +7,8 @@ Uno Changelog
 - Fixed a bug causing `uno launch-apk` to hang if an Android app crashes early.
 - `dotnet` is now the default build target for `uno build` and `uno test` on all platforms.
 - Removed the `-O` flag on `uno build`, as using it has no effect.
+- Removed the `uno android` sub-command, as it has not been maintained and no longer works on recent Android SDKs.
+- Removed the `uno sdkmanager` sub-command, as it has not been maintained and no longer works on recent Android SDKs.
 
 #### Android build target
 - Upgraded to Gradle 4.4, and Gradle-plugin 3.1.3.
