@@ -394,8 +394,16 @@ namespace Uno.Compiler.Frontend.Preprocessor
         {
             string prefix, suffix;
             return end > start && GetCommentDecoration(src, out prefix, out suffix)
-                ? prefix + text.Substring(start, end - start - 1).Replace('@', '#').Replace("\n", suffix + "\n" + prefix) + suffix + "\n"
+                ? prefix + text.Substring(start, end - start - 1).EscapeComment(suffix).Replace("\n", suffix + "\n" + prefix) + suffix + "\n"
                 : new string('\n', text.CountNewlines(start, end));
+        }
+
+        static string EscapeComment(this string text, string suffix)
+        {
+            text = text.Replace('@', '#'); // Obfuscate macros to avoid parsing
+            return !string.IsNullOrEmpty(suffix)
+                ? text.Replace(suffix, "") // Strip comment suffix to avoid syntax errors
+                : text;
         }
 
         static bool GetCommentDecoration(Source src, out string prefix, out string suffix)
@@ -415,6 +423,8 @@ namespace Uno.Compiler.Frontend.Preprocessor
                 case ".JS":
                 case ".M":
                 case ".MM":
+                case ".PBXPROJ":
+                case ".UNO":
                 case ".UXL":
                     prefix = "//";
                     return true;
