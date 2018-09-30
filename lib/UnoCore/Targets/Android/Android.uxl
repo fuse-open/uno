@@ -17,7 +17,7 @@
 
     <Set JDK.Directory="@(Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
     <Set NDK.Directory="@(Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
-    <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '14')" />
+    <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '16')" />
     <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '27.0.3')" />
     <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '26')" />
     <Set SDK.Directory="@(Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
@@ -85,15 +85,7 @@
 
     <!-- STL config -->
 
-    <Set STL="gnustl_shared" />
-    <Set STL.Directory="@(NDK.Directory)/sources/cxx-stl/gnu-libstdc++/4.9" />
-    <Set STL.IncludeDirectory="@(STL.Directory)/include" />
-    <Require SharedLibrary="@(STL.Directory)/libs/@(ABI)/libgnustl_shared.so" />
-
-    <Require IncludeDirectory="@(NDK.Directory)/sources/android/support/include" />
-
-    <!-- HACK: uno-base needs stlport_static -->
-    <Require StaticLibrary="@(NDK.Directory)/sources/cxx-stl/stlport/libs/@(ABI)/libstlport_static.a" />
+    <Set STL="c++_static" />
 
     <!-- C++ source -->
 

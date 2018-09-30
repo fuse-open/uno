@@ -1,5 +1,5 @@
 if ANDROID {
-    "Android": "https://files.fusetools.com/tooling/ByWkWr0ycr5B-uno-base-0.8.730-android.zip",
+    "Android": "https://www.nuget.org/api/v2/package/uno-base-android-static-armv7/0.8.730",
 }
 if IOS {
     "iOS": "https://files.fusetools.com/tooling/PzOS0jxo8U5Q-uno-base-0.8.730-iOS.zip"
