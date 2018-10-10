@@ -16,4 +16,4 @@ check:
 clean:
 	@bash scripts/clean.sh
 install:
-	@ln -sfv "`pwd -P`"/bin/{uno,uno-dev} /usr/local/bin
+	@ln -sfv "`pwd -P`"/bin/uno /usr/local/bin
