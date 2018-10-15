@@ -29,6 +29,12 @@ BRANCH=`git rev-parse --abbrev-ref HEAD`
 COMMIT=`git rev-parse HEAD`
 VERSION=`cat VERSION.txt`
 
+if [ -n "$APPVEYOR_BUILD_NUMBER" ]; then
+    BUILD_NUMBER=$APPVEYOR_BUILD_NUMBER
+else
+    BUILD_NUMBER=0
+fi
+
 # Use {dev, master}-COMMIT as prerelease suffix on non-release branches
 if [ "$BRANCH" = master ]; then
     SUFFIX="master-${COMMIT:0:7}"
@@ -41,12 +47,15 @@ if [ -n "$SUFFIX" ]; then
     VERSION="$VERSION-$SUFFIX"
 fi
 
+echo "Version: $VERSION (build $BUILD_NUMBER)"
+echo "Commit: $COMMIT"
+
 # Extract the X.Y.Z part of version, removing the suffix if any
 VERSION_TRIPLET=`echo $VERSION | sed -n -e 's/\([^-]*\).*/\1/p'`
 
-# Start with updating the local GlobalAssemblyInfo.Override.cs
-sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
-      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
+# Create GlobalAssemblyInfo.Override.cs
+sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
+      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
       -e 's/\(AssemblyInformationalVersion("\)[^"]*\(")\)/\1'$VERSION'\2/' \
       -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
       src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
