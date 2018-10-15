@@ -15,7 +15,7 @@ install:
   - choco install vswhere
 
 build_script:
-  - bash scripts/build.sh
+  - bash scripts/build.sh --release
 
 before_test:
   - ps: |
@@ -30,8 +30,8 @@ before_test:
 
 test_script:
   - nunit3-console
-      src\testing\Uno.TestRunner.Tests\bin\Debug\Uno.TestRunner.Tests.dll
-      src\ux\Uno.UX.Markup.AST\Tests\bin\Debug\Uno.UX.Markup.AST.Tests.dll
-      src\ux\Uno.UX.Markup.UXIL\Tests\bin\Debug\Uno.UX.Markup.UXIL.Tests.dll
+      src\testing\Uno.TestRunner.Tests\bin\Release\Uno.TestRunner.Tests.dll
+      src\ux\Uno.UX.Markup.AST\Tests\bin\Release\Uno.UX.Markup.AST.Tests.dll
+      src\ux\Uno.UX.Markup.UXIL\Tests\bin\Release\Uno.UX.Markup.UXIL.Tests.dll
   - bin\uno test --target=%TARGET% lib
   - bin\uno build --target=%TARGET% --no-strip %TEMP%\PackageCompilationTest
