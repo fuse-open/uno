@@ -15,7 +15,11 @@ install:
   - choco install vswhere
 
 build_script:
-  - bash scripts/build.sh --release
+  - bash -l scripts\pack.sh
+  - 7z a uno-artifacts-%APPVEYOR_BUILD_NUMBER%.zip upload\*.*
+
+artifacts:
+  - path: uno-artifacts-%APPVEYOR_BUILD_NUMBER%.zip
 
 before_test:
   - ps: |
