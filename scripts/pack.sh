@@ -99,13 +99,6 @@ p cp bin/uno bin/uno.exe $DST
 echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
 echo "bin" > $DST/.unopath
 
-# Create Stuff package for Uno
-uno stuff pack $DST \
-    --name=uno-$PLATFORM \
-    --suffix=-$VERSION-$PLATFORM \
-    --out-dir=$OUT \
-    --modular
-
 # Create Uno packages
 for f in lib/*; do
     NAME=`basename "$f"`
