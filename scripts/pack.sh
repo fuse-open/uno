@@ -9,7 +9,7 @@ BIN="$DST/bin"
 LIB="$DST/lib"
 OUT="upload"
 
-# Detect version
+# Detect version info
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 COMMIT=`git rev-parse HEAD`
 VERSION=`cat VERSION.txt`
@@ -45,11 +45,14 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
       -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
       src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
-# Build
+# Build release configuration
 bash scripts/build.sh --release
 
-h1 "Creating distribution"
-##########################
+# Remove GlobalAssemblyInfo.Override.cs
+rm -f src/GlobalAssemblyInfo.Override.cs
+
+h1 "Preparing release"
+######################
 
 # Initialize
 rm -rf ${BIN:?}/* ${LIB:?}/* ${OUT:?}/*
@@ -80,17 +83,20 @@ p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN/apploader-win
 p cp config/pack.unoconfig $BIN/.unoconfig
 cat config/common.unoconfig >> $BIN/.unoconfig
 
+# Generate launcher
+p cp bin/uno bin/uno.exe $DST
+echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
+echo "bin" > $DST/.unopath
+
+h1 "Creating packages"
+######################
+
 # Create NuGet packages
 for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
     p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
 done
 
 p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
-
-# Generate launcher
-p cp bin/uno bin/uno.exe $DST
-echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
-echo "bin" > $DST/.unopath
 
 # Create Uno packages
 for f in lib/*; do
@@ -102,6 +108,3 @@ for f in lib/*; do
             --out-dir $OUT
     fi
 done
-
-# Remove GlobalAssemblyInfo Override
-rm -f src/GlobalAssemblyInfo.Override.cs
