@@ -8,7 +8,7 @@ rebuild:
 all:
 	@bash scripts/build.sh --all
 release:
-	@bash scripts/pack.sh
+	@bash -l scripts/pack.sh
 diagrams:
 	@bash scripts/build-diagrams.sh
 check:

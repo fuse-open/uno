@@ -9,25 +9,16 @@ BIN="$DST/bin"
 LIB="$DST/lib"
 OUT="upload"
 
-case $OSTYPE in
-  darwin*)
-    PLATFORM="macOS"
-    ;;
-  msys*)
-    PLATFORM="win32"
-    ;;
-  linux*)
-    PLATFORM="linux"
-    ;;
-  *)
-    echo "ERROR: unknown OSTYPE: '$OSTYPE'" >&2
-    exit 1
-esac
-
-# Detect version
+# Detect version info
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 COMMIT=`git rev-parse HEAD`
 VERSION=`cat VERSION.txt`
+
+if [ -n "$APPVEYOR_BUILD_NUMBER" ]; then
+    BUILD_NUMBER=$APPVEYOR_BUILD_NUMBER
+else
+    BUILD_NUMBER=0
+fi
 
 # Use {dev, master}-COMMIT as prerelease suffix on non-release branches
 if [ "$BRANCH" = master ]; then
@@ -41,22 +32,27 @@ if [ -n "$SUFFIX" ]; then
     VERSION="$VERSION-$SUFFIX"
 fi
 
+echo "Version: $VERSION (build $BUILD_NUMBER)"
+echo "Commit: $COMMIT"
+
 # Extract the X.Y.Z part of version, removing the suffix if any
 VERSION_TRIPLET=`echo $VERSION | sed -n -e 's/\([^-]*\).*/\1/p'`
 
-# Start with updating the local GlobalAssemblyInfo.Override.cs
-sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
-      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET'\2/' \
+# Create GlobalAssemblyInfo.Override.cs
+sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
+      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
       -e 's/\(AssemblyInformationalVersion("\)[^"]*\(")\)/\1'$VERSION'\2/' \
+      -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
       src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
-# Build
-if [ "$1" != --no-build ]; then
-    bash scripts/build.sh --release
-fi
+# Build release configuration
+bash scripts/build.sh --release
 
-h1 "Creating distribution ($PLATFORM)"
-######################################
+# Remove GlobalAssemblyInfo.Override.cs
+rm -f src/GlobalAssemblyInfo.Override.cs
+
+h1 "Preparing release"
+######################
 
 # Initialize
 rm -rf ${BIN:?}/* ${LIB:?}/* ${OUT:?}/*
@@ -87,25 +83,20 @@ p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN/apploader-win
 p cp config/pack.unoconfig $BIN/.unoconfig
 cat config/common.unoconfig >> $BIN/.unoconfig
 
-echo "Making NuGet packages"
-
-for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
-    p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
-done
-
-p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
-
 # Generate launcher
 p cp bin/uno bin/uno.exe $DST
 echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
 echo "bin" > $DST/.unopath
 
-# Create Stuff package for Uno
-uno stuff pack $DST \
-    --name=uno-$PLATFORM \
-    --suffix=-$VERSION-$PLATFORM \
-    --out-dir=$OUT \
-    --modular
+h1 "Creating packages"
+######################
+
+# Create NuGet packages
+for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
+    p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
+done
+
+p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
 
 # Create Uno packages
 for f in lib/*; do
@@ -117,6 +108,3 @@ for f in lib/*; do
             --out-dir $OUT
     fi
 done
-
-# Remove GlobalAssemblyInfo Override
-rm -f src/GlobalAssemblyInfo.Override.cs
