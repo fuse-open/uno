@@ -46,9 +46,7 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
       src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
 # Build
-if [ "$1" != --no-build ]; then
-    bash scripts/build.sh --release
-fi
+bash scripts/build.sh --release
 
 h1 "Creating distribution"
 ##########################
