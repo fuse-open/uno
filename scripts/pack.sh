@@ -9,21 +9,6 @@ BIN="$DST/bin"
 LIB="$DST/lib"
 OUT="upload"
 
-case $OSTYPE in
-  darwin*)
-    PLATFORM="macOS"
-    ;;
-  msys*)
-    PLATFORM="win32"
-    ;;
-  linux*)
-    PLATFORM="linux"
-    ;;
-  *)
-    echo "ERROR: unknown OSTYPE: '$OSTYPE'" >&2
-    exit 1
-esac
-
 # Detect version
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 COMMIT=`git rev-parse HEAD`
@@ -65,8 +50,8 @@ if [ "$1" != --no-build ]; then
     bash scripts/build.sh --release
 fi
 
-h1 "Creating distribution ($PLATFORM)"
-######################################
+h1 "Creating distribution"
+##########################
 
 # Initialize
 rm -rf ${BIN:?}/* ${LIB:?}/* ${OUT:?}/*
