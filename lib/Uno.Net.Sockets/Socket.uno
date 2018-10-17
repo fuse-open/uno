@@ -208,9 +208,9 @@ namespace Uno.Net.Sockets
 
             switch (mode)
             {
-                case @{SelectMode.Read}:  return select(sock + 1, &fds, NULL, NULL, &timeout);
-                case @{SelectMode.Write}: return select(sock + 1, NULL, &fds, NULL, &timeout);
-                case @{SelectMode.Error}: return select(sock + 1, NULL, NULL, &fds, &timeout);
+                case @{SelectMode.Read}:  return select((int)sock + 1, &fds, NULL, NULL, &timeout);
+                case @{SelectMode.Write}: return select((int)sock + 1, NULL, &fds, NULL, &timeout);
+                case @{SelectMode.Error}: return select((int)sock + 1, NULL, NULL, &fds, &timeout);
                 default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for ProtocolType"))});
             }
         @}
