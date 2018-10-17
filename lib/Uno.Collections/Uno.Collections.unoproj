@@ -1,7 +1,7 @@
 {
-  "Copyright": "Copyright (c) Fusetools 2014",
+  "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Collection extras",
-  "Publisher": "Fusetools AS",
+  "Publisher": "Fuse Open",
   "Includes": [
     "Extensions/EmptyEnumerable.uno:Source",
     "Extensions/EnumerableExtensions.uno:Source",

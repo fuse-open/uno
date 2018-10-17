@@ -1,7 +1,7 @@
 {
-  "Copyright": "Copyright (c) Fusetools 2014",
+  "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Uno native socket abstraction",
-  "Publisher": "Fusetools AS",
+  "Publisher": "Fuse Open",
   "Includes": [
     "Dns.uno:Source",
     "IPAddress.uno:Source",
