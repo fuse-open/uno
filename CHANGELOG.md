@@ -1,6 +1,12 @@
 Uno Changelog
 =============
 
+Unreleased
+----------
+
+1.10
+----
+
 #### Command-line tool
 - `uno disasm` has been removed, as it's not very useful to end-users, and it complicates project maintainence.
 - The JavaScript backend including WebGL and FirefoxOS build targets has been removed after being broken and unmaintained for a long time.
