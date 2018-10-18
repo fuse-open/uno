@@ -12,10 +12,13 @@ install:
         Invoke-WebRequest https://files.fusetools.com/tooling/iyVp8kwQ0vLn-mesa-17.2.3.500.zip -OutFile mesa.zip
         Expand-Archive mesa.zip mesa
       }
-  - choco install vswhere
 
 build_script:
-  - bash scripts/build.sh
+  - bash -l scripts\pack.sh
+  - 7z a uno-artifacts-%APPVEYOR_BUILD_NUMBER%.zip upload\*.*
+
+artifacts:
+  - path: uno-artifacts-%APPVEYOR_BUILD_NUMBER%.zip
 
 before_test:
   - ps: |
@@ -30,8 +33,8 @@ before_test:
 
 test_script:
   - nunit3-console
-      src\testing\Uno.TestRunner.Tests\bin\Debug\Uno.TestRunner.Tests.dll
-      src\ux\Uno.UX.Markup.AST\Tests\bin\Debug\Uno.UX.Markup.AST.Tests.dll
-      src\ux\Uno.UX.Markup.UXIL\Tests\bin\Debug\Uno.UX.Markup.UXIL.Tests.dll
+      src\testing\Uno.TestRunner.Tests\bin\Release\Uno.TestRunner.Tests.dll
+      src\ux\Uno.UX.Markup.AST\Tests\bin\Release\Uno.UX.Markup.AST.Tests.dll
+      src\ux\Uno.UX.Markup.UXIL\Tests\bin\Release\Uno.UX.Markup.UXIL.Tests.dll
   - bin\uno test --target=%TARGET% lib
   - bin\uno build --target=%TARGET% --no-strip %TEMP%\PackageCompilationTest
