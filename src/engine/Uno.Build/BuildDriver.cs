@@ -324,8 +324,8 @@ namespace Uno.Build
             foreach (var p in packages)
                 foreach (var f in p.StuffFiles)
                     if (env.Test(p.Source, f.Condition) &&
-                            !Installer.IsUpToDate(Path.Combine(p.SourceDirectory, f.UnixPath), 0, defines))
-                        stuff.Add(Path.Combine(p.SourceDirectory, f.UnixPath));
+                            !Installer.IsUpToDate(Path.Combine(p.SourceDirectory, f.NativePath), 0, defines))
+                        stuff.Add(Path.Combine(p.SourceDirectory, f.NativePath));
             return stuff;
         }
 
