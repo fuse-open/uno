@@ -28,7 +28,6 @@ elif [[ "$BRANCH" != release-* ]]; then
 fi
 
 if [ -n "$SUFFIX" ]; then
-    SUFFIX_OPT="--suffix=$SUFFIX"
     VERSION="$VERSION-$SUFFIX"
 fi
 
@@ -58,7 +57,6 @@ h1 "Preparing release"
 rm -rf ${BIN:?}/* ${LIB:?}/* ${OUT:?}/*
 rm ${DST:?}/* 2> /dev/null || :
 mkdir -p $BIN $LIB $OUT
-touch $BIN/uno.stuff-pack
 
 # Core assemblies
 p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $BIN
