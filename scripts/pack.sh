@@ -10,9 +10,14 @@ LIB="$DST/lib"
 OUT="upload"
 
 # Detect version info
-BRANCH=`git rev-parse --abbrev-ref HEAD`
 COMMIT=`git rev-parse HEAD`
 VERSION=`cat VERSION.txt`
+
+if [ -n "$APPVEYOR_REPO_BRANCH" ]; then
+    BRANCH=$APPVEYOR_REPO_BRANCH
+else
+    BRANCH=`git rev-parse --abbrev-ref HEAD`
+fi
 
 if [ -n "$APPVEYOR_BUILD_NUMBER" ]; then
     BUILD_NUMBER=$APPVEYOR_BUILD_NUMBER
