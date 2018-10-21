@@ -1,10 +1,10 @@
 {
-  "Copyright": "Copyright (c) Fusetools AS 2015",
+  "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Uno.Net.Http",
-  "Publisher": "Fusetools AS",
+  "Publisher": "Fuse Open",
   "Package": {
-    "ProjectUrl": "https://github.com/fusetools/uno",
-    "LicenseUrl": "https://github.com/fusetools/uno/blob/master/LICENSE.txt",
+    "ProjectUrl": "https://github.com/fuse-open/uno",
+    "LicenseUrl": "https://github.com/fuse-open/uno/blob/master/LICENSE.txt",
   },
   "Projects": [
     "../Uno.Threading/Uno.Threading.unoproj"

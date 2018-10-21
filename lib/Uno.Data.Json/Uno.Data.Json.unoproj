@@ -1,7 +1,7 @@
 {
-  "Copyright": "Copyright (c) Fusetools 2014",
+  "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Uno Json parser",
-  "Publisher": "Fusetools AS",
+  "Publisher": "Fuse Open",
   "Projects": [
     "../Uno.Collections/Uno.Collections.unoproj"
   ],

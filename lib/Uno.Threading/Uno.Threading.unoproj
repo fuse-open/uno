@@ -1,10 +1,10 @@
 {
-  "Copyright": "Copyright (c) Fusetools 2015",
-  "Publisher": "Fuse",
+  "Copyright": "Copyright (c) Fuse Open 2018",
+  "Publisher": "Fuse Open",
   "Description": "Basic threading api",
   "Package": {
-    "ProjectUrl": "https://github.com/fusetools/uno",
-    "LicenseUrl": "https://github.com/fusetools/uno/blob/master/LICENSE.txt"
+    "ProjectUrl": "https://github.com/fuse-open/uno",
+    "LicenseUrl": "https://github.com/fuse-open/uno/blob/master/LICENSE.txt"
   },
   "Includes": [
     "AutoResetEvent.uno:Source",
