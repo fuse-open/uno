@@ -1,5 +1,6 @@
 <Extensions Backend="CPlusPlus" Condition="ANDROID">
 
+    <Require Gradle.AllProjects.Repository="google()" />
     <Require Gradle.AllProjects.Repository="jcenter()" />
     <Require Gradle.AllProjects.Repository="mavenCentral()" />
     <Require Gradle.BuildScript.Repository="google()" />
