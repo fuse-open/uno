@@ -31,7 +31,7 @@ endif()
 
 @(CMake.SourceGroups)
 
-add_executable(@(Project.Name:QuoteSpace)
+add_executable(@(Project.Name:QuoteSpace)@(WIN32:Defined:Test(' WIN32', ''))
     @(HeaderFile:Join('\n    ', '"@(HeaderDirectory)/', '"'))
     @(SourceFile:Join('\n    ', '"@(SourceDirectory)/', '"'))
     ${EXTRA_FILES})
