@@ -27,10 +27,16 @@
                   android:taskAffinity=""
                   android:windowSoftInputMode="adjustResize"
                   android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
-#if @(Project.Mobile.Orientations:Equals('Portrait')) || @(Project.Mobile.Orientations:Equals('Landscape'))
-android:screenOrientation="@(Project.Mobile.Orientations:Replace('Landscape', 'landscape'):Replace('Portrait', 'portrait'))"
+#if @(Project.Mobile.Orientations:Equals('Portrait'))
+                  android:screenOrientation="portrait"
+#elif @(Project.Mobile.Orientations:Equals('LandscapeLeft'))
+                  android:screenOrientation="landscape"
+#elif @(Project.Mobile.Orientations:Equals('LandscapeRight'))
+                  android:screenOrientation="reverseLandscape"
+#elif @(Project.Mobile.Orientations:Equals('Landscape'))
+                  android:screenOrientation="sensorLandscape"
 #else
-android:screenOrientation="user"
+                  android:screenOrientation="user"
 #endif
                   android:windowActionBar="false">
             <meta-data android:name="android.app.lib_name" android:value="@(Activity.Name:EscapeXml)" />
