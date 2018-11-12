@@ -135,7 +135,7 @@ namespace Uno.Net
                 (hostNameOrAddress.Length == 255 && hostNameOrAddress[254] != '.'))
                 throw new ArgumentOutOfRangeException("hostNameOrAddress");
 
-            if defined(MSVC12)
+            if defined(MSVC)
                 NetworkHelpers.EnsureWinsockInitialized();
 
             if defined(CPLUSPLUS)

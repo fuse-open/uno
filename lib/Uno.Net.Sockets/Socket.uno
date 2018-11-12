@@ -291,7 +291,7 @@ namespace Uno.Net.Sockets
         {
             if defined(CPLUSPLUS)
             {
-                if defined(MSVC12)
+                if defined(MSVC)
                     NetworkHelpers.EnsureWinsockInitialized();
 
                 var family = SocketHelpers.GetFamily(addressFamily);
@@ -541,7 +541,7 @@ namespace Uno.Net.Sockets
             if defined(CPLUSPLUS)
             {
                 int result;
-                if defined(MSVC12)
+                if defined(MSVC)
                     result = extern<int>(_handle) "closesocket($0)";
                 else
                     result = extern<int>(_handle) "close($0)";
