@@ -14,7 +14,7 @@ namespace Uno.Net.Http
 
             internal static void IncrementPendingRequests()
             {
-                if defined(CIL || LINUX || MSVC12)
+                if defined(CIL || LINUX || MSVC)
                 {
                     lock (_syncLock)
                     {
@@ -26,7 +26,7 @@ namespace Uno.Net.Http
 
             internal static void DecrementPendingRequests()
             {
-                if defined(CIL || LINUX || MSVC12)
+                if defined(CIL || LINUX || MSVC)
                 {
                     lock (_syncLock)
                     {
@@ -40,7 +40,7 @@ namespace Uno.Net.Http
             {
                 if defined(CIL)
                     CilHttpMessageHandler.ProcessEvents();
-                if defined(LINUX || MSVC12)
+                if defined(LINUX || MSVC)
                     XliHttpMessageHandler.ProcessEvents();
             }
         }

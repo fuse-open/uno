@@ -1,4 +1,4 @@
-<Extensions Backend="CPlusPlus" Condition="LINUX || MSVC12">
+<Extensions Backend="CPlusPlus" Condition="LINUX || MSVC">
 
     <Using Namespace="Uno.Net.Http.Implementation" />
 
