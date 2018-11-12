@@ -41,7 +41,7 @@ namespace Uno.Net
 
     }
 
-    [extern(!MSVC) Require("Source.Include", "arpa/inet.h")]
+    [extern(UNIX) Require("Source.Include", "arpa/inet.h")]
     [extern(MSVC) Require("Source.Include", "ws2tcpip.h")]
     [DotNetType("System.Net.IPAddress")]
     public class IPAddress
