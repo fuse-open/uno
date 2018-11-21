@@ -374,6 +374,9 @@ namespace Uno.Compiler.Core.IL.Validation
                     !Environment.IsGeneratingCode ||
                     !Backend.Has(TypeOptions.IgnoreProtection)))
                 Log.Error(owner.Source, ErrorCode.E4128, dt.Quote() + " is less accessible than " + owner.Quote());
+            else if (dt.IsGenericParameterization)
+                foreach (var pt in dt.GenericArguments)
+                    VerifyVisibility(owner, visibility, pt);
         }
     }
 }
