@@ -10,6 +10,5 @@ namespace Uno.Compiler.API
         HashSet<DataType> FindAllTypes();
         HashSet<IEntity> FindDependencies(Statement s);
         HashSet<IEntity> FindDependencies(Function f);
-        ListDictionary<DataType, DataType> FindDescendants();
     }
 }

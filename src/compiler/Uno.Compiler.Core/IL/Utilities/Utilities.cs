@@ -19,23 +19,6 @@ namespace Uno.Compiler.Core.IL.Utilities
             _parent = parent;
         }
 
-        public ListDictionary<DataType, DataType> FindDescendants()
-        {
-            var result = new ListDictionary<DataType, DataType>();
-            foreach (var e in FindAllTypes())
-            {
-                if (e.TypeType == TypeType.Class && e.Base != null)
-                {
-                    result.Add(e.Base, e);
-
-                    if (!e.Base.IsMasterDefinition)
-                        result.Add(e.Base.MasterDefinition, e);
-                }
-            }
-
-            return result;
-        }
-
         public HashSet<IEntity> FindDependencies(Statement s)
         {
             return DependencyFinder.FindDependencies(_parent, s);
