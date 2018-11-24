@@ -40,22 +40,26 @@ namespace Uno.Threading
         extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";
 
         extern(CPLUSPLUS) static void ThreadMain(Thread thread)
-        {
-            extern "uAutoReleasePool pool";
-            extern "uSetThreadLocal(@{_currentThread}, $0)";
+        @{
+            uAutoReleasePool pool;
+            uSetThreadLocal(@{_currentThread}, $0);
 
             try
             {
-                thread._threadStart();
+                @{$0._threadStart:Call()};
             }
-            catch (Exception e)
+            catch (const uThrowable& t)
             {
                 // TODO: Use some kind of exception callback..
-                debug_log "Unhandled exception in thread: " + e;
+                U_ERROR("Unhandled exception in thread: %s", uCString(@{Exception:Of(t.Exception).ToString():Call()}).Ptr);
+            }
+            catch (const std::exception& e)
+            {
+                U_ERROR("Unhandled C++ exception in thread: %s", e.what());
             }
 
-            extern "uRelease($0)";
-        }
+            uRelease($0);
+        @}
 
         extern(CPLUSPLUS) ThreadHandle _threadHandle;
 
