@@ -14,9 +14,7 @@ before_script:
 
 script:
   - scripts/build.sh
-  - bin/uno test --target=$TARGET lib
-  - bin/uno test-gen lib /tmp/PackageCompilationTest
-  - bin/uno build --target=$TARGET --no-strip /tmp/PackageCompilationTest
+  - scripts/test.sh $TARGET
 
 after_failure:
   - for c in $(ls /cores/core.*); do
