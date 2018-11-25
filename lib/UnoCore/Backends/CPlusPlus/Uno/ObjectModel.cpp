@@ -953,7 +953,7 @@ uClassType* uClassType::New(const char* name, uTypeOptions& options)
 
 uString* uString::Ansi(const char* cstr, size_t length)
 {
-    uString* string = New((int32_t)length);
+    uString* string = New(length);
 
     for (size_t i = 0; i < length; i++)
         string->_ptr[i] = (char16_t)cstr[i];
@@ -1010,7 +1010,7 @@ uString* uString::Utf8(const char* mutf8, size_t length)
     }
 
     // Convert UTF-8 to UTF-16
-    uString* string = New((int32_t) length);
+    uString* string = New(length);
     const UTF8* src_p = (const UTF8*)src;
     UTF16* dst_p = (UTF16*)string->_ptr;
 
@@ -1024,7 +1024,7 @@ uString* uString::Utf8(const char* mutf8, size_t length)
     if (src != mutf8)
         free(src);
 
-    string->_length = (int32_t)(dst_p - (UTF16*)string->_ptr);
+    string->_length = (size_t)(dst_p - (UTF16*)string->_ptr);
     string->_ptr[string->_length] = 0;
     return string;
 }
@@ -1038,7 +1038,7 @@ uString* uString::Utf8(const char* mutf8)
 
 uString* uString::Utf16(const char16_t* utf16, size_t length)
 {
-    uString* string = New((int32_t)length);
+    uString* string = New(length);
     memcpy(string->_ptr, utf16, sizeof(char16_t) * length);
     return string;
 }
@@ -1069,15 +1069,15 @@ uString* uString::CharArray(const uArray* array)
     return string;
 }
 
-uString* uString::CharArrayRange(const uArray* array, int32_t startIndex, int32_t length)
+uString* uString::CharArrayRange(const uArray* array, size_t startIndex, size_t length)
 {
     if (!array)
         throw uThrowable(@{Uno.ArgumentNullException(string):New(uString::Utf8("array"))}, __FILE__, __LINE__);
 
-    if (startIndex < 0 || startIndex > array->Length())
+    if (startIndex > array->_length)
         throw uThrowable(@{Uno.ArgumentOutOfRangeException(string):New(uString::Utf8("startIndex"))}, __FILE__, __LINE__);
 
-    if (length < 0 || startIndex + length > array->Length())
+    if (startIndex + length > array->_length)
         throw uThrowable(@{Uno.ArgumentOutOfRangeException(string):New(uString::Utf8("length"))}, __FILE__, __LINE__);
 
     U_ASSERT(array->GetType() == @{char[]:TypeOf});
@@ -1101,11 +1101,11 @@ uString* uString::Const(const char* mutf8)
     return string;
 }
 
-static bool uCompareCharStrings(const char16_t* a, const char16_t* b, int32_t length, bool ignoreCase)
+static bool uCompareCharStrings(const char16_t* a, const char16_t* b, size_t length, bool ignoreCase)
 {
     if (ignoreCase)
     {
-        for (int32_t i = 0; i < length; i++)
+        for (size_t i = 0; i < length; i++)
             if (a[i] != b[i] && @{char.ToUpper(char):Call(a[i])} != @{char.ToUpper(char):Call(b[i])})
                 return false;
 
@@ -1718,7 +1718,7 @@ uDelegate* uDelegate::New(uType* type, const uInterface& iface, size_t offset, u
     return New(type, iface._object, (size_t)((uint8_t*)iface._vtable - (uint8_t*)iface._object->__type) + offset, generic);
 }
 
-void uArray::MarshalPtr(int32_t index, const void* value, size_t size)
+void uArray::MarshalPtr(size_t index, const void* value, size_t size)
 {
     uType* type = ((uArrayType*)__type)->ElementType;
     void* item = (uint8_t*)_ptr + type->ValueSize * index;
@@ -1769,13 +1769,13 @@ void uArray::MarshalPtr(int32_t index, const void* value, size_t size)
     }
 }
 
-uArray* uArray::InitT(uType* type, int32_t length, ...)
+uArray* uArray::InitT(uType* type, size_t length, ...)
 {
     va_list ap;
     va_start(ap, length);
     uArray* array = New(type, length);
 
-    for (int32_t i = 0; i < length; i++)
+    for (size_t i = 0; i < length; i++)
     {
         const void* src = va_arg(ap, const void*);
         array->TUnsafe(i) = src;
@@ -1785,7 +1785,7 @@ uArray* uArray::InitT(uType* type, int32_t length, ...)
     return array;
 }
 
-uArray* uArray::New(uType* type, int32_t length, const void* optionalData)
+uArray* uArray::New(uType* type, size_t length, const void* optionalData)
 {
     U_ASSERT(type && type->Type == uTypeTypeArray);
     uArrayType* arrayType = (uArrayType*)type;
@@ -1800,10 +1800,10 @@ uArray* uArray::New(uType* type, int32_t length, const void* optionalData)
         memcpy(array->Ptr(), optionalData, elementSize * length);
 
         if (U_IS_OBJECT(elementType))
-            for (int32_t i = 0; i < length; i++)
+            for (size_t i = 0; i < length; i++)
                 uRetain(((uObject**)array->Ptr())[i]);
         else if (elementType->Flags & uTypeFlagsRetainStruct)
-            for (int32_t i = 0; i < length; i++)
+            for (size_t i = 0; i < length; i++)
                 uRetainStruct(elementType, (uint8_t*)array->Ptr() + elementType->ValueSize * i);
     }
 

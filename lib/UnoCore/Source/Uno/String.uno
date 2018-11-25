@@ -507,7 +507,7 @@ namespace Uno
 
         public string PadLeft(int totalLength, char paddingSymbol)
         @{
-            int padLength = $0 - $$->_length;
+            int padLength = $0 - $$->Length();
             if (padLength <= 0)
                 return $$;
 
@@ -527,13 +527,13 @@ namespace Uno
 
         public string PadRight(int totalLength, char paddingSymbol)
         @{
-            if ($0 <= $$->_length)
+            if ($0 <= $$->Length())
                 return $$;
 
             uString* result = uString::New($0);
             memcpy(result->_ptr, $$->_ptr, $$->_length * sizeof(@{char}));
 
-            for (int i = $$->_length; i < $0; i++)
+            for (int i = $$->Length(); i < $0; i++)
                 result->_ptr[i] = $1;
 
             return result;

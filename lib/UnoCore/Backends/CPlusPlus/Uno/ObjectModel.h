@@ -477,52 +477,52 @@ struct uArrayType : uType
 struct uArray : uObject
 {
     void* _ptr;
-    int32_t _length;
+    size_t _length;
 
-    int32_t Length() const { return _length; }
+    int32_t Length() const { return (int32_t) _length; }
     const void* Ptr() const { return _ptr; }
     void* Ptr() { return _ptr; }
 
-    void MarshalPtr(int32_t index, const void* value, size_t size);
-    uTField TItem(int32_t index);
-    uTField TUnsafe(int32_t index);
+    void MarshalPtr(size_t index, const void* value, size_t size);
+    uTField TItem(size_t index);
+    uTField TUnsafe(size_t index);
 
     template<class T>
-    T& Item(int32_t index) {
+    T& Item(size_t index) {
         U_ASSERT(sizeof(T) == ((uArrayType*)__type)->ElementType->ValueSize);
-        if (index < 0 || index >= _length)
+        if (index >= _length)
             U_THROW_IOORE();
         return ((T*)_ptr)[index];
     }
     template<class T>
-    uStrong<T>& Strong(int32_t index) {
+    uStrong<T>& Strong(size_t index) {
         U_ASSERT(sizeof(T) == ((uArrayType*)__type)->ElementType->ValueSize);
-        if (index < 0 || index >= _length)
+        if (index >= _length)
             U_THROW_IOORE();
         return ((uStrong<T>*)_ptr)[index];
     }
     template<class T>
-    T& Unsafe(int32_t index) {
+    T& Unsafe(size_t index) {
         U_ASSERT(sizeof(T) == ((uArrayType*)__type)->ElementType->ValueSize &&
                  index >= 0 && index < _length);
         return ((T*)_ptr)[index];
     }
     template<class T>
-    uStrong<T>& UnsafeStrong(int32_t index) {
+    uStrong<T>& UnsafeStrong(size_t index) {
         U_ASSERT(sizeof(T) == ((uArrayType*)__type)->ElementType->ValueSize &&
                  index >= 0 && index < _length);
         return ((uStrong<T>*)_ptr)[index];
     }
 
-    static uArray* New(uType* type, int32_t length, const void* optionalData = NULL);
-    static uArray* InitT(uType* type, int32_t length, ...);
+    static uArray* New(uType* type, size_t length, const void* optionalData = NULL);
+    static uArray* InitT(uType* type, size_t length, ...);
 
     template<class T>
-    static uArray* Init(uType* type, int32_t length, ...) {
+    static uArray* Init(uType* type, size_t length, ...) {
         va_list ap;
         va_start(ap, length);
         uArray* array = New(type, length);
-        for (int32_t i = 0; i < length; i++) {
+        for (size_t i = 0; i < length; i++) {
             T item = va_arg(ap, T);
             array->MarshalPtr(i, &item, sizeof(T));
         }
@@ -539,21 +539,21 @@ struct uArray : uObject
 struct uString : uObject
 {
     char16_t* _ptr;
-    int32_t _length;
+    size_t _length;
 
-    int32_t Length() const { return _length; }
+    int32_t Length() const { return (int32_t) _length; }
     const char16_t* Ptr() const { return _ptr; }
 
-    const char16_t& Item(int32_t index) const {
-        if (index < 0 || index >= _length)
+    const char16_t& Item(size_t index) const {
+        if (index >= _length)
             U_THROW_IOORE();
         return _ptr[index];
     }
-    const char16_t& Unsafe(int32_t index) const {
+    const char16_t& Unsafe(size_t index) const {
         return _ptr[index];
     }
 
-    static uString* New(int32_t length);
+    static uString* New(size_t length);
     static uString* Ansi(const char* cstr);
     static uString* Ansi(const char* cstr, size_t length);
     static uString* Utf8(const char* mutf8);
@@ -562,7 +562,7 @@ struct uString : uObject
     static uString* Utf16(const char16_t* utf16, size_t length);
     static uString* Const(const char* mutf8);
     static uString* CharArray(const uArray* chars);
-    static uString* CharArrayRange(const uArray* chars, int32_t startIndex, int32_t length);
+    static uString* CharArrayRange(const uArray* chars, size_t startIndex, size_t length);
     static bool Equals(const uString* left, const uString* right, bool ignoreCase = false);
 };
 
@@ -810,12 +810,12 @@ inline uTPtr uUnboxAny(const uType* type, uObject* object) {
         ? (uint8_t*)uPtr(object) + sizeof(uObject)
         : (void*)object;
 }
-inline uTField uArray::TItem(int32_t index) {
-    if (index < 0 || index >= _length) U_THROW_IOORE();
+inline uTField uArray::TItem(size_t index) {
+    if (index >= _length) U_THROW_IOORE();
     uType* type = ((uArrayType*)__type)->ElementType;
     return uTField(type, (uint8_t*)_ptr + type->ValueSize * index);
 }
-inline uTField uArray::TUnsafe(int32_t index) {
+inline uTField uArray::TUnsafe(size_t index) {
     uType* type = ((uArrayType*)__type)->ElementType;
     return uTField(type, (uint8_t*)_ptr + type->ValueSize * index);
 }

@@ -223,7 +223,7 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             {
-                var array = new Type[extern<int> "(int32_t) $$->GenericCount"];
+                var array = new Type[extern<int> "$$->GenericCount"];
                 for (int i = 0; i < array.Length; i++)
                     array[i] = extern<Type>(i) "$$->Generics[$0]";
                 return array;
@@ -244,7 +244,7 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             {
-                var array = new Type[extern<int> "(int32_t) $$->InterfaceCount"];
+                var array = new Type[extern<int> "$$->InterfaceCount"];
                 for (int i = 0; i < array.Length; i++)
                     array[i] = extern<Type>(i) "$$->Interfaces[$0].Type";
                 return array;

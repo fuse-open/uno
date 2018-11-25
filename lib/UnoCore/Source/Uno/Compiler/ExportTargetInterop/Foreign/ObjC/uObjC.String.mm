@@ -20,7 +20,7 @@ namespace uObjC
 		NSUInteger bytes = [string
 			lengthOfBytesUsingEncoding: NativeUTF16Encoding];
 		
-		uString* result = uString::New((int)(bytes / sizeof(char16_t)));
+		uString* result = uString::New(bytes / sizeof(char16_t));
 		
 		NSUInteger usedBytes = 0;
 		if ([string
@@ -34,7 +34,7 @@ namespace uObjC
 		{
 			if (usedBytes != bytes)
 			{
-				result->_length = (int)(usedBytes / sizeof(char16_t));
+				result->_length = usedBytes / sizeof(char16_t);
 				result->_ptr[result->_length] = 0;
 			}
 			return result;

@@ -723,7 +723,7 @@ uObject* uNew(uType* type, size_t size)
     return uInitObject(type, calloc(1, size), size);
 }
 
-static uString* uInitString(int32_t length)
+static uString* uInitString(size_t length)
 {
     size_t size = sizeof(uString) + sizeof(char16_t) * length + sizeof(char16_t);
     uString* string = (uString*)uInitObject(@{string:TypeOf}, calloc(1, size), size);
@@ -732,7 +732,7 @@ static uString* uInitString(int32_t length)
     return string;
 }
 
-uString* uString::New(int32_t length)
+uString* uString::New(size_t length)
 {
     if (length == 0)
     {
