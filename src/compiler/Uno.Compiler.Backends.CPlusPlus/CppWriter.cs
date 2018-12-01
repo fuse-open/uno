@@ -179,7 +179,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             if (dt.IsDelegate)
                 Write(dt.Parameters.BuildString("(", ")", true));
 
-            EndLine(" :" + dt.Source.Line);
+            EndLine();
         }
 
         public void WriteComment(Function f, string text = null)
@@ -213,8 +213,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             }
 
             EndLine(f.Prototype.Parameters.BuildString("(", ")", true) +
-                (text != null ? " [" + text + "]" : null) +
-                " :" + f.Source.Line);
+                (text != null ? " [" + text + "]" : null));
         }
 
         public void WriteUnoName(DataType dt)
