@@ -23,7 +23,7 @@ namespace Uno.CLI.Packages
             WriteRow("-e, --express",              "Express mode. Don't rebuild packages depending on a modified package");
             WriteRow("-z, --clean",                "Clean projects before building them");
             WriteRow("-c, --configuration=NAME",   "Set build configuration (Debug|Release)", true);
-            WriteRow("-b, --build-number=VERSION", "Override version for all packages built", true);
+            WriteRow("-n, --version=X.Y.Z-SUFFIX", "Override version number for all packages built", true);
             WriteRow("-C, --no-cache",             "Disable in-memory AST & IL caches");
             WriteRow("-s, --silent",               "Very quiet build log");
         }
@@ -38,7 +38,8 @@ namespace Uno.CLI.Packages
                     { "x|e|express", value => lib.Express = true },
                     { "z|clean", value => lib.Clean = true },
                     { "c=|configuration=", value => lib.Configuration = value.ParseEnum<BuildConfiguration>("configuration") },
-                    { "b=|build-number=", value => lib.Version = value.ParseString("build-number") },
+                    { "b=|build-number=", value => { lib.Version = value.ParseString("build-number"); Log.Warning("--build-number is deprecated, please use --version instead."); }},
+                    { "n=|version=", value => lib.Version = value.ParseString("version") },
                     { "C|no-cache", value => lib.CanCache = false },
                     { "s|silent", value => lib.SilentBuild = true },
                 }.Parse(args);

@@ -242,7 +242,7 @@ Available options
   -e, --express                Express mode. Don't rebuild packages depending on a modified package
   -z, --clean                  Clean projects before building them
   -c, --configuration=NAME     Set build configuration (Debug|Release) [optional]
-  -b, --build-number=VERSION   Override version for all packages built [optional]
+  -n, --version=X.Y.Z-SUFFIX   Override version number for all packages built [optional]
   -C, --no-cache               Disable in-memory AST & IL caches
   -s, --silent                 Very quiet build log
 ```
