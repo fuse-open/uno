@@ -664,7 +664,8 @@ namespace Uno.Compiler.Core.Syntax
             }
             catch (Exception e)
             {
-                Log.Error(f.SourceName.Source, ErrorCode.E0000, e.Message);
+                Log.Error(new Source(src), ErrorCode.E0000, e.Message);
+                Log.Error(f.SourceName.Source, ErrorCode.E0000, "Failed to convert " + src.Quote());
             }
         }
 
