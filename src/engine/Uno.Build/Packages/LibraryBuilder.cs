@@ -37,15 +37,14 @@ namespace Uno.Build.Packages
 
         public HashSet<string> GetSourceDirectories(UnoConfig config = null)
         {
+            var sourceDirectories = new HashSet<string>();
             var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("Packages.SourcePaths", "PackageSourcePaths");
 
             if (configSourcePaths.Length == 0)
             {
                 Log.VeryVerbose("'Packages.SourcePaths' was not found in .unoconfig");
-                return null;
+                return sourceDirectories;
             }
-
-            var sourceDirectories = new HashSet<string>();
 
             foreach (var source in configSourcePaths)
             {

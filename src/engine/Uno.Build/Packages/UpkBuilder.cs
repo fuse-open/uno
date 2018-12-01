@@ -112,7 +112,7 @@ namespace Uno.Build.Packages
                 try
                 {
                     var upper = project.FullPath.ToUpperInvariant();
-                    foreach (var source in _libBuilder.GetSourceDirectories(project.Config) ?? new HashSet<string>())
+                    foreach (var source in _libBuilder.GetSourceDirectories(project.Config))
                     {
                         if (upper.StartsWith(source.ToUpperInvariant()))
                         {
