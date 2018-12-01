@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Mono.Options;
 using Uno.Build;
 using Uno.Build.Packages;
@@ -13,11 +14,12 @@ namespace Uno.CLI.Packages
 
         public override void Help()
         {
-            WriteUsage("[options] [package ...]");
+            WriteUsage("[options] [source-dir|package-name ...]",
+                       "[options] --force [package-name ...]");
 
             WriteHead("Available options", 27);
-            WriteRow("-a, --all",                  "Build all projects, regardless of modification time");
-            WriteRow("-f, --force",                "Update all package caches, regardless of modification time");
+            WriteRow("-a, --all",                  "Build all projects regardless of modification time");
+            WriteRow("-f, --force",                "Update package caches regardless of modification time");
             WriteRow("-e, --express",              "Express mode. Don't rebuild packages depending on a modified package");
             WriteRow("-z, --clean",                "Clean projects before building them");
             WriteRow("-c, --configuration=NAME",   "Set build configuration (Debug|Release)", true);
@@ -43,9 +45,16 @@ namespace Uno.CLI.Packages
 
             Log.ProductHeader();
 
-            // Repair package caches first
-            new PackageDoctor(Log)
-                .Repair(lib.RebuildList, force);
+            // Interpret RebuildList as SourcePaths when a directory is specified.
+            if (!force && lib.RebuildList.Count > 0 && (
+                    Directory.Exists(lib.RebuildList[0]) ||
+                    lib.RebuildList[0].IndexOf('/') != -1 ||
+                    lib.RebuildList[0].IndexOf('\\') != -1))
+                lib.RebuiltListIsSourcePaths = true;
+            // Repair package caches
+            else
+                new PackageDoctor(Log)
+                    .Repair(lib.RebuildList, force);
 
             lib.Build();
         }

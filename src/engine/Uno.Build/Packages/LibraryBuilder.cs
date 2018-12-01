@@ -18,6 +18,7 @@ namespace Uno.Build.Packages
         public bool RebuildAll;
         public bool SilentBuild;
         public bool CanCache = true;
+        public bool RebuiltListIsSourcePaths;
         public string Version;
         public BuildConfiguration? Configuration;
         public List<string> RebuildList;
@@ -38,6 +39,13 @@ namespace Uno.Build.Packages
         public HashSet<string> GetSourceDirectories(UnoConfig config = null)
         {
             var sourceDirectories = new HashSet<string>();
+
+            if (RebuiltListIsSourcePaths)
+            {
+                sourceDirectories.AddRange(RebuildList);
+                return sourceDirectories;
+            }
+
             var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("Packages.SourcePaths", "PackageSourcePaths");
 
             if (configSourcePaths.Length == 0)
@@ -224,7 +232,7 @@ namespace Uno.Build.Packages
             foreach (var lib in dirty)
                 AddDependenciesFirst(lib, list, added, dirty);
 
-            if (RebuildList != null)
+            if (RebuildList != null && !RebuiltListIsSourcePaths)
                 foreach (var p in RebuildList)
                     if (!_libMap.ContainsKey(p.ToUpperInvariant()))
                         Log.Warning("Package " + p.Quote() + " was not found");
@@ -255,7 +263,7 @@ namespace Uno.Build.Packages
             if (RebuildAll)
                 return all;
 
-            if (RebuildList != null)
+            if (RebuildList != null && !RebuiltListIsSourcePaths)
                 foreach (var p in RebuildList)
                     _dirty.Add(p.ToUpperInvariant());
 
