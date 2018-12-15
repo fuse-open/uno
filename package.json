@@ -1,0 +1,35 @@
+{
+  "name": "@fuse-open/uno",
+  "version": "1.10.0-rc1",
+  "description": "Fast, native C# dialect and cross-compiler.",
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "prepack": "bash scripts/pack.sh",
+    "test": "bash scripts/test.sh"
+  },
+  "bin": {
+    "uno": "bin/uno.js"
+  },
+  "files": [
+    "bin/*",
+    "lib/build/*",
+    "release/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuse-open/uno.git"
+  },
+  "keywords": [
+    "uno",
+    "programming-language",
+    "fuse",
+    "cross-platform",
+    "c-sharp"
+  ],
+  "author": "Fuse Open",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fuse-open/uno/issues"
+  },
+  "homepage": "https://github.com/fuse-open/uno#readme"
+}
