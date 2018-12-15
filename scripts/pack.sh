@@ -7,7 +7,6 @@ source scripts/common.sh
 DST="release"
 BIN="$DST/bin"
 LIB="$DST/lib"
-OUT="upload"
 
 # Detect version info
 COMMIT=`git rev-parse HEAD`
@@ -59,9 +58,9 @@ h1 "Preparing release"
 ######################
 
 # Initialize
-rm -rf ${BIN:?}/* ${LIB:?}/* ${OUT:?}/*
+rm -rf ${BIN:?}/* ${LIB:?}/*
 rm ${DST:?}/* 2> /dev/null || :
-mkdir -p $BIN $LIB $OUT
+mkdir -p $BIN $LIB
 
 # Core assemblies
 p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $BIN
@@ -90,24 +89,3 @@ cat config/common.unoconfig >> $BIN/.unoconfig
 p cp bin/uno bin/uno.exe $DST
 echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
 echo "bin" > $DST/.unopath
-
-h1 "Creating packages"
-######################
-
-# Create NuGet packages
-for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
-    p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
-done
-
-p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
-
-# Create Uno packages
-for f in lib/*; do
-    NAME=`basename "$f"`
-    PROJECT=$f/$NAME.unoproj
-    if [ -f "$PROJECT" ]; then
-        uno pack $PROJECT \
-            --version $VERSION \
-            --out-dir $OUT
-    fi
-done
