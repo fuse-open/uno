@@ -10,8 +10,3 @@ Packages.Default += [
     Fuse
     FuseJS
 ]
-
-// Package feeds
-Packages.Feeds += [
-    "https://www.myget.org/F/fuse/api/v2"
-]
