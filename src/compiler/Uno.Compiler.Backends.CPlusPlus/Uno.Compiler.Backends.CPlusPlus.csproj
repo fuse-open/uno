@@ -79,7 +79,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <None Include="Uno.Compiler.Backends.CPlusPlus.nuspec" />
-  </ItemGroup>
 </Project>

@@ -157,6 +157,5 @@
   -->
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Uno.Compiler.Backends.UnoDoc.nuspec" />
   </ItemGroup>
 </Project>
