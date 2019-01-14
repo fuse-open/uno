@@ -14,30 +14,13 @@ namespace Uno.Compiler.Backends.CIL
             Process(_data.IL);
 
             foreach (var e in _types)
-            {
-                foreach (var g in e.GenericParameters)
-                    SetConstraints(g.Builder, g.Definition);
-
-                switch (e.Definition.TypeType)
-                {
-                    case TypeType.Enum:
-                        PopulateEnum(e);
-                        break;
-                    case TypeType.Delegate:
-                        PopulateDelegate(e);
-                        break;
-                    default:
-                        PopulateClassStructOrInterface(e);
-                        break;
-                }
-            }
-
+                e.Populate();
             foreach (var e in _types)
                 CompileType(e);
             foreach (var e in _linkedTypes)
                 ValidateType(e);
 
-            Log.Verbose("Generated " + _types.Count + " .NET type".Plural(_types) + " for " + Assembly.GetName().Name.Quote() + " assembly");
+            Log.Verbose("Generated " + _types.Count + " .NET type".Plural(_types) + " for " + _assembly.GetName().Name.Quote() + " assembly");
         }
 
         void Process(Namespace root)
@@ -60,7 +43,7 @@ namespace Uno.Compiler.Backends.CIL
                 else if (prebuiltType != null)
                     LinkType(dt, prebuiltType);
                 else
-                    DefineType(dt);
+                    _types.DefineType(dt);
             }
 
             for (int i = 0, l = root.Namespaces.Count; i < l; i++)

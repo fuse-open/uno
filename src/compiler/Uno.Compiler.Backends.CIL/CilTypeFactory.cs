@@ -1,5 +1,8 @@
 ﻿using IKVM.Reflection;
 using IKVM.Reflection.Emit;
+using System.Collections.Generic;
+using Uno.Compiler.API;
+using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Types;
 using Uno.Logging;
@@ -7,8 +10,21 @@ using Type = IKVM.Reflection.Type;
 
 namespace Uno.Compiler.Backends.CIL
 {
-    partial class CilGenerator
+    public class CilTypeFactory : List<CilType>
     {
+        readonly Backend _backend;
+        readonly IEssentials _essentials;
+        readonly CilLinker _linker;
+        readonly ModuleBuilder _module;
+
+        public CilTypeFactory(Backend backend, IEssentials essentials, CilLinker linker, ModuleBuilder module)
+        {
+            _backend = backend;
+            _essentials = essentials;
+            _linker = linker;
+            _module = module;
+        }
+
         public void DefineType(DataType dt, TypeBuilder parent = null)
         {
             switch (dt.TypeType)
@@ -39,7 +55,7 @@ namespace Uno.Compiler.Backends.CIL
         TypeBuilder CreateTypeBuilder(DataType dt, TypeBuilder parent, TypeAttributes typeAttrs, Type typeBase)
         {
             var result = parent?.DefineNestedType(dt.CilTypeName(), dt.CilTypeAttributes(true) | typeAttrs, typeBase) ?? _module.DefineType(dt.CilTypeName(), dt.CilTypeAttributes(false) | typeAttrs, typeBase);
-            var data = new CilType(_linker, result, dt);
+            var data = new CilType(_backend, _essentials, _linker, result, dt);
 
             if (!dt.IsEnum && dt.IsFlattenedDefinition)
             {
@@ -64,43 +80,8 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             _linker.AddType(dt, result);
-            _types.Add(data);
+            Add(data);
             return result;
-        }
-
-        void SetConstraints(GenericTypeParameterBuilder builder, GenericParameterType definition)
-        {
-            var attrs = GenericParameterAttributes.None;
-
-            switch (definition.ConstraintType)
-            {
-                case GenericConstraintType.Class:
-                    if (definition.Base != _essentials.Object)
-                        builder.SetBaseTypeConstraint(_linker.GetType(definition.Base));
-                    else
-                        attrs |= GenericParameterAttributes.ReferenceTypeConstraint;
-                    break;
-
-                case GenericConstraintType.Struct:
-                    attrs |= GenericParameterAttributes.NotNullableValueTypeConstraint;
-                    break;
-            }
-
-            if (definition.Constructors.Count > 0)
-                attrs |= GenericParameterAttributes.DefaultConstructorConstraint;
-
-            if (attrs != GenericParameterAttributes.None)
-                builder.SetGenericParameterAttributes(attrs);
-
-            if (definition.Interfaces.Length > 0)
-            {
-                var interfaceTypes = new Type[definition.Interfaces.Length];
-
-                for (int j = 0; j < definition.Interfaces.Length; j++)
-                    interfaceTypes[j] = _linker.GetType(definition.Interfaces[j]);
-
-                builder.SetInterfaceConstraints(interfaceTypes);
-            }
         }
     }
 }

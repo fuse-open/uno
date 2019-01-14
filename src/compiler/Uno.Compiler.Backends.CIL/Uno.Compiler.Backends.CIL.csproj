@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AppLoader.cs" />
     <Compile Include="CilBackend.cs" />
+    <Compile Include="CilGenerator.Compile.cs" />
     <Compile Include="CilGenerator.Generate.cs" />
     <Compile Include="CilMember.cs" />
     <Compile Include="CilResult.cs" />
@@ -62,10 +63,8 @@
     <Compile Include="ErrorCode.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="CilTransform.cs" />
-    <Compile Include="CilGenerator.Populate.cs" />
     <Compile Include="Location.cs" />
-    <Compile Include="CilGenerator.Compile.cs" />
-    <Compile Include="CilGenerator.Create.cs" />
+    <Compile Include="CilTypeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IKVM.Reflection\reflect\IKVM.Reflection.csproj">
