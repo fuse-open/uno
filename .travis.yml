@@ -8,20 +8,12 @@ env:
     - TARGET=dotnet
     - TARGET=native
 
-install:
-  - nuget install NUnit.ConsoleRunner -Version 3.8.0
-
 before_script:
   - ulimit -c unlimited -S
   - rm -rf /cores/core.*
 
 script:
   - scripts/build.sh
-  - |
-    mono NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe --agents=1 \
-      src/testing/Uno.TestRunner.Tests/bin/Debug/Uno.TestRunner.Tests.dll \
-      src/ux/Uno.UX.Markup.AST/Tests/bin/Debug/Uno.UX.Markup.AST.Tests.dll \
-      src/ux/Uno.UX.Markup.UXIL/Tests/bin/Debug/Uno.UX.Markup.UXIL.Tests.dll
   - bin/uno test --target=$TARGET lib
   - bin/uno test-gen lib /tmp/PackageCompilationTest
   - bin/uno build --target=$TARGET --no-strip /tmp/PackageCompilationTest
