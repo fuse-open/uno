@@ -54,7 +54,7 @@ namespace Uno.Compiler.Core
             Extensions = extensions;
             Options = options;
             BundleDirectory = Path.Combine(project.CacheDirectory, "bundle");
-            CacheDirectory = Path.Combine(project.CacheDirectory, options.BuildTarget, options.Configuration);
+            CacheDirectory = Path.Combine(project.CacheDirectory, "builds", (options.BuildTarget + options.Configuration).GetHashCode().ToString("X8"));
             Essentials = ilf.Essentials;
             MacroExpander = new MacroExpander(backend, this, extensions, ilf, compiler);
             Compiler = compiler;
