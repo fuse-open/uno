@@ -248,14 +248,14 @@ struct uMainLoop : Xli::WindowEventHandler
     virtual bool OnClosing(Xli::Window* wnd, bool& cancel)
     {
         uAutoReleasePool pool;
-
-        // TODO
+        @{Uno.Platform.CoreApp.EnterBackground():Call()};
         return false;
     }
 
     virtual void OnClosed(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
+        @{Uno.Platform.CoreApp.Terminate():Call()};
     }
 
     virtual void OnAppLowMemory(Xli::Window* wnd)
