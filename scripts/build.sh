@@ -79,13 +79,10 @@ if [ "$BUILD_PLATFORM" = 1 ]; then
 fi
 
 if [ "$BUILD_LIBRARY" = 1 ]; then
-    # Get version number
-    VERSION=`cat VERSION.txt`
-
     h1 "Building core library"
     if [ "$REBUILD_LIBRARY" = 1 ]; then
-        uno doctor -ac$CONFIGURATION --version=$VERSION lib
+        uno doctor -ac$CONFIGURATION lib
     else
-        uno doctor -ec$CONFIGURATION --version=$VERSION lib
+        uno doctor -ec$CONFIGURATION lib
     fi
 fi
