@@ -14,7 +14,10 @@ install:
       }
 
 build_script:
-  - bash -l scripts\pack.sh
+  - npm pack
+
+artifacts:
+  - path: '*.tgz'
 
 before_test:
   - ps: |
