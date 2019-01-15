@@ -369,11 +369,16 @@ namespace Uno.Compiler.Core.IL.Validation
 
         void VerifyVisibility(SourceObject owner, Visibility visibility, DataType dt)
         {
+            if (Backend.Has(TypeOptions.IgnoreProtection) &&
+                Environment.IsGeneratingCode)
+                return;
+
             if (VerifyAccessibleEntity(owner.Source, dt) &&
-                !visibility.IsVisibile(dt) && (
-                    !Environment.IsGeneratingCode ||
-                    !Backend.Has(TypeOptions.IgnoreProtection)))
+                !visibility.IsVisibile(dt))
                 Log.Error(owner.Source, ErrorCode.E4128, dt.Quote() + " is less accessible than " + owner.Quote());
+            else if (dt.IsGenericParameterization)
+                foreach (var pt in dt.GenericArguments)
+                    VerifyVisibility(owner, visibility, pt);
         }
     }
 }

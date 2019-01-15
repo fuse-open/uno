@@ -7,7 +7,7 @@ namespace Collections.Test
 {
     public class HashSetTest
     {
-        class DummyClass
+        public class DummyClass
         {
             string _f;
             string _b;
