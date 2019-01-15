@@ -8,7 +8,6 @@ BUILD_PLATFORM=1
 BUILD_UNOCORE=0
 BUILD_LIBRARY=1
 CONFIGURATION="Debug"
-REBUILD_LIBRARY=0
 
 # Parse options
 for arg in "$@"; do
@@ -16,8 +15,6 @@ for arg in "$@"; do
     -h|--help)
         echo "Build options:"
         echo "  --unocore   Generate Uno.Runtime.Core.csproj"
-        echo "  --rebuild   Rebuild package library"
-        echo "  --all       Build everything"
         echo ""
         echo "Configuration options:"
         echo "  --debug     Use 'Debug' configuration (default)"
@@ -34,15 +31,6 @@ for arg in "$@"; do
         BUILD_PLATFORM=0
         BUILD_UNOCORE=1
         BUILD_LIBRARY=0
-        ;;
-    --all)
-        BUILD_PLATFORM=1
-        BUILD_UNOCORE=1
-        BUILD_LIBRARY=1
-        REBUILD_LIBRARY=1
-        ;;
-    --rebuild)
-        REBUILD_LIBRARY=1
         ;;
     *)
         echo "ERROR: Invalid argument '$arg'" >&2
@@ -80,9 +68,5 @@ fi
 
 if [ "$BUILD_LIBRARY" = 1 ]; then
     h1 "Building core library"
-    if [ "$REBUILD_LIBRARY" = 1 ]; then
-        uno doctor -ac$CONFIGURATION lib
-    else
-        uno doctor -ec$CONFIGURATION lib
-    fi
+    uno doctor -ec$CONFIGURATION lib
 fi

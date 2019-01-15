@@ -3,10 +3,6 @@ default:
 	@bash scripts/build.sh
 unocore:
 	@bash scripts/build.sh --unocore
-rebuild:
-	@bash scripts/build.sh --rebuild
-all:
-	@bash scripts/build.sh --all
 release:
 	@bash scripts/pack.sh
 diagrams:
