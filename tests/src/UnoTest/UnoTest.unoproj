@@ -970,6 +970,7 @@
     "ShaderGenerator/DefaultPrimitivesBlock.uno:Source",
     "ShaderGenerator/DefaultShading.uno:Source",
     "ShaderGenerator/Lights.uno:Source",
+    "ShaderGenerator/NestedBlock.uno:Source",
     "ShaderGenerator/PixelInputs.uno:Source",
     "ShaderGenerator/Quad.uno:Source",
     "ShaderGenerator/ShaderControlFlow.uno:Source",

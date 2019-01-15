@@ -139,11 +139,18 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                             return new PartialValue(new GetMetaProperty(id.Source, mp.ReturnType, mp.Name));
                     }
 
-                    var dt = block.TryFindTypeParent();
-
-                    if (dt != null)
+                    // Object context
+                    for (var dt = block.TryFindTypeParent(); dt != null; dt = dt.ParentType)
                     {
                         var p = TryResolveTypeMember(dt, id, typeParamCount, null, new GetMetaObject(id.Source, TypeBuilder.Parameterize(dt)));
+                        if (p != null)
+                            return p;
+                    }
+
+                    // Static context
+                    for (var dt = block.ParentType; dt != null; dt = dt.ParentType)
+                    {
+                        var p = TryResolveTypeMember(dt, id, typeParamCount, null, null);
                         if (p != null)
                             return p;
                     }
