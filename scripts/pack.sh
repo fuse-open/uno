@@ -11,7 +11,7 @@ mkdir -p $DST
 
 # Detect version info
 COMMIT=`git rev-parse HEAD`
-VERSION=`cat VERSION.txt`
+VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
 
 if [ -n "$APPVEYOR_REPO_BRANCH" ]; then
     BRANCH=$APPVEYOR_REPO_BRANCH
