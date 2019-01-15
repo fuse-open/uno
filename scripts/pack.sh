@@ -48,8 +48,15 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
       -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
       src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
-# Build release configuration
-bash scripts/build.sh --release
+# Trigger release builds
+h1 "Installing packages"
+nuget restore uno.sln
+
+h1 "Building platform tools"
+CONFIGURATION=Release csharp-build uno.sln
+
+h1 "Building core library"
+uno doctor --configuration=Release --version=$VERSION lib
 
 # Remove GlobalAssemblyInfo.Override.cs
 rm -f src/GlobalAssemblyInfo.Override.cs
