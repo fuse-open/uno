@@ -3,10 +3,11 @@ SELF=`echo $0 | sed 's/\\\\/\\//g'`
 cd "`dirname "$SELF"`/.." || exit 1
 source scripts/common.sh
 
-# Configuration
+# Initialize
 DST="release"
-BIN="$DST/bin"
-LIB="$DST/lib"
+shopt -s dotglob
+rm -rf ${DST:?}/* 2> /dev/null || :
+mkdir -p $DST
 
 # Detect version info
 COMMIT=`git rev-parse HEAD`
@@ -64,35 +65,23 @@ rm -f src/GlobalAssemblyInfo.Override.cs
 h1 "Preparing release"
 ######################
 
-# Initialize
-rm -rf ${BIN:?}/* ${LIB:?}/*
-rm ${DST:?}/* 2> /dev/null || :
-mkdir -p $BIN $LIB
+# Copy assemblies
+p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $DST
+p cp -f src/testing/Uno.CompilerTestRunner/bin/Release/uno-compiler-test.exe $DST
+p cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $DST
+p cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $DST
 
-# Core assemblies
-p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $BIN
-p cp -f src/testing/Uno.CompilerTestRunner/bin/Release/uno-compiler-test.exe $BIN
-p cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $BIN
-p cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $BIN
+# Put app loaders for macOS and Windows in subdirectories to avoid conflicts
+mkdir -p $DST/apploader-mac
+p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $DST/apploader-mac
+p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $DST/apploader-mac
 
-# Core packages (used for testing)
-p cp -R lib/build/* $LIB
+mkdir -p $DST/apploader-win
+p cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-win
+p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $DST/apploader-win
+p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $DST/apploader-win
 
-# Put app loaders for macOS and Windows in subdirectories, to avoid conflicts
-mkdir -p $BIN/apploader-mac
-p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $BIN/apploader-mac
-p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $BIN/apploader-mac
-
-mkdir -p $BIN/apploader-win
-p cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $BIN/apploader-win
-p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $BIN/apploader-win
-p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN/apploader-win
-
-# Generate config
-p cp config/pack.unoconfig $BIN/.unoconfig
-cat config/common.unoconfig >> $BIN/.unoconfig
-
-# Generate launcher
-p cp bin/uno bin/uno.exe $DST
-echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
-echo "bin" > $DST/.unopath
+# Generate config file
+p cp config/pack.unoconfig $DST/.unoconfig
+cat config/common.unoconfig >> $DST/.unoconfig
+echo "Packages.SearchPaths += ../lib" >> $DST/.unoconfig
