@@ -2,7 +2,7 @@
 default:
 	@bash scripts/build.sh
 unocore:
-	@bash scripts/build.sh --unocore
+	@bash scripts/build-unocore.sh
 release:
 	@bash scripts/pack.sh
 diagrams:
