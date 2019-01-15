@@ -123,7 +123,7 @@ namespace Uno.Net
             }
             freeaddrinfo(addr);
 
-            return uArray::New(@{IPAddress[]:TypeOf}, (@{int})addresses.size(), &addresses[0]);
+            return uArray::New(@{IPAddress[]:TypeOf}, addresses.size(), &addresses[0]);
         @}
 
         public static IPAddress[] GetHostAddresses(string hostNameOrAddress)

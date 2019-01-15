@@ -296,7 +296,7 @@ namespace Uno.Text
             if defined(CPLUSPLUS)
             @{
                 uCString cstr($0);
-                return uArray::New(@{byte[]:TypeOf}, (int32_t) cstr.Length, cstr.Ptr);
+                return uArray::New(@{byte[]:TypeOf}, cstr.Length, cstr.Ptr);
             @}
             else if defined(DOTNET)
                 return Encoding.UTF8.GetBytes(value);
