@@ -82,10 +82,10 @@ if [ "$BUILD_LIBRARY" = 1 ]; then
     # Get version number
     VERSION=`cat VERSION.txt`
 
-    h1 "Building standard library"
+    h1 "Building core library"
     if [ "$REBUILD_LIBRARY" = 1 ]; then
-        uno doctor -ac$CONFIGURATION --build-number=$VERSION
+        uno doctor -ac$CONFIGURATION --version=$VERSION lib
     else
-        uno doctor -ec$CONFIGURATION --build-number=$VERSION
+        uno doctor -ec$CONFIGURATION --version=$VERSION lib
     fi
 fi

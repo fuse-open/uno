@@ -80,7 +80,7 @@ Uno is built using the command-line on Linux, macOS or Windows – or [from insi
 
 | Build command         | Action                                                            |
 |:----------------------|:------------------------------------------------------------------|
-| `make`<sup>[3]</sup>  | Builds `uno` and standard library. Works on all platforms.        |
+| `make`<sup>[3]</sup>  | Builds `uno` and core library. Works on all platforms.            |
 
  1. On Windows, we need [vswhere] to locate your Visual Studio 2017 installation. Please make sure we can find `vswhere` in
     `%PATH%` or at `%PROGRAMFILES(x86)%\Microsoft Visual Studio\Installer`.

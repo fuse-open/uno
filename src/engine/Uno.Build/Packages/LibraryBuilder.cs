@@ -18,6 +18,7 @@ namespace Uno.Build.Packages
         public bool RebuildAll;
         public bool SilentBuild;
         public bool CanCache = true;
+        public bool RebuiltListIsSourcePaths;
         public string Version;
         public BuildConfiguration? Configuration;
         public List<string> RebuildList;
@@ -37,15 +38,21 @@ namespace Uno.Build.Packages
 
         public HashSet<string> GetSourceDirectories(UnoConfig config = null)
         {
+            var sourceDirectories = new HashSet<string>();
+
+            if (RebuiltListIsSourcePaths)
+            {
+                sourceDirectories.AddRange(RebuildList);
+                return sourceDirectories;
+            }
+
             var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("Packages.SourcePaths", "PackageSourcePaths");
 
             if (configSourcePaths.Length == 0)
             {
                 Log.VeryVerbose("'Packages.SourcePaths' was not found in .unoconfig");
-                return null;
+                return sourceDirectories;
             }
-
-            var sourceDirectories = new HashSet<string>();
 
             foreach (var source in configSourcePaths)
             {
@@ -225,7 +232,7 @@ namespace Uno.Build.Packages
             foreach (var lib in dirty)
                 AddDependenciesFirst(lib, list, added, dirty);
 
-            if (RebuildList != null)
+            if (RebuildList != null && !RebuiltListIsSourcePaths)
                 foreach (var p in RebuildList)
                     if (!_libMap.ContainsKey(p.ToUpperInvariant()))
                         Log.Warning("Package " + p.Quote() + " was not found");
@@ -256,7 +263,7 @@ namespace Uno.Build.Packages
             if (RebuildAll)
                 return all;
 
-            if (RebuildList != null)
+            if (RebuildList != null && !RebuiltListIsSourcePaths)
                 foreach (var p in RebuildList)
                     _dirty.Add(p.ToUpperInvariant());
 
@@ -291,6 +298,13 @@ namespace Uno.Build.Packages
                 // Marked by command-line & EnumerateDirty()
                 if (_dirty.Contains(lib.ToUpperInvariant()))
                     return true;
+
+                // Check if a build with a different version number exists, possibly
+                // the project is already built using 'uno doctor --version=X.Y.Z'.
+                LibraryProject existing;
+                if (string.IsNullOrEmpty(Version) && lib.TryGetExistingBuild(out existing))
+                    // Test the existing build and maybe we don't need to built it again.
+                    lib = existing;
 
                 if (!File.Exists(lib.PackageFile))
                 {

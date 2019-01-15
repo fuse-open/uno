@@ -231,19 +231,19 @@ Usage: uno test-gen <path to packages> <path for temporary project> [--exclude=n
 
 ## $ uno doctor
 ```
-Usage: uno doctor [options] [package ...]
+Usage: uno doctor [options] [source-dir|package-name ...]
+  or   uno doctor [options] --force [package-name ...]
 
 Repair/rebuild packages found in search paths.
 
 Available options
-  -a, --all                    Build all projects, regardless of modification time
-  -f, --force                  Update all package caches, regardless of modification time
+  -a, --all                    Build all projects regardless of modification time
+  -f, --force                  Update package caches regardless of modification time
   -e, --express                Express mode. Don't rebuild packages depending on a modified package
   -z, --clean                  Clean projects before building them
   -c, --configuration=NAME     Set build configuration (Debug|Release) [optional]
-  -b, --build-number=VERSION   Override version for all packages built [optional]
+  -n, --version=X.Y.Z-SUFFIX   Override version number for all packages built [optional]
   -C, --no-cache               Disable in-memory AST & IL caches
-  -P, --no-parallel            Disable multi-threading
   -s, --silent                 Very quiet build log
 ```
 
@@ -261,7 +261,6 @@ Install options
   -n, --version=STRING  Install a specific version of <package>
   -s, --source=URL      Install <package> from a specific source
   -f, --force           Install a package even if already installed
-  -P, --no-parallel     Disable multi-threading
 ```
 
 ## $ uno uninstall
