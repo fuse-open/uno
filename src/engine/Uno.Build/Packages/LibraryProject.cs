@@ -18,14 +18,38 @@ namespace Uno.Build.Packages
         public bool Exists => File.Exists(PackageFile) && File.Exists(ConfigFile);
         public BuildConfiguration Configuration => (BuildConfiguration) Enum.Parse(typeof(BuildConfiguration), File.ReadAllText(ConfigFile).Trim());
 
-        public LibraryProject(Project project, string source)
+        public LibraryProject(Project project, string sourceDir)
         {
             Project = project;
-            PackageDirectory = Path.Combine(source, "build", project.Name);
+            PackageDirectory = Path.Combine(sourceDir, "build", project.Name);
             VersionDirectory = Path.Combine(PackageDirectory, project.Version);
             CacheDirectory = Path.Combine(VersionDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
             PackageFile = Path.Combine(CacheDirectory, "package");
+        }
+
+        LibraryProject(LibraryProject lib, string versionDir)
+        {
+            Project = lib.Project;
+            PackageDirectory = lib.PackageDirectory;
+            VersionDirectory = versionDir;
+            CacheDirectory = Path.Combine(VersionDirectory, ".uno");
+            ConfigFile = Path.Combine(CacheDirectory, "config");
+            PackageFile = Path.Combine(CacheDirectory, "package");
+        }
+
+        public bool TryGetExistingBuild(out LibraryProject existing)
+        {
+            existing = null;
+            if (!Directory.Exists(PackageDirectory))
+                return false;
+
+            var versions = Directory.EnumerateDirectories(PackageDirectory).ToArray();
+            if (versions.Length != 1)
+                return false;
+
+            existing = new LibraryProject(this, versions[0]);
+            return true;
         }
 
         int? _hash;

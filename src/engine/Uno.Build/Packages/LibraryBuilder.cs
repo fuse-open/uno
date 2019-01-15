@@ -299,6 +299,13 @@ namespace Uno.Build.Packages
                 if (_dirty.Contains(lib.ToUpperInvariant()))
                     return true;
 
+                // Check if a build with a different version number exists, possibly
+                // the project is already built using 'uno doctor --version=X.Y.Z'.
+                LibraryProject existing;
+                if (string.IsNullOrEmpty(Version) && lib.TryGetExistingBuild(out existing))
+                    // Test the existing build and maybe we don't need to built it again.
+                    lib = existing;
+
                 if (!File.Exists(lib.PackageFile))
                 {
                     Log.Event(IOEvent.Build, lib.Project.Name, "package not found");
