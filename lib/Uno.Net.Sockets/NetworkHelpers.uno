@@ -4,7 +4,7 @@ namespace Uno.Net
 {
     [extern(MSVC) Require("Source.Include", "winsock2.h")]
     [extern(MSVC) Require("LinkLibrary", "ws2_32")]
-    [extern(!MSVC) Require("Source.Include", "errno.h")]
+    [extern(UNIX) Require("Source.Include", "errno.h")]
     extern(CPLUSPLUS) internal class NetworkHelpers
     {
         extern(MSVC) public static string GetError()
@@ -24,7 +24,7 @@ namespace Uno.Net
             return ret;
         @}
 
-        extern(!MSVC) public static string GetError()
+        extern(UNIX) public static string GetError()
         @{
             return uString::Utf8(strerror(errno));
         @}

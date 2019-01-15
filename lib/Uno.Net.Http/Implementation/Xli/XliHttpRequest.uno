@@ -4,17 +4,17 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno.Net.Http.Implementation
 {
     [TargetSpecificType]
-    extern(LINUX || MSVC12) struct XliHttpClientHandle
+    extern(LINUX || MSVC) struct XliHttpClientHandle
     {
     }
 
     [TargetSpecificType]
-    extern(LINUX || MSVC12) struct XliHttpRequestHandle
+    extern(LINUX || MSVC) struct XliHttpRequestHandle
     {
     }
 
     [TargetSpecificImplementation]
-    internal extern(LINUX || MSVC12) static class XliHttpMessageHandler
+    internal extern(LINUX || MSVC) static class XliHttpMessageHandler
     {
         internal static XliHttpClientHandle _clientHandle;
 
@@ -33,7 +33,7 @@ namespace Uno.Net.Http.Implementation
     }
 
     [TargetSpecificImplementation]
-    internal extern(LINUX || MSVC12) class XliHttpRequest : IHttpRequest
+    internal extern(LINUX || MSVC) class XliHttpRequest : IHttpRequest
     {
         HttpMessageHandlerRequest _request;
         XliHttpRequestHandle _requestHandle;

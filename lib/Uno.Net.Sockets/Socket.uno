@@ -47,12 +47,12 @@ namespace Uno.Net.Sockets
         None = 0
     }
 
-    [extern(!MSVC) Require("Source.Include", "sys/socket.h")]
+    [extern(UNIX) Require("Source.Include", "sys/socket.h")]
     [extern(MSVC) Require("Source.Declaration", "typedef ULONG in_addr_t;")]
     [extern(MSVC) Require("Source.Declaration", "#define SHUT_RD SD_RECEIVE")]
     [extern(MSVC) Require("Source.Declaration", "#define SHUT_WR SD_SEND")]
     [extern(MSVC) Require("Source.Declaration", "#define SHUT_RDWR SD_BOTH")]
-    [extern(!MSVC) Require("Source.Include", "errno.h")]
+    [extern(UNIX) Require("Source.Include", "errno.h")]
     extern(CPLUSPLUS) internal class SocketHelpers
     {
         public static int GetFamily(AddressFamily addressFamily)
@@ -228,7 +228,7 @@ namespace Uno.Net.Sockets
             return ret;
         @}
 
-        extern(!MSVC) public static int Ioctl(Socket.SocketHandle sock, int request, out int arg)
+        extern(UNIX) public static int Ioctl(Socket.SocketHandle sock, int request, out int arg)
         @{
             return ioctl(sock, request, arg);
         @}
@@ -241,7 +241,7 @@ namespace Uno.Net.Sockets
             return result;
         @}
 
-        extern(!MSVC) public static int Shutdown(Socket.SocketHandle sock, int how)
+        extern(UNIX) public static int Shutdown(Socket.SocketHandle sock, int how)
         @{
             int result = shutdown(sock, how);
             if (result < 0 && errno == ENOTCONN)
@@ -254,19 +254,19 @@ namespace Uno.Net.Sockets
     [extern(MSVC) Require("Header.Include", "ws2tcpip.h")]
     [extern(MSVC) Require("LinkLibrary", "ws2_32")]
     [extern(ANDROID) Require("Source.Include", "arpa/inet.h")]
-    [extern(!MSVC) Require("Source.Include", "netdb.h")]
-    [extern(!MSVC) Require("Source.Include", "netinet/in.h")]
-    [extern(!MSVC) Require("Source.Include", "sys/ioctl.h")]
-    [extern(!MSVC) Require("Source.Include", "sys/socket.h")]
-    [extern(!MSVC) Require("Source.Include", "sys/types.h")]
-    [extern(!MSVC) Require("Source.Include", "unistd.h")]
+    [extern(UNIX) Require("Source.Include", "netdb.h")]
+    [extern(UNIX) Require("Source.Include", "netinet/in.h")]
+    [extern(UNIX) Require("Source.Include", "sys/ioctl.h")]
+    [extern(UNIX) Require("Source.Include", "sys/socket.h")]
+    [extern(UNIX) Require("Source.Include", "sys/types.h")]
+    [extern(UNIX) Require("Source.Include", "unistd.h")]
     public class Socket : IDisposable
     {
         [TargetSpecificType]
         [extern(MSVC) Set("TypeName", "SOCKET")]
         [extern(MSVC) Set("DefaultValue", "INVALID_SOCKET")]
-        [extern(CPLUSPLUS && !MSVC) Set("TypeName", "int")]
-        [extern(CPLUSPLUS && !MSVC) Set("DefaultValue", "-1")]
+        [extern(CPLUSPLUS && UNIX) Set("TypeName", "int")]
+        [extern(CPLUSPLUS && UNIX) Set("DefaultValue", "-1")]
         extern(CPLUSPLUS) internal struct SocketHandle
         {
             public static readonly SocketHandle Invalid;
@@ -291,7 +291,7 @@ namespace Uno.Net.Sockets
         {
             if defined(CPLUSPLUS)
             {
-                if defined(MSVC12)
+                if defined(MSVC)
                     NetworkHelpers.EnsureWinsockInitialized();
 
                 var family = SocketHelpers.GetFamily(addressFamily);
@@ -541,7 +541,7 @@ namespace Uno.Net.Sockets
             if defined(CPLUSPLUS)
             {
                 int result;
-                if defined(MSVC12)
+                if defined(MSVC)
                     result = extern<int>(_handle) "closesocket($0)";
                 else
                     result = extern<int>(_handle) "close($0)";

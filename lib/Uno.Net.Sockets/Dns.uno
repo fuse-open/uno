@@ -7,9 +7,9 @@ namespace Uno.Net
 {
     [DotNetType("System.Net.Dns")]
     [extern(APPLE) Require("Source.Include", "ifaddrs.h")]
-    [extern(!MSVC) Require("Source.Include", "sys/socket.h")]
-    [extern(!MSVC) Require("Source.Include", "netdb.h")]
-    [extern(!MSVC) Require("Source.Include", "netinet/in.h")]
+    [extern(UNIX) Require("Source.Include", "sys/socket.h")]
+    [extern(UNIX) Require("Source.Include", "netdb.h")]
+    [extern(UNIX) Require("Source.Include", "netinet/in.h")]
     [extern(MSVC) Require("Source.Include", "ws2tcpip.h")]
     [Require("Source.Include", "vector")]
     [ForeignInclude(Language.Java, "java.util.*", "java.net.*")]
@@ -135,12 +135,12 @@ namespace Uno.Net
                 (hostNameOrAddress.Length == 255 && hostNameOrAddress[254] != '.'))
                 throw new ArgumentOutOfRangeException("hostNameOrAddress");
 
-            if defined(MSVC12)
+            if defined(MSVC)
                 NetworkHelpers.EnsureWinsockInitialized();
 
             if defined(CPLUSPLUS)
             {
-                if defined(!MSVC)
+                if defined(UNIX)
                 {
                     if (hostNameOrAddress.Length == 0)
                     {

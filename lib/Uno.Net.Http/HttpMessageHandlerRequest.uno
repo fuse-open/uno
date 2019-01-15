@@ -40,7 +40,7 @@ namespace Uno.Net.Http
 
             if defined(ANDROID)
                 _httpRequest = new AndroidHttpRequest(this, method, url);
-            if defined(LINUX || MSVC12)
+            if defined(LINUX || MSVC)
                 _httpRequest = new XliHttpRequest(this, method, url);
             if defined(APPLE)
                 _httpRequest = new iOSHttpRequest(this, method, url);
