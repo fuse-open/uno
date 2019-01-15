@@ -67,9 +67,6 @@
     <Compile Include="IL\Optimizing\A1.cs" />
     <Compile Include="IL\Optimizing\A2.cs" />
     <Compile Include="IL\Testing\TestMethod.cs" />
-    <Compile Include="IL\Utilities\Analyzing\ParameterFinder.cs" />
-    <Compile Include="IL\Utilities\Analyzing\ReturnFinder.cs" />
-    <Compile Include="IL\Utilities\Analyzing\ThisFinder.cs" />
     <Compile Include="IL\Validation\ControlFlow\Condition.cs" />
     <Compile Include="IL\Validation\FinallyVerifier.cs" />
     <Compile Include="IL\Validation\ThisVerifier.cs" />
