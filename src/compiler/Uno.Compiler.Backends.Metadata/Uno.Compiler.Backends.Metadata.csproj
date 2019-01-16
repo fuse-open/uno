@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B3B455C8-DD3D-4655-B10C-3C6BE878911E}</ProjectGuid>
+    <ProjectGuid>{0A4E8B45-E8A4-4371-9E66-B0EF3C9D3B6F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Uno.Compiler.Backends.CIL</RootNamespace>
-    <AssemblyName>Uno.Compiler.Backends.CIL</AssemblyName>
+    <RootNamespace>Uno.Compiler.Backends.Metadata</RootNamespace>
+    <AssemblyName>Uno.Compiler.Backends.Metadata</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -50,21 +50,9 @@
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="AppLoader.cs" />
-    <Compile Include="CilBackend.cs" />
-    <Compile Include="CilGenerator.Compile.cs" />
-    <Compile Include="CilGenerator.Generate.cs" />
-    <Compile Include="CilMember.cs" />
-    <Compile Include="CilResult.cs" />
-    <Compile Include="CilType.cs" />
-    <Compile Include="CilGenerator.Emit.cs" />
-    <Compile Include="CilLinker.cs" />
-    <Compile Include="CilGenerator.cs" />
     <Compile Include="ErrorCode.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="CilTransform.cs" />
-    <Compile Include="Location.cs" />
-    <Compile Include="CilTypeFactory.cs" />
+    <Compile Include="MetadataBackend.cs" />
+    <Compile Include="MetadataGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IKVM.Reflection\reflect\IKVM.Reflection.csproj">
@@ -79,14 +67,13 @@
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj">
-      <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
-      <Name>Uno.Compiler.Backends.PInvoke</Name>
+    <ProjectReference Include="..\Uno.Compiler.Backends.CIL\Uno.Compiler.Backends.CIL.csproj">
+      <Project>{b3b455c8-dd3d-4655-b10c-3c6be878911e}</Project>
+      <Name>Uno.Compiler.Backends.CIL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Uno.Compiler.Backends.CIL.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

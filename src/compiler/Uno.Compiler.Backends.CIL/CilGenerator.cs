@@ -23,7 +23,7 @@ namespace Uno.Compiler.Backends.CIL
         readonly CilBackend _backend;
         readonly ModuleBuilder _module;
         readonly AssemblyBuilder _assembly;
-        readonly List<CilType> _types = new List<CilType>();
+        readonly CilTypeFactory _types;
         readonly List<DataType> _linkedTypes = new List<DataType>();
         readonly Dictionary<string, ISymbolDocumentWriter> _documents = new Dictionary<string, ISymbolDocumentWriter>();
         readonly string _outputDir;
@@ -50,6 +50,7 @@ namespace Uno.Compiler.Backends.CIL
                 package.Name, 
                 package.Name + ".dll", 
                 true);
+            _types = new CilTypeFactory(backend, essentials, linker, _module);
         }
 
         public void Configure(bool debug)

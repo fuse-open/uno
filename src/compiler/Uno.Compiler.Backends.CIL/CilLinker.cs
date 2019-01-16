@@ -13,7 +13,7 @@ using Type = IKVM.Reflection.Type;
 
 namespace Uno.Compiler.Backends.CIL
 {
-    class CilLinker : LogObject
+    public class CilLinker : LogObject
     {
         const BindingFlags _ctorFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
         const BindingFlags _memberFlags = _ctorFlags | BindingFlags.Static;
@@ -30,6 +30,7 @@ namespace Uno.Compiler.Backends.CIL
         readonly Dictionary<DataType, ConstructorInfo> _typeConstructors = new Dictionary<DataType, ConstructorInfo>();
         readonly Dictionary<DataType, MethodInfo> _typeMethods = new Dictionary<DataType, MethodInfo>();
         readonly Dictionary<DataType, Type> _types = new Dictionary<DataType, Type>();
+        readonly bool _isReferenceAssembly;
 
         public IEnumerable<Assembly> CopyAssemblies => _copyAssemblies;
         public IReadOnlyDictionary<DataType, Type> TypeMap => _types;
@@ -50,10 +51,11 @@ namespace Uno.Compiler.Backends.CIL
         public readonly MethodInfo System_Activator_CreateInstance;
         public readonly MethodInfo System_Type_GetTypeFromHandle;
 
-        public CilLinker(Log log, IEssentials essentials)
+        public CilLinker(Log log, IEssentials essentials, bool isReferenceAssembly = false)
             : base(log)
         {
             _essentials = essentials;
+            _isReferenceAssembly = isReferenceAssembly;
             System_Object = Universe.Import(typeof(object));
             System_String = Universe.Import(typeof(string));
             System_ValueType = Universe.Import(typeof(ValueType));
@@ -232,7 +234,7 @@ namespace Uno.Compiler.Backends.CIL
             {
                 var asm = dt.Package.Tag as Assembly;
 
-                if (dt.HasAttribute(_essentials.DotNetTypeAttribute))
+                if (dt.HasAttribute(_essentials.DotNetTypeAttribute) && !_isReferenceAssembly)
                     result = TryGetType(dt.TryGetAttributeString(_essentials.DotNetTypeAttribute) ?? dt.CilTypeName());
                 else if (asm != null)
                     result = asm.GetType(dt.CilTypeName());

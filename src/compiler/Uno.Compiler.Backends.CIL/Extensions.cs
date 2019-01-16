@@ -9,7 +9,7 @@ using Type = IKVM.Reflection.Type;
 
 namespace Uno.Compiler.Backends.CIL
 {
-    static class Extensions
+    public static class Extensions
     {
         private static readonly System.Type _IKVM_Reflection_GenericTypeInstance =
             typeof(Type).Assembly.GetType("IKVM.Reflection.GenericTypeInstance");

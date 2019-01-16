@@ -20,8 +20,9 @@ namespace Uno.Build.Targets
             Default,
             new Uno.CorelibBuild(),
             new Uno.DocsBuild(),
+            new DotNet.MetadataBuild(),
             new PInvoke.PInvokeBuild(),
-            Package
+            Package,
         };
 
         public static IEnumerable<BuildTarget> Enumerate(bool experimental = true, bool obsolete = false)

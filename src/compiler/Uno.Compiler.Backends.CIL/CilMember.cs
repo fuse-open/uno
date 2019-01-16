@@ -1,6 +1,6 @@
 namespace Uno.Compiler.Backends.CIL
 {
-    struct CilMember<TBuilder, TDefinition>
+    public struct CilMember<TBuilder, TDefinition>
     {
         public readonly TBuilder Builder;
         public readonly TDefinition Definition;
