@@ -11,7 +11,6 @@ if WIN32 {
 }
 
 // Package config
-Packages.InstallDirectory: prebuilt/lib
 Packages.SourcePaths += lib
 
 // Avoid overriding core settings when running an uno.exe other than 'src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe',

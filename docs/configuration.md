@@ -86,8 +86,6 @@ Tools.Node: `%PROGRAMFILES%\nodejs\node.exe`
 ## Package manager
 
 ```javascript
-Packages.Feeds += "https://www.packages.org/api/v2"
-Packages.InstallDirectory: install/my/packages/here
 Packages.SearchPaths += find/my/packages/here
 Packages.SourcePaths += build/these/projects
 ```
