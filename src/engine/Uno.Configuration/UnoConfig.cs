@@ -20,16 +20,6 @@ namespace Uno.Configuration
             return Current.GetDirectoryConfig(Path.GetDirectoryName(obj.FullPath));
         }
 
-        public static void LoadDirectory(string dir)
-        {
-            Current.LoadRecursive(dir);
-        }
-
-        public static void LoadFile(string filename)
-        {
-            Current.LoadFile(Path.GetDirectoryName(filename), filename);
-        }
-
         readonly List<UnoConfigFile> _files = new List<UnoConfigFile>();
         readonly Dictionary<string, UnoConfig> _configCache = new Dictionary<string, UnoConfig>();
         readonly Dictionary<string, UnoConfigFile> _fileCache = new Dictionary<string, UnoConfigFile>();
