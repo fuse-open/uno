@@ -182,11 +182,6 @@ namespace Uno.Build
             if (Log.HasErrors)
                 return null;
 
-            // Install NPM packages if package.json exists
-            foreach (var p in _input.Packages)
-                if (p.IsProject && NPM.NeedsInstall(p))
-                    new NPM(Log).Install(p);
-
             using (Log.StartProfiler(typeof(UXProcessor)))
                 UXProcessor.Build(_compiler.Disk, _input.Packages);
 
