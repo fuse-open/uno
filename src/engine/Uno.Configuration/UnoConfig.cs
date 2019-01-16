@@ -204,7 +204,6 @@ namespace Uno.Configuration
         {
             LoadRecursive(GetAssemblyDirectory(Assembly.GetEntryAssembly()));
             LoadRecursive(GetAssemblyDirectory(typeof(UnoConfig).Assembly));
-            LoadRecursive(Environment.GetEnvironmentVariable("HOME"));
 
             try
             {

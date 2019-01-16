@@ -5,6 +5,9 @@ if WIN32 {
     require "%HOME%/Library/Application Support/Fusetools/Fuse/Android/.sdkconfig"
 }
 
+// User config
+require ~/.unoconfig
+
 // Project defaults
 Packages.Default += [
     Fuse
