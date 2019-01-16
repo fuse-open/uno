@@ -34,6 +34,7 @@ namespace Uno.Configuration
         readonly Dictionary<string, UnoConfig> _configCache = new Dictionary<string, UnoConfig>();
         readonly Dictionary<string, UnoConfigFile> _fileCache = new Dictionary<string, UnoConfigFile>();
         readonly Dictionary<string, List<UnoConfigString>> _stringCache = new Dictionary<string, List<UnoConfigString>>();
+        readonly HashSet<string> _visitedDirectories = new HashSet<string>();
 
         public IReadOnlyList<UnoConfigFile> Files => _files;
 
@@ -245,6 +246,11 @@ namespace Uno.Configuration
             // Convert drive letter to uppercase to avoid mixed case bugs
             if (PlatformDetection.IsWindows && dir.Length >= 2 && dir[1] == ':' && char.IsLower(dir[0]))
                 dir = char.ToUpper(dir[0]) + dir.Substring(1);
+
+            if (_visitedDirectories.Contains(dir))
+                return;
+
+            _visitedDirectories.Add(dir);
 
             var node_modules = Path.Combine(dir, "node_modules");
 
