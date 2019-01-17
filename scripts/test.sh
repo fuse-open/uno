@@ -8,7 +8,11 @@ TARGET=$1
 
 # Run uno tests
 uno test $TARGET lib
-uno test $TARGET tests/src/{Uno,UX}Test
+
+# Skip when testing 'native' on AppVeyor
+if [[ "$APPVEYOR" != True || "$TARGET" != native ]]; then
+    uno test $TARGET tests/src/{Uno,UX}Test
+fi
 
 # Run compiler tests
 function uno-compiler-test {
