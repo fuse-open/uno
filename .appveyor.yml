@@ -29,12 +29,10 @@ before_test:
           Copy-Item -Path mesa\x64\opengl32.dll -Destination (Join-Path $buildDir opengl32.dll)
         }
       }
-  - bin\uno test-gen lib %TEMP%\PackageCompilationTest
 
 test_script:
   - nunit3-console
       src\testing\Uno.TestRunner.Tests\bin\Release\Uno.TestRunner.Tests.dll
       src\ux\Uno.UX.Markup.AST\Tests\bin\Release\Uno.UX.Markup.AST.Tests.dll
       src\ux\Uno.UX.Markup.UXIL\Tests\bin\Release\Uno.UX.Markup.UXIL.Tests.dll
-  - bin\uno test --target=%TARGET% lib
-  - bin\uno build --target=%TARGET% --no-strip %TEMP%\PackageCompilationTest
+  - bash scripts\test.sh %TARGET%

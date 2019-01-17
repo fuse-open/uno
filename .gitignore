@@ -43,6 +43,7 @@ build/
 .uno/
 .cache/
 .stuff/
+.test/
 .unobuild
 .vs/
 **/bin/
