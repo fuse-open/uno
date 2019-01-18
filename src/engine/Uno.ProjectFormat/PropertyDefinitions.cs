@@ -90,19 +90,6 @@ namespace Uno.ProjectFormat
             {"Native.Defines", PropertyType.String},
             {"Mac.Icon", PropertyType.Path},
             {"Windows.Icon", PropertyType.Path},
-            {"Package.Authors", PropertyType.String, "$(Publisher)"},
-            {"Package.Copyright", PropertyType.String, "$(Copyright)"},
-            {"Package.Description", PropertyType.String, "$(Description)"},
-            {"Package.IconUrl", PropertyType.String},
-            {"Package.Language", PropertyType.String, "en-US"},
-            {"Package.LicenseUrl", PropertyType.String},
-            {"Package.Owners", PropertyType.String, "$(Publisher)"},
-            {"Package.ProjectUrl", PropertyType.String, "$(URL)"},
-            {"Package.ReleaseNotes", PropertyType.String},
-            {"Package.RequireLicenseAcceptance", PropertyType.Bool, false},
-            {"Package.Summary", PropertyType.String},
-            {"Package.Tags", PropertyType.String},
-            {"Package.Title", PropertyType.String, "$(Title)"}
         };
 
         public static readonly Dictionary<string, string> RenamedItems = new Dictionary<string, string>
