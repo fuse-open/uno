@@ -10,7 +10,6 @@ namespace Uno.TestRunner.BasicTypes
 {
     public class CommandLineOptions
     {
-        public string Reporter;
         public List<string> Paths;
         public string LogFileName;
         public BuildTarget Target;
@@ -37,7 +36,6 @@ namespace Uno.TestRunner.BasicTypes
 
             var commandOptions = new CommandLineOptions
             {
-                Reporter = "console",
                 TestTimeout = TimeSpan.FromSeconds(10),
                 StartupTimeout = TimeSpan.FromMinutes(1),
             };
@@ -46,7 +44,7 @@ namespace Uno.TestRunner.BasicTypes
             var p = new OptionSet
             {
                 { "h|?|help", "Show help", v => help = v != null },
-                { "r|reporter=", "Reporter type. teamcity|console", v => commandOptions.Reporter = v },
+                { "r|reporter=", "Reporter type (not used)",  v => Console.Error.WriteLine("WARNING: --reporter is deprecated and has no effect.") },
                 { "l|logfile=", "Write output to this file instead of stdout", v => commandOptions.LogFileName = v },
                 { "t|target=", "Build target. Currently supports DotNet|Android|CMake", v => targetName = v },
                 { "v|verbose", "Verbose, always prints output from compiler and debug_log", v => verbose = v != null },

@@ -16,16 +16,8 @@ namespace Uno.TestRunner.Loggers
             {
                 writer = new LogFileWriter(options.LogFileName);
             }
-            switch (options.Reporter.ToLower())
-            {
-                case "teamcity":
-                    return new TeamCityResultLogger(writer, options.Trace);
-                case "console":
-                case "":
-                    return new ConsoleLogger(writer, options.Trace);
-                default:
-                    throw new ArgumentException("Unknown reporter type {0}", options.Reporter);
-            }
+
+            return new ConsoleLogger(writer, options.Trace);
         }
     }
 }

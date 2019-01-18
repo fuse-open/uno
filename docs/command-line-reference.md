@@ -187,7 +187,7 @@ for projects named '*Test.unoproj'
 
 Available options:
   -h, -?, --help             Show help
-  -r, --reporter=VALUE       Reporter type. teamcity|console
+  -r, --reporter=VALUE       Reporter type (not used)
   -l, --logfile=VALUE        Write output to this file instead of stdout
   -t, --target=VALUE         Build target. Currently supports DotNet|Android|
                                CMake
