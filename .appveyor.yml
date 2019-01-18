@@ -14,7 +14,7 @@ install:
       }
 
 build_script:
-  - npm pack
+  - npm pack --silent
 
 artifacts:
   - path: '*.tgz'
