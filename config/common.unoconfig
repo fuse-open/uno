@@ -7,9 +7,3 @@ if WIN32 {
 
 // User config
 require ~/.unoconfig
-
-// Project defaults
-Packages.Default += [
-    Fuse
-    FuseJS
-]
