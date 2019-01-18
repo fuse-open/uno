@@ -27,7 +27,7 @@ namespace Uno.Compiler.Core.IL.Testing
         private TestOptions _testOptions;
         private readonly DataType _appClass;
 
-        public TestSetupTransform(CompilerPass parent, bool headless)
+        public TestSetupTransform(CompilerPass parent)
             : base(parent)
         {
             if (Environment.Options.TestOptions == null)
@@ -43,7 +43,7 @@ namespace Uno.Compiler.Core.IL.Testing
             _actionType = (DelegateType)ILFactory.GetType("Uno.Action");
             _testSetupType = ILFactory.GetType("Uno.Testing.TestSetup");
 
-            _appClass = headless ? ILFactory.GetType("Uno.Testing.TestingApp") : Essentials.Application;
+            _appClass = Essentials.Application;
 
             _source = Package.Source;
             _testRegistryType = ILFactory.GetType("Uno.Testing.Registry");

@@ -139,8 +139,6 @@ namespace Uno.Build
 
             if (!string.IsNullOrEmpty(_target.FormerName))
                 _env.Define(_target.FormerName);
-            if (_options.Defines.Contains("HEADLESS"))
-                _env.Define("HEADLESS");
             if (_compilerOptions.Debug)
                 _env.Define("DEBUG");
             if (_options.Configuration != BuildConfiguration.Debug)

@@ -6,6 +6,6 @@
     "csource.cpp:CSource",
     "cheader.h:CHeader",
     "*",
-    "CIL.uxl:Extensions", // To test for .NET, run `uno build pinvoke -DENABLE_CIL_TESTS -crelease && uno test -tdotnet -DENABLE_CIL_TESTS -DHEADLESS`
+    "CIL.uxl:Extensions", // To test for .NET, run `uno build pinvoke -DENABLE_CIL_TESTS -crelease && uno test -tdotnet -DENABLE_CIL_TESTS`
   ]
 }
