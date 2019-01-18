@@ -20,7 +20,6 @@ namespace Uno.Build
         public string OutputDirectory;
         public string MainClass;
         public string TestFilter;
-        public string TestServerUrl = "http://localhost";
         public string NativeArguments;
         public string RunArguments;
         public readonly List<string> Defines = new List<string>();
@@ -37,7 +36,6 @@ namespace Uno.Build
             hash = 2 * hash + Test.GetHashCode();
             hash = 13 * hash + MainClass.NullableHashCode();
             hash = 13 * hash + TestFilter.NullableHashCode();
-            hash = 13 * hash + TestServerUrl.NullableHashCode();
 
             foreach (var d in Defines)
                 hash = 13 * hash + d.GetHashCode();

@@ -101,7 +101,6 @@ namespace Uno.CLI.Projects
                     { "m=|main=|main-class=",   value => options.MainClass = value },
                     { "n=|native-args=",        nativeArgs.Add },
                     { "a=|run-args=",           runArgs.Add },
-                    { "test-server-url=",       value => options.TestServerUrl = value },
                     { "P|no-parallel",          value => options.Parallel = false },
                     { "N|q|no-native",          value => options.Native = false },
                     { "S|e|no-strip",           value => options.Strip = false },

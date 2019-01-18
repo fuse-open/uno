@@ -23,7 +23,6 @@ namespace Uno.TestRunner.BasicTypes
         public bool OnlyBuild;
         public bool AllowDebugger;
         public bool OpenDebugger;
-        public bool RunLocal;
         public bool NoUninstall;
         public bool Library;
         public string OutputDirectory;
@@ -60,7 +59,7 @@ namespace Uno.TestRunner.BasicTypes
                 { "only-build", "Don't run compiled program.",  v => commandOptions.OnlyBuild = v != null },
                 { "allow-debugger", "Don't run compiled program, allow user to start it from a debugger.",  v => commandOptions.AllowDebugger = v != null },
                 { "d|debug", "Open IDE for debugging tests.",  v => commandOptions.OpenDebugger = v != null },
-                { "run-local", "Run the test directly, without using HTTP",  v => commandOptions.RunLocal = v != null },
+                { "run-local", "Run the test directly (not used)",  v => Console.Error.WriteLine("WARNING: --run-local is deprecated and has no effect.") },
                 { "no-uninstall", "Don't uninstall tests after running on device", v => commandOptions.NoUninstall = v != null },
                 { "D=|define=", "Add define, to enable a feature", commandOptions.Defines.Add },
                 { "U=|undefine=", "Remove define, to disable a feature", commandOptions.Undefines.Add },

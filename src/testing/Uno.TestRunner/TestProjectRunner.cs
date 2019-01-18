@@ -37,10 +37,6 @@ namespace Uno.TestRunner
             {
                 _testRun = new TestRun(_logger, _options.TestTimeout, _options.StartupTimeout);
 
-                HttpTestCommunicator communicator = null;
-                if (!_options.RunLocal)
-                    communicator = new HttpTestCommunicator(_logger, _testRun, NeedsPublicIp());
-
                 var cts = new CancellationTokenSource();
                 bool runFinished = false;
                 try
@@ -50,15 +46,10 @@ namespace Uno.TestRunner
                     var proj = Project.Load(_unoProj);
                     var outputDirectory = _options.OutputDirectory ?? Path.GetFullPath(Path.Combine(proj.BuildDirectory, "Test", target.Identifier));
 
-                    // YUCK: need to start the communicator before building, to get the Prefix/TestServerUrl
-                    if (communicator != null)
-                        communicator.Start();
-
                     var options = new BuildOptions {
                         Test = true,
                         Force = true,
                         TestFilter = _options.Filter,
-                        TestServerUrl = _options.RunLocal ? string.Empty : communicator.Prefix,
                         OutputDirectory = outputDirectory,
                         WarningLevel = 1,
                         Library = _options.Library,
@@ -85,11 +76,8 @@ namespace Uno.TestRunner
                     // We don't need a window when running tests.
                     Environment.SetEnvironmentVariable("UNO_WINDOW_HIDDEN", "1");
 
-                    Log targetLog = null;
-                    if (_options.RunLocal)
-                    {
-                        targetLog = new Log(new DebugLogTestFilter(Console.Out, _testRun), Console.Error);
-                    }
+                    var targetLog = new Log(new DebugLogTestFilter(Console.Out, _testRun), Console.Error);
+
                     Task runTask = null;
                     try
                     {
@@ -117,9 +105,6 @@ namespace Uno.TestRunner
                 }
                 finally
                 {
-                    if (communicator != null)
-                        communicator.Stop();
-
                     _logger.ProjectEnded(tests);
                     if (!runFinished)
                         cts.Cancel();
@@ -135,11 +120,6 @@ namespace Uno.TestRunner
                 }
             }
             return tests;
-        }
-
-        private bool NeedsPublicIp()
-        {
-            return _options.Target is AndroidBuild;
         }
     }
 }

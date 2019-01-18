@@ -206,7 +206,7 @@ Available options:
       --allow-debugger       Don't run compiled program, allow user to start it
                                from a debugger.
   -d, --debug                Open IDE for debugging tests.
-      --run-local            Run the test directly, without using HTTP
+      --run-local            Run the test directly (not used)
       --no-uninstall         Don't uninstall tests after running on device
   -D, --define=VALUE         Add define, to enable a feature
   -U, --undefine=VALUE       Remove define, to disable a feature
