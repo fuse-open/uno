@@ -1,7 +1,6 @@
 using Uno;
 using Uno.Diagnostics;
-using Uno.Net.Http;
-using Uno.Testing.Assert;
+using Uno.Text;
 
 namespace Uno.Testing
 {
@@ -19,15 +18,11 @@ namespace Uno.Testing
             _dispatcher = dispatcher;
         }
 
-        public RemoteRunner(Registry registry, string prefix) : this(registry, prefix, new HttpMessageDispatcher())
-        {
-        }
-
         private override void Start()
         {
             _dispatcher.Start();
             var query = _prefix + "?event=ready"
-            + "&testCount=" + TestCount;
+                + "&testCount=" + TestCount;
             Get(query);
         }
 
@@ -40,7 +35,7 @@ namespace Uno.Testing
         {
             _currentTest = name;
             var query = _prefix + "?event=testStarted"
-            + "&testName=" + Uri.EscapeDataString(_currentTest);
+                + "&testName=" + EscapeDataString(_currentTest);
             Get(query);
             _startTime = Clock.GetSeconds();
         }
@@ -48,44 +43,44 @@ namespace Uno.Testing
         private override void TestPassed()
         {
             int us = (int)(1000000.0 * (Clock.GetSeconds() - _startTime));
-            string q = _prefix + "?event=testPassed"
-            + "&testName=" + Uri.EscapeDataString(_currentTest)
-            + "&us=" + us;
-            Get(q);
+            var query = _prefix + "?event=testPassed"
+                + "&testName=" + EscapeDataString(_currentTest)
+                + "&us=" + us;
+            Get(query);
             _currentTest = null;
             SheduleNextTest();
         }
 
         private override void TestIgnored(string reason)
         {
-            string q = _prefix + "?event=testIgnored"
-            + "&testName=" + Uri.EscapeDataString(_currentTest)
-            + "&reason=" + Uri.EscapeDataString(reason);
-            Get(q);
+            var query = _prefix + "?event=testIgnored"
+                + "&testName=" + EscapeDataString(_currentTest)
+                + "&reason=" + EscapeDataString(reason);
+            Get(query);
             _currentTest = null;
             SheduleNextTest();
         }
 
         private override void AssertionFailed(AssertionFailedException e)
         {
-            string q = _prefix + "?event=testAsserted"
-            + "&testName=" + Uri.EscapeDataString(_currentTest)
-            + "&filename=" + Uri.EscapeDataString(e.FileName)
-            + "&line=" + e.Line
-            + "&membername=" + Uri.EscapeDataString(e.MemberName)
-            + "&expected=" + Uri.EscapeDataString(e.Expected.ToString())
-            + "&actual=" + Uri.EscapeDataString(e.Actual.ToString());
-            Get(q);
+            var query = _prefix + "?event=testAsserted"
+                + "&testName=" + EscapeDataString(_currentTest)
+                + "&filename=" + EscapeDataString(e.FileName)
+                + "&line=" + e.Line
+                + "&membername=" + EscapeDataString(e.MemberName)
+                + "&expected=" + EscapeDataString(e.Expected.ToString())
+                + "&actual=" + EscapeDataString(e.Actual.ToString());
+            Get(query);
             _currentTest = null;
             SheduleNextTest();
         }
 
         private override void ExceptionThrown(Exception e)
         {
-            string q = _prefix + "?event=testThrew"
-            + "&testName=" + Uri.EscapeDataString(_currentTest)
-            + "&message=" + Uri.EscapeDataString(e.ToString());
-            Get(q);
+            var query = _prefix + "?event=testThrew"
+                + "&testName=" + EscapeDataString(_currentTest)
+                + "&message=" + EscapeDataString(e.ToString());
+            Get(query);
             _currentTest = null;
             SheduleNextTest();
         }
@@ -95,6 +90,62 @@ namespace Uno.Testing
         {
             query += "&sequenceId=" + sequenceId++;
             _dispatcher.Get(query);
+        }
+
+        static string EscapeDataString(string stringToEscape)
+        {
+            var bytes = Utf8.GetBytes(stringToEscape);
+
+            var count = 0;
+            for (var i = 0; i < bytes.Length; i++)
+            {
+                count++;
+                if (EscapeDataSymbol(bytes[i]))
+                    count += 2;
+            }
+
+            var result = new char[count];
+            var index = 0;
+            for (var i = 0; i < bytes.Length; i++)
+            {
+                var symbol = bytes[i];
+                if (EscapeDataSymbol(symbol))
+                {
+                    result[index++] = '%';
+                    result[index++] = GetHexFromNumber(symbol>>4 & 15);
+                    result[index++] = GetHexFromNumber(symbol & 15);
+                }
+                else
+                {
+                    result[index++] = (char)symbol;
+                }
+            }
+            return new string(result);
+        }
+
+        static bool EscapeDataSymbol(byte symbol)
+        {
+            if (symbol >= 128)
+                return true;
+
+            if (char.IsLetter((char)symbol) || char.IsDigit((char)symbol))
+                return false;
+            switch ((char)symbol)
+            {
+                case '-':
+                case '_':
+                case '.':
+                case '~':
+                    return false;
+            }
+            return true;
+        }
+
+        static char GetHexFromNumber(int value)
+        {
+            if (value > 9)
+                return (char)((byte)'A' + value - 10);
+            return (char)((byte)'0' + value);
         }
     }
 }

@@ -23,10 +23,7 @@ namespace Uno.Testing
                 Thread.Sleep(2500);
             }
 
-            if (string.IsNullOrEmpty(serverUrl))
-                _runner = new RemoteRunner(registry, "unotests://", new DebugLogMessageDispatcher());
-            else
-                _runner = new RemoteRunner(registry, serverUrl);
+            _runner = new RemoteRunner(registry, "unotests://", new DebugLogMessageDispatcher());
 
             Uno.Platform.Displays.MainDisplay.Tick += OnTick;
         }
