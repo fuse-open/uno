@@ -52,27 +52,13 @@ namespace Uno.Build.Targets.Uno
                     var source = Path.Combine(_upk.SourceDirectory, f.NativePath);
                     var destination = Path.Combine(package.RootDirectory, f.NativePath);
                     _disk.CopyFile(source, destination);
-                    RequireFile(f.UnixPath);
                 }
             }
 
-            RequireFile(".uno/package");
             package.Save();
-
-            // don't require this
             File.WriteAllText(
                 Path.Combine(package.CacheDirectory, "config"), 
                 _env.GetString("Configuration"));
-
-            foreach (var p in _upk.References)
-                _env.Require("Nuspec.DependencyElement", "<dependency id=\"" + p.Name + "\" version=\"" + p.Version + "\" />");
-        }
-
-        void RequireFile(string file)
-        {
-            // NuGet wants win paths on Windows; escape UXL macros
-            file = file.UnixToNative().Replace("@(", "\\@(").Replace("\\\\@(", "\\\\\\@(");
-            _env.Require("Nuspec.FileElement", "<file src=\"" + file + "\" target=\"" + file + "\" />");
         }
     }
 }

@@ -523,8 +523,6 @@
     "Targets/Native/rc/icon.rc:File",
     "Targets/Native/run.bat:File",
     "Targets/Native/run.sh:File",
-    "Targets/Package/nuspec.xml:File",
-    "Targets/Package/Package.uxl:Extensions",
     "Targets/PInvoke/build.bat:File",
     "Targets/PInvoke/build.sh:File",
     "Targets/PInvoke/CMakeLists.txt:File",
