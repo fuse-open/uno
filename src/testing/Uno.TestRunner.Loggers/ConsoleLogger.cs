@@ -53,7 +53,9 @@ namespace Uno.TestRunner.Loggers
             ColorHelper.SetForeground(ConsoleColor.Yellow);
             Write("IGNORED: {0}", test.Name);
             ColorHelper.SetDefault();
-            Write("         " + test.IgnoreReason);
+
+            if (!string.IsNullOrEmpty(test.IgnoreReason))
+                Write("         " + test.IgnoreReason);
         }
 
         public override void InternalError(string message)
