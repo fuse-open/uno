@@ -1,8 +1,10 @@
-// SDK config
+// Android build tools config
 if WIN32 {
-    require %LOCALAPPDATA%/Fusetools/Fuse/Android/.sdkconfig
+    require %LOCALAPPDATA%/Fusetools/Fuse/Android/.sdkconfig // For legacy 'fuse install android'
+    require %APPDATA%/npm/node_modules/android-build-tools/.unoconfig // For 'npm install -g android-build-tools'
 } else {
-    require "%HOME%/Library/Application Support/Fusetools/Fuse/Android/.sdkconfig"
+    require "%HOME%/Library/Application Support/Fusetools/Fuse/Android/.sdkconfig" // For legacy 'fuse install android'
+    require /usr/local/lib/node_modules/android-build-tools/.unoconfig // For 'npm install -g android-build-tools'
 }
 
 // User config
