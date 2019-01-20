@@ -28,7 +28,8 @@ To build your standard library, type `uno doctor -e`.
 ## Android
 
 To support building Android apps, we need to know where your [Android SDKs](https://developer.android.com/studio/index.html)
-are installed.
+are installed. Running `npm install -g android-build-tools` will set this up automatically, or you can
+specify other locations as demonstrated below.
 
 ### Windows
 
@@ -44,8 +45,6 @@ Java.JDK.Directory: "%PROGRAMFILES%\\Java\\jdk1.8.0_40"
 Android.NDK.Directory: %HOME%/Library/Android/sdk/ndk-bundle
 Android.SDK.Directory: %HOME%/Library/Android/sdk
 ```
-
-If you have Fuse Studio, running `fuse install android` will set this up automatically.
 
 ## iOS
 
