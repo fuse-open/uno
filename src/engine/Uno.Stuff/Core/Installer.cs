@@ -66,7 +66,7 @@ namespace Stuff.Core
                 foreach (var item in StuffObject.Load(filename, flags, optionalDefines))
                 {
                     var itemKey = item.Key.Replace('/', Path.DirectorySeparatorChar);
-                    var itemFile = Path.Combine(parentDir, ".stuff", itemKey);
+                    var itemFile = Path.Combine(parentDir, ".uno", "stuff", itemKey);
                     var targetDir = Path.Combine(parentDir, itemKey);
                     if (!IsItemUpToDate(targetDir, itemFile, item.Value?.ToString(), flags))
                         return false;
@@ -89,7 +89,7 @@ namespace Stuff.Core
                     try
                     {
                         var parentDirectory = Path.GetDirectoryName(file);
-                        Disk.DeleteDirectory(Path.Combine(parentDirectory, ".stuff"));
+                        Disk.DeleteDirectory(Path.Combine(parentDirectory, ".uno", "stuff"));
 
                         foreach (var item in StuffObject.Load(file, StuffFlags.AcceptAll))
                             Disk.DeleteDirectory(
@@ -160,7 +160,7 @@ namespace Stuff.Core
             if (components.Contains(".") || components.Contains(".."))
                 throw new FormatException(item.Key + ": '.' or '..' are not valid in directory names");
 
-            var itemFile = Path.Combine(_parentDirectory, ".stuff", itemKey);
+            var itemFile = Path.Combine(_parentDirectory, ".uno", "stuff", itemKey);
             var targetDir = Path.Combine(_parentDirectory, itemKey);
             var itemValue = item.Value?.ToString();
 
