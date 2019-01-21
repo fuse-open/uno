@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Uno.IO;
 
 namespace Stuff
 {
@@ -43,7 +44,7 @@ namespace Stuff
         {
             return _locks.Length == 0
                 ? "(empty)"
-                : string.Join(", ", _locks.Select(x => x.Filename.Relative()));
+                : string.Join(", ", _locks.Select(x => x.Filename.ToRelativePath()));
         }
 
         bool TryAcquireAll()

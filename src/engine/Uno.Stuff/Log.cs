@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Uno.IO;
 
 namespace Stuff
 {
@@ -34,7 +35,7 @@ namespace Stuff
         public static void Event(IOEvent @event, string path)
         {
             if (EnableVerbose)
-                WriteLine(OutWriter, ConsoleColor.DarkCyan, @event.ToString().ToLower() + " " + path.Relative());
+                WriteLine(OutWriter, ConsoleColor.DarkCyan, @event.ToString().ToLower() + " " + path.ToRelativePath());
         }
 
         public static void Verbose(string format, params object[] args)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Uno.IO;
 
 namespace Stuff.Format
 {
@@ -49,7 +50,7 @@ namespace Stuff.Format
                             }
 
                             if (filename.IndexOf('*') == -1)
-                                Log.Verbose(file.Filename.Relative() + "(" + item.LineNumber + "): File not found");
+                                Log.Verbose(file.Filename.ToRelativePath() + "(" + item.LineNumber + "): File not found");
                             else
                                 foreach (var foundFile in Directory.EnumerateFiles(file.ParentDirectory, filename))
                                     if (!ContainsFile(foundFile))
@@ -72,7 +73,7 @@ namespace Stuff.Format
                 }
                 catch (Exception e)
                 {
-                    throw new FormatException(file.Filename.Relative() + "(" + item.LineNumber + "): " + e.Message, e);
+                    throw new FormatException(file.Filename.ToRelativePath() + "(" + item.LineNumber + "): " + e.Message, e);
                 }
             }
         }

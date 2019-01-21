@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using Uno.Diagnostics;
+using Uno.IO;
 
 namespace Stuff
 {
@@ -47,7 +49,7 @@ namespace Stuff
             }
             catch (Exception e)
             {
-                Log.Warning("Failed to delete " + name.Relative() + ": " + e.Message);
+                Log.Warning("Failed to delete " + name.ToRelativePath() + ": " + e.Message);
             }
         }
 
@@ -68,7 +70,7 @@ namespace Stuff
             }
             catch (Exception e)
             {
-                Log.Warning("Failed to delete " + name.Relative() + ": " + e.Message);
+                Log.Warning("Failed to delete " + name.ToRelativePath() + ": " + e.Message);
             }
         }
 
@@ -97,7 +99,7 @@ namespace Stuff
             }
             catch (Exception e)
             {
-                Log.Warning("Failed to touch " + name.Relative() + ": " + e.Message);
+                Log.Warning("Failed to touch " + name.ToRelativePath() + ": " + e.Message);
             }
         }
     }

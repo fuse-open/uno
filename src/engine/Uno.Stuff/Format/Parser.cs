@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Uno.IO;
 
 namespace Stuff.Format
 {
@@ -282,7 +283,7 @@ namespace Stuff.Format
 
         FormatException SyntaxError(Token token, string message)
         {
-            return new FormatException(_file.Filename.Relative() + "(" + token.LineNumber + "." + token.LinePosition + "): " + message + " (" + token + ")");
+            return new FormatException(_file.Filename.ToRelativePath() + "(" + token.LineNumber + "." + token.LinePosition + "): " + message + " (" + token + ")");
         }
 
         enum Precedence

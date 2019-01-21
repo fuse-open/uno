@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using Stuff.Format;
+using Uno;
+using Uno.Diagnostics;
+using Uno.IO;
 
 namespace Stuff.Core
 {
@@ -46,7 +49,7 @@ namespace Stuff.Core
                 }
 
                 if (_result.Count == 0)
-                    throw new ArgumentException("No .STUFF-PACK file(s) found in " + inputDirectory.Relative().Quote());
+                    throw new ArgumentException("No .STUFF-PACK file(s) found in " + inputDirectory.ToRelativePath().Quote());
             }
 
             var uploadFile = Path.Combine(OutputDirectory, Name + ".stuff-upload");
@@ -69,7 +72,7 @@ namespace Stuff.Core
             if (File.Exists(zipFile))
                 File.Delete(zipFile);
 
-            Log.WriteLine(ConsoleColor.Cyan, "Creating {0}", zipFile.Relative().Quote());
+            Log.WriteLine(ConsoleColor.Cyan, "Creating {0}", zipFile.ToRelativePath().Quote());
             CreateFromDirectory(directory, zipFile);
         }
 
@@ -116,7 +119,7 @@ namespace Stuff.Core
                             if (pi.Exists && pi.Length == fi.Length &&
                                 !Shell.Readlink(p) && CompareFiles(pi, fi))
                             {
-                                Log.Event(IOEvent.Symlink, Path.GetFullPath(f).Relative(pwd) + e + " -> " + p);
+                                Log.Event(IOEvent.Symlink, Path.GetFullPath(f).ToRelativePath(pwd) + e + " -> " + p);
                                 Shell.Symlink(p, f);
                                 break;
                             }

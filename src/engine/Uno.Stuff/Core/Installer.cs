@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Stuff.Format;
+using Uno;
+using Uno.Diagnostics;
+using Uno.IO;
 
 namespace Stuff.Core
 {
@@ -40,7 +43,7 @@ namespace Stuff.Core
                             }
                             catch (Exception e)
                             {
-                                Log.Error(file.Relative() + ": " + e.Message);
+                                Log.Error(file.ToRelativePath() + ": " + e.Message);
                                 retval = false;
                             }
                         }));
@@ -96,7 +99,7 @@ namespace Stuff.Core
                     }
                     catch (Exception e)
                     {
-                        Log.Error(file.Relative() + ": " + e.Message);
+                        Log.Error(file.ToRelativePath() + ": " + e.Message);
                     }
                 }
             }
@@ -135,14 +138,14 @@ namespace Stuff.Core
                             }
                             catch (Exception e)
                             {
-                                Log.Error(_stuffFile.Relative() + " (" + item.Key + "): " + e.Message);
+                                Log.Error(_stuffFile.ToRelativePath() + " (" + item.Key + "): " + e.Message);
                                 _retval = false;
                             }
                         }));
             }
             catch (Exception e)
             {
-                throw new Exception(_stuffFile.Relative() + ": " + e.Message, e);
+                throw new Exception(_stuffFile.ToRelativePath() + ": " + e.Message, e);
             }
 
             Task.WaitAll(_tasks.ToArray());
@@ -172,7 +175,7 @@ namespace Stuff.Core
 
                 for (int tries = 0;; tries++)
                 {
-                    Log.Verbose("Extracting " + targetDir.Relative().Quote());
+                    Log.Verbose("Extracting " + targetDir.ToRelativePath().Quote());
 
                     // Support local files (e.g. from .STUFF-UPLOAD files)
                     var localFile = Path.Combine(_parentDirectory, itemValue);

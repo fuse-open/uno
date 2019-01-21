@@ -46,7 +46,6 @@
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="Arguments.cs" />
     <Compile Include="Core\LongPathZipFile.cs" />
     <Compile Include="Core\StuffWebClient.cs">
       <SubType>Component</SubType>
@@ -68,7 +67,6 @@
     <Compile Include="Format\TokenType.cs" />
     <Compile Include="IOEvent.cs" />
     <Compile Include="LongPathDisk.cs" />
-    <Compile Include="PlatformDetection.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Core\Packer.cs" />
     <Compile Include="Core\DownloadCache.cs" />
@@ -78,6 +76,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Uno.Stuff.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+      <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
+      <Name>Uno.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

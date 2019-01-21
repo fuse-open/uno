@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Diagnostics;
+using Uno.IO;
 
 namespace Stuff.Format
 {
@@ -46,7 +48,7 @@ namespace Stuff.Format
 
                 foreach (var token in parser)
                     Log.WriteLine(
-                        Filename.Relative() +
+                        Filename.ToRelativePath() +
                         "(" + token.LineNumber + "." + token.LinePosition +
                         ") <" + token.Type + "> " + token);
             }
