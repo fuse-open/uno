@@ -1,11 +1,12 @@
 using System;
 using System.Net;
+using Uno.Diagnostics;
 
 namespace Stuff.Core
 {
     class StuffWebClient : WebClient
     {
-        static readonly string UserAgent = "stuff/" + typeof(StuffWebClient).Assembly.GetName().Version;
+        static readonly string UserAgent = "uno/" + UnoVersion.InformationalVersion;
 
         protected override WebRequest GetWebRequest(Uri address)
         {
