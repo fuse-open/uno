@@ -5,7 +5,7 @@ namespace Stuff.Core
 {
     class StuffWebClient : WebClient
     {
-        static readonly string UserAgent = "stuff/" + Command.ExeVersion;
+        static readonly string UserAgent = "stuff/" + typeof(StuffWebClient).Assembly.GetName().Version;
 
         protected override WebRequest GetWebRequest(Uri address)
         {

@@ -55,7 +55,6 @@
     <Compile Include="Android\AdbRunner.cs" />
     <Compile Include="Android\LaunchApk.cs" />
     <Compile Include="System\Open.cs" />
-    <Compile Include="Packages\Stuff.cs" />
     <Compile Include="Testing\Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projects\BuildArguments.cs" />

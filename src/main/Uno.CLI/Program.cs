@@ -27,7 +27,6 @@ namespace Uno.CLI
             new Packages.Feed(),
             new Packages.Pack(),
             new Packages.Push(),
-            new Packages.Stuff(),
             new Diagnostics.Config(),
             new Diagnostics.Ls(),
             new Diagnostics.Lint(),

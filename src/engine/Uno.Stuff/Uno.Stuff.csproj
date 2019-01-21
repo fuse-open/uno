@@ -47,13 +47,6 @@
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="Arguments.cs" />
-    <Compile Include="Commands\Clean.cs" />
-    <Compile Include="Commands\GC.cs" />
-    <Compile Include="Commands\Install.cs" />
-    <Compile Include="Commands\Pack.cs" />
-    <Compile Include="Commands\Parse.cs" />
-    <Compile Include="Commands\Symlink.cs" />
-    <Compile Include="Commands\Push.cs" />
     <Compile Include="Core\LongPathZipFile.cs" />
     <Compile Include="Core\StuffWebClient.cs">
       <SubType>Component</SubType>
@@ -78,12 +71,9 @@
     <Compile Include="PlatformDetection.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Core\Packer.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Core\DownloadCache.cs" />
     <Compile Include="Core\Installer.cs" />
-    <Compile Include="Command.cs" />
     <Compile Include="Shell.cs" />
-    <Compile Include="Commands\Sln.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
