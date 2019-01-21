@@ -88,7 +88,7 @@ namespace Stuff.Core
                 for (int tries = 0;; tries++)
                 {
                     // 2) Download the file from URL
-                    Log.WriteLine(ConsoleColor.Blue, "stuff: GET " + url + (
+                    Log.WriteLine(ConsoleColor.Blue, "Downloading " + url + (
                             tries > 0
                                 ? " (" + tries + "...)"
                                 : null
