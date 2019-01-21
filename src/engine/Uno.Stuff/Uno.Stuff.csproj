@@ -68,7 +68,6 @@
     <Compile Include="IOEvent.cs" />
     <Compile Include="LongPathDisk.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Core\Packer.cs" />
     <Compile Include="Core\DownloadCache.cs" />
     <Compile Include="Core\Installer.cs" />
     <Compile Include="Shell.cs" />
