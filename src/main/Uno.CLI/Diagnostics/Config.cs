@@ -27,7 +27,7 @@ namespace Uno.CLI.Diagnostics
 
         public override void Execute(IEnumerable<string> args)
         {
-            Stuff.Log.Configure(Log.IsVeryVerbose, Log.OutWriter, Log.ErrorWriter);
+            Stuff.Log.Configure(Log);
 
             var asm = false;
             var system = false;

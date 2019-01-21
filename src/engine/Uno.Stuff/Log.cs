@@ -6,90 +6,46 @@ namespace Stuff
 {
     public static class Log
     {
-        public static TextWriter OutWriter = Console.Out;
-        public static TextWriter ErrorWriter = Console.Error;
-        public static bool EnableVerbose;
+        static Uno.Logging.Log _log = Uno.Logging.Log.Default;
 
-        public static void Configure(bool verbose, TextWriter outWriter, TextWriter errorWriter)
+        public static void Configure(Uno.Logging.Log log)
         {
-            EnableVerbose = verbose;
-            OutWriter = outWriter;
-            ErrorWriter = errorWriter;
+            _log = log;
         }
 
         public static void Fatal(string format, params object[] args)
         {
-            WriteLine(Console.Error, "ERROR: " + format, args);
+            _log.WriteErrorLine("ERROR: " + string.Format(format, args));
         }
 
         public static void Error(string format, params object[] args)
         {
-            WriteLine(Console.Error, ConsoleColor.Red, "ERROR: " + format, args);
+            _log.Error(string.Format(format, args));
         }
 
         public static void Warning(string format, params object[] args)
         {
-            WriteLine(Console.Error, ConsoleColor.Yellow, "WARNING: " + format, args);
+            _log.Warning(string.Format(format, args));
         }
 
         public static void Event(IOEvent @event, string path)
         {
-            if (EnableVerbose)
-                WriteLine(OutWriter, ConsoleColor.DarkCyan, @event.ToString().ToLower() + " " + path.ToRelativePath());
+            _log.VeryVerbose(@event.ToString().ToLower() + " " + path.ToRelativePath(), ConsoleColor.DarkCyan);
         }
 
         public static void Verbose(string format, params object[] args)
         {
-            if (EnableVerbose)
-                WriteLine(OutWriter, ConsoleColor.DarkGray, format, args);
+            _log.VeryVerbose(string.Format(format, args), ConsoleColor.DarkGray);
         }
 
         public static void WriteLine(string format, params object[] args)
         {
-            WriteLine(OutWriter, format, args);
+            _log.WriteLine(string.Format(format, args));
         }
 
         public static void WriteLine(ConsoleColor color, string format, params object[] args)
         {
-            WriteLine(OutWriter, color, format, args);
-        }
-
-        static void WriteLine(TextWriter writer, string format, params object[] args)
-        {
-            lock (writer)
-                writer.WriteLine(format, args);
-        }
-
-        static void WriteLine(TextWriter writer, ConsoleColor color, string format, params object[] args)
-        {
-            lock (writer)
-            {
-                try
-                {
-                    Console.ForegroundColor = color;
-                    writer.WriteLine(format, args);
-                }
-                finally
-                {
-                    Console.ResetColor();
-                }
-            }
-        }
-
-        public static void Write(ConsoleColor color, string format, params object[] args)
-        {
-            lock (OutWriter)
-            {
-                try
-                {
-                    Console.ForegroundColor = color;
-                    OutWriter.Write(format, args);
-                }
-                finally
-                {
-                    Console.ResetColor();
-                }
-            }
+            _log.WriteLine(string.Format(format, args), color);
         }
     }
 }

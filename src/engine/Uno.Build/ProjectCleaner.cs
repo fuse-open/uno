@@ -53,7 +53,7 @@ namespace Uno.Build
             Disk.DeleteDirectory(project.CacheDirectory);
 
             // Remove files installed by stuff
-            Stuff.Log.Configure(Log.IsVeryVerbose, Log.OutWriter, Log.ErrorWriter);
+            Stuff.Log.Configure(Log);
             Installer.CleanAll(
                 project.StuffFiles.Select(
                     x => Path.Combine(project.RootDirectory, x.NativePath)));

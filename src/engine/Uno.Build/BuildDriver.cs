@@ -207,7 +207,7 @@ namespace Uno.Build
             {
                 using (Log.StartAnimation("Installing dependencies"))
                 {
-                    Stuff.Log.Configure(Log.IsVeryVerbose, Log.OutWriter, Log.ErrorWriter);
+                    Stuff.Log.Configure(Log);
 
                     foreach (var f in stuff)
                         if (!Installer.Install(f, 0, defines))
