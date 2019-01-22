@@ -7,12 +7,12 @@ namespace Stuff.Format
 {
     public class StuffObject : Dictionary<string, object>
     {
-        public static StuffObject Load(string filename, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
+        public static StuffObject Load(string filename, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null, Action<string> printLine = null)
         {
-            return Parse(filename, File.ReadAllText(filename), File.ReadAllText, flags, optionalDefines);
+            return Parse(filename, File.ReadAllText(filename), File.ReadAllText, flags, optionalDefines, printLine);
         }
 
-        public static StuffObject Parse(string filename, string stuff, Func<string, string> requireResolver = null, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
+        public static StuffObject Parse(string filename, string stuff, Func<string, string> requireResolver = null, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null, Action<string> printLine = null)
         {
             var file = new StuffFile(
                 filename,
@@ -22,18 +22,16 @@ namespace Stuff.Format
                         (optionalDefines ?? StuffFile.DefaultDefines)
                             .Select(x => x.ToUpperInvariant())));
 
-            file.Parse(stuff, flags.HasFlag(StuffFlags.Print));
+            file.Parse(stuff, printLine);
             var result = file.Flatten(requireResolver).ToObject();
 
             // Workaround to avoid side-effect when StuffFlags.AcceptAll is set
             if (flags.HasFlag(StuffFlags.AcceptAll))
-                foreach (var e in Parse(filename, stuff, requireResolver, 0, optionalDefines))
+                foreach (var e in Parse(filename, stuff, requireResolver, 0, optionalDefines, printLine))
                     if (!result.ContainsKey(e.Key) || result[e.Key]?.ToString().IndexOf('\n') == -1)
                         result[e.Key] = e.Value;
 
-            if (flags.HasFlag(StuffFlags.Print))
-                Log.WriteLine(result.StringifyStuff());
-
+            printLine?.Invoke(result.StringifyStuff());
             return result;
         }
 

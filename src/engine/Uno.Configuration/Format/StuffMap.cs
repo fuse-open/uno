@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Uno.IO;
+using Uno.Logging;
 
 namespace Stuff.Format
 {
@@ -50,7 +51,7 @@ namespace Stuff.Format
                             }
 
                             if (filename.IndexOf('*') == -1)
-                                Log.Verbose(file.Filename.ToRelativePath() + "(" + item.LineNumber + "): File not found");
+                                Log.Default.VeryVerbose(file.Filename.ToRelativePath() + "(" + item.LineNumber + "): File not found");
                             else
                                 foreach (var foundFile in Directory.EnumerateFiles(file.ParentDirectory, filename))
                                     if (!ContainsFile(foundFile))

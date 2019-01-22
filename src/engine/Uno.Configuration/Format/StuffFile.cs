@@ -37,17 +37,17 @@ namespace Stuff.Format
             Defines = defines;
         }
 
-        public void Parse(string stuff, bool printTokens = false)
+        public void Parse(string stuff, Action<string> printTokens = null)
         {
             var parser = new Parser(this, stuff);
 
-            if (printTokens)
+            if (printTokens != null)
             {
                 if (Defines != null)
-                    Log.WriteLine(string.Join(" ", Defines));
+                    printTokens(string.Join(" ", Defines));
 
                 foreach (var token in parser)
-                    Log.WriteLine(
+                    printTokens(
                         Filename.ToRelativePath() +
                         "(" + token.LineNumber + "." + token.LinePosition +
                         ") <" + token.Type + "> " + token);

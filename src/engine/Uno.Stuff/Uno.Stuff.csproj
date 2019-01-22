@@ -52,19 +52,6 @@
     </Compile>
     <Compile Include="Disk.cs" />
     <Compile Include="FileLock.cs" />
-    <Compile Include="Format\Extensions.cs" />
-    <Compile Include="Format\Parser.cs" />
-    <Compile Include="Format\StuffFile.cs" />
-    <Compile Include="Format\Lexer.cs" />
-    <Compile Include="Format\Serializer.cs" />
-    <Compile Include="Format\Strings.cs" />
-    <Compile Include="Format\StuffFlags.cs" />
-    <Compile Include="Format\StuffItem.cs" />
-    <Compile Include="Format\StuffItemType.cs" />
-    <Compile Include="Format\StuffMap.cs" />
-    <Compile Include="Format\StuffObject.cs" />
-    <Compile Include="Format\Token.cs" />
-    <Compile Include="Format\TokenType.cs" />
     <Compile Include="IOEvent.cs" />
     <Compile Include="LongPathDisk.cs" />
     <Compile Include="Log.cs" />
@@ -80,6 +67,10 @@
     <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
       <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
       <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uno.Configuration\Uno.Configuration.csproj">
+      <Project>{95e969af-23a7-46de-8eef-df1bddca55d6}</Project>
+      <Name>Uno.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

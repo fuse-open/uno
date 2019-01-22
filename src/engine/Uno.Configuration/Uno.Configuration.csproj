@@ -36,6 +36,19 @@
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
+    <Compile Include="Format\Extensions.cs" />
+    <Compile Include="Format\Lexer.cs" />
+    <Compile Include="Format\Parser.cs" />
+    <Compile Include="Format\Serializer.cs" />
+    <Compile Include="Format\Strings.cs" />
+    <Compile Include="Format\StuffFile.cs" />
+    <Compile Include="Format\StuffFlags.cs" />
+    <Compile Include="Format\StuffItem.cs" />
+    <Compile Include="Format\StuffItemType.cs" />
+    <Compile Include="Format\StuffMap.cs" />
+    <Compile Include="Format\StuffObject.cs" />
+    <Compile Include="Format\Token.cs" />
+    <Compile Include="Format\TokenType.cs" />
     <Compile Include="UnoConfigFile.cs" />
     <Compile Include="UnoConfig.cs" />
     <Compile Include="UnoConfigString.cs" />
@@ -44,10 +57,6 @@
     <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
       <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
       <Name>Uno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Uno.Stuff\Uno.Stuff.csproj">
-      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
-      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
