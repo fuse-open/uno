@@ -94,10 +94,6 @@
       <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
       <Name>Uno.Compiler.Frontend</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\engine\Uno.Stuff\Uno.Stuff.csproj">
-      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
-      <Name>Uno.Stuff</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

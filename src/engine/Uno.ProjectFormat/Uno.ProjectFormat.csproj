@@ -69,10 +69,6 @@
       <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
       <Name>Uno.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Stuff\Uno.Stuff.csproj">
-      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
-      <Name>Uno.Stuff</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

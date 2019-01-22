@@ -95,6 +95,18 @@
     <Compile Include="BuildOptions.cs" />
     <Compile Include="BuildResult.cs" />
     <Compile Include="Packages\VersionRange.cs" />
+    <Compile Include="Stuff\Disk.cs" />
+    <Compile Include="Stuff\DownloadCache.cs" />
+    <Compile Include="Stuff\FileLock.cs" />
+    <Compile Include="Stuff\Installer.cs" />
+    <Compile Include="Stuff\IOEvent.cs" />
+    <Compile Include="Stuff\Log.cs" />
+    <Compile Include="Stuff\LongPathDisk.cs" />
+    <Compile Include="Stuff\LongPathZipFile.cs" />
+    <Compile Include="Stuff\Shell.cs" />
+    <Compile Include="Stuff\StuffWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
@@ -124,10 +136,6 @@
     <ProjectReference Include="..\Uno.Configuration\Uno.Configuration.csproj">
       <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
       <Name>Uno.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Uno.Stuff\Uno.Stuff.csproj">
-      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
-      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
