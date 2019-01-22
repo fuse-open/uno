@@ -3,7 +3,7 @@ using System.IO;
 using Uno.Diagnostics;
 using Uno.IO;
 
-namespace Stuff
+namespace Uno.Build.Stuff
 {
     public static class Disk
     {

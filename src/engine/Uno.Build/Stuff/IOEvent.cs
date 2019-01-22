@@ -1,4 +1,4 @@
-namespace Stuff
+namespace Uno.Build.Stuff
 {
     public enum IOEvent
     {

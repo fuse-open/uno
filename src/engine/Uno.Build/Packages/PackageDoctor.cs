@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stuff;
-using Uno.Build.JavaScript;
+using Uno.Build.Stuff;
 using Uno.Compiler.API;
 using Uno.Compiler.Frontend;
 using Uno.IO;

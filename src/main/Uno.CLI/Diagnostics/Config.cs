@@ -27,7 +27,7 @@ namespace Uno.CLI.Diagnostics
 
         public override void Execute(IEnumerable<string> args)
         {
-            Stuff.Log.Configure(Log);
+            Build.Stuff.Log.Configure(Log);
 
             var asm = false;
             var system = false;

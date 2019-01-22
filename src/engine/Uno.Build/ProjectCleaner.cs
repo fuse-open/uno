@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stuff.Core;
+using Uno.Build.Stuff;
 using Uno.IO;
 using Uno.Logging;
 using Uno.ProjectFormat;
@@ -13,7 +13,7 @@ namespace Uno.Build
     {
         readonly HashSet<string> _cleanedProjects = new HashSet<string>();
 
-        public ProjectCleaner(Log log)
+        public ProjectCleaner(Logging.Log log)
             : base(log)
         {
         }

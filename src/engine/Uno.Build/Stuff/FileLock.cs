@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using Uno.IO;
 
-namespace Stuff
+namespace Uno.Build.Stuff
 {
     public struct FileLock : IDisposable
     {

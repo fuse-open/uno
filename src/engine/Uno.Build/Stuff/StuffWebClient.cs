@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using Uno.Diagnostics;
 
-namespace Stuff.Core
+namespace Uno.Build.Stuff
 {
     class StuffWebClient : WebClient
     {

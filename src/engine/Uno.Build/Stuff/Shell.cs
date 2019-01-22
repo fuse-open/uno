@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using Uno;
 
-namespace Stuff
+namespace Uno.Build.Stuff
 {
     public static class Shell
     {

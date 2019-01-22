@@ -6,7 +6,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace Stuff.Core
+namespace Uno.Build.Stuff
 {
     public static class DownloadCache
     {

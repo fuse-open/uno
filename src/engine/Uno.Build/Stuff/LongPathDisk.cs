@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Stuff
+namespace Uno.Build.Stuff
 {
     static class LongPathDisk
     {

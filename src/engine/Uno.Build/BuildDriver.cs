@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using Stuff.Core;
+using Uno.Build.Stuff;
 using Uno.Configuration.Format;
 using Uno.Build.JavaScript;
 using Uno.Build.Packages;
@@ -54,7 +54,7 @@ namespace Uno.Build
             _anim = null;
         }
 
-        public BuildDriver(Log log, BuildTarget target, BuildOptions options, Project project, UnoConfig config)
+        public BuildDriver(Logging.Log log, BuildTarget target, BuildOptions options, Project project, UnoConfig config)
             : base(log)
         {
             _target = target;

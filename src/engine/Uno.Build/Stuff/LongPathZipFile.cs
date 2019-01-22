@@ -2,7 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 
-namespace Stuff.Core
+namespace Uno.Build.Stuff
 {
     static class LongPathZipFile
     {

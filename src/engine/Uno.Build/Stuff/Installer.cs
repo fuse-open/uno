@@ -5,11 +5,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Uno.Configuration.Format;
-using Uno;
 using Uno.Diagnostics;
 using Uno.IO;
 
-namespace Stuff.Core
+namespace Uno.Build.Stuff
 {
     public class Installer
     {
