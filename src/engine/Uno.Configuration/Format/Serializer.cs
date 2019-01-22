@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public static class Serializer
     {

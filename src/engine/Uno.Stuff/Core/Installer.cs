@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Stuff.Format;
+using Uno.Configuration.Format;
 using Uno;
 using Uno.Diagnostics;
 using Uno.IO;

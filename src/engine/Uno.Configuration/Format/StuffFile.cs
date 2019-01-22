@@ -5,7 +5,7 @@ using System.Linq;
 using Uno.Diagnostics;
 using Uno.IO;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public class StuffFile : List<StuffItem>
     {

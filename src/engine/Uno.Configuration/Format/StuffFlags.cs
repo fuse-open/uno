@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     [Flags]
     public enum StuffFlags

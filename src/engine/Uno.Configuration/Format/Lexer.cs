@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public class Lexer
     {

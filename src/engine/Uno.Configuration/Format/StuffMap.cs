@@ -4,7 +4,7 @@ using System.IO;
 using Uno.IO;
 using Uno.Logging;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public class StuffMap : Dictionary<string, StuffItem>
     {

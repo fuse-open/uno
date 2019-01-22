@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Stuff.Format;
+using Uno.Configuration.Format;
 using Uno.Compiler;
 using Uno.ProjectFormat;
 

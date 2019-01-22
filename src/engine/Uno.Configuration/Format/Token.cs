@@ -1,4 +1,4 @@
-﻿namespace Stuff.Format
+﻿namespace Uno.Configuration.Format
 {
     public struct Token
     {

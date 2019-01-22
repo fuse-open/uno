@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public class StuffObject : Dictionary<string, object>
     {

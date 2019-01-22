@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Uno.IO;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     class Parser : List<Token>
     {

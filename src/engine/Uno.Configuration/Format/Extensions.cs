@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public static class Extensions
     {

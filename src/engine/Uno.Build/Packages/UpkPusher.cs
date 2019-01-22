@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using NuGet;
-using Stuff.Format;
 using Uno.Build.Packages.Feeds;
 using Uno.Collections;
+using Uno.Configuration.Format;
 using Uno.IO;
 
 namespace Uno.Build.Packages

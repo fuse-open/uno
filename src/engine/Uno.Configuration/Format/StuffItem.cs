@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Stuff.Format
+namespace Uno.Configuration.Format
 {
     public class StuffItem
     {
