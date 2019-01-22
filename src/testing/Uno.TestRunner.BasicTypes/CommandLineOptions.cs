@@ -46,7 +46,7 @@ namespace Uno.TestRunner.BasicTypes
                 { "h|?|help", "Show help", v => help = v != null },
                 { "r|reporter=", "Reporter type (not used)",  v => Console.Error.WriteLine("WARNING: --reporter is deprecated and has no effect.") },
                 { "l|logfile=", "Write output to this file instead of stdout", v => commandOptions.LogFileName = v },
-                { "t|target=", "Build target. Currently supports DotNet|Android|CMake", v => targetName = v },
+                { "t|target=", "Build target. Supported: android, dotnet and native", v => targetName = v },
                 { "v|verbose", "Verbose, always prints output from compiler and debug_log", v => verbose = v != null },
                 { "q|quiet", "Quiet, only prints output from compiler and debug_log in case of errors.", v => quiet = v != null },
                 { "f|filter=", "Only run tests matching this string", v => commandOptions.Filter = Regex.Escape(v) },
@@ -99,7 +99,7 @@ namespace Uno.TestRunner.BasicTypes
 
         private static void PrintHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: uno test [options] [paths-to-search]");
+            Console.WriteLine("Usage: uno test [target] [options] [paths-to-search]");
             Console.WriteLine();
             Console.WriteLine("[paths-to-search] is a list of paths to unoprojs to run tests from, and/or");
             Console.WriteLine("directories in which to search for test projects.");
@@ -111,10 +111,10 @@ namespace Uno.TestRunner.BasicTypes
             Console.WriteLine();
             Console.WriteLine("Examples:");
             Console.WriteLine(@"  uno test");
-            Console.WriteLine(@"  uno test Path\Projects");
-            Console.WriteLine(@"  uno test Path\Projects\FooTest.unoproj Path\Projects\BarTest.unoproj");
-            Console.WriteLine(@"  uno test Path\Projects Path\OtherProjects\FooTest.unoproj");
-            Console.WriteLine(@"  uno test -t=dotnet -r=teamcity -v Path\Projects");
+            Console.WriteLine(@"  uno test path/projects");
+            Console.WriteLine(@"  uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj");
+            Console.WriteLine(@"  uno test path/projects path/other-projects/FooTest.unoproj");
+            Console.WriteLine(@"  uno test native -v path/projects");
         }
     }
 }

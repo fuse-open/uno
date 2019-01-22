@@ -151,7 +151,7 @@ Usage: uno no-build [target] [options] [project-path]
 Invoke generated build steps without triggering a build.
 
 Common options
-  -c, --configuration=STRING  Build configuration [Debug|Release|Preview]
+  -c, --configuration=STRING  Build configuration [Debug|Release]
   -o, --out-dir=PATH          Specify output directory [optional]
   -b, --build                 Execute native build command
   -d, --debug                 Open IDE for debugging
@@ -178,7 +178,7 @@ Available options
 ## uno test
 
 ```
-Usage: uno test [options] [paths-to-search]
+Usage: uno test [target] [options] [paths-to-search]
 
 [paths-to-search] is a list of paths to unoprojs to run tests from, and/or
 directories in which to search for test projects.
@@ -189,8 +189,7 @@ Available options:
   -h, -?, --help             Show help
   -r, --reporter=VALUE       Reporter type (not used)
   -l, --logfile=VALUE        Write output to this file instead of stdout
-  -t, --target=VALUE         Build target. Currently supports DotNet|Android|
-                               CMake
+  -t, --target=VALUE         Build target. Supported: android, dotnet and native
   -v, --verbose              Verbose, always prints output from compiler and
                                debug_log
   -q, --quiet                Quiet, only prints output from compiler and debug_
@@ -215,10 +214,10 @@ Available options:
 
 Examples:
   uno test
-  uno test Path\Projects
-  uno test Path\Projects\FooTest.unoproj Path\Projects\BarTest.unoproj
-  uno test Path\Projects Path\OtherProjects\FooTest.unoproj
-  uno test -t=dotnet -r=teamcity -v Path\Projects
+  uno test path/projects
+  uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj
+  uno test path/projects path/other-projects/FooTest.unoproj
+  uno test native -v path/projects
 ```
 
 ## uno test-gen
