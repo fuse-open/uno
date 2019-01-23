@@ -7,24 +7,25 @@ using System.Threading.Tasks;
 using Uno.Configuration.Format;
 using Uno.Diagnostics;
 using Uno.IO;
+using Uno.Logging;
 
 namespace Uno.Build.Stuff
 {
-    public class Installer
+    public class Installer : LogObject
     {
-        public static bool Install(string filename, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
+        public static bool Install(Log log, string filename, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
         {
             try
             {
-                return new Installer(filename, flags, optionalDefines).Install();
+                return new Installer(log, filename, flags, optionalDefines).Install();
             }
             finally
             {
-                DownloadCache.AutoCollect();
+                DownloadCache.AutoCollect(log);
             }
         }
 
-        public static bool InstallAll(IEnumerable<string> files, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
+        public static bool InstallAll(Log log, IEnumerable<string> files, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
         {
             try
             {
@@ -37,12 +38,12 @@ namespace Uno.Build.Stuff
                         {
                             try
                             {
-                                if (!Install(file, flags, optionalDefines))
+                                if (!Install(log, file, flags, optionalDefines))
                                     retval = false;
                             }
                             catch (Exception e)
                             {
-                                Log.Error(file.ToRelativePath() + ": " + e.Message);
+                                log.Error(file.ToRelativePath() + ": " + e.Message);
                                 retval = false;
                             }
                         }));
@@ -52,11 +53,11 @@ namespace Uno.Build.Stuff
             }
             finally
             {
-                DownloadCache.AutoCollect();
+                DownloadCache.AutoCollect(log);
             }
         }
 
-        public static bool IsUpToDate(string filename, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
+        public static bool IsUpToDate(Log log, string filename, StuffFlags flags = 0, IEnumerable<string> optionalDefines = null)
         {
             try
             {
@@ -67,7 +68,7 @@ namespace Uno.Build.Stuff
                     var itemKey = item.Key.Replace('/', Path.DirectorySeparatorChar);
                     var itemFile = Path.Combine(parentDir, ".uno", "stuff", itemKey);
                     var targetDir = Path.Combine(parentDir, itemKey);
-                    if (!IsItemUpToDate(targetDir, itemFile, item.Value?.ToString(), flags))
+                    if (!IsItemUpToDate(log, targetDir, itemFile, item.Value?.ToString(), flags))
                         return false;
                 }
 
@@ -75,11 +76,11 @@ namespace Uno.Build.Stuff
             }
             finally
             {
-                DownloadCache.AutoCollect();
+                DownloadCache.AutoCollect(log);
             }
         }
 
-        public static void CleanAll(IEnumerable<string> files)
+        public static void CleanAll(Log log, IEnumerable<string> files)
         {
             try
             {
@@ -88,23 +89,23 @@ namespace Uno.Build.Stuff
                     try
                     {
                         var parentDirectory = Path.GetDirectoryName(file);
-                        Disk.DeleteDirectory(Path.Combine(parentDirectory, ".uno", "stuff"));
+                        Disk.DeleteDirectory(log, Path.Combine(parentDirectory, ".uno", "stuff"));
 
                         foreach (var item in StuffObject.Load(file, StuffFlags.AcceptAll))
-                            Disk.DeleteDirectory(
+                            Disk.DeleteDirectory(log,
                                 Path.Combine(
                                     parentDirectory,
                                     item.Key.Replace('/', Path.DirectorySeparatorChar)));
                     }
                     catch (Exception e)
                     {
-                        Log.Error(file.ToRelativePath() + ": " + e.Message);
+                        log.Error(file.ToRelativePath() + ": " + e.Message);
                     }
                 }
             }
             finally
             {
-                DownloadCache.AutoCollect();
+                DownloadCache.AutoCollect(log);
             }
         }
 
@@ -115,7 +116,8 @@ namespace Uno.Build.Stuff
         readonly List<Task> _tasks = new List<Task>();
         bool _retval = true;
 
-        Installer(string filename, StuffFlags flags, IEnumerable<string> optionalDefines)
+        Installer(Log log, string filename, StuffFlags flags, IEnumerable<string> optionalDefines)
+            : base(log)
         {
             _stuffFile = Path.GetFullPath(filename);
             _parentDirectory = Path.GetDirectoryName(_stuffFile);
@@ -164,12 +166,12 @@ namespace Uno.Build.Stuff
             var itemValue = item.Value?.ToString();
 
             if (string.IsNullOrEmpty(itemValue) ||
-                IsItemUpToDate(targetDir, itemFile, itemValue, _flags))
+                IsItemUpToDate(Log, targetDir, itemFile, itemValue, _flags))
                 return;
 
-            using (new FileLock(itemFile, DownloadCache.GetFileName(itemValue)))
+            using (new FileLock(Log, itemFile, DownloadCache.GetFileName(itemValue)))
             {
-                if (IsItemUpToDate(targetDir, itemFile, itemValue, _flags))
+                if (IsItemUpToDate(Log, targetDir, itemFile, itemValue, _flags))
                     return;
 
                 for (int tries = 0;; tries++)
@@ -181,10 +183,10 @@ namespace Uno.Build.Stuff
                     var isLocal = File.Exists(localFile);
                     var file = isLocal
                         ? localFile
-                        : DownloadCache.GetFile(itemValue);
+                        : DownloadCache.GetFile(Log, itemValue);
 
-                    Disk.DeleteDirectory(targetDir);
-                    Disk.CreateDirectory(targetDir);
+                    Disk.DeleteDirectory(Log, targetDir);
+                    Disk.CreateDirectory(Log, targetDir);
 
                     try
                     {
@@ -195,16 +197,16 @@ namespace Uno.Build.Stuff
                             // Use system tar/unzip to preserve file permissions and links
                             // (ZipFile doesn't handle this)
                             if (Path.GetFileName(file).ToUpper().EndsWith(".TAR.GZ"))
-                                Shell.Untar(file, targetDir);
+                                Shell.Untar(Log, file, targetDir);
                             else
-                                Shell.Unzip(file, targetDir);
+                                Shell.Unzip(Log, file, targetDir);
 
                             // Make sure files extracted are writable so we can touch them
-                            Shell.Chmod("+w", targetDir);
-                            Disk.TouchAllFiles(targetDir);
+                            Shell.Chmod(Log, "+w", targetDir);
+                            Disk.TouchAllFiles(Log, targetDir);
                         }
 
-                        Disk.CreateDirectory(Path.GetDirectoryName(itemFile));
+                        Disk.CreateDirectory(Log, Path.GetDirectoryName(itemFile));
                         File.WriteAllText(itemFile, itemValue);
                         break;
                     }
@@ -216,14 +218,14 @@ namespace Uno.Build.Stuff
                     catch
                     {
                         // Delete any installed files
-                        Disk.DeleteFile(itemFile);
-                        Disk.DeleteDirectory(targetDir);
+                        Disk.DeleteFile(Log, itemFile);
+                        Disk.DeleteDirectory(Log, targetDir);
 
                         if (isLocal)
                             throw;
 
                         // Delete the cached download too
-                        Disk.DeleteFile(file);
+                        Disk.DeleteFile(Log, file);
 
                         // Redownload, and try just one more time to be sure
                         // This might fix the problem if the cached file was corrupt
@@ -236,7 +238,7 @@ namespace Uno.Build.Stuff
             }
         }
 
-        static bool IsItemUpToDate(string targetDir, string itemFile, string itemValue, StuffFlags flags)
+        static bool IsItemUpToDate(Log log, string targetDir, string itemFile, string itemValue, StuffFlags flags)
         {
             if (!(flags.HasFlag(StuffFlags.Force) || !Directory.Exists(targetDir) ||
                     !File.Exists(itemFile) || File.ReadAllText(itemFile) != itemValue
@@ -245,7 +247,7 @@ namespace Uno.Build.Stuff
                 Directory.Exists(Path.Combine(targetDir, ".git")) ||
                 File.Exists(Path.Combine(targetDir, ".git")))
             {
-                DownloadCache.UpdateTimestamp(itemValue);
+                DownloadCache.UpdateTimestamp(log, itemValue);
                 return true;
             }
 

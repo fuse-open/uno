@@ -52,7 +52,7 @@ namespace Uno.Build.Packages
                 reader.HasAnythingChangedSince(reader.CacheTime, false))
             {
                 Log.Verbose("Generating cache for " + file.Name);
-                using (new FileLock(file.CacheDirectory))
+                using (new FileLock(Log, file.CacheDirectory))
                     reader.ExportCache(file.CacheDirectory);
                 return true;
             }

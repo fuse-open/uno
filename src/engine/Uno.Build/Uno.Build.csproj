@@ -100,7 +100,6 @@
     <Compile Include="Stuff\FileLock.cs" />
     <Compile Include="Stuff\Installer.cs" />
     <Compile Include="Stuff\IOEvent.cs" />
-    <Compile Include="Stuff\Log.cs" />
     <Compile Include="Stuff\LongPathDisk.cs" />
     <Compile Include="Stuff\LongPathZipFile.cs" />
     <Compile Include="Stuff\Shell.cs" />

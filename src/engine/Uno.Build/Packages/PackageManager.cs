@@ -127,7 +127,7 @@ namespace Uno.Build.Packages
             var dst = Path.Combine(InstallDirectory, upk.Name, upk.Version);
             Log.WriteLine("Installing " + upk.Name + " " + upk.Version, ConsoleColor.Blue);
 
-            using (new FileLock(dst))
+            using (new FileLock(Log, dst))
             {
                 if (Force || !PackageFile.Exists(dst))
                     upk.Install(dst);

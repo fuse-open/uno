@@ -27,8 +27,6 @@ namespace Uno.CLI.Diagnostics
 
         public override void Execute(IEnumerable<string> args)
         {
-            Build.Stuff.Log.Configure(Log);
-
             var asm = false;
             var system = false;
             var input = new OptionSet {

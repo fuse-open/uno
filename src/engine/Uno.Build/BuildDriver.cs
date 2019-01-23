@@ -54,7 +54,7 @@ namespace Uno.Build
             _anim = null;
         }
 
-        public BuildDriver(Logging.Log log, BuildTarget target, BuildOptions options, Project project, UnoConfig config)
+        public BuildDriver(Log log, BuildTarget target, BuildOptions options, Project project, UnoConfig config)
             : base(log)
         {
             _target = target;
@@ -207,10 +207,8 @@ namespace Uno.Build
             {
                 using (Log.StartAnimation("Installing dependencies"))
                 {
-                    Stuff.Log.Configure(Log);
-
                     foreach (var f in stuff)
-                        if (!Installer.Install(f, 0, defines))
+                        if (!Installer.Install(Log, f, 0, defines))
                             Log.Error(new Source(f), null, "Failed to install dependencies");
                 }
             }
@@ -319,7 +317,7 @@ namespace Uno.Build
             foreach (var p in packages)
                 foreach (var f in p.StuffFiles)
                     if (env.Test(p.Source, f.Condition) &&
-                            !Installer.IsUpToDate(Path.Combine(p.SourceDirectory, f.NativePath), 0, defines))
+                            !Installer.IsUpToDate(Log, Path.Combine(p.SourceDirectory, f.NativePath), 0, defines))
                         stuff.Add(Path.Combine(p.SourceDirectory, f.NativePath));
             return stuff;
         }

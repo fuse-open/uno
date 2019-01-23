@@ -2,18 +2,19 @@ using System;
 using System.IO;
 using Uno.Diagnostics;
 using Uno.IO;
+using Uno.Logging;
 
 namespace Uno.Build.Stuff
 {
     public static class Disk
     {
-        public static void CreateDirectory(string path)
+        public static void CreateDirectory(Log log, string path)
         {
             var dirExists = PlatformDetection.IsWindows ? LongPathDisk.DirectoryExists(path) : Directory.Exists(path);
             if (path.Length > 1 && !dirExists)
             {
-                CreateDirectory(Path.GetDirectoryName(path));
-                Log.Event(IOEvent.MkDir, path);
+                CreateDirectory(log, Path.GetDirectoryName(path));
+                log.Event(IOEvent.MkDir, path);
 
                 var isHidden = Path.GetFileName(path).StartsWith(".");
                 if (PlatformDetection.IsWindows)
@@ -33,7 +34,7 @@ namespace Uno.Build.Stuff
             }
         }
 
-        public static void DeleteFile(string name)
+        public static void DeleteFile(Log log, string name)
         {
             var fileExists = PlatformDetection.IsWindows ? LongPathDisk.FileExists(name) : File.Exists(name);
             if (!fileExists)
@@ -41,7 +42,7 @@ namespace Uno.Build.Stuff
 
             try
             {
-                Log.Event(IOEvent.Rm, name);
+                log.Event(IOEvent.Rm, name);
                 if (PlatformDetection.IsWindows)
                     LongPathDisk.DeleteFile(name);
                 else
@@ -49,11 +50,11 @@ namespace Uno.Build.Stuff
             }
             catch (Exception e)
             {
-                Log.Warning("Failed to delete " + name.ToRelativePath() + ": " + e.Message);
+                log.Warning("Failed to delete " + name.ToRelativePath() + ": " + e.Message);
             }
         }
 
-        public static void DeleteDirectory(string name)
+        public static void DeleteDirectory(Log log, string name)
         {
             var directoryExists = PlatformDetection.IsWindows ? LongPathDisk.DirectoryExists(name) : Directory.Exists(name);
             if (!directoryExists)
@@ -61,7 +62,7 @@ namespace Uno.Build.Stuff
 
             try
             {
-                Log.Event(IOEvent.RmDir, name);
+                log.Event(IOEvent.RmDir, name);
 
                 if (PlatformDetection.IsWindows)
                     LongPathDisk.DeleteDirectory(name, true);
@@ -70,7 +71,7 @@ namespace Uno.Build.Stuff
             }
             catch (Exception e)
             {
-                Log.Warning("Failed to delete " + name.ToRelativePath() + ": " + e.Message);
+                log.Warning("Failed to delete " + name.ToRelativePath() + ": " + e.Message);
             }
         }
 
@@ -78,15 +79,15 @@ namespace Uno.Build.Stuff
         /// Set the last write time for all files in 'dir' to current time.
         /// NOTE: Does not support long paths on Windows!
         /// </summary>
-        public static void TouchAllFiles(string dir)
+        public static void TouchAllFiles(Log log, string dir)
         {
             foreach (var f in Directory.EnumerateDirectories(dir))
-                TouchAllFiles(f);
+                TouchAllFiles(log, f);
             foreach (var f in Directory.EnumerateFiles(dir))
-                TouchFile(f);
+                TouchFile(log, f);
         }
 
-        public static void TouchFile(string name)
+        public static void TouchFile(Log log, string name)
         {
             try
             {
@@ -99,7 +100,7 @@ namespace Uno.Build.Stuff
             }
             catch (Exception e)
             {
-                Log.Warning("Failed to touch " + name.ToRelativePath() + ": " + e.Message);
+                log.Warning("Failed to touch " + name.ToRelativePath() + ": " + e.Message);
             }
         }
     }

@@ -2,43 +2,44 @@
 using System.Diagnostics;
 using System.Text;
 using Uno;
+using Uno.Logging;
 
 namespace Uno.Build.Stuff
 {
     public static class Shell
     {
-        public static void Chmod(string mode, string directory)
+        public static void Chmod(Log log, string mode, string directory)
         {
-            Run("chmod", new[] {"-R", mode, directory});
+            Run(log, "chmod", new[] {"-R", mode, directory});
         }
 
-        public static void Symlink(string dst, string src)
+        public static void Symlink(Log log, string dst, string src)
         {
-            Run("ln", new[] {"-sf", dst, src});
+            Run(log, "ln", new[] {"-sf", dst, src});
         }
 
-        public static bool Readlink(string path)
+        public static bool Readlink(Log log, string path)
         {
-            return Run("readlink", new[] {path}, acceptCode: 1) == 0;
+            return Run(log, "readlink", new[] {path}, acceptCode: 1) == 0;
         }
 
-        public static void Untar(string file, string directory)
+        public static void Untar(Log log, string file, string directory)
         {
-            Run("tar", new[] {"-xzf", file, "-C", directory});
+            Run(log, "tar", new[] {"-xzf", file, "-C", directory});
         }
 
-        public static void Unzip(string file, string directory)
+        public static void Unzip(Log log, string file, string directory)
         {
             // Exit code=1 means a warning was given, no problem
-            Run("unzip", new[] {file, "-d", directory}, acceptCode: 1);
+            Run(log, "unzip", new[] {file, "-d", directory}, acceptCode: 1);
         }
 
-        public static void Zip(string directory, string file)
+        public static void Zip(Log log, string directory, string file)
         {
-            Run("zip", new[] {"-r", "--symlinks", file, "."}, workingDir: directory);
+            Run(log, "zip", new[] {"-r", "--symlinks", file, "."}, workingDir: directory);
         }
 
-        public static int Run(string command, string[] arguments, int acceptCode = 0, string workingDir = "")
+        static int Run(Log log, string command, string[] arguments, int acceptCode = 0, string workingDir = "")
         {
             for (int i = 0; i < arguments.Length; i++)
                 if (arguments[i].IndexOf(' ') != -1)
@@ -70,14 +71,14 @@ namespace Uno.Build.Stuff
             if (!proc.WaitForExit(1000 * 60 * 10))
             {
                 proc.Kill();
-                Log.WriteLine("{0}", sb);
+                log.WriteLine(sb);
                 throw new InvalidOperationException(command.Quote() + " timed out after 10 minutes");
             }
 
             if (proc.ExitCode != 0 && proc.ExitCode != acceptCode)
             {
                 // Print log on error
-                Log.WriteLine("{0}", sb);
+                log.WriteLine(sb);
                 throw new InvalidOperationException(command.Quote() + " failed with exit code " + proc.ExitCode);
             }
 

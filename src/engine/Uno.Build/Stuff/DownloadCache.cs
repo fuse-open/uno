@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Uno.Logging;
 
 namespace Uno.Build.Stuff
 {
@@ -14,7 +15,7 @@ namespace Uno.Build.Stuff
         public static readonly string StuffDirectory = Environment.GetEnvironmentVariable("STUFF_CACHE").Or(Path.Combine(Path.GetTempPath(), ".stuff"));
         static bool _hasCollected;
 
-        public static void AutoCollect()
+        public static void AutoCollect(Log log)
         {
             if (_hasCollected)
                 return;
@@ -30,26 +31,26 @@ namespace Uno.Build.Stuff
                 if ((timeNow - timeWrite).TotalDays < 7.0)
                     return;
 
-                CollectGarbage();
+                CollectGarbage(log);
             }
 
             if (Directory.Exists(StuffDirectory))
                 File.WriteAllBytes(timestampFile, new byte[0]);
         }
 
-        public static void CollectGarbage(double days = 14.0)
+        public static void CollectGarbage(Log log, double days = 14.0)
         {
-            CollectGarbage(StuffDirectory, days);
+            CollectGarbage(log, StuffDirectory, days);
         }
 
-        static void CollectGarbage(string dir, double days, bool hasLog = false)
+        static void CollectGarbage(Log log, string dir, double days, bool hasLog = false)
         {
             if (!Directory.Exists(dir))
                 return;
 
             foreach (var f in Directory.EnumerateFiles(dir))
             {
-                using (new FileLock(f))
+                using (new FileLock(log, f))
                 {
                     var timeWrite = File.GetLastWriteTimeUtc(f);
                     var timeNow = DateTime.UtcNow;
@@ -58,27 +59,27 @@ namespace Uno.Build.Stuff
 
                     if (!hasLog)
                     {
-                        Log.WriteLine(ConsoleColor.Blue, "stuff: Collecting garbage");
+                        log.WriteLine("stuff: Collecting garbage", ConsoleColor.Blue);
                         hasLog = true;
                     }
 
-                    Disk.DeleteFile(f);
+                    Disk.DeleteFile(log, f);
                 }
             }
         }
 
-        public static string GetFile(string url)
+        public static string GetFile(Log log, string url)
         {
             var dst = GetFileName(url);
 
             // 1) Early out if the file exists locally
             if (File.Exists(dst))
             {
-                Disk.TouchFile(dst);
+                Disk.TouchFile(log, dst);
                 return dst;
             }
 
-            Disk.CreateDirectory(StuffDirectory);
+            Disk.CreateDirectory(log, StuffDirectory);
 
             try
             {
@@ -88,11 +89,11 @@ namespace Uno.Build.Stuff
                 for (int tries = 0;; tries++)
                 {
                     // 2) Download the file from URL
-                    Log.WriteLine(ConsoleColor.Blue, "Downloading " + url + (
+                    log.WriteLine("Downloading " + url + (
                             tries > 0
                                 ? " (" + tries + "...)"
                                 : null
-                        ));
+                        ), ConsoleColor.Blue);
 
                     try
                     {
@@ -107,7 +108,7 @@ namespace Uno.Build.Stuff
                         {
                             // Print previous errors, before rethrowing
                             foreach (var s in errors)
-                                Log.Error(s);
+                                log.Error(s);
                             throw;
                         }
 
@@ -118,14 +119,14 @@ namespace Uno.Build.Stuff
             }
             catch
             {
-                Disk.DeleteFile(dst);
+                Disk.DeleteFile(log, dst);
                 throw;
             }
         }
 
-        public static void UpdateTimestamp(string url)
+        public static void UpdateTimestamp(Log log, string url)
         {
-            Disk.TouchFile(GetFileName(url));
+            Disk.TouchFile(log, GetFileName(url));
         }
 
         public static string GetFileName(string url)

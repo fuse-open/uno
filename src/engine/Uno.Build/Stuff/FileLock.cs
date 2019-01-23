@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Uno.IO;
+using Uno.Logging;
 
 namespace Uno.Build.Stuff
 {
@@ -11,13 +12,13 @@ namespace Uno.Build.Stuff
         static readonly Random Rand = new Random();
         readonly LockFile[] _locks;
 
-        public FileLock(params string[] filenames)
+        public FileLock(Log log, params string[] filenames)
         {
             _locks = new LockFile[filenames.Length];
 
             for (int i = 0; i < _locks.Length; i++)
             {
-                Disk.CreateDirectory(Path.GetDirectoryName(filenames[i]));
+                Disk.CreateDirectory(log, Path.GetDirectoryName(filenames[i]));
                 _locks[i] = new LockFile(filenames[i] + ".lock");
             }
 
@@ -26,7 +27,7 @@ namespace Uno.Build.Stuff
                 if (tries == 2000)
                     throw new TimeoutException("Failed to lock " + this + "; aborting after " + tries + " tries");
                 if (tries % 50 == 0)
-                    Log.Warning("Failed to lock " + this + "; retrying...");
+                    log.Warning("Failed to lock " + this + "; retrying...");
 
                 // Spin wait while another process owns the file(s),
                 // Some randomness helps with race conditions

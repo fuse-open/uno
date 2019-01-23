@@ -13,7 +13,7 @@ namespace Uno.Build
     {
         readonly HashSet<string> _cleanedProjects = new HashSet<string>();
 
-        public ProjectCleaner(Logging.Log log)
+        public ProjectCleaner(Log log)
             : base(log)
         {
         }
@@ -53,8 +53,7 @@ namespace Uno.Build
             Disk.DeleteDirectory(project.CacheDirectory);
 
             // Remove files installed by stuff
-            Stuff.Log.Configure(Log);
-            Installer.CleanAll(
+            Installer.CleanAll(Log,
                 project.StuffFiles.Select(
                     x => Path.Combine(project.RootDirectory, x.NativePath)));
 
