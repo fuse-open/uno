@@ -20,20 +20,11 @@ namespace Uno.Configuration
             return Current.GetDirectoryConfig(Path.GetDirectoryName(obj.FullPath));
         }
 
-        public static void LoadDirectory(string dir)
-        {
-            Current.LoadRecursive(dir);
-        }
-
-        public static void LoadFile(string filename)
-        {
-            Current.LoadRecursive(Path.GetDirectoryName(filename), filename);
-        }
-
         readonly List<UnoConfigFile> _files = new List<UnoConfigFile>();
         readonly Dictionary<string, UnoConfig> _configCache = new Dictionary<string, UnoConfig>();
         readonly Dictionary<string, UnoConfigFile> _fileCache = new Dictionary<string, UnoConfigFile>();
         readonly Dictionary<string, List<UnoConfigString>> _stringCache = new Dictionary<string, List<UnoConfigString>>();
+        readonly HashSet<string> _visitedDirectories = new HashSet<string>();
 
         public IReadOnlyList<UnoConfigFile> Files => _files;
 
@@ -213,7 +204,6 @@ namespace Uno.Configuration
         {
             LoadRecursive(GetAssemblyDirectory(Assembly.GetEntryAssembly()));
             LoadRecursive(GetAssemblyDirectory(typeof(UnoConfig).Assembly));
-            LoadRecursive(Environment.GetEnvironmentVariable("HOME"));
 
             try
             {
@@ -246,15 +236,42 @@ namespace Uno.Configuration
             if (PlatformDetection.IsWindows && dir.Length >= 2 && dir[1] == ':' && char.IsLower(dir[0]))
                 dir = char.ToUpper(dir[0]) + dir.Substring(1);
 
+            if (_visitedDirectories.Contains(dir))
+                return;
+
+            _visitedDirectories.Add(dir);
+
+            var node_modules = Path.Combine(dir, "node_modules");
+
+            if (Directory.Exists(node_modules))
+                LoadNodeModules(node_modules);
+
             var filename = Path.Combine(dir, ".unoconfig");
 
             if (!File.Exists(filename))
                 LoadRecursive(Path.GetDirectoryName(dir));
             else
-                LoadRecursive(dir, filename);
+                LoadFile(dir, filename);
         }
 
-        void LoadRecursive(string dir, string filename)
+        void LoadNodeModules(string node_modules)
+        {
+            foreach (var dir in Directory.EnumerateDirectories(node_modules))
+            {
+                if (Path.GetFileName(dir).StartsWith("@"))
+                {
+                    LoadNodeModules(dir);
+                    continue;
+                }
+
+                var filename = Path.Combine(dir, ".unoconfig");
+
+                if (File.Exists(filename))
+                    LoadFile(dir, filename, false);
+            }
+        }
+
+        void LoadFile(string dir, string filename, bool scanParentDir = true)
         {
             var file = GetFile(filename);
 
@@ -274,7 +291,7 @@ namespace Uno.Configuration
             
             // Load parent configuration files
             StuffItem isRoot;
-            if (file.GetData().TryGetValue("IsRoot", out isRoot) && !bool.Parse(isRoot.Value))
+            if (scanParentDir && file.GetData().TryGetValue("IsRoot", out isRoot) && !bool.Parse(isRoot.Value))
                 LoadRecursive(Path.GetDirectoryName(dir));
         }
 

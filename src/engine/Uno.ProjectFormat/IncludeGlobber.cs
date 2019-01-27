@@ -39,6 +39,7 @@ namespace Uno.ProjectFormat
             _result = result;
             _log = log ?? Log.Default;
             _disk = new Disk(_log);
+            SkipFile(Path.Combine(project.RootDirectory, "node_modules"));
             SkipFile(project.BuildDirectory);
             SkipFile(project.CacheDirectory);
         }

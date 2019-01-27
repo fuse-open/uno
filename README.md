@@ -94,7 +94,7 @@ Uno is built using the command-line on Linux, macOS or Windows – or [from insi
 | Build command   | Action                                                                  |
 |:----------------|:------------------------------------------------------------------------|
 | `make install`  | Creates a symlink for `uno` in `/usr/local/bin`.                        |
-| `make release`  | Creates a packaged release build for distribution.                      |
+| `make release`  | Prepares a release directory for distribution.                          |
 | `make unocore`  | Generates C# code for Uno.Runtime.Core.dll, based on Uno code.          |
 | `make clean`    | Removes build artifacts from the repository and `Packages.SourcePaths`. |
 | `make check`    | Runs the local test suite.                                              |

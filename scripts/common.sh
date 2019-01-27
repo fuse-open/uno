@@ -6,6 +6,10 @@ function find-msbuild {
 }
 
 function csharp-build {
+    if [ -z "$CONFIGURATION" ]; then
+        CONFIGURATION="Debug"
+    fi
+
     if [ "$OSTYPE" = msys ]; then
         msbuild=`find-msbuild`
         if [ $? != 0 ]; then

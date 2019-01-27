@@ -28,7 +28,8 @@ To build your standard library, type `uno doctor -e`.
 ## Android
 
 To support building Android apps, we need to know where your [Android SDKs](https://developer.android.com/studio/index.html)
-are installed.
+are installed. Running `npm install -g android-build-tools` will set this up automatically, or you can
+specify other locations as demonstrated below.
 
 ### Windows
 
@@ -44,8 +45,6 @@ Java.JDK.Directory: "%PROGRAMFILES%\\Java\\jdk1.8.0_40"
 Android.NDK.Directory: %HOME%/Library/Android/sdk/ndk-bundle
 Android.SDK.Directory: %HOME%/Library/Android/sdk
 ```
-
-If you have Fuse Studio, running `fuse install android` will set this up automatically.
 
 ## iOS
 
@@ -63,19 +62,18 @@ To support building native apps, we need [CMake](https://cmake.org/) and C++ com
 - **macOS:** Xcode with command line tools
 - **Windows:** Visual Studio 2017
 
-If `cmake` isn't in your *PATH*, the location can be provided like this:
+If `cmake` isn't in found your *PATH*, the location can be provided like this:
 ```javascript
 Tools.CMake: `%PROGRAMFILES%\CMake\bin\cmake.exe`
 ```
 
 ## Node.js
 
-We need `node` / `npm` to install and use JavaScript packages.
+We need [Node.js](https://nodejs.org/en/download/) to support transpiling FuseJS files to ES5.
 
-If the commands aren't in your *PATH*, their locations can be provided like this:
+If `node` isn't found in your *PATH*, the location can be provided like this:
 ```javascript
 Tools.Node: `%PROGRAMFILES%\nodejs\node.exe`
-Tools.NPM: `%PROGRAMFILES%\nodejs\npm.cmd`
 ```
 
 ## Package manager

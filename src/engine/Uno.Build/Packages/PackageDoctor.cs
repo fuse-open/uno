@@ -48,10 +48,6 @@ namespace Uno.Build.Packages
             var upk = file.CreateSourcePackage();
             var reader = new SourceReader(Log, upk, this);
 
-            // Install NPM packages if package.json exists
-            if (NPM.NeedsInstall(upk))
-                new NPM(Log).Install(upk);
-
             if (force || !reader.CacheExists ||
                 reader.HasAnythingChangedSince(reader.CacheTime, false))
             {

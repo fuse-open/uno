@@ -3,15 +3,15 @@ SELF=`echo $0 | sed 's/\\\\/\\//g'`
 cd "`dirname "$SELF"`/.." || exit 1
 source scripts/common.sh
 
-# Configuration
+# Initialize
 DST="release"
-BIN="$DST/bin"
-LIB="$DST/lib"
-OUT="upload"
+shopt -s dotglob
+rm -rf ${DST:?}/* 2> /dev/null || :
+mkdir -p $DST
 
 # Detect version info
 COMMIT=`git rev-parse HEAD`
-VERSION=`cat VERSION.txt`
+VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
 
 if [ -n "$APPVEYOR_REPO_BRANCH" ]; then
     BRANCH=$APPVEYOR_REPO_BRANCH
@@ -49,8 +49,15 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
       -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
       src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
-# Build release configuration
-bash scripts/build.sh --release
+# Trigger release builds
+h1 "Installing packages"
+nuget restore uno.sln
+
+h1 "Building platform tools"
+CONFIGURATION=Release csharp-build uno.sln
+
+h1 "Building core library"
+uno doctor --configuration=Release --version=$VERSION lib
 
 # Remove GlobalAssemblyInfo.Override.cs
 rm -f src/GlobalAssemblyInfo.Override.cs
@@ -58,56 +65,23 @@ rm -f src/GlobalAssemblyInfo.Override.cs
 h1 "Preparing release"
 ######################
 
-# Initialize
-rm -rf ${BIN:?}/* ${LIB:?}/* ${OUT:?}/*
-rm ${DST:?}/* 2> /dev/null || :
-mkdir -p $BIN $LIB $OUT
+# Copy assemblies
+cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $DST
+cp -f src/testing/Uno.CompilerTestRunner/bin/Release/uno-compiler-test.exe $DST
+cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $DST
+cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $DST
 
-# Core assemblies
-p cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $BIN
-p cp -f src/testing/Uno.CompilerTestRunner/bin/Release/uno-compiler-test.exe $BIN
-p cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $BIN
-p cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $BIN
+# Put app loaders for macOS and Windows in subdirectories to avoid conflicts
+mkdir -p $DST/apploader-mac
+cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $DST/apploader-mac
+cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $DST/apploader-mac
 
-# Core packages (used for testing)
-p cp -R lib/build/* $LIB
+mkdir -p $DST/apploader-win
+cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-win
+cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $DST/apploader-win
+cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $DST/apploader-win
 
-# Put app loaders for macOS and Windows in subdirectories, to avoid conflicts
-mkdir -p $BIN/apploader-mac
-p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $BIN/apploader-mac
-p cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $BIN/apploader-mac
-
-mkdir -p $BIN/apploader-win
-p cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $BIN/apploader-win
-p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $BIN/apploader-win
-p cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $BIN/apploader-win
-
-# Generate config
-p cp config/pack.unoconfig $BIN/.unoconfig
-cat config/common.unoconfig >> $BIN/.unoconfig
-
-# Generate launcher
-p cp bin/uno bin/uno.exe $DST
-echo "Packages.InstallDirectory: lib" > $DST/.unoconfig
-echo "bin" > $DST/.unopath
-
-h1 "Creating packages"
-######################
-
-# Create NuGet packages
-for i in `find src -iname "*.nuspec" | sed -e 's/.nuspec$/.csproj/'`; do
-    p nuget pack -OutputDirectory "$OUT" -Properties Configuration=Release -IncludeReferencedProjects "$i"
-done
-
-p nuget pack -OutputDirectory "$OUT" -Version "$VERSION" "`dirname "$SELF"`/FuseOpen.Uno.Tool.nuspec"
-
-# Create Uno packages
-for f in lib/*; do
-    NAME=`basename "$f"`
-    PROJECT=$f/$NAME.unoproj
-    if [ -f "$PROJECT" ]; then
-        uno pack $PROJECT \
-            --version $VERSION \
-            --out-dir $OUT
-    fi
-done
+# Generate config file
+cp config/pack.unoconfig $DST/.unoconfig
+cat config/common.unoconfig >> $DST/.unoconfig
+echo "Packages.SearchPaths += ../lib/build" >> $DST/.unoconfig
