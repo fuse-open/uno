@@ -169,7 +169,8 @@ namespace Uno.CLI
 
         static void WritePage(params string[] args)
         {
-            Log.WriteLine("##### $ uno " + string.Join(" ", args).Replace(" --help", ""), ConsoleColor.Blue);
+            Log.WriteLine("## uno " + string.Join(" ", args).Replace(" --help", ""), ConsoleColor.Blue);
+            Log.WriteLine();
             Log.WriteLine("```", ConsoleColor.Blue);
             new Program().Execute(args);
             Log.WriteLine("```", ConsoleColor.Blue);
