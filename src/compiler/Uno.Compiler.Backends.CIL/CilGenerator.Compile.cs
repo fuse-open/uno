@@ -7,6 +7,7 @@ using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Expressions;
 using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.API.Domain.IL.Types;
+using ParameterModifier = Uno.Compiler.API.Domain.ParameterModifier;
 using Type = IKVM.Reflection.Type;
 
 namespace Uno.Compiler.Backends.CIL
@@ -37,12 +38,37 @@ namespace Uno.Compiler.Backends.CIL
                             m.Builder.SetCustomAttribute(CreateAttributeBuilder(a));
 
                 foreach (var m in data.Constructors)
+                {
+                    if (m.Definition.Attributes != null)
+                        foreach (var a in m.Definition.Attributes)
+                            m.Builder.SetCustomAttribute(CreateAttributeBuilder(a));
+
+                    for (int i = 0; i < m.Definition.Parameters.Length; i++)
+                    {
+                        var p = m.Definition.Parameters[i];
+                        data.PopulateParameter(p, m.Builder.DefineParameter(i + 1, p.CilParameterAttributes(), p.Name));
+                    }
+
                     EmitFunction(m.Builder.GetILGenerator(), m.Definition);
+                }
 
                 foreach (var m in data.Methods)
                 {
+                    if (m.Definition.Attributes != null)
+                        foreach (var a in m.Definition.Attributes)
+                            m.Builder.SetCustomAttribute(CreateAttributeBuilder(a));
+
                     if (_backend.IsPInvokable(_essentials, m.Definition))
                         continue;
+
+                    for (int i = 0; i < m.Definition.Parameters.Length; i++)
+                    {
+                        var p = m.Definition.Parameters[i];
+                        data.PopulateParameter(p, m.Builder.DefineParameter(i + 1, p.CilParameterAttributes(), p.Name));
+                    }
+
+                    if (m.Definition.Parameters.Length > 0 && m.Definition.Parameters[0].Modifier == ParameterModifier.This)
+                        m.Builder.SetCustomAttribute(new CustomAttributeBuilder(_linker.System_Runtime_CompilerServices_ExtensionAttribute_ctor, new object[0]));
 
                     var method = m.Definition as Method;
                     if (method?.ImplementedMethod != null)

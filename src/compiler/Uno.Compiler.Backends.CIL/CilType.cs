@@ -189,27 +189,6 @@ namespace Uno.Compiler.Backends.CIL
             if (Definition.IsStatic)
                 Builder.SetCustomAttribute(
                     new CustomAttributeBuilder(_linker.System_Runtime_CompilerServices_ExtensionAttribute_ctor, new object[0]));
-
-            foreach (var m in Constructors)
-            {
-                for (int i = 0; i < m.Definition.Parameters.Length; i++)
-                {
-                    var p = m.Definition.Parameters[i];
-                    PopulateParameter(p, m.Builder.DefineParameter(i + 1, p.CilParameterAttributes(), p.Name));
-                }
-            }
-
-            foreach (var m in Methods)
-            {
-                for (int i = 0; i < m.Definition.Parameters.Length; i++)
-                {
-                    var p = m.Definition.Parameters[i];
-                    PopulateParameter(p, m.Builder.DefineParameter(i + 1, p.CilParameterAttributes(), p.Name));
-                }
-
-                if (m.Definition.Parameters.Length > 0 && m.Definition.Parameters[0].Modifier == ParameterModifier.This)
-                    m.Builder.SetCustomAttribute(new CustomAttributeBuilder(_linker.System_Runtime_CompilerServices_ExtensionAttribute_ctor, new object[0]));
-            }
         }
 
         void PopulateDelegate()
@@ -261,7 +240,7 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
-        void PopulateParameter(Parameter p, ParameterBuilder pb)
+        public void PopulateParameter(Parameter p, ParameterBuilder pb)
         {
             try
             {
