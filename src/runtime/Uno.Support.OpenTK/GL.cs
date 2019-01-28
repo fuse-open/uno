@@ -217,13 +217,13 @@ namespace Uno.Support.OpenTK
 
         public void FramebufferTexture2D(GLFramebufferTarget target, GLFramebufferAttachment attachment, GLTextureTarget textarget, GLTextureHandle texture, int level)
         {
-            TKGL.FramebufferTexture2D((FramebufferTarget)target, (All)attachment, TextureTarget2d.Texture2D, (int)texture, level);
+            TKGL.FramebufferTexture2D((FramebufferTarget)target, (FramebufferAttachment)attachment, TextureTarget2d.Texture2D, (int)texture, level);
         }
 
         public void FramebufferRenderbuffer(GLFramebufferTarget target, GLFramebufferAttachment attachment, GLRenderbufferTarget renderbuffertarget, GLRenderbufferHandle renderbuffer)
         {
             TKGL.FramebufferRenderbuffer((FramebufferTarget)target,
-                (All)attachment,
+                (FramebufferAttachment)attachment,
                 (RenderbufferTarget)renderbuffertarget, (int) renderbuffer);
         }
 
