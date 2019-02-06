@@ -42,37 +42,13 @@
       <Project>{1A7E3CC0-8881-4C29-AE67-349226AC7167}</Project>
       <Name>Uno.UX.Markup.UXIL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Uno.UX.Markup.Reflection\Uno.UX.Markup.Reflection.csproj">
-      <Project>{C28D3D51-8427-4C74-AEDC-AE4CC568F0FC}</Project>
-      <Name>Uno.UX.Markup.Reflection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Uno.UX.Markup.CompilerReflection\Uno.UX.Markup.CompilerReflection.csproj">
-      <Project>{98F84925-6EA7-4E48-BC35-F5C4730F3D04}</Project>
-      <Name>Uno.UX.Markup.CompilerReflection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Uno.UX.Markup.Common\Uno.UX.Markup.Common.csproj">
       <Project>{05538951-C4A9-4298-BBA7-FE9F96E3DDC1}</Project>
       <Name>Uno.UX.Markup.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\src\compiler\Uno.Compiler.Backends.CSharp/Uno.Compiler.Backends.CSharp.csproj">
-      <Project>{90D050F9-B619-4F5F-8CFE-27C2B94CCD1B}</Project>
-      <Name>Uno.Compiler.Backends.CSharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\src\common\Uno.Common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\src\compiler\Uno.Compiler.Core\Uno.Compiler.Core.csproj">
-      <Project>{C4CF7639-0705-4093-B16D-3261A92F6260}</Project>
-      <Name>Uno.Compiler.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\src\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
-      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
-      <Name>Uno.Compiler.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\src\engine\Uno.Build\Uno.Build.csproj">
-      <Project>{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}</Project>
-      <Name>Uno.Build</Name>
     </ProjectReference>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>

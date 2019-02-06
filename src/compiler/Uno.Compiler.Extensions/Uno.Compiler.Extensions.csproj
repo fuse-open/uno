@@ -77,10 +77,6 @@
       <Project>{9e0318a1-528e-4afd-ab87-c8d58e0cd060}</Project>
       <Name>Uno.Compiler.Backends.CPlusPlus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Compiler.Core\Uno.Compiler.Core.csproj">
-      <Project>{c4cf7639-0705-4093-b16d-3261a92f6260}</Project>
-      <Name>Uno.Compiler.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

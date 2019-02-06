@@ -38,7 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="Assertion.cs" />
     <Compile Include="CommandLineOptions.cs" />
@@ -52,10 +52,6 @@
     <ProjectReference Include="..\..\..\src\engine\Uno.Build\Uno.Build.csproj">
       <Project>{ee7b3e9e-c1af-41a1-8b71-42213dab19f4}</Project>
       <Name>Uno.Build</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\engine\Uno.Configuration\Uno.Configuration.csproj">
-      <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
-      <Name>Uno.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
