@@ -4,6 +4,24 @@ Uno Changelog
 Unreleased
 ----------
 
+1.11
+----
+
+#### Distribution
+- Switched to NPM for distribution and standalone installation of `uno`. Previously we had to install the complete Fuse Studio to get this component.
+- Automatically load `.unoconfig` files found in `node_modules`, so we can now use NPM to conveniently install any Uno or Fuse component.
+- Added the [android-build-tools](https://www.npmjs.com/package/android-build-tools) package on NPM that automatically sets up Android SDK and NDK components, similar to the `fuse install android` functionality found in Fuse Studio.
+
+#### Android build target
+- Added support for both landscape modes when setting Landscape in the project file.
+- Fixed a problem that happens sometimes when downloading packages during Gradle build.
+
+#### Uno compiler
+- Added a `metadata` build target that can produce metadata for code-completion plugins.
+- Fixed a bug where the visibility of generic argument types were not validated correctly.
+
+See also [the full list of changes](https://github.com/fuse-open/uno/compare/release-1.10...release-1.11).
+
 1.10
 ----
 
