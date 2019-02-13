@@ -1,6 +1,7 @@
 # Command Line Reference
 
-## $ uno
+## uno
+
 ```
 Usage: uno COMMAND [args ...]
   or   uno COMMAND --help
@@ -43,7 +44,8 @@ Environment variables
   DEBUG_GL=1        Enable the OpenGL debug layer in .NET builds
 ```
 
-## $ uno create
+## uno create
+
 ```
 Usage: uno create [options] [file|directory]
 
@@ -58,7 +60,8 @@ Available options
       --flatten         Flatten items to explicit list of files
 ```
 
-## $ uno update
+## uno update
+
 ```
 Usage: uno update [options] [project-path ...]
 
@@ -83,7 +86,8 @@ Project options
       --dry-run           Don't save updated project(s)
 ```
 
-## $ uno build
+## uno build
+
 ```
 Usage: uno build [target] [options] [project-path]
 
@@ -141,14 +145,17 @@ Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
   * ios        (-x)    (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * dotnetdll  (-x)    .NET/GL bytecode and library.
   * dotnet             .NET/GL bytecode and executable. (default)
   * corelib    (-x)    C# implementation of Uno corelib.
   * docs       (-x)    Uno documentation files.
+  * metadata   (-x)    Metadata for code completion.
   * pinvoke    (-x)    PInvoke libraries.
   * package    (-x)    Uno package files.
 ```
 
-## $ uno no-build
+## uno no-build
+
 ```
 Usage: uno no-build [target] [options] [project-path]
 
@@ -168,7 +175,8 @@ Additional options
   -t, --target=STRING         Build target (see: uno build --help)
 ```
 
-## $ uno clean
+## uno clean
+
 ```
 Usage: uno clean [options] [project-path ...]
 
@@ -178,7 +186,8 @@ Available options
   -r, --recursive       Look for project files recursively
 ```
 
-## $ uno test
+## uno test
+
 ```
 Usage: uno test [options] [paths-to-search]
 
@@ -224,12 +233,14 @@ Examples:
   uno test -t=dotnet -r=teamcity -v Path\Projects
 ```
 
-## $ uno test-gen
+## uno test-gen
+
 ```
 Usage: uno test-gen <path to packages> <path for temporary project> [--exclude=name]
 ```
 
-## $ uno doctor
+## uno doctor
+
 ```
 Usage: uno doctor [options] [source-dir|package-name ...]
   or   uno doctor [options] --force [package-name ...]
@@ -247,7 +258,7 @@ Available options
   -s, --silent                 Very quiet build log
 ```
 
-## $ uno install
+## uno install
 ```
 Usage: uno install <package ...> [version] [source]
   or   uno install <project-file|directory>
@@ -263,7 +274,7 @@ Install options
   -f, --force           Install a package even if already installed
 ```
 
-## $ uno uninstall
+## uno uninstall
 ```
 Usage: uno uninstall <package|wildcard ...> [version]
 
@@ -274,7 +285,7 @@ Uninstall options
   -f, --force           Uninstall all matching packages without warning
 ```
 
-## $ uno feed
+## uno feed
 ```
 Usage: uno feed [package ...] [version] [source]
   or   uno feed [package ...] [version] --installed
@@ -291,7 +302,7 @@ Filter options
   -n, --version=STRING      Show only packages of this version
 ```
 
-## $ uno pack
+## uno pack
 ```
 Usage: uno pack [options] [project-path ...]
 
@@ -305,7 +316,7 @@ Available options
   -r, --recursive           Look for project files recursively
 ```
 
-## $ uno push
+## uno push
 ```
 Usage: uno push <options> <upk-file ...>
 
@@ -319,7 +330,7 @@ Upload options
   -U, --no-upload       Don't push anything to server
 ```
 
-## $ uno stuff
+## uno stuff
 ```
 Usage: uno stuff COMMAND [args]
   or   uno stuff --version
@@ -336,7 +347,7 @@ Available commands
 Type "uno stuff COMMAND --help" to get instructions for a command
 ```
 
-## $ uno config
+## uno config
 ```
 Usage: uno config [property ...]
   or   uno config [options]
@@ -349,7 +360,8 @@ Available options
   -v                    Print everything
 ```
 
-## $ uno ls
+## uno ls
+
 ```
 Usage: uno ls [options] [project-path ...]
 
@@ -361,14 +373,16 @@ Available options
   -F, --no-files        Don't list files included in project(s)
 ```
 
-## $ uno lint
+## uno lint
+
 ```
 Usage: uno lint [source-path ...]
 
 Parses uno source files and output syntax errors.
 ```
 
-## $ uno adb
+## uno adb
+
 ```
 Usage: uno adb [arguments ...]
 
@@ -378,7 +392,8 @@ This commands forwards given arguments to 'adb', which is a tool included in the
 Type 'uno adb' to see what's available.
 ```
 
-## $ uno launch-apk
+## uno launch-apk
+
 ```
 Usage: uno launch-apk [options] <filename>
 
@@ -393,7 +408,8 @@ Available options
   -L, --no-log          Don't run logcat, just launch
 ```
 
-## $ uno open
+## uno open
+
 ```
 Usage: uno open [options] <filename ...>
 

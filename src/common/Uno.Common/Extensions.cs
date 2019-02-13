@@ -210,7 +210,7 @@ namespace Uno
                         str.Length == 0 ||
                         NeedsQuote(str[0]) ||
                         NeedsQuote(str[str.Length - 1]) ||
-                        str.IsIdentifier()
+                        !char.IsUpper(str[0]) && str.IsIdentifier()
                     ? "'" + str + "'"
                     : str;
         }
