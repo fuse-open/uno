@@ -1,12 +1,28 @@
-# Uno Core Platform
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/github/fuse-open/uno?branch=master&svg=true)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
-[![Tracis CI Build Status](https://travis-ci.org/fuse-open/uno.svg?branch=master)](https://travis-ci.org/fuse-open/uno)
-[![license: MIT](https://img.shields.io/github/license/fuse-open/uno.svg)](LICENSE.txt)
-[![Slack](https://img.shields.io/badge/chat-on%20slack-blue.svg)](https://slackcommunity.fusetools.com/)
+# Uno/UX core
 
-Welcome to Uno.
+[![AppVeyor build status](https://img.shields.io/appveyor/ci/fusetools/uno/master.svg?logo=appveyor&logoColor=silver&style=flat-square)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
+[![Travis CI build status](https://img.shields.io/travis/fuse-open/uno/master.svg?style=flat-square)](https://travis-ci.org/fuse-open/uno)
+[![NPM package](https://img.shields.io/npm/v/@fuse-open/uno.svg?style=flat-square)](https://www.npmjs.com/package/@fuse-open/uno)
+[![License: MIT](https://img.shields.io/github/license/fuse-open/uno.svg?style=flat-square)](LICENSE.txt)
+[![Slack](https://img.shields.io/badge/chat-on%20slack-blue.svg?style=flat-square)](https://slackcommunity.fusetools.com/)
 
-We're here to help [Fuse Open Source] development by building and maintaining several related pieces of core technology.
+Welcome to Uno, the core component in [Fuse Open], a native app development tool suite.
+
+## Install
+
+```
+npm install @fuse-open/uno
+```
+
+This will install `uno`. Pass `--save-dev` to install as a dependency in your local project, or `-g` to install
+the command globally on your system.
+
+Please note that this package contains .NET software that will need [Mono](http://www.mono-project.com/download/)
+to run correctly on macOS.
+
+## Abstract
+
+We're here to help [Fuse Open] development by building and maintaining several related pieces of core technology.
 
 * Cross-platform tools for building and running applications
 * Core libraries and platform abstraction
@@ -22,7 +38,7 @@ Uno is used on macOS and Windows, and makes native apps for the following platfo
 * macOS (native or Mono)
 * Windows (native or .NET)
 
-[Fuse Open Source]: https://fuseopen.com/
+[Fuse Open]: https://fuseopen.com/
 
 ### Uno syntax
 
