@@ -73,10 +73,12 @@ The following foreign languages are supported:
 
 See https://fuseopen.com/docs/ for more information about the Uno/UX (and JavaScript) stack.
 
-## Contributing
+## Build instructions
 
-Please read [build-instructions](docs/build-instructions.md) for details
+Please read [the build instructions](docs/build-instructions.md) for details
 on how to build the source code.
+
+## Contributing
 
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of
 conduct, and the process for submitting pull requests to us.
