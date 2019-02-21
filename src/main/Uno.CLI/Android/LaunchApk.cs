@@ -71,7 +71,7 @@ namespace Uno.CLI.Android
                 devices = adb.GetDevices();
             }
 
-            Log.Message("Installing APK on " + devices.Count + " device(s)");
+            Log.Message("Installing APK on " + devices.Count + " device".Plural(devices));
 
             foreach (var dev in devices)
                 dev.Install(package, filename);
