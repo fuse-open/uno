@@ -35,11 +35,23 @@ namespace Uno.CLI.Android
             foreach (var line in output.Split('\n').Skip(1))
             {
                 var parts = line.Cut();
-                if (parts.Count == 2 && parts[1] == "device")
+                if (parts.Count == 2 && parts[1] == "device" && !IsIpAndPort(parts[0]))
                     devices.Add(new AdbDevice(_shell, _adb, parts[0]));
             }
 
             return devices;
+        }
+
+        // Ignore devices that look like <IP>:<port>,
+        // because installation will fail on those.
+        static bool IsIpAndPort(string arg)
+        {
+            if (arg.IndexOf(':') == -1)
+                return false;
+
+            int port;
+            var parts = arg.Split(':');
+            return parts.Length == 2 && int.TryParse(parts[1], out port);
         }
     }
 }
