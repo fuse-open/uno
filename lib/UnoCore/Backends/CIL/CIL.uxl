@@ -31,8 +31,7 @@
     <Template Name="Uno.Native">
         <Require Assembly="@(PACKAGE_DIR)/prebuilt/Uno.Native/Uno.Native.dll" />
         <Require UnmanagedLibrary="@(PACKAGE_DIR)/prebuilt/Uno.Native/libuAsset.dylib" Condition="HOST_MAC" />
-        <Require UnmanagedLibrary.x86="@(PACKAGE_DIR)/prebuilt/Uno.Native/x86/uAsset.dll" Condition="HOST_WIN32" />
-        <Require UnmanagedLibrary.x64="@(PACKAGE_DIR)/prebuilt/Uno.Native/x64/uAsset.dll" Condition="HOST_WIN32" />
+        <Require UnmanagedLibrary="@(PACKAGE_DIR)/prebuilt/Uno.Native/uAsset.dll" Condition="HOST_WIN32" />
     </Template>
 
     <!-- Deprecated -->

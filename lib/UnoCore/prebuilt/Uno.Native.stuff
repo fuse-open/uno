@@ -1,6 +1,6 @@
 if DOTNET && HOST_WIN32 {
-    /* 1.44MB */ Uno.Native: "https://files.fusetools.com/tooling/PWRYkbaWRH9W-Uno.Native-180312-bf6027-Win32.zip"
+    /* 1.44MB */ Uno.Native: "https://www.nuget.org/api/v2/package/uno-asset-importer-win32-x64/1.0.0"
 }
 if DOTNET && HOST_MAC {
-    /* 1.08MB */ Uno.Native: "https://files.fusetools.com/tooling/NEGisK9vdA37-Uno.Native-180312-4a5f15-macOS.zip"
+    /* 1.08MB */ Uno.Native: "https://www.nuget.org/api/v2/package/uno-asset-importer-macOS/1.0.0"
 }
