@@ -4,7 +4,6 @@
 set -e
 cd "`dirname "$0"`"
 
-
 case $1 in
 debug)
     echo "Opening Xcode"
@@ -18,10 +17,13 @@ debug)
     ;;
 uninstall)
     echo "Uninstalling @(BundleIdentifier)"
+    chmod +x "@(Base.Directory)/bin/ios-deploy"
     "@(Base.Directory)/bin/ios-deploy" -9 -1 "@(BundleIdentifier)"
     exit $?
     ;;
 esac
+
+chmod +x "@(Base.Directory)/bin/ios-deploy"
 
 #if @(Cocoapods:Defined)
 pod install
