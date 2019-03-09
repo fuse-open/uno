@@ -2,10 +2,10 @@ if ANDROID {
     "Android": "https://www.nuget.org/api/v2/package/uno-base-android-static-armv7/0.8.730",
 }
 if IOS {
-    "iOS": "https://files.fusetools.com/tooling/PzOS0jxo8U5Q-uno-base-0.8.730-iOS.zip"
+    "iOS": "https://www.nuget.org/api/v2/package/uno-base-iOS-static/0.8.730"
 }
 if OSX {
-    "OSX": "https://files.fusetools.com/tooling/vFhFA3cAEUOi-uno-base-0.8.730-OSX.zip"
+    "OSX": "https://www.nuget.org/api/v2/package/uno-base-macOS-static/0.8.730"
 }
 if WIN32 {
     "Win32": "https://www.nuget.org/api/v2/package/uno-base-vc141-static-x64/0.8.730"
