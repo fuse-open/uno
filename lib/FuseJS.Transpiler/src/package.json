@@ -3,8 +3,8 @@
   "version": "1.2.2",
   "dependencies": {
     "babel-standalone": "^6.26.0",
-    "browserify": "^14.4.0",
-    "uglify-js": "^3.1.0"
+    "browserify": "^16.2.3",
+    "uglify-js": "^3.4.10"
   },
   "scripts": {
     "build": "browserify server.js --node | uglifyjs -c -m -o ../server.min.js",
