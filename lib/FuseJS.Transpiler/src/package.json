@@ -2,12 +2,14 @@
   "name": "fusejs-transpiler",
   "version": "1.2.2",
   "dependencies": {
-    "babel-standalone": "^6.26.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "browserify": "^16.2.3",
     "uglify-js": "^3.4.10"
   },
   "scripts": {
-    "build": "browserify server.js --node | uglifyjs -c -m -o ../server.min.js",
+    "build": "browserify server.js --node | babel --no-babelrc --presets @babel/env | uglifyjs -c -m -o ../server.min.js",
     "start": "node server.js 1337"
   }
 }
