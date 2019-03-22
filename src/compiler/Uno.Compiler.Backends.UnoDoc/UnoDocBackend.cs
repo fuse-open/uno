@@ -17,7 +17,7 @@ namespace Uno.Compiler.Backends.UnoDoc
 
         public override bool CanLink(Function f)
         {
-            return f.IsExtern;
+            return true;
         }
 
         public override BackendResult Build()
