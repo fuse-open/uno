@@ -13,6 +13,6 @@
   },
   "scripts": {
     "build": "browserify server.js --node | babel --no-babelrc --presets @babel/env | uglifyjs -c -m -o ../server.min.js",
-    "start": "node server.js 1337"
+    "start": "node server.js"
   }
 }
