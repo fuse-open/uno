@@ -10,7 +10,6 @@
 #include <uImage/Png.h>
 #include <uImage/Texture.h>
 #include <XliPlatform/GL.h>
-#include <XliPlatform/MessageBox.h>
 #include <mutex>
 @{byte:IncludeDirective}
 
@@ -95,7 +94,6 @@ void uFatal(const char* src, const char* msg)
     uLog(uLogLevelFatal, "Runtime Error in %s: %s",
         src && strlen(src) ? src : "(unknown)",
         msg && strlen(msg) ? msg : "(no message)");
-    Xli::MessageBox::Show(NULL, "The application has crashed.", "Fatal Error", Xli::DialogButtonsOK, Xli::DialogHintsError);
     abort();
 }
 
