@@ -187,9 +187,9 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return new SourceComment(string.Join("\n", lines),
                                      firstParagraph,
                                      body.TrimEnd(),
-                                     remarks.ToString().Trim(),
-                                     examples.ToString().Trim(),
-                                     ux.ToString().Trim(),
+                                     remarks.ToString().Trim().Replace("\r\n", "\n"),
+                                     examples.ToString().Trim().Replace("\r\n", "\n"),
+                                     ux.ToString().Trim().Replace("\r\n", "\n"),
                                      macros);
         }
 

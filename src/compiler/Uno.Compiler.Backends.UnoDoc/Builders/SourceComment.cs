@@ -59,7 +59,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
                     macrosByKey.Add(key, new List<string>());
                 }
 
-                macrosByKey[key].Add(macro.Item2.ToString());
+                macrosByKey[key].Add(macro.Item2.ToString().Replace("\r\n", "\n"));
             }
 
             var advanced = macroNames.Contains("@advanced");
