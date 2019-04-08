@@ -178,8 +178,9 @@ namespace Uno.Build.Packages
                     continue;
 
                 var name = f.NativePath;
+                var nameWithoutExt = Path.GetFileNameWithoutExtension(name);
                 var inputFile = Path.Combine(project.RootDirectory, name);
-                var outputFile = Path.Combine(project.RootDirectory, ".uno", "fusejs", name);
+                var outputFile = Path.Combine(project.RootDirectory, ".uno", "fusejs", nameWithoutExt + ".js");
 
                 result.AdditionalFiles.Add(f); // Invalidate the project when a FuseJS file changes
                 result.BundleFiles.Add(new FileItem(outputFile.ToRelativePath(project.RootDirectory, true).NativeToUnix(), f.Condition));
