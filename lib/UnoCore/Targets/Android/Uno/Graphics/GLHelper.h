@@ -28,7 +28,6 @@ private:
     static void SwapBackToPBufferSurface(EGLSurface surface);
     static void SwapBackToPBufferSurface();
     static void SwapToDummySurface();
-    static void CreateDummySurface();
 public:
     static void InitGL();
     static void DeInitGL();
