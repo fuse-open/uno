@@ -198,7 +198,6 @@
     <ProcessFile JavaFile="com/Bindings/UnoWrapped.java" />
     <ProcessFile JavaFile="com/fuse/Activity.java" />
     <ProcessFile JavaFile="com/fuse/R.java" />
-    <ProcessFile JavaFile="com/uno/Debug.java" />
 
     <!-- Icons -->
 
