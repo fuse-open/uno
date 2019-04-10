@@ -194,7 +194,6 @@
     <ProcessFile JavaFile="com/fuse/AppRuntimeSettings.java" />
     <ProcessFile JavaFile="com/fuse/App.java" />
     <ProcessFile JavaFile="com/uno/CppManager.java" />
-    <ProcessFile JavaFile="com/fuse/deprecated/MessageBoxHelper.java" />
     <ProcessFile JavaFile="com/Bindings/UnoWrapped.java" />
     <ProcessFile JavaFile="com/fuse/Activity.java" />
     <ProcessFile JavaFile="com/fuse/R.java" />

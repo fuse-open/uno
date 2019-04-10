@@ -456,7 +456,6 @@
     "Targets/Android/com/fuse/ActivityState.java:File",
     "Targets/Android/com/fuse/App.java:File",
     "Targets/Android/com/fuse/AppRuntimeSettings.java:File",
-    "Targets/Android/com/fuse/deprecated/MessageBoxHelper.java:File",
     "Targets/Android/com/fuse/R.java:File",
     "Targets/Android/com/uno/CppManager.java:File",
     "Targets/Android/Dependencies.uxl:Extensions",

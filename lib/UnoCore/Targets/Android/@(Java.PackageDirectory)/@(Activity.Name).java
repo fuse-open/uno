@@ -150,7 +150,7 @@ public class @(Activity.Name) extends android.support.v7.app.AppCompatActivity i
     public static int ShowMessageBox(CharSequence caption, CharSequence message, int buttons, int hints)
     {
         Log.w("@(Activity.Name)", "ShowMessageBox() is deprecated.");
-        return com.fuse.deprecated.MessageBoxHelper.ShowMessageBox(com.fuse.App.getCurrent().RootActivity, caption, message, buttons, hints);
+        return -1;
     }
     @Deprecated
     public static AssetManager GetAssetManager()
