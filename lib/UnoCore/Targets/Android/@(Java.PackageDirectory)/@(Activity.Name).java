@@ -139,7 +139,7 @@ public class @(Activity.Name) extends android.support.v7.app.AppCompatActivity i
         fuseApp.onWindowFocusChanged(arg0);
     }
 #endif
-    // Used by xli - remove asap
+
     @Deprecated
     public static Activity GetRootActivity()
     {
