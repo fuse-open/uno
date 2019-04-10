@@ -32,7 +32,7 @@ import com.fuse.Activity.ActivityListener;
 
 @(Activity.File.Declaration:Join())
 
-public class @(Activity.Name) extends android.support.v7.app.AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback
+public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityCompat.OnRequestPermissionsResultCallback
 {
 #if !@(LIBRARY:Defined)
 
