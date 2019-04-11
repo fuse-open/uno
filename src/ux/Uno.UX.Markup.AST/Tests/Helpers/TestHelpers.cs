@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Xml.Linq;
 using NUnit.Framework;
-using Uno.Compiler.Frontend.Analysis;
 using Uno.UX.Markup.Common;
 
 namespace Uno.UX.Markup.AST.Tests.Helpers

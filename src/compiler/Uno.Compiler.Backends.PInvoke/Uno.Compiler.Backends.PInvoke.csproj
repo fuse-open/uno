@@ -48,10 +48,6 @@
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\engine\Uno.ProjectFormat\Uno.ProjectFormat.csproj">
-      <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
-      <Name>Uno.ProjectFormat</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Uno.Compiler.Backends.PInvoke.nuspec" />

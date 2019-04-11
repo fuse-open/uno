@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using OpenGL;
 using Uno.Diagnostics;
 using Uno.Graphics;

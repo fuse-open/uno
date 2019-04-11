@@ -50,10 +50,6 @@
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\src\compiler\Uno.Compiler.Backends.CIL\Uno.Compiler.Backends.CIL.csproj">
-      <Project>{B3B455C8-DD3D-4655-B10C-3C6BE878911E}</Project>
-      <Name>Uno.Compiler.Backends.CIL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\src\common\Uno.Common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
