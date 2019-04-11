@@ -4,6 +4,9 @@
 pushd "%~dp0"
 
 if "%1" == "debug" (
+#if @(JDK.Directory:IsSet)
+    set JAVA_HOME=@(JDK.Directory:NativePath)
+#endif
     echo Opening Android Studio
     call gradlew --recompile-scripts
     @(Uno) open -a"Android Studio" -t"@(Project.Name)" "%~dp0app/app.iml"
