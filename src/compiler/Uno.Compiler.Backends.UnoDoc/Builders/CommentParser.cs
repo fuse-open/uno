@@ -261,7 +261,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
                 throw new FileNotFoundException($"Included file {filename} in {path} was not found in {packageSourceDirectory}");
             }
 
-            return File.ReadAllText(filePath);
+            return File.ReadAllText(filePath).Replace("\r\n", "\n");
         }
 
         private static List<string> ProcessLines(List<string> lines)
