@@ -69,7 +69,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
                 }
 
                 sb.AppendLine("]");
-                result.Add(sb.ToString());
+                result.Add(sb.ToString().Replace("\r\n", "\n"));
             }
 
             return result.Any()

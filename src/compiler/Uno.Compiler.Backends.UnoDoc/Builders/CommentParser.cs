@@ -187,9 +187,9 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return new SourceComment(string.Join("\n", lines),
                                      firstParagraph,
                                      body.TrimEnd(),
-                                     remarks.ToString().Trim(),
-                                     examples.ToString().Trim(),
-                                     ux.ToString().Trim(),
+                                     remarks.ToString().Trim().Replace("\r\n", "\n"),
+                                     examples.ToString().Trim().Replace("\r\n", "\n"),
+                                     ux.ToString().Trim().Replace("\r\n", "\n"),
                                      macros);
         }
 
@@ -261,7 +261,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
                 throw new FileNotFoundException($"Included file {filename} in {path} was not found in {packageSourceDirectory}");
             }
 
-            return File.ReadAllText(filePath);
+            return File.ReadAllText(filePath).Replace("\r\n", "\n");
         }
 
         private static List<string> ProcessLines(List<string> lines)
