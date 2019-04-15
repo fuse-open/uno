@@ -10,7 +10,7 @@ namespace Uno.Text
                 return Encoding.ASCII.GetBytes(value);
             else
             {
-                if (string.IsNullOrEmpty(value))
+                if (value == null)
                     return null;
 
                 var res = new byte[value.Length];
@@ -27,7 +27,7 @@ namespace Uno.Text
                 return Encoding.ASCII.GetString(value);
             else
             {
-                if (value == null || value.Length == 0)
+                if (value == null)
                     return null;
 
                 var res = string.Empty;
