@@ -36,5 +36,19 @@ namespace Uno.Text.Test
             var result = Ascii.GetBytes("ш");
             Assert.AreEqual(new byte[] { 0x3f }, result);
         }
+
+        [Test]
+        public void AsciiEmptyDecodeTest()
+        {
+            var result = Ascii.GetString(new byte[0]);
+            Assert.AreEqual("", result);
+        }
+
+        [Test]
+        public void AsciiEmptyEncodeTest()
+        {
+            var result = Ascii.GetBytes("");
+            Assert.AreEqual(new byte[0], result);
+        }
     }
 }
