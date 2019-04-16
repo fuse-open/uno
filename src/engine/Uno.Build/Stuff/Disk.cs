@@ -91,7 +91,10 @@ namespace Uno.Build.Stuff
         {
             try
             {
-                File.SetLastWriteTimeUtc(name, DateTime.UtcNow);
+                if (!File.Exists(name))
+                    File.Create(name);
+                else
+                    File.SetLastWriteTimeUtc(name, DateTime.UtcNow);
             }
             catch (IOException)
             {
