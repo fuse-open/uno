@@ -429,6 +429,7 @@ namespace Uno.Compiler.Core.Syntax
             if (!map.TryGetValue(key, out old))
                 map.Add(key, value);
             else if (old.Disambiguation != Disambiguation.Override && (
+                        value.Source.Package != old.Source.Package ||
                         value.Disambiguation == Disambiguation.Override ||
                         old.Disambiguation == Disambiguation.Default && value.Disambiguation != Disambiguation.Default ||
                         old.Disambiguation != Disambiguation.Condition && value.Disambiguation == Disambiguation.Condition)
