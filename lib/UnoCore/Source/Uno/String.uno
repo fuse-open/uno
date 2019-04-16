@@ -468,6 +468,18 @@ namespace Uno
             return r;
         }
 
+        public static string Join(string separator, params object[] value)
+        {
+            var strings = new string[value.Length];
+
+            for (int i = 0; i < value.Length; i++)
+                strings[i] = value[i] != null
+                                ? value[i].ToString()
+                                : null;
+
+            return Join(separator, strings);
+        }
+
         public static string Join(string separator, params string[] value)
         {
             var result = "";
