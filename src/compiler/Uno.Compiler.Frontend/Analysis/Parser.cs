@@ -1569,10 +1569,33 @@ namespace Uno.Compiler.Frontend.Analysis
                     return new AstSwitch(token, cond, cases);
                 }
                 case TokenType.Assert:
-                case TokenType.DebugLog:
                 {
                     --_index;
                     return new AstValueStatement(token, token.ValueStatementType, Expression(context, "value", TokenType.Semicolon));
+                }
+                case TokenType.DebugLog:
+                {
+                    --_index;
+                    var e = Expression(context, 0, "value");
+                    
+                    // Expand multiple arguments to 'string.Join(" ", ...ARGS)'
+                    if (Optional(TokenType.Comma))
+                    {
+                        var args = new List<AstArgument> {new AstString(Source.Unknown, " "), e};
+
+                        do
+                            args.Add(Expression(context, 0, "argument"));
+                        while (Optional(TokenType.Comma));
+
+                        e = new AstCall(AstCallType.Function,
+                                new AstMember(
+                                    new AstBuiltinType(Source.Unknown, BuiltinType.String),
+                                    new AstIdentifier(Source.Unknown, "Join")),
+                                args.ToArray());
+                    }
+
+                    Scan(TokenType.Semicolon);
+                    return new AstValueStatement(token, token.ValueStatementType, e);
                 }
                 case TokenType.Const:
                 {
