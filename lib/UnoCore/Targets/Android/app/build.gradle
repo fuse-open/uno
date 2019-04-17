@@ -20,7 +20,7 @@ task extractNativeLibraries() {
         configurations.native_implementation.files.each { f ->
             copy {
                 from zipTree(f)
-                into '${buildDir}/native'
+                into 'build/native'
                 include 'jni/**/*'
             }
         }
