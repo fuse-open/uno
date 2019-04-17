@@ -63,6 +63,7 @@
     <Require AndroidManifest.Permission="android.permission.ACCESS_NETWORK_STATE" />
     <Require AndroidManifest.Permission="android.permission.VIBRATE" />
 
+    <Set Activity.BaseClass="android.support.v7.app.AppCompatActivity" />
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
     <Set APK.BuildName="app/build/outputs/apk/@(APK.Configuration:ToLower)/app-@(APK.Configuration:ToLower).apk" />
