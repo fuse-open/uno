@@ -3,7 +3,7 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType]
-    public struct Rect // TODO: make immutable?
+    public struct Rect
     {
         public float Left, Top, Right, Bottom;
 
