@@ -40,13 +40,15 @@ namespace Uno.Compiler.Backends.CIL
 
         public override bool CanLink(DataType dt)
         {
-            return dt.Package.CanLink || dt.HasAttribute(Essentials.DotNetTypeAttribute, true);
+            // Can't check DotNetTypeAttribute because we don't know if any members with DotNetOverrideAttriute exist.
+            return dt.Package.CanLink;
         }
 
         public override bool CanLink(Function f)
         {
-            return f.DeclaringType.Package.CanLink || f.DeclaringType.CanLink && 
-                !f.HasAttribute(Essentials.DotNetOverrideAttribute);
+            return f.DeclaringType.CanLink ||
+                f.DeclaringType.HasAttribute(Essentials.DotNetTypeAttribute, true) && 
+                    !f.HasAttribute(Essentials.DotNetOverrideAttribute);
         }
 
         public override void BeginBuild()
