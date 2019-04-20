@@ -90,7 +90,7 @@ namespace Uno.Compiler.Backends.CIL
 
             // Create an executable for given architecture (-DX86 or -DX64)
             var loader = new AppLoader(Environment.GetString("AppLoader.Assembly"));
-            var executable = Environment.Combine(Environment.GetString("Product")).TrimPath();
+            var executable = Environment.Combine(Environment.GetString("Product").TrimPath());
 
             if (Environment.IsDefined("X64"))
                 loader.SetX64();
