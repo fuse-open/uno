@@ -25,6 +25,17 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
+        public override bool Begin(DataType dt)
+        {
+            foreach (var m in dt.Methods)
+            {
+                var refMethod = m;
+                OnTwinMethod(ref refMethod);
+            }
+
+            return true;
+        }
+
         private void OnTwinMethod(ref Method method)
         {
             Method twin;
