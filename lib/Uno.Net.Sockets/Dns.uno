@@ -6,7 +6,7 @@ using Uno.Net.Sockets;
 namespace Uno.Net
 {
     [DotNetType("System.Net.Dns")]
-    [extern(APPLE) Require("Source.Include", "ifaddrs.h")]
+    [extern(APPLE || LINUX) Require("Source.Include", "ifaddrs.h")]
     [extern(UNIX) Require("Source.Include", "sys/socket.h")]
     [extern(UNIX) Require("Source.Include", "netdb.h")]
     [extern(UNIX) Require("Source.Include", "netinet/in.h")]
@@ -15,7 +15,7 @@ namespace Uno.Net
     [ForeignInclude(Language.Java, "java.util.*", "java.net.*")]
     public class Dns
     {
-        extern(APPLE) static IPAddress[] GetLocalAddresses()
+        extern(APPLE || LINUX) static IPAddress[] GetLocalAddresses()
         @{
             ifaddrs *addr, *curr;
             if (getifaddrs(&addr) != 0)
