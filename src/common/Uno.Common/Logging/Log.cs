@@ -235,7 +235,7 @@ namespace Uno.Logging
             WriteLine(line, color);
         }
 
-        public void Event(IOEvent @event, string path, string extra = null)
+        public void Event(object @event, string path, string extra = null)
         {
             if (Level < LogLevel.UltraVerbose)
                 return;

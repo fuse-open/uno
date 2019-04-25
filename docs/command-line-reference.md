@@ -32,7 +32,6 @@ Experimental commands
   feed           Maintain Uno package feeds
   pack           Build project(s) and make Uno package(s)
   push           Upload Uno package(s) to remote server
-  stuff          Built-in simple package manager
   lint           Parses uno source files and output syntax errors
   adb            Use Android Debug Bridge (adb)
   launch-apk     Deploy and start APK on a connected device
@@ -328,23 +327,6 @@ Upload options
   -t, --timeout=NUMBER  Time out after [600] seconds [optional]
   -o, --out=FILE        Save a list of packages to FILE [optional]
   -U, --no-upload       Don't push anything to server
-```
-
-## uno stuff
-```
-Usage: uno stuff COMMAND [args]
-  or   uno stuff --version
-
-Available commands
-  install     Downloads and installs stuff in .STUFF file(s)
-  clean       Removes stuff installed by .STUFF file(s)
-  pack        Builds .ZIP and .STUFF-UPLOAD file(s)
-  push        Uploads .STUFF-UPLOAD file(s) to a remote server
-  gc          Deletes files older than specified number of days from the download cache
-  sln         Generates C# .SLN file(s)
-  symlink     Finds duplicate files in a directory tree and replaces them with symlinks
-
-Type "uno stuff COMMAND --help" to get instructions for a command
 ```
 
 ## uno config

@@ -55,7 +55,6 @@
     <Compile Include="Android\AdbRunner.cs" />
     <Compile Include="Android\LaunchApk.cs" />
     <Compile Include="System\Open.cs" />
-    <Compile Include="Packages\Stuff.cs" />
     <Compile Include="Testing\Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projects\BuildArguments.cs" />
@@ -94,10 +93,6 @@
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
       <Name>Uno.Compiler.Frontend</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\engine\Uno.Stuff\Uno.Stuff.csproj">
-      <Project>{33dfb596-4314-4ea9-b00e-65e18d818a97}</Project>
-      <Name>Uno.Stuff</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

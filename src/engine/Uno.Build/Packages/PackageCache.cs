@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stuff.Format;
+using Uno.Configuration.Format;
 using Uno.Build.JavaScript;
 using Uno.Collections;
 using Uno.Compiler;

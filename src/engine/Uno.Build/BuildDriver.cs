@@ -1,20 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using Stuff.Core;
-using Stuff.Format;
-using Uno.Build.JavaScript;
 using Uno.Build.Packages;
+using Uno.Build.Stuff;
 using Uno.Compiler;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Compiler.Frontend;
 using Uno.Configuration;
+using Uno.Configuration.Format;
 using Uno.Diagnostics;
 using Uno.IO;
 using Uno.Logging;
@@ -205,10 +203,8 @@ namespace Uno.Build
             {
                 using (Log.StartAnimation("Installing dependencies"))
                 {
-                    Stuff.Log.Configure(Log.IsVeryVerbose, Log.OutWriter, Log.ErrorWriter);
-
                     foreach (var f in stuff)
-                        if (!Installer.Install(f, 0, defines))
+                        if (!Installer.Install(Log, f, 0, defines))
                             Log.Error(new Source(f), null, "Failed to install dependencies");
                 }
             }
@@ -317,7 +313,7 @@ namespace Uno.Build
             foreach (var p in packages)
                 foreach (var f in p.StuffFiles)
                     if (env.Test(p.Source, f.Condition) &&
-                            !Installer.IsUpToDate(Path.Combine(p.SourceDirectory, f.NativePath), 0, defines))
+                            !Installer.IsUpToDate(Log, Path.Combine(p.SourceDirectory, f.NativePath), 0, defines))
                         stuff.Add(Path.Combine(p.SourceDirectory, f.NativePath));
             return stuff;
         }

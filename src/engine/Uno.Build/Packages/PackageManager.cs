@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Stuff;
-using Stuff.Format;
 using Uno.Build.Packages.Feeds;
+using Uno.Build.Stuff;
 using Uno.Configuration;
+using Uno.Configuration.Format;
 using Uno.IO;
 using Uno.Logging;
 using Uno.ProjectFormat;
@@ -127,7 +127,7 @@ namespace Uno.Build.Packages
             var dst = Path.Combine(InstallDirectory, upk.Name, upk.Version);
             Log.WriteLine("Installing " + upk.Name + " " + upk.Version, ConsoleColor.Blue);
 
-            using (new FileLock(dst))
+            using (new FileLock(Log, dst))
             {
                 if (Force || !PackageFile.Exists(dst))
                     upk.Install(dst);

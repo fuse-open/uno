@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stuff.Core;
+using Uno.Build.Stuff;
 using Uno.IO;
 using Uno.Logging;
 using Uno.ProjectFormat;
@@ -53,8 +53,7 @@ namespace Uno.Build
             Disk.DeleteDirectory(project.CacheDirectory);
 
             // Remove files installed by stuff
-            Stuff.Log.Configure(Log.IsVeryVerbose, Log.OutWriter, Log.ErrorWriter);
-            Installer.CleanAll(
+            Installer.CleanAll(Log,
                 project.StuffFiles.Select(
                     x => Path.Combine(project.RootDirectory, x.NativePath)));
 

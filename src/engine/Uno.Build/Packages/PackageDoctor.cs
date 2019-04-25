@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Stuff;
-using Uno.Build.JavaScript;
+using Uno.Build.Stuff;
 using Uno.Compiler.API;
 using Uno.Compiler.Frontend;
+using Uno.IO;
 using Uno.Logging;
 using Log = Uno.Logging.Log;
 
@@ -33,12 +33,12 @@ namespace Uno.Build.Packages
                     if (PackageFile.Exists(path) &&
                             !File.Exists(Path.Combine(path, ".unobuild")) &&
                             Repair(PackageFile.Load(path), force))
-                        Log.Message("Updated " + path.Relative().Quote());
+                        Log.Message("Updated " + path.ToRelativePath().Quote());
                 }
                 catch (Exception e)
                 {
                     Log.Trace(e);
-                    Log.Error("Failed to load package " + path.Relative().Quote() + ": " + e.Message);
+                    Log.Error("Failed to load package " + path.ToRelativePath().Quote() + ": " + e.Message);
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace Uno.Build.Packages
                 reader.HasAnythingChangedSince(reader.CacheTime, false))
             {
                 Log.Verbose("Generating cache for " + file.Name);
-                using (new FileLock(file.CacheDirectory))
+                using (new FileLock(Log, file.CacheDirectory))
                     reader.ExportCache(file.CacheDirectory);
                 return true;
             }
