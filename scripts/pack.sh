@@ -78,8 +78,6 @@ cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $DST/apploader-mac
 
 mkdir -p $DST/apploader-win
 cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-win
-cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x86 $DST/apploader-win
-cp -rf src/runtime/Uno.AppLoader-WinForms/bin/Release/x64 $DST/apploader-win
 
 # Generate config file
 cp config/pack.unoconfig $DST/.unoconfig

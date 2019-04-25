@@ -161,7 +161,7 @@ namespace Uno.Compiler.Core
 
             if (Environment.Options.TestOptions.HasValue)
             {
-                Run(new TestSetupTransform(Pass, Environment.IsDefined("HEADLESS")));
+                Run(new TestSetupTransform(Pass));
             }
 
             if (Backend.BuildType == BuildType.Executable)

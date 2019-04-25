@@ -25,7 +25,6 @@
     "NamedTestMethod.uno:Source",
     "Registry.uno:Source",
     "RemoteRunner.uno:Source",
-    "TestingApp.uno:Source",
     "TestSetup.uno:Source"
   ]
 }

@@ -8,9 +8,9 @@ Assemblies.TestGen: src/testing/Uno.TestGenerator/bin/$(Configuration)/uno-test-
 Assemblies.Uno: src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe
 
 if WIN32 {
-    Paths.AppLoader: src/runtime/@(AppLoaderProj)/bin/$(Configuration)
+    Paths.AppLoader: src/runtime/Uno.AppLoader-WinForms/bin/$(Configuration)
 } else if MAC {
-    Paths.AppLoader: src/runtime/@(AppLoaderProj)/bin/$(Configuration)
+    Paths.AppLoader: src/runtime/Uno.AppLoader-MonoMac/bin/$(Configuration)
 }
 
 // Package config
