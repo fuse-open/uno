@@ -18,7 +18,7 @@ This will install `uno`. Pass `--save-dev` to install as a dependency in your lo
 the command globally on your system.
 
 Please note that this package contains .NET software that will need [Mono](http://www.mono-project.com/download/)
-to run correctly on macOS.
+to run on Linux and macOS.
 
 ## Abstract
 
@@ -31,10 +31,11 @@ We're here to help [Fuse Open] development by building and maintaining several r
 * UX markup language and compiler
 * Uno/UX test runner
 
-Uno is used on macOS and Windows, and makes native apps for the following platforms:
+Uno is used on Linux, macOS and Windows, and makes native apps for the following platforms:
 
 * Android
 * iOS
+* Linux (native)
 * macOS (native or Mono)
 * Windows (native or .NET)
 

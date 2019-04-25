@@ -105,9 +105,10 @@ namespace Uno.IO
                 @{
                     char buf[BUFSIZ];
                     size_t size = 0;
+                    ssize_t res;
 
                     while ((size = read(source, buf, BUFSIZ)) > 0)
-                        write(destination, buf, size);
+                        res = write(destination, buf, size);
 
                     close(source);
                     close(destination);

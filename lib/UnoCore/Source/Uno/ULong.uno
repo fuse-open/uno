@@ -34,7 +34,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 char buf[21];
-                int len = snprintf(buf, sizeof(buf), "%llu", *$$);
+                int len = snprintf(buf, sizeof(buf), "%" PRIu64, *$$);
                 return uString::Ansi(buf, len);
             @}
             else

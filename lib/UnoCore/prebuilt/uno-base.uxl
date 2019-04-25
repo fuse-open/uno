@@ -4,6 +4,7 @@
     <Set Base.Directory="@('iOS':Path)" Condition="IOS" />
     <Set Base.Directory="@('OSX':Path)" Condition="OSX" />
     <Set Base.Directory="@('Win32':Path)" Condition="WIN32" />
+    <Set Base.Directory="@('Linux':Path)" Condition="LINUX" />
     <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/@(ABI)" Condition="ANDROID" />
     <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" Condition="IOS" />
     <Set Base.LinkDirectory="@(Base.Directory:Path)/lib" />
@@ -13,6 +14,7 @@
     <Require LinkDirectory="@(Base.LinkDirectory)" />
 
     <Template Name="freetype">
+        <Require IncludeDirectory="/usr/include/freetype2" Condition="LINUX" />
         <Require LinkLibrary="freetype" Condition="!ANDROID" />
         <Require StaticLibrary="@(Base.LinkDirectory)/libfreetype.a" Condition="ANDROID" />
     </Template>
@@ -50,6 +52,8 @@
         <Require LinkLibrary="GLESv2" Condition="ANDROID || LINUX && ARM" />
         <Require LinkLibrary="GLEW" Condition="OSX || LINUX && !ARM || WIN32" />
         <Require LinkLibrary="SDL2" Condition="OSX || LINUX" />
+        <Require LinkLibrary="GL" Condition="LINUX" />
+        <Require LinkLibrary="pthread" Condition="LINUX" />
         <Require StaticLibrary="@(Base.LinkDirectory)/libXliPlatform.a" Condition="ANDROID" />
     </Template>
 
