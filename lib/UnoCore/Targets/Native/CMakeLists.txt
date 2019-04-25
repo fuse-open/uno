@@ -27,6 +27,8 @@ elseif (MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR- /MP /wd4065 /wd4101 /wd4390 /wd4674")
     set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Build Configurations (forced)" FORCE)
     set(EXTRA_FILES "natvis/uno.natstepfilter" "natvis/uno.natvis")
+elseif (CMAKE_COMPILER_IS_GNUCC)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--start-group")
 endif()
 
 @(CMake.SourceGroups)
