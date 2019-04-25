@@ -1,22 +1,50 @@
-os: osx
-osx_image: xcode9.2
 language: csharp
 mono: latest
 
-env:
-  matrix:
-    - TARGET=dotnet
-    - TARGET=native
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode9.2
+      env: TARGET=dotnet
+    - os: osx
+      osx_image: xcode9.2
+      env: TARGET=native
+    - os: linux
+      dist: xenial
+      env: TARGET=native
+      addons:
+        apt:
+          sources:
+            # For g++-7
+            - sourceline: "ppa:ubuntu-toolchain-r/test"
+          packages:
+            - g++-7
+            - libsdl2-dev
+            - libglew-dev
+            - uuid-dev
+      services:
+        - xvfb
+      before_script:
+        - export CC=gcc-7
+        - export CXX=g++-7
+        - export GALLIUM_DRIVER=softpipe
+        - export LIBGL_ALWAYS_SOFTWARE=true
 
 before_script:
-  - ulimit -c unlimited -S
-  - rm -rf /cores/core.*
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      ulimit -c unlimited -S
+      rm -rf /cores/core.*
+    fi
 
 script:
   - scripts/build.sh --release
   - scripts/test.sh $TARGET
 
 after_failure:
-  - for c in $(ls /cores/core.*); do
-      lldb -c $c -o "bt all" -b;
-    done
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      for c in $(ls /cores/core.*); do
+        lldb -c $c -o "bt all" -b;
+      done
+    fi
