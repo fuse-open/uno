@@ -207,6 +207,27 @@ namespace Uno
                               (@{byte})buf[15])};
         @}
 
+        [Require("Source.Include", "uuid/uuid.h")]
+        [Require("LinkLibrary", "uuid")]
+        extern(LINUX)
+        public static Guid NewGuid()
+        @{
+            unsigned char buf[16];
+            uuid_generate_time_safe(buf);
+            return @{Uno.Guid(uint, ushort, ushort, byte, byte, byte, byte, byte, byte, byte, byte):New(
+                              (@{uint})*(uint32_t*)&buf,
+                              (@{ushort})*(uint16_t*)&buf[4],
+                              (@{ushort})*(uint16_t*)&buf[6],
+                              (@{byte})buf[8],
+                              (@{byte})buf[9],
+                              (@{byte})buf[10],
+                              (@{byte})buf[11],
+                              (@{byte})buf[12],
+                              (@{byte})buf[13],
+                              (@{byte})buf[14],
+                              (@{byte})buf[15])};
+        @}
+
         string[] ValidateGuid(string guid)
         {
             var parts = guid.Split('-');
