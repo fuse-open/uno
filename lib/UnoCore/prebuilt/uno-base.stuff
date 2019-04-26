@@ -11,5 +11,5 @@ if WIN32 {
     "Win32": "https://www.nuget.org/api/v2/package/uno-base-vc141-static-x64/0.8.730"
 }
 if LINUX {
-    "Linux": "https://www.nuget.org/api/v2/package/uno-base-linux-static-x86_64/0.8.730"
+    "Linux": "https://www.nuget.org/api/v2/package/uno-base-linux-static-x86_64/0.8.731"
 }
