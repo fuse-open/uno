@@ -79,6 +79,8 @@ namespace Uno.TestRunner
                     var result = builder.Build(proj);
                     if (result.ErrorCount != 0)
                         throw new Exception("Build failed.");
+                    if (_options.OnlyBuild)
+                        return tests;
 
                     Log targetLog = null;
                     if (_options.RunLocal)
