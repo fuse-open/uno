@@ -78,7 +78,6 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             GLCompiledProgram result;
             if (!_cachedPrograms.TryGetValue(key, out result))
             {
-                //debug_log "Compiling shader with " + constStrings.Length + " runtime constants '" + key + "'";
                 result = GetCompiledProgramInternal(constStrings);
                 _cachedPrograms.Add(key, result);
             }
