@@ -13,11 +13,14 @@ namespace Uno.Text
                 if (value == null)
                     throw new ArgumentNullException(nameof(value));
 
-                var res = new byte[value.Length];
-                for (var i = 0; i < value.Length; i++)
-                    res[i] = (byte)(value[i] < 128 ? value[i] : '?');
+                @{
+                    uArray* res = uArray::New(@{byte[]:TypeOf}, value->_length);
 
-                return res;
+                    for (size_t i = 0; i < value->_length; i++)
+                        res->Unsafe<uint8_t>(i) = (uint8_t)(value->_ptr[i] < 128 ? value->_ptr[i] : '?');
+
+                    return res;
+                @}
             }
         }
 
@@ -30,11 +33,14 @@ namespace Uno.Text
                 if (value == null)
                     throw new ArgumentNullException(nameof(value));
 
-                var res = string.Empty;
-                for (var i = 0; i < value.Length; i++)
-                    res += value[i] < 128 ? (char)value[i] : '?';
+                @{
+                    uString* res = uString::New(value->_length);
+                    
+                    for (size_t i = 0; i < value->_length; i++)
+                        res->_ptr[i] = value->Unsafe<uint8_t>(i) < 128 ? value->Unsafe<uint8_t>(i) : '?';
 
-                return res;
+                    return res;
+                @}
             }
         }
     }
