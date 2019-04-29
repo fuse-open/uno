@@ -17,6 +17,13 @@ namespace Uno.Text.Test
         }
 
         [Test]
+        public void AsciiDecodeTest2()
+        {
+            var result = Ascii.GetString(bytes, 1, 2);
+            Assert.AreEqual(chars.Substring(1, 2), result);
+        }
+
+        [Test]
         public void AsciiEncodeTest()
         {
             var result = Ascii.GetBytes(chars);

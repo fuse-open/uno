@@ -43,5 +43,29 @@ namespace Uno.Text
                 @}
             }
         }
+
+        public static string GetString(byte[] value, int index, int count)
+        {
+            if defined(DOTNET)
+                return Encoding.ASCII.GetString(value, index, count);
+            else
+            {
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+                if (index < 0 || index >= value.Length)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                if (count < 0 || index + count >= value.Length)
+                    throw new ArgumentOutOfRangeException(nameof(count));
+
+                @{
+                    uString* res = uString::New(count);
+                    
+                    for (size_t i = 0; i < count; i++)
+                        res->_ptr[i] = value->Unsafe<uint8_t>(i + index) < 128 ? value->Unsafe<uint8_t>(i + index) : '?';
+
+                    return res;
+                @}
+            }
+        }
     }
 }

@@ -278,6 +278,8 @@ namespace Uno.Text
         public virtual byte[] GetBytes(string s);
         extern(DOTNET)
         public virtual string GetString(byte[] bytes);
+        extern(DOTNET)
+        public virtual string GetString(byte[] bytes, int index, int count);
     }
 
     [extern(DOTNET) DotNetType("System.Text.UTF8Encoding")]
