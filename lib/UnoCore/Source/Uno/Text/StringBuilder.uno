@@ -11,6 +11,15 @@ namespace Uno.Text
 
         public int MaxCapacity { get { return int.MaxValue; }}
 
+        public StringBuilder()
+        {
+        }
+
+        public StringBuilder(string value)
+        {
+            Append(value);
+        }
+
         public override string ToString()
         {
             var c = new char[_totalLength];
