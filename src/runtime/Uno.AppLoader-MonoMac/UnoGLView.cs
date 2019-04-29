@@ -74,9 +74,6 @@ namespace Uno.Support.MonoMac
                 _isInitializedHack = true;
             }
 
-            if (Window == null || !Window.IsVisible)
-                return;
-
             OnPreUpdate();
             if (Uno.Application.Current != null)
                 Bootstrapper.OnUpdate();
@@ -101,6 +98,9 @@ namespace Uno.Support.MonoMac
 
         public void Initialize()
         {
+            if (Environment.GetEnvironmentVariable("UNO_WINDOW_HIDDEN") == "1")
+                Window.IsVisible = false;
+
             _unoWindow.Initialize ();
             OpenGL.GL.Initialize(new MonoMacGL(), !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEBUG_GL")));
             ApplicationContext.Initialize(this);

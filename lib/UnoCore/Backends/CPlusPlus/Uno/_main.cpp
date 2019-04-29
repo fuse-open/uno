@@ -24,6 +24,8 @@
 #if WIN32
 #include <Uno/WinAPIHelper.h>
 #include <Shellapi.h>
+#elif LINUX || OSX
+#include <XliPlatform/PlatformSpecific/SDL2.h>
 #endif
 
 #ifdef DEBUG_DUMPS
@@ -52,6 +54,16 @@ struct uMainLoop : Xli::WindowEventHandler
                     : 60;
 
         uBase::Auto<Xli::Window> wnd = Xli::Window::Create(uBase::Vector2i(375, 667), "@(Project.Title)", Xli::WindowFlagsResizeable);
+
+        if (!strcmp(getenv("UNO_WINDOW_HIDDEN"), "1"))
+        {
+#if WIN32
+            ShowWindow((HWND)wnd->GetNativeHandle(), SW_HIDE);
+#elif LINUX || OSX
+            SDL_HideWindow(Xli::PlatformSpecific::SDL2::GetWindowHandle(wnd));
+#endif
+        }
+
         uBase::Auto<Xli::GLContext> gl = Xli::GLContext::Create(wnd, Xli::GLContextAttributes::Default());
 
         // Store global references to wnd and gl
@@ -70,7 +82,7 @@ struct uMainLoop : Xli::WindowEventHandler
         wnd->SetEventHandler(this);
         Xli::Window::ProcessMessages();
         @{Uno.Platform.CoreApp.Start():Call()};
-    
+
         while (!wnd->IsClosed())
         {
             double startTime = @{Uno.Diagnostics.Clock.GetSeconds():Call()};

@@ -36,6 +36,11 @@ namespace Uno.AppLoader
             Platform2.Internal.Application.Start();
         }
 
+        protected override void SetVisibleCore(bool value)
+        {
+            base.SetVisibleCore(Environment.GetEnvironmentVariable("UNO_WINDOW_HIDDEN") != "1" && value);
+        }
+
         string GetAssemblyTitle()
         {
             return (string) typeof(MainForm).Assembly.CustomAttributes

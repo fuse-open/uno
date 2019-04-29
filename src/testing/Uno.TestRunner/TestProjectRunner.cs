@@ -82,6 +82,9 @@ namespace Uno.TestRunner
                     if (_options.OnlyBuild)
                         return tests;
 
+                    // We don't need a window when running tests.
+                    Environment.SetEnvironmentVariable("UNO_WINDOW_HIDDEN", "1");
+
                     Log targetLog = null;
                     if (_options.RunLocal)
                     {
