@@ -50,5 +50,17 @@ namespace Uno.Text.Test
             var result = Ascii.GetBytes("");
             Assert.AreEqual(new byte[0], result);
         }
+
+        [Test]
+        public void AsciiNullDecodeTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Ascii.GetString(null));
+        }
+
+        [Test]
+        public void AsciiNullEncodeTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Ascii.GetBytes(null));
+        }
     }
 }

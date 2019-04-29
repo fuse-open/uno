@@ -11,7 +11,7 @@ namespace Uno.Text
             else
             {
                 if (value == null)
-                    return null;
+                    throw new ArgumentNullException(nameof(value));
 
                 var res = new byte[value.Length];
                 for (var i = 0; i < value.Length; i++)
@@ -28,7 +28,7 @@ namespace Uno.Text
             else
             {
                 if (value == null)
-                    return null;
+                    throw new ArgumentNullException(nameof(value));
 
                 var res = string.Empty;
                 for (var i = 0; i < value.Length; i++)
