@@ -7,11 +7,11 @@ source scripts/common.sh
 TARGET=$1
 
 # Run uno tests
-uno test $TARGET lib
+uno test $TARGET lib $UNO_TEST_ARGS
 
 # Skip when testing 'native' on AppVeyor
 if [[ "$APPVEYOR" != True || "$TARGET" != native ]]; then
-    uno test $TARGET tests/src/{Uno,UX}Test
+    uno test $TARGET tests/src/{Uno,UX}Test $UNO_TEST_ARGS
 fi
 
 # Run compiler tests
