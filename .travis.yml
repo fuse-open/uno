@@ -29,6 +29,7 @@ matrix:
         - export CXX=g++-7
         - export GALLIUM_DRIVER=softpipe
         - export LIBGL_ALWAYS_SOFTWARE=true
+        - export UNO_TEST_ARGS=--only-build
 
 before_script:
   - |
