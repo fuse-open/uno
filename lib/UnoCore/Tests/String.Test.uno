@@ -766,5 +766,17 @@ namespace Uno.Test
         {
             "abc".IndexOfAny(new char[] {'x'}, 1, 3);
         }
+
+        [Test]
+        public void Join()
+        {
+            Assert.AreEqual(string.Join(" ", new string[0]), "");
+            Assert.AreEqual(string.Join(" ", new[] {"a"}), "a");
+            Assert.AreEqual(string.Join(" ", new[] {"a", "b", "c"}), "a b c");
+            Assert.AreEqual(string.Join(" ", new[] {"a", null, "c"}), "a  c");
+            Assert.AreEqual(string.Join("ab", new[] {"a", "b", "c"}), "aabbabc");
+            Assert.Throws<ArgumentNullException>(() => string.Join("", (object[])null));
+            Assert.Throws<ArgumentNullException>(() => string.Join("", (string[])null));
+        }
     }
 }
