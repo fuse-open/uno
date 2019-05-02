@@ -1,6 +1,7 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Collections;
+using Uno.Text;
 
 namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
 {
@@ -38,18 +39,19 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
         GLCompiledProgram GetCompiledProgramInternal(string[] constStrings)
         {
             var vsPrefix = "#ifdef GL_ES\nprecision highp float;\n#endif\n";
-            var fsPrefix = "#ifdef GL_ES\n#extension GL_OES_standard_derivatives : enable\n";
+            var fsPrefix = new StringBuilder("#ifdef GL_ES\n#extension GL_OES_standard_derivatives : enable\n");
 
             if defined(ANDROID)
-                fsPrefix += "#extension GL_OES_EGL_image_external : enable\n";  // extension directive must occur before precision specifier
+                fsPrefix.Append("#extension GL_OES_EGL_image_external : enable\n");  // extension directive must occur before precision specifier
 
-            fsPrefix += "# ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n# else\nprecision mediump float;\n# endif\n#endif\n";
+            fsPrefix.Append("# ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n# else\nprecision mediump float;\n# endif\n#endif\n");
 
-            // TODO: StringBuilder
-            var defines = "";
+            var definesBuilder = new StringBuilder();
 
             for (int i = 0; i < constStrings.Length; i++)
-                defines += "#define " + _constAttribAndUniformNames[i] + " " + constStrings[i] + "\n";
+                definesBuilder.Append("#define " + _constAttribAndUniformNames[i] + " " + constStrings[i] + "\n");
+
+            var defines = definesBuilder.ToString();
 
             return new GLCompiledProgram(vsPrefix + defines + _vsSource,
                                          fsPrefix + defines + _fsSource,
@@ -76,7 +78,6 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             GLCompiledProgram result;
             if (!_cachedPrograms.TryGetValue(key, out result))
             {
-                //debug_log "Compiling shader with " + constStrings.Length + " runtime constants '" + key + "'";
                 result = GetCompiledProgramInternal(constStrings);
                 _cachedPrograms.Add(key, result);
             }

@@ -278,6 +278,8 @@ namespace Uno.Text
         public virtual byte[] GetBytes(string s);
         extern(DOTNET)
         public virtual string GetString(byte[] bytes);
+        extern(DOTNET)
+        public virtual string GetString(byte[] bytes, int index, int count);
     }
 
     [extern(DOTNET) DotNetType("System.Text.UTF8Encoding")]
@@ -293,28 +295,54 @@ namespace Uno.Text
     {
         public static byte[] GetBytes(string value)
         {
-            if defined(CPLUSPLUS)
-            @{
-                uCString cstr($0);
-                return uArray::New(@{byte[]:TypeOf}, cstr.Length, cstr.Ptr);
-            @}
-            else if defined(DOTNET)
+            if defined(DOTNET)
                 return Encoding.UTF8.GetBytes(value);
             else
-                build_error;
+            {
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+
+                @{
+                    uCString cstr($0);
+                    return uArray::New(@{byte[]:TypeOf}, cstr.Length, cstr.Ptr);
+                @}
+            }
         }
 
         public static string GetString(byte[] value)
         {
-            if defined(CPLUSPLUS)
-            @{
-                const char* utf8 = (const char*)uPtr($0)->Ptr();
-                return uString::Utf8(utf8, $0->Length());
-            @}
-            else if defined(DOTNET)
+            if defined(DOTNET)
                 return Encoding.UTF8.GetString(value);
             else
-                build_error;
+            {
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+
+                @{
+                    const char* utf8 = (const char*)uPtr($0)->Ptr();
+                    return uString::Utf8(utf8, $0->Length());
+                @}
+            }
+        }
+
+        public static string GetString(byte[] value, int index, int count)
+        {
+            if defined(DOTNET)
+                return Encoding.UTF8.GetString(value, index, count);
+            else
+            {
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+                if (index < 0 || index >= value.Length)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                if (count < 0 || index + count >= value.Length)
+                    throw new ArgumentOutOfRangeException(nameof(count));
+
+                @{
+                    const char* utf8 = (const char*)uPtr($0)->Ptr();
+                    return uString::Utf8(utf8 + index, count);
+                @}
+            }
         }
     }
 }

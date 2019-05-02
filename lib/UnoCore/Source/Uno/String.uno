@@ -470,6 +470,9 @@ namespace Uno
 
         public static string Join(string separator, params object[] value)
         {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+
             var strings = new string[value.Length];
 
             for (int i = 0; i < value.Length; i++)
@@ -482,17 +485,48 @@ namespace Uno
 
         public static string Join(string separator, params string[] value)
         {
-            var result = "";
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
 
-            for (int i = 0; i < value.Length; i++)
+            switch (value.Length)
             {
-                if (i > 0)
-                    result += separator;
-
-                result += value[i];
+                case 0:
+                    return Empty;
+                case 1:
+                    return value[0] ?? Empty;
             }
 
-            return result;
+            if (separator == null)
+                separator = Empty;
+
+            @{
+                size_t length = separator->_length * (value->_length - 1);
+
+                for (size_t i = 0; i < value->_length; i++)
+                    if (value->Unsafe<uString*>(i))
+                        length += value->Unsafe<uString*>(i)->_length;
+
+                uString* result = uString::New(length);
+                size_t offset = 0;
+
+                for (size_t i = 0; i < value->_length; i++)
+                {
+                    if (i > 0)
+                    {
+                        memcpy(result->_ptr + offset, separator->_ptr, separator->_length * sizeof(@{char}));
+                        offset += separator->_length;
+                    }
+
+                    if (value->Unsafe<uString*>(i))
+                    {
+                        memcpy(result->_ptr + offset, value->Unsafe<uString*>(i)->_ptr, value->Unsafe<uString*>(i)->_length * sizeof(@{char}));
+                        offset += value->Unsafe<uString*>(i)->_length;
+                    }
+                }
+
+                U_ASSERT(offset == length);
+                return result;
+            @}
         }
 
         public static bool IsNullOrEmpty (string s)

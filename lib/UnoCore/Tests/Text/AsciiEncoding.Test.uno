@@ -17,6 +17,13 @@ namespace Uno.Text.Test
         }
 
         [Test]
+        public void AsciiDecodeTest2()
+        {
+            var result = Ascii.GetString(bytes, 1, 2);
+            Assert.AreEqual(chars.Substring(1, 2), result);
+        }
+
+        [Test]
         public void AsciiEncodeTest()
         {
             var result = Ascii.GetBytes(chars);
@@ -49,6 +56,18 @@ namespace Uno.Text.Test
         {
             var result = Ascii.GetBytes("");
             Assert.AreEqual(new byte[0], result);
+        }
+
+        [Test]
+        public void AsciiNullDecodeTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Ascii.GetString(null));
+        }
+
+        [Test]
+        public void AsciiNullEncodeTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Ascii.GetBytes(null));
         }
     }
 }

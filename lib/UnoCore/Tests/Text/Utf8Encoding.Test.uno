@@ -8,11 +8,31 @@ namespace Uno.Text.Test
     {
         byte[] bytes = new byte[] { 0x7e, 0x24, 0x40, 0x26, 0xC2, 0xB1, 0xE0, 0xA5, 0x90, 0xF0, 0x9D, 0x84, 0x9E, 0xF4, 0x8F, 0xBF, 0xBF }; // '~', '$', '@', '&', U+00B1, U+0950, U+01D11E, U+10FFFF
         string chars = "\u007e\u0024\u0040\u0026\u00B1\u0950\uD834\uDD1E\uDBFF\uDFFF"; //~$@&
+
         [Test]
         public void Utf8DecodeTest()
         {
             var result = Utf8.GetString(bytes);
             Assert.AreEqual(chars, result);
+        }
+
+        [Test]
+        public void Utf8DecodeTest2()
+        {
+            var result = Utf8.GetString(bytes, 1, 2);
+            Assert.AreEqual(chars.Substring(1, 2), result);
+        }
+
+        [Test]
+        public void Utf8NullDecodeTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Utf8.GetString(null));
+        }
+
+        [Test]
+        public void Utf8NullEncodeTest()
+        {
+            Assert.Throws<ArgumentNullException>(() => Utf8.GetBytes(null));
         }
 
         [Test]

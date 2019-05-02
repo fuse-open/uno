@@ -208,10 +208,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
         public void Attrib(int index, int componentCount, GLDataType componentType, bool normalized, VertexBuffer buf, int stride, int offset)
         {
             if (buf == null)
-            {
-                // debug_log "WARNING: Vertex attrib buffer was null";
                 return;
-            }
 
             var location = _compiledProgram.GetLocation(index);
 
