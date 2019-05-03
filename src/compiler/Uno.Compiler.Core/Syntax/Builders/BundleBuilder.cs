@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Uno.Collections;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
@@ -71,11 +72,16 @@ namespace Uno.Compiler.Core.Syntax.Builders
             }
 
             var index = new List<string>();
-            foreach (var e in _compiler.Input.Packages)
+            var packages = _compiler.Input.Packages.ToArray();
+            Array.Sort(packages, (a, b) => a.Name.CompareTo(b.Name));
+
+            foreach (var e in packages)
             {
                 var line = new List<string> {e.Name};
+                var files = _files.GetList(e);
+                files.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
 
-                foreach (var f in _files.GetList(e))
+                foreach (var f in files)
                 {
                     line.Add(f.BundleName);
                     line.Add(f.TargetName);
