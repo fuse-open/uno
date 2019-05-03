@@ -256,12 +256,12 @@ namespace Uno.ProjectFormat
 
         void Add(string fullName, IncludeItemType type, Source src, string cond)
         {
-            var name = fullName.ToRelativePath(_root, true).NativeToUnix();
+            var name = fullName.ToRelativePath(_root, true);
             if (type == IncludeItemType.Glob)
                 type = GetIncludeItemType(name);
 
             _log.Event(IOEvent.Include, name, "type: " + type);
-            var item = new IncludeItem(src, type, name, cond);
+            var item = new IncludeItem(src, type, name.NativeToUnix(), cond);
             _result.Add(item);
 
             // Ignore added files to avoid duplicates

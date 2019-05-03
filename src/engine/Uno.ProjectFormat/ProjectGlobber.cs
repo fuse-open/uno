@@ -244,9 +244,9 @@ namespace Uno.ProjectFormat
 
         void Add(string fullName, Source src)
         {
-            var name = fullName.ToRelativePath(_root, true).NativeToUnix();
+            var name = fullName.ToRelativePath(_root, true);
             _log.Event(IOEvent.Include, name);
-            var item = new ProjectReference(src, name);
+            var item = new ProjectReference(src, name.NativeToUnix());
             _result.Add(item);
         }
 
