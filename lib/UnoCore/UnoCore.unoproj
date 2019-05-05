@@ -520,6 +520,7 @@
     "Targets/Native/Native.uxl:Extensions",
     "Targets/Native/natvis/uno.natstepfilter:File",
     "Targets/Native/natvis/uno.natvis:File",
+    "Targets/Native/rc/icon.rc:File",
     "Targets/Native/run.bat:File",
     "Targets/Native/run.sh:File",
     "Targets/Package/nuspec.xml:File",

@@ -46,6 +46,10 @@
     <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="MAC" />
     <CopyFile Name="@//Assets/Icon.icns" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="MAC" />
 
+    <!-- Win32 resources -->
+    <CopyFile Name="@(Project.Windows.Icon:Path || @//Assets/icon.ico)" TargetName="rc/icon.ico" Condition="WIN32" />
+    <CopyFile Name="rc/icon.rc" Condition="WIN32" />
+
     <!-- VC++ debugger visualizers -->
     <CopyFile Condition="MSVC" Name="natvis/uno.natstepfilter" />
     <CopyFile Condition="MSVC" Name="natvis/uno.natvis" />
