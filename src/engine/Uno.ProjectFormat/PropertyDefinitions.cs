@@ -82,6 +82,7 @@ namespace Uno.ProjectFormat
             {"iOS.LaunchImages.iPad_Portrait_2x", PropertyType.Path},
             {"iOS.LaunchImages.iPad_Landscape_1x", PropertyType.Path},
             {"iOS.LaunchImages.iPad_Landscape_2x", PropertyType.Path},
+            {"Mac.Icon", PropertyType.Path},
             {"Windows.Icon", PropertyType.Path},
             {"Package.Authors", PropertyType.String, "$(Publisher)"},
             {"Package.Copyright", PropertyType.String, "$(Copyright)"},

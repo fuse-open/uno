@@ -44,7 +44,7 @@
 
     <!-- macOS bundle -->
     <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="MAC" />
-    <CopyFile Name="@//Assets/Icon.icns" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="MAC" />
+    <CopyFile Name="@(Project.Mac.Icon:Path || @//Assets/Icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="MAC" />
 
     <!-- Win32 resources -->
     <CopyFile Name="@(Project.Windows.Icon:Path || @//Assets/icon.ico)" TargetName="rc/icon.ico" Condition="WIN32" />
