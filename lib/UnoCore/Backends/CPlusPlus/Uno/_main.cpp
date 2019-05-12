@@ -55,7 +55,8 @@ struct uMainLoop : Xli::WindowEventHandler
 
         uBase::Auto<Xli::Window> wnd = Xli::Window::Create(uBase::Vector2i(375, 667), "@(Project.Title)", Xli::WindowFlagsResizeable);
 
-        if (!strcmp(getenv("UNO_WINDOW_HIDDEN"), "1"))
+        const char* hidden = getenv("UNO_WINDOW_HIDDEN");
+        if (hidden && !strcmp(hidden, "1"))
         {
 #if WIN32
             ShowWindow((HWND)wnd->GetNativeHandle(), SW_HIDE);

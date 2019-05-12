@@ -273,7 +273,7 @@ namespace Uno.IO
             @}
             else if defined(CPLUSPLUS)
             @{
-                (void)chdir(uCString($0).Ptr);
+                int res = chdir(uCString($0).Ptr);
             @}
             else
                 throw new NotImplementedException();
