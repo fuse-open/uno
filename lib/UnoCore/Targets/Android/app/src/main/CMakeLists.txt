@@ -20,8 +20,8 @@ link_directories(@(OutputDirectory:Path)/app/build/native/jni/@(ABI))
 #endif
 
 add_library(@(Activity.Name) SHARED
-    @(HeaderFile:Join('\n    ', '"include/', '"'))
-    @(SourceFile:Join('\n    ', '"jni/', '"')))
+    @(HeaderFile:JoinSorted('\n    ', '"include/', '"'))
+    @(SourceFile:JoinSorted('\n    ', '"jni/', '"')))
 
 target_link_libraries(@(Activity.Name)
     @(LinkLibrary:Join('\n    ', '"', '"'))

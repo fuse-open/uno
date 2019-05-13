@@ -185,6 +185,25 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "SET", "[separator]", "[prefix]", "[suffix]");
                 }
+                case "JoinSorted":
+                {
+                    if (call.Arguments != null && call.Arguments.Count <= 3)
+                    {
+                        var array = ExpandConfigArray(src, calls, index, context);
+                        var separator = GetArgumentOrNull(src, call, 0, context) ?? "\n";
+                        var prefix = GetArgumentOrNull(src, call, 1, context);
+                        var suffix = GetArgumentOrNull(src, call, 2, context);
+
+                        if (prefix != null || suffix != null)
+                            for (int i = 0; i < array.Length; i++)
+                                array[i] = prefix + array[i] + suffix;
+
+                        Array.Sort(array);
+                        return new SourceValue(src, string.Join(separator, array));
+                    }
+
+                    return InvalidArgumentsError(src, call, "SET", "[separator]", "[prefix]", "[suffix]");
+                }
                 case "StringArray":
                 {
                     if (call.Arguments == null)

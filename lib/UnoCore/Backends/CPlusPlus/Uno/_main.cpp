@@ -364,21 +364,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 #endif
 
-@(TypeObjects.Declaration:Join())
+@(TypeObjects.Declaration:JoinSorted())
 void uInitRtti(uType*(*factories[])());
 
 void uInitRtti()
 {
     static uType*(*factories[])() =
     {
-        @(TypeObjects.FunctionPointer:Join('\n        ', '', ','))
+        @(TypeObjects.FunctionPointer:JoinSorted('\n        ', '', ','))
         NULL
     };
 
     uInitRtti(factories);
 }
 
-@(Main.Include:Join('\n', '#include <', '>'))
+@(Main.Include:JoinSorted('\n', '#include <', '>'))
 
 void uStartApp()
 {

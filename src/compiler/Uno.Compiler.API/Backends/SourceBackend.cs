@@ -76,8 +76,6 @@ namespace Uno.Compiler.API.Backends
 
             foreach (var file in Data.Extensions.BundleFiles)
                 Disk.CopyFile(file.SourcePath, Path.Combine(directory, file.TargetName));
-
-            Disk.DeleteOutdatedFiles(directory);
         }
 
         protected virtual void ExportNamespace(Namespace ns)

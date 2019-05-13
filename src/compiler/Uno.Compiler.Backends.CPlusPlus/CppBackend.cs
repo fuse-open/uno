@@ -130,10 +130,19 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 default:
                     if (dt.Source.Package.IsCached)
                         joinedTypes.Add(GetKey(ns), dt);
+                    else if (dt.IsNestedType || dt.NestedTypes.Count > 0)
+                        joinedTypes.Add(GetKey(dt), dt);
                     else
                         lonelyTypes.Add(dt);
                     break;
             }
+        }
+
+        string GetKey(DataType dt)
+        {
+            return dt.IsNestedType
+                ? GetKey(dt.ParentType)
+                : GetExportName(dt) + ".g";
         }
 
         string GetKey(Namespace ns)
