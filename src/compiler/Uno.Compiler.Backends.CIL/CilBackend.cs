@@ -90,22 +90,27 @@ namespace Uno.Compiler.Backends.CIL
                 return;
 
             // Create an executable for given architecture (-DX86 or -DX64)
-            var loader = new AppLoader(Environment.GetString("AppLoader.Assembly"));
-            var executable = Environment.Combine(Environment.GetString("Product").TrimPath());
+            using (Log.StartProfiler(typeof(AppLoader)))
+            {
+                var loader = new AppLoader(Environment.GetString("AppLoader.Assembly"));
+                var executable = Environment.Combine(Environment.GetString("Product").TrimPath());
 
-            if (Environment.IsDefined("X64"))
-                loader.SetX64();
-            else if (Environment.IsDefined("X86"))
-                loader.SetX86();
+                if (Environment.IsDefined("X64"))
+                    loader.SetX64();
+                else if (Environment.IsDefined("X86"))
+                    loader.SetX86();
 
-            Log.Verbose("Creating executable: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
-            loader.SetAssemblyInfo(Input.Package.Name + "-loader", new Version(), Environment.GetString);
-            loader.SetMainClass(Data.MainClass.CilTypeName(),
-                Path.Combine(_outputDir, Input.Package.Name + ".dll"),
-                Environment.GetString("AppLoader.Class"),
-                Environment.GetString("AppLoader.Method"));
-            loader.ClearPublicKey();
-            loader.Save(executable);
+                Log.Verbose("Creating executable: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
+                loader.SetAssemblyInfo(Input.Package.Name + "-loader",
+                    new Version(),
+                    Environment.GetString);
+                loader.SetMainClass(Data.MainClass.CilTypeName(),
+                    Path.Combine(_outputDir, Input.Package.Name + ".dll"),
+                    Environment.GetString("AppLoader.Class"),
+                    Environment.GetString("AppLoader.Method"));
+                loader.ClearPublicKey();
+                loader.Save(executable);
+            }
         }
 
         public override BackendResult Build()
@@ -121,13 +126,16 @@ namespace Uno.Compiler.Backends.CIL
             var g = new CilGenerator(Disk, Data, Essentials,
                                      this, _linker, package, _outputDir);
             g.Configure(Environment.Debug);
-            g.Generate();
+
+            using (Log.StartProfiler(g.GetType().FullName + ".Generate"))
+                g.Generate();
 
             if (Log.HasErrors)
                 return null;
 
+            using (Log.StartProfiler(g.GetType().FullName + ".Save"))
+                g.Save();
 
-            g.Save();
             return new CilResult(
                 g.Assembly,
                 _linker.TypeMap,
