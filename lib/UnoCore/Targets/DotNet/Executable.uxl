@@ -25,6 +25,6 @@
     <!-- macOS bundle -->
     <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="HOST_MAC" />    
     <CopyFile Name="@(PrebuiltDirectory)/monostub" TargetName="@(AppDirectory)/Contents/MacOS/@(Project.Name)" IsExecutable=true Condition="HOST_MAC" />
-    <CopyFile Name="@//Assets/Icon.icns" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="HOST_MAC" />
+    <CopyFile Name="@(Project.Mac.Icon:Path || @//Assets/Icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="HOST_MAC" />
 
 </Extensions>

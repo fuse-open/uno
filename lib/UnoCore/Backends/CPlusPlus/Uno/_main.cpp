@@ -55,6 +55,13 @@ struct uMainLoop : Xli::WindowEventHandler
 
         uBase::Auto<Xli::Window> wnd = Xli::Window::Create(uBase::Vector2i(375, 667), "@(Project.Title)", Xli::WindowFlagsResizeable);
 
+#if WIN32
+        HWND hWnd = (HWND)wnd->GetNativeHandle();
+        HICON hIcon = LoadIcon(GetModuleHandle(0), MAKEINTRESOURCE(101));
+        SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+        SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+#endif
+
         const char* hidden = getenv("UNO_WINDOW_HIDDEN");
         if (hidden && !strcmp(hidden, "1"))
         {
