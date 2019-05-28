@@ -75,6 +75,15 @@ namespace Uno.Graphics
 
         public void Update(Array data, int elementSize, int index, int count)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            if (elementSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(elementSize));
+            if (index < 0 || index >= data.Length)
+                throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0 || index + count > data.Length)
+                throw new ArgumentOutOfRangeException(nameof(count));
+
             CheckDisposed();
 
             if defined(OPENGL)
@@ -99,6 +108,9 @@ namespace Uno.Graphics
 
         public void Update(Array data, int elementSize)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
             Update(data, elementSize, 0, data.Length);
         }
 
