@@ -10,7 +10,7 @@ dependencies {
 }
 
 task copySharedLibraries {
-    @(SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/armeabi-v7a')\n    }'))
+    @(SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/@(ABI)')\n    }'))
 }
 
 // Extracts native libraries from AARs in the native_implementation configuration.
