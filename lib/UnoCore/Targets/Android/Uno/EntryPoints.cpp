@@ -59,9 +59,18 @@ extern "C"
     void JNICALL cppOnCreate(JNIEnv *env , jobject obj, jobject activity)
     {
         uAutoReleasePool pool;
-        @{Android.Base.JNI.Init(Android.Base.Primitives.ujobject):Call(activity)};
-        @{Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost.RegisterFunctions():Call()};
-        @{Uno.Platform.CoreApp.Start():Call()};
+
+        try
+        {
+            @{Android.Base.JNI.Init(Android.Base.Primitives.ujobject):Call(activity)};
+            @{Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost.RegisterFunctions():Call()};
+            @{Uno.Platform.CoreApp.Start():Call()};
+        }
+        catch (const uThrowable& t)
+        {
+            uLog(uLogLevelFatal, "Unhandled exception: %s", uCString(t.Exception->ToString()).Ptr);
+            throw t;
+        }
     }
 }
 
