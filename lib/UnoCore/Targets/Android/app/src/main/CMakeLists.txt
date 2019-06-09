@@ -27,3 +27,5 @@ target_link_libraries(@(Activity.Name)
     @(LinkLibrary:Join('\n    ', '"', '"'))
     @(SharedLibrary:Join('\n    ', '"', '"'))
     @(LinkOrderedStaticLibraries:Join('\n    ', '"', '"')))
+
+@(SharedLibrary:Join('\n', 'file(COPY ', ' DESTINATION src/main/jniLibs/@(ABI))'))
