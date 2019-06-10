@@ -5,7 +5,7 @@
     <Set Base.Directory="@('OSX':Path)" Condition="OSX" />
     <Set Base.Directory="@('Win32':Path)" Condition="WIN32" />
     <Set Base.Directory="@('Linux':Path)" Condition="LINUX" />
-    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/@(ABI)" Condition="ANDROID" />
+    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/${ANDROID_ABI}" Condition="ANDROID" />
     <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" Condition="IOS" />
     <Set Base.LinkDirectory="@(Base.Directory:Path)/lib" />
     <Set Base.IncludeDirectory="@(Base.Directory:Path)/include" />
