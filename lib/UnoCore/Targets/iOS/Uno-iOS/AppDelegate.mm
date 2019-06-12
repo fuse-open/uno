@@ -68,6 +68,19 @@
     return YES;
 }
 
+-(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler{
+    if ([userActivity.activityType isEqualToString: NSUserActivityTypeBrowsingWeb]) {
+        NSURL *url = userActivity.webpageURL;
+
+        [EAGLContext setCurrentContext:self.context];
+        return [_unoContext
+                application:application
+                continueUserActivity:url];
+    }
+    return YES;
+}
+
+
 #if @(AppDelegate.PushNotificationMethods:Defined)
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {

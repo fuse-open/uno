@@ -217,6 +217,19 @@ public class App {
             pendingURI = intent.getDataString();
         }
 #endif
+
+#if @(Project.Android.AssociatedDomains:IsSet)
+        String[] associatedDomains = new String[]{@(Project.Android.AssociatedDomains:SplitAndJoin(',','"','"'))}; 
+
+        for (int i = 0; i < associatedDomains.length; i++) {
+
+            if (intent!=null && intent.getScheme()!=null && intent.getScheme().contains("http") 
+                && intent.getDataString().toLowerCase().contains(new String(associatedDomains[i]).toLowerCase())) { 
+                pendingURI = intent.getDataString();
+                break;
+            }
+        }
+#endif
         com.fuse.Activity._onActivityIntent(intent);
         @(Activity.OnNewIntent.Declaration:Join())
     }
