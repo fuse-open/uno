@@ -9,10 +9,6 @@ dependencies {
     @(Gradle.Dependency:Join('\n    '))
 }
 
-task copySharedLibraries {
-    @(SharedLibrary:Join('\n    ', 'copy {\n        from \'', '\'\n        into file('src/main/jniLibs/armeabi-v7a')\n    }'))
-}
-
 // Extracts native libraries from AARs in the native_implementation configuration.
 // This is done so that the NDK can access these libraries.
 task extractNativeLibraries() {
@@ -29,9 +25,6 @@ task extractNativeLibraries() {
 
 tasks.whenTaskAdded {
     task-> if (task.name.contains('external') && !task.name.contains('Clean')) {
-#if @(SharedLibrary:IsRequired)
-        task.dependsOn(copySharedLibraries)
-#endif
 #if @(Gradle.Dependency.NativeImplementation:IsRequired)
         task.dependsOn(extractNativeLibraries)
 #endif
@@ -55,7 +48,11 @@ android {
         versionCode = @(Project.Android.VersionCode)
         versionName = '@(Project.Android.VersionName)'
         ndk {
-            abiFilters = ['@(ABI)']
+#if @(DEBUG:Defined)
+            abiFilters = [@(Project.Android.Architectures.Debug:Join(', ', '\'', '\''))]
+#else
+            abiFilters = [@(Project.Android.Architectures.Release:Join(', ', '\'', '\''))]
+#endif
         }
 
         externalNativeBuild {

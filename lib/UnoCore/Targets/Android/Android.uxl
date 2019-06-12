@@ -11,7 +11,8 @@
     <Set SourceDirectory="app/src/main/jni" />
     <Set BinaryDirectory="app/src/main/jniLibs" />
     <Set PathSeparator="@(HOST_WIN32:Defined:Test(';', ':'))" />
-    <Set ABI="armeabi-v7a" />
+    <!-- Deprecated -->
+    <Set ABI="${ANDROID_ABI}" />
 
     <!-- Build tools config -->
 

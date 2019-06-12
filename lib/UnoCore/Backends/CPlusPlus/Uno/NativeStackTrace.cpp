@@ -10,7 +10,7 @@ uArray* uGetNativeStackTrace(int skipFrames)
     return uArray::New(@{Uno.IntPtr[]:TypeOf}, callStackDepth - skipFrames, callStack + skipFrames);
 }
 
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) && !defined(ANDROID)
 
 #include <unwind.h>
 
