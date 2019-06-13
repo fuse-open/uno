@@ -54,7 +54,7 @@ namespace Uno.Text
                     throw new ArgumentNullException(nameof(value));
                 if (index < 0 || index >= value.Length)
                     throw new ArgumentOutOfRangeException(nameof(index));
-                if (count < 0 || index + count >= value.Length)
+                if (count < 0 || index + count > value.Length)
                     throw new ArgumentOutOfRangeException(nameof(count));
 
                 @{

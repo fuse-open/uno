@@ -73,27 +73,45 @@ namespace Uno.Graphics
             IsDisposed = true;
         }
 
-        public void Update(Array data, int elementSize)
+        public void Update(Array data, int elementSize, int index, int count)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            if (elementSize <= 0)
+                throw new ArgumentOutOfRangeException(nameof(elementSize));
+            if (index < 0 || index >= data.Length)
+                throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0 || index + count > data.Length)
+                throw new ArgumentOutOfRangeException(nameof(count));
+
             CheckDisposed();
 
             if defined(OPENGL)
             {
-                var sizeInBytes = data.Length * elementSize;
+                var sizeInBytes = count * elementSize;
                 var pin = GCHandle.Alloc(data, GCHandleType.Pinned);
+                var addr = pin.AddrOfPinnedObject() + index * elementSize;
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
 
                 if (sizeInBytes <= SizeInBytes)
-                    GL.BufferSubData(GLBufferTarget, 0, sizeInBytes, pin.AddrOfPinnedObject());
+                    GL.BufferSubData(GLBufferTarget, 0, sizeInBytes, addr);
                 else
                 {
-                    GL.BufferData(GLBufferTarget, sizeInBytes, pin.AddrOfPinnedObject(), GLInterop.ToGLBufferUsage(Usage));
+                    GL.BufferData(GLBufferTarget, sizeInBytes, addr, GLInterop.ToGLBufferUsage(Usage));
                     SizeInBytes = sizeInBytes;
                 }
 
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
                 pin.Free();
             }
+        }
+
+        public void Update(Array data, int elementSize)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            Update(data, elementSize, 0, data.Length);
         }
 
         public void Update(byte[] data)
