@@ -53,6 +53,16 @@
 #endif
                 @(AndroidManifest.Activity.ViewIntentFilter:Join('\n    ', '<data ', '/>'))
             </intent-filter>
+            
+#if @(Project.Android.AssociatedDomains:IsSet)
+            <intent-filter android:autoVerify="true">
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              @(Project.Android.AssociatedDomains:SplitAndJoin('\n\t\t', '<data android:scheme="http" android:host="','" />'))
+              @(Project.Android.AssociatedDomains:SplitAndJoin('\n\t\t', '<data android:scheme="https" android:host="','" />'))
+            </intent-filter>
+#endif
 
             @(AndroidManifest.ActivityElement:Join('\n        '))
         </activity>

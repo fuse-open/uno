@@ -130,6 +130,12 @@ static uContext* instance = nil;
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSURL *)url
+{
+    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):Call([url absoluteString])};
+    return YES;
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification*)notification
 {
     @{Uno.Platform.CoreApp.EnterForeground():Call()};
