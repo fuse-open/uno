@@ -28,4 +28,4 @@ target_link_libraries(@(Activity.Name)
     @(SharedLibrary:Join('\n    ', '"', '"'))
     @(LinkOrderedStaticLibraries:Join('\n    ', '"', '"')))
 
-@(SharedLibrary:Join('\n', 'file(COPY ', ' DESTINATION src/main/jniLibs/${ANDROID_ABI})'))
+@(SharedLibrary:Join('\n', 'file(COPY ', ' DESTINATION @(OutputDirectory:Path)/app/src/main/jniLibs/${ANDROID_ABI})'))
