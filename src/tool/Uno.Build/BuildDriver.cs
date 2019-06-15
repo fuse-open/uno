@@ -319,7 +319,7 @@ namespace Uno.Build
                 if (upk.IsCached && upk.Version != null)
                     hash = hash * 13 + upk.Version.GetHashCode();
 
-            return hash;
+            return hash * 13 + UnoVersion.InformationalVersion.GetHashCode();
         }
 
         public BuildResult GetResult(BackendResult result)
