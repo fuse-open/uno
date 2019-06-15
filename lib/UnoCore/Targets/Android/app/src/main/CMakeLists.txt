@@ -16,7 +16,7 @@ endif()
 
 # Find libraries extracted from AARs, if applicable.
 #if @(Gradle.Dependency.NativeImplementation:IsRequired)
-link_directories(@(OutputDirectory:Path)/app/build/native/jni/${ANDROID_ABI})
+link_directories("@(OutputDirectory:Path)/app/build/native/jni/${ANDROID_ABI}")
 #endif
 
 add_library(@(Activity.Name) SHARED
@@ -28,4 +28,4 @@ target_link_libraries(@(Activity.Name)
     @(SharedLibrary:Join('\n    ', '"', '"'))
     @(LinkOrderedStaticLibraries:Join('\n    ', '"', '"')))
 
-@(SharedLibrary:Join('\n', 'file(COPY ', ' DESTINATION src/main/jniLibs/${ANDROID_ABI})'))
+@(SharedLibrary:QuoteSpace:Join('\n', 'file(COPY ', ' DESTINATION "@(OutputDirectory:Path)/app/src/main/jniLibs/${ANDROID_ABI}")'))
