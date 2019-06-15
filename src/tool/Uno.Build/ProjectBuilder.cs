@@ -19,13 +19,8 @@ namespace Uno.Build
         public ProjectBuilder(Log log, BuildTarget target, BuildOptions options)
             : base(log)
         {
-            if (target == null)
-                throw new ArgumentNullException(nameof(target));
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
-
-            _target = target;
-            _options = options;
+            _target = target ?? throw new ArgumentNullException(nameof(target));
+            _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
         public BuildResult Build(string project)

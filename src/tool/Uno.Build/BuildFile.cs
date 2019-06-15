@@ -26,9 +26,8 @@ namespace Uno.Build
 
         public int Load()
         {
-            int hash;
             var stuff = StuffObject.Load(FullName);
-            stuff.TryGetValue("$", out hash);
+            stuff.TryGetValue("$", out int hash);
             stuff.TryGetValue(nameof(BuildCommand), out BuildCommand);
             stuff.TryGetValue(nameof(RunCommand), out RunCommand);
             stuff.TryGetValue(nameof(Product), out Product);

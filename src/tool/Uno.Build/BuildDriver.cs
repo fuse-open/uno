@@ -53,8 +53,7 @@ namespace Uno.Build
 
         public void StopAnim()
         {
-            if (_anim != null)
-                _anim.Dispose();
+            _anim?.Dispose();
             _anim = null;
         }
 
