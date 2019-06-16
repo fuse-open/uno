@@ -1576,6 +1576,7 @@ namespace Uno.Compiler.Frontend.Analysis
                 case TokenType.DebugLog:
                 {
                     --_index;
+                    var p = Optional(TokenType.LeftParen);
                     var e = Expression(context, 0, "value");
                     
                     // Expand multiple arguments to 'string.Join(" ", ...ARGS)'
@@ -1593,6 +1594,9 @@ namespace Uno.Compiler.Frontend.Analysis
                                     new AstIdentifier(Source.Unknown, "Join")),
                                 args.ToArray());
                     }
+
+                    if (p)
+                        Scan(TokenType.RightParen);
 
                     Scan(TokenType.Semicolon);
                     return new AstValueStatement(token, token.ValueStatementType, e);
