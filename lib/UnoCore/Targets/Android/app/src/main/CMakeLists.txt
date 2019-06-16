@@ -14,6 +14,13 @@ if (CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -s")
 endif()
 
+# Using response file as workaround for long paths on Windows.
+set(CMAKE_C_USE_RESPONSE_FILE_FOR_OBJECTS 1)
+set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_OBJECTS 1)
+set(CMAKE_C_RESPONSE_FILE_LINK_FLAG "@")
+set(CMAKE_CXX_RESPONSE_FILE_LINK_FLAG "@")
+set(CMAKE_NINJA_FORCE_RESPONSE_FILE 1 CACHE INTERNAL "")
+
 # Find libraries extracted from AARs, if applicable.
 #if @(Gradle.Dependency.NativeImplementation:IsRequired)
 link_directories("@(OutputDirectory:Path)/app/build/native/jni/${ANDROID_ABI}")
