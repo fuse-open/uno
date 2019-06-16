@@ -5,6 +5,7 @@ environment:
   matrix:
   - TARGET: dotnet
   - TARGET: native
+    UNO_TEST_ARGS: -DDEBUG_UNSAFE
 
 install:
   - ps: |
