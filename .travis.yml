@@ -9,6 +9,8 @@ matrix:
     - os: osx
       osx_image: xcode9.2
       env: TARGET=native
+      before_script:
+        - export UNO_TEST_ARGS=-DDEBUG_UNSAFE
     - os: linux
       dist: xenial
       env: TARGET=native
@@ -29,7 +31,7 @@ matrix:
         - export CXX=g++-7
         - export GALLIUM_DRIVER=softpipe
         - export LIBGL_ALWAYS_SOFTWARE=true
-        - export UNO_TEST_ARGS=--only-build
+        - export UNO_TEST_ARGS="--only-build -DDEBUG_UNSAFE"
 
 before_script:
   - |
