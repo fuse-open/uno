@@ -9,17 +9,15 @@ if ! which @(CMake) > /dev/null 2>&1; then
     exit 1
 fi
 
+#if @(MAC:Defined)
+@(CMake) -GXcode "$@" .
+xcodebuild -configuration @(Native.Configuration)
+#else
+@(CMake) -DCMAKE_BUILD_TYPE=@(Native.Configuration) "$@" .
+
 if [ -f /proc/cpuinfo ]; then
     BUILD_ARGS=-j`grep processor /proc/cpuinfo | wc -l`
-elif [ "`uname`" = "Darwin" ]; then
-    BUILD_ARGS=-j`sysctl hw.ncpu | cut -d " " -f 2`
-elif [ -n "$NUMBER_OF_PROCESSORS" ]; then
-    BUILD_ARGS=-j$NUMBER_OF_PROCESSORS
 fi
 
-# CMake fails if previously run using a different generator (Xcode).
-# We can avoid that by deleting the cache.
-rm -f CMakeCache.txt
-
-@(CMake) -DCMAKE_BUILD_TYPE=@(Native.Configuration) "$@" .
-@(CMake) --build . --use-stderr -- $BUILD_ARGS
+make -s $BUILD_ARGS
+#endif
