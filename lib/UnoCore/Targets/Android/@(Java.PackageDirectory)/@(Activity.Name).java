@@ -139,6 +139,17 @@ public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityC
         fuseApp.onWindowFocusChanged(arg0);
     }
 #endif
+    //-----------------------------------------------------------
+    // Here be less favorable stuff that has tickets for cleanup
+    // used by c++ and annoyingly the custom view, fix this
+    private static SurfaceTexture _keepDummySurfaceTexture;
+    public static Object CreateDummySurface(int texName)
+    {
+        // this is a temp hack. Moments like this make me want to make attribute
+        // that gives bad code a halflife, after 2 months it deletes itself.
+        _keepDummySurfaceTexture = new SurfaceTexture(texName);
+        return new Surface(_keepDummySurfaceTexture);
+    }
 
     @Deprecated
     public static Activity GetRootActivity()
