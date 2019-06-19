@@ -68,6 +68,10 @@ void GLHelper::InitGL()
 
     // Create the surface
     CreatePBufferSurfaceAndMakeCurrent();
+
+    // DummySurface is a hack, but for now we need it. Will be removed after cleanup
+    GLHelper::CreateDummySurface();
+
 }
 
 EGLContext GLHelper::GetSurfaceContext()
@@ -96,6 +100,31 @@ void GLHelper::MakeCurrent(EGLContext context, EGLSurface surface)
     {
         uBase::Error->WriteLine((uBase::String)"GLHelper::MakeCurrent: Unable to make EGL context current:" + (uBase::String)eglGetError());
         throw uBase::Exception("Unable to make EGL context current");
+    }
+}
+
+//
+void GLHelper::CreateDummySurface()
+{
+    if (!_dummyNativeWindow)
+    {
+        GLHelper::MakeCurrent(GLHelper::_eglPBufferContext, GLHelper::_eglPBufferSurface);
+
+        glGenTextures(1, &_dummyTexture);
+        glBindTexture(GL_TEXTURE_2D, _dummyTexture);
+
+
+        jclass activityClass = JniHelper::GetActivityClass();
+        WITH_STATIC_JAVA_METHOD(createDummySurface, activityClass, "CreateDummySurface", "(I)Ljava/lang/Object;");
+        jobject tmp = __jni->CallStaticObjectMethod(activityClass, createDummySurface, (jint)_dummyTexture);
+        _dummyJavaSurface = __jni->NewGlobalRef(tmp);
+        __jni->DeleteLocalRef(tmp);
+
+
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+        _dummyNativeWindow = GLHelper::GetANativeWindowFromSurface(_dummyJavaSurface);
+        CreateEGLSurfaceFromANativeWindow(_dummyNativeWindow, GLHelper::_eglRenderConfig, _eglDummySurface);
     }
 }
 
