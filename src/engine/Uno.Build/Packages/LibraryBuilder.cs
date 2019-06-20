@@ -196,27 +196,32 @@ namespace Uno.Build.Packages
                 visited.Add(source);
 
                 foreach (var dir in Directory.EnumerateDirectories(source))
-                {
-                    foreach (var file in Directory.EnumerateFiles(dir, "*.unoproj"))
-                    {
-                        try
-                        {
-                            var project = Project.Load(file);
+                    LoadProjects(dir, source, result);
 
-                            if (!string.IsNullOrEmpty(Version))
-                                project.Version = Version;
-
-                            result.Add(new LibraryProject(project, source));
-                        }
-                        catch (Exception e)
-                        {
-                            throw new Exception("Failed to load " + file.ToRelativePath() + ": " + e.Message, e);
-                        }
-                    }
-                }
+                LoadProjects(source, source, result);
             }
 
             return result;
+        }
+
+        void LoadProjects(string dir, string rootDir, List<LibraryProject> result)
+        {
+            foreach (var file in Directory.EnumerateFiles(dir, "*.unoproj"))
+            {
+                try
+                {
+                    var project = Project.Load(file);
+
+                    if (!string.IsNullOrEmpty(Version))
+                        project.Version = Version;
+
+                    result.Add(new LibraryProject(project, rootDir));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Failed to load " + file.ToRelativePath() + ": " + e.Message, e);
+                }
+            }
         }
 
         List<LibraryProject> GetBuildList(IReadOnlyList<LibraryProject> all)
