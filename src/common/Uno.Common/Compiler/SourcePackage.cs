@@ -90,6 +90,7 @@ namespace Uno.Compiler
             BuildCondition = buildCondition;
         }
 
+        // Used by Fuse Studio
         public void SetCacheDirectory(string dir)
         {
             CacheDirectory = dir;
