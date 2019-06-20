@@ -178,7 +178,7 @@ namespace Uno.Build.Packages
                     continue;
 
                 var name = f.NativePath;
-                var nameWithoutExt = Path.GetFileNameWithoutExtension(name);
+                var nameWithoutExt = Path.ChangeExtension(name, null);
                 var inputFile = Path.Combine(project.RootDirectory, name);
                 var outputFile = Path.Combine(project.RootDirectory, ".uno", "fusejs", nameWithoutExt + ".js");
 
