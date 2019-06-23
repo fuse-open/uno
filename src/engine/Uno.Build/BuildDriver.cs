@@ -158,6 +158,16 @@ namespace Uno.Build
             foreach (var def in _options.Undefines)
                 _env.Undefine(def);
 
+            if (!_env.Test(_project.Source, _project.BuildCondition))
+            {
+                if (Log.IsVerbose)
+                    Log.Skip();
+                Log.WriteLine("BuildCondition in project file is not satisfied -- stopping build");
+                Log.DisableSkip();
+                StopAnim();
+                return null;
+            }
+
             foreach (var p in _project.GetProperties(Log))
                 _env.Set("Project." + p.Key, p.Value);
             foreach (var p in _config.Flatten())
