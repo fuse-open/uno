@@ -4,6 +4,74 @@ Uno Changelog
 Unreleased
 ----------
 
+1.12
+----
+
+#### FuseJS
+- Added support for [TypeScript](https://devblogs.microsoft.com/typescript/typescript-and-babel-7/), and new JavaScript feature sets ES2016, ES2017 and ES2018.
+
+#### Project Format
+- Added the following properties:
+    * `Android.Architectures.Debug` (string array)
+    * `Android.Architectures.Release` (string array)
+    * `Android.AssociatedDomains` (string array)
+    * `Android.Defines` (string array)
+    * `iOS.Defines` (string array)
+    * `DotNet.Defines` (string array)
+    * `Native.Defines` (string array)
+    * `Mac.Icon` (path to .ICNS)
+    * `Windows.Icon` (path to .ICO)
+- Removed the following properties:
+    * `HTML.Title`
+    * `HTML.Favicon`
+
+#### Android
+- Added support for [App Links](https://developer.android.com/training/app-links).
+- Added support for targeting the following architectures (ABIs):
+    * `armeabi-v7a`
+    * `arm64-v8a`
+    * `x86`
+    * `x86_64`
+- Added support for multi-architecture (fat) builds, by default building:
+    * `arm64-v8a` on Debug
+    * `armeabi-v7a` + `arm64-v8a` on Release
+- Added support for long filenames on Windows, and building of larger projects.
+- Fixed launching Android Studio on Windows, when passing `--debug`.
+- Don't try to launch apps on network devices, when passing `--run`.
+- Suggest installing `android-build-tools` using NPM when SDK/NDK can't be found.
+- Deprecated `@(ABI)` macro. Please use `${ANDROID_ABI}` instead.
+
+#### iOS
+- Added support for [Universal Links](https://developer.apple.com/ios/universal-links).
+
+#### Linux
+- Added support for building on Linux (x86_64). Tested on Ubuntu 18.04 and 16.04.
+
+#### macOS
+- Switched to generating Xcode projects when using the Native target. This gives slightly faster builds.
+
+#### UnoCore
+- Performance improvements in `String` and `StringBuilder` classes.
+- Added the following new methods:
+    * `Uno.Graphics.DeviceBuffer.Update(Array data, int elementSize, int index, int count)`
+    * `Uno.String.Join(string separator, params object[] value)`
+    * `Uno.Text.Ascii.GetString(byte[] value, int index, int count)`
+    * `Uno.Text.StringBuilder(string value)`
+    * `Uno.Text.Utf8.GetString(byte[] value, int index, int count)`
+
+#### Other improvements
+- Now slightly faster subsequental builds when using the C++ backend.
+- Don't show app window when running tests using `uno test`.
+- Added `--only-build` option for `uno test`.
+- Search for projects directly under `Packages.SourcePaths` in `uno doctor`.
+- Fixed a problem when exporting documentation files.
+- Fixed newlines in output when exporting documentation from Windows.
+- Fixed several warnings.
+- Removed the `uno stuff` command.
+- Removed the `-DHEADLESS` flag.
+
+See also [v1.11.1...v1.12.0](https://github.com/fuse-open/uno/compare/v1.11.1...v1.12.0).
+
 1.11
 ----
 
