@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.6)
 project(@(Project.Name:QuoteSpace))
 include_directories(@(HeaderDirectory)@(IncludeDirectory:QuoteSpace:Join('', ' ')))
 link_directories(@(LinkDirectory:QuoteSpace:Join(' ')))
@@ -48,3 +48,7 @@ target_link_libraries(@(Project.Name:QuoteSpace) @(LinkLibrary:Join(' '))
 #elif @(X86:Defined)
 @(SharedLibrary.x86:Join('\n', 'file(COPY "', '" DESTINATION ${PROJECT_SOURCE_DIR}/@(BinaryDirectory))'))
 #endif
+
+if (MSVC)
+    set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT @(Project.Name:QuoteSpace))
+endif()
