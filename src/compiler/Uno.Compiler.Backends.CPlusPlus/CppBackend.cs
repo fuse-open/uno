@@ -72,6 +72,10 @@ namespace Uno.Compiler.Backends.CPlusPlus
             EnableStackTrace = Environment.IsDefined("STACKTRACE") || Environment.IsDefined("CPPSTACKTRACE");
             HeaderDirectory = Environment.GetOutputPath("HeaderDirectory");
             SourceDirectory = Environment.GetOutputPath("SourceDirectory");
+
+            // On Android, truncate lengths of filenames to avoid problem with Gradle on Windows.
+            if (Environment.IsDefined("ANDROID"))
+                MaxExportNameLength = 30;
         }
 
         public override bool CanLink(Function f)
