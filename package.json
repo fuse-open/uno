@@ -1,6 +1,6 @@
 {
   "name": "@fuse-open/uno",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "Fast, native C# dialect and cross-compiler.",
   "scripts": {
     "build": "bash scripts/build.sh",
