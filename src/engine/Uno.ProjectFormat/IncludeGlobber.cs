@@ -308,6 +308,8 @@ namespace Uno.ProjectFormat
                     return IncludeItemType.Extensions;
                 case ".STUFF":
                     return IncludeItemType.Stuff;
+                case ".TS":
+                    return IncludeItemType.FuseJS;
                 default:
                     return IncludeItemType.File;
             }
