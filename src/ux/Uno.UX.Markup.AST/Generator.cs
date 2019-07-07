@@ -74,12 +74,14 @@ namespace Uno.UX.Markup.AST
     {
         public bool IsInnerClass { get; private set; }
         public bool AutoCtor { get; private set; }
+        public bool Simulate { get; private set; }
         public string ClassName { get; private set; }
 
-        internal ClassGenerator(bool isInnerClass, string className, bool autoCtor)
+        internal ClassGenerator(bool isInnerClass, string className, bool autoCtor, bool simulate)
         {
             IsInnerClass = isInnerClass;
             AutoCtor = autoCtor;
+            Simulate = simulate;
             ClassName = className;
         }
     }

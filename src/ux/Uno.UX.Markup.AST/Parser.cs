@@ -166,7 +166,7 @@ namespace Uno.UX.Markup.AST
                 {
                     typeName = "object";
                     ns = Configuration.DefaultNamespace;
-                    generator = new ClassGenerator(false, _projectName.ToIdentifier() + "_" + System.IO.Path.GetFileNameWithoutExtension(_filePath).ToIdentifier() + "_res", true);
+                    generator = new ClassGenerator(false, _projectName.ToIdentifier() + "_" + System.IO.Path.GetFileNameWithoutExtension(_filePath).ToIdentifier() + "_res", true, true);
                 }
                 else
                 {
@@ -323,6 +323,14 @@ namespace Uno.UX.Markup.AST
                 ReportError(elm, "Unable to parse 'ux:AutoCtor', must be 'true' or 'false'.");
             }
 
+            bool simulate = true;
+            var simulateString = GetUXAttrib(elm, UxAttribute.Simulate, "true");
+
+            if (simulateString != null && !bool.TryParse(simulateString, out simulate))
+            {
+                ReportError(elm, "Unable to parse 'ux:Simulate', must be 'true' or 'false'.");
+            }
+
             bool isInnerClass = false;
             var className = GetUXAttrib(elm, UxAttribute.ClassName, null);
             
@@ -414,7 +422,7 @@ namespace Uno.UX.Markup.AST
 
             if (className != null)
             {
-                return new ClassGenerator(isInnerClass, className, autoCtor);
+                return new ClassGenerator(isInnerClass, className, autoCtor, simulate);
             }
 
             if (elm == _doc.Root)
@@ -422,7 +430,7 @@ namespace Uno.UX.Markup.AST
                 if (elm.Name.LocalName == "App" ||
                     elm.Name.LocalName == "ExportedViews")
                 {
-                    return new ClassGenerator(isInnerClass, Path.GetFileNameWithoutExtension(_filePath), autoCtor);
+                    return new ClassGenerator(isInnerClass, Path.GetFileNameWithoutExtension(_filePath), autoCtor, simulate);
                 }
             }
 

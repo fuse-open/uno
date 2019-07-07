@@ -11,6 +11,8 @@ namespace Uno.UX.Markup.UXIL
 
         public bool AutoCtor { get; private set; }
 
+        public bool Simulate { get; private set; }
+
         public bool IsTest { get; }
 
         public bool IsAppClass
@@ -18,11 +20,12 @@ namespace Uno.UX.Markup.UXIL
             get { return ActualIDataTypeImpl.FullName == "Fuse.App" || ActualIDataTypeImpl.FullName == "Fuse.ExportedViews"; }
         }
 
-        internal ClassNode(FileSourceInfo source, bool isInnerClass, string name, IDataType baseType, TypeNameHelper generatedClassName, Vector<float> clearColor, bool autoCtor, bool isTest, IEnumerable<RawProperty> rawProperties)
+        internal ClassNode(FileSourceInfo source, bool isInnerClass, string name, IDataType baseType, TypeNameHelper generatedClassName, Vector<float> clearColor, bool autoCtor, bool simulate, bool isTest, IEnumerable<RawProperty> rawProperties)
             : base(source, name, generatedClassName, baseType, clearColor, InstanceType.None, rawProperties)
         {
             IsInnerClass = isInnerClass;
             AutoCtor = autoCtor;
+            Simulate = simulate;
             IsTest = isTest;
             BaseType = baseType;
         }

@@ -1202,7 +1202,7 @@ namespace Uno.UX.Markup.UXIL
             {
                 var cg = (AST.ClassGenerator)generator;
                 var name = e.UXName ?? "this";
-                var cl = new UXIL.ClassNode(e.Source, cg.IsInnerClass, name, dt, new TypeNameHelper(cg.ClassName), clearColor, cg.AutoCtor, false, rawProperties);
+                var cl = new UXIL.ClassNode(e.Source, cg.IsInnerClass, name, dt, new TypeNameHelper(cg.ClassName), clearColor, cg.AutoCtor, cg.Simulate, false, rawProperties);
 
                 if (!isInnerClass)
                     _rootClasses.Add(cl);
@@ -1221,7 +1221,7 @@ namespace Uno.UX.Markup.UXIL
 
                 var testClassName = new TypeNameHelper(tg.TestName);
 
-                var testClass = new UXIL.ClassNode(e.Source, false, "this", testBootstrapper, testClassName, clearColor, true, true, rawProperties);
+                var testClass = new UXIL.ClassNode(e.Source, false, "this", testBootstrapper, testClassName, clearColor, true, true, true, rawProperties);
                 _rootClasses.Add(testClass);
                 _nodes.Add(testClassName, testClass);
 
