@@ -36,9 +36,9 @@ namespace Uno.UX.Markup.UXIL
 
     public class Document
     {
-        public IEnumerable<Node> NodesInDocumentOrder { get; }
+        public List<Node> NodesInDocumentOrder { get; }
 
-        internal Document(IEnumerable<Node> nodesInDocumentOrder)
+        internal Document(List<Node> nodesInDocumentOrder)
         {
             NodesInDocumentOrder = nodesInDocumentOrder;
         }
@@ -47,7 +47,7 @@ namespace Uno.UX.Markup.UXIL
     public class Project
     {
         public Dictionary<string, Document> Documents { get; private set; }
-        public IEnumerable<ClassNode> RootClasses { get; private set; }
+        public List<ClassNode> RootClasses { get; private set; }
 
         public string ProjectName { get; private set; }
         public string GeneratedPath { get; private set; }
@@ -59,7 +59,7 @@ namespace Uno.UX.Markup.UXIL
 
         internal Project(string projectName, string generatedPath, 
             Dictionary<string, Document> documents,
-            IEnumerable<ClassNode> rootClasses, 
+            List<ClassNode> rootClasses, 
             IEnumerable<UXPropertyAccessorSource> uxPropertyAccessors,
             IEnumerable<UXPropertyClass> uxProperties,
             IEnumerable<KeyValuePair<string, List<Node>>> globalResources)
@@ -157,7 +157,7 @@ namespace Uno.UX.Markup.UXIL
                     .DescendantNodesAndSelf()
                     .OfType<AST.Element>()
                     .Select(astNode => comp._astNodeToNode[astNode])
-                    .ToArray();
+                    .ToList();
 
                 return new Document(nodesInDocumentOrder);
             });
