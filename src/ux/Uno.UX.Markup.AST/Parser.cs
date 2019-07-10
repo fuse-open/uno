@@ -8,7 +8,6 @@ using Uno.UX.Markup.Common;
 
 namespace Uno.UX.Markup.AST
 {
-
     public class Parser
     {
         static Element Parse(string projName, string p, out XDocument xdoc, Common.IMarkupErrorLog log)
@@ -42,7 +41,6 @@ namespace Uno.UX.Markup.AST
 
             return parser.ParseRoot(parser._doc.Root);
         }
-
 
         readonly string _projectName;
         readonly string _filePath;
@@ -175,7 +173,6 @@ namespace Uno.UX.Markup.AST
                 }
             }
 
-            
             var uxDependency = GetUXAttrib(elm, UxAttribute.Dependency, null);
             var uxTemplate = GetUXAttrib(elm, UxAttribute.Template, null);
             var uxName = GetUXAttrib(elm, UxAttribute.Name, null);
@@ -183,7 +180,6 @@ namespace Uno.UX.Markup.AST
             var uxValue = GetUXAttrib(elm, UxAttribute.Value, null);
             var uxKey = GetUXAttrib(elm, UxAttribute.Key, null);
             var binding = GetUXAttrib(elm, UxAttribute.Binding, null);
-            
 
             if (uxDependency != null && uxName != null)
                 ReportError(elm, "Cannot specify both ux:Dependency and ux:Name");
@@ -232,12 +228,10 @@ namespace Uno.UX.Markup.AST
                 .Select(x => new Property(x.Name.LocalName, x.Value, source, x.Name.NamespaceName))
                 .ToArray();
 
-
             var uxPath = GetUXAttrib(elm, UxAttribute.Path, null);
             var clearColor = GetUXAttrib(elm, UxAttribute.ClearColor, null);
             var children = elm.Nodes().Select(Parse).Where(x => x != null).ToArray();
             var condition = GetUXAttrib(elm, UxAttribute.Condition, null);
-
 
             if (uxProperty != null)
             {
@@ -258,8 +252,6 @@ namespace Uno.UX.Markup.AST
                     ReportError(elm, "Nodes marked with ux:Property can not specify ux:Binding, because they don't represent objects.");
                 }
             }
-
-            
 
             ReportErrorOnUnvisitedUXAttribs(elm);
 
