@@ -50,6 +50,8 @@ namespace Uno.UX.Markup.UXIL
 
         public string FullName => GeneratedClassName.FullName;
 
+        public override string ToString() => GeneratedClassName.FullName;
+
         public IEnumerable<IProperty> PrecompiledProperties => BaseType is ClassNode ? (BaseType as ClassNode).PrecompiledProperties : BaseType.Properties;
 
         IEnumerable<IProperty> IDataType.Properties =>
