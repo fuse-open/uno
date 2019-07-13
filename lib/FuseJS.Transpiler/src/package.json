@@ -1,6 +1,7 @@
 {
   "name": "fusejs-transpiler",
   "version": "1.2.2",
+  "private": true,
   "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
