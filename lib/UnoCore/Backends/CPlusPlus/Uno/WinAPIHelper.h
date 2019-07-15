@@ -12,6 +12,7 @@
 #undef ChangeDirectory
 #undef CopyFile
 #undef CreateDirectory
+#undef CreateFile
 #undef CreateMutex
 #undef CreateSemaphore
 #undef DeleteFile
