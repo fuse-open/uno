@@ -91,7 +91,7 @@ namespace Uno.Build.Stuff
                     // 2) Download the file from URL
                     log.WriteLine("Downloading " + url + (
                             tries > 0
-                                ? " (" + tries + "...)"
+                                ? " (retry " + tries + "...)"
                                 : null
                         ), ConsoleColor.Blue);
 

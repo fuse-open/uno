@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Mono.Options;
+using Uno.Build.Packages;
 using Uno.Diagnostics;
 
 namespace Uno.CLI
@@ -126,7 +127,10 @@ namespace Uno.CLI
                     return;
                 }
 
-                throw new ArgumentException(cmdName.Quote() + " is not a valid command -- see \"uno --help\" for a list of commands");
+                var thing = cmdName.StartsWith('-')
+                    ? "option"
+                    : "command";
+                throw new ArgumentException(cmdName.Quote() + $" is not a valid {thing} -- see \"uno --help\" for a list of {thing}s");
             }
 
             if (showHelp)

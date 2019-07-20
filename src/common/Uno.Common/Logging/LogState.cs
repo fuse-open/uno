@@ -9,7 +9,7 @@ namespace Uno.Logging
 {
     public class LogState : IDisposable
     {
-        const double _fps = 24.0;
+        const double _fps = 18.0;
         const double _interval = 1000.0 / _fps;
 
         static readonly string _cr = "\r" + new string(' ', GetNumberOfSpaces()) + "\r";

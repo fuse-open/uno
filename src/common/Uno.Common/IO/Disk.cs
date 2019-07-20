@@ -28,9 +28,10 @@ namespace Uno.IO
             {
                 if (path.Length > 1 && !Directory.Exists(path))
                 {
+                    CreateDirectory(Path.GetDirectoryName(path));
+
                     MarkFile(path);
                     Log.Event(IOEvent.MkDir, path);
-                    CreateDirectory(Path.GetDirectoryName(path));
                     var di = Directory.CreateDirectory(path);
 
                     // Hide directory when starts with a dot
