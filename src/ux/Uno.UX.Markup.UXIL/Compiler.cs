@@ -36,9 +36,9 @@ namespace Uno.UX.Markup.UXIL
 
     public class Document
     {
-        public IEnumerable<Node> NodesInDocumentOrder { get; }
+        public List<Node> NodesInDocumentOrder { get; }
 
-        internal Document(IEnumerable<Node> nodesInDocumentOrder)
+        internal Document(List<Node> nodesInDocumentOrder)
         {
             NodesInDocumentOrder = nodesInDocumentOrder;
         }
@@ -47,7 +47,7 @@ namespace Uno.UX.Markup.UXIL
     public class Project
     {
         public Dictionary<string, Document> Documents { get; private set; }
-        public IEnumerable<ClassNode> RootClasses { get; private set; }
+        public List<ClassNode> RootClasses { get; private set; }
 
         public string ProjectName { get; private set; }
         public string GeneratedPath { get; private set; }
@@ -59,7 +59,7 @@ namespace Uno.UX.Markup.UXIL
 
         internal Project(string projectName, string generatedPath, 
             Dictionary<string, Document> documents,
-            IEnumerable<ClassNode> rootClasses, 
+            List<ClassNode> rootClasses, 
             IEnumerable<UXPropertyAccessorSource> uxPropertyAccessors,
             IEnumerable<UXPropertyClass> uxProperties,
             IEnumerable<KeyValuePair<string, List<Node>>> globalResources)
@@ -157,7 +157,7 @@ namespace Uno.UX.Markup.UXIL
                     .DescendantNodesAndSelf()
                     .OfType<AST.Element>()
                     .Select(astNode => comp._astNodeToNode[astNode])
-                    .ToArray();
+                    .ToList();
 
                 return new Document(nodesInDocumentOrder);
             });
@@ -1202,7 +1202,7 @@ namespace Uno.UX.Markup.UXIL
             {
                 var cg = (AST.ClassGenerator)generator;
                 var name = e.UXName ?? "this";
-                var cl = new UXIL.ClassNode(e.Source, cg.IsInnerClass, name, dt, new TypeNameHelper(cg.ClassName), clearColor, cg.AutoCtor, false, rawProperties);
+                var cl = new UXIL.ClassNode(e.Source, cg.IsInnerClass, name, dt, new TypeNameHelper(cg.ClassName), clearColor, cg.AutoCtor, cg.Simulate, false, rawProperties);
 
                 if (!isInnerClass)
                     _rootClasses.Add(cl);
@@ -1221,7 +1221,7 @@ namespace Uno.UX.Markup.UXIL
 
                 var testClassName = new TypeNameHelper(tg.TestName);
 
-                var testClass = new UXIL.ClassNode(e.Source, false, "this", testBootstrapper, testClassName, clearColor, true, true, rawProperties);
+                var testClass = new UXIL.ClassNode(e.Source, false, "this", testBootstrapper, testClassName, clearColor, true, true, true, rawProperties);
                 _rootClasses.Add(testClass);
                 _nodes.Add(testClassName, testClass);
 

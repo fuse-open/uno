@@ -34,6 +34,7 @@ namespace Uno.UX.Markup.Common
         Template,
         Test,
         Value,
+        Simulate // Set to false to disable simulator for this class
     }
 
     public static class Attributes
