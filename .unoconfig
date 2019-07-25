@@ -1,6 +1,3 @@
-// Common & SDK setup
-require config/common.unoconfig
-
 // Core config
 Assemblies.Plugins: src/compiler/Uno.Compiler.Extensions/bin/$(Configuration)/Uno.Compiler.Extensions.dll
 Assemblies.Test: src/testing/Uno.TestRunner.CLI/bin/$(Configuration)/uno-test.exe

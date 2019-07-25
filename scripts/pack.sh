@@ -87,5 +87,4 @@ cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-
 
 # Generate config file
 cp config/pack.unoconfig $DST/.unoconfig
-cat config/common.unoconfig >> $DST/.unoconfig
 echo "Packages.SearchPaths += ../lib/build" >> $DST/.unoconfig
