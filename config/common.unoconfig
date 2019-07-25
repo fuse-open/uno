@@ -6,6 +6,3 @@ if WIN32 {
     require "%HOME%/Library/Application Support/Fusetools/Fuse/Android/.sdkconfig" // For legacy 'fuse install android'
     require /usr/local/lib/node_modules/android-build-tools/.unoconfig // For 'npm install -g android-build-tools'
 }
-
-// User config
-require ~/.unoconfig
