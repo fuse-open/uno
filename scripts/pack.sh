@@ -10,13 +10,16 @@ rm -rf ${DST:?}/* 2> /dev/null || :
 mkdir -p $DST
 
 # Detect version info
-COMMIT=`git rev-parse HEAD`
+COMMIT=`git rev-parse HEAD 2> /dev/null || :`
 VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
 
 if [ -n "$APPVEYOR_REPO_BRANCH" ]; then
     BRANCH=$APPVEYOR_REPO_BRANCH
-else
+elif [ -n "$COMMIT" ]; then
     BRANCH=`git rev-parse --abbrev-ref HEAD`
+else
+    BRANCH="unknown"
+    COMMIT="unknown"
 fi
 
 if [ -n "$APPVEYOR_BUILD_NUMBER" ]; then
