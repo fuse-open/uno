@@ -69,7 +69,7 @@ namespace Uno.Configuration.Format
             if (value == null)
                 value = string.Empty;
             else if (value.StartsWith("~/") || value == "~")
-                value = (Environment.GetEnvironmentVariable("HOME") ?? "~") + value.Substring(1);
+                value = PlatformDetection.HomeDirectory + value.Substring(1);
 
             Add(new StuffItem(this, type, lineNumber, key, Environment.ExpandEnvironmentVariables(value)));
         }
