@@ -15,11 +15,7 @@ Welcome to Uno, the core component in [Fuse Open], a native app development tool
 npm install @fuse-open/uno
 ```
 
-This will install `uno`. Pass `--save-dev` to install as a dependency in your local project, or `-g` to install
-the command globally on your system.
-
-Please note that this package contains .NET software that will need [Mono](http://www.mono-project.com/download/)
-to run on Linux and macOS.
+This will install the `uno` command and core libraries.
 
 ## Abstract
 
