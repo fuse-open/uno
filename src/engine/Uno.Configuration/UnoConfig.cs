@@ -350,5 +350,24 @@ namespace Uno.Configuration
 
             return string.Join("\n", lines);
         }
+
+        public List<string> GetFilenames(bool verbose)
+        {
+            var filenames = new List<string>();
+
+            foreach (var f in _files)
+            {
+                filenames.Add(f.Stuff.Filename);
+                f.Stuff.Flatten(
+                    filename =>
+                    {
+                        if (!filenames.Contains(filename) || verbose)
+                            filenames.Add(filename);
+                        return File.ReadAllText(filename);
+                    });
+            }
+
+            return filenames;
+        }
     }
 }

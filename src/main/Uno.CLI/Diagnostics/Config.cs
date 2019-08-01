@@ -51,21 +51,7 @@ namespace Uno.CLI.Diagnostics
             WriteRow(UnoConfig.Current);
 
             WriteHead("Config files", indent: 0);
-            var files = new List<string>();
-
-            foreach (var f in UnoConfig.Current.Files)
-            {
-                files.Add(f.Stuff.Filename);
-                f.Stuff.Flatten(
-                    filename =>
-                    {
-                        if (!files.Contains(filename) || Log.IsVerbose)
-                            files.Add(filename);
-                        return File.ReadAllText(filename);
-                    });
-            }
-
-            foreach (var f in files)
+            foreach (var f in UnoConfig.Current.GetFilenames(Log.IsVerbose))
                 WriteRow(f.ToRelativePath());
 
             if (asm || Log.IsVerbose)
