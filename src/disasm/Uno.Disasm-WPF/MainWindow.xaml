@@ -8,14 +8,17 @@
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:System="clr-namespace:System;assembly=mscorlib"
                       mc:Ignorable="d"
-                      TitleCaps="False"
-                      TitlebarHeight="20"
+                      TitleCharacterCasing="Normal"
+                      TitlebarHeight="28"
+                      TitleAlignment="Center"
+                      TitleForeground="#CCCCCC"
                       WindowStartupLocation="CenterScreen"
                       WindowTransitionsEnabled="False"
                       Style="{DynamicResource VSWindowStyleKey}"
                       Width="1280"
                       Height="720"
                       Icon="UnoIcon.ico"
+                      IconScalingMode="NoScaleSmallerFrame"
                       ShowIconOnTitleBar="True"
                       ShowTitleBar="True">
     <Window.Resources>
@@ -35,6 +38,13 @@
             <System:Double x:Key="MenuFontSize">12</System:Double>
             <System:Double x:Key="ContextMenuFontSize">12</System:Double>
             <Disasm:ILIconConverter x:Key="IconConverter" />
+
+            <Style x:Key="WindowMenuItem"  TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MetroMenuItem}">
+                <Setter Property="Height" Value="28" />
+                <Setter Property="Background" Value="#2d2d30" />
+                <Setter Property="Foreground" Value="#CCCCCC" />
+                <Setter Property="FontSize" Value="13" />
+            </Style>
 
             <HierarchicalDataTemplate x:Key="ILItemTemplate" ItemsSource="{Binding Path=Children}">
                 <StackPanel Orientation="Horizontal" SnapsToDevicePixels="True">
@@ -57,19 +67,25 @@
         <KeyBinding Gesture="Ctrl+Break" Command="{Binding Build_Cancel}" />
 
     </Window.InputBindings>
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Menu x:Name="MainMenu" IsMainMenu="True" SnapsToDevicePixels="True">
+                    <MenuItem Header="File" Style="{StaticResource WindowMenuItem}">
+                        <MenuItem Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding File_Open}" />
+                        <MenuItem Header="_Close" InputGestureText="Ctrl+W" Command="{Binding File_Close}" />
+                    </MenuItem>
+                    <MenuItem Header="Build" Style="{StaticResource WindowMenuItem}">
+                        <MenuItem x:Name="Build_BuildItem" Header="_Build (F5)" Command="{Binding Build_BuildTarget}" />
+                        <MenuItem Header="_Clean" InputGestureText="Ctrl+K" Command="{Binding Build_CleanProject}" />
+                        <Separator />
+                        <MenuItem Header="_Cancel" InputGestureText="Ctrl+Break" Command="{Binding Build_Cancel}" />
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
     <DockPanel LastChildFill="True">
-        <Menu x:Name="MainMenu" DockPanel.Dock="Top" IsMainMenu="True" SnapsToDevicePixels="True">
-            <MenuItem Header="File">
-                <MenuItem Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding File_Open}" />
-                <MenuItem Header="_Close" InputGestureText="Ctrl+W" Command="{Binding File_Close}" />
-            </MenuItem>
-            <MenuItem Header="Build">
-                <MenuItem x:Name="Build_BuildItem" Header="_Build (F5)" Command="{Binding Build_BuildTarget}" />
-                <MenuItem Header="_Clean" InputGestureText="Ctrl+K" Command="{Binding Build_CleanProject}" />
-                <Separator />
-                <MenuItem Header="_Cancel" InputGestureText="Ctrl+Break" Command="{Binding Build_Cancel}" />
-            </MenuItem>
-        </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300*" />
