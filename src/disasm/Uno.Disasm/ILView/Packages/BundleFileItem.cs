@@ -19,7 +19,6 @@ namespace Uno.Disasm.ILView.Packages
         {
             disasm.BeginHeader(BundleFile.TargetName);
             disasm.AppendLine("/// SourcePath:   " + BundleFile.SourcePath);
-            disasm.AppendLine("/// ContentType:  " + BundleFile.ContentType);
             disasm.EndHeader();
             disasm.Append(Contents);
         }
