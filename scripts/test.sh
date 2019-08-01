@@ -6,6 +6,9 @@ source scripts/common.sh
 # Arguments
 TARGET=$1
 
+# Show uno config
+uno config
+
 # Run uno tests
 uno test $TARGET lib $UNO_TEST_ARGS
 
