@@ -35,37 +35,8 @@ namespace Uno.Diagnostics
                                    Environment.GetEnvironmentVariable("HOMEPATH");
                     if (!string.IsNullOrEmpty(homePath))
                         return homePath;
-
-                    goto THROW;
                 }
 
-                var user = Environment.GetEnvironmentVariable("LOGNAME");
-                if (string.IsNullOrEmpty(user))
-                    user = Environment.GetEnvironmentVariable("USER");
-                if (string.IsNullOrEmpty(user))
-                    user = Environment.GetEnvironmentVariable("LNAME");
-                if (string.IsNullOrEmpty(user))
-                    user = Environment.GetEnvironmentVariable("USERNAME");
-
-                if (IsMac)
-                {
-                    if (!string.IsNullOrEmpty(user))
-                        return "/Users/" + user;
-
-                    goto THROW;
-                }
-
-                if (IsLinux)
-                {
-                    // FIXME:
-                    // if (process.getuid() == 0)
-                    //     return "/root";
-
-                    if (!string.IsNullOrEmpty(user))
-                        return "/home/" + user;
-                }
-
-                THROW:
                 throw new NotSupportedException("Your home directory was not found");
             }
         }
