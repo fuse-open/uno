@@ -17,6 +17,30 @@ namespace Uno.Diagnostics
         public static readonly bool IsArm;
         public static readonly bool Is64Bit;
 
+        public static string HomeDirectory
+        {
+            get
+            {
+                var home = Environment.GetEnvironmentVariable("HOME");
+                if (!string.IsNullOrEmpty(home))
+                    return home;
+
+                if (IsWindows)
+                {
+                    var userProfile = Environment.GetEnvironmentVariable("USERPROFILE");
+                    if (!string.IsNullOrEmpty(userProfile))
+                        return userProfile;
+
+                    var homePath = Environment.GetEnvironmentVariable("HOMEDRIVE") +
+                                   Environment.GetEnvironmentVariable("HOMEPATH");
+                    if (!string.IsNullOrEmpty(homePath))
+                        return homePath;
+                }
+
+                throw new NotSupportedException("Your home directory was not found");
+            }
+        }
+
         public static string SystemString
         {
             get
