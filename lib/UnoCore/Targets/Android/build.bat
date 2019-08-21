@@ -2,6 +2,7 @@
 :: @(MSG_EDIT_WARNING)
 @echo off
 pushd "%~dp0"
+setlocal
 
 #if !@(SDK.Directory:IsSet) || !@(NDK.Directory:IsSet)
 echo ERROR: Could not locate the Android SDK or NDK. >&2
@@ -17,6 +18,16 @@ goto ERROR
 set JAVA_HOME=@(JDK.Directory:NativePath)
 #endif
 
+:: Make sure ninja.exe and cmake.exe are in PATH.
+for /D %%D in ("@(SDK.Directory:NativePath)\cmake\*") do (
+    if exist "%%D\bin" (
+        echo Using %%D
+        set PATH="%%D\bin;%PATH%"
+        goto BUILD
+    )
+)
+
+:BUILD
 call gradlew @(Gradle.Task) %* || goto ERROR
 copy /Y @(APK.BuildName:QuoteSpace:Replace('/', '\\')) @(Product:QuoteSpace) || goto ERROR
 popd && exit /b 0
