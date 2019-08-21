@@ -33,7 +33,7 @@ Unreleased
     * `x86`
     * `x86_64`
 - Added support for multi-architecture (fat) builds, by default building:
-    * `arm64-v8a` on Debug
+    * `armeabi-v7a` on Debug
     * `armeabi-v7a` + `arm64-v8a` on Release
 - Added support for long filenames on Windows, and building of larger projects.
 - Fixed launching Android Studio on Windows, when passing `--debug`.

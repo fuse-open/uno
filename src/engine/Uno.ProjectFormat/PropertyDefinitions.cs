@@ -27,7 +27,7 @@ namespace Uno.ProjectFormat
             {"Mobile.RunsInBackground", PropertyType.Bool, true},
             {"Mobile.Orientations", PropertyType.String, Orientations.Auto},
             {"Android.ApplicationLabel", PropertyType.String, "$(Title)"},
-            {"Android.Architectures.Debug", PropertyType.String, "arm64-v8a"},
+            {"Android.Architectures.Debug", PropertyType.String, "armeabi-v7a"},
             {"Android.Architectures.Release", PropertyType.String, "armeabi-v7a\narm64-v8a"},
             {"Android.Defines", PropertyType.String},
             {"Android.VersionCode", PropertyType.Integer, "$(VersionCode)"},
