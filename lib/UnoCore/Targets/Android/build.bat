@@ -10,6 +10,10 @@ echo These dependencies can be acquired by installing 'android-build-tools': >&2
 echo. >&2
 echo     npm install android-build-tools -g >&2
 echo. >&2
+echo After installing, pass --force to make sure the new configuration is picked up. >&2
+echo. >&2
+echo     uno build android --force >&2
+echo. >&2
 goto ERROR
 #endif
 
