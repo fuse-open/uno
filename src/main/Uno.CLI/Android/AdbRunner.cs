@@ -9,6 +9,7 @@ namespace Uno.CLI.Android
     class AdbRunner
     {
         static string SdkDirectory => UnoConfig.Current.GetFullPath("Android.SDK.Directory", "AndroidSdkDirectory");
+        static bool IgnoreNetworkDevices => UnoConfig.Current.GetBool("Android.IgnoreNetworkDevices");
 
         readonly Shell _shell;
         readonly string _adb = Path.Combine(SdkDirectory,
@@ -35,15 +36,15 @@ namespace Uno.CLI.Android
             foreach (var line in output.Split('\n').Skip(1))
             {
                 var parts = line.Cut();
-                if (parts.Count == 2 && parts[1] == "device" && !IsIpAndPort(parts[0]))
+                if (parts.Count == 2 && parts[1] == "device" &&
+                        (!IgnoreNetworkDevices || !IsIpAndPort(parts[0])))
                     devices.Add(new AdbDevice(_shell, _adb, parts[0]));
             }
 
             return devices;
         }
 
-        // Ignore devices that look like <IP>:<port>,
-        // because installation will fail on those.
+        // Ignore devices that look like <IP>:<port> (when Android.IgnoreNetworkDevices is enabled).
         static bool IsIpAndPort(string arg)
         {
             if (arg.IndexOf(':') == -1)
