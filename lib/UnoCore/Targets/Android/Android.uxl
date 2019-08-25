@@ -70,12 +70,15 @@
     <Set APK.BuildName="app/build/outputs/apk/@(APK.Configuration:ToLower)/app-@(APK.Configuration:ToLower).apk" />
     <Set APK.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
     <Set Gradle.Task="assemble@(APK.Configuration)" />
+    <Set Bundle.BuildName="app/build/outputs/bundle/@(APK.Configuration:ToLower)/app.aab" />
+    <Set Bundle.Gradle.Task="bundle@(APK.Configuration)" />
     <Set Runtime.CatchCppExceptions=2 />
     <Set Runtime.CppMainLoop="Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN" />
     <Set Runtime.DebugPauseMilliseconds=0 />
     <Set Runtime.KillActivityOnDestroy=true />
     <Set Runtime.SeperateUnoThread="AppRuntimeSettings.CppMainLoop" />
     <Set Product="@(Project.Name).apk" />
+    <Set Bundle="@(Project.Name).aab" />
 
     <!-- Deprecated properties -->
 
