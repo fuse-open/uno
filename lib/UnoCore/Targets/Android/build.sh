@@ -22,7 +22,7 @@ exit 1
 export JAVA_HOME="@(JDK.Directory)"
 #endif
 
-./gradlew @(Gradle.Task) "$@"
+./gradlew @(APK.Gradle.Task) "$@"
 #if !@(DEBUG:Defined)
 ./gradlew @(Bundle.Gradle.Task)
 #endif
