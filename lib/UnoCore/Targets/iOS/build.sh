@@ -12,6 +12,15 @@ if ! which xcodebuild > /dev/null 2>&1; then
     exit 1
 fi
 
+#if @(Cocoapods:Defined)
+if ! which pod > /dev/null 2>&1; then
+    echo "ERROR: Unable to find the 'pod' command." >&2
+    echo -e "\nYou can install Cocoapods using Ruby:" >&2
+    echo -e "\n    sudo gem install cocoapods\n" >&2
+    exit 1
+fi
+#endif
+
 mkdir -p data
 
 function openXcode() {
