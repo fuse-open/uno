@@ -15,6 +15,16 @@ debug)
 #endif
     exit $?
     ;;
+esac
+
+if ! which ios-deploy > /dev/null 2>&1; then
+    echo "ERROR: Unable to find the 'ios-deploy' command." >&2
+    echo -e "\nYou can install ios-deploy using NPM:" >&2
+    echo -e "\n    npm install ios-deploy@beta -g\n" >&2
+    exit 1
+fi
+
+case $1 in
 uninstall)
     echo "Uninstalling @(BundleIdentifier)"
     ios-deploy -9 -1 "@(BundleIdentifier)"
