@@ -5,6 +5,13 @@ set -e
 set -o pipefail
 cd "`dirname "$0"`"
 
+if ! which xcodebuild > /dev/null 2>&1; then
+    echo "ERROR: Unable to find the 'xcodebuild' command." >&2
+    echo -e "\nYou can download Xcode Command Line Tools from this page:" >&2
+    echo -e "\n    https://developer.apple.com/xcode/\n" >&2
+    exit 1
+fi
+
 mkdir -p data
 
 function openXcode() {
