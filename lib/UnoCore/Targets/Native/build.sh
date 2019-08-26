@@ -6,6 +6,10 @@ cd "`dirname "$0"`"
 
 if ! which @(CMake) > /dev/null 2>&1; then
     echo "ERROR: Unable to find the 'cmake' command. Make sure CMake is installed and added to PATH." >&2
+#if @(MAC:Defined)
+    echo -e "\nOn macOS, you can install CMake using Homebrew:" >&2
+    echo -e "\n    brew install cmake\n" >&2
+#endif
     exit 1
 fi
 
