@@ -8,7 +8,7 @@ if "%1" == "debug" (
     set JAVA_HOME=@(JDK.Directory:NativePath)
 #endif
     echo Opening Android Studio
-    @(Uno) open -a"Android Studio" -t"@(Project.Name)" "%~dp0app/app.iml"
+    @(Uno) open -a"Android Studio" -t"@(Project.Name)" "%~dp0"
     exit /b %ERRORLEVEL%
 )
 
