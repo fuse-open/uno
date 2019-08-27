@@ -29,7 +29,10 @@ else
 fi
 
 # Use {dev, master}-COMMIT as prerelease suffix on non-release branches
-if [ "$BRANCH" = master ]; then
+if [ -n "$APPVEYOR_REPO_TAG_NAME" ]; then
+    # Don't set prerelease suffix on AppVeyor builds started by tag
+    SUFFIX=
+elif [ "$BRANCH" = master ]; then
     SUFFIX="master-${COMMIT:0:7}"
 elif [[ "$BRANCH" != release-* ]]; then
     SUFFIX="dev-${COMMIT:0:7}"
