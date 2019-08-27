@@ -19,11 +19,11 @@
     <Set JDK.Directory="@(Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
     <Set NDK.Directory="@(Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
     <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '16')" />
-    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '27.0.3')" />
-    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '26')" />
+    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '28.0.3')" />
+    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '28')" />
     <Set SDK.Directory="@(Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
     <Set SDK.MinVersion="@(Project.Android.SDK.MinVersion || Config.Android.SDK.MinVersion || '16')" />
-    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '26')" />
+    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '28')" />
 
     <!-- Build properties -->
 
@@ -67,15 +67,18 @@
     <Set Activity.BaseClass="android.support.v7.app.AppCompatActivity" />
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
-    <Set APK.BuildName="app/build/outputs/apk/@(APK.Configuration:ToLower)/app-@(APK.Configuration:ToLower).apk" />
-    <Set APK.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
-    <Set Gradle.Task="assemble@(APK.Configuration)" />
+    <Set Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
+    <Set APK.BuildName="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
+    <Set APK.Gradle.Task="assemble@(Build.Configuration)" />
+    <Set Bundle.BuildName="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app.aab" />
+    <Set Bundle.Gradle.Task="bundle@(Build.Configuration)" />
     <Set Runtime.CatchCppExceptions=2 />
     <Set Runtime.CppMainLoop="Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN" />
     <Set Runtime.DebugPauseMilliseconds=0 />
     <Set Runtime.KillActivityOnDestroy=true />
     <Set Runtime.SeperateUnoThread="AppRuntimeSettings.CppMainLoop" />
     <Set Product="@(Project.Name).apk" />
+    <Set Bundle="@(Project.Name).aab" />
 
     <!-- Deprecated properties -->
 
