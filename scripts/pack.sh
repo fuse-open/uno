@@ -10,36 +10,16 @@ rm -rf ${DST:?}/* 2> /dev/null || :
 mkdir -p $DST
 
 # Detect version info
-COMMIT=`git rev-parse HEAD 2> /dev/null || :`
 VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
+BUILD_NUMBER="0"
+COMMIT="N/A"
 
-if [ -n "$APPVEYOR_REPO_BRANCH" ]; then
-    BRANCH=$APPVEYOR_REPO_BRANCH
-elif [ -n "$COMMIT" ]; then
-    BRANCH=`git rev-parse --abbrev-ref HEAD`
-else
-    BRANCH="unknown"
-    COMMIT="unknown"
-fi
-
-if [ -n "$APPVEYOR_BUILD_NUMBER" ]; then
+if [ -n "$APPVEYOR" ]; then
     BUILD_NUMBER=$APPVEYOR_BUILD_NUMBER
-else
-    BUILD_NUMBER=0
-fi
-
-# Use {dev, master}-COMMIT as prerelease suffix on non-release branches
-if [ -n "$APPVEYOR_REPO_TAG_NAME" ]; then
-    # Don't set prerelease suffix on AppVeyor builds started by tag
-    SUFFIX=
-elif [ "$BRANCH" = master ]; then
-    SUFFIX="master-${COMMIT:0:7}"
-elif [[ "$BRANCH" != release-* ]]; then
-    SUFFIX="dev-${COMMIT:0:7}"
-fi
-
-if [ -n "$SUFFIX" ]; then
-    VERSION="$VERSION-$SUFFIX"
+    COMMIT=$APPVEYOR_REPO_COMMIT
+elif [ -d .git ]; then
+    # Get commit SHA from local git-repo.
+    COMMIT=`git rev-parse HEAD 2> /dev/null || :`
 fi
 
 echo "Version: $VERSION (build $BUILD_NUMBER)"
