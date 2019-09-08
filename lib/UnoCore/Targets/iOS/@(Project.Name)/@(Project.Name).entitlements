@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+#if @(Project.iOS.SystemCapabilities.SignInWithApple:IsSet:Test(@(Project.iOS.SystemCapabilities.SignInWithApple),0))
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+#endif
+
 #if @(@(Project.iOS.SystemCapabilities.Push:IsSet):Test(@(Project.iOS.SystemCapabilities.Push),0))
 	<key>aps-environment</key>
 	<string>development</string>

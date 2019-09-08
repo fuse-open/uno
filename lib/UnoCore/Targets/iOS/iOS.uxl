@@ -100,9 +100,9 @@
     <ProcessFile Name="@(LaunchImages)/Contents.json" />
 
     <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_iPhoneXsMax_3x:Path || '@//Assets/Black.png')"
-        TargetWidth="1242" TargetHeight="2688" TargetName="@(LaunchImages)/iPhone_Portrait_iPhoneXsM_3x.png" />
+        TargetWidth="1242" TargetHeight="2688" TargetName="@(LaunchImages)/iPhone_Portrait_iPhoneXsMax_3x.png" />
     <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Landscape_iPhoneXsMax_3x:Path || '@//Assets/Black.png')"
-        TargetWidth="2688" TargetHeight="1242" TargetName="@(LaunchImages)/iPhone_Landscape_iPhoneXsM_3x.png" />
+        TargetWidth="2688" TargetHeight="1242" TargetName="@(LaunchImages)/iPhone_Landscape_iPhoneXsMax_3x.png" />
     <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_iPhoneXr_2x:Path || '@//Assets/Black.png')"
         TargetWidth="828" TargetHeight="1792" TargetName="@(LaunchImages)/iPhone_Portrait_iPhoneXr_2x.png" />
     <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Landscape_iPhoneXr_2x:Path || '@//Assets/Black.png')"
