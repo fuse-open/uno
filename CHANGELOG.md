@@ -4,6 +4,24 @@ Uno Changelog
 Unreleased
 ----------
 
+### Project Files
+- Support for iPhoneXr Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXr_2x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXr_2x` project-setting.
+- Support for iPhoneXs Max Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXsMax_3x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXsMax_3x` project-setting.
+
+#### Android build target
+- Upgraded to Gradle 5.6, and Gradle-plugin 3.4.2.
+- Upgraded build tools to version 28.0.3.
+- Upgraded support libraries to version 28.0.0.
+- Upgraded SDK compile and target versions to 28
+- Added support for generating [Android App Bundle](https://developer.android.com/platform/technology/app-bundle) on Release
+- Added the following build properties.
+    * `Bundle`
+    * `Bundle.BuildName`
+    * `Bundle.Gradle.Task`
+- Renamed the following build properties.
+    * `APK.Configuration -> Build.Configuration`
+- Set default versionCode to positive Integer (1) so `gradlew` command doesn't produce error when building using latest Gradle
+
 1.12
 ----
 
