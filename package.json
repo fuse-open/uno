@@ -2,6 +2,9 @@
   "name": "@fuse-open/uno",
   "version": "1.12.3",
   "description": "Fast, native C# dialect and cross-compiler.",
+  "dependencies": {
+    "dotnet-run": "^1.0.0"
+  },
   "scripts": {
     "build": "bash scripts/build.sh",
     "prepack": "bash scripts/pack.sh",
