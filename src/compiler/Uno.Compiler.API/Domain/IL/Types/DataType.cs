@@ -117,6 +117,14 @@ namespace Uno.Compiler.API.Domain.IL
                 {
                     case TypeType.Class:
                     case TypeType.Struct:
+                        // Optimization: 'char' and 'string' are pre-initialized.
+                        switch (BuiltinType)
+                        {
+                            case BuiltinType.Char:
+                            case BuiltinType.String:
+                                return false;
+                        }
+
                         return Initializer != null;
                     default:
                         return false;
