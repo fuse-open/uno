@@ -162,7 +162,7 @@ namespace Uno.Disasm
                 {
                     try
                     {
-                        _listener.Bind(new IPEndPoint(IPAddress.Loopback, CLI.Projects.Disasm.Port));
+                        _listener.Bind(new IPEndPoint(IPAddress.Loopback, 12345));
                         _listener.Listen(10);
 
                         while (true)
