@@ -205,6 +205,8 @@ namespace Uno.Configuration
             LoadRecursive(GetAssemblyDirectory(Assembly.GetEntryAssembly()));
             LoadRecursive(GetAssemblyDirectory(typeof(UnoConfig).Assembly));
 
+            LoadHomeFile();
+
             try
             {
                 LoadRecursive(Directory.GetCurrentDirectory());
@@ -225,6 +227,15 @@ namespace Uno.Configuration
             : this(parent)
         {
             LoadRecursive(dir);
+        }
+
+        void LoadHomeFile()
+        {
+            var dir = PlatformDetection.HomeDirectory;
+            var filename = Path.Combine(dir, ".unoconfig");
+
+            if (File.Exists(filename))
+                LoadFile(dir, filename, false);
         }
 
         void LoadRecursive(string dir)
@@ -338,6 +349,25 @@ namespace Uno.Configuration
                 lines.Add(str.ToString());
 
             return string.Join("\n", lines);
+        }
+
+        public List<string> GetFilenames(bool verbose)
+        {
+            var filenames = new List<string>();
+
+            foreach (var f in _files)
+            {
+                filenames.Add(f.Stuff.Filename);
+                f.Stuff.Flatten(
+                    filename =>
+                    {
+                        if (!filenames.Contains(filename) || verbose)
+                            filenames.Add(filename);
+                        return File.ReadAllText(filename);
+                    });
+            }
+
+            return filenames;
         }
     }
 }
