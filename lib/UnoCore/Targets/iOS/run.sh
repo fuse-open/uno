@@ -15,19 +15,26 @@ debug)
 #endif
     exit $?
     ;;
+esac
+
+if ! which ios-deploy > /dev/null 2>&1; then
+    echo "ERROR: Unable to find the 'ios-deploy' command." >&2
+    echo -e "\nYou can install ios-deploy using NPM:" >&2
+    echo -e "\n    npm install ios-deploy@beta -g\n" >&2
+    exit 1
+fi
+
+case $1 in
 uninstall)
     echo "Uninstalling @(BundleIdentifier)"
-    chmod +x "@(Base.Directory)/bin/ios-deploy"
-    "@(Base.Directory)/bin/ios-deploy" -9 -1 "@(BundleIdentifier)"
+    ios-deploy -9 -1 "@(BundleIdentifier)"
     exit $?
     ;;
 esac
 
-chmod +x "@(Base.Directory)/bin/ios-deploy"
-
 #if @(Cocoapods:Defined)
 pod install
-"@(Base.Directory)/bin/ios-deploy" --noninteractive --debug --bundle "build/Build/Products/@(Pbxproj.Configuration)-iphoneos/@(Project.Name).app" "$@"
+ios-deploy --noninteractive --debug --bundle "build/Build/Products/@(Pbxproj.Configuration)-iphoneos/@(Project.Name).app" "$@"
 #else
-"@(Base.Directory)/bin/ios-deploy" --noninteractive --debug --bundle "build/@(Pbxproj.Configuration)-iphoneos/@(Project.Name).app" "$@"
+ios-deploy --noninteractive --debug --bundle "build/@(Pbxproj.Configuration)-iphoneos/@(Project.Name).app" "$@"
 #endif
