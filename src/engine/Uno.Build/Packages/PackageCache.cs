@@ -18,58 +18,38 @@ namespace Uno.Build.Packages
         // For use by UXNinja & tests in Fuse Studio
         public static SourcePackage GetPackage(Log log, Project project)
         {
-            // Passing null to disable package downloads and FuseJS transpiler.
-            using (var cache = new PackageCache(log, project.Config, null))
+            // Passing false to disable FuseJS transpiler.
+            using (var cache = new PackageCache(log, project.Config, false))
                 return cache.GetPackage(project);
         }
 
-        readonly PackageManager _pm;
         readonly PackageSearchPaths _sourcePaths = new PackageSearchPaths();
         readonly PackageSearchPaths _searchPaths = new PackageSearchPaths();
         readonly Dictionary<string, string> _locks = new Dictionary<string, string>();
         readonly Dictionary<string, SourcePackage> _cache = new Dictionary<string, SourcePackage>();
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
+        readonly bool _enableFuseJS;
         FuseJS _fusejs;
 
         public IEnumerable<string> SearchPaths => _sourcePaths.Concat(_searchPaths).Where(Directory.Exists);
 
         public PackageCache()
-            : this(null, null, null)
+            : this(null, null, false)
         {
         }
 
-        public PackageCache(Log log, UnoConfig config)
-            : this(log, config, new PackageManager(log))
-        {
-        }
-
-        public PackageCache(Log log, UnoConfig config, PackageManager pm)
+        public PackageCache(Log log, UnoConfig config, bool enableFuseJS = true)
             : base(log ?? Log.Null)
         {
-            _pm = pm;
+            _enableFuseJS = enableFuseJS;
 
             if (config == null)
                 config = UnoConfig.Current;
 
             foreach (var src in config.GetFullPathArray("Packages.SourcePaths"))
                 _sourcePaths.AddOnce(Path.Combine(src, "build"));
-            foreach (var src in config.GetFullPathArray("Packages.SearchPaths", "Packages.InstallDirectory"))
+            foreach (var src in config.GetFullPathArray("Packages.SearchPaths"))
                 _searchPaths.AddOnce(src);
-
-            foreach (var file in config.GetFullPathArray("Packages.LockFiles"))
-            {
-                try
-                {
-                    Log.VeryVerbose("Package file: " + file);
-                    foreach (var e in StuffObject.Load(file))
-                        _locks[e.Key] = "" + e.Value;
-                }
-                catch (Exception e)
-                {
-                    Log.Trace(e);
-                    Log.Warning("Failed to load " + file.Quote() + ": " + e.Message);
-                }
-            }
         }
 
         public void Dispose()
@@ -172,9 +152,8 @@ namespace Uno.Build.Packages
             // Transpile FuseJS files
             foreach (var f in project.FuseJSFiles)
             {
-                // Skip if PackageManager is null.
                 // We don't need to spend time on this in UXNinja, tests, etc.
-                if (_pm == null)
+                if (!_enableFuseJS)
                     continue;
 
                 var name = f.NativePath;
@@ -285,19 +264,6 @@ namespace Uno.Build.Packages
                     var versionDir = Path.Combine(dir.FullName, version);
                     if (PackageFile.Exists(versionDir))
                         return PackageFile.Load(versionDir);
-                }
-
-                if (_pm != null)
-                {
-                    try
-                    {
-                        return _pm.Install(name, version);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Trace(e);
-                        Log.Error("Failed to install package " + name.Quote() + ": " + e.Message);
-                    }
                 }
             }
             else

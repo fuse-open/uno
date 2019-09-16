@@ -2,10 +2,6 @@
   "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Uno Testing Framwork",
   "Publisher": "Fuse Open",
-  "Package": {
-    "ProjectUrl": "https://github.com/fuse-open/uno",
-    "LicenseUrl": "https://github.com/fuse-open/uno/blob/master/LICENSE.txt"
-  },
   "Projects": [
     "../Uno.Net.Http/Uno.Net.Http.unoproj"
   ],

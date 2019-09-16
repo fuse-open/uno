@@ -45,11 +45,6 @@
     <Compile Include="Android\Adb.cs" />
     <Compile Include="Diagnostics\Ls.cs" />
     <Compile Include="Packages\Doctor.cs" />
-    <Compile Include="Packages\Feed.cs" />
-    <Compile Include="Packages\Install.cs" />
-    <Compile Include="Packages\Pack.cs" />
-    <Compile Include="Packages\Push.cs" />
-    <Compile Include="Packages\Uninstall.cs" />
     <Compile Include="Diagnostics\Lint.cs" />
     <Compile Include="Projects\NoBuild.cs" />
     <Compile Include="Android\AdbRunner.cs" />
@@ -98,7 +93,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Uno.CLI.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -2,10 +2,6 @@
   "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Uno Standard Library Core Features",
   "Publisher": "Fuse Open",
-  "Package": {
-    "ProjectUrl": "https://github.com/fuse-open/uno",
-    "LicenseUrl": "https://github.com/fuse-open/uno/blob/master/LICENSE.txt"
-  },
   "UnoCoreReference": false,
   "InternalsVisibleTo": [
     "Experimental.Http",
@@ -523,8 +519,6 @@
     "Targets/Native/rc/icon.rc:File",
     "Targets/Native/run.bat:File",
     "Targets/Native/run.sh:File",
-    "Targets/Package/nuspec.xml:File",
-    "Targets/Package/Package.uxl:Extensions",
     "Targets/PInvoke/build.bat:File",
     "Targets/PInvoke/build.sh:File",
     "Targets/PInvoke/CMakeLists.txt:File",

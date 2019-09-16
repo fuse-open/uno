@@ -27,11 +27,6 @@ Available commands
 Experimental commands
   no-build       Invoke generated build steps without triggering a build
   test-gen       Generate compilation tests
-  install        Install Uno package(s) to the local cache
-  uninstall      Uninstall Uno package(s) from the local cache
-  feed           Maintain Uno package feeds
-  pack           Build project(s) and make Uno package(s)
-  push           Upload Uno package(s) to remote server
   lint           Parses uno source files and output syntax errors
   adb            Use Android Debug Bridge (adb)
   launch-apk     Deploy and start APK on a connected device
@@ -255,78 +250,6 @@ Available options
   -n, --version=X.Y.Z-SUFFIX   Override version number for all packages built [optional]
   -C, --no-cache               Disable in-memory AST & IL caches
   -s, --silent                 Very quiet build log
-```
-
-## uno install
-```
-Usage: uno install <package ...> [version] [source]
-  or   uno install <project-file|directory>
-  or   uno install <package-list-file>
-  or   uno install <upk-file ...>
-
-Install Uno package(s) to the local cache.
-
-Install options
-  -d, --directory=PATH  Specify a custom install directory [optional]
-  -n, --version=STRING  Install a specific version of <package>
-  -s, --source=URL      Install <package> from a specific source
-  -f, --force           Install a package even if already installed
-```
-
-## uno uninstall
-```
-Usage: uno uninstall <package|wildcard ...> [version]
-
-Uninstall Uno package(s) from the local cache.
-
-Uninstall options
-  -n, --version=STRING  Uninstall a specific version of <package>
-  -f, --force           Uninstall all matching packages without warning
-```
-
-## uno feed
-```
-Usage: uno feed [package ...] [version] [source]
-  or   uno feed [package ...] [version] --installed
-
-Maintain Uno package feeds.
-
-Example
-  uno feed UnoCore 1.0.0        Look up 'UnoCore' version 1.0.0
-
-Filter options
-      (default)             Show packages from all available feeds
-  -i, --installed           Show installed or built packages
-  -s, --source=URL          Show packages from a remote source
-  -n, --version=STRING      Show only packages of this version
-```
-
-## uno pack
-```
-Usage: uno pack [options] [project-path ...]
-
-Build project(s) and make Uno package(s).
-
-Available options
-  -o, --out-dir=PATH        Specify output directory [optional]
-  -b, --build-dir=PATH      Specify build directory [optional]
-  -n, --version=STRING      Specify package version [optional]
-  -s, --suffix=STRING       Specify package suffix [optional]
-  -r, --recursive           Look for project files recursively
-```
-
-## uno push
-```
-Usage: uno push <options> <upk-file ...>
-
-Upload Uno package(s) to remote server.
-
-Upload options
-  -k, --key=STRING      Token to validate against a remote API
-  -s, --server=URL      URL to a remote Uno package server
-  -t, --timeout=NUMBER  Time out after [600] seconds [optional]
-  -o, --out=FILE        Save a list of packages to FILE [optional]
-  -U, --no-upload       Don't push anything to server
 ```
 
 ## uno config

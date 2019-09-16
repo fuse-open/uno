@@ -152,8 +152,5 @@
     <Compile Include="Uno\UX\UXParameterAttribute.cs" />
     <Compile Include="Uno\UX\UXPrimaryAttribute.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Uno.Runtime.Core.nuspec" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

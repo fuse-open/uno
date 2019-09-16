@@ -15,16 +15,6 @@ namespace Uno.CLI.Loader
                 foreach (var f in EnumerateDlls(dir))
                     return LoadAndRun(f, "Uno.CLI.Program", args);
 
-                var stuff = Path.Combine(dir, "stuff.exe");
-                var stuffFile = Path.Combine(dir, "uno.stuff");
-                if (File.Exists(stuff) && File.Exists(stuffFile))
-                {
-                    // Download Uno, and try again
-                    LoadAndRun(stuff, "Stuff.Program", "install", stuffFile);
-                    foreach (var f in EnumerateDlls(dir))
-                        return LoadAndRun(f, "Uno.CLI.Program", args);
-                }
-
                 Console.Error.WriteLine("FATAL ERROR: 'Uno.CLI.dll' was not found -- please check your '.unopath' file");
                 return 1;
             }
