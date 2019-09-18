@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 
+#if defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
 #if @(Project.iOS.SystemCapabilities.SignInWithApple:IsSet:Test(@(Project.iOS.SystemCapabilities.SignInWithApple),0))
 	<key>com.apple.developer.applesignin</key>
 	<array>
 		<string>Default</string>
 	</array>
+#endif
 #endif
 
 #if @(@(Project.iOS.SystemCapabilities.Push:IsSet):Test(@(Project.iOS.SystemCapabilities.Push),0))
