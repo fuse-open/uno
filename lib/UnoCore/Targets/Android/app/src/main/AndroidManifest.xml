@@ -26,7 +26,7 @@
 #endif
                   android:taskAffinity=""
                   android:windowSoftInputMode="adjustResize"
-                  android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
+                  android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|uiMode"
 #if @(Project.Mobile.Orientations:Equals('Portrait'))
                   android:screenOrientation="portrait"
 #elif @(Project.Mobile.Orientations:Equals('LandscapeLeft'))
