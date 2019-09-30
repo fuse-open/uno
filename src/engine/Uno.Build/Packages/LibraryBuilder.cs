@@ -78,7 +78,11 @@ namespace Uno.Build.Packages
 
             if (RebuildAll && Clean)
                 foreach (var source in sourceDirectories)
-                    _disk.DeleteDirectory(Path.Combine(source, "build"));
+                    _disk.DeleteDirectory(Path.Combine(
+                                File.Exists(source)
+                                    ? Path.GetDirectoryName(Path.GetFullPath(source))
+                                    : source,
+                                "build"));
 
             var allProjects = LoadProjects(sourceDirectories);
             var buildProjects = GetBuildList(allProjects);
@@ -195,6 +199,12 @@ namespace Uno.Build.Packages
 
                 visited.Add(source);
 
+                if (File.Exists(source))
+                {
+                    LoadProject(source, Path.GetDirectoryName(Path.GetFullPath(source)), result);
+                    continue;
+                }
+
                 foreach (var dir in Directory.EnumerateDirectories(source))
                     LoadProjects(dir, source, result);
 
@@ -207,20 +217,23 @@ namespace Uno.Build.Packages
         void LoadProjects(string dir, string rootDir, List<LibraryProject> result)
         {
             foreach (var file in Directory.EnumerateFiles(dir, "*.unoproj"))
+                LoadProject(file, rootDir, result);
+        }
+
+        void LoadProject(string file, string rootDir, List<LibraryProject> result)
+        {
+            try
             {
-                try
-                {
-                    var project = Project.Load(file);
+                var project = Project.Load(file);
 
-                    if (!string.IsNullOrEmpty(Version))
-                        project.Version = Version;
+                if (!string.IsNullOrEmpty(Version))
+                    project.Version = Version;
 
-                    result.Add(new LibraryProject(project, rootDir));
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Failed to load " + file.ToRelativePath() + ": " + e.Message, e);
-                }
+                result.Add(new LibraryProject(project, rootDir));
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Failed to load " + file.ToRelativePath() + ": " + e.Message, e);
             }
         }
 
