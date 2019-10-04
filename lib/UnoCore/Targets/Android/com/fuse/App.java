@@ -24,6 +24,7 @@ import android.annotation.TargetApi;
 import android.view.ViewTreeObserver;
 import android.content.DialogInterface;
 import android.graphics.SurfaceTexture;
+import android.R.color;
 import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
@@ -88,6 +89,11 @@ public class App {
 
         // call c++ for setup
         ActivityNativeEntryPoints.cppOnCreate(RootActivity);
+        
+        // reset window background for app switcher to be able to take a screenshot of app content
+#if @(Project.Android.Splash.Enabled:Test(1, 0))
+        RootActivity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+#endif
 
         // Finish
         HasCreated = true;
