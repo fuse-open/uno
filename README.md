@@ -92,15 +92,6 @@ See https://fuseopen.com/docs/ for more information about the Uno/UX (and JavaSc
 Please read [the build instructions](docs/build-instructions.md) for details
 on how to build the source code.
 
-## Contributing
-
-Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of
-conduct, and the process for submitting pull requests to us.
-
-### Reporting issues
-
-Please report issues [here](https://github.com/fuse-open/uno/issues).
-
 ## Configuration
 
 Please read [the configuration reference documentation][doc1] for details on how to
@@ -113,6 +104,15 @@ use uno's command-line interface.
 
 [doc1]: docs/configuration.md
 [doc2]: docs/command-line-reference.md
+
+## Contributing
+
+Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of
+conduct, and the process for submitting pull requests to us.
+
+### Reporting issues
+
+Please report issues [here](https://github.com/fuse-open/uno/issues).
 
 ## Contributors
 
