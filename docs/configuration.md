@@ -71,12 +71,6 @@ To support building native apps, we need [CMake](https://cmake.org/) and C++ com
 
 We need [Node.js](https://nodejs.org/en/download/) to support transpiling FuseJS files to ES5.
 
-If `node` isn't found in your *PATH*, the location can be provided like this:
-
-```javascript
-Tools.Node: `%PROGRAMFILES%\nodejs\node.exe`
-```
-
 ## Package manager
 
 ```javascript
