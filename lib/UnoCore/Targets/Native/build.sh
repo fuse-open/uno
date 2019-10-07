@@ -4,7 +4,7 @@
 set -e
 cd "`dirname "$0"`"
 
-if ! which @(CMake) > /dev/null 2>&1; then
+if ! which cmake > /dev/null 2>&1; then
     echo "ERROR: Unable to find the 'cmake' command. Make sure CMake is installed and added to PATH." >&2
 #if @(MAC:Defined)
     echo -e "\nOn macOS, you can install CMake using Homebrew:" >&2
@@ -21,10 +21,10 @@ if ! which xcodebuild > /dev/null 2>&1; then
     exit 1
 fi
 
-@(CMake) -GXcode "$@" .
+cmake -GXcode "$@" .
 xcodebuild -configuration @(Native.Configuration)
 #else
-@(CMake) -DCMAKE_BUILD_TYPE=@(Native.Configuration) "$@" .
+cmake -DCMAKE_BUILD_TYPE=@(Native.Configuration) "$@" .
 
 if [ -f /proc/cpuinfo ]; then
     BUILD_ARGS=-j`grep processor /proc/cpuinfo | wc -l`

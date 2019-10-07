@@ -5,7 +5,7 @@
 if "%1" == "debug" (
     pushd "%~dp0"
 
-    @(CMake) -G"@(CMake.Generator)" .
+    cmake -G"@(CMake.Generator)" .
     if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
     echo Opening Visual Studio 2017
