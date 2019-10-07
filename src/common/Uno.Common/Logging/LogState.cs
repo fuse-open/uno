@@ -137,7 +137,10 @@ namespace Uno.Logging
             SkipLine = true;
 
             if (_deferLine == null)
+            {
+                writer.Write("> ");
                 writer.WriteLine(TimeSince(start));
+            }
             else
             {
                 writer.Write("  ");
@@ -182,10 +185,8 @@ namespace Uno.Logging
             else
                 _resetColor = SafeForegroundColor;
 
-            if (_deferLine != null)
-                _deferWriter.Write("  ");
-
             SetColor(_deferWriter, GetDark(_deferColor));
+            _deferWriter.Write(_deferLine != null ? "  " : "> ");
             _deferWriter.Write(TimeSince(_deferTime));
             _deferWriter.Write(' ');
             _deferWriter.Write(_spinner[(int) (Time * _fps) % _spinner.Length]);

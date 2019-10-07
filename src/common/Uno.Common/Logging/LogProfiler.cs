@@ -23,7 +23,7 @@ namespace Uno.Logging
             lock (_log.Lock)
             {
                 _log.Flush();
-                _log.Write($"{(_log.Time - _startTime) * 1000.0,8:0.00} ms  ", ConsoleColor.Magenta);
+                _log.Write($"{(_log.Time - _startTime) * 1000.0,10:0.00} ms  ", ConsoleColor.Magenta);
                 _log.WriteLine(_typeObject, ConsoleColor.DarkMagenta);
             }
         }

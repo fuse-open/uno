@@ -55,7 +55,6 @@ namespace Uno.Build
                         if (Log.IsVerbose)
                             Log.Skip();
                         Log.WriteLine("Target is up-to-date -- stopping build (pass --force to override)");
-                        Log.DisableSkip();
                     }
                     else
                         result = driver.Build();
