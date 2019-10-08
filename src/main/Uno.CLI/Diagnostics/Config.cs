@@ -54,6 +54,11 @@ namespace Uno.CLI.Diagnostics
             foreach (var f in UnoConfig.Current.GetFilenames(Log.IsVerbose))
                 WriteRow(f.ToRelativePath());
 
+            WriteHead("Config defines", indent: 0);
+            var defines = UnoConfigFile.Defines.ToArray();
+            Array.Sort(defines);
+            WriteLine(string.Join(" ", defines));
+
             if (asm || Log.IsVerbose)
             {
                 WriteHead(".NET assemblies", indent: 0);
