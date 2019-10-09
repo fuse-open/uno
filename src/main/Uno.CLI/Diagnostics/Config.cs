@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Mono.Options;
+using Uno.Build.Packages;
 using Uno.Configuration;
 using Uno.IO;
 
@@ -21,6 +22,7 @@ namespace Uno.CLI.Diagnostics
 
             WriteHead("Available options");
             WriteRow("-a, --asm",          "Print .NET assemblies");
+            WriteRow("-l, --libs",         "Print libraries in search paths");
             WriteRow("-s, --system",       "Print system settings");
             WriteRow("-v",                 "Print everything");
         }
@@ -28,9 +30,12 @@ namespace Uno.CLI.Diagnostics
         public override void Execute(IEnumerable<string> args)
         {
             var asm = false;
+            var libs = false;
             var system = false;
+            
             var input = new OptionSet {
                     { "a|asm", value => asm = true },
+                    { "l|libs", value => libs = true },
                     { "s|sys|system", value => system = true }
                 }.Parse(args);
 
@@ -69,6 +74,13 @@ namespace Uno.CLI.Diagnostics
                         WriteRow(f.Location.ToRelativePath() + " (" + f.GetName().Version + ")");
             }
 
+            if (libs || Log.IsVerbose)
+            {
+                WriteHead("Uno libraries", 28, 0);
+                foreach (var lib in GetUnoLibraries())
+                    WriteRow(lib.Name, lib.Location.ToRelativePath(), parse: false);
+            }
+
             if (system || Log.IsVerbose)
             {
                 WriteHead("System settings", 24, 0);
@@ -88,6 +100,48 @@ namespace Uno.CLI.Diagnostics
             var toLoad = referencedPaths.Where(r => !loadedPaths.Contains(r, StringComparer.InvariantCultureIgnoreCase)).ToList();
             toLoad.ForEach(path => loadedAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path))));
             return loadedAssemblies;
+        }
+
+        static IReadOnlyList<Library> GetUnoLibraries()
+        {
+            var cache = new PackageCache();
+            var list = new List<Library>();
+            var set = new HashSet<string>();
+
+            foreach (var directory in cache.SearchPaths)
+            {
+                foreach (var package in cache.GetPackageDirectories(directory).Keys)
+                {
+                    foreach (var versionDir in cache.GetVersionDirectories(package))
+                    {
+                        if (PackageFile.Exists(versionDir.FullName) && !set.Contains(versionDir.FullName))
+                        {
+                            list.Add(new Library(package, versionDir.FullName));
+                            set.Add(versionDir.FullName);
+                        }
+                    }
+                }
+            }
+
+            list.Sort();
+            return list;
+        }
+
+        class Library : IComparable<Library>
+        {
+            public string Name { get; }
+            public string Location { get; }
+
+            public Library(string name, string dir)
+            {
+                Name = name;
+                Location = dir;
+            }
+
+            public int CompareTo(Library other)
+            {
+                return string.Compare(Name, other.Name, StringComparison.InvariantCultureIgnoreCase);
+            }
         }
     }
 }
