@@ -69,7 +69,7 @@ namespace Uno.CLI.Diagnostics
                 WriteHead(".NET assemblies", indent: 0);
                 var configAssembly = typeof (Config).Assembly;
                 var configVersion = configAssembly.GetName().Version;
-                foreach (var f in GetAllAssemblies(configAssembly))
+                foreach (var f in GetDotNetAssemblies(configAssembly))
                     if (f.GetName().Version != configVersion)
                         WriteRow(f.Location.ToRelativePath() + " (" + f.GetName().Version + ")");
             }
@@ -91,7 +91,7 @@ namespace Uno.CLI.Diagnostics
 
         // Not really correct, but good enough
         // http://stackoverflow.com/questions/2384592/is-there-a-way-to-force-all-referenced-assemblies-to-be-loaded-into-the-app-doma
-        static IReadOnlyList<Assembly> GetAllAssemblies(Assembly assembly)
+        static IReadOnlyList<Assembly> GetDotNetAssemblies(Assembly assembly)
         {
             var assemblyDir = Path.GetDirectoryName(assembly.Location);
             var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
