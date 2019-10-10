@@ -36,6 +36,7 @@ namespace Uno.CLI.Projects
             WriteRow("-m, --main=STRING",           "Override application entrypoint");
             WriteRow("-s, --set:NAME=STRING",       "Override build system property");
             WriteRow("-o, --out-dir=PATH",          "Override output directory");
+            WriteRow("-b, --build-only",            "Build only; don't run or open debugger");
             WriteRow("-f, --force",                 "Build even if output is up-to-date");
             WriteRow("-l, --libs",                  "Rebuild package library if necessary");
             WriteRow("-p, --print-internals",       "Print a list of build system properties");
@@ -95,6 +96,7 @@ namespace Uno.CLI.Projects
             var nativeArgs = new List<string>();
             var runArgs = new List<string>();
             var run = false;
+            var buildOnly = false;
             var input = new OptionSet {
                     { "t=|target=",             value => targetName = value },
                     { "c=|configuration=",      value => options.Configuration = value.ParseEnum<BuildConfiguration>("configuration") },
@@ -117,6 +119,7 @@ namespace Uno.CLI.Projects
                     { "z|clean",                value => options.Clean = true },
                     { "d|debug",                value => runArgs.Add("debug") },
                     { "r|run",                  value => run = true },
+                    { "b|build-only",           value => buildOnly = true },
                     { "l|libs",                 value => options.Library = true },
                     { "f|force",                value => options.Force = true },
                     { "cd=",                    value => Directory.SetCurrentDirectory(value.ParseString("cd")) },
@@ -133,6 +136,12 @@ namespace Uno.CLI.Projects
             {
                 options.Native = false; // disable native build
                 options.Defines.Add("DEBUG_NATIVE"); // disable native optimizations (debug build)
+            }
+
+            if (buildOnly)
+            {
+                runArgs.Clear();
+                run = false;
             }
 
             return new BuildArguments
