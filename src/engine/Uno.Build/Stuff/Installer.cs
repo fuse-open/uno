@@ -176,7 +176,7 @@ namespace Uno.Build.Stuff
 
                 for (int tries = 0;; tries++)
                 {
-                    Log.Verbose("Extracting " + targetDir.ToRelativePath().Quote());
+                    Log.Verbose("Extracting " + targetDir.ToRelativePath().Quote(), ConsoleColor.DarkGray);
 
                     // Support local files (e.g. from .STUFF-UPLOAD files)
                     var localFile = Path.Combine(_parentDirectory, itemValue);

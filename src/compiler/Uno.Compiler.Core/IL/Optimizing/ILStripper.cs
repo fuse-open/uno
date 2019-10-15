@@ -1109,7 +1109,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
         void PrintCounter(int counter, string description)
         {
-            Log.Message($"{counter,5} {description}");
+            Log.Message($"{counter,6} {description}");
         }
 
         void FindTypes(Namespace n, List<DataType> list)

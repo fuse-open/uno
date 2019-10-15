@@ -130,7 +130,7 @@ namespace Uno.Diagnostics
         public async Task<int> Start(string filename, string args, string workingDir, DataReceivedEventHandler outputReceived, DataReceivedEventHandler errorReceived, string input = null, CancellationToken ct = default(CancellationToken))
         {
             var proc = CreateProcess(filename, args, workingDir);
-            Log.VeryVerbose(GetCommand(proc.StartInfo.FileName, proc.StartInfo.Arguments, workingDir), ConsoleColor.DarkCyan);
+            Log.VeryVerbose("Starting " + GetCommand(proc.StartInfo.FileName, proc.StartInfo.Arguments, workingDir), ConsoleColor.Blue);
 
             proc.OutputDataReceived += outputReceived;
             proc.ErrorDataReceived += errorReceived;
@@ -145,9 +145,7 @@ namespace Uno.Diagnostics
                 lock (Processes)
                     Processes.Remove(proc);
 
-                if (proc.ExitCode != 0)
-                    Log.VeryVerbose("(exit code: " + proc.ExitCode + ")\n", ConsoleColor.Gray);
-
+                Log.VeryVerbose("> (exit code: " + proc.ExitCode + ")", ConsoleColor.DarkBlue);
                 return proc.ExitCode;
             }
         }
@@ -168,7 +166,7 @@ namespace Uno.Diagnostics
         {
             var proc = CreateProcess(filename, args, workingDir);
             var list = new List<string>();
-            Log.VeryVerbose(GetCommand(proc.StartInfo.FileName, proc.StartInfo.Arguments, workingDir), ConsoleColor.Cyan);
+            Log.VeryVerbose("Running " + GetCommand(proc.StartInfo.FileName, proc.StartInfo.Arguments, workingDir), ConsoleColor.Blue);
 
             proc.OutputDataReceived += (s, e) =>
             {
@@ -199,9 +197,7 @@ namespace Uno.Diagnostics
                     if (!flags.HasFlag(RunFlags.NoOutput))
                         Log.Verbose(output);
 
-                    if (proc.ExitCode != 0)
-                        Log.VeryVerbose("(exit code: " + proc.ExitCode + ")\n", ConsoleColor.Gray);
-
+                    Log.VeryVerbose("> (exit code: " + proc.ExitCode + ")", ConsoleColor.DarkBlue);
                     exitCode = proc.ExitCode;
                     return output;
                 }
