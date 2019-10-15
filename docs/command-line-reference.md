@@ -106,6 +106,7 @@ Additional options
   -m, --main=STRING           Override application entrypoint
   -s, --set:NAME=STRING       Override build system property
   -o, --out-dir=PATH          Override output directory
+  -b, --build-only            Build only; don't run or open debugger
   -f, --force                 Build even if output is up-to-date
   -l, --libs                  Rebuild package library if necessary
   -p, --print-internals       Print a list of build system properties
@@ -194,10 +195,8 @@ Available options:
   -h, -?, --help             Show help
   -r, --reporter=VALUE       Reporter type. teamcity|console
   -l, --logfile=VALUE        Write output to this file instead of stdout
-  -t, --target=VALUE         Build target. Currently supports DotNet|WebGL|
-                               Android|CMake
-      --webgl-browser=VALUE  Location of browser (only used for webgl targets,
-                               defaults to OS default browser)
+  -t, --target=VALUE         Build target. Currently supports DotNet|Android|
+                               CMake
   -v, --verbose              Verbose, always prints output from compiler and
                                debug_log
   -q, --quiet                Quiet, only prints output from compiler and debug_
@@ -209,6 +208,7 @@ Available options:
                              Timeout for connection from uno process (in
                                seconds)
       --trace                Print trace information from unotest
+      --only-build           Don't run compiled program.
       --allow-debugger       Don't run compiled program, allow user to start it
                                from a debugger.
   -d, --debug                Open IDE for debugging tests.
@@ -236,7 +236,7 @@ Usage: uno test-gen <path to packages> <path for temporary project> [--exclude=n
 ## uno doctor
 
 ```
-Usage: uno doctor [options] [source-dir|package-name ...]
+Usage: uno doctor [options] [project-file|directory ...]
   or   uno doctor [options] --force [package-name ...]
 
 Repair/rebuild packages found in search paths.
@@ -253,6 +253,7 @@ Available options
 ```
 
 ## uno config
+
 ```
 Usage: uno config [property ...]
   or   uno config [options]
@@ -261,6 +262,7 @@ Print information about your Uno environment.
 
 Available options
   -a, --asm             Print .NET assemblies
+  -l, --libs            Print libraries in search paths
   -s, --system          Print system settings
   -v                    Print everything
 ```
