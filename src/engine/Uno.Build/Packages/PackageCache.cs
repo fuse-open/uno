@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Uno.Configuration.Format;
 using Uno.Build.JavaScript;
 using Uno.Collections;
 using Uno.Compiler;
@@ -47,7 +46,11 @@ namespace Uno.Build.Packages
                 config = UnoConfig.Current;
 
             foreach (var src in config.GetFullPathArray("Packages.SourcePaths"))
-                _sourcePaths.AddOnce(Path.Combine(src, "build"));
+                _sourcePaths.AddOnce(Path.Combine(
+                    File.Exists(src)
+                        ? Path.GetDirectoryName(src)
+                        : src,
+                    "build"));
             foreach (var src in config.GetFullPathArray("Packages.SearchPaths"))
                 _searchPaths.AddOnce(src);
         }

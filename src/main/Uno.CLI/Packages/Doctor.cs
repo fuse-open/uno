@@ -14,7 +14,7 @@ namespace Uno.CLI.Packages
 
         public override void Help()
         {
-            WriteUsage("[options] [source-dir|package-name ...]",
+            WriteUsage("[options] [project-file|directory ...]",
                        "[options] --force [package-name ...]");
 
             WriteHead("Available options", 27);
@@ -46,8 +46,9 @@ namespace Uno.CLI.Packages
 
             Log.ProductHeader();
 
-            // Interpret RebuildList as SourcePaths when a directory is specified.
+            // Interpret RebuildList as SourcePaths when a file or directory is specified.
             if (!force && lib.RebuildList.Count > 0 && (
+                    File.Exists(lib.RebuildList[0]) ||
                     Directory.Exists(lib.RebuildList[0]) ||
                     lib.RebuildList[0].IndexOf('/') != -1 ||
                     lib.RebuildList[0].IndexOf('\\') != -1))
