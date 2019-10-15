@@ -67,21 +67,9 @@ To support building native apps, we need [CMake](https://cmake.org/) and C++ com
 - **macOS:** Xcode with command line tools
 - **Windows:** Visual Studio 2017
 
-If `cmake` isn't in found your *PATH*, the location can be provided like this:
-
-```javascript
-Tools.CMake: `%PROGRAMFILES%\CMake\bin\cmake.exe`
-```
-
 ## Node.js
 
 We need [Node.js](https://nodejs.org/en/download/) to support transpiling FuseJS files to ES5.
-
-If `node` isn't found in your *PATH*, the location can be provided like this:
-
-```javascript
-Tools.Node: `%PROGRAMFILES%\nodejs\node.exe`
-```
 
 ## Package manager
 

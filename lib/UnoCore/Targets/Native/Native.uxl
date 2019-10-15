@@ -34,7 +34,6 @@
 
     <Set Commands.Build="@(WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
     <Set Commands.Run="@(WIN32:Defined:Test('run.bat', 'bash run.sh'))" />
-    <Set CMake="@(@(Config.Tools.CMake || 'cmake'):QuoteSpace)" />
 
     <ProcessFile Name="build.sh" Condition="UNIX" IsExecutable=true />
     <ProcessFile Name="run.sh" Condition="UNIX" IsExecutable=true />

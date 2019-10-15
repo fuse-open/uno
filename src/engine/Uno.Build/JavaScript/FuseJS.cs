@@ -17,7 +17,6 @@ namespace Uno.Build.JavaScript
 {
     public class FuseJS : LogObject, IDisposable
     {
-        static readonly string _node = UnoConfig.Current.GetFullPath("Tools.Node", false) ?? "node";
         readonly Task<int> _task;
         readonly StringBuilder _output = new StringBuilder();
         readonly Regex _portFinder = new Regex("port:([0-9]+)");
@@ -31,15 +30,15 @@ namespace Uno.Build.JavaScript
             var upk = packages.GetPackage("FuseJS.Transpiler");
             var script = Path.Combine(upk.SourceDirectory, "server.min.js");
             _task = new Shell(packages.Log).Start(
-                _node, 
-                script.QuoteSpace(), 
+                "node",
+                script.QuoteSpace(),
                 outputReceived: (sender, args) => {
                     string port;
                     if (TryMatchPort(args.Data, out port))
                         _url = "http://127.0.0.1:" + port;
 
                     _output.AppendLine(args.Data);
-                }, 
+                },
                 errorReceived: (sender, args) => {
                     _output.AppendLine(args.Data);
                 });
@@ -103,7 +102,7 @@ namespace Uno.Build.JavaScript
                 ++i;
             }
 
-            if (_url == null) 
+            if (_url == null)
             {
                 Log.Error("Transpiler doesn't run for unknown reasons.\n" + _output.ToString());
                 return false;

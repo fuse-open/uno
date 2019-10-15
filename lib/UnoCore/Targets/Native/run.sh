@@ -8,7 +8,7 @@ case $1 in
 debug)
     shift
 #if @(MAC:Defined)
-    @(CMake) -GXcode "$@" .
+    cmake -GXcode "$@" .
     echo "Opening Xcode"
     open -aXcode "@(Project.Name).xcodeproj"
     exit $?
