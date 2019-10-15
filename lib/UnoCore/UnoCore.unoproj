@@ -442,6 +442,8 @@
     "Targets/Android/app/build.gradle:File",
     "Targets/Android/app/src/main/AndroidManifest.xml:File",
     "Targets/Android/app/src/main/CMakeLists.txt:File",
+    "Targets/Android/app/src/main/res/drawable/splash_background.xml:File",
+    "Targets/Android/app/src/main/res/values/colors.xml:File",
     "Targets/Android/app/src/main/res/values/strings.xml:File",
     "Targets/Android/app/src/main/res/values/styles.xml:File",
     "Targets/Android/build.bat:File",
