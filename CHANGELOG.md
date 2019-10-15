@@ -7,7 +7,7 @@ Unreleased
 1.13
 ----
 
-#### Android
+### Android
 - Added support for CMake 3.10.2.4988404 (#219).
 - Added support for Dark Theme (#236).
 - Added support for Splash screen (#240).
@@ -25,20 +25,20 @@ Unreleased
     * `APK.Configuration -> Build.Configuration`
 - Set default versionCode to positive Integer (1) so `gradlew` command doesn't produce error when building using latest Gradle (#220).
 
-#### iOS
+### iOS
 - Support for iPhone XR Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXr_2x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXr_2x` project-setting (#225).
 - Support for iPhone XS Max Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXsMax_3x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXsMax_3x` project-setting (#225).
 - Switched to user-installed `ios-deploy`, for iOS 13 support (#226).
 - Added Sign-in with Apple capability (#233).
 
-#### C++ backend
+### C++ backend
 - Optimized `char` and `string` classes, which gives less run-time overhead and faster code (#232).
 - Fixed a bug with `uMainLoop::OnClosing` related to overload resolving, and warnings (#202).
 
-#### UX markup
+### UX markup
 - Added `ux:Simulate` attribute, to disable/enable the Fuse Studio simulator per UX class (#200).
 
-#### Uno command
+### Uno command
 - Added `--build-only` switch for `uno build` (#245).
 - Added `--libs` switch for `uno config` (#244).
 - Added support for passing project files to `uno doctor` (#237).
@@ -50,7 +50,7 @@ Unreleased
     - `uno push`
     - `uno stuff`
 
-#### Other improvements
+### Other improvements
 - Automatically install Mono on macOS (#228).
 - Detect required software and provide friendly hints on how to install missing software (#227, #243).
 - Always run `cmake` and `node` from PATH, dropping `Tools.CMake` and `Tools.Node` properties in `.unoconfig` (#243).
@@ -64,10 +64,10 @@ Unreleased
 1.12
 ----
 
-#### FuseJS
+### FuseJS
 - Added support for [TypeScript](https://devblogs.microsoft.com/typescript/typescript-and-babel-7/), and new JavaScript feature sets ES2016, ES2017 and ES2018.
 
-#### Project Format
+### Project Format
 - Added the following properties:
     * `Android.Architectures.Debug` (string array)
     * `Android.Architectures.Release` (string array)
@@ -82,7 +82,7 @@ Unreleased
     * `HTML.Title`
     * `HTML.Favicon`
 
-#### Android
+### Android
 - Added support for [App Links](https://developer.android.com/training/app-links).
 - Added support for targeting the following architectures (ABIs):
     * `armeabi-v7a`
@@ -98,16 +98,16 @@ Unreleased
 - Suggest installing `android-build-tools` using NPM when SDK/NDK can't be found.
 - Deprecated `@(ABI)` macro. Please use `${ANDROID_ABI}` instead.
 
-#### iOS
+### iOS
 - Added support for [Universal Links](https://developer.apple.com/ios/universal-links).
 
-#### Linux
+### Linux
 - Added support for building on Linux (x86_64). Tested on Ubuntu 18.04 and 16.04.
 
-#### macOS
+### macOS
 - Switched to generating Xcode projects when using the Native target. This gives slightly faster builds.
 
-#### UnoCore
+### UnoCore
 - Performance improvements in `String` and `StringBuilder` classes.
 - Added the following new methods:
     * `Uno.Graphics.DeviceBuffer.Update(Array data, int elementSize, int index, int count)`
@@ -116,7 +116,7 @@ Unreleased
     * `Uno.Text.StringBuilder(string value)`
     * `Uno.Text.Utf8.GetString(byte[] value, int index, int count)`
 
-#### Other improvements
+### Other improvements
 - Now slightly faster subsequental builds when using the C++ backend.
 - Don't show app window when running tests using `uno test`.
 - Added `--only-build` option for `uno test`.
@@ -132,16 +132,16 @@ See also [v1.11.1...v1.12.0](https://github.com/fuse-open/uno/compare/v1.11.1...
 1.11
 ----
 
-#### Distribution
+### Distribution
 - Switched to NPM for distribution and standalone installation of `uno`. Previously we had to install the complete Fuse Studio to get this component.
 - Automatically load `.unoconfig` files found in `node_modules`, so we can now use NPM to conveniently install any Uno or Fuse component.
 - Added the [android-build-tools](https://www.npmjs.com/package/android-build-tools) package on NPM that automatically sets up Android SDK and NDK components, similar to the `fuse install android` functionality found in Fuse Studio.
 
-#### Android build target
+### Android build target
 - Added support for both landscape modes when setting Landscape in the project file.
 - Fixed a problem that happens sometimes when downloading packages during Gradle build.
 
-#### Uno compiler
+### Uno compiler
 - Added a `metadata` build target that can produce metadata for code-completion plugins.
 - Fixed a bug where the visibility of generic argument types were not validated correctly.
 
@@ -150,7 +150,7 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 1.10
 ----
 
-#### Command-line tool
+### Command-line tool
 - `uno disasm` has been removed, as it's not very useful to end-users, and it complicates project maintainence.
 - The JavaScript backend including WebGL and FirefoxOS build targets has been removed after being broken and unmaintained for a long time.
 - Fixed a bug causing `uno launch-apk` to hang if an Android app crashes early.
@@ -159,7 +159,7 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 - Removed the `uno android` sub-command, as it has not been maintained and no longer works on recent Android SDKs.
 - Removed the `uno sdkmanager` sub-command, as it has not been maintained and no longer works on recent Android SDKs.
 
-#### Android build target
+### Android build target
 - Upgraded to Gradle 4.4, and Gradle-plugin 3.1.3.
 - Upgraded build tools to version 27.0.3.
 - Upgraded support libraries to version 27.1.1.
@@ -178,26 +178,26 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 - Marked the following build property as obsolete.
     * `Gradle.Model.Repository`
 
-#### iOS build target
+### iOS build target
 - Upgraded to latest Xcode project format.
 - Fixed build errors when linking against `GStreamer.framework`.
 - Fixed build warnings.
 
-#### Native build target
+### Native build target
 - Upgraded to VS2017 C++ compilers when building on Windows.
 - Added the following build properties
     * `LinkLibrary.Debug`
     * `LinkLibrary.Release`
 
-#### C++ API
+### C++ API
 - Added optional argument on the `U_FATAL(message)` macro.
 - Added `U_ERROR(format, ...)` macro to more conveniently report errors.
 - The `@{Method()}` macro now expands to the qualified name of the generated method, and can be used to pass callbacks to C APIs.
 
-#### Uno syntax
+### Uno syntax
 - The `extern(CONDITION)` modifier is now accepted on `partial` classes.
 
-#### UnoCore
+### UnoCore
 - Moved the following class from the `Uno.Threading` package.
     * `Uno.Threading.Thread`
 - Added the following classes.
@@ -247,7 +247,7 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 1.9
 ---
 
-#### UnoCore
+### UnoCore
 - Marked the following methods as obsolete. To get the old behavior, use `Uno.Math.Floor(x + 0.5f)` instead.
     * `Uno.Math.Round(float)`
     * `Uno.Math.Round(float2)`
@@ -281,12 +281,12 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
     * `Uno.Graphics.Texture2D.Load(string)`
     * `Uno.Graphics.Texture2D.Load(string, byte[])`
 
-#### .NET
+### .NET
 - Fixed a code-generator bug where unsigned modulo got treated like signed modulo, causing negative values in the result.
 - Fixed a code-generator bug where ulong values larger than long.MaxValue didn't get sign-extended correctly.
 - Fixed a code-generator bug where signed division was used instead of unsigned division, leading to incorrect results for big dividends.
 
-#### Uno Compiler
+### Uno Compiler
 - The following unsafe implicit casts has been turned to explicit casts. This matches C# behavior, and should avoid unexpected overflows:
     * sbyte -> ushort
     * sbyte -> uint
@@ -300,14 +300,14 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 1.8
 ---
 
-#### Uno compiler
+### Uno compiler
 - Exposing internal types through protected members is now a compilation error, to match C#'s behavior. Some code may need to be updated, for instance by making the exposed type `public` or the member `internal`.
 - Fixed a bug that resulted in a crash at startup during the construction of Uno's runtime type information when using certain (rare) combinations of generic types.
 
-#### UX Compiler
+### UX Compiler
 - Fixed a codegen bug where property bindings to properties with generic type arguments (such as LetFloat) would generate invalid Uno code.
 
-#### Uno.Net.Http
+### Uno.Net.Http
 - Made the following types internal. They were never meant to be exposed in the first place, and shouldn't be used:
     * `Uno.Net.Http.AbsolutePathParser`
     * `Uno.Net.Http.HashParser`
@@ -327,12 +327,12 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 - Marked `Uri.Encode` as obsolete. Use `Uri.EscapeDataString(string)` instead.
 - Marked `Uri.Decode` as obsolete. Use `Uri.UnescapeDataString(string)` instead.
 
-#### Uno.Threading
+### Uno.Threading
 - Marked public versions of `ConcurrentDictionary.Add(TKey, TValue)` and `ConcurrentDictionary.Remove(TKey)` as obsolete. Use IDictionary-versions instead.
 - Marked public versions of `ConcurrentDictionary.GetEnumerator()` as obsolete. Use IEnumerable-versions instead.
 - Marked public versions of `ConcurrentDictionary.Keys` and `ConcurrentDictionary.Values` as obsolete. Use IDictionary-versions instead.
 
-#### UnoCore
+### UnoCore
 - Removed obosolete methods from `Uno.Color`. These has been obsolete since Uno 0.46:
     * `Uno.Color.ToRgb24(float3)`
     * `Uno.Color.ToRgba32(float4)`
@@ -343,7 +343,7 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
     * `Uno.Color.ToHex(int3)`
     * `Uno.Color.ToHex(int4)`
 
-#### .NET
+### .NET
 - Fixed a code-generator bug where long-literals that were larger than int.MaxValue, but smaller than uint.MaxValue accidentally got sign-extended.
 - Fixed a code-generator bug where shifts on unsigned values accidentally got sign-extended.
 
@@ -356,7 +356,7 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 1.7
 ---
 
-#### UnoCore
+### UnoCore
 - Removed obsolete method `BitmapFont.CreateFromPbf()`.
 - Removed obsolete classes `SdfFontImporter`, `SdfFontShaderBlock` and `SdfFontShader`.
 - Made `String.IndexOf()` and `String.LastIndexOf()` throw `ArgumentOutOfRangeException` on negative values on all build-targets.
@@ -374,55 +374,55 @@ See also [the full list of changes](https://github.com/fuse-open/uno/compare/rel
 1.6.1
 -----
 
-#### UX Compiler
+### UX Compiler
 - Fixed a bug introduced in 1.6 that caused `E0000: The given key was not present in the dictionary.` errors to be generated for some UX document roots.
 
 1.6
 ---
 
-#### Long path? Long code.
+### Long path? Long code.
 We can now extract zip files containing long filenames (255+ characters) on Windows. This enables things like providing Node.js on-demand, requiring long filenames to work.
 
-#### Environment variables
+### Environment variables
 The following environment variables can be used to configure Uno globally, potentially useful in CI environments:
 - `LOG_LEVEL=<0..3>` - Set verbosity level (default = 0)
 - `LOG_TRACE=1` - Print exception stack traces where available
 - `DEBUG_GL=1` - Enable the OpenGL debug layer in .NET builds
 
-#### Android build target
+### Android build target
 - Added the following build properties for requiring gradle repositories via UXL:
     * `Gradle.BuildScript.Repository`
     * `Gradle.AllProjects.Repository`
 
-#### Project files
+### Project files
 - Support for iPhone 20pt 2x and 3x icons has been added. This can be customized using the `iOS.Icons.iPhone_20_2x` and `iOS.Icons.iPhone_20_3x` project-setting, respectively.
 - Support for iPad 20pt 1x and 2x icons has been added. This can be customized using the `iOS.Icons.iPad_20_1x` and `iOS.Icons.iPad_20_2x` project-setting, respectively.
 - Support for iPad Pro icons has been added. This can be customized using the `iOS.Icons.iPad_83.5_2x` project-setting.
 - Support for iOS Marketing icons has been added. This can be customized using the `iOS.Icons.iOS-Marketing_1024_1x` project-setting.
 - Support for iPhoneX Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneX_3x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneX_3x` project-setting.
 
-#### Command-line interface
+### Command-line interface
 - The following old commands were removed from the release: `cp`, `disasm`, `mkdir`.
 
-#### .NET backend
+### .NET backend
 - We now build 64-bit code by default when the OS is 64-bit on all platforms. You can pass `-DX86` or `-DX64` to `uno build` to override the architecture.
 - UXL: `<Require UnmanagedLibrary[.{x86,x64}]>` was added to handle native DLL dependencies for P/Invoke. We can now make sure the DLL is copied to the right directory without making assumptions about where it should go.
 - Set `DEBUG_GL=1` in your environment to enable the OpenGL debug layer at run-time. This is available in .NET builds on macOS and Windows.
 
-#### MSVC build target deprecated
+### MSVC build target deprecated
 - The 'native' target now serves the same purpose, and works on both macOS and Windows.
 - We now build 64-bit code by default when the OS is 64-bit on all platforms. You can pass `-DX86` or `-DX64` to `uno build` to override the architecture.
 - UXL: `<Require SharedLibrary[.{x86,x64}]>` was added to handle DLL dependencies on Windows. We can now make sure the DLL is copied to the right directory without making assumptions about where it should go.
 
-#### Environment.NewLine
+### Environment.NewLine
 - We've introduced `Uno.Environment.NewLine` as an alias for `"\r\n"` on Windows and `"\n"` on macOS, iOS, and Android.
 - `Uno.IO.TextWriter` and `Uno.Text.StringBuilder` has been updated to respect `Uno.Environment.NewLine`.
 
-#### C++ backend
+### C++ backend
 - (Breaking) We're now using `char16_t` as the underlying type for `Uno.Char`. Previously we were using `wchar_t` on WIN32 and `int16_t` on other platforms, so call-sites marshaling strings between Uno and native APIs need to make sure they're using the correct pointer types for the native API.
 - We're now using `int32_t` as the underlying type for `Uno.Int`.
 
-#### UnoCore
+### UnoCore
 - Added `Parse(string)` and `TryParse(string, out float4)` to `Color`.
 - Marked `Color.FromHex(string)` as obsolete. Use `Color.Parse(string)` instead.
 - `Uno.Buffer` does no longer support "read-only" buffers.
@@ -443,7 +443,7 @@ The following environment variables can be used to configure Uno globally, poten
     * `Uno.Content.Models.ModelImporter`
     * `Uno.Content.Models.ModelFileImporter`
 
-#### Node.js support
+### Node.js support
 
 In this release we give Uno projects two new features:
 - NPM support: When a `package.json` is found in the same directory as the `.unoproj`, we automatically run `npm install`.
@@ -458,36 +458,36 @@ Tools.NPM: "%PROGRAMFILES%\\nodejs\\npm.cmd"
 1.4
 ---
 
-#### C++ backend
+### C++ backend
 - The following unused entities were removed from `Uno/Memory.h`:
     * `uGarbageCollect()`
 - The following unused entities were removed from `Uno/ObjectModel.h`:
     * `uArray::Copy()`
 
-#### UnoCore
+### UnoCore
 - Added `NewGuid()` & `ToByteArray()` to `Guid`.
 
-#### Gradle
+### Gradle
 - Added support for customizing `settings.gradle` by using `[Require Gradle.Settings="include ':something'"]`.
 
-#### Uno compiler
+### Uno compiler
 - We now check that finally clauses don't contain illegal control flow. `break`, `continue` and `return` are not allowed in finally clauses.
 
-#### AppDelegate
+### AppDelegate
 - Fixed regression on iOS where, because we had implemented the methods for pushnotifications apps were rejected from the app store for not requiring notifications even if they didnt use the notification's feature
 
 1.3
 ---
 
-#### Project format
+### Project format
 
 - Fixed a bug where the `Name` property in `.unoproj` wasn't honored. By default, `Name` is derived from the project filename if not set explicitly, and by accident we were using the default value instead of the user-provided value, leading to inconsistencies. If you have provided `Name` explicitly, we will now use that name when producing output files, i.e. `UserProvidedName.apk` (Android) and `UserProvidedName.exe` (.NET) instead of `DefaultName.apk` and `DefaultName.exe`.
 
-#### C++ backend
+### C++ backend
 
 - Don't lazy initialize types without a user-defined static constructor. This removes a bunch of `Foo_typeof()->Init()` calls from generated code, for instance when accessing a static field, to reduce run-time overhead.
 
-#### Deprecated importers
+### Deprecated importers
 - `import BundleFile(FILENAME)` and remaining parts of the importer system in `Uno.Compiler.ImportServices` has been deprecated.
   We can now pass the filename directly to the operator instead: `import(FILENAME)`. The import operator returns a `BundleFile`
   object. The classes `texture2D` and `textureCube` contains `Load()` methods accepting `BundleFile` which can be used to import
@@ -499,17 +499,17 @@ Tools.NPM: "%PROGRAMFILES%\\nodejs\\npm.cmd"
   | `import Texture2D(FILENAME)`   | `texture2D.Load(import(FILENAME))`   |
   | `import TextureCube(FILENAME)` | `textureCube.Load(import(FILENAME))` |
 
-#### Removed UXL variable 'Mono'
+### Removed UXL variable 'Mono'
 - The UXL variable 'Mono' was removed, since the need of it was removed.
 
-#### Improvements to Android builds
+### Improvements to Android builds
 - Strip SO files in release builds. This can massively reduce the size of the shipping app.
 - Use gradle to generate required `.iml` files. This should make us more flexible both to changes from Fuse & to changes from Google in Android Studio. There is now only 1 `.iml` generated and that is in the `app` sub-directory of the project and only for builds with the `-d` flag.
 
-#### Resource Crunching
+### Resource Crunching
 - Disabled android's resource crunching. Android will no longer convert pngs to WebP or otherwise modify your images to save space. See the following for details https://developer.android.com/studio/build/optimize-your-build.html#disable_crunching
 
-#### .NET backend
+### .NET backend
 - Validation of method signatures and data types when linking external assemblies has been improved. This revealed a few minor problems in UnoCore that has been fixed:
   * `Uno.Net.EndPoint`: Constructor is now internal because a compatible constructor doesn't exist in .NET.
   * `Uno.Threading.Monitor.TryEnter()`: Return type is now `bool` to match .NET.
@@ -517,22 +517,22 @@ Tools.NPM: "%PROGRAMFILES%\\nodejs\\npm.cmd"
   * `Uno.Tuple<...>`: The `AppendItems(StringBuilder sb)` methods are no longer public because compatible methods don't exist in .NET.
 - Introduced `Uno.Compiler.ExportTargetInterop.DotNetOverrideAttribute`. This attribute is used to override implementations of static methods in types that are mapped to .NET, so that the Uno implementation is used instead of the existing .NET implementation. We use this on `string.Format()` because Uno only implements a subset of the functionality.
 
-#### Uno.DateTime changes (breaking!)
+### Uno.DateTime changes (breaking!)
 - `Uno.DateTime` was changed from being a `class` to a `struct`, to make it .NET-compatible
 - The `UtcNow` property has changed types from being `Uno.Time.ZonedDateTime` to being `Uno.DateTime`, to make it .NET compatible
 - The `Now` property has been made internal until better .NET-compatible support can be provided
 
-#### Uno compiler
+### Uno compiler
 - The compiler has become stricter about accessing entities from other packages. Previously it was in some cases possible to access internal entities from a different package without getting a build error.
 - The compiler now accepts empty structs. It's no longer necessary to add a dummy field to work around build errors when forward declaring .NET structs for instance.
 
 1.2
 ---
 
-#### Broken tools removed
+### Broken tools removed
 - `uno perf-test` and `uno perf-cmp` were unused and broken, and have been removed.
 
-#### Deprecations
+### Deprecations
 - The unused class Uno.FakeTime has been marked as obsolete.
 - The `ExportCondition` attribute in `Uno.Compiler.ExportTargetInterop` has been marked as obsolete.
 - The legacy `Alert` and `Confirm` methods in `Uno.Diagnostics.Debug` has been marked as obsolete.
@@ -542,16 +542,16 @@ Tools.NPM: "%PROGRAMFILES%\\nodejs\\npm.cmd"
 1.1
 ---
 
-#### Uno.Data.Json
+### Uno.Data.Json
 - Fixed a bug where a JSON object with the same key repeated would cause a crash.
 
-#### UX Compiler/Fuse Preview Optimizations
+### UX Compiler/Fuse Preview Optimizations
 - Many optimizations to the UX compiler to reduce compile times and editing speed in Fuse Preview.
 
-#### Android
+### Android
 - Android's `allowBackup` option is now configurable via the optional `Android.AllowBackup` value in the unoproj file
 
-#### Uno.Testing
+### Uno.Testing
 - A bunch of internal details that were never intended to be public has been marked as internal:
   * `AbstractRunner`
   * `DebugLogMessageDispatcher`
@@ -570,38 +570,38 @@ Tools.NPM: "%PROGRAMFILES%\\nodejs\\npm.cmd"
 1.0
 ---
 
-#### `ux:Ref` fix for MaterialDesign community package
+### `ux:Ref` fix for MaterialDesign community package
 - Fixed a bug where nodes marked `ux:Ref` would not generate correct code. This fixes https://github.com/Duckers/Fuse.MaterialDesign/issues/11.
 
-#### Add `ux:Test` support in UX compiler
+### Add `ux:Test` support in UX compiler
 - The UX compiler now supports `ux:Test`, which is similar to `ux:Class` but generates a bootstrapped test class which can be run with `uno test`. See docs for details.
 
-#### Add 'uno sdkmanager'
+### Add 'uno sdkmanager'
 - This lets you use Android's new CLI sdkmanager. The old `uno android` approach is deprecated.
 
-#### New UX Markup features
+### New UX Markup features
 - Introduced `<ux:Resources>` tag which can be used as the root tag in UX files that contain only `ux:Class`'es and `ux:Global`'s. This avoids having to use a "dummy panel" to encapsulate such resources.
 
-#### iOS Screen Rotation
+### iOS Screen Rotation
 - Fixed a bug that broke layout when rotating the screen on iOS
 
 0.47
 ----
 
-#### iOS Backend
+### iOS Backend
 - Fixed a problem that resulted in "FATAL ERROR: value cannot be null" when building for iOS without having set a development team manually.
 
-#### .NET backend
+### .NET backend
 
 - Worked around an issue that resulted in errors like `ERROR: Failed to compile .NET type 'XXX': The invoked member is not supported before the type is created.` when using certain class attributes when compiling for .NET (e.g. local preview)
 
-#### Uno.Net.Sockets
+### Uno.Net.Sockets
 
 The following methods that were marked as obsolete in Fuse 0.33 have now been removed:
 - `Socket.Send(byte[], int, int)`
 - `Socket.Receive(byte[], int, int)`
 
-#### All Android builds now use Gradle & CMake
+### All Android builds now use Gradle & CMake
 
 Back in 2013 Google announce they would be changing their supported build system to Gradle and that Ant would be deprecated. Since then Gradle and android have grown to the point where Gradle is now 'the way' to build and manage your dependencies for Android projects. The road for native development has been much rockier especially if, like us, you interact with Android from an external tool.
 
@@ -621,31 +621,31 @@ As always please reach out to us if you hit any issues.
 
 [0] We aren't providing support for this workflow as changes to Android Studio are out of our control.
 
-#### Android Studio Details
+### Android Studio Details
 - We no longer generate the .iml files & instead let Android Studio do this.
 
-#### iOS Launch Options
+### iOS Launch Options
 - You can now access the latest launch options in iOS apps as a `ObjC.Object` from the `Uno.Platform.iOS.Application.LaunchOptions` property.
 
 0.46
 ----
 
-#### Foreign Objective-C
+### Foreign Objective-C
 - Uno has now enabled automatic reference-counting (ARC) in Foreign Objective-C code. If you have foreign code and Xcode complains about methods like `dealloc`, `retain`, `release`, or `autorelease` being unavailable, this can be fixed by removing the calls to those methods.
 
-#### Uno.Color
+### Uno.Color
 - `Color.ToRgb24`, `Color.ToRgba32`, `Color.FromRgb24`, `Color.FromRgb24`, `Color.FromRgba32` and `Color.Rgba32FromHex`, `Color.ToHex(int3)` and `Color.ToHex(int4)` have been marked as obsolete. See the obosletion-warnings for replacements.
 - `Color.FromHex` no longer accepts sign-characters in the hex-string. This wasn't intended to work in the first place, and only worked in some bizarre corner-cases.
 - `Color.FromArgb` and `Color.ToArgb` has been added.
 
-#### Switch from gradle-experimental to standard Gradle
+### Switch from gradle-experimental to standard Gradle
 - Using the `-DGRADLE` flag will now use the standard Gradle and CMake to build your projects.
 - Gradle will become the default build system in the next release and Ant support will be removed.
 
 0.45
 ----
 
-#### Android.Theme
+### Android.Theme
 
 The native Android-theme used by an app has been made configurable, by adjusting the `Android.Theme`-property in the project-file. At the same time, we've changed the default theme from "Holo" to "Material".
 
@@ -658,10 +658,10 @@ To get the old behavior, add this snippet to your project file:
 0.44
 ----
 
-#### Xcode project generation
+### Xcode project generation
 - Added `$(inherited)` to the framework search paths, which is sometimes necessary when using CocoaPods.
 
-#### Uno.Threading
+### Uno.Threading
 
 As mentioned in the changelog for Fuse 0.32, the following obsolete methods have been removed:
 
@@ -679,11 +679,11 @@ If you still haven't updated your code to to match, you'll now get build-errors.
 
 In addition, `EventWaitHandle` has been added as a base-class for `AutoResetEvent` and `ManualResetEvent`, and ConcurrentCueue<T> no longer implements IDisposable, both similar to what .NET does.
 
-#### Uno.Net.Sockets
+### Uno.Net.Sockets
 - `Socket.Send(byte[], int, int)` has been marked as obsolete. It doesn't exist (nor work) on .NET-targets. Use `Socket.Send(byte[], int, int, SocketFlags)` instead.
 - `Socket.Receive(byte[], int, int)` has been marked as obsolete. It doesn't exist (nor work) on .NET-targets. Use `Socket.Receive(byte[], int, int, SocketFlags)` instead.
 
-#### Uno Refactor
+### Uno Refactor
 
 A large amount of refactoring has been undertaken to solve two issue:
 
@@ -721,14 +721,14 @@ This series of changes are seen as steps to enable where we want to go, we under
 0.43
 ----
 
-#### Xcode project generation
+### Xcode project generation
 - `Xcode.ShellScript`s are now escaped as string literals.
 
-#### Android builds
+### Android builds
 - Added a `JNI.SystemLibrary` UXL element for linking in libraries like `liblog`.
 - Gradle builds now depend on v23.4.0 of support-v4, appcompat & design. Rather than using wildcard for the version.
 
-#### Foreign Code Improvements
+### Foreign Code Improvements
 
 * You can now make Uno properties where the bodies of the getter and setter are foreign code.
     For example:
@@ -763,7 +763,7 @@ This series of changes are seen as steps to enable where we want to go, we under
 
 * The `Uno.Compiler.ExportTargetInterop.Foreign.ObjC.Object` class has now been removed. Use `ObjC.Object` instead.
 
-#### Uno.Threading
+### Uno.Threading
 
 To align better with the .NET APIs and to reduce some performance issues with our low-level threading API, we have revamped our API a bit. The following changes are noteworthy:
 
@@ -778,11 +778,11 @@ In order to get a smooth transition, the deprecated APIs are still present in th
 0.42
 ----
 
-#### Legacy Android Bindings Removed
+### Legacy Android Bindings Removed
 
 As planned Legacy bindings are removed this release. Foreign Code is now the only official way of interfacing with native code.
 
-#### Various changes
+### Various changes
 
 - Makes `uno build native` work on Windows (eventually to replace `uno build msvc`)
 - Removes outdated Android solution for VS2015
@@ -792,7 +792,7 @@ As planned Legacy bindings are removed this release. Foreign Code is now the onl
 0.41
 ----
 
-#### Deprecation of build targets
+### Deprecation of build targets
 
 The following build targets will generate a warning if used:
 ```
@@ -803,7 +803,7 @@ uno build ffos
 We're deprecating build targets based on JavaScript because our JavaScript backend is no longer
 maintained.
 
-#### Deprecation of importers
+### Deprecation of importers
 
 The following will now generate a warning if compiled:
 ```
@@ -824,7 +824,7 @@ These APIs are scheduled for removal in an upcoming release, because we no longe
 dependencies to the proprietary FBX SDK from Autodesk in our core product.
 
 
-#### Syntax sugar
+### Syntax sugar
 
 Three new literal types are added in Uno: Points, pixels & hex color codes.
 
@@ -841,12 +841,12 @@ Three new literal types are added in Uno: Points, pixels & hex color codes.
 0.40
 ----
 
-#### Preview
+### Preview
 
 - Android preview and export now works for users with spaces in their paths, as long `-DGRADLE` is used. Note that for this to work with preview, you have to specify the `.unoproj` explicitly: `fuse preview -tandroid my.unoproj -DGRADLE`.
 - Added `Uno.Net.Sockets.TcpListener` helper-class for hosting TCP servers. It's a subset of .NETs System.Net.Sockets.TcpListener class, and resolves to that implementation for .NET-targets.
 
-#### Support for adding Swift files to `unoproj`s
+### Support for adding Swift files to `unoproj`s
 - Added a `Swift` file type to `unoproj`s. Swift files currently do not get the foreign macro expansion that `ObjCSource` files get.
 - The version of Swift to that is used can be configured with the `iOS.SwiftVersion` project property:
 
@@ -908,7 +908,7 @@ Fix the `source value 1.5 is obsolete and will be removed in a future release` w
 0.39
 ----
 
-#### Added more control of PList in unoproj
+### Added more control of PList in unoproj
 We have added option to specify the following iOS plist entries from the `unoproj` file:
 
 - NSCalendarsUsageDescription
@@ -935,7 +935,7 @@ They can be used as follows:
     }
 
 
-#### Foreign Code
+### Foreign Code
 
 Foreign Java is alittle more strict and does a little more type checking during the build.
 
@@ -960,11 +960,11 @@ Here is an example for point `2` that will no longer compile:
 
 The fix for the above would be to change `Bar(object x)` to `Bar(Java.Object x)` and `@{Bar(object):Call(jobj)}` to `@{Bar(Java.Object):Call(jobj)}`
 
-#### Gradle Support
+### Gradle Support
 - We can now build signed APKs with Gradle.
 - For users who run into platform specific filepath length limitations whilst build for Android with Gradle, you can now use the `--set:AltBuildPath="/tmp"` argument to specify the root of your android builds.
 
-#### Xcode project generation and signing
+### Xcode project generation and signing
 - Fix crash occuring when running multiple test fixtures on iOS devices
 
 ### UX Compiler improvements
@@ -975,7 +975,7 @@ The fix for the above would be to change `Bar(object x)` to `Bar(Java.Object x)`
 0.38
 ----
 
-#### Xcode project generation and signing
+### Xcode project generation and signing
 - Added a property to set the Xcode Development Team ID, used for code-signing, in `unoproj`s:
 
     ```
@@ -1005,10 +1005,10 @@ The fix for the above would be to change `Bar(object x)` to `Bar(Java.Object x)`
 
 - Uno now attempts to automatically find a Development Team ID if it hasn't already been set using either of the above methods. It does so by querying the machine's code-signing identities and selecting the first valid one it finds.
 
-#### Foreign Java Bugfix
+### Foreign Java Bugfix
 - Fix bug causing build error when returning structs from foreign Java Code
 
-#### Expand on using Uno arrays from Foreign Java
+### Expand on using Uno arrays from Foreign Java
 
 - Can now pass Uno unsigned byte arrays to foreign Java
 - Add ability to make boxed Uno arrays from Java
@@ -1035,15 +1035,15 @@ The length constructor works on all the following types. The Java array conversi
 0.37
 ----
 
-#### Java foreign code
+### Java foreign code
 
 - Fix crash occuring after wrapping a Java delegate 256 times, due to a leak causing the JNI local reference table to fill up.
 
-#### Xcode project generation
+### Xcode project generation
 
 - We now add the directory of `Require`d `Xcode.Framework`s and `Xcode.EmbeddedFramework`s to `Xcode.FrameworkDirectory`, meaning that `Xcode.FrameworkDirectory` will rarely be necessary to use.
 
-#### .unoconfig package management (internal)
+### .unoconfig package management (internal)
 
 The following properties are introduced.
 ```
@@ -1080,12 +1080,12 @@ or, if you prefer, you can use the following command line argument:
 0.34
 ----
 
-#### Foreign code
+### Foreign code
 
 - Fixed a bug that meant fields accessed using macros that didn't use `:Get()` in foreign Objective-C, such as `@{MyClass:Of(_this)._someField}`, did not have their types converted from Uno to their Objective-C equivalents
 - Fixed a bug that resulted in foreign code in static constructors not working
 
-#### Uno parser reimplementation
+### Uno parser reimplementation
 
 Faster & harder parser that comes with some minor breaking changes to the syntax.
 
@@ -1099,7 +1099,7 @@ Correct syntax is:
     int a = 0, b = 0;           // OK
     fixed int c[] = {0};        // OK
 
-#### Xcode project generation
+### Xcode project generation
 
 - Added a new property to set the `UIBackgroundModes` property of the generated Xcode project. You can use it by adding the following to your .unoproj:
     ```
@@ -1113,12 +1113,12 @@ Correct syntax is:
     }
     ```
 
-#### Improved incremental build
+### Improved incremental build
 
 - `uno build`: Don't trigger a build if the previous build is still up-to-date
 - Automatically remove outdated files and APK from Android builds
 
-#### Bugfixes
+### Bugfixes
 
 - `unoproj`: Allow `-` in version strings
 - Fix crash in `ProcessExtensions` on Windows
@@ -1126,17 +1126,17 @@ Correct syntax is:
 0.33
 ----
 
-#### Preliminary Cocoapod support
+### Preliminary Cocoapod support
 
 Coacoapods is the defacto unofficial standard for iOS package management, until an official package manager support Objective-C (and a bunch of other stuff) cocoapods is a great choice.
 
-##### Install steps
+#### Install steps
 - `brew install ruby`
 - `sudo gem install cocoapods`
 
 The cocoapods folks say you should be able to use the ruby that comes with OSX however gem tries to install `activesupport v5` as a dependency and this requires at leave Ruby `v2.2.2`
 
-##### Using Pods in Uno
+#### Using Pods in Uno
 build with `-DCOCOAPODS` to enable cocoapod support.
 
 You can then use the `require` macro or attribute as follows:
@@ -1147,15 +1147,15 @@ You can then use the `require` macro or attribute as follows:
 0.32
 ----
 
-#### Running on iOS devices
+### Running on iOS devices
 - When building with `uno build --target=ios --run`, the `uno` command now stays open, printing any output from the app to stdout. This makes building for Android and iOS behave the same way. (Previously, `uno` would exit as soon as the app was deployed to the iOS device.)
 
-#### Compiler bug fixes
+### Compiler bug fixes
 
 - "Using Generic interfaces on nested structs generates faulty C++"
 - "Protected member not allowed to be of protected class type"
 
-#### MSVC target
+### MSVC target
 
 - Debug using Visual Studio 2015 by default. Will fallback to Visual Studio 2013 when 2015 is unavailable. VS2013 is still required for building the generated code.
 
@@ -1163,7 +1163,7 @@ You can then use the `require` macro or attribute as follows:
 0.31
 ----
 
-#### Xcode project generation
+### Xcode project generation
 
 - The default setting for frameworks included with the `Xcode.EmbeddedFramework` element is now to code sign on copy which is also Xcode's default.
 
@@ -1177,7 +1177,7 @@ You can then use the `require` macro or attribute as follows:
 
     will add `someScript` in a `PBXProjShellScriptBuildPhase` in the generated `.pbxproj` file.
 
-#### Foreign code
+### Foreign code
 
 - Allow passing enums to foreign Objective-C and Java.
   Enums are passed as their underlying primitive type (which is `int` by
@@ -1185,7 +1185,7 @@ You can then use the `require` macro or attribute as follows:
 
 - Fix bug where you couldnt box structs when passed to Foreign Java code
 
-#### Gradle projects
+### Gradle projects
 
 - To build using experimental gradle support use the `-DGRADLE` flag
 
@@ -1216,7 +1216,7 @@ You can then use the `require` macro or attribute as follows:
 0.30
 ----
 
-#### Project format
+### Project format
 
 - Support globs in project references
     ```
@@ -1232,7 +1232,7 @@ You can then use the `require` macro or attribute as follows:
     "iOS.DeploymentTarget": "8.0"
     ```
 
-#### Other changes (internal)
+### Other changes (internal)
 
 - Add new `pack`, `push` (usable now) & `install`, `feed` (not yet) commands.
 - Add Uno.Compiler.Extensions who consists of Bindings, Foreign & Plugins.
@@ -1244,7 +1244,7 @@ You can then use the `require` macro or attribute as follows:
 0.29
 ----
 
-#### Project format
+### Project format
 
 - Transitive references.
 
@@ -1283,7 +1283,7 @@ You can then use the `require` macro or attribute as follows:
 ## Bugfixes
 - Fixed an erratic crash while performing HTTP-requests in MSVC and CMake targets.
 
-#### CLI improvements
+### CLI improvements
 
 - Add `no-build` command.
 
@@ -1299,12 +1299,12 @@ You can then use the `require` macro or attribute as follows:
 
     Thanks to @bolav for suggesting this feature.
 
-#### Other goodies
+### Other goodies
 
 - C++/MSVC: Add *.natvis files for Visual Studio. This makes debugger better able to visualize Uno objects.
 - ~~build: Use <project>.lock during build (or clean) for exclusive access to project.~~
 
-#### Architecture (internal)
+### Architecture (internal)
 
 - Clean up Uno.Common.dll and Uno.Compiler.API.dll
 - Factor out Uno.Compiler.Foreign.dll (work in progress)
@@ -1312,7 +1312,7 @@ You can then use the `require` macro or attribute as follows:
 - Add diagrams, see https://github.com/fusetools/Uno/tree/master/Source
 - This breaks Fuse, but a migration branch exists at https://github.com/fusetools/Fuse/tree/feature-uno
 
-#### NuGet & UPM packages (internal)
+### NuGet & UPM packages (internal)
 
 - In TeamCity, .NUPKGs for upload to UPM are now produced from core Uno packages and included in `upload.zip`.
 - A X-platform NuGet package for C# including Uno.Compiler.API.dll and Uno.Common.dll is also produced on Windows agents.
@@ -1330,13 +1330,13 @@ You can then use the `require` macro or attribute as follows:
 0.26
 ----
 
-## Foreign Code
+### Foreign Code
 
 - Fixed a bug which resulted in comments not working in foreign Objective-C.
 - Added support for writing constructors using foreign code.
 - Foreign Objective-C code is now automatically wrapped in an Objective-C `@autoreleasepool`.
 
-#### out/ref
+### out/ref
 
 - Added support for using interfaces as parameters to foreign Objective-C functions.
 
@@ -1367,7 +1367,7 @@ extern(iOS) void StringOutParam(ref string m, out string n)
 
 As Java doesnt have out/ref parameters, it is very unlikely that we will support this for Java.
 
-#### ForeignInclude
+### ForeignInclude
 
 You can now use the `ForeignInclude` attribute to:
 
@@ -1391,12 +1391,12 @@ public class SomeUnoClass : Uno.Application
 0.25
 ----
 
-#### API changes
+### API changes
 
 - Added `Uno.IO.Bundle` and `Uno.IO.BundleFile`
 - Removed old `Uno.BundleFile`
 
-#### C++ changes
+### C++ changes
 
 - Changes in base libraries (uno-base)
 
@@ -1406,15 +1406,15 @@ public class SomeUnoClass : Uno.Application
 
     Ask us on slack/#uno if you get problems.
 
-#### UXL
+### UXL
 - Required `Xcode.Framework`s that have file extensions now do not get an
   additional `.framework` extension.
 
-#### ux:Global support for value types
+### ux:Global support for value types
 
 You can now create `ux:Global` objects of value types, such as `float4`. This is convenient e.g. for creating global color constants.
 
-#### ux:InnerClass
+### ux:InnerClass
 
 - Added support for `ux:InnerClass`, which is a class that has access to named UX objects in its scope.
   Specifically, the differences are:
@@ -1438,7 +1438,7 @@ You can now create `ux:Global` objects of value types, such as `float4`. This is
 		If root nodes are marked ux:InnerClass, they are ignored by the UX compiler
 		unless ux:Included somewhere.
 
-#### Foreign code
+### Foreign code
 
 - Added support for processed foreign files
 
@@ -1554,12 +1554,12 @@ The type conversions follow this pattern:
 0.24
 ----
 
-#### C++ backend
+### C++ backend
 
 - Fixed a bug where the `finally` block in a `try-finally` statement was not
   run if the `try` block returned.
 
-#### Internal changes
+### Internal changes
 
 - Renamed Dependencies/ -> Prebuilt/
 - Renamed `uno browse` -> `uno disasm`
@@ -1575,7 +1575,7 @@ The type conversions follow this pattern:
 0.23
 ------
 
-#### Uno language
+### Uno language
 
 - Added `@(Macro)` and `@keyword`
 
@@ -1608,7 +1608,7 @@ The type conversions follow this pattern:
     }
     ```
 
-#### Internal changes
+### Internal changes
 
 - Package format changed
 
@@ -1635,7 +1635,7 @@ The type conversions follow this pattern:
 0.21
 ------
 
-#### UX markup
+### UX markup
 
 - Bugfixes for ux:Property
 
@@ -1679,7 +1679,7 @@ The type conversions follow this pattern:
 
     - `<ux:Include File="Foo.ux" />` will copy/paste include another UX file at the given location. This will make it easier to split large UX components into separate files.
 
-#### Uno language
+### Uno language
 
 - Foreign code blocks
 
@@ -1768,7 +1768,7 @@ The type conversions follow this pattern:
     @}
     ```
 
-#### Build system
+### Build system
 
 - New iOS build settings
 
@@ -1997,7 +1997,7 @@ The type conversions follow this pattern:
         <Expression>a &lt; b</Expression>
         ```
 
-#### Internal changes
+### Internal changes
 
 - `uno doctor` rewrite to handle standard library development more efficiently
 
@@ -2033,7 +2033,7 @@ The type conversions follow this pattern:
 0.19
 ------
 
-#### Uno.Http fixes
+### Uno.Http fixes
 
 - Change Uri.Encode and Uri.Decode to treat space as %20, like RFC 2396 and the rest of the world agrees on.
 - Change Uri.Encode to not percent-encode tilde and single quotes, in accordance with RFC 2396.
@@ -2043,7 +2043,7 @@ The type conversions follow this pattern:
 0.18
 ------
 
-#### General changes
+### General changes
 
 - Smaller installer footprint
 
@@ -2085,13 +2085,13 @@ The type conversions follow this pattern:
 - Various performance and stability fixes
 
 
-#### iOS fixes
+### iOS fixes
 
 - Add **iOS.BundleVersion** project property to set plist property `CFBundleVersion` on iOS.
 - Fix launching Xcode simulator on iPhone 6. Previously only older generations worked.
 
 
-#### API changes
+### API changes
 
 - Generics and partial reflection support in **Uno.Type**
 
@@ -2104,7 +2104,7 @@ The type conversions follow this pattern:
     This affects the following types: **byte, sbyte, short** and **ushort**.
 
 
-#### UXL changes
+### UXL changes
 
 - Array macros
 
@@ -2142,7 +2142,7 @@ The type conversions follow this pattern:
     lines, when false.
 
 
-#### C++ improvements
+### C++ improvements
 
 - C++ API changes
 
@@ -2254,7 +2254,7 @@ The type conversions follow this pattern:
 
 - Less Xcode warnings produced when building for iOS and OS X
 
-#### Test runner improvements
+### Test runner improvements
 
 - Added timers
 
@@ -2268,7 +2268,7 @@ The type conversions follow this pattern:
 - Tests are now run in alphabetical order
 
 
-#### Internal changes
+### Internal changes
 
 - Makefile
 
