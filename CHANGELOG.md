@@ -4,23 +4,62 @@ Uno Changelog
 Unreleased
 ----------
 
-### Project Files
-- Support for iPhoneXr Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXr_2x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXr_2x` project-setting.
-- Support for iPhoneXs Max Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXsMax_3x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXsMax_3x` project-setting.
+1.13
+----
 
-#### Android build target
-- Upgraded to Gradle 5.6, and Gradle-plugin 3.4.2.
-- Upgraded build tools to version 28.0.3.
-- Upgraded support libraries to version 28.0.0.
-- Upgraded SDK compile and target versions to 28
-- Added support for generating [Android App Bundle](https://developer.android.com/platform/technology/app-bundle) on Release
-- Added the following build properties.
+#### Android
+- Added support for CMake 3.10.2.4988404 (#219).
+- Added support for Dark Theme (#236).
+- Added support for Splash screen (#240).
+- Added support for generating [Android App Bundle](https://developer.android.com/platform/technology/app-bundle) on Release (#220).
+- Fixed crash with `windowIsTranslucent` together with `screenOrientation=portrait` on Android 8 Oreo (#211).
+- Upgraded to Gradle 5.6, and Gradle-plugin 3.4.2 (#220).
+- Upgraded build tools to version 28.0.3 (#220).
+- Upgraded support libraries to version 28.0.0 (#220).
+- Upgraded SDK compile and target versions to 28 (#220).
+- Added the following build properties (#220).
     * `Bundle`
     * `Bundle.BuildName`
     * `Bundle.Gradle.Task`
-- Renamed the following build properties.
+- Renamed the following build properties (#220).
     * `APK.Configuration -> Build.Configuration`
-- Set default versionCode to positive Integer (1) so `gradlew` command doesn't produce error when building using latest Gradle
+- Set default versionCode to positive Integer (1) so `gradlew` command doesn't produce error when building using latest Gradle (#220).
+
+#### iOS
+- Support for iPhone XR Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXr_2x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXr_2x` project-setting (#225).
+- Support for iPhone XS Max Launch Image has been added. This can be customized using the `iOS.LaunchImages.iPhone_Portrait_iPhoneXsMax_3x` and `iOS.LaunchImages.iPhone_Landscape_iPhoneXsMax_3x` project-setting (#225).
+- Switched to user-installed `ios-deploy`, for iOS 13 support (#226).
+- Added Sign-in with Apple capability (#233).
+
+#### C++ backend
+- Optimized `char` and `string` classes, which gives less run-time overhead and faster code (#232).
+- Fixed a bug with `uMainLoop::OnClosing` related to overload resolving, and warnings (#202).
+
+#### UX markup
+- Added `ux:Simulate` attribute, to disable/enable the Fuse Studio simulator per UX class (#200).
+
+#### Uno command
+- Added `--build-only` switch for `uno build` (#245).
+- Added `--libs` switch for `uno config` (#244).
+- Added support for passing project files to `uno doctor` (#237).
+- Dropped legacy package manager commands (#148).
+    - `uno install`
+    - `uno uninstall`
+    - `uno feed`
+    - `uno pack`
+    - `uno push`
+    - `uno stuff`
+
+#### Other improvements
+- Automatically install Mono on macOS (#228).
+- Detect required software and provide friendly hints on how to install missing software (#227, #243).
+- Always run `cmake` and `node` from PATH, dropping `Tools.CMake` and `Tools.Node` properties in `.unoconfig` (#243).
+- Fixed security warnings in JavaScript dependencies by upgrading to newest versions (#203, #204).
+- Upgraded .NET dependencies to newest versions (#229).
+- Various logging improvements and tweaks (#198, #242).
+- Cleaned up config files (#230).
+
+[`v1.12.2...v1.13.0`](https://github.com/fuse-open/uno/compare/v1.12.2...v1.13.0)
 
 1.12
 ----
