@@ -14,7 +14,8 @@
                  android:icon="@mipmap/icon"
                  android:description="@string/description"
                  android:largeHeap="@(Project.Android.LargeHeap:IsSet:Test(@(Project.Android.LargeHeap:Bool),false))"
-                 android:allowBackup="@(Project.Android.AllowBackup:IsSet:Test(@(Project.Android.AllowBackup:Bool),false))">
+                 android:allowBackup="@(Project.Android.AllowBackup:IsSet:Test(@(Project.Android.AllowBackup:Bool),false))"
+                 android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))">
 
         <activity android:name="@(Activity.Name:EscapeXml)"
                   android:label="@(Project.Android.ApplicationLabel:EscapeXml)"
