@@ -9,11 +9,10 @@
 #if @(Project.Android.Splash.Enabled:Test(1, 0))
         <item name="android:windowBackground">@drawable/@(Project.Android.Splash.SplashFileName || 'splash_background')</item>
 #else
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsTranslucent">@(Project.Android.WindowIsTranslucent || 'true')</item>
         <item name="android:windowBackground">@android:color/transparent</item>
 #endif
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">@(Project.Android.WindowIsTranslucent || 'true')</item>
     </style>
 
 </resources>
