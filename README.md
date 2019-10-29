@@ -51,7 +51,7 @@ class App : Uno.Application
 ```
 
 The Uno programming language is a fast, native dialect of [C#] that can cross-compile to *any native platform* (in theory),
-by emitting portable [C++11] for mobile or desktop platforms, or [CIL bytecode] for desktop platforms (Mono/.NET) —
+by emitting portable [C++14] for mobile or desktop platforms, or [CIL bytecode] for desktop platforms (Mono/.NET) —
 designed for developing high-performance UI-engines, platform abstractions or integrations, and other kinds of
 software traditionally required written in native C/C++.
 
@@ -59,13 +59,13 @@ Access all APIs and features on the target platforms directly in Uno — add a s
 our compiler automatically generates the glue necessary to interoperate (two-way) with a foreign language.
 The following foreign languages are supported:
 
-* [C++11], [C99]
+* [C++14], [C99]
 * [Java] (Android)
 * [Objective-C] (iOS, macOS)
 * [Swift] (iOS)
 
 [C#]: https://en.wikipedia.org/wiki/C_Sharp_(programming_language)
-[C++11]: https://en.wikipedia.org/wiki/C++11
+[C++14]: https://en.wikipedia.org/wiki/C++14
 [C99]: https://en.wikipedia.org/wiki/C99
 [CIL bytecode]: https://en.wikipedia.org/wiki/Common_Intermediate_Language
 [Java]: https://en.wikipedia.org/wiki/Java_(programming_language)
