@@ -70,7 +70,38 @@ android {
                     '-DANDROID_NDK=@(NDK.Directory)'
             }
         }
+
+#if @(Project.Android.SupportedLanguages:IsSet)
+        resConfigs @(Project.Android.SupportedLanguages:Join(', ', '\"', '\"'))
+#endif
+
     }
+
+#if @(Project.Android.Bundle.Language.EnableSplit:IsSet) || @(Project.Android.Bundle.Density.EnableSplit:IsSet) || @(Project.Android.Bundle.ABI.EnableSplit:IsSet)
+    bundle {
+        #if @(Project.Android.Bundle.Language.EnableSplit:IsSet)
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = @(Project.Android.Bundle.Language.EnableSplit:ToLower)
+        }
+        #endif
+        #if @(Project.Android.Bundle.Density.EnableSplit:IsSet)
+        density {
+            // This property is set to true by default.
+            enableSplit = @(Project.Android.Bundle.Density.EnableSplit:ToLower)
+        }
+        #endif
+        #if @(Project.Android.Bundle.ABI.EnableSplit:IsSet)
+        abi {
+            // This property is set to true by default.
+            enableSplit = @(Project.Android.Bundle.ABI.EnableSplit:ToLower)
+        }
+        #endif
+    }
+#endif
 
     externalNativeBuild {
         cmake {

@@ -15,7 +15,11 @@
                  android:description="@string/description"
                  android:largeHeap="@(Project.Android.LargeHeap:IsSet:Test(@(Project.Android.LargeHeap:Bool),false))"
                  android:allowBackup="@(Project.Android.AllowBackup:IsSet:Test(@(Project.Android.AllowBackup:Bool),false))"
-                 android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))">
+                 android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))"
+#if @(Project.Android.Bundle.CompressNativeLibraries:Test(1, 0))
+                 android:extractNativeLibs="false"
+#endif
+                 >
 
         <activity android:name="@(Activity.Name:EscapeXml)"
                   android:label="@(Project.Android.ApplicationLabel:EscapeXml)"
