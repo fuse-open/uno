@@ -1,4 +1,5 @@
 using Uno;
+using Uno.Compiler.ExportTargetInterop;
 using Uno.Testing;
 
 namespace UnoTest.General
@@ -38,5 +39,14 @@ namespace UnoTest.General
             public string String;
             public string StringProp { get { return String; } }
         }
+
+        [Test]
+        [Require("Source.Include", "thread")]
+        static void Cpp14()
+        @{
+            // Standard user-defined literals were introduced in C++14.
+            using namespace std::chrono_literals;
+            std::this_thread::sleep_for(1ms);
+        @}
     }
 }
