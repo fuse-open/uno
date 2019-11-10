@@ -162,13 +162,24 @@ namespace Uno.IO
 
         public string ReadAllText()
         {
-            if defined(PREVIEW)
+            var bytes = defined(PREVIEW)
+                ? _bytes ?? ReadAllBytes()
+                : ReadAllBytes();
+            var count = bytes.Length;
+            var index = 0;
+
+            // Strip Byte Order Mark for UTF-8.
+            // This is consistent with File.ReadAllText().
+            if (count > 2 && 
+                bytes[0] == 0xEF &&
+                bytes[1] == 0xBB &&
+                bytes[2] == 0xBF)
             {
-                if (_bytes != null)
-                    return Utf8.GetString(_bytes);
+                index = 3;
+                count -= 3;
             }
 
-            return Utf8.GetString(ReadAllBytes());
+            return Utf8.GetString(bytes, index, count);
         }
 
         /** Must be called from Main-thread */
