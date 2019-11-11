@@ -33,7 +33,10 @@
                   #endif
                   />
     #endif
-
+    
+#if @(Project.Android.SupportsAndroidGo:IsSet)
+    <uses-feature android:name="android.hardware.ram.low" android:required="true"/>
+#endif
     <uses-feature android:glEsVersion="0x00020000"/>
 
     @(AndroidManifest.Permission:Join('\n    ', '<uses-permission android:name="', '" />'))
