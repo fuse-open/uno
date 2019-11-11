@@ -2,6 +2,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="@(Activity.Package)">
 
+    #if @(Project.Android.SupportsScreens.Resizable:IsSet) || @(Project.Android.SupportsScreens.SmallScreens:IsSet) || @(Project.Android.SupportsScreens.NormalScreens:IsSet) || @(Project.Android.SupportsScreens.LargeScreens:IsSet) || @(Project.Android.SupportsScreens.XLargeScreens:IsSet) || @(Project.Android.SupportsScreens.AnyDensity:IsSet) || @(Project.Android.SupportsScreens.RequiresSmallestWidthDp:IsSet) || @(Project.Android.SupportsScreens.CompatibleWidthLimitDp:IsSet) || @(Project.Android.SupportsScreens.LargestWidthLimitDp:IsSet)
+    <supports-screens 
+                  #if @(Project.Android.SupportsScreens.Resizable:IsSet)
+                  android:resizeable="@(Project.Android.SupportsScreens.Resizable:ToLower)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.SmallScreens:IsSet)
+                  android:smallScreens="@(Project.Android.SupportsScreens.SmallScreens:ToLower)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.NormalScreens:IsSet)
+                  android:normalScreens="@(Project.Android.SupportsScreens.NormalScreens:ToLower)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.LargeScreens:IsSet)
+                  android:largeScreens="@(Project.Android.SupportsScreens.LargeScreens:ToLower)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.XLargeScreens:IsSet)
+                  android:xlargeScreens="@(Project.Android.SupportsScreens.XLargeScreens:ToLower)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.AnyDensity:IsSet)
+                  android:anyDensity="@(Project.Android.SupportsScreens.AnyDensity:ToLower)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.RequiresSmallestWidthDp:IsSet)
+                  android:requiresSmallestWidthDp="@(Project.Android.SupportsScreens.RequiresSmallestWidthDp)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.CompatibleWidthLimitDp:IsSet)
+                  android:compatibleWidthLimitDp="@(Project.Android.SupportsScreens.CompatibleWidthLimitDp)"
+                  #endif
+                  #if @(Project.Android.SupportsScreens.LargestWidthLimitDp:IsSet)
+                  android:largestWidthLimitDp="@(Project.Android.SupportsScreens.LargestWidthLimitDp)"
+                  #endif
+                  />
+    #endif
+
     <uses-feature android:glEsVersion="0x00020000"/>
 
     @(AndroidManifest.Permission:Join('\n    ', '<uses-permission android:name="', '" />'))
@@ -15,7 +47,9 @@
                  android:description="@string/description"
                  android:largeHeap="@(Project.Android.LargeHeap:IsSet:Test(@(Project.Android.LargeHeap:Bool),false))"
                  android:allowBackup="@(Project.Android.AllowBackup:IsSet:Test(@(Project.Android.AllowBackup:Bool),false))"
-                 android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))">
+                 android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))"
+                 android:extractNativeLibs="@(Project.Android.ExtractNativeLibs:IsSet:Test(@(Project.Android.ExtractNativeLibs:Bool),true))"
+                 >
 
         <activity android:name="@(Activity.Name:EscapeXml)"
                   android:label="@(Project.Android.ApplicationLabel:EscapeXml)"
