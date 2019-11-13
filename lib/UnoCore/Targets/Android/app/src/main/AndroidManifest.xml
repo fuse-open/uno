@@ -34,7 +34,7 @@
                   />
     #endif
     
-#if @(Project.Android.SupportsAndroidGo:IsSet)
+#if @(Project.Android.SupportsAndroidGo:Test(1, 0))
     <uses-feature android:name="android.hardware.ram.low" android:required="true"/>
 #endif
     <uses-feature android:glEsVersion="0x00020000"/>
