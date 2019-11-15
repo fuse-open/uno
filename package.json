@@ -5,10 +5,13 @@
   "dependencies": {
     "dotnet-run": "^1.0.0"
   },
+  "devDependencies": {
+    "xbash": "^1.4.0"
+  },
   "scripts": {
-    "build": "bash scripts/build.sh",
-    "prepack": "bash scripts/pack.sh",
-    "test": "bash scripts/test.sh"
+    "build": "xbash scripts/build.sh",
+    "prepack": "xbash scripts/pack.sh",
+    "test": "xbash scripts/test.sh"
   },
   "bin": {
     "uno": "bin/uno.js"

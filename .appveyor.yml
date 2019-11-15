@@ -13,6 +13,7 @@ install:
         Invoke-WebRequest https://www.nuget.org/api/v2/package/mesa3d-x64/18.3.4 -OutFile mesa.zip
         Expand-Archive mesa.zip mesa
       }
+  - npm install
 
 build_script:
   - npm pack --silent
