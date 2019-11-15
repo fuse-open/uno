@@ -28,8 +28,8 @@ import android.R.color;
 import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View.OnLayoutChangeListener;
 import com.fuse.App;
 import com.fuse.Activity.ActivityListener;
@@ -42,7 +42,7 @@ public class App {
         // load c++ libs needed by uno
         com.uno.CppManager.LoadLibraries();
         // http://stackoverflow.com/a/37239813/574033  we use wildcard for `appcompat` so do same for `design`
-        android.support.v7.app.AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        androidx.appcompat.app.AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
     private static App _appState;

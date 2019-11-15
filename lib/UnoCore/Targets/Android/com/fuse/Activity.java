@@ -13,7 +13,7 @@ public final class Activity
 
     //------------------------------------------------------------
 
-    public static android.support.v7.app.AppCompatActivity getRootActivity()
+    public static androidx.appcompat.app.AppCompatActivity getRootActivity()
     {
         return com.fuse.App.getCurrent().RootActivity;
     }

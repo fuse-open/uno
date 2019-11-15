@@ -47,6 +47,8 @@ android {
         targetSdkVersion @(SDK.TargetVersion)
         versionCode = @(Project.Android.VersionCode)
         versionName = '@(Project.Android.VersionName)'
+        multiDexEnabled @(Project.Android.MultiDexEnabled:IsSet:Test(@(Project.Android.MultiDexEnabled:Bool),true))
+
         ndk {
 #if @(DEBUG:Defined)
             abiFilters = [@(Project.Android.Architectures.Debug:Join(', ', '\'', '\''))]

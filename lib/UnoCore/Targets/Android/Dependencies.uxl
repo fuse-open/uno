@@ -8,9 +8,10 @@
     <Require Gradle.BuildScript.Repository="mavenCentral()" />
     <Require Gradle.Repository="maven { url 'https://maven.google.com' }" />
 
-    <Require Gradle.Dependency.ClassPath="com.android.tools.build:gradle:3.4.2" />
-    <Require Gradle.Dependency.Implementation="com.android.support:appcompat-v7:28.0.0" />
-    <Require Gradle.Dependency.Implementation="com.android.support:design:28.0.0" />
-    <Require Gradle.Dependency.Implementation="com.android.support:support-v4:28.0.0" />
+    <Require Gradle.Dependency.ClassPath="com.android.tools.build:gradle:3.5.1" />
+    <Require Gradle.Dependency.Implementation="androidx.appcompat:appcompat:1.1.0" />
+    <Require Gradle.Dependency.Implementation="com.google.android.material:material:1.0.0" />
+    <Require Gradle.Dependency.Implementation="androidx.legacy:legacy-support-v4:1.0.0" />
+    <Require Gradle.Dependency.Implementation="androidx.multidex:multidex:2.0.1" />
 
 </Extensions>

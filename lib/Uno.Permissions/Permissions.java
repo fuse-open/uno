@@ -1,9 +1,9 @@
 package com.fuse;
 
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.PermissionChecker;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 import java.util.ArrayList;
 import com.uno.UnoObject;
 import com.fuse.Activity;

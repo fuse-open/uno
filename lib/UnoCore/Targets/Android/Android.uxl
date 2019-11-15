@@ -64,7 +64,7 @@
     <Require AndroidManifest.Permission="android.permission.ACCESS_NETWORK_STATE" />
     <Require AndroidManifest.Permission="android.permission.VIBRATE" />
 
-    <Set Activity.BaseClass="android.support.v7.app.AppCompatActivity" />
+    <Set Activity.BaseClass="androidx.appcompat.app.AppCompatActivity" />
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
     <Set Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
@@ -243,6 +243,7 @@
 
     <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
     <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable=true />
+    <ProcessFile Name="gradle.properties" />
     <ProcessFile Name="local.properties" />
     <ProcessFile Name="gradlew.bat" />
     <ProcessFile Name="gradlew" />

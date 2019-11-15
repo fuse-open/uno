@@ -26,7 +26,7 @@ import android.graphics.SurfaceTexture;
 import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.view.View.OnLayoutChangeListener;
 import com.fuse.Activity.ActivityListener;
 
