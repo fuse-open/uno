@@ -1,6 +1,8 @@
-.PHONY: release diagrams
+.PHONY: lib release diagrams
 default:
 	@bash scripts/build.sh
+lib:
+	@bin/uno doctor -e lib
 unocore:
 	@bash scripts/build-unocore.sh
 release:
