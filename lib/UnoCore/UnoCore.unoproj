@@ -304,7 +304,6 @@
     "Source/Uno/Runtime/Implementation/Internal/ArrayEnumerable.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/Bootstrapper.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/BootstrapperHints.uno:Source",
-    "Source/Uno/Runtime/Implementation/Internal/BufferConverters.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/BufferReader.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/FormatStringItem.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/FormatStringLiteral.uno:Source",
