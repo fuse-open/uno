@@ -70,7 +70,9 @@
 
     <!-- Build configuration -->
 
-    <Set Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
+    <Set Condition="LIBRARY" Build.Configuration="@('!@(DEBUG:Defined)':Test('Release', 'Debug'))" />
+    <Set Condition="!LIBRARY" Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
+
     <Set Gradle.AssembleTask="assemble@(Build.Configuration)" />
     <Set Gradle.BundleTask="bundle@(Build.Configuration)" />
 
