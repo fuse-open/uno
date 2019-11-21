@@ -38,22 +38,6 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        [Obsolete("Use the byte[] overload instead")]
-        public static void TexImage2DFromBuffer(GLTextureTarget target, int w, int h, int mip, Format format, Buffer data)
-        {
-            GCHandle pin;
-            var addr = data.PinPtr(out pin);
-
-            try
-            {
-                TexImage2DFromIntPtr(target, w, h, mip, format, addr);
-            }
-            finally
-            {
-                pin.Free();
-            }
-        }
-
         public static void TexImage2DFromIntPtr(GLTextureTarget target, int w, int h, int mip, Format format, IntPtr data)
         {
             switch (format)
