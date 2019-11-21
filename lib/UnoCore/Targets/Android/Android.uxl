@@ -68,11 +68,12 @@
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
     <Set Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
+    <Set Gradle.AssembleTask="assemble@(Build.Configuration)" />
+    <Set Gradle.BundleTask="bundle@(Build.Configuration)" />
+
     <Set AAR.BuildName="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
     <Set APK.BuildName="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
-    <Set APK.Gradle.Task="assemble@(Build.Configuration)" />
     <Set Bundle.BuildName="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app.aab" />
-    <Set Bundle.Gradle.Task="bundle@(Build.Configuration)" />
     <Set Runtime.CatchCppExceptions=2 />
     <Set Runtime.CppMainLoop="Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN" />
     <Set Runtime.DebugPauseMilliseconds=0 />
