@@ -16,7 +16,6 @@
 @{Uno.Exception:IncludeDirective}
 @{Uno.Platform.CoreApp:IncludeDirective}
 @{Uno.Runtime.Implementation.Internal.Bootstrapper:IncludeDirective}
-@{Uno.Runtime.Implementation.Internal.BootstrapHints:IncludeDirective}
 @{Uno.Runtime.Implementation.PlatformWindowImpl:IncludeDirective}
 @{Uno.Application:IncludeDirective}
 @{string:IncludeDirective}
