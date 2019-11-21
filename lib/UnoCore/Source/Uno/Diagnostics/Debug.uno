@@ -26,7 +26,7 @@ namespace Uno.Diagnostics
         // TODO: Deprecated
         static AssertionHandler _assertionHandler;
 
-        // TODO: Deprecated
+        [Obsolete]
         public static void SetAssertionHandler(AssertionHandler handler)
         {
             _assertionHandler = handler;
@@ -47,6 +47,7 @@ namespace Uno.Diagnostics
 
         static LogHandler _logHandler;
 
+        [Obsolete]
         public static void SetLogHandler(LogHandler handler)
         {
             _logHandler = handler;
@@ -73,11 +74,14 @@ namespace Uno.Diagnostics
         }
 
         static string _indentStr = "";
+
+        [Obsolete]
         public static void IndentLog()
         {
             _indentStr += "\t";
         }
 
+        [Obsolete]
         public static void UnindentLog()
         {
             _indentStr = _indentStr.Substring( 0, _indentStr.Length - 1 );
