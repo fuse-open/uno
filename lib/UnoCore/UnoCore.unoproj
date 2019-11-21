@@ -297,7 +297,6 @@
     "Source/Uno/Random.uno:Source",
     "Source/Uno/Rect.uno:Source",
     "Source/Uno/Reflection/CppReflection.uno:Source",
-    "Source/Uno/Runtime/Implementation/BufferImpl.uno:Source",
     "Source/Uno/Runtime/Implementation/DirectBuffer.uno:Source",
     "Source/Uno/Runtime/Implementation/GraphicsControllerImpl.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/ArrayConverters.uno:Source",
