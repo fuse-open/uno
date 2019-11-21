@@ -6,7 +6,6 @@
 #include <uBase/Vector2.h>
 @{int2:IncludeDirective}
 @{float2:IncludeDirective}
-@{Uno.Buffer:ForwardDeclaration}
 
 namespace uBase { class DataAccessor; }
 namespace uBase { class Stream; }
@@ -42,8 +41,6 @@ uBase::Vector2i uInt2ToXliVector2i(const @{int2}& vec);
 
 @{float2} uFloat2FromXliVector2(const uBase::Vector2& vec);
 uBase::Vector2 uFloat2ToXliVector2(const @{float2}& vec);
-
-@{Uno.Buffer} uBufferFromXliDataAccessor(const uBase::DataAccessor* data);
 /** @} */
 
 /**
