@@ -33,11 +33,17 @@ for /D %%D in ("@(SDK.Directory:NativePath)\cmake\*") do (
 
 :BUILD
 call gradlew @(APK.Gradle.Task) %* || goto ERROR
+
+#if @(LIBRARY:Defined)
+copy /Y @(AAR.BuildName:QuoteSpace:Replace('/', '\\')) @(Product:QuoteSpace) || goto ERROR
+#else
 copy /Y @(APK.BuildName:QuoteSpace:Replace('/', '\\')) @(Product:QuoteSpace) || goto ERROR
-#if !@(DEBUG:Defined)
+# if !@(DEBUG:Defined)
 call gradlew @(Bundle.Gradle.Task) %* || goto ERROR
 copy /Y @(Bundle.BuildName:QuoteSpace:Replace('/', '\\')) @(Bundle:QuoteSpace) || goto ERROR
+# endif
 #endif
+
 popd && exit /b 0
 
 :ERROR

@@ -17,8 +17,13 @@ uninstall)
     ;;
 esac
 
+#if @(LIBRARY:Defined)
+echo "ERROR: @(Product) is a library and cannot be run directly." >&2
+exit 1
+#else
 @(Uno) launch-apk "@(Product)" \
     --package=@(Activity.Package) \
     --activity=@(Activity.Name) \
     --sym-dir="app/src/main/.uno" \
     "$@"
+#endif

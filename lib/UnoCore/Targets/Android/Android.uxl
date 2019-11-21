@@ -68,6 +68,7 @@
     <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
     <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
     <Set Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
+    <Set AAR.BuildName="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
     <Set APK.BuildName="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
     <Set APK.Gradle.Task="assemble@(Build.Configuration)" />
     <Set Bundle.BuildName="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app.aab" />
@@ -77,8 +78,12 @@
     <Set Runtime.DebugPauseMilliseconds=0 />
     <Set Runtime.KillActivityOnDestroy=true />
     <Set Runtime.SeperateUnoThread="AppRuntimeSettings.CppMainLoop" />
-    <Set Product="@(Project.Name).apk" />
-    <Set Bundle="@(Project.Name).aab" />
+
+    <!-- Output files -->
+
+    <Set Condition="LIBRARY" Product="@(Project.Name).aar" />
+    <Set Condition="!LIBRARY" Product="@(Project.Name).apk" />
+    <Set Condition="!LIBRARY" Bundle="@(Project.Name).aab" />
 
     <!-- Deprecated properties -->
 

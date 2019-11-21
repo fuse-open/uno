@@ -23,13 +23,13 @@ export JAVA_HOME="@(JDK.Directory)"
 #endif
 
 ./gradlew @(APK.Gradle.Task) "$@"
-#if !@(DEBUG:Defined)
-./gradlew @(Bundle.Gradle.Task)
-#endif
 
-#if !@(LIBRARY:Defined)
+#if @(LIBRARY:Defined)
+ln -sf @(AAR.BuildName:QuoteSpace) @(Product:QuoteSpace)
+#else
 ln -sf @(APK.BuildName:QuoteSpace) @(Product:QuoteSpace)
-#if !@(DEBUG:Defined)
+# if !@(DEBUG:Defined)
+./gradlew @(Bundle.Gradle.Task)
 ln -sf @(Bundle.BuildName:QuoteSpace) @(Bundle:QuoteSpace)
-#endif
+# endif
 #endif
