@@ -299,7 +299,6 @@
     "Source/Uno/Reflection/CppReflection.uno:Source",
     "Source/Uno/Runtime/Implementation/DirectBuffer.uno:Source",
     "Source/Uno/Runtime/Implementation/GraphicsControllerImpl.uno:Source",
-    "Source/Uno/Runtime/Implementation/Internal/ArrayConverters.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/ArrayEnumerable.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/Bootstrapper.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/BootstrapperHints.uno:Source",
