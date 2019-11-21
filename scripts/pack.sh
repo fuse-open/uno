@@ -12,7 +12,7 @@ mkdir -p $DST
 # Detect version info
 VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
 BUILD_NUMBER="0"
-COMMIT="N/A"
+COMMIT=""
 
 if [ -n "$APPVEYOR" ]; then
     BUILD_NUMBER=$APPVEYOR_BUILD_NUMBER
@@ -30,10 +30,10 @@ VERSION_TRIPLET=`echo $VERSION | sed -n -e 's/\([^-]*\).*/\1/p'`
 
 # Create GlobalAssemblyInfo.Override.cs
 sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
-      -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
-      -e 's/\(AssemblyInformationalVersion("\)[^"]*\(")\)/\1'$VERSION'\2/' \
-      -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
-      src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
+    -e 's/\(AssemblyFileVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/' \
+    -e 's/\(AssemblyInformationalVersion("\)[^"]*\(")\)/\1'$VERSION'\2/' \
+    -e 's/\(AssemblyConfiguration("\)[^"]*\(")\)/\1'$COMMIT'\2/' \
+    src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
 # Trigger release builds
 h1 "Installing packages"
