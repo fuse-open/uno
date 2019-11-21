@@ -198,7 +198,6 @@
     "Source/Uno/Exceptions/ObjectDisposedException.uno:Source",
     "Source/Uno/Exceptions/OverflowException.uno:Source",
     "Source/Uno/Exceptions/TypeInitializationException.uno:Source",
-    "Source/Uno/FakeTime.uno:Source",
     "Source/Uno/FlagsAttribute.uno:Source",
     "Source/Uno/Float.uno:Source",
     "Source/Uno/Float2.uno:Source",
