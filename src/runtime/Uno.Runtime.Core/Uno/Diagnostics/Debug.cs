@@ -15,6 +15,7 @@ namespace Uno.Diagnostics
             Debug._indentStr = "";
         }
 
+        [global::System.ObsoleteAttribute()]
         public static void SetAssertionHandler(AssertionHandler handler)
         {
             Debug._assertionHandler = handler;
@@ -29,6 +30,7 @@ namespace Uno.Diagnostics
                 Debug.EmitLog(((((("Assertion Failed: '" + expression) + "' in ") + filename) + "(") + (object)line) + ")", DebugMessageType.Error);
         }
 
+        [global::System.ObsoleteAttribute()]
         public static void SetLogHandler(LogHandler handler)
         {
             Debug._logHandler = handler;
@@ -54,11 +56,13 @@ namespace Uno.Diagnostics
             Debug.EmitLog(message.ToString(), type);
         }
 
+        [global::System.ObsoleteAttribute()]
         public static void IndentLog()
         {
             Debug._indentStr = Debug._indentStr + "\t";
         }
 
+        [global::System.ObsoleteAttribute()]
         public static void UnindentLog()
         {
             Debug._indentStr = Debug._indentStr.Substring(0, Debug._indentStr.Length - 1);
@@ -75,29 +79,6 @@ namespace Uno.Diagnostics
                 global::System.Console.Out.WriteLine(((object)type + ": ") + message);
             else
                 global::System.Console.Error.WriteLine(((object)type + ": ") + message);
-        }
-
-        [global::System.ObsoleteAttribute()]
-        public static void Alert(string message, string caption, DebugMessageType type)
-        {
-        }
-
-        [global::System.ObsoleteAttribute()]
-        public static void Alert(string message)
-        {
-            Debug.Alert(message, "Alert", DebugMessageType.Debug);
-        }
-
-        [global::System.ObsoleteAttribute()]
-        public static bool Confirm(string message, string caption, DebugMessageType type)
-        {
-            return false;
-        }
-
-        [global::System.ObsoleteAttribute()]
-        public static bool Confirm(string message)
-        {
-            return Debug.Confirm(message, "Confirm", DebugMessageType.Debug);
         }
     }
 }

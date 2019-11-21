@@ -11,6 +11,5 @@ namespace Uno.Diagnostics
         Warning = 2,
         Error = 3,
         Fatal = 4,
-        Undefined = 0,
     }
 }
