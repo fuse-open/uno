@@ -25,11 +25,11 @@ export JAVA_HOME="@(JDK.Directory)"
 ./gradlew @(Gradle.AssembleTask) "$@"
 
 #if @(LIBRARY:Defined)
-ln -sf @(AAR.BuildName:QuoteSpace) @(Product:QuoteSpace)
+ln -sf @(Outputs.AAR:QuoteSpace) @(Product:QuoteSpace)
 #else
-ln -sf @(APK.BuildName:QuoteSpace) @(Product:QuoteSpace)
+ln -sf @(Outputs.APK:QuoteSpace) @(Product:QuoteSpace)
 # if !@(DEBUG:Defined)
 ./gradlew @(Gradle.BundleTask)
-ln -sf @(Bundle.BuildName:QuoteSpace) @(Bundle:QuoteSpace)
+ln -sf @(Outputs.Bundle:QuoteSpace) @(Bundle:QuoteSpace)
 # endif
 #endif

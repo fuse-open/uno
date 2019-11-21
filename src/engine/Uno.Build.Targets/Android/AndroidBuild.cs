@@ -28,7 +28,7 @@ namespace Uno.Build.Targets.Android
         public override void DeleteOutdated(Disk disk, IEnvironment env)
         {
             // Remove previously built APK to avoid Android caching issues
-            var apk = env.GetString("APK.BuildName");
+            var apk = env.GetString("Outputs.APK");
             if (apk.IsValidPath())
                 disk.DeleteFile(env.Combine(apk.UnixToNative()));
 

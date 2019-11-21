@@ -74,9 +74,9 @@
     <Set Gradle.AssembleTask="assemble@(Build.Configuration)" />
     <Set Gradle.BundleTask="bundle@(Build.Configuration)" />
 
-    <Set AAR.BuildName="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
-    <Set APK.BuildName="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
-    <Set Bundle.BuildName="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app.aab" />
+    <Set Outputs.AAR="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
+    <Set Outputs.APK="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
+    <Set Outputs.Bundle="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app.aab" />
 
     <!-- Run-time properties -->
 
