@@ -11,7 +11,8 @@
   "scripts": {
     "build": "xbash scripts/build.sh",
     "prepack": "xbash scripts/pack.sh",
-    "test": "xbash scripts/test.sh"
+    "test": "xbash scripts/test.sh",
+    "version": "xbash scripts/version.sh"
   },
   "bin": {
     "uno": "bin/uno.js"
