@@ -97,6 +97,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 
 						if (!_nested)
 						{
+							ftw.WriteLine("@Deprecated");
 							ftw.WriteLine("static void debug_log(Object message)");
 							ftw.Indent("{");
 							ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("Activity.Name") + "\", (message==null ? \"null\" : message.toString()));");
