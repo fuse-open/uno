@@ -449,14 +449,6 @@ namespace OpenGL
                 build_error;
         }
 
-        [Obsolete("Use GL.BufferData(GLBufferTarget,int,IntPtr,GLBufferUsage) instead")]
-        public static void BufferData(GLBufferTarget target, Buffer data, GLBufferUsage usage)
-        {
-            GCHandle pin;
-            BufferData(target, data.SizeInBytes, data.PinPtr(out pin), usage);
-            pin.Free();
-        }
-
         public static void BufferSubData(GLBufferTarget target, int offset, int sizeInBytes, IntPtr data)
         {
             if defined(CPLUSPLUS)
@@ -469,14 +461,6 @@ namespace OpenGL
             }
             else
                 build_error;
-        }
-
-        [Obsolete("Use GL.BufferSubData(GLBufferTarget,int,int,IntPtr) instead")]
-        public static void BufferSubData(GLBufferTarget target, int offset, Buffer data)
-        {
-            GCHandle pin;
-            BufferSubData(target, offset, data.SizeInBytes, data.PinPtr(out pin));
-            pin.Free();
         }
 
         public static GLBufferHandle CreateBuffer()

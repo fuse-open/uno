@@ -94,7 +94,6 @@
     "ArrayIndex.Test.uno:Source",
     "ArraySort.Test.uno:Source",
     "Bool.Test.uno:Source",
-    "Buffer.Test.uno:Source",
     "Byte.Test.uno:Source",
     "ByteArrayExtensions.Test.uno:Source",
     "Char.Test.uno:Source",
