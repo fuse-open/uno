@@ -449,7 +449,7 @@
     "Targets/Android/build.bat:File",
     "Targets/Android/build.gradle:File",
     "Targets/Android/build.sh:File",
-    "Targets/Android/com/Bindings/UnoWrapped.java:File",
+    "Targets/Android/com/foreign/UnoWrapped.java:File",
     "Targets/Android/com/fuse/Activity.java:File",
     "Targets/Android/com/fuse/ActivityNativeEntryPoints.java:File",
     "Targets/Android/com/fuse/ActivityState.java:File",

@@ -32,7 +32,7 @@ namespace Android.Base
                 ClassLoader_loadClass = extern<jmethodID>(jni) "$0->GetMethodID($0->FindClass(\"java/lang/ClassLoader\"), \"loadClass\", \"(Ljava/lang/String;)Ljava/lang/Class;\")";
                 CheckException(jni);
 
-                extern(jni) "jstring jname = $0->NewStringUTF(\"com.Bindings.UnoHelper\")";
+                extern(jni) "jstring jname = $0->NewStringUTF(\"com.foreign.UnoHelper\")";
                 ujclass classLoader = extern<ujclass>(jni, activityObject, Activity_getClassLoader) "(jclass)$0->CallObjectMethod($1, $2)";
                 var hcls = extern<ujclass>(jni, classLoader, ClassLoader_loadClass) "(jclass)$0->CallObjectMethod($1, $2, jname)";
                 extern (jni, classLoader) "$0->DeleteLocalRef($1)";

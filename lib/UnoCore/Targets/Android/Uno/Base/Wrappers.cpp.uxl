@@ -147,7 +147,7 @@ return result;
         {
             @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
             JNINativeMethod nativeFunc = {(char* const)"Finalize", (char* const)"(J)V", (void *)&__JWrapper_Finalizer};
-            jclass cls = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr):Call(@{JNI.GetEnvPtr():Call()}, "com.Bindings.UnoHelper")}));
+            jclass cls = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr):Call(@{JNI.GetEnvPtr():Call()}, "com.foreign.UnoHelper")}));
             jint attached = @{JNI.GetEnvPtr():Call()}->RegisterNatives(cls, &nativeFunc, 1);
             if (attached < 0) {
                 U_THROW(@{Uno.Exception(string):New(uString::Utf8("Could not register the instantiation callback function",54))});

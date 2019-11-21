@@ -198,7 +198,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     }
     jclass activityClass = env->FindClass("@(Activity.Package:Replace('.', '/'))/@(Activity.Name)");
     jclass entryPointsClass = env->FindClass("com/fuse/ActivityNativeEntryPoints");
-    jclass nativeExternClass = env->FindClass("com/Bindings/ExternedBlockHost");
+    jclass nativeExternClass = env->FindClass("com/foreign/ExternedBlockHost");
 
     if (!activityClass)
         U_FATAL("COULD NOT FIND ACTIVITY CLASS");

@@ -78,9 +78,9 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 							ftw.WriteLine("import com.uno.ObjectArray;");
 							ftw.WriteLine("import com.uno.ShortArray;");
 							ftw.WriteLine("import com.uno.StringArray;");
-							ftw.WriteLine("import com.Bindings.UnoHelper;");
-							ftw.WriteLine("import com.Bindings.UnoWrapped;");
-							ftw.WriteLine("import com.Bindings.ExternedBlockHost;");
+							ftw.WriteLine("import com.foreign.UnoHelper;");
+							ftw.WriteLine("import com.foreign.UnoWrapped;");
+							ftw.WriteLine("import com.foreign.ExternedBlockHost;");
 
 							var userDefinedImports = AggregateImports();
 							if (userDefinedImports.Count > 0)

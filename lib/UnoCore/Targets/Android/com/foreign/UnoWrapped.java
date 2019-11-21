@@ -1,2 +1,2 @@
-package com.Bindings;
+package com.foreign;
 public interface UnoWrapped { long _GetUnoPtr(); }

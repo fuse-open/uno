@@ -68,7 +68,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 					var package = fullName.Substring(0, fullName.LastIndexOf('.'));
 					var implements = (voidReturn && d.Parameters.Length == 0) ? " implements java.lang.Runnable" : "";
 					ftw.WriteLine("package " + package + ";");
-					ftw.WriteLine("import com.Bindings.*;");
+					ftw.WriteLine("import com.foreign.*;");
 					ftw.WriteLine("import com.uno.BoolArray;");
 					ftw.WriteLine("import com.uno.ByteArray;");
 					ftw.WriteLine("import com.uno.CharArray;");

@@ -4,7 +4,7 @@
     <Using Namespace="Android.Base.Wrappers" />
 
     <Type Name="Bridge">
-        <ProcessFile Name="UnoHelper.java" TargetName="@(Java.SourceDirectory)/com/Bindings/UnoHelper.java" />
+        <ProcessFile Name="UnoHelper.java" TargetName="@(Java.SourceDirectory)/com/foreign/UnoHelper.java" />
         <Require Header.Include="android/log.h" />
         <Require Header.Include="@{Android.Base.JNI:Include}" />
         <Require Header.Include="@{Uno.Exception:Include}" />
@@ -14,7 +14,7 @@
 
                     if (@{_inited}) { return; }
                     @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
-                    @{_helperCls} = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr,bool):Call(@{JNI.GetEnvPtr():Call()}, "com.Bindings.UnoHelper", false)}));
+                    @{_helperCls} = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr,bool):Call(@{JNI.GetEnvPtr():Call()}, "com.foreign.UnoHelper", false)}));
                     if (!@{_helperCls}) {
                         U_THROW(@{Uno.Exception(string):New(uString::Utf8("Could not cache class for UnoHelper",35))});
                     }

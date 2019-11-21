@@ -1,4 +1,4 @@
-﻿package com.Bindings;
+﻿package com.foreign;
 
 import java.util.HashMap;
 import java.util.Observable;
@@ -150,8 +150,8 @@ public class UnoHelper {
 	public static long GetUnoRef(Class<?> cls, Object obj)
 	{
 		if (obj!=null) {
-			if (com.Bindings.UnoWrapped.class.isAssignableFrom(cls)) {
-				return ((com.Bindings.UnoWrapped)obj)._GetUnoPtr();
+			if (com.foreign.UnoWrapped.class.isAssignableFrom(cls)) {
+				return ((com.foreign.UnoWrapped)obj)._GetUnoPtr();
 			} else {
 				return -1;
 			}

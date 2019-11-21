@@ -4,7 +4,7 @@ import com.uno.UnoObject;
 public class StringArray extends UnoObject
 {
     public StringArray(int length) {
-        super(com.Bindings.ExternedBlockHost.newStringArrayPtr(length));
+        super(com.foreign.ExternedBlockHost.newStringArrayPtr(length));
     }
 
     private StringArray(long ptr) {
@@ -13,7 +13,7 @@ public class StringArray extends UnoObject
 
     public StringArray(String[] arr)
     {
-        super(com.Bindings.ExternedBlockHost.newStringArrayPtr(arr.length));
+        super(com.foreign.ExternedBlockHost.newStringArrayPtr(arr.length));
         int len = arr.length;
         for (int i=0; i<len; i++)
             set(i, arr[i]);
@@ -25,15 +25,15 @@ public class StringArray extends UnoObject
     }
 
     public String get(int index) {
-        return com.Bindings.ExternedBlockHost.getString(this, index);
+        return com.foreign.ExternedBlockHost.getString(this, index);
     }
 
     public String set(int index, String val) {
-        return com.Bindings.ExternedBlockHost.setString(this, index, val);
+        return com.foreign.ExternedBlockHost.setString(this, index, val);
     }
 
     public String[] copyArray()
     {
-        return (String[])com.Bindings.ExternedBlockHost.copyStringArray(this);
+        return (String[])com.foreign.ExternedBlockHost.copyStringArray(this);
     }
 }

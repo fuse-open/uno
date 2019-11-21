@@ -4,7 +4,7 @@ import com.uno.UnoObject;
 public class LongArray extends UnoObject
 {
     public LongArray(int length) {
-        super(com.Bindings.ExternedBlockHost.newLongArrayPtr(length));
+        super(com.foreign.ExternedBlockHost.newLongArrayPtr(length));
     }
 
     private LongArray(long ptr) {
@@ -12,7 +12,7 @@ public class LongArray extends UnoObject
     }
 
     public LongArray(long[] arr) {
-        super(com.Bindings.ExternedBlockHost.longArrayToUnoArrayPtr(arr));
+        super(com.foreign.ExternedBlockHost.longArrayToUnoArrayPtr(arr));
     }
 
     public static LongArray InitFromUnoPtr(long ptr)
@@ -21,15 +21,15 @@ public class LongArray extends UnoObject
     }
 
     public long get(int index) {
-        return com.Bindings.ExternedBlockHost.getLong(this, index);
+        return com.foreign.ExternedBlockHost.getLong(this, index);
     }
 
     public long set(int index, long val) {
-        return com.Bindings.ExternedBlockHost.setLong(this, index, val);
+        return com.foreign.ExternedBlockHost.setLong(this, index, val);
     }
 
     public long[] copyArray()
     {
-        return (long[])com.Bindings.ExternedBlockHost.copyLongArray(this);
+        return (long[])com.foreign.ExternedBlockHost.copyLongArray(this);
     }
 }
