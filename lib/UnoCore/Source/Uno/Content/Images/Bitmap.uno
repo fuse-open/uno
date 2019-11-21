@@ -18,13 +18,13 @@ namespace Uno.Content.Images
             private set;
         }
 
-        public Buffer Buffer
+        public byte[] Data
         {
             get;
             private set;
         }
 
-        public Bitmap(int2 size, Format format, Buffer optionalBuffer = null)
+        public Bitmap(int2 size, Format format, byte[] optionalData = null)
         {
             Size = size;
             Format = format;
@@ -35,17 +35,29 @@ namespace Uno.Content.Images
             if (byteCount < 0)
                 throw new Exception("size: Cannot be negative");
 
-            if (optionalBuffer != null)
+            if (optionalData != null)
             {
-                if (optionalBuffer.SizeInBytes != byteCount)
-                    throw new Exception("optionalBuffer: Invalid buffer size");
+                if (optionalData.Length != byteCount)
+                    throw new ArgumentException("optionalData", "Invalid buffer size");
 
-                Buffer = optionalBuffer;
+                Data = optionalData;
             }
             else
             {
-                Buffer = new Buffer(byteCount);
+                Data = new byte[byteCount];
             }
+        }
+
+        [Obsolete]
+        public Buffer Buffer
+        {
+            get { return new Buffer(Data); }
+        }
+
+        [Obsolete]
+        public Bitmap(int2 size, Format format, Buffer optionalBuffer)
+            : this(size, format, optionalBuffer != null ? optionalBuffer.GetBytes() : null)
+        {
         }
     }
 }

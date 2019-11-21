@@ -32,10 +32,10 @@ namespace Uno.Content.Fonts
                     var g = font.RenderGlyph(size, c);
                     glyphs.Add(c, g);
 
-                    if (g.Bitmap != null)
+                    if (g.Data != null)
                     {
-                        maxSize = Math.Max(maxSize, g.Bitmap.Size.X);
-                        maxSize = Math.Max(maxSize, g.Bitmap.Size.Y);
+                        maxSize = Math.Max(maxSize, g.Size.X);
+                        maxSize = Math.Max(maxSize, g.Size.Y);
                     }
                 }
             }
@@ -69,18 +69,18 @@ namespace Uno.Content.Fonts
                 int dstY = ((gi / sideCount) % sideCount) * (sideSize / sideCount);
                 gi++;
 
-                var src = e.Value.Bitmap;
+                var src = e.Value;
                 var srcSize = float2(0, 0);
 
-                if (src != null)
+                if (src.Data != null)
                 {
                     srcSize = src.Size;
                     var bpp = FormatHelpers.GetStrideInBytes(src.Format);
 
                     for (int srcY = 0; srcY < src.Size.Y; srcY++)
                         for (int srcX = 0; srcX < src.Size.X; srcX++)
-                            dst.Buffer[(dstY + srcY) * dst.Size.X + dstX + srcX] =
-                                src.Buffer[((srcY * src.Size.X) + srcX) * bpp];
+                            dst.Data[(dstY + srcY) * dst.Size.X + dstX + srcX] =
+                                src.Data[((srcY * src.Size.X) + srcX) * bpp];
                 }
 
                 BitmapFont.GlyphInfo g;
@@ -96,7 +96,7 @@ namespace Uno.Content.Fonts
                 result.Advances.Add(e.Key, g.Advance);
             }
 
-            tex.Update(dst.Buffer);
+            tex.Update(dst.Data);
 
             if (tex.IsMipmap)
                 tex.GenerateMipmap();
