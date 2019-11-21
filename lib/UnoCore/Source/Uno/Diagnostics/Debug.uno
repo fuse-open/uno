@@ -12,9 +12,6 @@ namespace Uno.Diagnostics
         Warning,
         Error,
         Fatal,
-
-        [Obsolete("Use 'DebugMessageType.Debug' instead")]
-        Undefined = 0,
     }
 
     [extern(DOTNET) DotNetType]
@@ -107,49 +104,6 @@ namespace Uno.Diagnostics
             }
             else
                 build_error;
-        }
-
-        [Obsolete]
-        public static void Alert(string message, string caption, DebugMessageType type)
-        {
-            if defined(CPLUSPLUS)
-            {
-            }
-            else if defined(DOTNET)
-            {
-            }
-            else
-                build_error;
-        }
-
-        [Obsolete]
-        public static void Alert(string message)
-        {
-            // TODO: Get caption from application
-            Alert(message, "Alert", 0);
-        }
-
-        [Obsolete]
-        public static bool Confirm(string message, string caption, DebugMessageType type)
-        {
-            if defined(CPLUSPLUS)
-            {
-                // TODO
-                return false;
-            }
-            else if defined(DOTNET)
-            {
-                return false;
-            }
-            else
-                build_error;
-        }
-
-        [Obsolete]
-        public static bool Confirm(string message)
-        {
-            // TODO: Get caption from application
-            return Confirm(message, "Confirm", 0);
         }
     }
 }
