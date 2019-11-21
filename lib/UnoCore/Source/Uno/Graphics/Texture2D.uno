@@ -340,12 +340,6 @@ namespace Uno.Graphics
             get { return MipCount > 1 && IsPow2; }
         }
 
-        [Obsolete("Use 'IsMipmap' instead")]
-        public bool SupportsMipmap
-        {
-            get { return IsMipmap; }
-        }
-
         public void GenerateMipmap()
         {
             if (!IsMipmap)

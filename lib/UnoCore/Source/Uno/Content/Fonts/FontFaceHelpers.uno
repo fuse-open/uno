@@ -98,7 +98,7 @@ namespace Uno.Content.Fonts
 
             tex.Update(dst.Buffer);
 
-            if (tex.SupportsMipmap)
+            if (tex.IsMipmap)
                 tex.GenerateMipmap();
 
             for (int i = 0; i < charsetInclWs.Length; i++)
