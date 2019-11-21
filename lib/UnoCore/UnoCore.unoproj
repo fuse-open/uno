@@ -335,7 +335,6 @@
     "Source/Uno/Text/Base64.uno:Source",
     "Source/Uno/Text/StringBuilder.uno:Source",
     "Source/Uno/Text/Utf8.uno:Source",
-    "Source/Uno/Threading/MainThreadAttribute.uno:Source",
     "Source/Uno/Threading/Monitor.uno:Source",
     "Source/Uno/Threading/Thread.uno:Source",
     "Source/Uno/Time/Calendars/Era.uno:Source",
