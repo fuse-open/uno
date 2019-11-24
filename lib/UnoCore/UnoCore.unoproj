@@ -458,6 +458,7 @@
     "Targets/Android/com/fuse/R.java:File",
     "Targets/Android/com/uno/CppManager.java:File",
     "Targets/Android/Dependencies.uxl:Extensions",
+    "Targets/Android/gradle.properties:File",
     "Targets/Android/gradle/wrapper/gradle-wrapper.jar:File",
     "Targets/Android/gradle/wrapper/gradle-wrapper.properties:File",
     "Targets/Android/gradlew:File",
