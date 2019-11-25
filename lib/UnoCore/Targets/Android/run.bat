@@ -12,6 +12,10 @@ if "%1" == "debug" (
     exit /b %ERRORLEVEL%
 )
 
+#if @(LIBRARY:Defined)
+echo ERROR: @(Product) is a library and cannot be run directly.
+exit /b 1
+#else
 if "%1" == "uninstall" (
     echo Uninstalling @(Activity.Package)
     @(Uno) adb uninstall @(Activity.Package)
@@ -24,3 +28,4 @@ if "%1" == "uninstall" (
     --sym-dir="%~dp0src\main\.uno" ^
     %*
 exit /b %ERRORLEVEL%
+#endif

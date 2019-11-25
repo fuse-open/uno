@@ -27,12 +27,18 @@ namespace Uno.Build.Targets.Android
 
         public override void DeleteOutdated(Disk disk, IEnvironment env)
         {
-            // Remove previously built APK to avoid Android caching issues
-            var apk = env.GetString("APK.BuildName");
-            if (apk.IsValidPath())
-                disk.DeleteFile(env.Combine(apk.UnixToNative()));
+            // Remove previously built AAR, APK and Bundle to avoid caching issues.
+            foreach (var output in new[] {
+                    env.GetString("Outputs.AAR"),
+                    env.GetString("Outputs.APK"),
+                    env.GetString("Outputs.Bundle")
+                })
+            {
+                if (output.IsValidPath())
+                    disk.DeleteFile(env.Combine(output.UnixToNative()));
+            }
 
-            // Delete old Java files so Gradle won't try to build them
+            // Delete old Java files so Gradle won't try to build them.
             disk.DeleteOutdatedFiles(env.GetOutputPath("Java.SourceDirectory"));
         }
     }
