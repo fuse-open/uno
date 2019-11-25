@@ -24,3 +24,6 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
 echo "Updating GlobalAssemblyInfo to version $VERSION"
 cat src/GlobalAssemblyInfo.Override.cs > src/GlobalAssemblyInfo.cs
 rm src/GlobalAssemblyInfo.Override.cs
+
+# Stage for commit.
+git add src/GlobalAssemblyInfo.cs
