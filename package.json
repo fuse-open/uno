@@ -3,7 +3,7 @@
   "version": "1.14.0-canary.1",
   "description": "Fast, native C# dialect and cross-compiler.",
   "dependencies": {
-    "dotnet-run": "^1.1.0"
+    "dotnet-run": "^1.2.0"
   },
   "devDependencies": {
     "xbash": "^1.4.0"
