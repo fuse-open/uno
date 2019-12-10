@@ -182,7 +182,7 @@ namespace Uno.CLI
             }
             else if (option.StartsWith("* ", StringComparison.InvariantCulture))
             {
-                Log.Write(option.Substring(0, 2), ConsoleColor.Yellow);
+                Log.Write(option.Substring(0, 2), ConsoleColor.Red);
                 Log.Write(option.Substring(2).PadRight(_width - 2));
             }
             else if (IsCommand(option))
@@ -206,14 +206,14 @@ namespace Uno.CLI
                     if (!optional && i > 0)
                     {
                         Log.Write(description.Substring(0, i));
-                        Log.Write(description.Substring(i), ConsoleColor.Yellow);
+                        Log.Write(description.Substring(i), ConsoleColor.DarkGray);
                     }
                     else
                         Log.Write(description);
                 }
 
                 if (optional)
-                    Log.Write(" [optional]", ConsoleColor.Yellow);
+                    Log.Write(" [optional]", ConsoleColor.DarkGray);
             }
 
             Log.WriteLine();
