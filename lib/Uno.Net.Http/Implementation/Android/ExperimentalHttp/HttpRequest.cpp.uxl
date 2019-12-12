@@ -112,7 +112,7 @@ U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheFlush_44283_ID});
 </Body>
         </Method>
         <Method Signature="HttpRequest_IMPL_44284(Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper):Android.Base.Primitives.ujobject">
-            <ProcessFile Name="Android_com_fuse_ExperimentalHttp_HttpRequest.java" TargetName="@(Java.SourceDirectory)/com/Bindings/Android_com_fuse_ExperimentalHttp_HttpRequest.java" />
+            <ProcessFile Name="Android_com_fuse_ExperimentalHttp_HttpRequest.java" TargetName="@(Java.SourceDirectory)/com/foreign/Android_com_fuse_ExperimentalHttp_HttpRequest.java" />
             <ProcessFile Name="HttpRequest.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/HttpRequest.java" />
             <ProcessFile Name="PRNGFixes.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/PRNGFixes.java" />
             <ProcessFile Name="UploadTask.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/UploadTask.java" />
@@ -472,7 +472,7 @@ if (!@{_javaClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'com.fuse.Exper
             <Body>
 if (@{_javaProxyClass}) { return; }
 INIT_JNI;
-@{_javaProxyClass} = NEW_GLOBAL_REF(jclass,@{Android.Base.JNI.LoadClass(Android.Base.Primitives.JNIEnvPtr,Android.Base.Primitives.ConstCharPtr):Call(jni, "com.Bindings.Android_com_fuse_ExperimentalHttp_HttpRequest")});
+@{_javaProxyClass} = NEW_GLOBAL_REF(jclass,@{Android.Base.JNI.LoadClass(Android.Base.Primitives.JNIEnvPtr,Android.Base.Primitives.ConstCharPtr):Call(jni, "com.foreign.Android_com_fuse_ExperimentalHttp_HttpRequest")});
 @{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
 if (!@{_javaProxyClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'Android_com_fuse_ExperimentalHttp_HttpRequest'", 69);; }
 

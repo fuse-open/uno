@@ -56,7 +56,7 @@ public final class Permissions {
     public static void startPermissionRequest(UnoObject promise, String[] permissions)
     {
         if (hasPermissions(permissions)) {
-            com.Bindings.ExternedBlockHost.permissionRequestSucceeded(promise);
+            com.foreign.ExternedBlockHost.permissionRequestSucceeded(promise);
         }else{
             _requests.add(new PermissionsRequest(promise, permissions, _permissionRequestID++));
             if(_currentRequest == null)
@@ -94,10 +94,10 @@ public final class Permissions {
             }
             if (ok) {
                 android.util.Log.d("Permissions", "Permissions granted");
-                com.Bindings.ExternedBlockHost.permissionRequestSucceeded(_currentRequest.promise);
+                com.foreign.ExternedBlockHost.permissionRequestSucceeded(_currentRequest.promise);
             } else {
                 android.util.Log.d("Permissions", "Permissions denied");
-                com.Bindings.ExternedBlockHost.permissionRequestFailed(_currentRequest.promise);
+                com.foreign.ExternedBlockHost.permissionRequestFailed(_currentRequest.promise);
             }
         }
         _currentRequest = null;

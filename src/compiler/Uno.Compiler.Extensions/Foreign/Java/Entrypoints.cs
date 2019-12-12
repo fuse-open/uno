@@ -113,7 +113,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 
 		public void WriteJava()
 		{
-			var path = _environment.Combine(_environment.GetString("Java.SourceDirectory"), "com", "Bindings");
+			var path = _environment.Combine(_environment.GetString("Java.SourceDirectory"), "com", "foreign");
 			var filePath = Path.Combine(path, "ExternedBlockHost.java");
 			_disk.WriteAllText(filePath, GenJavaClassCode());
 		}
@@ -149,7 +149,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 			{
 				using (var ftw = new TextFormatter(tw))
 				{
-					ftw.WriteLine("package com.Bindings;\n");
+					ftw.WriteLine("package com.foreign;\n");
 					ftw.WriteLine("import com.uno.UnoObject;");
 					ftw.WriteLine("import com.uno.BoolArray;");
 					ftw.WriteLine("import com.uno.ByteArray;");

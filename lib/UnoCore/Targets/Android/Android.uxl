@@ -208,14 +208,14 @@
     <Declare Element="JavaFile" TargetDirectory="@(Java.SourceDirectory)" />
 
     <ProcessFile Name="@(Java.PackageDirectory)/@(Activity.Name).java" />
+    <ProcessFile JavaFile="com/foreign/UnoWrapped.java" />
+    <ProcessFile JavaFile="com/fuse/Activity.java" />
     <ProcessFile JavaFile="com/fuse/ActivityNativeEntryPoints.java" />
     <ProcessFile JavaFile="com/fuse/ActivityState.java" />
-    <ProcessFile JavaFile="com/fuse/AppRuntimeSettings.java" />
     <ProcessFile JavaFile="com/fuse/App.java" />
-    <ProcessFile JavaFile="com/uno/CppManager.java" />
-    <ProcessFile JavaFile="com/Bindings/UnoWrapped.java" />
-    <ProcessFile JavaFile="com/fuse/Activity.java" />
+    <ProcessFile JavaFile="com/fuse/AppRuntimeSettings.java" />
     <ProcessFile JavaFile="com/fuse/R.java" />
+    <ProcessFile JavaFile="com/uno/CppManager.java" />
 
     <!-- Icons -->
 

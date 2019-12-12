@@ -1,6 +1,6 @@
 package com.uno;
 
-public class UnoObject // implements com.Bindings.UnoWrapped
+public class UnoObject // implements com.foreign.UnoWrapped
 {
     public long _retainedUnoPtr;
 

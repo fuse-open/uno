@@ -1,6 +1,6 @@
-package com.Bindings;
+package com.foreign;
 
-public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.ExperimentalHttp.HttpRequest implements com.Bindings.UnoWrapped {
+public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.ExperimentalHttp.HttpRequest implements com.foreign.UnoWrapped {
 
     public long _unoRef;
     @Override public long _GetUnoPtr() { return _unoRef; }

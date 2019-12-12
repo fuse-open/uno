@@ -10,7 +10,7 @@ public class ByteArray extends UnoObject
     }
 
     public ByteArray(int length, boolean unoIsUnsigned) {
-        super(com.Bindings.ExternedBlockHost.newByteArrayPtr(length, unoIsUnsigned));
+        super(com.foreign.ExternedBlockHost.newByteArrayPtr(length, unoIsUnsigned));
         _unoIsUnsigned = unoIsUnsigned;
     }
 
@@ -20,7 +20,7 @@ public class ByteArray extends UnoObject
     }
 
     public ByteArray(byte[] arr) {
-        super(com.Bindings.ExternedBlockHost.byteArrayToUnoArrayPtr(arr));
+        super(com.foreign.ExternedBlockHost.byteArrayToUnoArrayPtr(arr));
     }
 
     public static ByteArray InitFromUnoPtr(long ptr, boolean unoIsUnsigned)
@@ -30,23 +30,23 @@ public class ByteArray extends UnoObject
 
     public byte get(int index) {
         if (_unoIsUnsigned)
-            return com.Bindings.ExternedBlockHost.getUByte(this, index);
+            return com.foreign.ExternedBlockHost.getUByte(this, index);
         else
-            return com.Bindings.ExternedBlockHost.getByte(this, index);
+            return com.foreign.ExternedBlockHost.getByte(this, index);
     }
 
     public byte set(int index, byte val) {
         if (_unoIsUnsigned)
-            return com.Bindings.ExternedBlockHost.setUByte(this, index, val);
+            return com.foreign.ExternedBlockHost.setUByte(this, index, val);
         else
-            return com.Bindings.ExternedBlockHost.setByte(this, index, val);
+            return com.foreign.ExternedBlockHost.setByte(this, index, val);
     }
 
     public byte[] copyArray()
     {
         if (_unoIsUnsigned)
-            return (byte[])com.Bindings.ExternedBlockHost.copyUByteArray(this);
+            return (byte[])com.foreign.ExternedBlockHost.copyUByteArray(this);
         else
-            return (byte[])com.Bindings.ExternedBlockHost.copyByteArray(this);
+            return (byte[])com.foreign.ExternedBlockHost.copyByteArray(this);
     }
 }
