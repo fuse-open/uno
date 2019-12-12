@@ -11,9 +11,6 @@ namespace Uno.Graphics
         public readonly bool IsMipmap = false;
         public readonly bool IsPow2 = false;
 
-        [Obsolete("Use 'IsMipmap' instead")]
-        public readonly bool SupportsMipmap = false;
-
         public extern(OPENGL) GLTextureHandle GLTextureHandle
         {
             get;

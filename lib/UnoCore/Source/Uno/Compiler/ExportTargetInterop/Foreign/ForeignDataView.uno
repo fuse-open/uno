@@ -25,15 +25,6 @@ namespace Uno.Compiler.ExportTargetInterop
             Handle = CreateNSDataFromByteArray(extern<IntPtr>(data) "$0").Handle;
         }
 
-        // Broken because it doesn't honor ByteOffset or SizeInBytes
-        [Obsolete("Use the byte[] overload instead")]
-        ForeignDataView(Uno.Buffer buffer)
-        {
-            if (buffer == null)
-                throw new ArgumentNullException(nameof(buffer));
-            Handle = CreateNSDataFromByteArray(extern<IntPtr>(buffer.GetBytes()) "$0").Handle;
-        }
-
         public static ForeignDataView Create(byte[] unoArray)
         {
             return new ForeignDataView(unoArray);
@@ -42,13 +33,6 @@ namespace Uno.Compiler.ExportTargetInterop
         public static ForeignDataView Create(sbyte[] unoArray)
         {
             return new ForeignDataView(unoArray);
-        }
-
-        // Broken because it doesn't honor ByteOffset or SizeInBytes
-        [Obsolete("Use the byte[] overload instead")]
-        public static ForeignDataView Create(Uno.Buffer unoBuffer)
-        {
-            return new ForeignDataView(unoBuffer);
         }
 
         [Foreign(Language.ObjC)]
@@ -84,15 +68,6 @@ namespace Uno.Compiler.ExportTargetInterop
             if (unoArray == null)
                 throw new ArgumentNullException(nameof(unoArray));
             return CreateInner(ByteBuffer.NewDirectByteBuffer(unoArray), unoArray);
-        }
-
-        // Broken because it doesn't honor ByteOffset or SizeInBytes
-        [Obsolete("Use the byte[] overload instead")]
-        public static Java.Object Create(Uno.Buffer unoBuffer)
-        {
-            if (unoBuffer == null)
-                throw new ArgumentNullException(nameof(unoBuffer));
-            return Create(unoBuffer.GetBytes());
         }
 
         static Java.Object CreateInner(ujobject directBuffer, object unoObj)

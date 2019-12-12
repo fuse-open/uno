@@ -13,7 +13,6 @@
     "Collections/Queue.Test.uno:Source",
     "Collections/Stack.Test.uno:Source",
     "Diagnostics/Clock.Test.uno:Source",
-    "Diagnostics/Profile.Test.uno:Source",
     "Exceptions/AggregateException.Test.uno:Source",
     "Exceptions/Exception.Test.uno:Source",
     "Exceptions/InvalidCastException.Test.uno:Source",

@@ -6,9 +6,6 @@ namespace Uno.IO
     [extern(DOTNET) DotNetType("System.IO.TextWriter")]
     public abstract class TextWriter : IDisposable
     {
-        [Obsolete("Use the 'NewLine' property instead")]
-        protected const string InitialNewLine = "\r\n";
-
         string _newline = Environment.NewLine;
         public virtual string NewLine
         {

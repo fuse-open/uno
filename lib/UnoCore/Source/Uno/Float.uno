@@ -14,9 +14,6 @@ namespace Uno
         public const float PositiveInfinity = 1.f/.0f;
         public const float NegativeInfinity = -1.f/.0f;
 
-        [Obsolete]
-        public const float ZeroTolerance = 1e-05f;
-
         public override bool Equals(object o)
         {
             return base.Equals(o);

@@ -50,13 +50,6 @@ namespace Uno.Graphics
             Update(data);
         }
 
-        [Obsolete("Use the byte[] overload instead")]
-        public VertexBuffer(Buffer data, BufferUsage usage)
-            : this(usage)
-        {
-            Update(data);
-        }
-
         public void Update(float[] data)
         {
             Update(data, sizeof(float));

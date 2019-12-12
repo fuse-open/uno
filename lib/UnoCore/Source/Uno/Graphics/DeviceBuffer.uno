@@ -119,33 +119,6 @@ namespace Uno.Graphics
             Update(data, sizeof(byte));
         }
 
-        [Obsolete("Use the byte[] overload instead")]
-        public void Update(Buffer data)
-        {
-            CheckDisposed();
-
-            if defined(OPENGL)
-            {
-                GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-
-                if (data.SizeInBytes <= SizeInBytes)
-                {
-                    GL.BufferSubData(GLBufferTarget, 0, data);
-                }
-                else
-                {
-                    GL.BufferData(GLBufferTarget, data, GLInterop.ToGLBufferUsage(Usage));
-                    SizeInBytes = data.SizeInBytes;
-                }
-
-                GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
-            }
-            else
-            {
-                build_error;
-            }
-        }
-
         protected void CheckDisposed()
         {
             if (IsDisposed)

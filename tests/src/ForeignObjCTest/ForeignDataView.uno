@@ -15,9 +15,8 @@ namespace ForeignObjCTest
         [Test]
         public void Contents()
         {
-                Assert.IsTrue(TestContents(ForeignDataView.Create(new byte[] { 1, 2, 3 })));
-                Assert.IsTrue(TestContents(ForeignDataView.Create(new sbyte[] { 1, 2, 3 })));
-                Assert.IsTrue(TestContents(ForeignDataView.Create(new Uno.Buffer(new byte[] { 1, 2, 3 }))));
+            Assert.IsTrue(TestContents(ForeignDataView.Create(new byte[] { 1, 2, 3 })));
+            Assert.IsTrue(TestContents(ForeignDataView.Create(new sbyte[] { 1, 2, 3 })));
         }
 
         [Foreign(Language.ObjC)]

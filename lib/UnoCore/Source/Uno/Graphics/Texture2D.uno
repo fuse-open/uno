@@ -217,30 +217,6 @@ namespace Uno.Graphics
             }
         }
 
-        [Obsolete("Use the byte[] overload instead")]
-        public void Update(Buffer mip0)
-        {
-            if (Format == Format.Unknown)
-            {
-                throw new InvalidOperationException("Texture is immutable and cannot be updated");
-            }
-            else if defined(OPENGL)
-            {
-                GL.ActiveTexture(GLTextureUnit.Texture0);
-                GL.BindTexture(GLTextureTarget.Texture2D, GLTextureHandle);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.MagFilter, GLTextureParameterValue.Linear);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.MinFilter, GLTextureParameterValue.Linear);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapS, GLTextureParameterValue.ClampToEdge);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapT, GLTextureParameterValue.ClampToEdge);
-                GLHelpers.TexImage2DFromBuffer(GLTextureTarget.Texture2D, Size.X, Size.Y, 0, Format, mip0);
-                GL.BindTexture(GLTextureTarget.Texture2D, GLTextureHandle.Zero);
-            }
-            else
-            {
-                build_error;
-            }
-        }
-
         public void Update(int firstMip, params byte[][] mips)
         {
             if (Format == Format.Unknown)
@@ -285,51 +261,6 @@ namespace Uno.Graphics
             }
         }
 
-        [Obsolete("Use the byte[] overload instead")]
-        public void Update(int firstMip, params Buffer[] mips)
-        {
-            if (Format == Format.Unknown)
-            {
-                throw new InvalidOperationException("Texture is immutable and cannot be updated");
-            }
-            else if defined(OPENGL)
-            {
-                GL.ActiveTexture(GLTextureUnit.Texture0);
-                GL.BindTexture(GLTextureTarget.Texture2D, GLTextureHandle);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.MagFilter, GLTextureParameterValue.Linear);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.MinFilter, GLTextureParameterValue.Linear);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapS, GLTextureParameterValue.ClampToEdge);
-                GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapT, GLTextureParameterValue.ClampToEdge);
-
-                int w = Size.X;
-                int h = Size.Y;
-
-                for (int i = 0; i < MipCount; i++)
-                {
-                    if (i >= firstMip)
-                        GLHelpers.TexImage2DFromBuffer(GLTextureTarget.Texture2D, w, h, i, Format, mips[i]);
-
-                    w = w >> 1;
-                    h = h >> 1;
-
-                    if (w < 1)
-                        w = 1;
-
-                    if (h < 1)
-                        h = 1;
-
-                    if (i >= mips.Length - firstMip)
-                        break;
-                }
-
-                GL.BindTexture(GLTextureTarget.Texture2D, GLTextureHandle.Zero);
-            }
-            else
-            {
-                build_error;
-            }
-        }
-
         public bool IsPow2
         {
             get { return Math.IsPow2(Size.X) && Math.IsPow2(Size.Y); }
@@ -338,12 +269,6 @@ namespace Uno.Graphics
         public bool IsMipmap
         {
             get { return MipCount > 1 && IsPow2; }
-        }
-
-        [Obsolete("Use 'IsMipmap' instead")]
-        public bool SupportsMipmap
-        {
-            get { return IsMipmap; }
         }
 
         public void GenerateMipmap()

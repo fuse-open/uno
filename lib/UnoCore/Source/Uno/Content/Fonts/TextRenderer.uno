@@ -20,7 +20,7 @@ namespace Uno.Content.Fonts
         TextShader _shader;
         TextTransform _transform;
 
-        Buffer _buffer;
+        byte[] _buffer;
 
         VertexBuffer _vbo;
         IndexBuffer _ibo;
@@ -30,7 +30,7 @@ namespace Uno.Content.Fonts
         {
             _maxCharCount = maxCharCount;
 
-            var indexBuffer = new Buffer(maxCharCount * 6 * 2);
+            var indexBuffer = new byte[maxCharCount * 6 * 2];
 
             for (int i = 0; i < maxCharCount; i++)
             {
@@ -45,7 +45,7 @@ namespace Uno.Content.Fonts
             _ibo = new IndexBuffer(indexBuffer, BufferUsage.Immutable);
             _vbo = new VertexBuffer(BufferUsage.Stream);
 
-            _buffer = new Buffer(maxCharCount * 4 * 16);
+            _buffer = new byte[maxCharCount * 4 * 16];
 
             _data = new TextShaderData(_ibo, _vbo);
 

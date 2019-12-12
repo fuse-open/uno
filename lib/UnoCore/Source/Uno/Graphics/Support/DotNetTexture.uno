@@ -2,6 +2,7 @@ using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.IO;
 using Uno.Native.Textures;
+using Uno.Runtime.InteropServices;
 
 namespace Uno.Graphics.Support
 {
@@ -58,7 +59,9 @@ namespace Uno.Graphics.Support
                 GL.BindTexture(GLTextureTarget.Texture2D, textureHandle);
                 GL.PixelStore(GLPixelStoreParameter.PackAlignment, 1);
                 GL.PixelStore(GLPixelStoreParameter.UnpackAlignment, 1);
-                GL.TexImage2D(GLTextureTarget.Texture2D, 0, internalFormat, bitmap.Width, bitmap.Height, 0, pixelFormat, pixelType, bitmap.ReadData());
+                var dataPin = GCHandle.Alloc(bitmap.ReadData(), GCHandleType.Pinned);
+                GL.TexImage2D(GLTextureTarget.Texture2D, 0, internalFormat, bitmap.Width, bitmap.Height, 0, pixelFormat, pixelType, dataPin.AddrOfPinnedObject());
+                dataPin.Free();
                 return new Uno.Graphics.Texture2D(textureHandle,
                                                   int2(bitmap.Width, bitmap.Height),
                                                   1,
@@ -120,9 +123,13 @@ namespace Uno.Graphics.Support
                 GL.PixelStore(GLPixelStoreParameter.UnpackAlignment, 1);
 
                 for (int i = 0; i < 6; i++)
+                {
+                    var dataPin = GCHandle.Alloc(bitmap.ReadData(i), GCHandleType.Pinned);
                     GL.TexImage2D((GLTextureTarget) (GLTextureTarget.TextureCubeMapPositiveX + i), 0, internalFormat,
                         bitmap.Width, bitmap.Height, 0, pixelFormat, pixelType,
-                        bitmap.ReadData(i));
+                        dataPin.AddrOfPinnedObject());
+                    dataPin.Free();
+                }
 
                 return new Uno.Graphics.TextureCube(textureHandle,
                                                     bitmap.Width,

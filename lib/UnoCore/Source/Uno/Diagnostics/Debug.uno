@@ -12,9 +12,6 @@ namespace Uno.Diagnostics
         Warning,
         Error,
         Fatal,
-
-        [Obsolete("Use 'DebugMessageType.Debug' instead")]
-        Undefined = 0,
     }
 
     [extern(DOTNET) DotNetType]
@@ -29,7 +26,7 @@ namespace Uno.Diagnostics
         // TODO: Deprecated
         static AssertionHandler _assertionHandler;
 
-        // TODO: Deprecated
+        [Obsolete]
         public static void SetAssertionHandler(AssertionHandler handler)
         {
             _assertionHandler = handler;
@@ -50,6 +47,7 @@ namespace Uno.Diagnostics
 
         static LogHandler _logHandler;
 
+        [Obsolete]
         public static void SetLogHandler(LogHandler handler)
         {
             _logHandler = handler;
@@ -76,11 +74,14 @@ namespace Uno.Diagnostics
         }
 
         static string _indentStr = "";
+
+        [Obsolete]
         public static void IndentLog()
         {
             _indentStr += "\t";
         }
 
+        [Obsolete]
         public static void UnindentLog()
         {
             _indentStr = _indentStr.Substring( 0, _indentStr.Length - 1 );
@@ -107,49 +108,6 @@ namespace Uno.Diagnostics
             }
             else
                 build_error;
-        }
-
-        [Obsolete]
-        public static void Alert(string message, string caption, DebugMessageType type)
-        {
-            if defined(CPLUSPLUS)
-            {
-            }
-            else if defined(DOTNET)
-            {
-            }
-            else
-                build_error;
-        }
-
-        [Obsolete]
-        public static void Alert(string message)
-        {
-            // TODO: Get caption from application
-            Alert(message, "Alert", 0);
-        }
-
-        [Obsolete]
-        public static bool Confirm(string message, string caption, DebugMessageType type)
-        {
-            if defined(CPLUSPLUS)
-            {
-                // TODO
-                return false;
-            }
-            else if defined(DOTNET)
-            {
-                return false;
-            }
-            else
-                build_error;
-        }
-
-        [Obsolete]
-        public static bool Confirm(string message)
-        {
-            // TODO: Get caption from application
-            return Confirm(message, "Confirm", 0);
         }
     }
 }

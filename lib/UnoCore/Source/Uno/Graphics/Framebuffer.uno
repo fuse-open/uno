@@ -32,12 +32,6 @@ namespace Uno.Graphics
             get { return RenderTarget.HasDepth; }
         }
 
-        [Obsolete("Use 'ColorBuffer.IsMipmap' instead")]
-        public bool SupportsMipmap
-        {
-            get { return ColorBuffer.IsMipmap; }
-        }
-
         public Format Format
         {
             get { return ColorBuffer.Format; }

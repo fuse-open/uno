@@ -1,8 +1,10 @@
 using Uno.Collections;
 using Uno.IO;
+using Uno;
 
 namespace Uno.Diagnostics
 {
+    [Obsolete]
     public class IdMap<T>
     {
         private int _nextId;
