@@ -150,23 +150,4 @@ public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityC
         _keepDummySurfaceTexture = new SurfaceTexture(texName);
         return new Surface(_keepDummySurfaceTexture);
     }
-
-    @Deprecated
-    public static Activity GetRootActivity()
-    {
-        Log.w("@(Activity.Name)", "GetRootActivity() is deprecated -- please use com.fuse.Activity.getRootActivity() instead.");
-        return com.fuse.Activity.getRootActivity();
-    }
-    @Deprecated
-    public static int ShowMessageBox(CharSequence caption, CharSequence message, int buttons, int hints)
-    {
-        Log.w("@(Activity.Name)", "ShowMessageBox() is deprecated.");
-        return -1;
-    }
-    @Deprecated
-    public static AssetManager GetAssetManager()
-    {
-        Log.w("@(Activity.Name)", "GetAssetManager() is deprecated.");
-        return com.fuse.App.getCurrent().RootActivity.getAssets();
-    }
 }
