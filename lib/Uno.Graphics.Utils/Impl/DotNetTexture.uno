@@ -136,5 +136,15 @@ namespace Uno.Graphics.Utils.Impl
                                                     format);
             }
         }
+
+        public static texture2D JpegByteArrayToTexture2D(byte[] arr)
+        {
+            return Load2D("fake.jpeg", arr);
+        }
+
+        public static texture2D PngByteArrayToTexture2D(byte[] arr)
+        {
+            return Load2D("fake.png", arr);
+        }
     }
 }
