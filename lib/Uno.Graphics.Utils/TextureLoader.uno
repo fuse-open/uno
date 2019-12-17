@@ -18,12 +18,13 @@ namespace Uno.Graphics.Utils
 
         public static Texture2D Load2D(string filename, byte[] bytes)
         {
-            if defined(CPLUSPLUS)
-                return CppTexture.Load2D(filename, bytes);
-            else if defined(DOTNET)
-                return DotNetTexture.Load2D(filename, bytes);
+            filename = filename.ToLower();
+            if (filename.EndsWith(".png"))
+                return Load2DPng(bytes);
+            else if (filename.EndsWith(".jpg") || filename.EndsWith(".jpeg"))
+                return Load2DJpeg(bytes);
             else
-                throw new NotImplementedException();
+                throw new InvalidContentTypeException(filename);
         }
 
         public static TextureCube LoadCube(BundleFile file)
@@ -46,14 +47,14 @@ namespace Uno.Graphics.Utils
                 throw new NotImplementedException();
         }
 
-        public static texture2D JpegByteArrayToTexture2D(byte[] arr)
+        public static texture2D Load2DJpeg(byte[] bytes)
         {
             try
             {
                 if defined(CPLUSPLUS)
-                    return CppTexture.JpegByteArrayToTexture2D(arr);
+                    return CppTexture.Load2DJpeg(bytes);
                 else if defined(DOTNET)
-                    return DotNetTexture.JpegByteArrayToTexture2D(arr);
+                    return DotNetTexture.Load2D("image.jpg", bytes);
                 else
                     throw new NotImplementedException();
             }
@@ -62,9 +63,9 @@ namespace Uno.Graphics.Utils
                 try
                 {
                     if defined(CPLUSPLUS)
-                        return CppTexture.PngByteArrayToTexture2D(arr);
+                        return CppTexture.Load2DPng(bytes);
                     else if defined(DOTNET)
-                        return DotNetTexture.PngByteArrayToTexture2D(arr);
+                        return DotNetTexture.Load2D("image.png", bytes);
                     else
                         throw new NotImplementedException();
                 } 
@@ -76,14 +77,14 @@ namespace Uno.Graphics.Utils
             }
         }
 
-        public static texture2D PngByteArrayToTexture2D(byte[] arr)
+        public static texture2D Load2DPng(byte[] bytes)
         {
             try
             {
                 if defined(CPLUSPLUS)
-                    return CppTexture.PngByteArrayToTexture2D(arr);
+                    return CppTexture.Load2DPng(bytes);
                 else if defined(DOTNET)
-                    return DotNetTexture.PngByteArrayToTexture2D(arr);
+                    return DotNetTexture.Load2D("image.png", bytes);
                 else
                     throw new NotImplementedException();
             }
@@ -92,9 +93,9 @@ namespace Uno.Graphics.Utils
                 try
                 {
                     if defined(CPLUSPLUS)
-                        return CppTexture.JpegByteArrayToTexture2D(arr);
+                        return CppTexture.Load2DJpeg(bytes);
                     else if defined(DOTNET)
-                        return DotNetTexture.JpegByteArrayToTexture2D(arr);
+                        return DotNetTexture.Load2D("image.jpg", bytes);
                     else
                         throw new NotImplementedException();
                 }
@@ -106,27 +107,16 @@ namespace Uno.Graphics.Utils
             }
         }
 
-        public static texture2D ByteArrayToTexture2DFilename(byte[] arr, string filename)
-        {
-            filename = filename.ToLower();
-            if (filename.EndsWith(".png"))
-                return PngByteArrayToTexture2D(arr);
-            else if (filename.EndsWith(".jpg") || filename.EndsWith(".jpeg"))
-                return JpegByteArrayToTexture2D(arr);
-            else
-                throw new InvalidContentTypeException(filename);
-        }
-
-        public static texture2D ByteArrayToTexture2DContentType(byte[] arr, string contentType)
+        public static texture2D Load2DContextType(byte[] bytes, string contentType)
         {
             if (contentType.IndexOf("image/jpeg") != -1 || contentType.IndexOf("image/jpg") != -1)
-                return JpegByteArrayToTexture2D(arr);
+                return Load2DJpeg(bytes);
             else if (contentType.IndexOf("image/png") != -1)
-                return PngByteArrayToTexture2D(arr);
+                return Load2DPng(bytes);
             else if (contentType.IndexOf("application/octet-stream") != -1)
-                return JpegByteArrayToTexture2D(arr);
+                return Load2DJpeg(bytes);
             else if (contentType.IndexOf("binary/octet-stream") != -1)
-                return JpegByteArrayToTexture2D(arr);
+                return Load2DJpeg(bytes);
             else
                 throw new InvalidContentTypeException(contentType);
         }

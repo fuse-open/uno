@@ -16,19 +16,6 @@ namespace Uno.Graphics.Utils.Impl
     [extern(CPLUSPLUS) Require("Source.Include", "Uno/Support.h")]
     extern(CPLUSPLUS) static class CppTexture
     {
-        public static texture2D Load2D(string filename, byte[] data)
-        @{
-            uBase::Auto<uImage::Texture> tex = uLoadXliTexture(uStringToXliString($0), $1);
-
-            uGLTextureInfo info;
-            GLuint handle = uCreateGLTexture(tex, false, &info);
-
-            if (info.GLTarget != GL_TEXTURE_2D)
-                throw uBase::Exception("Invalid 2D texture");
-
-            return @{texture2D(GLTextureHandle,int2,int,Format):New(handle, @{int2(int,int):New(info.Width, info.Height)}, info.MipCount, @{Format.Unknown})};
-        @}
-
         public static textureCube LoadCube(string filename, byte[] data)
         @{
             uBase::Auto<uImage::Texture> tex = uLoadXliTexture(uStringToXliString($0), $1);
@@ -48,7 +35,7 @@ namespace Uno.Graphics.Utils.Impl
             return @{textureCube(GLTextureHandle,int,int,Format):New(handle, info.Width, info.MipCount, @{Format.Unknown})};
         @}
 
-        public static texture2D JpegByteArrayToTexture2D(byte[] arr)
+        public static texture2D Load2DJpeg(byte[] bytes)
         @{
             try
             {
@@ -79,7 +66,7 @@ namespace Uno.Graphics.Utils.Impl
             }
         @}
 
-        public static texture2D PngByteArrayToTexture2D(byte[] arr)
+        public static texture2D Load2DPng(byte[] bytes)
         @{
             try
             {
