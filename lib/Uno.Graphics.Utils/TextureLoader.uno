@@ -21,10 +21,8 @@ namespace Uno.Graphics.Utils
             filename = filename.ToLower();
             if (filename.EndsWith(".png"))
                 return Load2DPng(bytes);
-            else if (filename.EndsWith(".jpg") || filename.EndsWith(".jpeg"))
-                return Load2DJpeg(bytes);
             else
-                throw new InvalidContentTypeException(filename);
+                return Load2DJpeg(bytes);
         }
 
         public static TextureCube LoadCube(BundleFile file)
@@ -106,24 +104,5 @@ namespace Uno.Graphics.Utils
                 }
             }
         }
-
-        public static texture2D Load2DContextType(byte[] bytes, string contentType)
-        {
-            if (contentType.IndexOf("image/jpeg") != -1 || contentType.IndexOf("image/jpg") != -1)
-                return Load2DJpeg(bytes);
-            else if (contentType.IndexOf("image/png") != -1)
-                return Load2DPng(bytes);
-            else if (contentType.IndexOf("application/octet-stream") != -1)
-                return Load2DJpeg(bytes);
-            else if (contentType.IndexOf("binary/octet-stream") != -1)
-                return Load2DJpeg(bytes);
-            else
-                throw new InvalidContentTypeException(contentType);
-        }
-    }
-
-    public class InvalidContentTypeException : Exception
-    {
-        public InvalidContentTypeException(string reason) : base(reason) { }
     }
 }
