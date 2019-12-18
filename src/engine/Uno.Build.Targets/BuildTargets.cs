@@ -30,7 +30,8 @@ namespace Uno.Build.Targets
             return All.Where(e => (experimental || !e.IsExperimental) && (obsolete || !e.IsObsolete));
         }
 
-        public static BuildTarget Get(string name, List<string> args = null, string def = null)
+        public static BuildTarget Get(string name, List<string> args = null, string def = null,
+                                      bool canReturnNull = false)
         {
             BuildTarget result;
             if (name == null && args != null)
@@ -44,11 +45,14 @@ namespace Uno.Build.Targets
                     return result;
                 }
 
-                name = def ?? Default.Identifier;
+                name = def ?? (canReturnNull ? null : Default.Identifier);
             }
 
             if (name != null && TryGet(name, out result))
                 return result;
+
+            if (canReturnNull)
+                return null;
 
             throw new ArgumentException(name.Quote() + " is not a valid build target -- see \"uno build --help\" for a list of targets");
         }

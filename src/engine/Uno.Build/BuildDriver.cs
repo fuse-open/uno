@@ -122,6 +122,12 @@ namespace Uno.Build
                 _cache.Dispose();
         }
 
+        public void Clean()
+        {
+            _compiler.Disk.DeleteDirectory(_env.CacheDirectory);
+            _compiler.Disk.DeleteDirectory(_env.OutputDirectory);
+        }
+
         public BackendResult Build()
         {
             if (Log.HasErrors)
