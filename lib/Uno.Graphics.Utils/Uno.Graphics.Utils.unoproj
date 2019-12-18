@@ -1,4 +1,7 @@
 {
+  "InternalsVisibleTo": [
+    "Experimental.TextureLoader"
+  ],
   "Includes": [
     "Bitmap.uno:Source",
     "FontLoader.uno:Source",

@@ -45,7 +45,7 @@ namespace Uno.Graphics.Utils
                 throw new NotImplementedException();
         }
 
-        public static texture2D Load2DJpeg(byte[] bytes)
+        internal static texture2D Load2DJpeg(byte[] bytes)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Uno.Graphics.Utils
             }
         }
 
-        public static texture2D Load2DPng(byte[] bytes)
+        internal static texture2D Load2DPng(byte[] bytes)
         {
             try
             {
