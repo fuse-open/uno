@@ -1,36 +1,12 @@
 using OpenGL;
 using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Graphics.Support;
 using Uno.IO;
 
 namespace Uno.Graphics
 {
     public sealed intrinsic class TextureCube : IDisposable
     {
-        [Obsolete]
-        public static TextureCube Load(BundleFile file)
-        {
-            return Load(file.Name, file.ReadAllBytes());
-        }
-
-        [Obsolete]
-        public static TextureCube Load(string filename)
-        {
-            return Load(filename, File.ReadAllBytes(filename));
-        }
-
-        [Obsolete]
-        public static TextureCube Load(string filename, byte[] bytes)
-        {
-            if defined(CPLUSPLUS)
-                return CppTexture.LoadCube(filename, bytes);
-            else if defined(DOTNET)
-                return DotNetTexture.LoadCube(filename, bytes);
-            else
-                throw new NotImplementedException();
-        }
-
         public int Size
         {
             get;
