@@ -66,7 +66,7 @@ namespace Uno.Build.Targets.Android
                 VisitSourceDirectoryRecursive(f, root, lines);
 
             if (Directory.EnumerateFiles(dir).Any())
-                lines.Add("-keep " + (dir.Length > root.Length
+                lines.Add("-keep class " + (dir.Length > root.Length
                                     ? (dir + Path.DirectorySeparatorChar)
                                           .Substring(root.Length + 1)
                                           .Replace(Path.DirectorySeparatorChar, '.')
