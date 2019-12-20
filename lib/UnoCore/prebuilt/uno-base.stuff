@@ -2,7 +2,7 @@ if ANDROID {
     "Android": "https://www.nuget.org/api/v2/package/uno-base-android-static/0.8.730",
 }
 if IOS {
-    "iOS": "https://www.nuget.org/api/v2/package/uno-base-iOS-static/0.8.730"
+    "iOS": "https://www.nuget.org/api/v2/package/uno-base-iOS-static/0.8.731"
 }
 if OSX {
     "OSX": "https://www.nuget.org/api/v2/package/uno-base-macOS-static/0.8.730"
