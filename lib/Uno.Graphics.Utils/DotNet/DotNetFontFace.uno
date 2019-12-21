@@ -42,9 +42,6 @@ namespace Uno.Graphics.Utils.DotNet
         public override RenderedGlyph RenderGlyph(float size, char glyph)
         {
             var g = _ff.RenderGlyph(size, glyph, Uno.Native.Fonts.FontRenderMode.Normal);
-
-            // TODO: Format is hardcoded
-
             return new RenderedGlyph
             {
                 Advance = new Float2(g.AdvanceX, g.AdvanceY),
