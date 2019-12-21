@@ -28,8 +28,6 @@ namespace Uno.Compiler.API.Backends
         protected internal IUtilities Utilities { get; private set; }
 
         public bool AllowInvalidCode => Options.HasFlag(BackendOptions.AllowInvalidCode);
-        public bool CanExportFiles => Options.HasFlag(BackendOptions.ExportFiles);
-        public bool CanExportMergedBlob => Options.HasFlag(BackendOptions.ExportMergedBlob);
         public bool CanExportDontExports => Options.HasFlag(BackendOptions.ExportDontExports);
         public bool IsDefault => this is DefaultBackend;
 

@@ -23,9 +23,6 @@ namespace Uno.Compiler.Backends.CIL
                 FunctionOptions.DecodeSwizzles |
                 FunctionOptions.ClosureConvert |
                 FunctionOptions.Bytecode;
-            Options =
-                BackendOptions.ExportFiles |
-                BackendOptions.ExportMergedBlob;
         }
 
         public override void Configure()
