@@ -16,14 +16,14 @@ namespace Uno.Runtime.Implementation.Internal
             Bootstrapper._lastPrimaryFingerId = -1;
         }
 
-        public static bool IsPrimaryFinger(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, int fingerId)
+        public static bool IsPrimaryFinger(global::Uno.Platform.WindowBackend window, int fingerId)
         {
             return (Bootstrapper._lastPrimaryFingerId == fingerId) && false;
         }
 
-        public static global::Uno.Platform.EventModifiers GetEventModifiers(global::Uno.Runtime.Implementation.PlatformWindowHandle handle)
+        public static global::Uno.Platform.EventModifiers GetEventModifiers(global::Uno.Platform.WindowBackend window)
         {
-            return ((((((global::Uno.Runtime.Implementation.PlatformWindowImpl.GetKeyState(handle, global::Uno.Platform.Key.ControlKey) ? global::Uno.Platform.EventModifiers.ControlKey : 0) | (global::Uno.Runtime.Implementation.PlatformWindowImpl.GetKeyState(handle, global::Uno.Platform.Key.ShiftKey) ? global::Uno.Platform.EventModifiers.ShiftKey : 0)) | (global::Uno.Runtime.Implementation.PlatformWindowImpl.GetKeyState(handle, global::Uno.Platform.Key.AltKey) ? global::Uno.Platform.EventModifiers.AltKey : 0)) | (global::Uno.Runtime.Implementation.PlatformWindowImpl.GetKeyState(handle, global::Uno.Platform.Key.MetaKey) ? global::Uno.Platform.EventModifiers.MetaKey : 0)) | (global::Uno.Runtime.Implementation.PlatformWindowImpl.GetMouseButtonState(handle, global::Uno.Platform.MouseButton.Left) ? global::Uno.Platform.EventModifiers.LeftButton : 0)) | (global::Uno.Runtime.Implementation.PlatformWindowImpl.GetMouseButtonState(handle, global::Uno.Platform.MouseButton.Middle) ? global::Uno.Platform.EventModifiers.MiddleButton : 0)) | (global::Uno.Runtime.Implementation.PlatformWindowImpl.GetMouseButtonState(handle, global::Uno.Platform.MouseButton.Right) ? global::Uno.Platform.EventModifiers.RightButton : 0);
+            return ((((((window.GetKeyState(global::Uno.Platform.Key.ControlKey) ? global::Uno.Platform.EventModifiers.ControlKey : 0) | (window.GetKeyState(global::Uno.Platform.Key.ShiftKey) ? global::Uno.Platform.EventModifiers.ShiftKey : 0)) | (window.GetKeyState(global::Uno.Platform.Key.AltKey) ? global::Uno.Platform.EventModifiers.AltKey : 0)) | (window.GetKeyState(global::Uno.Platform.Key.MetaKey) ? global::Uno.Platform.EventModifiers.MetaKey : 0)) | (window.GetMouseButtonState(global::Uno.Platform.MouseButton.Left) ? global::Uno.Platform.EventModifiers.LeftButton : 0)) | (window.GetMouseButtonState(global::Uno.Platform.MouseButton.Middle) ? global::Uno.Platform.EventModifiers.MiddleButton : 0)) | (window.GetMouseButtonState(global::Uno.Platform.MouseButton.Right) ? global::Uno.Platform.EventModifiers.RightButton : 0);
         }
 
         public static void OnUpdate()
@@ -42,53 +42,53 @@ namespace Uno.Runtime.Implementation.Internal
             app.Draw();
         }
 
-        public static bool OnKeyDown(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, global::Uno.Platform.Key key)
+        public static bool OnKeyDown(global::Uno.Platform.WindowBackend window, global::Uno.Platform.Key key)
         {
-            return global::Uno.Platform.EventSources.HardwareKeys.OnKeyDown(key, Bootstrapper.GetEventModifiers(handle));
+            return global::Uno.Platform.EventSources.HardwareKeys.OnKeyDown(key, Bootstrapper.GetEventModifiers(window));
         }
 
-        public static bool OnKeyUp(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, global::Uno.Platform.Key key)
+        public static bool OnKeyUp(global::Uno.Platform.WindowBackend window, global::Uno.Platform.Key key)
         {
-            return global::Uno.Platform.EventSources.HardwareKeys.OnKeyUp(key, Bootstrapper.GetEventModifiers(handle));
+            return global::Uno.Platform.EventSources.HardwareKeys.OnKeyUp(key, Bootstrapper.GetEventModifiers(window));
         }
 
-        public static bool OnTextInput(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, string text)
+        public static bool OnTextInput(global::Uno.Platform.WindowBackend window, string text)
         {
-            return global::Uno.Platform.EventSources.TextSource.OnTextInput(text, Bootstrapper.GetEventModifiers(handle));
+            return global::Uno.Platform.EventSources.TextSource.OnTextInput(text, Bootstrapper.GetEventModifiers(window));
         }
 
-        public static bool OnMouseDown(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, int x, int y, global::Uno.Platform.MouseButton button)
+        public static bool OnMouseDown(global::Uno.Platform.WindowBackend window, int x, int y, global::Uno.Platform.MouseButton button)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
             if (app == null)
                 return false;
 
-            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, Bootstrapper.GetEventModifiers(handle), button == global::Uno.Platform.MouseButton.Left, new global::Uno.Float2((float)x, (float)y), 0, button, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
+            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, Bootstrapper.GetEventModifiers(window), button == global::Uno.Platform.MouseButton.Left, new global::Uno.Float2((float)x, (float)y), 0, button, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerPressed(args);
             return args.Handled;
         }
 
-        public static bool OnMouseUp(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, int x, int y, global::Uno.Platform.MouseButton button)
+        public static bool OnMouseUp(global::Uno.Platform.WindowBackend window, int x, int y, global::Uno.Platform.MouseButton button)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
             if (app == null)
                 return false;
 
-            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, Bootstrapper.GetEventModifiers(handle), button == global::Uno.Platform.MouseButton.Left, new global::Uno.Float2((float)x, (float)y), 0, button, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
+            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, Bootstrapper.GetEventModifiers(window), button == global::Uno.Platform.MouseButton.Left, new global::Uno.Float2((float)x, (float)y), 0, button, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerReleased(args);
             return args.Handled;
         }
 
-        public static bool OnMouseMove(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, int x, int y)
+        public static bool OnMouseMove(global::Uno.Platform.WindowBackend window, int x, int y)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
             if (app == null)
                 return false;
 
-            global::Uno.Platform.EventModifiers modifiers = Bootstrapper.GetEventModifiers(handle);
+            global::Uno.Platform.EventModifiers modifiers = Bootstrapper.GetEventModifiers(window);
             global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, modifiers, modifiers.HasFlag(global::Uno.Platform.EventModifiers.LeftButton), new global::Uno.Float2((float)x, (float)y), 0, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerMoved(args);
             Bootstrapper._lastMouseX = x;
@@ -96,32 +96,32 @@ namespace Uno.Runtime.Implementation.Internal
             return args.Handled;
         }
 
-        public static bool OnMouseOut(global::Uno.Runtime.Implementation.PlatformWindowHandle handle)
+        public static bool OnMouseOut(global::Uno.Platform.WindowBackend window)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
             if (app == null)
                 return false;
 
-            global::Uno.Platform.EventModifiers modifiers = Bootstrapper.GetEventModifiers(handle);
+            global::Uno.Platform.EventModifiers modifiers = Bootstrapper.GetEventModifiers(window);
             global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, modifiers, modifiers.HasFlag(global::Uno.Platform.EventModifiers.LeftButton), new global::Uno.Float2(0.0f, 0.0f), 0, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerLeft(args);
             return args.Handled;
         }
 
-        public static bool OnMouseWheel(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, float dHori, float dVert, int wheelDeltaMode)
+        public static bool OnMouseWheel(global::Uno.Platform.WindowBackend window, float dHori, float dVert, int wheelDeltaMode)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
             if (app == null)
                 return false;
 
-            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, Bootstrapper.GetEventModifiers(handle), false, new global::Uno.Float2((float)Bootstrapper._lastMouseX, (float)Bootstrapper._lastMouseY), 0, 0, new global::Uno.Float2(dHori, dVert), (global::Uno.Platform.WheelDeltaMode)wheelDeltaMode);
+            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Mouse, Bootstrapper.GetEventModifiers(window), false, new global::Uno.Float2((float)Bootstrapper._lastMouseX, (float)Bootstrapper._lastMouseY), 0, 0, new global::Uno.Float2(dHori, dVert), (global::Uno.Platform.WheelDeltaMode)wheelDeltaMode);
             global::Uno.Platform.EventSources.MouseSource.OnPointerWheelChanged(args);
             return args.Handled;
         }
 
-        public static bool OnTouchDown(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, float x, float y, int id)
+        public static bool OnTouchDown(global::Uno.Platform.WindowBackend window, float x, float y, int id)
         {
             global::Uno.Application app = global::Uno.Application.Current;
             Bootstrapper._fingerCount++;
@@ -132,12 +132,12 @@ namespace Uno.Runtime.Implementation.Internal
             if (app == null)
                 return false;
 
-            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Touch, Bootstrapper.GetEventModifiers(handle), Bootstrapper.IsPrimaryFinger(handle, id), new global::Uno.Float2(x, y), id, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
+            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Touch, Bootstrapper.GetEventModifiers(window), Bootstrapper.IsPrimaryFinger(window, id), new global::Uno.Float2(x, y), id, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerPressed(args);
             return args.Handled;
         }
 
-        public static bool OnTouchMove(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, float x, float y, int id)
+        public static bool OnTouchMove(global::Uno.Platform.WindowBackend window, float x, float y, int id)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
@@ -147,12 +147,12 @@ namespace Uno.Runtime.Implementation.Internal
             if (app == null)
                 return false;
 
-            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Touch, Bootstrapper.GetEventModifiers(handle), Bootstrapper.IsPrimaryFinger(handle, id), new global::Uno.Float2(x, y), id, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
+            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Touch, Bootstrapper.GetEventModifiers(window), Bootstrapper.IsPrimaryFinger(window, id), new global::Uno.Float2(x, y), id, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerMoved(args);
             return args.Handled;
         }
 
-        public static bool OnTouchUp(global::Uno.Runtime.Implementation.PlatformWindowHandle handle, float x, float y, int id)
+        public static bool OnTouchUp(global::Uno.Platform.WindowBackend window, float x, float y, int id)
         {
             global::Uno.Application app = global::Uno.Application.Current;
             Bootstrapper._fingerCount--;
@@ -163,12 +163,12 @@ namespace Uno.Runtime.Implementation.Internal
             if (app == null)
                 return false;
 
-            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Touch, Bootstrapper.GetEventModifiers(handle), Bootstrapper.IsPrimaryFinger(handle, id), new global::Uno.Float2(x, y), id, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
+            global::Uno.Platform.PointerEventArgs args = new global::Uno.Platform.PointerEventArgs(global::Uno.Platform.PointerType.Touch, Bootstrapper.GetEventModifiers(window), Bootstrapper.IsPrimaryFinger(window, id), new global::Uno.Float2(x, y), id, 0, new global::Uno.Float2(0.0f, 0.0f), global::Uno.Platform.WheelDeltaMode.DeltaPixel);
             global::Uno.Platform.EventSources.MouseSource.OnPointerReleased(args);
             return args.Handled;
         }
 
-        public static void OnWindowSizeChanged(global::Uno.Runtime.Implementation.PlatformWindowHandle handle)
+        public static void OnWindowSizeChanged(global::Uno.Platform.WindowBackend window)
         {
             global::Uno.Application app = global::Uno.Application.Current;
 
@@ -179,7 +179,7 @@ namespace Uno.Runtime.Implementation.Internal
             }
         }
 
-        public static bool OnAppTerminating(global::Uno.Runtime.Implementation.PlatformWindowHandle handle)
+        public static bool OnAppTerminating(global::Uno.Platform.WindowBackend window)
         {
             global::Uno.Platform.CoreApp.EnterBackground();
             global::Uno.Platform.CoreApp.Terminate();

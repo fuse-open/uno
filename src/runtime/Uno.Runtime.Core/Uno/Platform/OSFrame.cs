@@ -6,11 +6,8 @@ namespace Uno.Platform
     [global::Uno.Compiler.ExportTargetInterop.DotNetTypeAttribute(null)]
     public class OSFrame
     {
-        public global::Uno.Runtime.Implementation.PlatformWindowHandle _handle;
-
         public OSFrame()
         {
-            this._handle = global::Uno.Runtime.Implementation.PlatformWindowImpl.GetInstance();
         }
 
         public void OnResized(global::System.EventArgs args)

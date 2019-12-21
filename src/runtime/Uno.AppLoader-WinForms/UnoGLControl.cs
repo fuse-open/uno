@@ -284,7 +284,7 @@ namespace Uno.Support.WinForms
             //Bootstrapper.OnWindowClosed(CoreWindow);
         }
 
-        public PlatformWindowHandle GetPlatformWindow()
+        public WindowBackend GetWindowBackend()
         {
             return CoreWindow;
         }

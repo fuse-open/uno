@@ -123,7 +123,7 @@ namespace Uno.Support.MonoMac
             if (handler != null) handler();
         }
 
-        Uno.Runtime.Implementation.PlatformWindowHandle Uno.IAppHost.GetPlatformWindow()
+        WindowBackend Uno.IAppHost.GetWindowBackend()
         {
             return _unoWindow;
         }

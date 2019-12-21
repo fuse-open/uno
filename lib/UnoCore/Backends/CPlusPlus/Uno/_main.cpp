@@ -15,8 +15,8 @@
 @{Uno.Diagnostics.Clock:IncludeDirective}
 @{Uno.Exception:IncludeDirective}
 @{Uno.Platform.CoreApp:IncludeDirective}
+@{Uno.Platform.WindowBackend:IncludeDirective}
 @{Uno.Runtime.Implementation.Internal.Bootstrapper:IncludeDirective}
-@{Uno.Runtime.Implementation.PlatformWindowImpl:IncludeDirective}
 @{Uno.Application:IncludeDirective}
 @{string:IncludeDirective}
 
@@ -142,7 +142,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnKeyDown(Uno.Runtime.Implementation.PlatformWindowHandle,Uno.Platform.Key):Call(wnd, key)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnKeyDown(Uno.Platform.WindowBackend,Uno.Platform.Key):Call(@{Uno.Platform.WindowBackend.Instance}, key)})
             return true;
 
 #ifdef WIN32
@@ -160,7 +160,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnKeyUp(Uno.Runtime.Implementation.PlatformWindowHandle,Uno.Platform.Key):Call(wnd, key)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnKeyUp(Uno.Platform.WindowBackend,Uno.Platform.Key):Call(@{Uno.Platform.WindowBackend.Instance}, key)})
             return true;
 
         return false;
@@ -170,7 +170,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTextInput(Uno.Runtime.Implementation.PlatformWindowHandle,string):Call(wnd, uString::Utf8(text.Ptr()))})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTextInput(Uno.Platform.WindowBackend,string):Call(@{Uno.Platform.WindowBackend.Instance}, uString::Utf8(text.Ptr()))})
             return true;
 
         return false;
@@ -180,7 +180,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseDown(Uno.Runtime.Implementation.PlatformWindowHandle,int,int,Uno.Platform.MouseButton):Call(wnd, pos.X, pos.Y, button)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseDown(Uno.Platform.WindowBackend,int,int,Uno.Platform.MouseButton):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, button)})
             return true;
 
         return false;
@@ -190,7 +190,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseUp(Uno.Runtime.Implementation.PlatformWindowHandle,int,int,Uno.Platform.MouseButton):Call(wnd, pos.X, pos.Y, button)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseUp(Uno.Platform.WindowBackend,int,int,Uno.Platform.MouseButton):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, button)})
             return true;
 
         return false;
@@ -200,7 +200,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseMove(Uno.Runtime.Implementation.PlatformWindowHandle,int,int):Call(wnd, pos.X, pos.Y)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseMove(Uno.Platform.WindowBackend,int,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y)})
             return true;
 
         return false;
@@ -210,7 +210,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseWheel(Uno.Runtime.Implementation.PlatformWindowHandle,float,float,int):Call(wnd, (float)delta.X, (float)delta.Y, 1)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnMouseWheel(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, (float)delta.X, (float)delta.Y, 1)})
             return true;
 
         return false;
@@ -220,7 +220,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTouchDown(Uno.Runtime.Implementation.PlatformWindowHandle,float,float,int):Call(wnd, pos.X, pos.Y, id)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTouchDown(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
             return true;
 
         return false;
@@ -230,7 +230,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTouchMove(Uno.Runtime.Implementation.PlatformWindowHandle,float,float,int):Call(wnd, pos.X, pos.Y, id)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTouchMove(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
             return true;
 
         return false;
@@ -240,7 +240,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTouchUp(Uno.Runtime.Implementation.PlatformWindowHandle,float,float,int):Call(wnd, pos.X, pos.Y, id)})
+        if (@{Uno.Runtime.Implementation.Internal.Bootstrapper.OnTouchUp(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
             return true;
 
         return false;
@@ -254,7 +254,7 @@ struct uMainLoop : Xli::WindowEventHandler
     virtual void OnSizeChanged(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Runtime.Implementation.Internal.Bootstrapper.OnWindowSizeChanged(Uno.Runtime.Implementation.PlatformWindowHandle):Call(wnd)};
+        @{Uno.Runtime.Implementation.Internal.Bootstrapper.OnWindowSizeChanged(Uno.Platform.WindowBackend):Call(@{Uno.Platform.WindowBackend.Instance})};
 #if WIN32 || OSX
         if (wnd->GetMouseButtonState(Xli::MouseButtonLeft))
         {

@@ -283,6 +283,8 @@
     "Source/Uno/Platform/TextInputEventArgs.uno:Source",
     "Source/Uno/Platform/TimerEventArgs.uno:Source",
     "Source/Uno/Platform/Window.uno:Source",
+    "Source/Uno/Platform/WindowBackend.uno:Source",
+    "Source/Uno/Platform/Xli/XliWindow.uno:Source",
     "Source/Uno/Platform2/Internal/Application.uno:Source",
     "Source/Uno/Predicate.uno:Source",
     "Source/Uno/Quaternion.uno:Source",

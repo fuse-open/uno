@@ -2,13 +2,14 @@ using System;
 using OpenGL;
 using Uno.Diagnostics;
 using Uno.Graphics;
+using Uno.Platform;
 using Uno.Runtime.Implementation;
 
 namespace Uno
 {
     public interface IAppHost
     {
-        PlatformWindowHandle GetPlatformWindow();
+        WindowBackend GetWindowBackend();
         GraphicsContextHandle GetGraphicsContext();
     }
 

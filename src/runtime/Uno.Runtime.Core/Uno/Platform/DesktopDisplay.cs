@@ -12,8 +12,7 @@ namespace Uno.Platform
 
         protected override float GetDensity()
         {
-            global::Uno.Runtime.Implementation.PlatformWindowHandle wnd = global::Uno.Runtime.Implementation.PlatformWindowImpl.GetInstance();
-            return global::Uno.Runtime.Implementation.PlatformWindowImpl.GetDensity(wnd);
+            return WindowBackend.Instance.GetDensity();
         }
     }
 }

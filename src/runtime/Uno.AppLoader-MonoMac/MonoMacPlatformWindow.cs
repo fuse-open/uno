@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using AppKit;
+using Uno.Platform;
 using Uno.Runtime.Implementation.Internal;
 using CoreGraphics;
 
@@ -8,7 +9,7 @@ namespace Uno.Support.MonoMac
 {
     // Be sure what you do when changing the implementation. MonoMacGameView getters and setters is very expensive, 
     // since they communicate with the OS
-    class MonoMacPlatformWindow : Uno.Runtime.Implementation.PlatformWindowHandle
+    class MonoMacPlatformWindow : WindowBackend
     {
         UnoGLView _view;
         Uno.Int2 _clientSize;

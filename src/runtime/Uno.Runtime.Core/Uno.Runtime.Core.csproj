@@ -131,6 +131,7 @@
     <Compile Include="Uno\Platform\TimerEventArgs.cs" />
     <Compile Include="Uno\Platform\WheelDeltaMode.cs" />
     <Compile Include="Uno\Platform\Window.cs" />
+    <Compile Include="Uno\Platform\WindowBackend.cs" />
     <Compile Include="Uno\Platform2\Internal\Application.cs" />
     <Compile Include="Uno\Rect.cs" />
     <Compile Include="Uno\Recti.cs" />
