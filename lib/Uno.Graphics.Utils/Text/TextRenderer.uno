@@ -1,7 +1,3 @@
-using Uno;
-using Uno.Collections;
-using Uno.Graphics;
-using Uno.Vector;
 using Uno.Math;
 
 namespace Uno.Graphics.Utils.Text

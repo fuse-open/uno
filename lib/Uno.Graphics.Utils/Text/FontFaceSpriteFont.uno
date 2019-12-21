@@ -1,7 +1,4 @@
-using Uno.Compiler;
 using Uno.Collections;
-using Uno.Content.Images;
-using Uno.Graphics;
 
 namespace Uno.Graphics.Utils.Text
 {

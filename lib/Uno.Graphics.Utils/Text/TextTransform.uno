@@ -1,5 +1,3 @@
-using Uno.Graphics;
-
 namespace Uno.Graphics.Utils.Text
 {
     public abstract class TextTransform

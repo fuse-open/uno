@@ -1,6 +1,3 @@
-using Uno.Compiler.ExportTargetInterop;
-using Uno.Graphics;
-
 namespace Uno.Graphics.Utils
 {
     public class Bitmap

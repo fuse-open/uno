@@ -1,8 +1,3 @@
-using Uno.Compiler.ExportTargetInterop;
-using Uno.Collections;
-using Uno.Graphics;
-using Uno.IO;
-
 namespace Uno.Graphics.Utils.Text
 {
     public abstract class FontFace : IDisposable

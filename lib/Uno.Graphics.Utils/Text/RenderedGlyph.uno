@@ -1,7 +1,3 @@
-using Uno.Compiler.ExportTargetInterop;
-using Uno.Content.Images;
-using Uno.Graphics;
-
 namespace Uno.Graphics.Utils.Text
 {
     public struct RenderedGlyph

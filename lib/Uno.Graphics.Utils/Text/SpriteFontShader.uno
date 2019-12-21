@@ -1,7 +1,3 @@
-using Uno.Graphics;
-using Uno.Vector;
-using Uno.Math;
-
 namespace Uno.Graphics.Utils.Text
 {
     public class SpriteFontShader : TextShader

@@ -1,5 +1,4 @@
 using Uno.Collections;
-using Uno.Runtime.Implementation.Internal;
 
 namespace Uno.Graphics.Utils.Text
 {
