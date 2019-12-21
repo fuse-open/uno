@@ -59,7 +59,6 @@ namespace Uno.Compiler.Core.IL.Utilities
         public DataType Monitor { get; private set; }
         public DataType ValueType { get; private set; }
 
-        public DataType FilenameAttribute { get; private set; }
         public DataType DontExportAttribute { get; private set; }
         public DataType StageInlineAttribute { get; private set; }
         public DataType RequireShaderStageAttribute { get; private set; }
