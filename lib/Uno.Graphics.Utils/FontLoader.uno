@@ -2,8 +2,9 @@ using Uno.IO;
 
 namespace Uno.Graphics.Utils
 {
+    using Cpp;
+    using DotNet;
     using Text;
-    using Impl;
 
     public static class FontLoader
     {

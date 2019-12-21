@@ -2,7 +2,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Graphics.Utils.Text;
 using Uno.IO;
 
-namespace Uno.Graphics.Utils.Impl
+namespace Uno.Graphics.Utils.Cpp
 {
     [TargetSpecificType]
     [Set("TypeName", "uImage::FontFace*")]
