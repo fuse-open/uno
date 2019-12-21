@@ -428,13 +428,7 @@
     <Compile Include="Backends\Shaders\ShaderObfuscator.cs" />
     <Compile Include="Domain\Extensions\Element.cs" />
     <Compile Include="Backends\TypeOptions.cs" />
-    <Compile Include="Plugins\ApplyContext.cs" />
-    <Compile Include="Plugins\BlockFactory.cs" />
     <Compile Include="IBundle.cs" />
-    <Compile Include="Plugins\Importer.cs" />
-    <Compile Include="Plugins\ImportContext.cs" />
-    <Compile Include="IPlugins.cs" />
-    <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Utilities\IdentifierGenerator.cs" />
     <Compile Include="Backends\DefaultBackend.cs" />
     <Compile Include="Utilities\IKeywords.cs" />

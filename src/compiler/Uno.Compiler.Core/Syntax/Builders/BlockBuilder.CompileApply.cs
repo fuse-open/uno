@@ -1,7 +1,6 @@
 ﻿using Uno.Compiler.API.Domain.AST.Expressions;
 using Uno.Compiler.API.Domain.AST.Members;
 using Uno.Compiler.API.Domain.Graphics;
-using Uno.Compiler.API.Plugins;
 using Uno.Compiler.Core.Syntax.Binding;
 using Uno.Compiler.Core.Syntax.Compilers;
 
@@ -13,46 +12,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
         {
             var e = ast.Block;
             var src = e.Source;
-
-            // Invoke apply plugin
-            if (e.ExpressionType == AstExpressionType.Call)
-            {
-                var call = (AstCall) e;
-                var factory = _compiler.TryCompileSuffixedObject(parent, call.Base, "BlockFactory", call.Arguments);
-
-                if (factory == null)
-                    return;
-
-                if (factory.ReturnType.Base == null ||
-                    factory.ReturnType.Base.MasterDefinition != _ilf.Essentials.BlockFactory)
-                {
-                    Log.Error(factory.Source, ErrorCode.E0000, "Block Factory must be a type derived directly from " + _ilf.Essentials.BlockFactory.Quote());
-                    return;
-                }
-
-                BlockFactory plugin;
-                if (!_compiler.Plugins.TryGetBlockFactory(factory.ReturnType, out plugin))
-                {
-                    Log.Error(factory.Source, ErrorCode.E2048, "Unsupported block factory " + factory.ReturnType.Quote());
-                    return;
-                }
-
-                if (!_compiler.ExpandFilenames(factory, 0))
-                    return;
-
-                var block = CreateBlock(
-                    plugin.Create(
-                        new ApplyContext(
-                            src,
-                            factory.GetArgumentValues())),
-                    _il);
-
-                block.Populate();
-                parent.Members.Add(new Apply(src, ast.Modifier, block, null));
-                _compiler.ILVerifier.VerifyConstUsage(factory.Source, factory.Constructor, parent);
-                return;
-            }
-
             var fc = new FunctionCompiler(_compiler, parent);
             var p = fc.ResolveExpression(e, null);
             if (p.IsInvalid) return;
@@ -78,7 +37,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
             }
 
             var sym = fc.CompilePartial(p);
-            if (sym.IsInvalid) return;
+            if (sym.IsInvalid)
+                return;
 
             if (sym.ReturnType.Block != null)
             {
