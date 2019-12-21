@@ -27,13 +27,6 @@
     <Require Assembly="System.Core" />
     <Require Assembly="@(EXE_DIR)/Uno.Runtime.Core.dll" />
     
-    <!-- Native libraries -->
-    <Template Name="Uno.Native">
-        <Require Assembly="@(PACKAGE_DIR)/prebuilt/Uno.Native/Uno.Native.dll" />
-        <Require UnmanagedLibrary="@(PACKAGE_DIR)/prebuilt/Uno.Native/libuAsset.dylib" Condition="HOST_MAC" />
-        <Require UnmanagedLibrary="@(PACKAGE_DIR)/prebuilt/Uno.Native/uAsset.dll" Condition="HOST_WIN32" />
-    </Template>
-
     <!-- Deprecated -->
     <Deprecate AssemblyReference="Assembly" />
 
