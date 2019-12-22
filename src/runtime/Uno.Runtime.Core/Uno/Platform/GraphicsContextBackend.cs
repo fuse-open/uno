@@ -8,13 +8,13 @@ namespace Uno.Platform
     {
         public static GraphicsContextBackend Instance;
 
-        static GraphicsContextBackend()
-        {
-            Instance = global::Uno.ApplicationContext.AppHost.GetGraphicsContextBackend();
-        }
-
         public GraphicsContextBackend()
         {
+        }
+
+        public static void SetInstance(GraphicsContextBackend instance)
+        {
+            GraphicsContextBackend.Instance = instance;
         }
 
         public abstract global::OpenGL.GLFramebufferHandle GetBackbufferGLHandle();

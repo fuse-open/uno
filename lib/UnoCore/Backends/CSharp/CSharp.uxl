@@ -1,8 +1,5 @@
 <Extensions Backend="CSharp">
 
     <Define DOTNET />
-    <Declare Element="SourceFile" />
-
-    <ProcessFile SourceFile="Uno/ApplicationContext.cs" />
 
 </Extensions>

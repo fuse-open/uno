@@ -10,14 +10,16 @@ namespace Uno.Platform
     {
         internal static GraphicsContextBackend Instance;
 
+        extern(CPLUSPLUS)
         static GraphicsContextBackend()
         {
-            if defined(CPLUSPLUS)
-                Instance = new XliGraphicsContext();
-            else if defined(CSHARP)
-            @{
-                Instance = global::Uno.ApplicationContext.AppHost.GetGraphicsContextBackend();
-            @}
+            Instance = new XliGraphicsContext();
+        }
+
+        extern(DOTNET)
+        public static void SetInstance(GraphicsContextBackend instance)
+        {
+            Instance = instance;
         }
 
         extern(OPENGL)

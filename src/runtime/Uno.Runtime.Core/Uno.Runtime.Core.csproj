@@ -82,7 +82,6 @@
     <Compile Include="OpenGL\GLTextureUnit.cs" />
     <Compile Include="OpenGL\IGL.cs" />
     <Compile Include="Uno\Application.cs" />
-    <Compile Include="Uno\ApplicationContext.cs" />
     <Compile Include="Uno\Byte2.cs" />
     <Compile Include="Uno\Byte4.cs" />
     <Compile Include="Uno\Compiler\ExportTargetInterop\DotNetTypeAttribute.cs" />

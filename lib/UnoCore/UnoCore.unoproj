@@ -41,7 +41,6 @@
     "Backends/CPlusPlus/Uno/WinAPIHelper.h:File",
     "Backends/CPlusPlus/Uno/XliInterop.h:File",
     "Backends/CSharp/CSharp.uxl:Extensions",
-    "Backends/CSharp/Uno/ApplicationContext.cs:File",
     "prebuilt/Uno.Native.stuff:Stuff",
     "prebuilt/uno-base.stuff:Stuff",
     "prebuilt/uno-base.uxl:Extensions",

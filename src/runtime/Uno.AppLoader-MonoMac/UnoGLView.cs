@@ -11,7 +11,7 @@ using CoreGraphics;
 
 namespace Uno.Support.MonoMac
 {
-    public class UnoGLView : NSView, Uno.IAppHost
+    public class UnoGLView : NSView
     {
         readonly MonoMacPlatformWindow _unoWindow;
         readonly MonoMacGraphicsContext _unoGC;
@@ -103,7 +103,8 @@ namespace Uno.Support.MonoMac
 
             _unoWindow.Initialize ();
             OpenGL.GL.Initialize(new MonoMacGL(), !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEBUG_GL")));
-            ApplicationContext.Initialize(this);
+            GraphicsContextBackend.SetInstance(_unoGC);
+            WindowBackend.SetInstance(_unoWindow);
 
             Window.WillClose += (sender, args) => Bootstrapper.OnAppTerminating(_unoWindow);
 
@@ -121,16 +122,6 @@ namespace Uno.Support.MonoMac
         {
             var handler = PostDraw;
             if (handler != null) handler();
-        }
-
-        WindowBackend Uno.IAppHost.GetWindowBackend()
-        {
-            return _unoWindow;
-        }
-
-        GraphicsContextBackend Uno.IAppHost.GetGraphicsContextBackend()
-        {
-            return _unoGC;
         }
 
         public Uno.Int2 DrawableSize

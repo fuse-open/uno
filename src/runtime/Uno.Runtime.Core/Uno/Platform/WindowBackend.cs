@@ -8,13 +8,13 @@ namespace Uno.Platform
     {
         public static WindowBackend Instance;
 
-        static WindowBackend()
-        {
-            Instance = global::Uno.ApplicationContext.AppHost.GetWindowBackend();
-        }
-
         public WindowBackend()
         {
+        }
+
+        public static void SetInstance(WindowBackend instance)
+        {
+            WindowBackend.Instance = instance;
         }
 
         public abstract void Close();

@@ -9,14 +9,16 @@ namespace Uno.Platform
     {
         internal static WindowBackend Instance;
 
+        extern(CPLUSPLUS)
         static WindowBackend()
         {
-            if defined(CPLUSPLUS)
-                Instance = new XliWindow();
-            else if defined(CSHARP)
-            @{
-                Instance = global::Uno.ApplicationContext.AppHost.GetWindowBackend();
-            @}
+            Instance = new XliWindow();
+        }
+
+        extern(DOTNET)
+        public static void SetInstance(WindowBackend instance)
+        {
+            Instance = instance;
         }
 
         public abstract void Close();
