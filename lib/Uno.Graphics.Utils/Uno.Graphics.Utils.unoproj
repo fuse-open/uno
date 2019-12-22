@@ -1,0 +1,23 @@
+{
+  "InternalsVisibleTo": [
+    "Experimental.TextureLoader"
+  ],
+  "Includes": [
+    "Bitmap.uno:Source",
+    "FontLoader.uno:Source",
+    "Impl/CppFontFace.uno:Source",
+    "Impl/CppTexture.uno:Source",
+    "Impl/DotNetFontFace.uno:Source",
+    "Impl/DotNetTexture.uno:Source",
+    "Text/BitmapFont.uno:Source",
+    "Text/DefaultTextTransform.uno:Source",
+    "Text/FontFace.uno:Source",
+    "Text/FontFaceSpriteFont.uno:Source",
+    "Text/RenderedGlyph.uno:Source",
+    "Text/SpriteFontShader.uno:Source",
+    "Text/TextRenderer.uno:Source",
+    "Text/TextShader.uno:Source",
+    "Text/TextTransform.uno:Source",
+    "TextureLoader.uno:Source"
+  ]
+}

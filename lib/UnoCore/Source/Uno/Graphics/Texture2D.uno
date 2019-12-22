@@ -2,36 +2,12 @@ using OpenGL;
 using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Diagnostics;
-using Uno.Graphics.Support;
 using Uno.IO;
 
 namespace Uno.Graphics
 {
     public sealed intrinsic class Texture2D : IDisposable
     {
-        [Obsolete]
-        public static Texture2D Load(BundleFile file)
-        {
-            return Load(file.Name, file.ReadAllBytes());
-        }
-
-        [Obsolete]
-        public static Texture2D Load(string filename)
-        {
-            return Load(filename, File.ReadAllBytes(filename));
-        }
-
-        [Obsolete]
-        public static Texture2D Load(string filename, byte[] bytes)
-        {
-            if defined(CPLUSPLUS)
-                return CppTexture.Load2D(filename, bytes);
-            else if defined(DOTNET)
-                return DotNetTexture.Load2D(filename, bytes);
-            else
-                throw new NotImplementedException();
-        }
-
         public int2 Size
         {
             get;

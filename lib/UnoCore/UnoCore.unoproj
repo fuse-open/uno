@@ -218,7 +218,6 @@
     "Source/Uno/Graphics/Sampler2D.uno:Source",
     "Source/Uno/Graphics/SamplerCube.uno:Source",
     "Source/Uno/Graphics/SamplerState.uno:Source",
-    "Source/Uno/Graphics/Support/CppTexture.uno:Source",
     "Source/Uno/Graphics/Support/DotNetTexture.uno:Source",
     "Source/Uno/Graphics/Texture2D.uno:Source",
     "Source/Uno/Graphics/TextureCube.uno:Source",
