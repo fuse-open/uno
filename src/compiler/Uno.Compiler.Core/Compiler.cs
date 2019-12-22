@@ -65,7 +65,6 @@ namespace Uno.Compiler.Core
         readonly List<Task> _tasks = new List<Task>();
         readonly List<Pass> _generators = new List<Pass>();
         readonly List<Pass> _transforms = new List<Pass>();
-        public readonly PluginCache Plugins;
 
         // ICompiler
         Log ICompiler.Log => Log;
@@ -93,10 +92,9 @@ namespace Uno.Compiler.Core
             var input = Input = new SourceReader(log, package, environment);
             var blockBuilder = BlockBuilder = new BlockBuilder(backend, il, ilf, resolver, this);
             var typeBuilder = TypeBuilder = new TypeBuilder(environment, ilf, resolver, this);
-            var bundle = BundleBuilder = new BundleBuilder(backend, environment, ilf, this);
+            BundleBuilder = new BundleBuilder(backend, environment, ilf, this);
             AstProcessor = new AstProcessor(il, blockBuilder, typeBuilder, resolver, environment);
             UxlProcessor = new UxlProcessor(disk, backend.Name, il, extensions, environment, ilf);
-            Plugins = new PluginCache(log, bundle, ilf, environment);
             var pass = Pass = new CompilerPass(disk, data, environment, ilf, backend, input.Package, typeBuilder, resolver);
             Utilities = new Utilities(il, pass);
             ILVerifier = new ILVerifier(pass);

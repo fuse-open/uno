@@ -71,8 +71,6 @@
     <Compile Include="IL\Validation\FinallyVerifier.cs" />
     <Compile Include="IL\Validation\ThisVerifier.cs" />
     <Compile Include="IL\Validation\VariableUsage.cs" />
-    <Compile Include="PluginCache.cs" />
-    <Compile Include="Syntax\Builders\SubBlob.cs" />
     <Compile Include="BuildData.cs" />
     <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Lambda.cs" />
     <Compile Include="Syntax\Macros\MacroArguments.cs" />

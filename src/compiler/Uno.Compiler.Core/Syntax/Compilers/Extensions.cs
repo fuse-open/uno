@@ -113,31 +113,6 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             return result;
         }
 
-        public static bool ExpandFilenames(this Compiler compiler, NewObject attribute, PathFlags flags)
-        {
-            var result = true;
-
-            for (int i = 0; i < attribute.Arguments.Length; i++)
-            {
-                if (attribute.Constructor.Parameters[i].HasAttribute(compiler.Essentials.FilenameAttribute))
-                {
-                    var c = attribute.Arguments[i] as Constant;
-
-                    if (c == null)
-                    {
-                        result = false;
-                        continue;
-                    }
-
-                    var filename = c.Value as string;
-                    result = compiler.Disk.GetFullPath(attribute.Arguments[i].Source, ref filename, flags) && result;
-                    c.Value = filename;
-                }
-            }
-
-            return result;
-        }
-
         public static NewObject[] CompileAttributes(this Compiler compiler, Namescope scope, IReadOnlyList<AstAttribute> attributes)
         {
             if (attributes.Count == 0)
@@ -156,10 +131,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 var attr = TryCompileSuffixedObject(compiler, scope, ast.Attribute, "Attribute", ast.Arguments);
 
                 if (attr != null)
-                {
-                    ExpandFilenames(compiler, attr, PathFlags.WarnIfNonExistingPath);
                     result.Add(attr);
-                }
             }
 
             return result.ToArray();

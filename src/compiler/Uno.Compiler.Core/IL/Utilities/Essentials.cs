@@ -59,9 +59,6 @@ namespace Uno.Compiler.Core.IL.Utilities
         public DataType Monitor { get; private set; }
         public DataType ValueType { get; private set; }
 
-        public DataType Importer_T { get; private set; }
-        public DataType BlockFactory { get; private set; }
-        public DataType FilenameAttribute { get; private set; }
         public DataType DontExportAttribute { get; private set; }
         public DataType StageInlineAttribute { get; private set; }
         public DataType RequireShaderStageAttribute { get; private set; }
@@ -145,8 +142,6 @@ namespace Uno.Compiler.Core.IL.Utilities
             VertexBuffer = ilf.GetType("Uno.Graphics.VertexBuffer");
             IndexBuffer = ilf.GetType("Uno.Graphics.IndexBuffer");
             IDisposable = ilf.GetType("Uno.IDisposable");
-            Importer_T = ilf.GetType("Uno.Compiler.ImportServices.Importer<>");
-            BlockFactory = ilf.GetType("Uno.Compiler.ImportServices.BlockFactory");
             IEnumerable_T = ilf.GetType("Uno.Collections.IEnumerable<>");
             ArrayEnumerable_T = ilf.GetType("Uno.Runtime.Implementation.Internal.ArrayEnumerable<>");
             StringEnumerable = ilf.GetType("Uno.Runtime.Implementation.Internal.StringEnumerable");
@@ -154,7 +149,6 @@ namespace Uno.Compiler.Core.IL.Utilities
             Monitor = ilf.GetType("Uno.Threading.Monitor");
             ValueType = ilf.GetType("Uno.ValueType");
 
-            FilenameAttribute = ilf.GetType("Uno.Compiler.ImportServices.FilenameAttribute");
             DontExportAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.DontExportAttribute");
             StageInlineAttribute = ilf.GetType("Uno.Compiler.ShaderGenerator.ShaderStageInlineAttribute");
             RequireShaderStageAttribute = ilf.GetType("Uno.Compiler.ShaderGenerator.RequireShaderStageAttribute");

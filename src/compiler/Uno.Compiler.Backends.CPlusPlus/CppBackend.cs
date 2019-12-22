@@ -33,9 +33,6 @@ namespace Uno.Compiler.Backends.CPlusPlus
         {
             _extension = extension ?? BackendExtension.Null;
 
-            Options =
-                BackendOptions.ExportFiles |
-                BackendOptions.ExportMergedBlob;
             FunctionOptions =
                 FunctionOptions.DecodeDelegateOps |
                 FunctionOptions.DecodeEnumOps |

@@ -48,8 +48,6 @@
     <Compile Include="Foreign\ForeignPass.cs" />
     <Compile Include="Foreign\Java\Macros.cs" />
     <Compile Include="Foreign\ObjC\Conversion.cs" />
-    <Compile Include="Plugins\BundleFileImporter.cs" />
-    <Compile Include="PluginLoader.cs" />
     <Compile Include="Foreign\ForeignHelpers.cs" />
     <Compile Include="Foreign\Java\Entrypoints.cs" />
     <Compile Include="Foreign\Java\JavaClass.cs" />

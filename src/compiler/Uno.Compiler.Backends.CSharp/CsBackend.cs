@@ -37,7 +37,6 @@ namespace Uno.Compiler.Backends.CSharp
         public CsBackend()
             : base(new GLBackend())
         {
-            Options |= BackendOptions.ExportFiles;
             FunctionOptions |= FunctionOptions.DecodeSwizzles;
         }
 

@@ -27,9 +27,6 @@ namespace Uno.Compiler.Backends.PInvoke
         public PInvokeBackend(ShaderBackend shaderBackend)
             : base(shaderBackend)
         {
-            Options =
-                BackendOptions.ExportFiles |
-                BackendOptions.ExportMergedBlob;
             FunctionOptions =
                 FunctionOptions.MakeNativeCode;
             TypeOptions =

@@ -58,7 +58,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 {
                     var filename = f.UnixPath;
                     if (_compiler.Disk.GetFullPath(upk.Source, upk.SourceDirectory, ref filename))
-                        CreateFile(upk.Source, ContentType.BundleFile, filename);
+                        CreateFile(upk.Source, filename);
                 }
             }
 
@@ -93,7 +93,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             var bundleFile = Path.Combine(_env.CacheDirectory, "bundle");
             using (var f = _compiler.Disk.CreateBufferedText(bundleFile))
                 f.Write(string.Join("\n", index));
-            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile("bundle", bundleFile, ContentType.BundleFile));
+            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile("bundle", bundleFile));
         }
 
         void Emit(Field field)
@@ -128,7 +128,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return AddCached("File",
                 () =>
                 {
-                    var file = CreateFile(src, ContentType.BundleFile, filename).TargetName;
+                    var file = CreateFile(src, filename).TargetName;
                     return GetBundleFile(src, file);
                 },
                 filename);
@@ -194,7 +194,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return result;
         }
 
-        BundleFile CreateFile(Source src, ContentType type, string filename, string targetName = null)
+        BundleFile CreateFile(Source src, string filename, string targetName = null)
         {
             var bundleName = filename.ToRelativePath(src.Package.SourceDirectory).NativeToUnix();
 
@@ -203,7 +203,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             if (bundleName.StartsWith(FuseJSPrefix))
                 bundleName = bundleName.Substring(FuseJSPrefix.Length);
 
-            var result = new BundleFile(bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename, type);
+            var result = new BundleFile(bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
             _files.Add(src.Package, result);
             _compiler.Data.Extensions.BundleFiles.Add(result);
             return result;

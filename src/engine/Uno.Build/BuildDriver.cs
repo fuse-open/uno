@@ -191,9 +191,6 @@ namespace Uno.Build
                 ? unoExe.QuoteSpace()
                 : GetMonoPath().QuoteSpace() + " " + unoExe.QuoteSpace());
 
-            foreach (var dll in _config.GetFullPathArray("Assemblies.Plugins"))
-                _compiler.Plugins.Load(dll);
-
             if (Log.HasErrors)
                 return null;
 
