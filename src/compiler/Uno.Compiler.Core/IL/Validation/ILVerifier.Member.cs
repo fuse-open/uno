@@ -12,7 +12,7 @@ namespace Uno.Compiler.Core.IL.Validation
                 return false;
 
             if (Environment.IsGeneratingCode &&
-                f.Body == null && f.IsExtern && !f.IsGenerated && Environment.CanExport(f))
+                f.Body == null && f.IsExtern && !f.IsAbstract && !f.IsGenerated && Environment.CanExport(f))
                 Log.Error(f.Source, ErrorCode.E0000, f.Quote() + " is marked as 'extern', but target does not provide an implementation");
 
             PushObsolete(f);
