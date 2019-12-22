@@ -289,7 +289,7 @@ namespace Uno.Support.WinForms
             return CoreWindow;
         }
 
-        public GraphicsContextHandle GetGraphicsContext()
+        public GraphicsContextBackend GetGraphicsContextBackend()
         {
             return CoreGC;
         }

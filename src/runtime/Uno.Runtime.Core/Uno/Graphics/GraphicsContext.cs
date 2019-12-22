@@ -6,11 +6,11 @@ namespace Uno.Graphics
     [global::Uno.Compiler.ExportTargetInterop.DotNetTypeAttribute(null)]
     public class GraphicsContext
     {
-        public global::Uno.Runtime.Implementation.GraphicsContextHandle _handle;
+        public readonly global::Uno.Platform.GraphicsContextBackend _backend;
 
-        public GraphicsContext(global::Uno.Runtime.Implementation.GraphicsContextHandle handle)
+        public GraphicsContext()
         {
-            this._handle = handle;
+            this._backend = global::Uno.Platform.GraphicsContextBackend.Instance;
         }
     }
 }

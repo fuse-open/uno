@@ -12,7 +12,7 @@ namespace Uno.Graphics
         public RenderTarget _renderTarget;
         public bool _scissorEnabled;
 
-        public GraphicsController(): base(global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetInstance())
+        public GraphicsController()
         {
             this.ClearColor = new global::Uno.Float4(0.0f, 0.0f, 0.0f, 1.0f);
             this.ClearDepth = 1.0f;
@@ -22,8 +22,8 @@ namespace Uno.Graphics
 
         public void UpdateBackbuffer()
         {
-            this._backbuffer.GLFramebufferHandle = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetBackbufferGLHandle(this._handle);
-            this._backbuffer.Size = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetBackbufferSize(this._handle);
+            this._backbuffer.GLFramebufferHandle = this._backend.GetBackbufferGLHandle();
+            this._backbuffer.Size = this._backend.GetBackbufferSize();
             this._backbuffer.HasDepth = true;
         }
 
@@ -79,10 +79,10 @@ namespace Uno.Graphics
 
                 if (this._renderTarget == this._backbuffer)
                 {
-                    global::Uno.Int2 offset = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetBackbufferOffset(this._handle);
-                    int realFbHeight = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetRealBackbufferHeight(this._handle);
+                    global::Uno.Int2 offset = this._backend.GetBackbufferOffset();
+                    int realFbHeight = this._backend.GetRealBackbufferHeight();
                     global::Uno.Recti offsetScissor = new global::Uno.Recti(this._scissor.Position + offset, this._scissor.Size);
-                    global::Uno.Recti currentScissor = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetBackbufferScissor(this._handle);
+                    global::Uno.Recti currentScissor = this._backend.GetBackbufferScissor();
                     global::Uno.Recti clippedScissor = new global::Uno.Recti(global::Uno.Math.Max(offsetScissor.Left, currentScissor.Left), global::Uno.Math.Max(offsetScissor.Top, currentScissor.Top), global::Uno.Math.Min(offsetScissor.Right, currentScissor.Right), global::Uno.Math.Min(offsetScissor.Bottom, currentScissor.Bottom));
                     global::OpenGL.GL.Scissor(clippedScissor.Left, realFbHeight - clippedScissor.Bottom, global::Uno.Math.Max(0, clippedScissor.Size.X), global::Uno.Math.Max(0, clippedScissor.Size.Y));
                 }
@@ -100,8 +100,8 @@ namespace Uno.Graphics
 
                 if (this._renderTarget == this._backbuffer)
                 {
-                    global::Uno.Int2 offset = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetBackbufferOffset(this._handle);
-                    int realFbHeight = global::Uno.Runtime.Implementation.GraphicsControllerImpl.GetRealBackbufferHeight(this._handle);
+                    global::Uno.Int2 offset = this._backend.GetBackbufferOffset();
+                    int realFbHeight = this._backend.GetRealBackbufferHeight();
                     global::Uno.Recti offsetViewport = new global::Uno.Recti(this._viewport.Position + offset, this._viewport.Size);
                     global::OpenGL.GL.Viewport(offsetViewport.Left, realFbHeight - offsetViewport.Bottom, global::Uno.Math.Max(0, offsetViewport.Size.X), global::Uno.Math.Max(0, offsetViewport.Size.Y));
                 }

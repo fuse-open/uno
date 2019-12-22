@@ -128,7 +128,7 @@ namespace Uno.Support.MonoMac
             return _unoWindow;
         }
 
-        Uno.Runtime.Implementation.GraphicsContextHandle Uno.IAppHost.GetGraphicsContext()
+        GraphicsContextBackend Uno.IAppHost.GetGraphicsContextBackend()
         {
             return _unoGC;
         }

@@ -1,8 +1,9 @@
 ﻿using OpenGL;
+using Uno.Platform;
 
 namespace Uno.Support.MonoMac
 {
-    class MonoMacGraphicsContext : Runtime.Implementation.GraphicsContextHandle
+    class MonoMacGraphicsContext : GraphicsContextBackend
     {
         UnoGLView _view;
 

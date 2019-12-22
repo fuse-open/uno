@@ -1,15 +1,13 @@
-using System;
-using System.Runtime.InteropServices;
-using OpenGL;
+// This file was generated based on lib/UnoCore/Source/Uno/Runtime/Implementation/GraphicsControllerImpl.uno.
+// WARNING: Changes might be lost if you edit this file directly.
 
 namespace Uno.Runtime.Implementation
 {
+    [global::Uno.Compiler.ExportTargetInterop.DotNetTypeAttribute(null)]
     public abstract class GraphicsContextHandle
     {
-        public abstract GLFramebufferHandle GetBackbufferGLHandle();
-        public abstract Int2 GetBackbufferSize();
-        public abstract Int2 GetBackbufferOffset();
-        public abstract Recti GetBackbufferScissor();
-        public abstract int GetRealBackbufferHeight();
+        public GraphicsContextHandle()
+        {
+        }
     }
 }

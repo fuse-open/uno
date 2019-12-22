@@ -119,6 +119,7 @@
     <Compile Include="Uno\Platform\EventSources\HardwareKeys.cs" />
     <Compile Include="Uno\Platform\EventSources\MouseSource.cs" />
     <Compile Include="Uno\Platform\EventSources\TextSource.cs" />
+    <Compile Include="Uno\Platform\GraphicsContextBackend.cs" />
     <Compile Include="Uno\Platform\Key.cs" />
     <Compile Include="Uno\Platform\KeyEventArgs.cs" />
     <Compile Include="Uno\Platform\MouseButton.cs" />
