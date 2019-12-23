@@ -70,14 +70,12 @@ namespace Uno.Platform.EventSources
 
         public static extern(!MOBILE) void BeginTextInput(TextInputHint hint)
         {
-            var _handle = Application.Current.Window._handle;
-            PlatformWindowImpl.BeginTextInput(_handle, hint);
+            Application.Current.Window.Backend.BeginTextInput(hint);
         }
 
         public static extern(!MOBILE) void EndTextInput()
         {
-            var _handle = Application.Current.Window._handle;
-            PlatformWindowImpl.EndTextInput(_handle);
+            Application.Current.Window.Backend.EndTextInput();
         }
 
         public static extern(MOBILE) void BeginTextInput(TextInputHint hint) {}
@@ -90,9 +88,10 @@ namespace Uno.Platform.EventSources
                 if defined(MOBILE)
                 {
                     return false;
-                } else {
-                    var _handle = Application.Current.Window._handle;
-                    return PlatformWindowImpl.IsTextInputActive(_handle);
+                }
+                else
+                {
+                    return Application.Current.Window.Backend.IsTextInputActive();
                 }
             }
         }

@@ -117,9 +117,9 @@ namespace Uno.Platform
     extern(!mobile)
     public class DesktopDisplay : Display
     {
-        protected override float GetDensity() {
-            var wnd = Uno.Runtime.Implementation.PlatformWindowImpl.GetInstance();
-            return Uno.Runtime.Implementation.PlatformWindowImpl.GetDensity(wnd);
+        protected override float GetDensity()
+        {
+            return WindowBackend.Instance.GetDensity();
         }
     }
 }

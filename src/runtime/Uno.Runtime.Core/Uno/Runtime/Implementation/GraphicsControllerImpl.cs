@@ -8,32 +8,32 @@ namespace Uno.Runtime.Implementation
     {
         public static GraphicsContextHandle GetInstance()
         {
-            return global::Uno.ApplicationContext.AppHost.GetGraphicsContext();
+            return global::Uno.Platform.GraphicsContextBackend.Instance;
         }
 
         public static global::OpenGL.GLFramebufferHandle GetBackbufferGLHandle(GraphicsContextHandle handle)
         {
-            return (handle).GetBackbufferGLHandle();
+            return ((global::Uno.Platform.GraphicsContextBackend)handle).GetBackbufferGLHandle();
         }
 
         public static global::Uno.Int2 GetBackbufferSize(GraphicsContextHandle handle)
         {
-            return (handle).GetBackbufferSize();
+            return ((global::Uno.Platform.GraphicsContextBackend)handle).GetBackbufferSize();
         }
 
         public static global::Uno.Int2 GetBackbufferOffset(GraphicsContextHandle handle)
         {
-            return (handle).GetBackbufferOffset();
+            return ((global::Uno.Platform.GraphicsContextBackend)handle).GetBackbufferOffset();
         }
 
         public static global::Uno.Recti GetBackbufferScissor(GraphicsContextHandle handle)
         {
-            return (handle).GetBackbufferScissor();
+            return ((global::Uno.Platform.GraphicsContextBackend)handle).GetBackbufferScissor();
         }
 
         public static int GetRealBackbufferHeight(GraphicsContextHandle handle)
         {
-            return (handle).GetRealBackbufferHeight();
+            return ((global::Uno.Platform.GraphicsContextBackend)handle).GetRealBackbufferHeight();
         }
     }
 }

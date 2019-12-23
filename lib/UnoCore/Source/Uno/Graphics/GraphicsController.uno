@@ -1,6 +1,5 @@
 
 using OpenGL;
-using Uno.Runtime.Implementation;
 using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Graphics
@@ -15,7 +14,7 @@ namespace Uno.Graphics
 
         bool _scissorEnabled = false;
 
-        internal GraphicsController() : base(GraphicsControllerImpl.GetInstance())
+        internal GraphicsController()
         {
             ClearColor = float4(0,0,0,1);
             ClearDepth = 1;
@@ -26,9 +25,9 @@ namespace Uno.Graphics
         internal void UpdateBackbuffer()
         {
             if defined(OPENGL)
-                _backbuffer.GLFramebufferHandle = GraphicsControllerImpl.GetBackbufferGLHandle(_handle);
+                _backbuffer.GLFramebufferHandle = _backend.GetBackbufferGLHandle();
 
-            _backbuffer.Size = GraphicsControllerImpl.GetBackbufferSize(_handle);
+            _backbuffer.Size = _backend.GetBackbufferSize();
             _backbuffer.HasDepth = true;
         }
 
@@ -61,10 +60,10 @@ namespace Uno.Graphics
                     _scissor = value;
                     if (_renderTarget == _backbuffer)
                     {
-                        var offset = GraphicsControllerImpl.GetBackbufferOffset(_handle);
-                        var realFbHeight = GraphicsControllerImpl.GetRealBackbufferHeight(_handle);
+                        var offset = _backend.GetBackbufferOffset();
+                        var realFbHeight = _backend.GetRealBackbufferHeight();
                         var offsetScissor = new Recti(_scissor.Position + offset, _scissor.Size);
-                        var currentScissor = GraphicsControllerImpl.GetBackbufferScissor(_handle);
+                        var currentScissor = _backend.GetBackbufferScissor();
                         var clippedScissor = new Recti(
                             Uno.Math.Max(offsetScissor.Left, currentScissor.Left),
                             Uno.Math.Max(offsetScissor.Top, currentScissor.Top),
@@ -99,8 +98,8 @@ namespace Uno.Graphics
                     _viewport = value;
                     if (_renderTarget == _backbuffer)
                     {
-                        var offset = GraphicsControllerImpl.GetBackbufferOffset(_handle);
-                        var realFbHeight = GraphicsControllerImpl.GetRealBackbufferHeight(_handle);
+                        var offset = _backend.GetBackbufferOffset();
+                        var realFbHeight = _backend.GetRealBackbufferHeight();
                         var offsetViewport = new Recti(_viewport.Position + offset, _viewport.Size);
 
                         GL.Viewport(offsetViewport.Left,

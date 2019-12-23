@@ -20,21 +20,21 @@ namespace Uno.Runtime.Implementation.Internal
             _lastPrimaryFingerId = -1;
         }
 
-        static bool IsPrimaryFinger(PlatformWindowHandle handle, int fingerId)
+        static bool IsPrimaryFinger(WindowBackend window, int fingerId)
         {
             return _lastPrimaryFingerId == fingerId && (defined(Android) || defined(iOS));
         }
 
-        static EventModifiers GetEventModifiers(PlatformWindowHandle handle)
+        static EventModifiers GetEventModifiers(WindowBackend window)
         {
             return
-                (PlatformWindowImpl.GetKeyState(handle, Key.ControlKey) ? EventModifiers.ControlKey : 0) |
-                (PlatformWindowImpl.GetKeyState(handle, Key.ShiftKey) ? EventModifiers.ShiftKey : 0) |
-                (PlatformWindowImpl.GetKeyState(handle, Key.AltKey) ? EventModifiers.AltKey : 0) |
-                (PlatformWindowImpl.GetKeyState(handle, Key.MetaKey) ? EventModifiers.MetaKey : 0) |
-                (PlatformWindowImpl.GetMouseButtonState(handle, MouseButton.Left) ? EventModifiers.LeftButton : 0) |
-                (PlatformWindowImpl.GetMouseButtonState(handle, MouseButton.Middle) ? EventModifiers.MiddleButton : 0) |
-                (PlatformWindowImpl.GetMouseButtonState(handle, MouseButton.Right) ? EventModifiers.RightButton : 0);
+                (window.GetKeyState(Key.ControlKey) ? EventModifiers.ControlKey : 0) |
+                (window.GetKeyState(Key.ShiftKey) ? EventModifiers.ShiftKey : 0) |
+                (window.GetKeyState(Key.AltKey) ? EventModifiers.AltKey : 0) |
+                (window.GetKeyState(Key.MetaKey) ? EventModifiers.MetaKey : 0) |
+                (window.GetMouseButtonState(MouseButton.Left) ? EventModifiers.LeftButton : 0) |
+                (window.GetMouseButtonState(MouseButton.Middle) ? EventModifiers.MiddleButton : 0) |
+                (window.GetMouseButtonState(MouseButton.Right) ? EventModifiers.RightButton : 0);
         }
 
         public static void OnUpdate()
@@ -64,55 +64,55 @@ namespace Uno.Runtime.Implementation.Internal
             app.Draw();
         }
 
-        public static bool OnKeyDown(PlatformWindowHandle handle, Key key)
+        public static bool OnKeyDown(WindowBackend window, Key key)
         {
-            return Uno.Platform.EventSources.HardwareKeys.OnKeyDown(key, GetEventModifiers(handle));
+            return Uno.Platform.EventSources.HardwareKeys.OnKeyDown(key, GetEventModifiers(window));
         }
 
-        public static bool OnKeyUp(PlatformWindowHandle handle, Key key)
+        public static bool OnKeyUp(WindowBackend window, Key key)
         {
-            return Uno.Platform.EventSources.HardwareKeys.OnKeyUp(key, GetEventModifiers(handle));
+            return Uno.Platform.EventSources.HardwareKeys.OnKeyUp(key, GetEventModifiers(window));
         }
 
-        public static bool OnTextInput(PlatformWindowHandle handle, string text)
+        public static bool OnTextInput(WindowBackend window, string text)
         {
-            return Uno.Platform.EventSources.TextSource.OnTextInput(text, GetEventModifiers(handle));
+            return Uno.Platform.EventSources.TextSource.OnTextInput(text, GetEventModifiers(window));
         }
 
-        public static bool OnMouseDown(PlatformWindowHandle handle, int x, int y, MouseButton button)
+        public static bool OnMouseDown(WindowBackend window, int x, int y, MouseButton button)
         {
             var app = Application.Current;
 
             if (app == null)
                 return false;
 
-            var args = new PointerEventArgs(PointerType.Mouse, GetEventModifiers(handle), button == MouseButton.Left, float2((float)x, (float)y), 0, button, float2(0, 0), WheelDeltaMode.DeltaPixel);
+            var args = new PointerEventArgs(PointerType.Mouse, GetEventModifiers(window), button == MouseButton.Left, float2((float)x, (float)y), 0, button, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerPressed(args);
 
             return args.Handled;
         }
 
-        public static bool OnMouseUp(PlatformWindowHandle handle, int x, int y, MouseButton button)
+        public static bool OnMouseUp(WindowBackend window, int x, int y, MouseButton button)
         {
             var app = Application.Current;
 
             if (app == null)
                 return false;
 
-            var args = new PointerEventArgs(PointerType.Mouse, GetEventModifiers(handle), button == MouseButton.Left, float2((float)x, (float)y), 0, button, float2(0, 0), WheelDeltaMode.DeltaPixel);
+            var args = new PointerEventArgs(PointerType.Mouse, GetEventModifiers(window), button == MouseButton.Left, float2((float)x, (float)y), 0, button, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerReleased(args);
 
             return args.Handled;
         }
 
-        public static bool OnMouseMove(PlatformWindowHandle handle, int x, int y)
+        public static bool OnMouseMove(WindowBackend window, int x, int y)
         {
             var app = Application.Current;
 
             if (app == null)
                 return false;
 
-            var modifiers = GetEventModifiers(handle);
+            var modifiers = GetEventModifiers(window);
 
             var args = new PointerEventArgs(PointerType.Mouse, modifiers, modifiers.HasFlag(EventModifiers.LeftButton), float2((float)x, (float)y), 0, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerMoved(args);
@@ -123,14 +123,14 @@ namespace Uno.Runtime.Implementation.Internal
             return args.Handled;
         }
 
-        public static bool OnMouseOut(PlatformWindowHandle handle)
+        public static bool OnMouseOut(WindowBackend window)
         {
             var app = Application.Current;
 
             if (app == null)
                 return false;
 
-            var modifiers = GetEventModifiers(handle);
+            var modifiers = GetEventModifiers(window);
 
             var args = new PointerEventArgs(PointerType.Mouse, modifiers, modifiers.HasFlag(EventModifiers.LeftButton), float2((float)0, (float)0), 0, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerLeft(args);
@@ -138,20 +138,20 @@ namespace Uno.Runtime.Implementation.Internal
             return args.Handled;
         }
 
-        public static bool OnMouseWheel(PlatformWindowHandle handle, float dHori, float dVert, int wheelDeltaMode)
+        public static bool OnMouseWheel(WindowBackend window, float dHori, float dVert, int wheelDeltaMode)
         {
             var app = Application.Current;
 
             if (app == null)
                 return false;
 
-            var args = new PointerEventArgs(PointerType.Mouse, GetEventModifiers(handle), false, float2((float)_lastMouseX, (float)_lastMouseY), 0, 0, float2(dHori, dVert), (WheelDeltaMode)wheelDeltaMode);
+            var args = new PointerEventArgs(PointerType.Mouse, GetEventModifiers(window), false, float2((float)_lastMouseX, (float)_lastMouseY), 0, 0, float2(dHori, dVert), (WheelDeltaMode)wheelDeltaMode);
             Uno.Platform.EventSources.MouseSource.OnPointerWheelChanged(args);
 
             return args.Handled;
         }
 
-        public static bool OnTouchDown(PlatformWindowHandle handle, float x, float y, int id)
+        public static bool OnTouchDown(WindowBackend window, float x, float y, int id)
         {
             var app = Application.Current;
 
@@ -163,13 +163,13 @@ namespace Uno.Runtime.Implementation.Internal
             if (app == null)
                 return false;
 
-            var args = new PointerEventArgs(PointerType.Touch, GetEventModifiers(handle), IsPrimaryFinger(handle, id), float2(x, y), id, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
+            var args = new PointerEventArgs(PointerType.Touch, GetEventModifiers(window), IsPrimaryFinger(window, id), float2(x, y), id, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerPressed(args);
 
             return args.Handled;
         }
 
-        public static bool OnTouchMove(PlatformWindowHandle handle, float x, float y, int id)
+        public static bool OnTouchMove(WindowBackend window, float x, float y, int id)
         {
             var app = Application.Current;
 
@@ -179,13 +179,13 @@ namespace Uno.Runtime.Implementation.Internal
             if (app == null)
                 return false;
 
-            var args = new PointerEventArgs(PointerType.Touch, GetEventModifiers(handle), IsPrimaryFinger(handle, id), float2(x, y), id, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
+            var args = new PointerEventArgs(PointerType.Touch, GetEventModifiers(window), IsPrimaryFinger(window, id), float2(x, y), id, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerMoved(args);
 
             return args.Handled;
         }
 
-        public static bool OnTouchUp(PlatformWindowHandle handle, float x, float y, int id)
+        public static bool OnTouchUp(WindowBackend window, float x, float y, int id)
         {
             var app = Application.Current;
 
@@ -197,13 +197,13 @@ namespace Uno.Runtime.Implementation.Internal
             if (app == null)
                 return false;
 
-            var args = new PointerEventArgs(PointerType.Touch, GetEventModifiers(handle), IsPrimaryFinger(handle, id), float2(x, y), id, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
+            var args = new PointerEventArgs(PointerType.Touch, GetEventModifiers(window), IsPrimaryFinger(window, id), float2(x, y), id, 0, float2(0, 0), WheelDeltaMode.DeltaPixel);
             Uno.Platform.EventSources.MouseSource.OnPointerReleased(args);
 
             return args.Handled;
         }
 
-        public static void OnWindowSizeChanged(PlatformWindowHandle handle)
+        public static void OnWindowSizeChanged(WindowBackend window)
         {
             var app = Application.Current;
 
@@ -214,7 +214,7 @@ namespace Uno.Runtime.Implementation.Internal
             }
         }
 
-        public static bool OnAppTerminating(PlatformWindowHandle handle)
+        public static bool OnAppTerminating(WindowBackend window)
         {
             CoreApp.EnterBackground();
             CoreApp.Terminate();

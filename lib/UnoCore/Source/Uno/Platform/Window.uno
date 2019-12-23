@@ -113,47 +113,48 @@ namespace Uno.Platform
     [extern(DOTNET) DotNetType]
     public extern(!MOBILE) sealed class Window : OSFrame
     {
+        internal WindowBackend Backend = WindowBackend.Instance;
+
         internal Window() : base()
         {
             Uno.Platform.Displays.MainDisplay.Tick += OnTick;
             Uno.Platform.CoreApp.EnteringInteractive += OnGotFocus;
             Uno.Platform.CoreApp.ExitedInteractive += OnLostFocus;
-            _handle = PlatformWindowImpl.GetInstance();
         }
 
         public void Close()
         {
-            PlatformWindowImpl.Close(_handle);
+            Backend.Close();
         }
 
         public string Title
         {
-            get { return PlatformWindowImpl.GetTitle(_handle); }
-            set { PlatformWindowImpl.SetTitle(_handle, value); }
+            get { return Backend.GetTitle(); }
+            set { Backend.SetTitle(value); }
         }
 
         public PointerCursor PointerCursor
         {
-            get { return PlatformWindowImpl.GetPointerCursor(_handle); }
-            set { PlatformWindowImpl.SetPointerCursor(_handle, value); }
+            get { return Backend.GetPointerCursor(); }
+            set { Backend.SetPointerCursor(value); }
         }
 
         public int2 ClientSize
         {
-            get { return PlatformWindowImpl.GetClientSize(_handle); }
-            set { PlatformWindowImpl.SetClientSize(_handle, value); }
+            get { return Backend.GetClientSize(); }
+            set { Backend.SetClientSize(value); }
         }
 
         public bool Fullscreen
         {
-            get { return PlatformWindowImpl.GetFullscreen(_handle); }
-            set { PlatformWindowImpl.SetFullscreen(_handle, value); }
+            get { return Backend.GetFullscreen(); }
+            set { Backend.SetFullscreen(value); }
         }
 
         [Obsolete("Deprecated: Please use Uno.Platform.EventSources.TextSource.IsTextInputActive")]
         public bool IsTextInputActive
         {
-            get { return PlatformWindowImpl.IsTextInputActive(_handle); }
+            get { return Backend.IsTextInputActive(); }
         }
         [Obsolete("Deprecated: Please use Uno.Platform.EventSources.TextSource.TextInput")]
         public event EventHandler<TextInputEventArgs> TextInput;

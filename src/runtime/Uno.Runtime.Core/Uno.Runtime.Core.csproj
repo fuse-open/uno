@@ -82,7 +82,6 @@
     <Compile Include="OpenGL\GLTextureUnit.cs" />
     <Compile Include="OpenGL\IGL.cs" />
     <Compile Include="Uno\Application.cs" />
-    <Compile Include="Uno\ApplicationContext.cs" />
     <Compile Include="Uno\Byte2.cs" />
     <Compile Include="Uno\Byte4.cs" />
     <Compile Include="Uno\Compiler\ExportTargetInterop\DotNetTypeAttribute.cs" />
@@ -119,6 +118,7 @@
     <Compile Include="Uno\Platform\EventSources\HardwareKeys.cs" />
     <Compile Include="Uno\Platform\EventSources\MouseSource.cs" />
     <Compile Include="Uno\Platform\EventSources\TextSource.cs" />
+    <Compile Include="Uno\Platform\GraphicsContextBackend.cs" />
     <Compile Include="Uno\Platform\Key.cs" />
     <Compile Include="Uno\Platform\KeyEventArgs.cs" />
     <Compile Include="Uno\Platform\MouseButton.cs" />
@@ -131,6 +131,7 @@
     <Compile Include="Uno\Platform\TimerEventArgs.cs" />
     <Compile Include="Uno\Platform\WheelDeltaMode.cs" />
     <Compile Include="Uno\Platform\Window.cs" />
+    <Compile Include="Uno\Platform\WindowBackend.cs" />
     <Compile Include="Uno\Platform2\Internal\Application.cs" />
     <Compile Include="Uno\Rect.cs" />
     <Compile Include="Uno\Recti.cs" />

@@ -1,17 +1,12 @@
 using OpenGL;
-using Uno.Runtime.Implementation;
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Platform;
 
 namespace Uno.Graphics
 {
     [extern(DOTNET) DotNetType]
     public class GraphicsContext
     {
-        internal GraphicsContextHandle _handle;
-
-        internal GraphicsContext(GraphicsContextHandle handle)
-        {
-            _handle = handle;
-        }
+        protected readonly GraphicsContextBackend _backend = GraphicsContextBackend.Instance;
     }
 }

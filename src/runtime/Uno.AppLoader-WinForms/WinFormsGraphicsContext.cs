@@ -1,9 +1,9 @@
 ﻿using OpenGL;
-using Uno.Runtime.Implementation;
+using Uno.Platform;
 
 namespace Uno.Support.WinForms
 {
-    public class WinFormsGraphicsContext : GraphicsContextHandle
+    public class WinFormsGraphicsContext : GraphicsContextBackend
     {
         UnoGLControl _control;
 

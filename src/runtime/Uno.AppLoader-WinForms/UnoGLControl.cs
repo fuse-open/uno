@@ -15,7 +15,7 @@ using GL = Uno.Support.OpenTK.GL;
 
 namespace Uno.Support.WinForms
 {
-    public class UnoGLControl : UserControl, IAppHost
+    public class UnoGLControl : UserControl
     {
         readonly GL GL;
         readonly IWindowInfo _glWindow;
@@ -89,7 +89,8 @@ namespace Uno.Support.WinForms
         {
             Window = parent;
             OpenGL.GL.Initialize(GL, !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DEBUG_GL")));
-            ApplicationContext.Initialize(this);
+            GraphicsContextBackend.SetInstance(CoreGC);
+            WindowBackend.SetInstance(CoreWindow);
 
             SizeChanged += (sender, e) => Bootstrapper.OnWindowSizeChanged(CoreWindow);
 
@@ -284,12 +285,12 @@ namespace Uno.Support.WinForms
             //Bootstrapper.OnWindowClosed(CoreWindow);
         }
 
-        public PlatformWindowHandle GetPlatformWindow()
+        public WindowBackend GetWindowBackend()
         {
             return CoreWindow;
         }
 
-        public GraphicsContextHandle GetGraphicsContext()
+        public GraphicsContextBackend GetGraphicsContextBackend()
         {
             return CoreGC;
         }

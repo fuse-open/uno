@@ -8,14 +8,12 @@ namespace Uno.Platform.EventSources
     {
         public static void BeginTextInput(global::Uno.Platform.TextInputHint hint)
         {
-            global::Uno.Runtime.Implementation.PlatformWindowHandle _handle = global::Uno.Application.Current.Window._handle;
-            global::Uno.Runtime.Implementation.PlatformWindowImpl.BeginTextInput(_handle, hint);
+            global::Uno.Application.Current.Window.Backend.BeginTextInput(hint);
         }
 
         public static void EndTextInput()
         {
-            global::Uno.Runtime.Implementation.PlatformWindowHandle _handle = global::Uno.Application.Current.Window._handle;
-            global::Uno.Runtime.Implementation.PlatformWindowImpl.EndTextInput(_handle);
+            global::Uno.Application.Current.Window.Backend.EndTextInput();
         }
 
         public static bool OnTextInput(string text, global::Uno.Platform.EventModifiers modifiers)
@@ -33,8 +31,7 @@ namespace Uno.Platform.EventSources
         {
             get
             {
-                global::Uno.Runtime.Implementation.PlatformWindowHandle _handle = global::Uno.Application.Current.Window._handle;
-                return global::Uno.Runtime.Implementation.PlatformWindowImpl.IsTextInputActive(_handle);
+                return global::Uno.Application.Current.Window.Backend.IsTextInputActive();
             }
         }
 

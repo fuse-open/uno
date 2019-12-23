@@ -6,17 +6,19 @@ namespace Uno.Platform
     [global::Uno.Compiler.ExportTargetInterop.DotNetTypeAttribute(null)]
     public sealed class Window : OSFrame
     {
+        public WindowBackend Backend;
+
         public Window()
         {
+            this.Backend = WindowBackend.Instance;
             Displays.MainDisplay.Tick += new global::System.EventHandler<TimerEventArgs>(this.OnTick);
             CoreApp.EnteringInteractive += new ApplicationStateTransitionHandler(this.OnGotFocus);
             CoreApp.ExitedInteractive += new ApplicationStateTransitionHandler(this.OnLostFocus);
-            this._handle = global::Uno.Runtime.Implementation.PlatformWindowImpl.GetInstance();
         }
 
         public void Close()
         {
-            global::Uno.Runtime.Implementation.PlatformWindowImpl.Close(this._handle);
+            this.Backend.Close();
         }
 
         public void OnTick(object sender, TimerEventArgs args)
@@ -45,32 +47,32 @@ namespace Uno.Platform
 
         public string Title
         {
-            get { return global::Uno.Runtime.Implementation.PlatformWindowImpl.GetTitle(this._handle); }
-            set { global::Uno.Runtime.Implementation.PlatformWindowImpl.SetTitle(this._handle, value); }
+            get { return this.Backend.GetTitle(); }
+            set { this.Backend.SetTitle(value); }
         }
 
         public PointerCursor PointerCursor
         {
-            get { return global::Uno.Runtime.Implementation.PlatformWindowImpl.GetPointerCursor(this._handle); }
-            set { global::Uno.Runtime.Implementation.PlatformWindowImpl.SetPointerCursor(this._handle, value); }
+            get { return this.Backend.GetPointerCursor(); }
+            set { this.Backend.SetPointerCursor(value); }
         }
 
         public global::Uno.Int2 ClientSize
         {
-            get { return global::Uno.Runtime.Implementation.PlatformWindowImpl.GetClientSize(this._handle); }
-            set { global::Uno.Runtime.Implementation.PlatformWindowImpl.SetClientSize(this._handle, value); }
+            get { return this.Backend.GetClientSize(); }
+            set { this.Backend.SetClientSize(value); }
         }
 
         public bool Fullscreen
         {
-            get { return global::Uno.Runtime.Implementation.PlatformWindowImpl.GetFullscreen(this._handle); }
-            set { global::Uno.Runtime.Implementation.PlatformWindowImpl.SetFullscreen(this._handle, value); }
+            get { return this.Backend.GetFullscreen(); }
+            set { this.Backend.SetFullscreen(value); }
         }
 
         [global::System.ObsoleteAttribute("Deprecated: Please use Uno.Platform.EventSources.TextSource.IsTextInputActive")]
         public bool IsTextInputActive
         {
-            get { return global::Uno.Runtime.Implementation.PlatformWindowImpl.IsTextInputActive(this._handle); }
+            get { return this.Backend.IsTextInputActive(); }
         }
 
         [global::System.ObsoleteAttribute("Deprecated: Please use Uno.Platform.EventSources.TextSource.TextInput")]

@@ -1,10 +1,5 @@
 <Extensions Backend="CSharp">
 
     <Define DOTNET />
-    <Declare Element="SourceFile" />
-
-    <ProcessFile SourceFile="Uno/ApplicationContext.cs" />
-    <ProcessFile SourceFile="Uno/Runtime/Implementation/GraphicsContextHandle.cs" />
-    <ProcessFile SourceFile="Uno/Runtime/Implementation/PlatformWindowHandle.cs" />
 
 </Extensions>

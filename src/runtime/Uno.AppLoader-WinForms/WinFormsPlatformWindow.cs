@@ -1,10 +1,9 @@
 ﻿using System.Windows.Forms;
 using Uno.Platform;
-using Uno.Runtime.Implementation;
 
 namespace Uno.Support.WinForms
 {
-    public class WinFormsPlatformWindow : PlatformWindowHandle
+    public class WinFormsPlatformWindow : WindowBackend
     {
         readonly UnoGLControl _control;
 
