@@ -39,6 +39,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="UnoCore">
+      <HintPath>..\..\..\lib\UnoCore\build\DotNet\Debug\UnoCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
@@ -52,12 +55,6 @@
     <Compile Include="ProgramDisposable.cs" />
     <Compile Include="RenderbufferDisposable.cs" />
     <Compile Include="ShaderDisposable.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Uno.Runtime.Core\Uno.Runtime.Core.csproj">
-      <Project>{BE6FB7C9-4F00-4A1B-BEBD-59869A4AF387}</Project>
-      <Name>Uno.Runtime.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />

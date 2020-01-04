@@ -49,6 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="UnoCore">
+      <HintPath>..\..\..\lib\UnoCore\build\DotNet\Debug\UnoCore.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\lib\net45\Xamarin.Mac.dll</HintPath>
     </Reference>
@@ -100,12 +103,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Uno.Runtime.Core\Uno.Runtime.Core.csproj">
-      <Project>{BE6FB7C9-4F00-4A1B-BEBD-59869A4AF387}</Project>
-      <Name>Uno.Runtime.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

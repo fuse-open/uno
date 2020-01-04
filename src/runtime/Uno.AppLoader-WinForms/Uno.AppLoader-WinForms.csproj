@@ -50,6 +50,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="UnoCore">
+      <HintPath>..\..\..\lib\UnoCore\build\DotNet\Debug\UnoCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
@@ -106,10 +109,6 @@
     <ProjectReference Include="..\Uno.Support.OpenTK\Uno.Support.OpenTK.csproj">
       <Project>{6B1665F8-45F6-4610-8365-8EC747378186}</Project>
       <Name>Uno.Support.OpenTK</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Uno.Runtime.Core\Uno.Runtime.Core.csproj">
-      <Project>{BE6FB7C9-4F00-4A1B-BEBD-59869A4AF387}</Project>
-      <Name>Uno.Runtime.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
