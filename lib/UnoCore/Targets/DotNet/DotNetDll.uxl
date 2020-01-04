@@ -1,4 +1,0 @@
-<Extensions Backend="CIL" Condition="DotNetDll || LIBRARY">
-    <Set AssemblyDirectory="." />
-    <Set Product="@(Project.Name).dll" />
-</Extensions>

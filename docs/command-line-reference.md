@@ -135,7 +135,6 @@ Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
   * ios        (-x)    (Objective-)C++/GLES2 code and Xcode project. (macOS only)
-  * dotnetdll  (-x)    .NET/GL bytecode and library.
   * dotnet             .NET/GL bytecode and executable. (default)
   * corelib    (-x)    C# implementation of Uno corelib.
   * docs       (-x)    Uno documentation files.

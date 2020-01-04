@@ -16,7 +16,6 @@ namespace Uno.Build.Targets
             new Android.AndroidBuild(),
             new Native.NativeBuild(),
             new Xcode.iOSBuild(),
-            new DotNet.DotNetDllBuild(),
             Default,
             new Uno.CorelibBuild(),
             new Uno.DocsBuild(),
