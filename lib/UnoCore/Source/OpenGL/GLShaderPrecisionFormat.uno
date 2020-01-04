@@ -3,7 +3,6 @@ using Uno;
 
 namespace OpenGL
 {
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) struct GLShaderPrecisionFormat
     {
         public int RangeMin;

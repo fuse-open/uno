@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform
 {
-    [extern(DOTNET) DotNetType]
     public enum WheelDeltaMode
     {
         DeltaPixel = 0,
@@ -10,7 +9,6 @@ namespace Uno.Platform
         DeltaPage = 2
     }
 
-    [extern(DOTNET) DotNetType]
     public sealed class PointerEventArgs : EventArgs
     {
         public PointerEventArgs(PointerType type, EventModifiers modifiers, bool primary, float2 position, int fingerId, MouseButton mouseButton, float2 wheelDelta, WheelDeltaMode wheelDeltaMode)

@@ -7,7 +7,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform
 {
-    [extern(DOTNET) DotNetType]
     public enum ApplicationState
     {
         Uninitialized,
@@ -17,12 +16,10 @@ namespace Uno.Platform
         Terminating = -1
     }
 
-    [extern(DOTNET) DotNetType]
     public delegate void ApplicationStateTransitionHandler(ApplicationState newState);
 
     [extern(CPlusPlus) Require("Source.Declaration","void uInitRtti();")]
     [extern(CPlusPlus) Require("Source.Declaration","void uStartApp();")]
-    [extern(DOTNET) DotNetType]
     public abstract class CoreApp
     {
         public static CoreApp Current

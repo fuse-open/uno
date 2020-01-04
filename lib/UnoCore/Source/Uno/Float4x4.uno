@@ -3,7 +3,6 @@ using Uno.Vector;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     /** 4x4 matrix of single-precision floating point numbers. */
     public intrinsic struct Float4x4
     {

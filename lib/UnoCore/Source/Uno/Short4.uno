@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     /** 4-component vector of 16-bit signed integers. */
     public intrinsic struct Short4
     {

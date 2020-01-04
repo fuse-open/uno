@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     public intrinsic struct Byte2
     {
         public byte X, Y;

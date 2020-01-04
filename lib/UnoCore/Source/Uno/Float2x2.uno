@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     /** 2x2 matrix of single-precision floating point numbers. */
     public intrinsic struct Float2x2
     {

@@ -4,7 +4,6 @@ using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
 
 namespace Uno.Graphics
 {
-    [extern(DOTNET) DotNetType]
     public class RenderTarget : IDisposable
     {
         public int2 Size

@@ -4,7 +4,6 @@ namespace Uno.Platform
 {
     using Xli;
 
-    [extern(DOTNET) DotNetType]
     public abstract class WindowBackend : Uno.Runtime.Implementation.PlatformWindowHandle
     {
         internal static WindowBackend Instance;

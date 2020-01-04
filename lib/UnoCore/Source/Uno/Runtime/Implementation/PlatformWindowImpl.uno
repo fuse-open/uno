@@ -3,12 +3,10 @@ using Uno.Platform;
 
 namespace Uno.Runtime.Implementation
 {
-    [extern(DOTNET) DotNetType]
     public abstract class PlatformWindowHandle
     {
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(!MOBILE) static class PlatformWindowImpl
     {
         public static PlatformWindowHandle GetInstance()

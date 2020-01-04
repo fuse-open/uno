@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform
 {
-    [extern(DOTNET) DotNetType]
     public sealed class KeyEventArgs : EventArgs
     {
         public KeyEventArgs(Key key, EventModifiers modifiers, OSFrame origin=null)

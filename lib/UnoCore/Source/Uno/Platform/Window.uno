@@ -110,7 +110,6 @@ namespace Uno.Platform
     }
 
 
-    [extern(DOTNET) DotNetType]
     public extern(!MOBILE) sealed class Window : OSFrame
     {
         internal WindowBackend Backend = WindowBackend.Instance;

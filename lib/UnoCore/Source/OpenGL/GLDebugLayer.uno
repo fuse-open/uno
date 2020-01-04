@@ -6,7 +6,6 @@ using System.Reflection;
 
 namespace OpenGL
 {
-    [DotNetType]
     extern(DOTNET)
     class GLDebugLayer : IGL
     {

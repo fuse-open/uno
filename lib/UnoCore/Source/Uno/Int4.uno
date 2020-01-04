@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     /** 4-component vector of 32-bit signed integer values. */
     public intrinsic struct Int4
     {

@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.UX
 {
-    [extern(DOTNET) DotNetType]
     public sealed class UXContentAttribute: Attribute {}
 
     public sealed class UXVerbatimAttribute: Attribute {}

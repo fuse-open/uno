@@ -6,7 +6,6 @@ using Uno.Platform.iOS;
 
 namespace Uno.Platform
 {
-    [extern(DOTNET) DotNetType]
     public static class Displays
     {
         public static List<Display> All { public get; private set; }
@@ -50,7 +49,6 @@ namespace Uno.Platform
     }
 
 
-    [extern(DOTNET) DotNetType]
     public abstract class Display
     {
         // Density
@@ -113,7 +111,6 @@ namespace Uno.Platform
         protected virtual void DisableTicks() {}
     }
 
-    [extern(DOTNET) DotNetType]
     extern(!mobile)
     public class DesktopDisplay : Display
     {

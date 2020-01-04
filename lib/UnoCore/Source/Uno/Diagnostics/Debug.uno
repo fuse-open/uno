@@ -4,7 +4,6 @@ using System;
 
 namespace Uno.Diagnostics
 {
-    [extern(DOTNET) DotNetType]
     public enum DebugMessageType
     {
         Debug,
@@ -14,13 +13,10 @@ namespace Uno.Diagnostics
         Fatal,
     }
 
-    [extern(DOTNET) DotNetType]
     public delegate void AssertionHandler(bool value, string expression, string filename, int line, params object[] operands);
 
-    [extern(DOTNET) DotNetType]
     public delegate void LogHandler(string message, DebugMessageType type);
 
-    [extern(DOTNET) DotNetType]
     public static class Debug
     {
         // TODO: Deprecated
