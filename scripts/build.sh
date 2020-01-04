@@ -12,9 +12,13 @@ fi
 
 h1 "Installing packages"
 nuget restore uno.sln
+nuget restore runtime.sln
 
-h1 "Building platform tools"
+h1 "Building uno"
 csharp-build uno.sln
 
-h1 "Building core library"
+h1 "Building runtime"
+csharp-build runtime.sln
+
+h1 "Building lib"
 uno doctor -ec$CONFIGURATION lib "$@"
