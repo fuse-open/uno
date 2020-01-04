@@ -1,4 +1,4 @@
-<Extensions Backend="CIL" Condition="EXECUTABLE && !DOTNETDLL">
+<Extensions Backend="CIL" Condition="EXECUTABLE && !LIBRARY && !DOTNETDLL">
 
     <Set PrebuiltDirectory="@(Config.Paths.AppLoader:Path)" />
     <Set AppDirectory="@(Project.Name).app" Condition="HOST_MAC" />
