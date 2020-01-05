@@ -131,11 +131,6 @@ C++ options
 GLSL options
   -DDUMP_SHADERS              Dump shaders to build directory for inspection
 
-Testing options (-x)
-  --test                      Generate testable code
-  --test-server-url=URL       URL to test server
-  --test-list-file=PATH       File to write list of discovered tests
-
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
