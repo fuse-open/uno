@@ -17,7 +17,6 @@ namespace Uno.Build.Targets
             new Native.NativeBuild(),
             new Xcode.iOSBuild(),
             Default,
-            new Uno.CorelibBuild(),
             new Uno.DocsBuild(),
             new DotNet.MetadataBuild(),
             new PInvoke.PInvokeBuild(),

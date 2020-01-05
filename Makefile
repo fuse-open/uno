@@ -3,8 +3,6 @@ default:
 	@bash scripts/build.sh
 lib:
 	@bin/uno doctor -e lib
-unocore:
-	@bash scripts/build-unocore.sh
 release:
 	@bash scripts/pack.sh
 diagrams:
