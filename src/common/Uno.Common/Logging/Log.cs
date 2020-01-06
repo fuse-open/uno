@@ -283,7 +283,8 @@ namespace Uno.Logging
         public void BuildCompleted(double startTime)
         {
             Skip(true);
-            WriteLine($"Build completed in {Time - startTime:0.00} seconds");
+            var verb = HasErrors ? "failed" : "completed";
+            WriteLine($"Build {verb} in {Time - startTime:0.00} seconds");
             if (HasWarnings)
                 WriteLine($"{WarningCount,5} warning".Plural(WarningCount), ConsoleColor.Yellow);
             if (HasErrors)
