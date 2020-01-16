@@ -82,7 +82,9 @@ namespace Uno.Compiler.Backends.CIL
             foreach (var e in Environment.Enumerate("UnmanagedLibrary"))
                 Disk.CopyFile(e, _outputDir.UnixToNative());
 
-            if (string.IsNullOrEmpty(Environment.GetString("AppLoader.Assembly")))
+            // Check if we need AppLoader
+            if (Environment.IsDefined("LIBRARY") ||
+                    string.IsNullOrEmpty(Environment.GetString("AppLoader.Assembly")))
                 return;
 
             // Create an executable for given architecture (-DX86 or -DX64)
