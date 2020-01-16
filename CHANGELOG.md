@@ -4,6 +4,102 @@ Uno Changelog
 Unreleased
 ----------
 
+1.14
+----
+
+### Android
+- Added dynamic delivery options (#252).
+- Added Android Go support (#255).
+- Switched to Android X libraries (#254).
+- Build Android AAR libraries (#258).
+- Merged namespace `com.Bindings` into `com.foreign` (#264).
+- Dropped legacy Java code (#263).
+- Added generated Proguard file for optimizations (#266).
+
+### iOS
+- Added `arm64e` dependencies (#270).
+- Fixed compile-time warnings (#271).
+- Upgraded Xcode project format (#271).
+
+### .NET
+- Build .NET library without AppLoader when `-DLIBRARY` (#277).
+
+### Compiler
+- Fixed bug with `abstract extern` members (#273).
+- Dropped legacy importer system (#272). 
+- Auto-detect main-class when building a library.
+
+### Standard library
+- Fixed bug with UTF8 BOM in `Uno.IO.BundleFile` (#251).
+- Dropped legacy code (#259).
+    - `GL.BufferData(GLBufferTarget target, int sizeInBytes, GLBufferUsage usage)`
+    - `GL.BufferData(GLBufferTarget target, byte[] data, GLBufferUsage usage)`
+    - `GL.BufferData(GLBufferTarget target, Buffer data, GLBufferUsage usage)`
+    - `GL.BufferSubData(GLBufferTarget target, int offset, byte[] data)`
+    - `GL.BufferSubData(GLBufferTarget target, int offset, Buffer data)`
+    - `GL.TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, byte[] data)`
+    - `GL.TexImage2D(GLTextureTarget target, int level, GLPixelFormat internalFormat, int width, int height, int border, GLPixelFormat format, GLPixelType type, Buffer data)`
+    - `GL.TexSubImage2D(GLTextureTarget target, int level, int xoffset, int yoffset, int width, int height, GLPixelFormat format, GLPixelType type, byte[] data)`
+    - `Uno.Compiler.Ast.Block`
+    - `Uno.Compiler.ExportTargetInterop.DontCopyStruct`
+    - `Uno.Compiler.ExportTargetInterop.ExportConditionAttribute`
+    - `Uno.Compiler.ExportTargetInterop.ExportNameAttribute`
+    - `Uno.Compiler.ExportTargetInterop.Foreign.ForeignDataView.ForeignDataView(Uno.Buffer buffer)`
+    - `Uno.Compiler.ExportTargetInterop.Foreign.ForeignDataView.Create(Uno.Buffer unoBuffer)`
+    - `Uno.Compiler.ImportServices.BlockFactory`
+    - `Uno.Compiler.ImportServices.BlockFactoryContext`
+    - `Uno.Compiler.ImportServices.FilenameAttribute`
+    - `Uno.Compiler.ImportServices.Importer`
+    - `Uno.Compiler.ImportServices.ImporterContext`
+    - `Uno.Diagnostics.AllocateEvent`
+    - `Uno.Diagnostics.Debug.Undefined`
+    - `Uno.Diagnostics.Debug.Alert(string message, string caption, DebugMessageType type)`
+    - `Uno.Diagnostics.Debug.Alert(string message)`
+    - `Uno.Diagnostics.Debug.Confirm(string message, string caption, DebugMessageType type)`
+    - `Uno.Diagnostics.Debug.Confirm(string message)`
+    - `Uno.Diagnostics.EnterEvent`
+    - `Uno.Diagnostics.EventType`
+    - `Uno.Diagnostics.ExitEvent`
+    - `Uno.Diagnostics.FreeEvent`
+    - `Uno.Diagnostics.Profile`
+    - `Uno.Diagnostics.ProfileData`
+    - `Uno.Diagnostics.ProfileEvent`
+    - `Uno.Diagnostics.ProfileSerializer`
+    - `Uno.FakeTime`
+    - `Uno.Float.ZeroTolerance`
+    - `Uno.Graphics.DeviceBuffer.Update(Buffer data)`
+    - `Uno.Graphics.Framebuffer.SupportsMipmap`
+    - `Uno.Graphics.IndexBuffer.IndexBuffer(Buffer data, BufferUsage usage)`
+    - `Uno.Graphics.Texture2D.Load(BundleFile file)`
+    - `Uno.Graphics.Texture2D.Load(string filename)`
+    - `Uno.Graphics.Texture2D.Load(string filename, byte[] bytes)`
+    - `Uno.Graphics.Texture2D.Update(Buffer mip0)`
+    - `Uno.Graphics.Texture2D.Update(int firstMip, params Buffer[] mips)`
+    - `Uno.Graphics.Texture2D.SupportsMipmap`
+    - `Uno.Graphics.TextureCube.Load(BundleFile file)`
+    - `Uno.Graphics.TextureCube.Load(string filename)`
+    - `Uno.Graphics.TextureCube.Load(string filename, byte[] bytes)`
+    - `Uno.Graphics.TextureCube.Update(Buffer mip0)`
+    - `Uno.Graphics.TextureCube.Update(int firstMip, params Buffer[] mips)`
+    - `Uno.Graphics.TextureCube.SupportsMipmap`
+    - `Uno.Graphics.VertexBuffer.VertexBuffer(Buffer data, BufferUsage usage)`
+    - `Uno.Graphics.VideoTexture.SupportsMipmap`
+    - `Uno.IO.BundleFileImporter`
+    - `Uno.IO.TextWriter.InitialNewLine`
+    - `Uno.Runtime.Implementation.BufferImpl`
+    - `Uno.Runtime.Implementation.Internal.BufferConverters`
+    - `Uno.Runtime.Implementation.Internal.BufferReader`
+- Extracted `Uno.Graphics.Utils` library from `UnoCore` (#269).
+- Clean-ups in `Uno.Platform` (#274).
+
+### Other improvements
+- Upgraded to C++14 standard (#250).
+- Upgraded NPM dependencies (#262).
+- Added more options for `uno clean` (#267).
+- Print path to resulting app or library (#276).
+
+[`v1.13.2...v1.14.0`](https://github.com/fuse-open/uno/compare/v1.13.2...v1.14.0)
+
 1.13
 ----
 
