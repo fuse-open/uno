@@ -45,6 +45,12 @@ namespace Uno.Build
                                       _options.Force ||
                                       !_file.IsProductUpToDate);
 
+        public string ProductPath => !string.IsNullOrEmpty(_file.Product)
+                                    ? Path.Combine(_file.RootDirectory, _file.Product).UnixToNative()
+                                        .Replace(Path.DirectorySeparatorChar + "." + Path.DirectorySeparatorChar,
+                                                Path.DirectorySeparatorChar.ToString())
+                                    : null;
+
         public void StopAnim()
         {
             if (_anim != null)
@@ -262,9 +268,9 @@ namespace Uno.Build
         public void BuildNative()
         {
             using (Log.StartAnimation("Building " + _target + (
-                    _backend.BuildType == BuildType.Executable
+                    _backend.BuildType == BuildType.Executable && !_env.IsDefined("LIBRARY")
                         ? " app"
-                        : " lib")))
+                        : " library")))
             {
                 if (!_target.Build(_compiler.Shell, _file, _options.NativeArguments))
                     Log.Error(Source.Unknown, ErrorCode.E0200, _target + " build failed");

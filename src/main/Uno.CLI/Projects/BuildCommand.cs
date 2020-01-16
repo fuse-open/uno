@@ -63,11 +63,6 @@ namespace Uno.CLI.Projects
 
                 WriteHead("GLSL options", 26);
                 WriteRow("-DDUMP_SHADERS",          "Dump shaders to build directory for inspection");
-
-                WriteHead("Testing options (-x)", 26);
-                WriteRow("--test",                  "Generate testable code");
-                WriteRow("--test-server-url=URL",   "URL to test server");
-                WriteRow("--test-list-file=PATH",   "File to write list of discovered tests");
             }
 
             WriteHead("Available build targets", 19);

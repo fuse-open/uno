@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using Uno.Build.Packages;
@@ -61,6 +62,15 @@ namespace Uno.Build
 
                     if (!Log.HasErrors && driver.CanBuildNative)
                         driver.BuildNative();
+
+                    var product = driver.ProductPath;
+                    if (!Log.HasErrors && !string.IsNullOrEmpty(product) && (
+                            File.Exists(product) || Directory.Exists(product)
+                        ))
+                    {
+                        Log.Skip(true);
+                        Log.WriteLine($"  {project.Name} -> {product.ToRelativePath()}");
+                    }
 
                     Log.BuildCompleted(startTime);
 
