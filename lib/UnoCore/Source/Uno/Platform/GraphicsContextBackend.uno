@@ -10,7 +10,7 @@ namespace Uno.Platform
     {
         internal static GraphicsContextBackend Instance;
 
-        extern(CPLUSPLUS)
+        extern(CPLUSPLUS && !MOBILE)
         static GraphicsContextBackend()
         {
             Instance = new XliGraphicsContext();
