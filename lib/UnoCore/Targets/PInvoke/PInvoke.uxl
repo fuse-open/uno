@@ -21,7 +21,7 @@
     <Declare Element="LinkLibrary" />
     <Declare Element="PreprocessorDefinition" />
 
-    <Set CppStandard="c++11" IsDefault="true" />
+    <Set CppStandard="c++14" IsDefault="true" />
     <Set CStandard="c99" IsDefault="true" />
 
     <Declare Element="Xcode.Framework" />
