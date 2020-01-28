@@ -103,6 +103,31 @@ namespace Uno.Compiler.Core.Syntax.Builders
             using (var f = _compiler.Disk.CreateBufferedText(bundlesFile))
                 f.Write(string.Join("\n", bundles));
             _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundles", bundlesFile));
+
+            // Deprecated: The 'bundle' file is no longer used, but may be used directly by 3rdparty code.
+            {
+                var index = new List<string>();
+
+                foreach (var e in packages)
+                {
+                    var line = new List<string> {e.Name};
+                    var files = _files.GetList(e);
+                    files.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
+
+                    foreach (var f in files)
+                    {
+                        line.Add(f.BundleName);
+                        line.Add(f.TargetName);
+                    }
+
+                    index.Add(string.Join(":", line));
+                }
+
+                var bundleFile = Path.Combine(_env.CacheDirectory, "bundle");
+                using (var f = _compiler.Disk.CreateBufferedText(bundleFile))
+                    f.Write(string.Join("\n", index));
+                _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundle", bundleFile));
+            }
         }
 
         void Emit(Field field)
