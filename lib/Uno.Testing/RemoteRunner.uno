@@ -16,9 +16,9 @@ namespace Uno.Testing
 
         private override void Start()
         {
-            var query = _prefix + "?event=ready"
+            var uri = _prefix + "?event=ready"
                 + "&testCount=" + TestCount;
-            Get(query);
+            Get(uri);
         }
 
         private override void Stop()
@@ -29,53 +29,53 @@ namespace Uno.Testing
         private override void TestStarting(string name)
         {
             _currentTest = name;
-            var query = _prefix + "?event=testStarted"
+            var uri = _prefix + "?event=testStarted"
                 + "&testName=" + EscapeDataString(_currentTest);
-            Get(query);
+            Get(uri);
             _startTime = Clock.GetSeconds();
         }
 
         private override void TestPassed()
         {
             int us = (int)(1000000.0 * (Clock.GetSeconds() - _startTime));
-            var query = _prefix + "?event=testPassed"
+            var uri = _prefix + "?event=testPassed"
                 + "&testName=" + EscapeDataString(_currentTest)
                 + "&us=" + us;
-            Get(query);
+            Get(uri);
             _currentTest = null;
             SheduleNextTest();
         }
 
         private override void TestIgnored(string reason)
         {
-            var query = _prefix + "?event=testIgnored"
+            var uri = _prefix + "?event=testIgnored"
                 + "&testName=" + EscapeDataString(_currentTest)
                 + "&reason=" + EscapeDataString(reason);
-            Get(query);
+            Get(uri);
             _currentTest = null;
             SheduleNextTest();
         }
 
         private override void AssertionFailed(AssertionFailedException e)
         {
-            var query = _prefix + "?event=testAsserted"
+            var uri = _prefix + "?event=testAsserted"
                 + "&testName=" + EscapeDataString(_currentTest)
                 + "&filename=" + EscapeDataString(e.FileName)
                 + "&line=" + e.Line
                 + "&membername=" + EscapeDataString(e.MemberName)
                 + "&expected=" + EscapeDataString(e.Expected.ToString())
                 + "&actual=" + EscapeDataString(e.Actual.ToString());
-            Get(query);
+            Get(uri);
             _currentTest = null;
             SheduleNextTest();
         }
 
         private override void ExceptionThrown(Exception e)
         {
-            var query = _prefix + "?event=testThrew"
+            var uri = _prefix + "?event=testThrew"
                 + "&testName=" + EscapeDataString(_currentTest)
                 + "&message=" + EscapeDataString(e.ToString());
-            Get(query);
+            Get(uri);
             _currentTest = null;
             SheduleNextTest();
         }
