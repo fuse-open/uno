@@ -2,7 +2,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.IO;
 using OpenGL;
 
-namespace Uno.Graphics.Utils.Impl
+namespace Uno.Graphics.Utils.Cpp
 {
     [extern(CPLUSPLUS) Require("Source.Include", "@{Uno.Graphics.Texture2D:Include}")]
     [extern(CPLUSPLUS) Require("Source.Include", "@{Uno.Exception:Include}")]

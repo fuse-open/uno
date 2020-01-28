@@ -1,8 +1,8 @@
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Graphics;
+using Uno.Graphics.Utils.Text;
 using Uno.IO;
 
-namespace Uno.Content.Fonts
+namespace Uno.Graphics.Utils.Cpp
 {
     [TargetSpecificType]
     [Set("TypeName", "uImage::FontFace*")]
@@ -38,7 +38,7 @@ namespace Uno.Content.Fonts
             _handle = LoadFontFaceHandle(file.BundlePath);
         }
 
-        public CppFontFace(byte []data, int offset, int length)
+        public CppFontFace(byte[] data, int offset, int length)
         {
             _handle = LoadFontFaceHandle(data, offset, length);
         }
@@ -86,7 +86,7 @@ namespace Uno.Content.Fonts
             uBase::Auto<uImage::Bitmap> bitmap = @{$$._handle}->RenderGlyph($0, $1, uImage::FontRenderModeNormal, &advance, &bearing);
             uArray* bytes = uArray::New(@{byte[]:TypeOf}, bitmap->GetSizeInBytes(), bitmap->GetPtr());
 
-            return @{Uno.Content.Fonts.RenderedGlyph(float2,float2,int2,Format,byte[]):New(
+            return @{RenderedGlyph(float2,float2,int2,Format,byte[]):New(
                 @{float2(float,float):New(advance.X, advance.Y)},
                 @{float2(float,float):New(bearing.X, bearing.Y)},
                 @{int2(int,int):New(bitmap->GetWidth(), bitmap->GetHeight())},

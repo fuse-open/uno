@@ -2,7 +2,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Graphics.Utils.Text;
 using Uno.IO;
 
-namespace Uno.Graphics.Utils.Impl
+namespace Uno.Graphics.Utils.DotNet
 {
     extern(DOTNET)
     class DotNetFontFace : FontFace
@@ -42,9 +42,6 @@ namespace Uno.Graphics.Utils.Impl
         public override RenderedGlyph RenderGlyph(float size, char glyph)
         {
             var g = _ff.RenderGlyph(size, glyph, Uno.Native.Fonts.FontRenderMode.Normal);
-
-            // TODO: Format is hardcoded
-
             return new RenderedGlyph
             {
                 Advance = new Float2(g.AdvanceX, g.AdvanceY),

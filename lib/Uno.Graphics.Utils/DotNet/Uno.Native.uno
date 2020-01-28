@@ -1,13 +1,62 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.IO;
 
-// HACK: The following shouldn't be public APIs, but we need to keep them public because they're in use somewhere in the wild.
+namespace Uno.Native
+{
+    [extern(CIL) DotNetType]
+    [extern(CIL) Require("Template", "Uno.Native")]
+    extern(DOTNET) class NativeObject : IDisposable
+    {
+        public extern void Dispose();
+    }
+}
+
+namespace Uno.Native.Fonts
+{
+    [extern(CIL) DotNetType]
+    [extern(CIL) Require("Template", "Uno.Native")]
+    extern(DOTNET) class FontFace : NativeObject
+    {
+        public extern string FamilyName { get; private set; }
+        public extern string StyleName { get; private set; }
+
+        public extern FontFace(string filename);
+        public extern FontFace(byte[] bytes);
+        public extern FontFace(Stream stream);
+        public extern float GetAscender(float pixelSize);
+        public extern float GetDescender(float pixelSize);
+        public extern float GetLineHeight(float pixelSize);
+        public extern bool ContainsGlyph(float pixelSize, char glyph);
+        public extern RenderedGlyph RenderGlyph(float pixelSize, char glyph, FontRenderMode mode);
+        public extern bool TryGetKerning(float pixelSize, char left, char right, out float kerningX, out float kerningY);
+    }
+
+    [extern(CIL) DotNetType]
+    [extern(CIL) Require("Template", "Uno.Native")]
+    extern(DOTNET) struct RenderedGlyph
+    {
+        public float AdvanceX, AdvanceY;
+        public float BearingX, BearingY;
+        public Textures.PixelFormat PixelFormat;
+        public int Width, Height;
+        public byte[] Bitmap;
+    }
+
+    [extern(CIL) DotNetType]
+    [extern(CIL) Require("Template", "Uno.Native")]
+    extern(DOTNET) enum FontRenderMode
+    {
+        None,
+        Normal,
+        Monochrome,
+    }
+}
 
 namespace Uno.Native.Textures
 {
     [extern(CIL) DotNetType]
     [extern(CIL) Require("Template", "Uno.Native")]
-    extern(DOTNET)
-    public enum TextureFileFormat
+    extern(DOTNET) enum TextureFileFormat
     {
         Unknown,
         Png,
@@ -17,8 +66,7 @@ namespace Uno.Native.Textures
 
     [extern(CIL) DotNetType]
     [extern(CIL) Require("Template", "Uno.Native")]
-    extern(DOTNET)
-    public enum TextureType
+    extern(DOTNET) enum TextureType
     {
         Texture2D,
         Texture3D,
@@ -27,8 +75,7 @@ namespace Uno.Native.Textures
 
     [extern(CIL) DotNetType]
     [extern(CIL) Require("Template", "Uno.Native")]
-    extern(DOTNET)
-    public enum PixelFormat
+    extern(DOTNET) enum PixelFormat
     {
         Unspecified = 0,
 
@@ -134,8 +181,7 @@ namespace Uno.Native.Textures
 
     [extern(CIL) DotNetType]
     [extern(CIL) Require("Template", "Uno.Native")]
-    extern(DOTNET)
-    public class Texture : NativeObject
+    extern(DOTNET) class Texture : NativeObject
     {
         public extern int Width { get; }
         public extern int Height { get; }

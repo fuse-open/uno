@@ -1,0 +1,9 @@
+<Extensions Backend="CIL">
+
+    <Template Name="Uno.Native">
+        <Require Assembly="@('Uno.Native/Uno.Native.dll':Path)" />
+        <Require UnmanagedLibrary="@('Uno.Native/libuAsset.dylib':Path)" Condition="HOST_MAC" />
+        <Require UnmanagedLibrary="@('Uno.Native/uAsset.dll':Path)" Condition="HOST_WIN32" />
+    </Template>
+
+</Extensions>

@@ -4,7 +4,7 @@ using Uno.IO;
 using Uno.Native.Textures;
 using Uno.Runtime.InteropServices;
 
-namespace Uno.Graphics.Utils.Impl
+namespace Uno.Graphics.Utils.DotNet
 {
     extern(DOTNET)
     static class DotNetTexture

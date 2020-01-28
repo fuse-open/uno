@@ -2,7 +2,8 @@ using Uno.IO;
 
 namespace Uno.Graphics.Utils
 {
-    using Impl;
+    using Cpp;
+    using DotNet;
 
     public static class TextureLoader
     {
