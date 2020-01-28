@@ -32,8 +32,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
         readonly ILFactory _ilf;
         readonly Compiler _compiler;
 
-        string IBundle.Directory => _env.BundleDirectory;
-
         public BundleBuilder(
             Backend backend,
             BuildEnvironment env,
@@ -145,11 +143,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
             }
             if (dt.Initializer.HasBody)
                 dt.Initializer.Body.Statements.Add(new StoreField(value.Source, null, field, value));
-        }
-
-        public Expression Add(Expression e)
-        {
-            return AddCached("Expression", () => e, e);
         }
 
         public Expression AddProgram(DrawBlock block, Expression program)
