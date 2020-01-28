@@ -32,7 +32,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         // For nested lambdas
         public readonly Stack<Lambda> Lambdas = new Stack<Lambda>();
 
-        public readonly AstScope DeclarationBody;
+        public readonly AstScope Body;
         public readonly MetaProperty MetaProperty;
         public readonly Namescope Namescope;
 
@@ -47,12 +47,12 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         public bool IsFunctionScope => Function != null && Namescope is DataType && Function.DeclaringType.MasterDefinition == (Namescope as DataType).MasterDefinition ||
                                        (Function as Method)?.GenericType == Namescope;
 
-        public FunctionCompiler(Compiler compiler, Function func, DataType parameterizedParent, AstScope declarationBody)
+        public FunctionCompiler(Compiler compiler, Function func, DataType parameterizedParent, AstScope body)
             : this(compiler)
         {
             Function = func;
             Namescope = (func as Method)?.GenericType ?? parameterizedParent;
-            DeclarationBody = declarationBody;
+            Body = body;
         }
 
         public FunctionCompiler(Compiler compiler, DataType dt, Expression obj)
@@ -148,7 +148,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             }
             else
             {
-                var result = CompileScope(DeclarationBody);
+                var result = CompileScope(Body);
 
                 if (Function.Body.Statements.Count > 0)
                     result.Statements.InsertRange(0, Function.Body.Statements);

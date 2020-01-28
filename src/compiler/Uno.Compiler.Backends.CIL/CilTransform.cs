@@ -25,6 +25,17 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
+        public override bool Begin(DataType dt)
+        {
+            foreach (var m in dt.Methods)
+            {
+                var refMethod = m;
+                OnTwinMethod(ref refMethod);
+            }
+
+            return true;
+        }
+
         private void OnTwinMethod(ref Method method)
         {
             Method twin;
@@ -45,8 +56,10 @@ namespace Uno.Compiler.Backends.CIL
 
                         if (method.IsGenericDefinition)
                         {
-                            twin = new Method(method.Source, twinClass, method.DocComment, method.Modifiers, method.Name, method.GenericType, method.ReturnType, method.Parameters, method.Body);
-                            method.GenericType.SetParent(twinClass);
+                            var generic = new ClassType(method.Source, twinClass, method.DocComment, Modifiers.Private | Modifiers.Static | Modifiers.Generated, method.UnoName);
+                            generic.MakeGenericDefinition(method.GenericParameters);
+                            twin = new Method(method.Source, twinClass, method.DocComment, method.Modifiers, method.Name, generic, method.ReturnType, method.Parameters, method.Body);
+                            generic.Methods.Add(twin);
                         }
                         else
                             twin = new Method(method.Source, twinClass, method.DocComment, method.Modifiers, method.Name, method.ReturnType, method.Parameters, method.Body);

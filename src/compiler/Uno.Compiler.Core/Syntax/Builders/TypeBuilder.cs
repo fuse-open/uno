@@ -44,7 +44,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
         void EnqueueCompiler(FunctionCompiler fc)
         {
-            if (fc.DeclarationBody != null)
+            if (fc.Body != null)
                 _enqueuedCompilers.Add(fc);
             else if (_compiler.Backend.CanLink(fc.Function))
                 fc.Function.Stats |= EntityStats.CanLink;

@@ -46,12 +46,14 @@ namespace System.Xml.Linq
     [DotNetType]
     extern(CIL) class XComment : XNode
     {
+        public extern override XmlNodeType NodeType { get; }
         public extern string Value { get; set; }
     }
 
     [DotNetType]
     extern(CIL) class XProcessingInstruction : XNode
     {
+        public extern override XmlNodeType NodeType { get; }
         public extern string Target { get; set; }
         public extern string Data { get; set; }
     }
@@ -71,6 +73,7 @@ namespace System.Xml.Linq
     [DotNetType]
     extern(CIL) sealed class XElement : XContainer
     {
+        public extern override XmlNodeType NodeType { get; }
         public extern XName Name { get; set; }
         public extern XNode FirstNode { get; }
         public extern IEnumerable<XAttribute> Attributes();
@@ -85,6 +88,7 @@ namespace System.Xml.Linq
     [DotNetType]
     extern(CIL) sealed class XCData : XText
     {
+        public extern override XmlNodeType NodeType { get; }
     }
 
     [DotNetType]

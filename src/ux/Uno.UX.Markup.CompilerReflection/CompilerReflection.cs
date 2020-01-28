@@ -13,7 +13,7 @@ namespace Uno.UX.Markup.Reflection
         // Optimization as reading 'FullName' is slow
         public static string GetCachedFullName(this DataType dt)
         {
-            return (string)dt.Tag ?? (string)(dt.Tag = dt.FullName);
+            return dt.Tag as string ?? (string)(dt.Tag = dt.FullName);
         }
     }
 
