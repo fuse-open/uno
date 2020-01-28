@@ -10,7 +10,7 @@ namespace Uno.Testing
     {
         readonly AbstractRunner _runner;
 
-        public TestSetup(Registry registry, string serverUrl = "")
+        public TestSetup(Registry registry)
         {
             if defined(Android)
             {
