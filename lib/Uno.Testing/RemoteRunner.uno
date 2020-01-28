@@ -8,13 +8,12 @@ namespace Uno.Testing
     {
         ITestRunnerMessageDispatcher _dispatcher;
 
-        private readonly string _prefix;
+        private const string _prefix = "unotests://";
         private string _currentTest;
         private double _startTime;
 
-        internal RemoteRunner(Registry registry, string prefix, ITestRunnerMessageDispatcher dispatcher) : base(registry)
+        internal RemoteRunner(Registry registry, ITestRunnerMessageDispatcher dispatcher) : base(registry)
         {
-            _prefix = prefix;
             _dispatcher = dispatcher;
         }
 
