@@ -80,10 +80,8 @@ namespace Uno.Testing
             SheduleNextTest();
         }
 
-        static int sequenceId = 0;
         private void Get(string uri)
         {
-            uri += "&sequenceId=" + sequenceId++;
             var maxChunkLen = 120;
 
             for (int i = 0; i < uri.Length; i += maxChunkLen)
