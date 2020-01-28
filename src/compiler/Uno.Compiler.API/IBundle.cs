@@ -5,7 +5,7 @@ namespace Uno.Compiler.API
 {
     public interface IBundle
     {
-        Expression AddBundleFile(Source src, string filename);
+        Expression AddFile(Source src, string filename);
         Expression AddProgram(DrawBlock block, Expression program);
     }
 }

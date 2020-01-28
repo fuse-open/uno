@@ -12,7 +12,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 return Expression.Invalid;
 
             Compiler.Disk.GetFullPath(import.Importer.Source, ref filename);
-            return Compiler.BundleBuilder.AddBundleFile(import.Importer.Source, filename);
+            return Compiler.BundleBuilder.AddFile(import.Importer.Source, filename);
         }
     }
 }

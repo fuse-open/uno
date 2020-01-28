@@ -150,18 +150,18 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return AddCached("Shader", () => program, block.Method.DeclaringType.UnoName, block);
         }
 
-        public Expression AddBundleFile(Source src, string filename)
+        public Expression AddFile(Source src, string filename)
         {
             return AddCached("File",
                 () =>
                 {
                     var file = CreateFile(src, filename).BundleName;
-                    return GetBundleFile(src, file);
+                    return GetFile(src, file);
                 },
                 filename);
         }
 
-        Expression GetBundleFile(Source src, string file)
+        Expression GetFile(Source src, string file)
         {
             return _ilf.CallMethod(
                 src,
