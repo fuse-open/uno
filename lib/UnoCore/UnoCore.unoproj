@@ -450,7 +450,7 @@
     "Targets/Android/Uno/JNIHelper.h:File",
     "Targets/Corelib/Corelib.uxl:Extensions",
     "Targets/DotNet/@(AppDirectory)/Contents/Info.plist:File",
-    "Targets/DotNet/DotNetDll.uxl:Extensions",
+    "Targets/DotNet/Library.uxl:Extensions",
     "Targets/DotNet/Executable.uxl:Extensions",
     "Targets/iOS/@(Icons)/Contents.json:File",
     "Targets/iOS/@(LaunchImages)/Contents.json:File",

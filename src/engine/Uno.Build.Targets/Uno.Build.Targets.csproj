@@ -52,7 +52,6 @@
     <Compile Include="Android\AndroidBuild.cs" />
     <Compile Include="Android\AndroidGenerator.cs" />
     <Compile Include="BuildTargets.cs" />
-    <Compile Include="DotNet\DotNetDllBuild.cs" />
     <Compile Include="DotNet\DotNetBuild.cs" />
     <Compile Include="DotNet\MetadataBuild.cs" />
     <Compile Include="Native\CMakeGenerator.cs" />
