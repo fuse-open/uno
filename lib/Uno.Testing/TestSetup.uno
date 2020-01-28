@@ -23,7 +23,7 @@ namespace Uno.Testing
                 Thread.Sleep(2500);
             }
 
-            _runner = new RemoteRunner(registry, new DebugLogMessageDispatcher());
+            _runner = new RemoteRunner(registry);
 
             Uno.Platform.Displays.MainDisplay.Tick += OnTick;
         }

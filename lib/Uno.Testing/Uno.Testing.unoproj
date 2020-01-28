@@ -12,8 +12,6 @@
     "Exceptions/IgnoreException.uno:Source",
     "AbstractRunner.uno:Source",
     "Assert.uno:Source",
-    "DebugLogMessageDispatcher.uno:Source",
-    "ITestRunnerMessageDispatcher.uno:Source",
     "NamedTestMethod.uno:Source",
     "Registry.uno:Source",
     "RemoteRunner.uno:Source",
