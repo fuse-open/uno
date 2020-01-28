@@ -47,6 +47,13 @@
     <Compile Include="FileSourceInfo.cs" />
     <Compile Include="InstanceType.cs" />
     <Compile Include="TypeNameHelper.cs" />
+    <Compile Include="Uno\Float2.cs" />
+    <Compile Include="Uno\Float3.cs" />
+    <Compile Include="Uno\Float4.cs" />
+    <Compile Include="Uno\Int2.cs" />
+    <Compile Include="Uno\Int3.cs" />
+    <Compile Include="Uno\Int4.cs" />
+    <Compile Include="Uno\UX\Unit.cs" />
     <Compile Include="ValueMarshal.cs" />
     <Compile Include="XmlHelpers.cs" />
   </ItemGroup>
@@ -54,10 +61,6 @@
     <ProjectReference Include="..\..\..\src\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301a9-d14e-48c0-a757-2dbd2d4d0e3f}</Project>
       <Name>Uno.Compiler.Frontend</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\runtime\Uno.Runtime.Core\Uno.Runtime.Core.csproj">
-      <Project>{BE6FB7C9-4F00-4A1B-BEBD-59869A4AF387}</Project>
-      <Name>Uno.Runtime.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\src\common\Uno.Common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>

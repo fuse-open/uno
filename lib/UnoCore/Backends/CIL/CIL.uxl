@@ -25,8 +25,8 @@
     <!-- Core assemblies -->
     <Require Assembly="System" />
     <Require Assembly="System.Core" />
-    <Require Assembly="@(EXE_DIR)/Uno.Runtime.Core.dll" />
-    
+    <Require Assembly="@(Config.Paths.AppLoader:Path)/Uno.Runtime.Core.dll" />
+
     <!-- Deprecated -->
     <Deprecate AssemblyReference="Assembly" />
 
