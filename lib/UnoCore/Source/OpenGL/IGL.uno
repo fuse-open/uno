@@ -3,7 +3,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace OpenGL
 {
-    [DotNetType]
     extern(DOTNET)
     public interface IGL
     {

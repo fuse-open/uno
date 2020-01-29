@@ -34,7 +34,6 @@ After building, you can use `<uno-root>/bin/uno` to run your local `uno`.
 | `make lib`      | Builds Uno libraries in `lib/` only, instead of full build.             |
 | `make install`  | Creates a symlink for `uno` in `/usr/local/bin`.                        |
 | `make release`  | Prepares a release directory for distribution.                          |
-| `make unocore`  | Generates C# code for Uno.Runtime.Core.dll, based on Uno code.          |
 | `make clean`    | Removes build artifacts from the repository and `Packages.SourcePaths`. |
 | `make check`    | Runs the local test suite.                                              |
 

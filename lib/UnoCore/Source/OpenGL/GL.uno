@@ -5,7 +5,6 @@ using Uno.Runtime.InteropServices;
 
 namespace OpenGL
 {
-    [extern(DOTNET) DotNetType]
     [extern(CPLUSPLUS) Require("Source.Include", "XliPlatform/GL.h")]
     extern(OPENGL) public static class GL
     {

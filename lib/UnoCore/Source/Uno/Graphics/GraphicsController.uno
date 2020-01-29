@@ -4,7 +4,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Graphics
 {
-    [extern(DOTNET) DotNetType]
     public extern(!MOBILE) sealed class GraphicsController : GraphicsContext
     {
         internal Recti _viewport;

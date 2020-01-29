@@ -36,7 +36,6 @@ namespace Uno.Platform.EventSources
     //
     // Hardware Keys
     //
-    [extern(DOTNET) DotNetType]
     public static class HardwareKeys
     {
         public static event EventHandler<Uno.Platform.KeyEventArgs> KeyDown;
@@ -63,7 +62,6 @@ namespace Uno.Platform.EventSources
         }
     }
 
-    [extern(DOTNET) DotNetType]
     public static class TextSource
     {
         public static event EventHandler<TextInputEventArgs> TextInput;
@@ -109,7 +107,6 @@ namespace Uno.Platform.EventSources
         }
     }
 
-    [extern(DOTNET) DotNetType]
     public static class MouseSource
     {
         public static event EventHandler<PointerEventArgs> PointerPressed;

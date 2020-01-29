@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     public static class Generic
     {
         public static bool Equals<T>(T left, T right)

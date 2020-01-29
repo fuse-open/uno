@@ -136,7 +136,6 @@ Available build targets
   * native             C++/GL code, CMake project and native executable.
   * ios        (-x)    (Objective-)C++/GLES2 code and Xcode project. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
-  * corelib    (-x)    C# implementation of Uno corelib.
   * docs       (-x)    Uno documentation files.
   * metadata   (-x)    Metadata for code completion.
   * pinvoke    (-x)    PInvoke libraries.

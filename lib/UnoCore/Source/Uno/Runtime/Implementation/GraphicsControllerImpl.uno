@@ -5,12 +5,10 @@ using Uno.Platform;
 
 namespace Uno.Runtime.Implementation
 {
-    [extern(DOTNET) DotNetType]
     public abstract class GraphicsContextHandle
     {
     }
 
-    [extern(DOTNET) DotNetType]
     static extern(!MOBILE) class GraphicsControllerImpl
     {
         public static GraphicsContextHandle GetInstance()

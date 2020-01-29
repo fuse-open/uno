@@ -18,6 +18,7 @@ h1 "Building uno"
 csharp-build uno.sln
 
 h1 "Building runtime"
+uno build lib/UnoCore -DLIBRARY
 csharp-build runtime.sln
 
 h1 "Building lib"

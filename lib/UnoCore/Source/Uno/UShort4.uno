@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     public intrinsic struct UShort4
     {
         public ushort X, Y, Z, W;

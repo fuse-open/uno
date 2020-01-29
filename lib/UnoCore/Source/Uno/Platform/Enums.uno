@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform
 {
-    [extern(DOTNET) DotNetType]
     public enum Key
     {
         Backspace = 8,
@@ -94,7 +93,6 @@ namespace Uno.Platform
         MetaKey = 203,
     }
 
-    [extern(DOTNET) DotNetType]
     public enum MouseButton
     {
         Left = 1,
@@ -104,7 +102,6 @@ namespace Uno.Platform
         X2 = 5,
     }
 
-    [extern(DOTNET) DotNetType]
     public enum PointerCursor
     {
         None = 0,
@@ -126,14 +123,12 @@ namespace Uno.Platform
         IBeam = 16,
     }
 
-    [extern(DOTNET) DotNetType]
     public enum PointerType
     {
         Mouse = 1,
         Touch = 2,
     }
 
-    [extern(DOTNET) DotNetType]
     public enum TextInputHint
     {
         Default = 0,
@@ -143,7 +138,6 @@ namespace Uno.Platform
         Number = 4
     }
 
-    [extern(DOTNET) DotNetType]
     [Flags]
     public enum EventModifiers
     {

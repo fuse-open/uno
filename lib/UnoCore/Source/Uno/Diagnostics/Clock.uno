@@ -3,7 +3,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Diagnostics
 {
-    [extern(DOTNET) DotNetType]
     [extern(CPLUSPLUS) Require("Source.Include", "time.h")]
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/time.h")]
     public static class Clock

@@ -6,7 +6,6 @@ namespace Uno.Platform2.Internal
     // entrypoints accessible from C# assemblies and the fusetool without making
     // the entrypoints otherwise part of the public API for Platform2.
 
-    [extern(DOTNET) DotNetType]
     public extern(DOTNET) static class Application
     {
         public static void Start() { Uno.Platform.CoreApp.Start(); }

@@ -7,7 +7,6 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     // this is only here so I dont have to hack the UX compiler yet
-    [extern(DOTNET) DotNetType]
     public extern(MOBILE) abstract class Application : CoreApp
     {
         [Obsolete("Application.Current class is deprecated on mobile. Please use CoreApp.Current")]
@@ -45,7 +44,6 @@ namespace Uno
         }
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(!MOBILE) abstract class Application : CoreApp
     {
         public static new Application Current

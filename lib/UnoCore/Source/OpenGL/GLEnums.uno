@@ -3,27 +3,23 @@ using Uno;
 
 namespace OpenGL
 {
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLIntegerName
     {
         MaxTextureSize = 0x0D33,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLInteger4Name
     {
         ScissorBox = 0x0C10,
         Viewport = 0x0BA2,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLShaderType
     {
         FragmentShader = 0x8B30,
         VertexShader = 0x8B31,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLShaderPrecision
     {
         LowFloat = 0x8DF0,
@@ -34,14 +30,12 @@ namespace OpenGL
         HighInt = 0x8DF5,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLBufferTarget
     {
         ArrayBuffer = 0x8892,
         ElementArrayBuffer = 0x8893,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLBufferUsage
     {
         StreamDraw = 0x88E0,
@@ -49,7 +43,6 @@ namespace OpenGL
         DynamicDraw = 0x88E8,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLTextureUnit
     {
         Texture0 = 0x84C0,
@@ -62,7 +55,6 @@ namespace OpenGL
         Texture7 = 0x84C7,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLTextureTarget
     {
         Texture2D = 0x0DE1,
@@ -76,7 +68,6 @@ namespace OpenGL
         TextureExternalOES = 0x8D65,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLTextureParameterName
     {
         WrapS = 0x2802,
@@ -85,7 +76,6 @@ namespace OpenGL
         MinFilter = 0x2801,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLTextureParameterValue
     {
         Repeat = 0x2901,
@@ -100,7 +90,6 @@ namespace OpenGL
         LinearMipmapLinear = 0x2703,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLEnableCap
     {
         Blend = 0x0BE2,
@@ -109,7 +98,6 @@ namespace OpenGL
         ScissorTest = 0x0C11,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLDepthFunction
     {
         Never = 0x0200,
@@ -122,7 +110,6 @@ namespace OpenGL
         Always = 0x0207,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLCullFaceMode
     {
         None = 0,
@@ -131,14 +118,12 @@ namespace OpenGL
         FrontAndBack = 0x0408,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLFrontFaceDirection
     {
         Cw = 0x0900,
         Ccw = 0x0901,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLPrimitiveType
     {
         Points = 0x0000,
@@ -150,7 +135,6 @@ namespace OpenGL
         TriangleFan = 0x0006,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLDataType
     {
         Byte = 0x1400,
@@ -162,14 +146,12 @@ namespace OpenGL
         Float = 0x1406,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLIndexType
     {
         UnsignedByte = 0x1401,
         UnsignedShort = 0x1403,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLPixelFormat
     {
         DepthComponent = 0x1902,
@@ -184,7 +166,6 @@ namespace OpenGL
         LuminanceAlpha = 0x190A,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLPixelType
     {
         Byte = 0x1400,
@@ -199,20 +180,17 @@ namespace OpenGL
         UnsignedShort565 = 0x8363,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLPixelStoreParameter
     {
         UnpackAlignment = 3317,
         PackAlignment = 3333,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLRenderbufferStorage
     {
         DepthComponent16 = 0x81A5,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLBlendEquation
     {
         FuncAdd = 0x8006,
@@ -220,7 +198,6 @@ namespace OpenGL
         FuncReverseSubtract = 0x800B,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLBlendingFactor
     {
         Zero = 0,
@@ -236,7 +213,6 @@ namespace OpenGL
         SrcAlphaSaturate = 0x0308,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLFramebufferAttachment
     {
         ColorAttachment0 = 0x8CE0,
@@ -244,19 +220,16 @@ namespace OpenGL
         StencilAttachment = 0x8D20,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLFramebufferTarget
     {
         Framebuffer = 0x8D40,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLRenderbufferTarget
     {
         Renderbuffer = 0x8D41,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLError
     {
         NoError = 0,
@@ -267,7 +240,6 @@ namespace OpenGL
         InvalidFramebufferOperation = 0x0506,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLFramebufferStatus
     {
         FramebufferComplete = 0x8CD5,
@@ -277,7 +249,6 @@ namespace OpenGL
         FramebufferUnsupported = 0x8CDD,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLClearBufferMask
     {
         DepthBufferBit = 0x00000100,
@@ -285,7 +256,6 @@ namespace OpenGL
         ColorBufferBit = 0x00004000,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLShaderParameter
     {
         ShaderType = 35663,
@@ -293,7 +263,6 @@ namespace OpenGL
         CompileStatus = 35713,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLProgramParameter
     {
         DeleteStatus = 35712,
@@ -303,7 +272,6 @@ namespace OpenGL
         ActiveAttributes = 35721,
     }
 
-    [extern(DOTNET) DotNetType]
     public extern(OPENGL) enum GLStringName
     {
         Vendor = 7936,

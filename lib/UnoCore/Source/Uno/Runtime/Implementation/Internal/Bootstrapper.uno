@@ -5,7 +5,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Runtime.Implementation.Internal
 {
-    [extern(DOTNET) DotNetType]
     public extern(!MOBILE) static class Bootstrapper
     {
         // Note: Ugly global state

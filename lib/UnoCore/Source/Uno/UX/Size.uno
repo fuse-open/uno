@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.UX
 {
-    [DotNetType]
 	public enum Unit
 	{
 		Auto,

@@ -3,7 +3,6 @@ using Uno.Compiler.ShaderGenerator;
 
 namespace Uno
 {
-    [extern(DOTNET) DotNetType]
     [extern(CPLUSPLUS) Require("Source.Include", "cmath")]
     public static class Math
     {

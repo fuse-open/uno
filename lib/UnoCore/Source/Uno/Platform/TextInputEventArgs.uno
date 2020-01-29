@@ -2,7 +2,6 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform
 {
-    [extern(DOTNET) DotNetType]
     public sealed class TextInputEventArgs : EventArgs
     {
         public TextInputEventArgs(string text, EventModifiers modifiers, OSFrame origin)

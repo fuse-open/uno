@@ -59,7 +59,6 @@
     <Compile Include="Uno\PackageGenerator.cs" />
     <Compile Include="Xcode\iOSBuild.cs" />
     <Compile Include="Uno\PackageBuild.cs" />
-    <Compile Include="Uno\CorelibBuild.cs" />
     <Compile Include="Xcode\XcodeFile.cs" />
     <Compile Include="Native\NativeBuild.cs" />
     <Compile Include="Xcode\XcodeGenerator.cs" />
@@ -78,10 +77,6 @@
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CPlusPlus\Uno.Compiler.Backends.CPlusPlus.csproj">
       <Project>{9E0318A1-528E-4AFD-AB87-C8D58E0CD060}</Project>
       <Name>Uno.Compiler.Backends.CPlusPlus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CSharp\Uno.Compiler.Backends.CSharp.csproj">
-      <Project>{90D050F9-B619-4F5F-8CFE-27C2B94CCD1B}</Project>
-      <Name>Uno.Compiler.Backends.CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.Metadata\Uno.Compiler.Backends.Metadata.csproj">
       <Project>{0a4e8b45-e8a4-4371-9e66-b0ef3c9d3b6f}</Project>
