@@ -32,8 +32,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
         readonly ILFactory _ilf;
         readonly Compiler _compiler;
 
-        string IBundle.Directory => _env.BundleDirectory;
-
         public BundleBuilder(
             Backend backend,
             BuildEnvironment env,
@@ -71,29 +69,63 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     Emit(f);
             }
 
-            var index = new List<string>();
+            foreach (var e in _files)
+            {
+                e.Value.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
+
+                var index = new List<string>();
+                foreach (var f in e.Value)
+                    index.Add(f.BundleName + ":" + f.TargetName);
+
+                var bundleFile = Path.Combine(_env.CacheDirectory, e.Key.Name + ".bundle");
+                Directory.CreateDirectory(Path.GetDirectoryName(bundleFile));
+                File.WriteAllText(bundleFile, string.Join("\n", index));
+                _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(e.Key, e.Key.Name + ".bundle", bundleFile));
+            }
+
+            var bundles = new List<string>();
             var packages = _compiler.Input.Packages.ToArray();
             Array.Sort(packages, (a, b) => a.Name.CompareTo(b.Name));
 
             foreach (var e in packages)
             {
-                var line = new List<string> {e.Name};
+                var bundleFile = Path.Combine(_env.CacheDirectory, e.Name + ".bundle");
                 var files = _files.GetList(e);
                 files.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
 
-                foreach (var f in files)
-                {
-                    line.Add(f.BundleName);
-                    line.Add(f.TargetName);
-                }
-
-                index.Add(string.Join(":", line));
+                if (File.Exists(bundleFile))
+                    bundles.Add(e.Name);
             }
 
-            var bundleFile = Path.Combine(_env.CacheDirectory, "bundle");
-            using (var f = _compiler.Disk.CreateBufferedText(bundleFile))
-                f.Write(string.Join("\n", index));
-            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile("bundle", bundleFile));
+            var bundlesFile = Path.Combine(_env.CacheDirectory, "bundles");
+            using (var f = _compiler.Disk.CreateBufferedText(bundlesFile))
+                f.Write(string.Join("\n", bundles));
+            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundles", bundlesFile));
+
+            // Deprecated: The 'bundle' file is no longer used, but may be used directly by 3rdparty code.
+            {
+                var index = new List<string>();
+
+                foreach (var e in packages)
+                {
+                    var line = new List<string> {e.Name};
+                    var files = _files.GetList(e);
+                    files.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
+
+                    foreach (var f in files)
+                    {
+                        line.Add(f.BundleName);
+                        line.Add(f.TargetName);
+                    }
+
+                    index.Add(string.Join(":", line));
+                }
+
+                var bundleFile = Path.Combine(_env.CacheDirectory, "bundle");
+                using (var f = _compiler.Disk.CreateBufferedText(bundleFile))
+                    f.Write(string.Join("\n", index));
+                _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundle", bundleFile));
+            }
         }
 
         void Emit(Field field)
@@ -113,28 +145,23 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 dt.Initializer.Body.Statements.Add(new StoreField(value.Source, null, field, value));
         }
 
-        public Expression Add(Expression e)
-        {
-            return AddCached("Expression", () => e, e);
-        }
-
         public Expression AddProgram(DrawBlock block, Expression program)
         {
             return AddCached("Shader", () => program, block.Method.DeclaringType.UnoName, block);
         }
 
-        public Expression AddBundleFile(Source src, string filename)
+        public Expression AddFile(Source src, string filename)
         {
             return AddCached("File",
                 () =>
                 {
-                    var file = CreateFile(src, filename).TargetName;
-                    return GetBundleFile(src, file);
+                    var file = CreateFile(src, filename).BundleName;
+                    return GetFile(src, file);
                 },
                 filename);
         }
 
-        Expression GetBundleFile(Source src, string file)
+        Expression GetFile(Source src, string file)
         {
             return _ilf.CallMethod(
                 src,
@@ -203,7 +230,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             if (bundleName.StartsWith(FuseJSPrefix))
                 bundleName = bundleName.Substring(FuseJSPrefix.Length);
 
-            var result = new BundleFile(bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
+            var result = new BundleFile(src.Package, bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
             _files.Add(src.Package, result);
             _compiler.Data.Extensions.BundleFiles.Add(result);
             return result;

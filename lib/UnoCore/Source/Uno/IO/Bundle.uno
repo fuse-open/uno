@@ -12,7 +12,7 @@ using Uno.Text;
 
 namespace System
 {
-    [extern(DOTNET) DotNetType("System.AppDomain")]
+    [DotNetType]
     extern(DOTNET)
     public class AppDomain
     {
@@ -99,55 +99,13 @@ namespace Uno.IO
                 return File.OpenRead(NativeBundlePath);
             else if defined(DOTNET)
             {
-                var asm = Assembly;
-
-                foreach (var name in asm.GetManifestResourceNames())
-                    if (name == BundlePath)
-                        return asm.GetManifestResourceStream(BundlePath);
-
-                throw new FileNotFoundException("Manifest resource not found: " + BundlePath, BundlePath);
+                var result = Bundle.Assembly.GetManifestResourceStream(BundlePath);
+                if (result == null)
+                    throw new FileNotFoundException("Manifest resource not found: " + BundlePath, BundlePath);
+                return result;
             }
             else
                 throw new NotImplementedException();
-        }
-
-        extern(DOTNET)
-        static Dictionary<String, Assembly> _assemblyMap = new Dictionary<String, Assembly>();
-
-        extern(DOTNET)
-        static Assembly Assembly
-        {
-            get
-            {
-                if (CoreApp.Current != null)
-                    return CoreApp.Current.GetType().Assembly;
-
-                // Nasty hack to find the user code assembly when Uno.Application.Current is not set
-                var e = Assembly.GetEntryAssembly();
-                var p = Path.Combine(Path.GetDirectoryName(e.Location), Path.GetFileNameWithoutExtension(e.Location) + ".dll").ToUpper();
-
-                if (_assemblyMap.ContainsKey(p))
-                {
-                    return _assemblyMap[p];
-                }
-
-                // Not all assemblies have locations.
-                // We don't care about the ones that don't.
-                foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
-                {
-                    try
-                    {
-                        if (asm.Location.ToUpper() == p){
-                            _assemblyMap[p] = asm;
-                            return asm;
-                        }
-                    }
-                    catch (NotSupportedException ex)
-                    { }
-                }
-
-                throw new ArgumentNullException(nameof(Assembly));
-            }
         }
 
         public byte[] ReadAllBytes()
@@ -226,65 +184,106 @@ namespace Uno.IO
             return file;
         }
 
+        // For preview in Fuse Studio.
+        extern(DOTNET)
+        public static void Initialize(Assembly main)
+        {
+            _main = main;
+            _loaded = false;
+            _bundles.Clear();
+            _allFiles.Clear();
+            Load();
+        }
+
+        extern(DOTNET) static Assembly _main;
         static readonly Dictionary<string, Bundle> _bundles = new Dictionary<string, Bundle>();
         static readonly List<BundleFile> _allFiles = new List<BundleFile>();
+        static bool _loaded;
 
-        static Bundle()
+        static void Load()
         {
-            // Load index file from dummy bundle
-            foreach (var line in new BundleFile(
-                        new Bundle(null),
-                        "bundle",
-                        "bundle")
-                    .ReadAllText()
-                    .Split('\n'))
-            {
-                var parts = line.Split(':');
-                var bundle = new Bundle(parts[0]);
-                _bundles[parts[0]] = bundle;
+            if (_loaded)
+                return;
 
-                for (int i = 1; i < parts.Length; i += 2)
-                {
-                    var file = new BundleFile(bundle, parts[i], parts[i + 1]);
-                    bundle._files.Add(file);
-                    _allFiles.Add(file);
-                }
+            _loaded = true;
+
+            lock (_bundles)
+            {
+                foreach (var package in new BundleFile(
+                            new Bundle(),
+                            null,
+                            "bundles")
+                        .ReadAllText()
+                        .Split('\n'))
+                    _bundles[package] = new Bundle(package, true);
             }
         }
 
-        public static Bundle Get([CallerPackageName] string package = "")
+        public static Bundle Get([CallerPackageName] string package = null)
         {
-            return _bundles[package];
+            Load();
+
+            lock (_bundles)
+            {
+                Bundle bundle;
+                if (!_bundles.TryGetValue(package, out bundle))
+                {
+                    bundle = new Bundle(package);
+                    _bundles.Add(package, bundle);
+                }
+
+                return bundle;
+            }
         }
 
         // should be IReadOnlyList, but missing in Uno
         public static IEnumerable<BundleFile> AllFiles
         {
-            get { return _allFiles; }
+            get { Load(); return _allFiles; }
         }
 
         // should be IReadOnlyList, but missing in Uno
         public static IEnumerable<Bundle> Bundles
         {
-            get { return _bundles.Values; }
+            get { Load(); return _bundles.Values; }
         }
 
-        readonly string _packageName;
+        extern(DOTNET) internal readonly Assembly Assembly;
         readonly List<BundleFile> _files = new List<BundleFile>();
-
-        Bundle(string packageName)
-        {
-            _packageName = packageName;
-        }
 
         public string PackageName
         {
-            get { return _packageName; }
+            get;
+            private set;
         }
 
         public IEnumerable<BundleFile> Files
         {
             get { return _files; }
+        }
+
+        Bundle(string packageName = null, bool load = false)
+        {
+            PackageName = packageName;
+
+            if defined(DOTNET)
+                Assembly = GetAssembly(packageName);
+
+            if (!load)
+                return;
+
+            foreach (var line in new BundleFile(
+                        this,
+                        null,
+                        packageName + ".bundle")
+                    .ReadAllText()
+                    .Split('\n'))
+            {
+                var parts = line.Split(':');
+                var file = new BundleFile(this, parts[0], parts[1]);
+                _files.Add(file);
+                _allFiles.Add(file);
+            }
         }
 
         public BundleFile GetFile(string filename)
@@ -293,12 +292,39 @@ namespace Uno.IO
                 if (f.SourcePath == filename || f.BundlePath == filename)
                     return f;
 
-            throw new FileNotFoundException("BundleFile not found: " + filename, filename);
+            throw new FileNotFoundException("The file '" + filename + "' was not found in bundle '" + PackageName + "'", filename);
         }
 
         public override string ToString()
         {
-            return _packageName;
+            return PackageName;
+        }
+
+        extern(DOTNET)
+        static Assembly GetAssembly(string name)
+        {
+            if (name == null)
+            {
+                if (_main != null)
+                    return _main;
+
+                // Search for main assembly containing the 'bundles' file.
+                foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+                    if (!asm.GlobalAssemblyCache)
+                        foreach (var file in asm.GetManifestResourceNames())
+                            if (file == "bundles")
+                                return asm;
+
+                throw new InvalidOperationException("The main assembly was not found");
+            }
+
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+                if (!asm.GlobalAssemblyCache && asm.GetName().Name == name)
+                    return asm;
+
+            // Lazy-load the assembly.
+            var e = _main ?? Assembly.GetExecutingAssembly();
+            return Assembly.LoadFrom(Path.Combine(Path.GetDirectoryName(e.Location), name + ".dll"));
         }
     }
 

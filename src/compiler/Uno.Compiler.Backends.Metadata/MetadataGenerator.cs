@@ -30,7 +30,7 @@ namespace Uno.Compiler.Backends.Metadata
             _linker = linker;
             _outputDir = outputDir;
             _assembly = _linker.Universe.DefineDynamicAssembly(
-                new AssemblyName(package.Name),
+                new AssemblyName(package.Name) {Version = package.ParseVersion(Log)},
                 AssemblyBuilderAccess.Save,
                 outputDir);
             var module = _assembly.DefineDynamicModule(

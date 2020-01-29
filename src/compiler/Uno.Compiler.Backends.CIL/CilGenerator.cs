@@ -43,7 +43,7 @@ namespace Uno.Compiler.Backends.CIL
             _linker = linker;
             _outputDir = outputDir;
             _assembly = _linker.Universe.DefineDynamicAssembly(
-                new AssemblyName(package.Name) /*{Version = new Version(package.Version)}*/, 
+                new AssemblyName(package.Name) {Version = package.ParseVersion(Log)},
                 AssemblyBuilderAccess.Save,
                 outputDir);
             _module = _assembly.DefineDynamicModule(
@@ -75,14 +75,14 @@ namespace Uno.Compiler.Backends.CIL
             try
             {
                 // Embed resources (bundle files)
-                if (_package.IsStartup)
+                foreach (var file in _data.Extensions.BundleFiles)
                 {
-                    foreach (var file in _data.Extensions.BundleFiles)
-                    {
-                        var stream = File.OpenRead(file.SourcePath);
-                        streams.Add(stream); // Add it here before we give the stream away
-                        _module.DefineManifestResource(file.TargetName, stream, ResourceAttributes.Public);
-                    }
+                    if (file.Package != _package)
+                        continue;
+
+                    var stream = File.OpenRead(file.SourcePath);
+                    streams.Add(stream); // Add it here before we give the stream away
+                    _module.DefineManifestResource(file.TargetName, stream, ResourceAttributes.Public);
                 }
 
                 // Output assembly

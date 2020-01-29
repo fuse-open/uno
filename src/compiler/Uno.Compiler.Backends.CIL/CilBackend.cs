@@ -33,10 +33,10 @@ namespace Uno.Compiler.Backends.CIL
             Scheduler.AddTransform(new CilTransform(this));
         }
 
-        /*public override bool CanLink(SourcePackage upk)
+        public override bool CanLink(SourcePackage upk)
         {
             return Environment.IsUpToDate(upk, upk.Name + ".dll");
-        }*/
+        }
 
         public override bool CanLink(DataType dt)
         {
@@ -102,7 +102,7 @@ namespace Uno.Compiler.Backends.CIL
 
                 Log.Verbose("Creating executable: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
                 loader.SetAssemblyInfo(Input.Package.Name + "-loader",
-                    new Version(),
+                    Input.Package.ParseVersion(Log),
                     Environment.GetString);
                 loader.SetMainClass(Data.MainClass.CilTypeName(),
                     Path.Combine(_outputDir, Input.Package.Name + ".dll"),
@@ -113,10 +113,8 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
-        public override BackendResult Build()
+        public override BackendResult Build(SourcePackage package)
         {
-            var package = Input.Package;
-
             if (package.CanLink)
             {
                 package.Tag = _linker.AddAssemblyFile(Path.Combine(_outputDir, package.Name + ".dll"));
@@ -136,10 +134,7 @@ namespace Uno.Compiler.Backends.CIL
             using (Log.StartProfiler(g.GetType().FullName + ".Save"))
                 g.Save();
 
-            return new CilResult(
-                g.Assembly,
-                _linker.TypeMap,
-                g.Locations);
+            return new CilResult(g.Assembly, _linker.TypeMap, g.Locations);
         }
     }
 }

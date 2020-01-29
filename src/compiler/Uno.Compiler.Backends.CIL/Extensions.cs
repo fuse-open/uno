@@ -4,6 +4,7 @@ using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Expressions;
 using Uno.Compiler.API.Domain.IL.Members;
+using Uno.Logging;
 using ParameterModifier = Uno.Compiler.API.Domain.ParameterModifier;
 using Type = IKVM.Reflection.Type;
 
@@ -180,6 +181,38 @@ namespace Uno.Compiler.Backends.CIL
                     return p.OptionalDefault is Constant 
                         ? ParameterAttributes.Optional 
                         : 0;
+            }
+        }
+
+        public static Version ParseVersion(this SourcePackage package, Log log)
+        {
+            var str = package.Version;
+
+            if (string.IsNullOrEmpty(str))
+                return new Version();
+
+            // Remove suffix
+            var i = str.IndexOf('-');
+            if (i != -1)
+            {
+                str = str.Substring(0, i);
+                if (string.IsNullOrEmpty(str))
+                    return new Version();
+            }
+
+            // Check that version string only contains numbers or periods (X.X.X)
+            foreach (var c in str)
+                if (!char.IsNumber(c) && c != '.')
+                    return new Version();
+
+            try
+            {
+                return new Version(str);
+            }
+            catch
+            {
+                log.Warning(package.Source, null, "Failed to parse version string " + str.Quote());
+                return new Version();
             }
         }
     }
