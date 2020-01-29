@@ -59,5 +59,16 @@ mkdir -p $DST/apploader-win
 cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-win
 
 # Generate config file
-cp config/pack.unoconfig $DST/.unoconfig
-echo "Packages.SearchPaths += ../lib/build" >> $DST/.unoconfig
+cat <<EOF >> $DST/.unoconfig
+Assemblies.Test: uno-test.exe
+Assemblies.TestGen: uno-test-gen.exe
+Assemblies.Uno: uno.exe
+
+if WIN32 {
+    Paths.AppLoader: apploader-win
+} else if MAC {
+    Paths.AppLoader: apploader-mac
+}
+
+Packages.SearchPaths += ../lib/build
+EOF
