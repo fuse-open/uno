@@ -35,9 +35,6 @@ namespace Uno.CompilerTestRunner
 
         private static ITestResultLogger GetLogger(string[] args)
         {
-            if (args.Contains("teamcity"))
-                return new TeamCityResultLogger(new ConsoleWriter());
-
             return new ConsoleLogger(new ConsoleWriter());
         }
 

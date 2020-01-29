@@ -10,7 +10,6 @@ namespace Uno.TestRunner.BasicTypes
 {
     public class CommandLineOptions
     {
-        public string Reporter;
         public List<string> Paths;
         public string LogFileName;
         public BuildTarget Target;
@@ -23,7 +22,6 @@ namespace Uno.TestRunner.BasicTypes
         public bool OnlyBuild;
         public bool AllowDebugger;
         public bool OpenDebugger;
-        public bool RunLocal;
         public bool NoUninstall;
         public bool Library;
         public string OutputDirectory;
@@ -38,7 +36,6 @@ namespace Uno.TestRunner.BasicTypes
 
             var commandOptions = new CommandLineOptions
             {
-                Reporter = "console",
                 TestTimeout = TimeSpan.FromSeconds(10),
                 StartupTimeout = TimeSpan.FromMinutes(1),
             };
@@ -47,9 +44,9 @@ namespace Uno.TestRunner.BasicTypes
             var p = new OptionSet
             {
                 { "h|?|help", "Show help", v => help = v != null },
-                { "r|reporter=", "Reporter type. teamcity|console", v => commandOptions.Reporter = v },
+                { "r|reporter=", "Reporter type (not used)",  v => Console.Error.WriteLine("WARNING: --reporter is deprecated and has no effect.") },
                 { "l|logfile=", "Write output to this file instead of stdout", v => commandOptions.LogFileName = v },
-                { "t|target=", "Build target. Currently supports DotNet|Android|CMake", v => targetName = v },
+                { "t|target=", "Build target. Supported: android, dotnet and native", v => targetName = v },
                 { "v|verbose", "Verbose, always prints output from compiler and debug_log", v => verbose = v != null },
                 { "q|quiet", "Quiet, only prints output from compiler and debug_log in case of errors.", v => quiet = v != null },
                 { "f|filter=", "Only run tests matching this string", v => commandOptions.Filter = Regex.Escape(v) },
@@ -60,7 +57,7 @@ namespace Uno.TestRunner.BasicTypes
                 { "only-build", "Don't run compiled program.",  v => commandOptions.OnlyBuild = v != null },
                 { "allow-debugger", "Don't run compiled program, allow user to start it from a debugger.",  v => commandOptions.AllowDebugger = v != null },
                 { "d|debug", "Open IDE for debugging tests.",  v => commandOptions.OpenDebugger = v != null },
-                { "run-local", "Run the test directly, without using HTTP",  v => commandOptions.RunLocal = v != null },
+                { "run-local", "Run the test directly (not used)",  v => Console.Error.WriteLine("WARNING: --run-local is deprecated and has no effect.") },
                 { "no-uninstall", "Don't uninstall tests after running on device", v => commandOptions.NoUninstall = v != null },
                 { "D=|define=", "Add define, to enable a feature", commandOptions.Defines.Add },
                 { "U=|undefine=", "Remove define, to disable a feature", commandOptions.Undefines.Add },
@@ -102,7 +99,7 @@ namespace Uno.TestRunner.BasicTypes
 
         private static void PrintHelp(OptionSet p)
         {
-            Console.WriteLine("Usage: uno test [options] [paths-to-search]");
+            Console.WriteLine("Usage: uno test [target] [options] [paths-to-search]");
             Console.WriteLine();
             Console.WriteLine("[paths-to-search] is a list of paths to unoprojs to run tests from, and/or");
             Console.WriteLine("directories in which to search for test projects.");
@@ -114,10 +111,10 @@ namespace Uno.TestRunner.BasicTypes
             Console.WriteLine();
             Console.WriteLine("Examples:");
             Console.WriteLine(@"  uno test");
-            Console.WriteLine(@"  uno test Path\Projects");
-            Console.WriteLine(@"  uno test Path\Projects\FooTest.unoproj Path\Projects\BarTest.unoproj");
-            Console.WriteLine(@"  uno test Path\Projects Path\OtherProjects\FooTest.unoproj");
-            Console.WriteLine(@"  uno test -t=dotnet -r=teamcity -v Path\Projects");
+            Console.WriteLine(@"  uno test path/projects");
+            Console.WriteLine(@"  uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj");
+            Console.WriteLine(@"  uno test path/projects path/other-projects/FooTest.unoproj");
+            Console.WriteLine(@"  uno test native -v path/projects");
         }
     }
 }

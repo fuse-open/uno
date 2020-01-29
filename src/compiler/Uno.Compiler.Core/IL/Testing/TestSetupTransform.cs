@@ -195,7 +195,7 @@ namespace Uno.Compiler.Core.IL.Testing
             }
 
             var registryExpr = new LoadLocal(_source, registryVariable);
-            var testSetupConstruction = ILFactory.NewObject(_source, _testSetupType, registryExpr, new Constant(_source, Essentials.String, _testOptions.TestServerUrl));
+            var testSetupConstruction = ILFactory.NewObject(_source, _testSetupType, registryExpr);
 
             body.Statements.Add(new StoreField(_source, new This(_source, _mainClass), _testSetupField, testSetupConstruction));
 

@@ -33,7 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="AbstractLogger.cs" />
     <Compile Include="ColorHelper.cs" />
@@ -44,7 +44,6 @@
     <Compile Include="IWriter.cs" />
     <Compile Include="LogFileWriter.cs" />
     <Compile Include="LoggerFactory.cs" />
-    <Compile Include="TeamCityResultLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uno.TestRunner.BasicTypes\Uno.TestRunner.BasicTypes.csproj">

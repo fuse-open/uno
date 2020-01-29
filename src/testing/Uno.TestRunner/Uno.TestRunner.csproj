@@ -34,11 +34,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="HttpHelpers.cs" />
     <Compile Include="ProjectDiscoverer.cs" />
-    <Compile Include="HTTPTestCommunicator.cs" />
     <Compile Include="TestProjectRunner.cs" />
     <Compile Include="DebugLogTestFilter.cs" />
     <Compile Include="TestRun.cs" />

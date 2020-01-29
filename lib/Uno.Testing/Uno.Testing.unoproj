@@ -2,9 +2,6 @@
   "Copyright": "Copyright (c) Fuse Open 2018",
   "Description": "Uno Testing Framwork",
   "Publisher": "Fuse Open",
-  "Projects": [
-    "../Uno.Net.Http/Uno.Net.Http.unoproj"
-  ],
   "InternalsVisibleTo": [
     "Uno.Testing.Test"
   ],
@@ -15,9 +12,6 @@
     "Exceptions/IgnoreException.uno:Source",
     "AbstractRunner.uno:Source",
     "Assert.uno:Source",
-    "DebugLogMessageDispatcher.uno:Source",
-    "HttpMessageDispatcher.uno:Source",
-    "ITestRunnerMessageDispatcher.uno:Source",
     "NamedTestMethod.uno:Source",
     "Registry.uno:Source",
     "RemoteRunner.uno:Source",

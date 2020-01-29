@@ -18,7 +18,7 @@ namespace Uno.CLI.Projects
             WriteUsage("[target] [options] [project-path]");
 
             WriteHead("Common options", 26);
-            WriteRow("-c, --configuration=STRING",  "Build configuration [Debug|Release|Preview]");
+            WriteRow("-c, --configuration=STRING",  "Build configuration [Debug|Release]");
             WriteRow("-o, --out-dir=PATH",          "Specify output directory", true);
             WriteRow("-b, --build",                 "Execute native build command");
             WriteRow("-d, --debug",                 "Open IDE for debugging");
