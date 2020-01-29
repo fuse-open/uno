@@ -19,4 +19,5 @@ done
 uno clean --recursive tests
 
 # Clean C# projects
+csharp-clean runtime.sln 1> /dev/null
 csharp-clean uno.sln 1> /dev/null
