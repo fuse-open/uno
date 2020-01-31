@@ -52,11 +52,6 @@ namespace Uno.TestRunner
             }
         }
 
-        public bool IsFinished()
-        {
-            return _isFinished.WaitOne(0);
-        }
-
         public void Update()
         {
             lock (_lock)
