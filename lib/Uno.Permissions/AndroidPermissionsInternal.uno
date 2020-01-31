@@ -15,6 +15,11 @@ namespace Uno.Permissions.Internal
             return new PlatformPermission("android.permission.ACCESS_CHECKIN_PROPERTIES");
         }
         [TargetSpecificImplementation]
+        internal static extern PlatformPermission _access_background_location()
+        {
+            return new PlatformPermission("android.permission.ACCESS_BACKGROUND_LOCATION");
+        }
+        [TargetSpecificImplementation]
         internal static extern PlatformPermission _access_coarse_location()
         {
             return new PlatformPermission("android.permission.ACCESS_COARSE_LOCATION");

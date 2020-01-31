@@ -167,6 +167,9 @@
 #if @(Project.iOS.PList.UIBackgroundModes:IsSet)
 		@(Project.iOS.PList.UIBackgroundModes:SplitAndJoin('\n\t\t', '<string>', '</string>'))
 #endif
+#if @(Project.iOS.SystemCapabilities.Location:Test(1, 0))
+		<string>location</string>
+#endif
 #if @(Project.iOS.SystemCapabilities.Push:Test(1, 0))
 		<string>remote-notification</string>
 #endif

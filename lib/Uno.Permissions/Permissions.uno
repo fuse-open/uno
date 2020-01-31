@@ -120,6 +120,7 @@ namespace Uno.Permissions
         public static extern(android) class Android
         {
             public static PlatformPermission ACCESS_CHECKIN_PROPERTIES { get { return Internal.Android._access_checkin_properties(); } }
+            public static PlatformPermission ACCESS_BACKGROUND_LOCATION { get { return Internal.Android._access_background_location(); } }
             public static PlatformPermission ACCESS_COARSE_LOCATION { get { return Internal.Android._access_coarse_location(); } }
             public static PlatformPermission ACCESS_FINE_LOCATION { get { return Internal.Android._access_fine_location(); } }
             public static PlatformPermission ACCESS_LOCATION_EXTRA_COMMANDS { get { return Internal.Android._access_location_extra_commands(); } }
