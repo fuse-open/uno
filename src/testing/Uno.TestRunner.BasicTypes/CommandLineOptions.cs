@@ -17,8 +17,6 @@ namespace Uno.TestRunner.BasicTypes
         public string Filter;
         public bool Trace;
         public bool OnlyBuild;
-        public bool AllowDebugger;
-        public bool OpenDebugger;
         public bool NoUninstall;
         public bool Library;
         public string OutputDirectory;
@@ -48,8 +46,8 @@ namespace Uno.TestRunner.BasicTypes
                 { "startup-timeout=", "Timeout for connection from uno process (in seconds)", (int v) => Console.Error.WriteLine("WARNING: --startup-timeout is deprecated and has no effect.") },
                 { "trace", "Print trace information from unotest", v => { commandOptions.Trace = v != null; } },
                 { "only-build", "Don't run compiled program.",  v => commandOptions.OnlyBuild = v != null },
-                { "allow-debugger", "Don't run compiled program, allow user to start it from a debugger.",  v => commandOptions.AllowDebugger = v != null },
-                { "d|debug", "Open IDE for debugging tests.",  v => commandOptions.OpenDebugger = v != null },
+                { "allow-debugger", "Don't run compiled program, allow user to start it from a debugger.",  v => Console.Error.WriteLine("WARNING: --allow-debugger is deprecated and has no effect.") },
+                { "d|debug", "Open IDE for debugging tests.",  v => Console.Error.WriteLine("WARNING: --debug is deprecated and has no effect.") },
                 { "run-local", "Run the test directly (not used)",  v => Console.Error.WriteLine("WARNING: --run-local is deprecated and has no effect.") },
                 { "no-uninstall", "Don't uninstall tests after running on device", v => commandOptions.NoUninstall = v != null },
                 { "D=|define=", "Add define, to enable a feature", commandOptions.Defines.Add },
