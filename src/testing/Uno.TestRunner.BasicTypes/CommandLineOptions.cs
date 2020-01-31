@@ -15,7 +15,6 @@ namespace Uno.TestRunner.BasicTypes
         public BuildTarget Target;
         public bool Verbose;
         public string Filter;
-        public string Browser;
         public bool Trace;
         public bool OnlyBuild;
         public bool AllowDebugger;
