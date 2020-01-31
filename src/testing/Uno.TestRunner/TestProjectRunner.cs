@@ -35,7 +35,7 @@ namespace Uno.TestRunner
             List<Test> tests = new List<Test>();
             try
             {
-                _testRun = new TestRun(_logger, _options.TestTimeout, _options.StartupTimeout);
+                _testRun = new TestRun(_logger);
 
                 var cts = new CancellationTokenSource();
                 bool runFinished = false;
