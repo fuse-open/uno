@@ -15,7 +15,7 @@ Welcome to Uno, the core component in [Fuse Open], a native app development tool
 npm install @fuse-open/uno
 ```
 
-This will install the `uno` command and core libraries.
+This will install the [`uno`][doc2] command and core libraries.
 
 ## Abstract
 
