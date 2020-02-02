@@ -96,7 +96,7 @@ namespace Uno.TestRunner.Loggers
                 ColorHelper.SetForeground(ConsoleColor.Red);
                 Write("Failures: {0}", failures);
             }
-            int ignores = tests.Count(t => t.Status == Test.TestStatus.Ignored);
+            int ignores = tests.Count(t => t.WasIgnored);
             if (ignores > 0)
             {
                 ColorHelper.SetForeground(ConsoleColor.Yellow);

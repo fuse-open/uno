@@ -2,7 +2,7 @@
 
 namespace Uno.TestRunner.BasicTypes
 {
-    [DebuggerDisplay("{Name} {Status > TestStatus.NotRun}")]
+    [DebuggerDisplay("{Name} {_status > TestStatus.NotRun}")]
     public class Test
     {
         public enum TestStatus
@@ -16,12 +16,14 @@ namespace Uno.TestRunner.BasicTypes
 
         public string Name { get; }
         public int Microseconds { get; private set; }
-        public TestStatus Status { get; private set; }
-        public bool Ended => Status > TestStatus.Started;
-        public bool Failed => Status == TestStatus.Failed;
+        public bool Ended => _status > TestStatus.Started;
+        public bool Failed => _status == TestStatus.Failed;
+        public bool WasIgnored => _status == TestStatus.Ignored;
         public Assertion Assertion { get; private set; }
         public string Exception { get; private set; }
         public string IgnoreReason { get; private set; }
+
+        TestStatus _status;
 
         public Test(string name)
         {
@@ -30,30 +32,30 @@ namespace Uno.TestRunner.BasicTypes
 
         public void Asserted(Assertion assertion)
         {
-            Status = TestStatus.Failed;
+            _status = TestStatus.Failed;
             Assertion = assertion;
         }
 
         public void Threw(string exception)
         {
-            Status = TestStatus.Failed;
+            _status = TestStatus.Failed;
             Exception = exception;
         }
 
         public void Passed(int microseconds = -1)
         {
             Microseconds = microseconds;
-            Status = TestStatus.Passed;
+            _status = TestStatus.Passed;
         }
 
         public void Started()
         {
-            Status = TestStatus.Started;
+            _status = TestStatus.Started;
         }
 
         public void Ignored(string reason)
         {
-            Status = TestStatus.Ignored;
+            _status = TestStatus.Ignored;
             IgnoreReason = reason;
         }
     }
