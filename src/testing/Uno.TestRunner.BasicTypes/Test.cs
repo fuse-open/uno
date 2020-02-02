@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Uno.TestRunner.BasicTypes
 {
-    [DebuggerDisplay("{Name} {_started!=null}")]
+    [DebuggerDisplay("{Name} {_started}")]
     public class Test
     {
         public enum TestStatus
@@ -12,18 +11,17 @@ namespace Uno.TestRunner.BasicTypes
             Passed,
             Ignored,
             Failed
-        };
+        }
 
         public string Name { get; }
         public int Microseconds { get; private set; }
         public TestStatus Status { get; private set; }
         public bool Ended => Status != TestStatus.NotRun;
         public bool Failed => Status == TestStatus.Failed;
-        public bool HasTimedOut { get; private set; }
         public Assertion Assertion { get; private set; }
         public string Exception { get; private set; }
         public string IgnoreReason { get; private set; }
-        private DateTime? _started;
+        private bool _started;
 
         public Test(string name)
         {
@@ -42,13 +40,6 @@ namespace Uno.TestRunner.BasicTypes
             Exception = exception;
         }
 
-        public void TimedOut(double seconds)
-        {
-            Status = TestStatus.Failed;
-            Exception = string.Format("Test timed out after {0} seconds", seconds);
-            HasTimedOut = true;
-        }
-
         public void Passed(int microseconds = -1)
         {
             Microseconds = microseconds;
@@ -57,25 +48,13 @@ namespace Uno.TestRunner.BasicTypes
 
         public void Started()
         {
-            _started = DateTime.Now;
+            _started = true;
         }
 
         public void Ignored(string reason)
         {
             Status = TestStatus.Ignored;
             IgnoreReason = reason;
-        }
-
-        public TimeSpan Duration
-        {
-            get
-            {
-                if (_started == null)
-                {
-                    return new TimeSpan(0);
-                }
-                return DateTime.Now - _started.Value;
-            }
         }
     }
 }
