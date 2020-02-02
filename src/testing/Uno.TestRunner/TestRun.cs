@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Threading;
 using Uno.TestRunner.BasicTypes;
 using Uno.TestRunner.Loggers;
@@ -16,7 +15,6 @@ namespace Uno.TestRunner
         private int _testCount = -1;
         private State _currentState = State.NotStarted;
         private readonly ManualResetEvent _isFinished = new ManualResetEvent(false);
-        private readonly Stopwatch _runningTime = new Stopwatch();
         private readonly List<Exception> _errors = new List<Exception>();
 
         public TestRun(ITestResultLogger logger)
@@ -30,7 +28,6 @@ namespace Uno.TestRunner
                 throw new InvalidOperationException("Unexpected 'ready'-event");
 
             _currentState = State.WaitingForReady;
-            _runningTime.Start();
         }
 
         public State CurrentState => _currentState;
