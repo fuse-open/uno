@@ -46,8 +46,6 @@ h1 "Preparing release"
 
 # Copy assemblies
 cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $DST
-cp -f src/testing/Uno.CompilerTestRunner/bin/Release/uno-compiler-test.exe $DST
-cp -f src/testing/Uno.TestGenerator/bin/Release/uno-test-gen.exe $DST
 cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $DST
 
 # Put app loaders for macOS and Windows in subdirectories to avoid conflicts
@@ -59,5 +57,15 @@ mkdir -p $DST/apploader-win
 cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-win
 
 # Generate config file
-cp config/pack.unoconfig $DST/.unoconfig
-echo "Packages.SearchPaths += ../lib/build" >> $DST/.unoconfig
+cat <<EOF >> $DST/.unoconfig
+Assemblies.Test: uno-test.exe
+Assemblies.Uno: uno.exe
+
+if WIN32 {
+    Paths.AppLoader: apploader-win
+} else if MAC {
+    Paths.AppLoader: apploader-mac
+}
+
+Packages.SearchPaths += ../lib/build
+EOF

@@ -1,0 +1,19 @@
+{
+    "RootNamespace": "ShippedPackagesCompile",
+    "Packages": [
+        "FuseJS.Transpiler",
+        "Uno.Collections",
+        "Uno.Data.Json",
+        "Uno.Data.Xml",
+        "Uno.Graphics.Utils",
+        "Uno.Net.Http",
+        "Uno.Net.Sockets",
+        "Uno.Permissions",
+        "Uno.Testing",
+        "Uno.Threading",
+        "UnoCore"
+    ],
+    "Includes": [
+        "MainClass.uno:SourceFile"
+    ]
+}

@@ -1,8 +1,0 @@
-Assemblies.Test: uno-test.exe
-Assemblies.TestGen: uno-test-gen.exe
-Assemblies.Uno: uno.exe
-if WIN32 {
-    Paths.AppLoader: apploader-win
-} else if MAC {
-    Paths.AppLoader: apploader-mac
-}

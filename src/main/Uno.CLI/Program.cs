@@ -21,7 +21,6 @@ namespace Uno.CLI
             new Projects.NoBuild(),
             new Projects.Clean(),
             new Testing.Test(),
-            new Testing.TestGen(),
             new Packages.Doctor(),
             new Diagnostics.Config(),
             new Diagnostics.Ls(),

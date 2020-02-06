@@ -1,6 +1,5 @@
 // Core config
 Assemblies.Test: src/testing/Uno.TestRunner.CLI/bin/$(Configuration)/uno-test.exe
-Assemblies.TestGen: src/testing/Uno.TestGenerator/bin/$(Configuration)/uno-test-gen.exe
 Assemblies.Uno: src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe
 
 if WIN32 {

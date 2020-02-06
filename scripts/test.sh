@@ -31,10 +31,4 @@ function uno-compiler-test {
 uno-compiler-test
 
 # Check that all packages build without errors
-function packages-build-test {
-    dir=.test/build-$1
-    uno test-gen $1 $dir
-    uno build $TARGET --no-strip $dir
-}
-
-packages-build-test lib
+uno build $TARGET --no-strip tests/pkgtest

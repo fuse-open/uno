@@ -26,7 +26,6 @@ Available commands
 
 Experimental commands
   no-build       Invoke generated build steps without triggering a build
-  test-gen       Generate compilation tests
   lint           Parses uno source files and output syntax errors
   adb            Use Android Debug Bridge (adb)
   launch-apk     Deploy and start APK on a connected device
@@ -217,12 +216,6 @@ Examples:
   uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj
   uno test path/projects path/other-projects/FooTest.unoproj
   uno test native -v path/projects
-```
-
-## uno test-gen
-
-```
-Usage: uno test-gen <path to packages> <path for temporary project> [--exclude=name]
 ```
 
 ## uno doctor

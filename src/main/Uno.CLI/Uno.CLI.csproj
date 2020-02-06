@@ -58,7 +58,6 @@
     <Compile Include="Projects\Clean.cs" />
     <Compile Include="Projects\BuildCommand.cs" />
     <Compile Include="Projects\Update.cs" />
-    <Compile Include="Testing\TestGen.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
