@@ -7,6 +7,10 @@
             <Require AndroidManifest.Permission="android.permission.ACCESS_CHECKIN_PROPERTIES" />
         </Method>
 
+        <Method Signature="_access_background_location():Uno.Permissions.PlatformPermission">
+            <Require AndroidManifest.Permission="android.permission.ACCESS_BACKGROUND_LOCATION" />
+        </Method>
+
         <Method Signature="_access_coarse_location():Uno.Permissions.PlatformPermission">
             <Require AndroidManifest.Permission="android.permission.ACCESS_COARSE_LOCATION" />
         </Method>
