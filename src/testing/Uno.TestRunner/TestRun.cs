@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Threading;
 using Uno.TestRunner.BasicTypes;
 using Uno.TestRunner.Loggers;
@@ -16,18 +15,11 @@ namespace Uno.TestRunner
         private int _testCount = -1;
         private State _currentState = State.NotStarted;
         private readonly ManualResetEvent _isFinished = new ManualResetEvent(false);
-        private readonly TimeSpan _testTimeout;
-        private readonly TimeSpan _testTimeoutCheckInterval;
-        private readonly TimeSpan _startupTimeout;
-        private readonly Stopwatch _runningTime = new Stopwatch();
         private readonly List<Exception> _errors = new List<Exception>();
 
-        public TestRun(ITestResultLogger logger, TimeSpan testTimeout, TimeSpan startupTimeout)
+        public TestRun(ITestResultLogger logger)
         {
             _logger = logger;
-            _testTimeout = testTimeout;
-            _startupTimeout = startupTimeout;
-            _testTimeoutCheckInterval = TimeSpan.FromMilliseconds(Math.Min((int)_testTimeout.TotalMilliseconds, 1000));
         }
 
         public void Start()
@@ -36,7 +28,6 @@ namespace Uno.TestRunner
                 throw new InvalidOperationException("Unexpected 'ready'-event");
 
             _currentState = State.WaitingForReady;
-            _runningTime.Start();
         }
 
         public State CurrentState => _currentState;
@@ -52,63 +43,26 @@ namespace Uno.TestRunner
             }
         }
 
-        public bool IsFinished()
-        {
-            return _isFinished.WaitOne(0);
-        }
-
         public void Update()
         {
             lock (_lock)
             {
-                CheckForStartupTimeout();
                 CheckForErrors();
-                CheckForTimeout();
             }
         }
 
         public List<Test> WaitUntilFinished()
         {
-            while (!_isFinished.WaitOne(_testTimeoutCheckInterval))
+            while (!_isFinished.WaitOne())
                 Update();
 
             return _tests;
-        }
-
-        private void CheckForStartupTimeout()
-        {
-            if (_currentState < State.Running && _runningTime.ElapsedMilliseconds > _startupTimeout.TotalMilliseconds)
-            {
-                throw new Exception("Timed out while waiting for uno process to connect.");
-            }
         }
 
         private void CheckForErrors()
         {
             if (_errors.Count > 0)
                 throw new AggregateException(_errors);
-        }
-
-        private void CheckForTimeout()
-        {
-            if (CurrentTest != null && CurrentTest.Duration > _testTimeout)
-            {
-                CurrentTest.TimedOut(CurrentTest.Duration.TotalSeconds);
-                _logger.TestThrew(CurrentTest);
-
-                // fake skipping of all unfinished tests
-                for (int i = _tests.Count; i < _testCount; ++i)
-                {
-                    var dummyTest = new Test(string.Format("UnknownTest{0}", i));
-                    _tests.Add(dummyTest);
-
-                    CurrentTest.Threw("Previous test timed out");
-                    _logger.TestThrew(CurrentTest);
-                }
-
-                _currentState = State.Finished;
-                _isFinished.Set();
-            }
         }
 
         public void EventOccured(NameValueCollection eventDetails)

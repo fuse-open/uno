@@ -13,15 +13,10 @@ namespace Uno.TestRunner.BasicTypes
         public List<string> Paths;
         public string LogFileName;
         public BuildTarget Target;
-        public TimeSpan TestTimeout;
-        public TimeSpan StartupTimeout;
         public bool Verbose;
         public string Filter;
-        public string Browser;
         public bool Trace;
         public bool OnlyBuild;
-        public bool AllowDebugger;
-        public bool OpenDebugger;
         public bool NoUninstall;
         public bool Library;
         public string OutputDirectory;
@@ -34,11 +29,7 @@ namespace Uno.TestRunner.BasicTypes
             var verbose = false;
             var quiet = false;
 
-            var commandOptions = new CommandLineOptions
-            {
-                TestTimeout = TimeSpan.FromSeconds(10),
-                StartupTimeout = TimeSpan.FromMinutes(1),
-            };
+            var commandOptions = new CommandLineOptions();
 
             string targetName = null;
             var p = new OptionSet
@@ -51,12 +42,12 @@ namespace Uno.TestRunner.BasicTypes
                 { "q|quiet", "Quiet, only prints output from compiler and debug_log in case of errors.", v => quiet = v != null },
                 { "f|filter=", "Only run tests matching this string", v => commandOptions.Filter = Regex.Escape(v) },
                 { "e|regex-filter=", "Only run tests matching this regular expression", v => commandOptions.Filter = v },
-                { "o|timeout=", "Timeout for individual tests (in seconds)", (int v) => { commandOptions.TestTimeout = TimeSpan.FromSeconds(v); } },
-                { "startup-timeout=", "Timeout for connection from uno process (in seconds)", (int v) => { commandOptions.StartupTimeout = TimeSpan.FromSeconds(v); } },
+                { "o|timeout=", "Timeout for individual tests (in seconds)", (int v) => Console.Error.WriteLine("WARNING: --timeout is deprecated and has no effect.") },
+                { "startup-timeout=", "Timeout for connection from uno process (in seconds)", (int v) => Console.Error.WriteLine("WARNING: --startup-timeout is deprecated and has no effect.") },
                 { "trace", "Print trace information from unotest", v => { commandOptions.Trace = v != null; } },
                 { "only-build", "Don't run compiled program.",  v => commandOptions.OnlyBuild = v != null },
-                { "allow-debugger", "Don't run compiled program, allow user to start it from a debugger.",  v => commandOptions.AllowDebugger = v != null },
-                { "d|debug", "Open IDE for debugging tests.",  v => commandOptions.OpenDebugger = v != null },
+                { "allow-debugger", "Don't run compiled program, allow user to start it from a debugger.",  v => Console.Error.WriteLine("WARNING: --allow-debugger is deprecated and has no effect.") },
+                { "d|debug", "Open IDE for debugging tests.",  v => Console.Error.WriteLine("WARNING: --debug is deprecated and has no effect.") },
                 { "run-local", "Run the test directly (not used)",  v => Console.Error.WriteLine("WARNING: --run-local is deprecated and has no effect.") },
                 { "no-uninstall", "Don't uninstall tests after running on device", v => commandOptions.NoUninstall = v != null },
                 { "D=|define=", "Add define, to enable a feature", commandOptions.Defines.Add },
@@ -74,12 +65,6 @@ namespace Uno.TestRunner.BasicTypes
 
                 if (verbose && quiet)
                     throw new ArgumentException("Cannot specify both -q and -v");
-
-                if (commandOptions.AllowDebugger || commandOptions.OpenDebugger)
-                {
-                    commandOptions.StartupTimeout = TimeSpan.FromDays(1);
-                    commandOptions.TestTimeout = TimeSpan.FromDays(1);
-                }
             }
             catch (OptionException e)
             {

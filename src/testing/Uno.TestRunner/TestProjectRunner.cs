@@ -35,7 +35,7 @@ namespace Uno.TestRunner
             List<Test> tests = new List<Test>();
             try
             {
-                _testRun = new TestRun(_logger, _options.TestTimeout, _options.StartupTimeout);
+                _testRun = new TestRun(_logger);
 
                 var cts = new CancellationTokenSource();
                 bool runFinished = false;
@@ -59,13 +59,6 @@ namespace Uno.TestRunner
                     options.Defines.AddRange(_options.Defines);
                     options.Undefines.AddRange(_options.Undefines);
 
-                    if (_options.OpenDebugger)
-                    {
-                        options.RunArguments = "debug";
-                        options.Native = false; // disable native build
-                        options.Defines.Add("DEBUG_NATIVE"); // disable native optimizations
-                    }
-
                     var builder = new ProjectBuilder(log, target, options);
                     var result = builder.Build(proj);
                     if (result.ErrorCount != 0)
@@ -81,15 +74,11 @@ namespace Uno.TestRunner
                     Task runTask = null;
                     try
                     {
-                        if (!_options.AllowDebugger)
-                            runTask = Task.Run(() => result.RunAsync(targetLog, cts.Token), cts.Token);
+                        runTask = Task.Run(() => result.RunAsync(targetLog, cts.Token), cts.Token);
                         _testRun.Start();
 
-
                         tests = _testRun.WaitUntilFinished();
-                        if (runTask != null)
-                            runFinished = runTask.Wait(100);
-
+                        runFinished = runTask.Wait(100);
                     }
                     finally
                     {
