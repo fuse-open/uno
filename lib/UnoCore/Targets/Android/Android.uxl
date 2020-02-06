@@ -19,11 +19,11 @@
     <Set JDK.Directory="@(Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
     <Set NDK.Directory="@(Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
     <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '16')" />
-    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '28.0.3')" />
-    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '28')" />
+    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '29.0.2')" />
+    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '29')" />
     <Set SDK.Directory="@(Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
     <Set SDK.MinVersion="@(Project.Android.SDK.MinVersion || Config.Android.SDK.MinVersion || '16')" />
-    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '28')" />
+    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '29')" />
 
     <!-- Build properties -->
 
