@@ -29,7 +29,10 @@
     <Set AppDirectory="@(Project.Name).app" Condition="MAC" />
     <Set BinaryDirectory="@(AppDirectory)/MacOS" Condition="MAC" />
     <Set BundleDirectory="@(BinaryDirectory)/data" Condition="MAC" />
-    <Set Product="@(BinaryDirectory)/@(Project.Name)@(WIN32:Defined:Test('.exe', ''))" />
+
+    <Set Condition="!WIN32 && !LIBRARY" Product="@(BinaryDirectory)/@(Project.Name)" />
+    <Set Condition="!WIN32 && LIBRARY" Product="@(BinaryDirectory)/lib@(Project.Name).@(MAC:Defined:Test('dylib', 'so'))" />
+    <Set Condition="WIN32" Product="@(BinaryDirectory)/@(Project.Name).@(LIBRARY:Defined:Test('dll', 'exe'))" />
     <Set Condition="WIN32" CMake.Generator="Visual Studio 15 2017@(X64:Defined:Test(' Win64', ''))" />
 
     <Set Commands.Build="@(WIN32:Defined:Test('build.bat', 'bash build.sh'))" />

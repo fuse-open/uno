@@ -33,7 +33,11 @@ endif()
 
 @(CMake.SourceGroups)
 
+#if @(LIBRARY:Defined)
+add_library(@(Project.Name:QuoteSpace) SHARED
+#else
 add_executable(@(Project.Name:QuoteSpace)@(WIN32:Defined:Test(' WIN32', ''))
+#endif
     @(HeaderFile:JoinSorted('\n    ', '"@(HeaderDirectory)/', '"'))
     @(SourceFile:JoinSorted('\n    ', '"@(SourceDirectory)/', '"'))
     ${EXTRA_FILES})
