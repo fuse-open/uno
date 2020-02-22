@@ -49,8 +49,8 @@
     <CopyFile Name="@(Project.Mac.Icon:Path || @//Assets/Icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="MAC && !LIBRARY" />
 
     <!-- Win32 resources -->
-    <CopyFile Name="@(Project.Windows.Icon:Path || @//Assets/icon.ico)" TargetName="rc/icon.ico" Condition="WIN32" />
-    <CopyFile Name="rc/icon.rc" Condition="WIN32" />
+    <CopyFile Name="@(Project.Windows.Icon:Path || @//Assets/icon.ico)" TargetName="rc/icon.ico" Condition="WIN32 && !LIBRARY" />
+    <CopyFile Name="rc/icon.rc" Condition="WIN32 && !LIBRARY" />
 
     <!-- VC++ debugger visualizers -->
     <CopyFile Condition="MSVC" Name="natvis/uno.natstepfilter" />
