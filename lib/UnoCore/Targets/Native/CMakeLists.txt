@@ -26,14 +26,18 @@ elseif (MSVC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /MP")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR- /MP /wd4065 /wd4101 /wd4390 /wd4674")
     set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Build Configurations (forced)" FORCE)
-    set(EXTRA_FILES "natvis/uno.natstepfilter" "natvis/uno.natvis" "rc/icon.rc")
+    set(EXTRA_FILES "natvis/uno.natstepfilter" "natvis/uno.natvis"@('!LIBRARY':Defined:Test(' "rc/icon.rc"', '')))
 elseif (CMAKE_COMPILER_IS_GNUCC)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--start-group")
 endif()
 
 @(CMake.SourceGroups)
 
+#if @(LIBRARY:Defined)
+add_library(@(Project.Name:QuoteSpace) SHARED
+#else
 add_executable(@(Project.Name:QuoteSpace)@(WIN32:Defined:Test(' WIN32', ''))
+#endif
     @(HeaderFile:JoinSorted('\n    ', '"@(HeaderDirectory)/', '"'))
     @(SourceFile:JoinSorted('\n    ', '"@(SourceDirectory)/', '"'))
     ${EXTRA_FILES})

@@ -24,4 +24,9 @@ valgrind)
     ;;
 esac
 
+#if @(LIBRARY:Defined)
+echo "ERROR: @(Product) is a library and cannot be run directly." >&2
+exit 1
+#else
 @(Product:QuoteSpace)
+#endif
