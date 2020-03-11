@@ -217,6 +217,7 @@
 	<key>UIViewEdgeAntialiasing</key>
 	<@(Project.iOS.PList.UIViewEdgeAntialiasing:Bool)/>
 #endif
-
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
