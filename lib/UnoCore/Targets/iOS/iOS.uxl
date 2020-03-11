@@ -48,11 +48,16 @@
     <ProcessFile Name="@(Project.Name)/@(Project.Name)-Info.plist" />
     <ProcessFile Name="@(Project.Name)/@(Project.Name)-Prefix.pch" />
     <ProcessFile Name="@(Project.Name)/@(Project.Name).entitlements" />
+    <ProcessFile Name="@(Project.Name)/LaunchScreen.storyboard" />
     <ProcessFile Name="build.sh" IsExecutable=true />
     <ProcessFile Name="run.sh" IsExecutable=true />
     <ProcessFile Name="Podfile" Condition="COCOAPODS" />
 
     <!-- Icons -->
+
+    <!-- Default logo for Launch Screen Storyboard -->
+    <ImageFile Name="@(Project.iOS.Icons.iPhone_40_3x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="64" TargetName="@(Project.Name)/default-logo.png" />
 
     <Set Icons="@(Project.Name)/Images.xcassets/AppIcon.appiconset" />
     <ProcessFile Name="@(Icons)/Contents.json" />

@@ -55,7 +55,7 @@ namespace Uno.ProjectFormat
             {"iOS.BundleName", PropertyType.String, "$(Title)"},
             {"iOS.BundleVersion", PropertyType.String, "$(Version)"},
             {"iOS.Defines", PropertyType.String},
-            {"iOS.DeploymentTarget", PropertyType.String, "8.0"},
+            {"iOS.DeploymentTarget", PropertyType.String, "9.0"},
             {"iOS.DevelopmentTeam", PropertyType.String},
             {"iOS.Icons.iPhone_20_2x", PropertyType.Path, "$(Icon)"},
             {"iOS.Icons.iPhone_20_3x", PropertyType.Path, "$(Icon)"},

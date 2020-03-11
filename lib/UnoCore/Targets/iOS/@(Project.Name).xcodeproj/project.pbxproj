@@ -11,6 +11,8 @@
 /* Begin PBXBuildFile section */
 		5AB0DAB318F6CF6C00975F8B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB0DAB218F6CF6C00975F8B /* Images.xcassets */; };
 		5A4940FC151D17AD000ACE3F /* data in Resources */ = {isa = PBXBuildFile; fileRef = 5A4940FB151D17AD000ACE3F /* data */; };
+		5F0322E02410910C00F663AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F0322DF2410910C00F663AF /* LaunchScreen.storyboard */; };
+		5FEB853A2417246600A63124 /* default-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FEB85392417246500A63124 /* default-logo.png */; };
 		@(Pbxproj.PBXBuildFiles)
 /* End PBXBuildFile section */
 
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		5AB0DAB218F6CF6C00975F8B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "@(Project.Name)/Images.xcassets"; sourceTree = "<group>"; };
+		5F0322DF2410910C00F663AF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "LaunchScreen.storyboard"; path = "@(Project.Name)/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		5FEB85392417246500A63124 /* default-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default-logo.png; path = @(Project.Name)/default-logo.png; sourceTree = "<group>"; };
 #if @(LIBRARY:Defined)
 		5A493DA5151A216A000ACE3F /* $(Project.Name).framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "@(Project.Name).framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 #else
@@ -105,6 +109,8 @@
 		5A4940F1151BFBA0000ACE3F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5FEB85392417246500A63124 /* default-logo.png */,
+				5F0322DF2410910C00F663AF /* LaunchScreen.storyboard */,
 				5A4940FB151D17AD000ACE3F /* data */,
 				5AB0DAB218F6CF6C00975F8B /* Images.xcassets */,
 			);
@@ -269,7 +275,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB0DAB318F6CF6C00975F8B /* Images.xcassets in Resources */,
+				5FEB853A2417246600A63124 /* default-logo.png in Resources */,
 				5A4940FC151D17AD000ACE3F /* data in Resources */,
+				5F0322E02410910C00F663AF /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +464,7 @@
 			buildSettings = {
 #if !@(LIBRARY:Defined)
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 #endif
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_ENTITLEMENTS = "@(Project.Name)/@(Project.Name).entitlements";
@@ -509,7 +517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_ENTITLEMENTS = "@(Project.Name)/@(Project.Name).entitlements";
 #if @(Pbxproj.DevelopmentTeam:IsSet)

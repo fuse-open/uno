@@ -459,6 +459,7 @@
     "Targets/iOS/@(Project.Name)/@(Project.Name).entitlements:File",
     "Targets/iOS/@(Project.Name)/@(Project.Name)-Info.plist:File",
     "Targets/iOS/@(Project.Name)/@(Project.Name)-Prefix.pch:File",
+    "Targets/iOS/@(Project.Name)/LaunchScreen.storyboard:File",
     "Targets/iOS/@(Schemes)/@(Project.Name).xcscheme:File",
     "Targets/iOS/@(Schemes)/xcschememanagement.plist:File",
     "Targets/iOS/build.sh:File",
