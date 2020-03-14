@@ -55,9 +55,9 @@
 
     <!-- Icons -->
 
-    <!-- Default logo for Launch Screen Storyboard -->
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_40_3x:Path || '@//Assets/DefaultIcon.png')"
-        TargetWidth="64" TargetName="@(Project.Name)/default-logo.png" />
+    <!-- Image for Launch Screen Storyboard -->
+    <CopyFile Name="@(Project.iOS.LaunchScreen.Image:Path || '@//Assets/DefaultIcon.png')"
+        TargetName="@(Project.Name)/LaunchScreen.png" />
 
     <Set Icons="@(Project.Name)/Images.xcassets/AppIcon.appiconset" />
     <ProcessFile Name="@(Icons)/Contents.json" />
