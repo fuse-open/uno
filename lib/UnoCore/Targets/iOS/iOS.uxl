@@ -55,10 +55,6 @@
 
     <!-- Icons -->
 
-    <!-- Default logo for Launch Screen Storyboard -->
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_40_3x:Path || '@//Assets/DefaultIcon.png')"
-        TargetWidth="64" TargetName="@(Project.Name)/default-logo.png" />
-
     <Set Icons="@(Project.Name)/Images.xcassets/AppIcon.appiconset" />
     <ProcessFile Name="@(Icons)/Contents.json" />
 
@@ -101,6 +97,11 @@
 
     <!-- Launch images -->
 
+    <!-- Launch Screen Image for Launch Screen Storyboard -->
+
+    <ImageFile Name="@(Project.iOS.Icons.LaunchScreen.image:Path || Project.iOS.Icons.iPhone_60_3x:Path || '@//Assets/DefaultIcon.png')" TargetName="@(Project.Name)/LaunchScreenImage.png" />
+
+    <!-- Launch Images are replaced by Launch Screen Storyboard from iOS 13, yet launch screeen storyboards are supported since iOS 8 & Xcode 6
     <Set LaunchImages="@(Project.Name)/Images.xcassets/LaunchImage.launchimage" />
     <ProcessFile Name="@(LaunchImages)/Contents.json" />
 
@@ -134,7 +135,7 @@
         TargetWidth="768" TargetHeight="1024" TargetName="@(LaunchImages)/iPad_Portrait_1x.png" />
     <ImageFile Name="@(Project.iOS.LaunchImages.iPad_Landscape_1x:Path || '@//Assets/Black.png')"
         TargetWidth="1024" TargetHeight="768" TargetName="@(LaunchImages)/iPad_Landscape_1x.png" />
-
+    -->
 
     <!-- Default plist descriptions -->
 
