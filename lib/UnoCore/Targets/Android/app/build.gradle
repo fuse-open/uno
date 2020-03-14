@@ -1,4 +1,8 @@
 apply plugin: 'com.android.@(LIBRARY:Defined:Test('library', 'application'))'
+#if @(KOTLIN:Defined)
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+#endif
 
 configurations { native_implementation }
 
