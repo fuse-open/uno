@@ -196,7 +196,7 @@
 #endif
 
 	<key>UIStatusBarHidden</key>
-	<@(Project.iOS.UIStatusBarHidden:ToLower || Mobile.DisableStatusbar:ToLower || false)/>
+	<@(Project.iOS.UIStatusBarHidden:ToLower || Mobile.DisableStatusbar:Bool:ToLower || 'false')/>
 
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
