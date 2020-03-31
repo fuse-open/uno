@@ -21,7 +21,7 @@ namespace Uno.Graphics
             UpdateBackbuffer();
         }
 
-        internal void UpdateBackbuffer()
+        public void UpdateBackbuffer()
         {
             if defined(OPENGL)
                 _backbuffer.GLFramebufferHandle = _backend.GetBackbufferGLHandle();
