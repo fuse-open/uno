@@ -1,11 +1,10 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Disasm", "Uno.Disasm\Uno.Disasm.csproj", "{9E26C610-B4BE-4548-82B0-70CFF33267C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Disasm", "src\disasm\Uno.Disasm\Uno.Disasm.csproj", "{9E26C610-B4BE-4548-82B0-70CFF33267C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Disasm-WPF", "Uno.Disasm-WPF\Uno.Disasm-WPF.csproj", "{E9E95DD1-03F6-45A3-945F-E1CC82E6B8D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Disasm-WPF", "src\disasm\Uno.Disasm-WPF\Uno.Disasm-WPF.csproj", "{E9E95DD1-03F6-45A3-945F-E1CC82E6B8D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
