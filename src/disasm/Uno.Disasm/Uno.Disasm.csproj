@@ -34,7 +34,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />  
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="Disassemblers\BytecodeDisassembler.cs" />
     <Compile Include="Disassembler.cs" />
