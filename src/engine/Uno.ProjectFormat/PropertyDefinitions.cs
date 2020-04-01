@@ -12,7 +12,7 @@ namespace Uno.ProjectFormat
             {"CacheDirectory", PropertyType.Path, ".uno"},
             {"OutputDirectory", PropertyType.Path, "$(BuildDirectory)/@(Target)/@(Configuration)"},
             {"RootNamespace", PropertyType.String, "$(QIdentifier)"},
-            {"Version", PropertyType.String, "0.1.0"},
+            {"Version", PropertyType.String, Environment.GetEnvironmentVariable("npm_package_version") ?? "0.1.0"},
             {"VersionCode", PropertyType.Integer, 1},
             {"Title", PropertyType.String, "$(Name)"},
             {"Icon", PropertyType.Path},
