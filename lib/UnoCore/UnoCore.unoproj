@@ -287,8 +287,6 @@
     "Source/Uno/Runtime/Implementation/Internal/FormatStringToken.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/FormatStringTokenizer.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/NumericFormatter.uno:Source",
-    "Source/Uno/Runtime/Implementation/Internal/StringEnumerable.uno:Source",
-    "Source/Uno/Runtime/Implementation/Internal/StringEnumerator.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/Unsafe.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/WindowHelpers.uno:Source",
     "Source/Uno/Runtime/Implementation/PlatformWindowImpl.uno:Source",

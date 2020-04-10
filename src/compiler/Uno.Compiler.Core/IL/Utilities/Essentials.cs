@@ -8,7 +8,7 @@ namespace Uno.Compiler.Core.IL.Utilities
     {
         public DataType[] BuiltinTypes = new DataType[(int) BuiltinType.Max];
 
-		public DataType Void { get; private set; }
+        public DataType Void { get; private set; }
         public DataType Bool { get; private set; }
         public DataType Char { get; private set; }
         public DataType Byte { get; private set; }
@@ -54,7 +54,6 @@ namespace Uno.Compiler.Core.IL.Utilities
         public DataType IDisposable { get; private set; }
         public DataType IEnumerable_T { get; private set; }
         public DataType ArrayEnumerable_T { get; private set; }
-        public DataType StringEnumerable { get; private set; }
         public DataType Bundle { get; private set; }
         public DataType Monitor { get; private set; }
         public DataType ValueType { get; private set; }
@@ -89,7 +88,7 @@ namespace Uno.Compiler.Core.IL.Utilities
 
         internal void Resolve(ILFactory ilf)
         {
-			Void = ilf.GetType("void");
+            Void = ilf.GetType("void");
             BuiltinTypes[(int) BuiltinType.Bool] = Bool = ilf.GetType("Uno.Bool");
             BuiltinTypes[(int) BuiltinType.Char] = Char = ilf.GetType("Uno.Char");
             BuiltinTypes[(int) BuiltinType.Byte] = Byte = ilf.GetType("Uno.Byte");
@@ -144,7 +143,6 @@ namespace Uno.Compiler.Core.IL.Utilities
             IDisposable = ilf.GetType("Uno.IDisposable");
             IEnumerable_T = ilf.GetType("Uno.Collections.IEnumerable<>");
             ArrayEnumerable_T = ilf.GetType("Uno.Runtime.Implementation.Internal.ArrayEnumerable<>");
-            StringEnumerable = ilf.GetType("Uno.Runtime.Implementation.Internal.StringEnumerable");
             Bundle = ilf.GetType("Uno.IO.Bundle");
             Monitor = ilf.GetType("Uno.Threading.Monitor");
             ValueType = ilf.GetType("Uno.ValueType");
@@ -168,9 +166,9 @@ namespace Uno.Compiler.Core.IL.Utilities
             AttributeUsageAttribute = ilf.GetType("Uno.AttributeUsageAttribute");
             NativeClassAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.NativeClassAttribute");
             UxGeneratedAttribute = ilf.GetType("Uno.Compiler.UxGeneratedAttribute");
+            ForeignAttribute = ilf.GetType ("Uno.Compiler.ExportTargetInterop.ForeignAttribute");
+            ForeignIncludeAttribute = ilf.GetType ("Uno.Compiler.ExportTargetInterop.ForeignIncludeAttribute");
             ForeignAnnotationAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.ForeignAnnotationAttribute");
-            ForeignAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.ForeignAttribute");
-            ForeignIncludeAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.ForeignIncludeAttribute");
             ForeignTypeNameAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.ForeignTypeNameAttribute");
             ProcessFileAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.ProcessFileAttribute");
             RequireAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.RequireAttribute");

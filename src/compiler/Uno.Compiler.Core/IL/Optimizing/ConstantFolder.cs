@@ -89,9 +89,10 @@ namespace Uno.Compiler.Core.IL.Optimizing
                     var s = e as CastOp;
                     var c = s.Operand as Constant;
 
-                    if (c != null && s.ReturnType != Essentials.Object)
+                    if (c != null && (c.Value == null ||
+                            s.ReturnType.IsIntrinsic && s.ReturnType != Essentials.Object ||
+                            s.ReturnType.IsEnum && s.ReturnType != Essentials.Object))
                         e = new Constant(s.Source, s.ReturnType, c.Value);
-
                     break;
                 }
                 case ExpressionType.LoadLocal:
