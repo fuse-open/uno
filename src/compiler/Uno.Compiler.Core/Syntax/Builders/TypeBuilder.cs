@@ -45,9 +45,14 @@ namespace Uno.Compiler.Core.Syntax.Builders
         void EnqueueCompiler(FunctionCompiler fc)
         {
             if (fc.Body != null)
+            {
                 _enqueuedCompilers.Add(fc);
+                fc.Function.Tag = fc;
+            }
             else if (_compiler.Backend.CanLink(fc.Function))
+            {
                 fc.Function.Stats |= EntityStats.CanLink;
+            }
         }
 
         void EnqueueType(DataType dt, Action<DataType> assignBaseType, Action<DataType> populate)

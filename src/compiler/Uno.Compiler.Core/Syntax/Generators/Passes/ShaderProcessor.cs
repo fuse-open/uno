@@ -8,6 +8,7 @@ using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.Compiler.API.Domain.IL.Types;
 using Uno.Compiler.Core.IL;
 using Uno.Compiler.Core.IL.Utilities;
+using Uno.Compiler.Core.Syntax.Compilers;
 
 namespace Uno.Compiler.Core.Syntax.Generators.Passes
 {
@@ -151,8 +152,15 @@ namespace Uno.Compiler.Core.Syntax.Generators.Passes
 
                 if (!f.HasBody)
                 {
-                    Log.Error(e.Source, ErrorCode.E5010, f.Quote() + " is pure intrinsic and is not supported by current shader backend (in " + Generator.Path.Quote() + ")");
-                    return false;
+                    // Attempt lazy compile.
+                    var fc = f.MasterDefinition.Tag as FunctionCompiler;
+                    fc?.Compile(true);
+
+                    if (!f.HasBody)
+                    {
+                        Log.Error(e.Source, ErrorCode.E5010, f.Quote() + " is pure intrinsic and is not supported by current shader backend (in " + Generator.Path.Quote() + ")");
+                        return false;
+                    }
                 }
 
                 result = new ShaderFunction(f.Source, Shader, f.UnoName.ToIdentifier() + "_" + Generator.ShaderGlobalCounter++, f.ReturnType, null);
