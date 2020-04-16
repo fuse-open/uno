@@ -10,7 +10,7 @@ rm -rf ${DST:?}/* 2> /dev/null || :
 mkdir -p $DST
 
 # Detect version info
-VERSION=`cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]'`
+VERSION=`bash scripts/get-version.sh`
 BUILD_NUMBER="0"
 COMMIT=""
 
