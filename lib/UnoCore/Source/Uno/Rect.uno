@@ -1,4 +1,6 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Math;
+using Uno.Vector;
 
 namespace Uno
 {
@@ -140,29 +142,29 @@ namespace Uno
         public static Rect Union(Rect a, Rect b)
         {
             return new Rect(
-                Math.Min(a.Left, b.Left),
-                Math.Min(a.Top, b.Top),
-                Math.Max(a.Right, b.Right),
-                Math.Max(a.Bottom, b.Bottom));
+                Min(a.Left, b.Left),
+                Min(a.Top, b.Top),
+                Max(a.Right, b.Right),
+                Max(a.Bottom, b.Bottom));
         }
 
         public static Rect Intersect(Rect a, Rect b)
         {
             return new Rect(
-                Math.Max(a.Left, b.Left),
-                Math.Max(a.Top, b.Top),
-                Math.Min(a.Right, b.Right),
-                Math.Min(a.Bottom, b.Bottom));
+                Max(a.Left, b.Left),
+                Max(a.Top, b.Top),
+                Min(a.Right, b.Right),
+                Min(a.Bottom, b.Bottom));
         }
 
         [DotNetOverride]
         public static Rect Transform(Rect r, float4x4 matrix)
         {
             return Rect.ContainingPoints(
-                Vector.TransformCoordinate(r.LeftTop, matrix),
-                Vector.TransformCoordinate(r.RightTop, matrix),
-                Vector.TransformCoordinate(r.RightBottom, matrix),
-                Vector.TransformCoordinate(r.LeftBottom, matrix));
+                TransformCoordinate(r.LeftTop, matrix),
+                TransformCoordinate(r.RightTop, matrix),
+                TransformCoordinate(r.RightBottom, matrix),
+                TransformCoordinate(r.LeftBottom, matrix));
         }
 
         public static Rect Translate(Rect r, float2 offset)
@@ -213,10 +215,10 @@ namespace Uno
             var maxY = float.MinValue;
             for (var point in points)
             {
-                minX = Math.Min(minX, point.X);
-                maxX = Math.Max(maxX, point.X);
-                minY = Math.Min(minY, point.Y);
-                maxY = Math.Max(maxY, point.Y);
+                minX = Min(minX, point.X);
+                maxX = Max(maxX, point.X);
+                minY = Min(minY, point.Y);
+                maxY = Max(maxY, point.Y);
             }
             return new Rect(minX,minY,maxX,maxY);
         }*/
@@ -229,10 +231,10 @@ namespace Uno
             var minY = point0.Y;
             var maxY = point0.Y;
 
-            minX = Math.Min(minX, point1.X);
-            maxX = Math.Max(maxX, point1.X);
-            minY = Math.Min(minY, point1.Y);
-            maxY = Math.Max(maxY, point1.Y);
+            minX = Min(minX, point1.X);
+            maxX = Max(maxX, point1.X);
+            minY = Min(minY, point1.Y);
+            maxY = Max(maxY, point1.Y);
 
             return new Rect(minX,minY,maxX,maxY);
         }
@@ -245,20 +247,20 @@ namespace Uno
             var minY = point0.Y;
             var maxY = point0.Y;
 
-            minX = Math.Min(minX, point1.X);
-            maxX = Math.Max(maxX, point1.X);
-            minY = Math.Min(minY, point1.Y);
-            maxY = Math.Max(maxY, point1.Y);
+            minX = Min(minX, point1.X);
+            maxX = Max(maxX, point1.X);
+            minY = Min(minY, point1.Y);
+            maxY = Max(maxY, point1.Y);
 
-            minX = Math.Min(minX, point2.X);
-            maxX = Math.Max(maxX, point2.X);
-            minY = Math.Min(minY, point2.Y);
-            maxY = Math.Max(maxY, point2.Y);
+            minX = Min(minX, point2.X);
+            maxX = Max(maxX, point2.X);
+            minY = Min(minY, point2.Y);
+            maxY = Max(maxY, point2.Y);
 
-            minX = Math.Min(minX, point3.X);
-            maxX = Math.Max(maxX, point3.X);
-            minY = Math.Min(minY, point3.Y);
-            maxY = Math.Max(maxY, point3.Y);
+            minX = Min(minX, point3.X);
+            maxX = Max(maxX, point3.X);
+            minY = Min(minY, point3.Y);
+            maxY = Max(maxY, point3.Y);
 
             return new Rect(minX,minY,maxX,maxY);
         }
@@ -374,19 +376,19 @@ namespace Uno
         public static Recti Union(Recti a, Recti b)
         {
             return new Recti(
-                Math.Min(a.Left, b.Left),
-                Math.Min(a.Top, b.Top),
-                Math.Max(a.Right, b.Right),
-                Math.Max(a.Bottom, b.Bottom));
+                Min(a.Left, b.Left),
+                Min(a.Top, b.Top),
+                Max(a.Right, b.Right),
+                Max(a.Bottom, b.Bottom));
         }
 
         public static Recti Intersect(Recti a, Recti b)
         {
             return new Recti(
-                Math.Max(a.Left, b.Left),
-                Math.Max(a.Top, b.Top),
-                Math.Min(a.Right, b.Right),
-                Math.Min(a.Bottom, b.Bottom));
+                Max(a.Left, b.Left),
+                Max(a.Top, b.Top),
+                Min(a.Right, b.Right),
+                Min(a.Bottom, b.Bottom));
         }
 
         public static Recti ContainingPoints(params int2[] points)
@@ -397,10 +399,10 @@ namespace Uno
             var maxY = int.MinValue;
             foreach (var point in points)
             {
-                minX = Math.Min(minX, point.X);
-                maxX = Math.Max(maxX, point.X);
-                minY = Math.Min(minY, point.Y);
-                maxY = Math.Max(maxY, point.Y);
+                minX = Min(minX, point.X);
+                maxX = Max(maxX, point.X);
+                minY = Min(minY, point.Y);
+                maxY = Max(maxY, point.Y);
             }
             return new Recti(minX,minY,maxX,maxY);
         }

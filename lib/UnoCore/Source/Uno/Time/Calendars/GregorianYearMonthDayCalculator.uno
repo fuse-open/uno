@@ -1,3 +1,5 @@
+using Uno.Math;
+
 namespace Uno.Time.Calendars
 {
     internal class GregorianYearMonthDayCalculator : YearMonthDayCalculator
@@ -109,12 +111,12 @@ namespace Uno.Time.Calendars
 
         internal override int GetCenturyOfEra(Instant instant)
         {
-            return Math.Abs(GetYear(instant)) / 100;
+            return Abs(GetYear(instant)) / 100;
         }
 
         internal override int GetYearOfCentury(Instant instant)
         {
-            return Math.Abs(GetYear(instant)) % 100;
+            return Abs(GetYear(instant)) % 100;
         }
 
         protected override int GetMonthOfYear(Instant instant, int year)

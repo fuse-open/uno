@@ -2,6 +2,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Text;
 using Uno.Collections;
 using Uno.Runtime.Implementation.Internal;
+using Uno.Math;
 
 namespace Uno
 {
@@ -762,7 +763,7 @@ namespace Uno
 
         public static int Compare(string a, string b)
         {
-            for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
+            for (int i = 0; i < Min(a.Length, b.Length); i++)
             {
                 if (a[i] < b[i])
                     return -1;

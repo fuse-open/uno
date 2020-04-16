@@ -1,4 +1,5 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Math;
 
 namespace Uno
 {
@@ -11,9 +12,9 @@ namespace Uno
         public static float LengthSquared(float3 v) { return v.X * v.X + v.Y * v.Y + v.Z * v.Z; }
         public static float LengthSquared(float4 v) { return v.X * v.X + v.Y * v.Y + v.Z * v.Z + v.W * v.W; }
 
-        [GlslIntrinsic("length")] public static float Length(float2 v) { return Math.Sqrt(LengthSquared(v)); }
-        [GlslIntrinsic("length")] public static float Length(float3 v) { return Math.Sqrt(LengthSquared(v)); }
-        [GlslIntrinsic("length")] public static float Length(float4 v) { return Math.Sqrt(LengthSquared(v)); }
+        [GlslIntrinsic("length")] public static float Length(float2 v) { return Sqrt(LengthSquared(v)); }
+        [GlslIntrinsic("length")] public static float Length(float3 v) { return Sqrt(LengthSquared(v)); }
+        [GlslIntrinsic("length")] public static float Length(float4 v) { return Sqrt(LengthSquared(v)); }
 
         [GlslIntrinsic("distance")] public static float Distance(float2 p0, float2 p1) { return Length(p1 - p0); }
         [GlslIntrinsic("distance")] public static float Distance(float3 p0, float3 p1) { return Length(p1 - p0); }
@@ -62,7 +63,7 @@ namespace Uno
         {
             float dot = Dot(normal, vector);
             float k = 1.0f - eta * eta * (1.0f - dot * dot);
-            return k < 0.0f ? float2(0.0f) : eta * vector - (eta * dot + Math.Sqrt(k)) * normal;
+            return k < 0.0f ? float2(0.0f) : eta * vector - (eta * dot + Sqrt(k)) * normal;
         }
 
         [GlslIntrinsic("refract")]
@@ -70,7 +71,7 @@ namespace Uno
         {
             float dot = Dot(normal, vector);
             float k = 1.0f - eta * eta * (1.0f - dot * dot);
-            return k < 0.0f ? float3(0.0f) : eta * vector - (eta * dot + Math.Sqrt(k)) * normal;
+            return k < 0.0f ? float3(0.0f) : eta * vector - (eta * dot + Sqrt(k)) * normal;
         }
 
         [GlslIntrinsic("refract")]
@@ -78,7 +79,7 @@ namespace Uno
         {
             float dot = Dot(normal, vector);
             float k = 1.0f - eta * eta * (1.0f - dot * dot);
-            return k < 0.0f ? float4(0.0f) : eta * vector - (eta * dot + Math.Sqrt(k)) * normal;
+            return k < 0.0f ? float4(0.0f) : eta * vector - (eta * dot + Sqrt(k)) * normal;
         }
 
         public static void OrthoNormalize(ref float2 orthonormalTo, ref float2 v) { orthonormalTo = Normalize(orthonormalTo); v = Normalize(v - Project(v, orthonormalTo)); }
@@ -91,7 +92,7 @@ namespace Uno
 
         public static float2 Rotate(float2 v, float angleRadians)
         {
-            return float2(v.X * Math.Cos(angleRadians) - v.Y * Math.Sin(angleRadians), v.Y * Math.Cos(angleRadians) + v.X * Math.Sin(angleRadians));
+            return float2(v.X * Cos(angleRadians) - v.Y * Sin(angleRadians), v.Y * Cos(angleRadians) + v.X * Sin(angleRadians));
         }
 
         public static float3 Transform(float3 vector, float4 rotationQuaternion)

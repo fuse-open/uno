@@ -1,3 +1,5 @@
+using Uno.Math;
+
 namespace Uno.Time.Calendars
 {
     internal abstract class YearMonthDayCalculator
@@ -68,7 +70,7 @@ namespace Uno.Time.Calendars
             else
             {
                 yearToUse = thisYear + (monthToUse / _monthsInYear) - 1;
-                monthToUse = Math.Abs(monthToUse);
+                monthToUse = Abs(monthToUse);
                 int remMonthToUse = monthToUse % _monthsInYear;
                 // Take care of the boundary condition
                 if (remMonthToUse == 0)
@@ -87,7 +89,7 @@ namespace Uno.Time.Calendars
             // Quietly force DOM to nearest sane value.
             int dayToUse = GetDayOfMonth(instant, thisYear, thisMonth);
             int maxDay = GetDaysInMonth(yearToUse, monthToUse);
-            dayToUse = Math.Min(dayToUse, maxDay);
+            dayToUse = Min(dayToUse, maxDay);
             // Get proper date part, and return result
             long datePart = GetYearMonthDayTicks(yearToUse, monthToUse, dayToUse);
             return new Instant(datePart + timePart);

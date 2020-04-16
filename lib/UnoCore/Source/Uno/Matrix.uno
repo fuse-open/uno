@@ -1,4 +1,6 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno.Math;
+using Uno.Vector;
 
 namespace Uno
 {
@@ -11,18 +13,18 @@ namespace Uno
 
         public static float4x4 LookAtLH(float3 eye, float3 target, float3 up)
         {
-            float3 zaxis = Vector.Normalize(target - eye);
-            float3 xaxis = Vector.Normalize(Vector.Cross(up, zaxis));
-            float3 yaxis = Vector.Normalize(Vector.Cross(zaxis, xaxis));
+            float3 zaxis = Normalize(target - eye);
+            float3 xaxis = Normalize(Cross(up, zaxis));
+            float3 yaxis = Normalize(Cross(zaxis, xaxis));
 
             float4x4 result = float4x4.Identity;
             result.M11 = xaxis.X; result.M21 = xaxis.Y; result.M31 = xaxis.Z;
             result.M12 = yaxis.X; result.M22 = yaxis.Y; result.M32 = yaxis.Z;
             result.M13 = zaxis.X; result.M23 = zaxis.Y; result.M33 = zaxis.Z;
 
-            result.M41 = Vector.Dot(xaxis, eye);
-            result.M42 = Vector.Dot(yaxis, eye);
-            result.M43 = Vector.Dot(zaxis, eye);
+            result.M41 = Dot(xaxis, eye);
+            result.M42 = Dot(yaxis, eye);
+            result.M43 = Dot(zaxis, eye);
 
             result.M41 = -result.M41;
             result.M42 = -result.M42;
@@ -33,7 +35,7 @@ namespace Uno
 
         public static float4x4 PerspectiveLH(float fovRadians, float aspect, float znear, float zfar)
         {
-            float yScale = 1.0f / Math.Tan(fovRadians * 0.5f);
+            float yScale = 1.0f / Tan(fovRadians * 0.5f);
             float xScale = yScale / aspect;
 
             float halfWidth = znear / xScale;
@@ -92,29 +94,29 @@ namespace Uno
         public static float4x4 LookAtRH(float3 eye, float3 target, float3 up)
         {
             float3 zaxis = (eye - target);
-            float3 xaxis = (Vector.Cross(up, zaxis));
-            float3 yaxis = (Vector.Cross(zaxis, xaxis));
+            float3 xaxis = (Cross(up, zaxis));
+            float3 yaxis = (Cross(zaxis, xaxis));
             return Look(eye, xaxis, yaxis, zaxis);
         }
 
         public static float4x4 Look(float3 eye, float3 xaxis, float3 yaxis, float3 zaxis)
         {
-            zaxis = Vector.Normalize(zaxis);
-            xaxis = Vector.Normalize(xaxis);
-            yaxis = Vector.Normalize(yaxis);
+            zaxis = Normalize(zaxis);
+            xaxis = Normalize(xaxis);
+            yaxis = Normalize(yaxis);
             float4x4 result = float4x4.Identity;
             result.M11 = xaxis.X; result.M21 = xaxis.Y; result.M31 = xaxis.Z;
             result.M12 = yaxis.X; result.M22 = yaxis.Y; result.M32 = yaxis.Z;
             result.M13 = zaxis.X; result.M23 = zaxis.Y; result.M33 = zaxis.Z;
-            result.M41 = -Vector.Dot(xaxis, eye);
-            result.M42 = -Vector.Dot(yaxis, eye);
-            result.M43 = -Vector.Dot(zaxis, eye);
+            result.M41 = -Dot(xaxis, eye);
+            result.M42 = -Dot(yaxis, eye);
+            result.M43 = -Dot(zaxis, eye);
             return result;
         }
 
         public static float4x4 PerspectiveRH(float fovRadians, float aspect, float znear, float zfar)
         {
-            float yHalfScale = 0.5f / Math.Tan(fovRadians * 0.5f);
+            float yHalfScale = 0.5f / Tan(fovRadians * 0.5f);
             float xHalfScale = yHalfScale / aspect;
 
             float width = znear / xHalfScale;
@@ -163,20 +165,20 @@ namespace Uno
         {
             //SVG definition of skew: http://www.w3.org/TR/SVG11/coords.html
             float4x4 result = float4x4.Identity;
-            result.M12 = Math.Tan(angle.Y);
-            result.M21 = Math.Tan(angle.X);
+            result.M12 = Tan(angle.Y);
+            result.M21 = Tan(angle.X);
             return result;
         }
 
         public static float4x4 RotationAxis(float3 axisNormalized, float angleRadians)
         {
-            axisNormalized = Vector.Normalize(axisNormalized);
+            axisNormalized = Normalize(axisNormalized);
             float x = axisNormalized.X;
             float y = axisNormalized.Y;
             float z = axisNormalized.Z;
 
-            float c = Math.Cos(angleRadians);
-            float s = Math.Sin(angleRadians);
+            float c = Cos(angleRadians);
+            float s = Sin(angleRadians);
 
             float xx = x * x;
             float yy = y * y;
@@ -430,7 +432,7 @@ namespace Uno
             result.M31 =  d13 * detInv; result.M32 = -d23 * detInv; result.M33 =  d33 * detInv; result.M34 = -d43 * detInv;
             result.M41 = -d14 * detInv; result.M42 =  d24 * detInv; result.M43 = -d34 * detInv; result.M44 =  d44 * detInv;
 
-            return Math.Abs(det) > ZeroTolerance;
+            return Abs(det) > ZeroTolerance;
         }
 
         /**
@@ -466,7 +468,7 @@ namespace Uno
             result.M32 = detInv * (value.M31 * value.M12 - value.M11 * value.M32);
             result.M33 = detInv * (value.M11 * value.M22 - value.M12 * value.M21);
 
-            return Math.Abs(det) > ZeroTolerance;
+            return Abs(det) > ZeroTolerance;
         }
 
         /**
@@ -497,15 +499,15 @@ namespace Uno
             result.M21 = detInv * -value.M21;
             result.M22 = detInv * value.M11;
 
-            return Math.Abs(det) > ZeroTolerance;
+            return Abs(det) > ZeroTolerance;
         }
 
         public static float4x4 Compose(float3 scale, float4 rotationQuaternion, float3 translation)
         {
-           return Matrix.Mul(Matrix.Mul(
-                    Matrix.Scaling(scale),
-                    Matrix.RotationQuaternion(rotationQuaternion)),
-                    Matrix.Translation(translation));
+           return Mul(Mul(
+                    Scaling(scale),
+                    RotationQuaternion(rotationQuaternion)),
+                    Translation(translation));
         }
 
         public static bool Decompose(float4x4 value, out float3 scale, out float4 rotationQuaternion, out float3 translation)
@@ -519,14 +521,14 @@ namespace Uno
             translation.Z = value.M43;
 
             //Scaling is the length of the rows.
-            scale.X = Math.Sqrt((value.M11 * value.M11) + (value.M12 * value.M12) + (value.M13 * value.M13));
-            scale.Y = Math.Sqrt((value.M21 * value.M21) + (value.M22 * value.M22) + (value.M23 * value.M23));
-            scale.Z = Math.Sqrt((value.M31 * value.M31) + (value.M32 * value.M32) + (value.M33 * value.M33));
+            scale.X = Sqrt((value.M11 * value.M11) + (value.M12 * value.M12) + (value.M13 * value.M13));
+            scale.Y = Sqrt((value.M21 * value.M21) + (value.M22 * value.M22) + (value.M23 * value.M23));
+            scale.Z = Sqrt((value.M31 * value.M31) + (value.M32 * value.M32) + (value.M33 * value.M33));
 
             //If any of the scaling factors are zero, than the rotation matrix can not exist.
-            if (Math.Abs(scale.X) < ZeroTolerance ||
-                Math.Abs(scale.Y) < ZeroTolerance ||
-                Math.Abs(scale.Z) < ZeroTolerance)
+            if (Abs(scale.X) < ZeroTolerance ||
+                Abs(scale.Y) < ZeroTolerance ||
+                Abs(scale.Z) < ZeroTolerance)
             {
                 rotationQuaternion = float4.Identity;
                 return false;
@@ -550,9 +552,9 @@ namespace Uno
         public static float3 GetScaling(float4x4 value)
         {
             return float3(
-                Math.Sqrt((value.M11 * value.M11) + (value.M12 * value.M12) + (value.M13 * value.M13)),
-                Math.Sqrt((value.M21 * value.M21) + (value.M22 * value.M22) + (value.M23 * value.M23)),
-                Math.Sqrt((value.M31 * value.M31) + (value.M32 * value.M32) + (value.M33 * value.M33)));
+                Sqrt((value.M11 * value.M11) + (value.M12 * value.M12) + (value.M13 * value.M13)),
+                Sqrt((value.M21 * value.M21) + (value.M22 * value.M22) + (value.M23 * value.M23)),
+                Sqrt((value.M31 * value.M31) + (value.M32 * value.M32) + (value.M33 * value.M33)));
         }
 
         public static float4 GetRotationQuaternion(float4x4 value)

@@ -1,3 +1,6 @@
+using Uno.Math;
+using Uno.Vector;
+
 namespace Uno
 {
     /*
@@ -10,12 +13,12 @@ namespace Uno
     {
         static int3 ToInt3( float3 rgb )
         {
-            return Math.Clamp((int3)(rgb * 255 + 0.5f), 0, 255);
+            return Clamp((int3)(rgb * 255 + 0.5f), 0, 255);
         }
 
         static int4 ToInt4( float4 rgba )
         {
-            return Math.Clamp((int4)(rgba * 255 + 0.5f), 0, 255);
+            return Clamp((int4)(rgba * 255 + 0.5f), 0, 255);
         }
 
         static uint ToArgb( int4 rgba )
@@ -65,8 +68,8 @@ namespace Uno
             var g = rgb.Y;
             var b = rgb.Z;
 
-            float min = Math.Min(r, Math.Min(g, b));
-            float max = Math.Max(r, Math.Max(g, b));
+            float min = Min(r, Min(g, b));
+            float max = Max(r, Max(g, b));
             float h = 0.0f;
             float s = 0.0f;
             float v = max;
@@ -79,7 +82,7 @@ namespace Uno
                     h += 6.0f;
                 h /= 6.0f;
             }
-            h = Math.Fract( h );
+            h = Fract( h );
             return float3(h, s, v);
         }
 
@@ -92,7 +95,7 @@ namespace Uno
         {
             float h = hsv.X * 6;
             float c = hsv.Z * hsv.Y;
-            float x = c * ( 1 - Math.Abs( Math.Mod( h, 2 ) - 1 ) );
+            float x = c * ( 1 - Abs( Mod( h, 2 ) - 1 ) );
 
             float3 rgb;
             //no switch since we can't compile those to shader code yet
@@ -314,7 +317,7 @@ namespace Uno
             var ToYCbCrMat = float3x3( 0.299f, -0.168736f, 0.5f,
                 0.587f, -0.331264f, -0.418688f,
                 0.114f, 0.5f, -0.081312f );
-            return Vector.Transform( rgb, ToYCbCrMat );
+            return Transform( rgb, ToYCbCrMat );
         }
 
         static public float3 FromYCbCr( float3 ycbcr )
@@ -322,7 +325,7 @@ namespace Uno
             var ToYCbCrMatInv = float3x3( 1f, 1f, 1f,
                 0f, -0.344136f, 1.772f,
                 1.4020f, -0.714136f, 0f );
-            return Vector.Transform( ycbcr, ToYCbCrMatInv );
+            return Transform( ycbcr, ToYCbCrMatInv );
         }
 
         static public float4 ToYCbCr( float4 rgba )
@@ -339,16 +342,16 @@ namespace Uno
         {
             return float3(
                 yuv.X,
-                Math.Atan2( yuv.Z, yuv.Y ),
-                Vector.Length( yuv.YX ) );
+                Atan2( yuv.Z, yuv.Y ),
+                Length( yuv.YX ) );
         }
 
         static public float3 YuvFromLhc( float3 lhc )
         {
             return float3(
                 lhc.X,
-                lhc.Z * Math.Cos( lhc.Y ),
-                lhc.Z * Math.Sin( lhc.Z ) );
+                lhc.Z * Cos( lhc.Y ),
+                lhc.Z * Sin( lhc.Z ) );
         }
 
         static public float4 Overlay( float4 dst, float4 color )

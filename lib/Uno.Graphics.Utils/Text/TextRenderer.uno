@@ -129,7 +129,7 @@ namespace Uno.Graphics.Utils.Text
                         caret += kerning.X * _data.FontScale;
                     }
 
-                    caret += Math.Floor(rg.Advance.X + .5f) * _data.FontScale + _tracking;
+                    caret += Floor(rg.Advance.X + .5f) * _data.FontScale + _tracking;
                 }
 
                 last = c;
