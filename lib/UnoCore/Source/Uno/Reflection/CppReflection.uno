@@ -33,12 +33,12 @@ namespace Uno.Reflection
     {
         public static CppField Null
         {
-             get { return extern<CppField> "NULL"; }
+             get { return extern<CppField> "nullptr"; }
         }
 
         public bool IsNull
         {
-            get { return extern<bool> "*$$ == NULL"; }
+            get { return extern<bool> "*$$ == nullptr"; }
         }
 
         public bool IsStatic
@@ -79,12 +79,12 @@ namespace Uno.Reflection
     {
         public static CppFunction Null
         {
-            get { return extern<CppFunction> "NULL"; }
+            get { return extern<CppFunction> "nullptr"; }
         }
 
         public bool IsNull
         {
-            get { return extern<bool> "*$$ == NULL"; }
+            get { return extern<bool> "*$$ == nullptr"; }
         }
 
         public bool IsStatic
@@ -156,7 +156,7 @@ namespace Uno.Reflection
 
         public static CppField FindFieldFromObject(object obj, string name)
         {
-            return extern<CppField> "$0 != NULL ? $0->GetType()->Reflection.GetField($1) : NULL";
+            return extern<CppField> "$0 != nullptr ? $0->GetType()->Reflection.GetField($1) : nullptr";
         }
 
         public static CppFunction FindFunction(Type type, string name, params Type[] parameterTypes)
@@ -166,7 +166,7 @@ namespace Uno.Reflection
 
         public static CppFunction FindFunctionFromObject(object obj, string name, params Type[] parameterTypes)
         {
-            return extern<CppFunction> "$0 != NULL ? $0->GetType()->Reflection.GetFunction($1, $2) : NULL";
+            return extern<CppFunction> "$0 != nullptr ? $0->GetType()->Reflection.GetFunction($1, $2) : nullptr";
         }
     }
 }

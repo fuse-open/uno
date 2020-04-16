@@ -186,7 +186,7 @@ namespace Android.Base
         public static Exception TryGetException(JNIEnvPtr jni, string appendMessage=null)
         {
             extern(jni) "jthrowable err = $0->ExceptionOccurred()";
-            if (extern<bool>"(err != NULL)")
+            if (extern<bool>"(err != nullptr)")
             {
                 extern(jni) "$0->ExceptionDescribe()";
                 extern(jni) "$0->ExceptionClear()";

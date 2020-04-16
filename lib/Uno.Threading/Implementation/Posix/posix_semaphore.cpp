@@ -8,11 +8,11 @@ uPosixSemaphore* uPosixCreateSemaphore(int initialCount, int maxCount)
 {
     uPosixSemaphore *ret = new uPosixSemaphore();
 
-    if (pthread_mutex_init(&ret->mutex, NULL) != 0 ||
-        pthread_cond_init(&ret->cond, NULL) != 0)
+    if (pthread_mutex_init(&ret->mutex, nullptr) != 0 ||
+        pthread_cond_init(&ret->cond, nullptr) != 0)
     {
         delete ret;
-        return NULL;
+        return nullptr;
     }
 
     ret->count = initialCount;
@@ -30,7 +30,7 @@ void uPosixDisposeSemaphore(uPosixSemaphore* semaphoreHandle)
 bool uPosixWaitOneSemaphore(uPosixSemaphore* semaphoreHandle, int timeoutMillis)
 {
     struct timeval now;
-    gettimeofday(&now, NULL);
+    gettimeofday(&now, nullptr);
     uint64_t nanoseconds = (now.tv_sec * 1000000000ull) + (now.tv_usec * 1000);
     uint64_t timeoutNanoseconds = (timeoutMillis * 1000000ull) + nanoseconds;
 

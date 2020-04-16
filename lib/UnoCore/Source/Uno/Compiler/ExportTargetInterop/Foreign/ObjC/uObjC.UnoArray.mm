@@ -14,7 +14,7 @@
 	getAt:(id (^) (uArray*, int))get
 	setAt:(void (^) (uArray*, int, id))set
 {
-	if (array == NULL)
+	if (array == nullptr)
 	{
 		return nil;
 	}
@@ -43,7 +43,7 @@
 
 - (id)init
 {
-	return [self initWithUnoArray: NULL getAt: nil setAt: nil];
+	return [self initWithUnoArray: nullptr getAt: nil setAt: nil];
 }
 
 - (instancetype)copyWithZone:(NSZone*)zone
@@ -88,7 +88,7 @@
 - (void)dealloc
 {
 	uRelease(_unoArray);
-	_unoArray = NULL;
+	_unoArray = nullptr;
 	self.getAt = nil;
 	self.setAt = nil;
 }

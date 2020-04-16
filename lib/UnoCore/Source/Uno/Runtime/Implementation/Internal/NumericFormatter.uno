@@ -171,7 +171,7 @@ namespace Uno.Runtime.Implementation.Internal
                     // Some snprintf implementations return -1 and sets errno to
                     // ERANGE instead of returning the desired length, so let's
                     // reconstruct the value we want here.
-                    len = snprintf(NULL, 0, "%.*f", desiredDigits, d);
+                    len = snprintf(nullptr, 0, "%.*f", desiredDigits, d);
                     U_ASSERT(len > sizeof(buf));
                 }
 

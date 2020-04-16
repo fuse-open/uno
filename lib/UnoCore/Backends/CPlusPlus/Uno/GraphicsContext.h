@@ -17,7 +17,7 @@ struct uGraphicsContext
 
     uGraphicsContext()
     {
-        this->context = NULL;
+        this->context = nullptr;
     }
 
     GLuint GetBackbufferGLHandle()

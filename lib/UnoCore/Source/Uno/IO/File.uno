@@ -232,11 +232,11 @@ namespace Uno.IO
                 FORMAT_MESSAGE_ALLOCATE_BUFFER |
                 FORMAT_MESSAGE_FROM_SYSTEM |
                 FORMAT_MESSAGE_IGNORE_INSERTS,
-                NULL,
+                nullptr,
                 GetLastError(),
                 MAKELANGID(LANG_ENGLISH, SUBLANG_DEFAULT),
                 (LPWSTR)&lpMsgBuf, // Cast because callee is allocating buffer
-                0, NULL);
+                0, nullptr);
 
             uString* msg = uString::Utf16((const char16_t*) lpMsgBuf);
             LocalFree(lpMsgBuf);

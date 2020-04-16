@@ -21,7 +21,7 @@ namespace Uno.Net.Http.Implementation
         public void Dispose()
         {
             extern(_requestHandle) "delete $0";
-            _requestHandle = extern<iOSHttpRequestHandle> "NULL";
+            _requestHandle = extern<iOSHttpRequestHandle> "nullptr";
         }
 
         public void EnableCache(bool enableCache)
@@ -52,7 +52,7 @@ namespace Uno.Net.Http.Implementation
 
         public void SendAsync()
         {
-            extern(_requestHandle) "$0->SendAsync(NULL, 0)";
+            extern(_requestHandle) "$0->SendAsync(nullptr, 0)";
         }
 
         public void Abort()

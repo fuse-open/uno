@@ -190,7 +190,7 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
                 _stringClass = global::Android.Base.JNI.NewGlobalRef(global::Android.Base.JNI.LoadClass("java/lang/String", true));
 
             var arr = ((string[])array);
-            var jarr = extern<global::Android.Base.Primitives.ujobject>(env, _stringClass, arr.Length) "$0->NewObjectArray((jsize)$2, $1, NULL)";
+            var jarr = extern<global::Android.Base.Primitives.ujobject>(env, _stringClass, arr.Length) "$0->NewObjectArray((jsize)$2, $1, nullptr)";
             for (int i=0; i<arr.Length; i++)
             {
                 var s = global::Android.Base.Types.String.UnoToJava(arr[i]);
@@ -210,7 +210,7 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
                 _objectClass = global::Android.Base.JNI.NewGlobalRef(global::Android.Base.JNI.LoadClass("java/lang/Object", true));
 
             var arr = ((object[])array);
-            var jarr = extern<global::Android.Base.Primitives.ujobject>(env, _stringClass, arr.Length) "$0->NewObjectArray((jsize)$2, $1, NULL)";
+            var jarr = extern<global::Android.Base.Primitives.ujobject>(env, _stringClass, arr.Length) "$0->NewObjectArray((jsize)$2, $1, nullptr)";
             for (int i=0; i<arr.Length; i++)
             {
                 var o = JavaUnoObject.Box((object)arr[i]);

@@ -48,8 +48,8 @@ struct uFunction
               size_t flags, const void* funcOrOffset,
               uType* returnType, uArray* paramTypes);
 
-    uDelegate* CreateDelegate(uType* type, uObject* object = NULL);
-    uObject* Invoke(uObject* object = NULL, uArray* args = NULL);
+    uDelegate* CreateDelegate(uType* type, uObject* object = nullptr);
+    uObject* Invoke(uObject* object = nullptr, uArray* args = nullptr);
 };
 
 struct uReflection
@@ -62,7 +62,7 @@ struct uReflection
     size_t FunctionCount;
     uFunction** Functions;
     void SetFunctions(size_t count, uFunction* first, ...);
-    uFunction* GetFunction(uString* name, uArray* params = NULL);
+    uFunction* GetFunction(uString* name, uArray* params = nullptr);
 
     static uArray* GetTypes();
     static uType* GetType(uString* name);

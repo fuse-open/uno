@@ -11,7 +11,7 @@ void JniHelper::JniDestroyThread(void* value)
 {
     JNIEnv* env = (JNIEnv*)value;
     VM->DetachCurrentThread();
-    pthread_setspecific(JniThreadKey, NULL);
+    pthread_setspecific(JniThreadKey, nullptr);
 }
 
 void JniHelper::Init(JavaVM* vm, JNIEnv* env, jclass activityClass, jclass nativeExternClass)
@@ -32,7 +32,7 @@ JniHelper::JniHelper()
     int status_ = (int)VM->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6);
     if (status_ != JNI_OK)
     {
-        status_ = (int)VM->AttachCurrentThread(&env, NULL);
+        status_ = (int)VM->AttachCurrentThread(&env, nullptr);
         if (status_ != JNI_OK)
             U_FATAL("JNI ERROR: Failed to attach current thread");
     }
@@ -71,9 +71,9 @@ JNIEnv* JniHelper::operator->()
 @{string} JniHelper::JavaToUnoString(jstring jstr)
 {
     JniHelper jni;
-    if (!jstr) { return NULL; }
+    if (!jstr) { return nullptr; }
     jobject str = jni->NewLocalRef(jstr);
-    const jchar* raw =  jni->GetStringChars((jstring)str, NULL);
+    const jchar* raw =  jni->GetStringChars((jstring)str, nullptr);
     int len = jni->GetStringLength((jstring)str);
     int size = len * sizeof(jchar);
     uString* result = uString::New(len);
@@ -86,7 +86,7 @@ JNIEnv* JniHelper::operator->()
 jstring JniHelper::UnoToJavaString(@{string} ustr)
 {
     if (!ustr)
-        return NULL;
+        return nullptr;
 
     JniHelper jni;
     return (jni->NewString((const jchar*) ustr->_ptr, ustr->_length));

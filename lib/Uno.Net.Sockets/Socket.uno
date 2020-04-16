@@ -101,7 +101,7 @@ namespace Uno.Net.Sockets
 
             int result = getsockname(sock, (sockaddr *)&ss, &len);
             if (result < 0)
-                return NULL;
+                return nullptr;
 
             sockaddr_in *sa = (sockaddr_in *)&ss;
             @{IPAddress} ipAddress;
@@ -126,7 +126,7 @@ namespace Uno.Net.Sockets
 
             int result = getpeername(sock, (sockaddr *)&ss, &len);
             if (result < 0)
-                return NULL;
+                return nullptr;
 
             sockaddr_in *sa = (sockaddr_in *)&ss;
             @{IPAddress} ipAddress;
@@ -208,16 +208,16 @@ namespace Uno.Net.Sockets
 
             switch (mode)
             {
-                case @{SelectMode.Read}:  return select((int)sock + 1, &fds, NULL, NULL, &timeout);
-                case @{SelectMode.Write}: return select((int)sock + 1, NULL, &fds, NULL, &timeout);
-                case @{SelectMode.Error}: return select((int)sock + 1, NULL, NULL, &fds, &timeout);
+                case @{SelectMode.Read}:  return select((int)sock + 1, &fds, nullptr, nullptr, &timeout);
+                case @{SelectMode.Write}: return select((int)sock + 1, nullptr, &fds, nullptr, &timeout);
+                case @{SelectMode.Error}: return select((int)sock + 1, nullptr, nullptr, &fds, &timeout);
                 default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for ProtocolType"))});
             }
         @}
 
         public static Socket.SocketHandle Accept(Socket.SocketHandle sock)
         @{
-            return accept(sock, NULL, NULL);
+            return accept(sock, nullptr, nullptr);
         @}
 
         extern(MSVC) public static int Ioctl(Socket.SocketHandle sock, int request, out int arg)

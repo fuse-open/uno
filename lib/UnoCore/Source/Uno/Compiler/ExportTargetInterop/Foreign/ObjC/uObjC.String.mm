@@ -14,7 +14,7 @@ namespace uObjC
 	{
 		if (!string)
 		{
-			return NULL;
+			return nullptr;
 		}
 		
 		NSUInteger bytes = [string
@@ -30,7 +30,7 @@ namespace uObjC
 			encoding: NativeUTF16Encoding
 			options: 0
 			range: NSMakeRange(0, [string length])
-			remainingRange: NULL])
+			remainingRange: nullptr])
 		{
 			if (usedBytes != bytes)
 			{
@@ -40,14 +40,14 @@ namespace uObjC
 			return result;
 		}
 	
-		return NULL;
+		return nullptr;
 	}
 	
 	NSString* NativeString(uString* string)
 	{
 		if (!string)
 		{
-			return NULL;
+			return nullptr;
 		}
 	
 		return [[NSString alloc]

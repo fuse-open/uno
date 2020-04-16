@@ -52,7 +52,7 @@ return result;
         <Method Signature="InstallCache_IMPL_44279(Android.Base.Wrappers.IJWrapper,long):bool">
             <Body>
 INIT_JNI;
-jobject _obArg0 = ((!$0) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
+jobject _obArg0 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
 @{bool} result;
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{InstallCache_44279_ID},@{_javaClass},"InstallCache","(Landroid/app/Activity;J)Z",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.InstallCache could not be cached",93);
@@ -66,7 +66,7 @@ return result;
         <Method Signature="CacheRenew_IMPL_44280(Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg0 = ((!$0) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
+jobject _obArg0 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{CacheRenew_44280_ID},@{_javaClass},"CacheRenew","(Landroid/app/Activity;)V",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheRenew could not be cached",91);
 U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheRenew_44280_ID}, _obArg0);
@@ -125,9 +125,9 @@ if ($0) {
     CLASS_INIT(@{_javaProxyClass},@{_InitProxy():Call()});
     CACHE_METHOD(@{HttpRequest_44284_ID_c_prox},@{_javaProxyClass},"<init>","(JLandroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V",GetMethodID,"Proxy Id for method Android_com_fuse_ExperimentalHttp_HttpRequest.HttpRequest_44284_ID_c_prox could not be cached",113);
 }
-jobject _obArg1 = ((!$1) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($1)._GetJavaObject():Call()});
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-jobject _obArg3 = ((!$3) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
+jobject _obArg1 = ((!$1) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($1)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
 jobject result;
 jobject _tmp;
 if (!$0) {
@@ -166,8 +166,8 @@ else
         <Method Signature="SetHeader_IMPL_44293(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-jobject _obArg3 = ((!$3) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{SetHeader_44293_ID},@{_javaClass},"SetHeader","(Ljava/lang/String;Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SetHeader could not be cached",90);
 if ($0) {
@@ -221,7 +221,7 @@ else
         <Method Signature="CacheResponseString_IMPL_44296(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{CacheResponseString_44296_ID},@{_javaClass},"CacheResponseString","(Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheResponseString could not be cached",100);
 if ($0) {
@@ -277,7 +277,7 @@ else
         <Method Signature="SendAsyncBuf_IMPL_44300(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{SendAsyncBuf_44300_ID},@{_javaClass},"SendAsyncBuf","(Ljava/nio/ByteBuffer;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SendAsyncBuf could not be cached",93);
 if ($0) {
@@ -295,7 +295,7 @@ else
         <Method Signature="SendAsyncStr_IMPL_44301(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{SendAsyncStr_44301_ID},@{_javaClass},"SendAsyncStr","(Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SendAsyncStr could not be cached",93);
 if ($0) {
@@ -313,9 +313,9 @@ else
         <Method Signature="UploadDone_IMPL_44302(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper,int,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-jobject _obArg3 = ((!$3) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
-jobject _obArg5 = ((!$5) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($5)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
+jobject _obArg5 = ((!$5) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($5)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{UploadDone_44302_ID},@{_javaClass},"UploadDone","(Ljava/io/BufferedInputStream;Ljava/util/HashMap;ILjava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.UploadDone could not be cached",91);
 if ($0) {
@@ -351,7 +351,7 @@ else
         <Method Signature="StartDownload_IMPL_44304(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{StartDownload_44304_ID},@{_javaClass},"StartDownload","(Ljava/io/InputStream;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.StartDownload could not be cached",94);
 if ($0) {
@@ -407,7 +407,7 @@ return result;
         <Method Signature="GetResponseHeader_IMPL_44307(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper):Android.Base.Wrappers.IJWrapper">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? NULL : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
 @{Android.Base.Wrappers.IJWrapper} result;
 CLASS_INIT(@{_javaClass},@{_Init():Call()});
 CACHE_METHOD(@{GetResponseHeader_44307_ID},@{_javaClass},"GetResponseHeader","(Ljava/lang/String;)Ljava/lang/String;",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.GetResponseHeader could not be cached",98);

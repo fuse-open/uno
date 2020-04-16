@@ -432,11 +432,11 @@ namespace Uno.Compiler.Backends.CPlusPlus
                                        ", " + (
                                            _backend.HasTypeParameter(f)
                                                ? _backend.GetTypeOf(f.GenericType ?? f.DeclaringType, dt, obj, null, typeCache)
-                                               : "NULL"
+                                               : "nullptr"
                                        ) +
                                        ", " + (
                                            f.IsVirtual
-                                               ? "NULL, offsetof(" + type.TypeOfType + ", fp_" + f.Name + ")"
+                                               ? "nullptr, offsetof(" + type.TypeOfType + ", fp_" + f.Name + ")"
                                                : "(void*)" + _backend.GetFunctionPointer(f, dt) + ", 0"
                                        ) +
                                        ", " + f.IsStatic.ToLiteral() +
@@ -458,7 +458,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 _cpp.WriteLine(type.TypeOfType + "* " + type.TypeOfFunction + "()");
                 _cpp.BeginScope();
                 _cpp.WriteLine("static uSStrong" + _backend.GetTemplateString(type.TypeOfType + "*") + " type;");
-                _cpp.WriteLine("if (type != NULL) return type;");
+                _cpp.WriteLine("if (type != nullptr) return type;");
                 _cpp.Skip();
 
                 _cpp.WriteLine("uTypeOptions options;");
@@ -603,7 +603,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             _cpp.WriteLine("uInterfaceType* " + type.TypeOfFunction + "()");
             _cpp.BeginScope();
             _cpp.WriteLine("static uSStrong<uInterfaceType*> type;");
-            _cpp.WriteLine("if (type != NULL) return type;");
+            _cpp.WriteLine("if (type != nullptr) return type;");
             _cpp.Skip();
             _cpp.WriteLine("type = uInterfaceType::New(" + type.ReflectedName.ToLiteral() +
                 ", " + (dt.IsFlattenedDefinition ? dt.FlattenedParameters.Length : 0) +
@@ -628,11 +628,11 @@ namespace Uno.Compiler.Backends.CPlusPlus
                                    ", " + (
                                         _backend.HasTypeParameter(f)
                                             ? _backend.GetTypeOf(f.GenericType ?? f.DeclaringType, dt, obj)
-                                            : "NULL"
+                                            : "nullptr"
                                    ) +
                                    ", " + (
                                         f.IsVirtual
-                                            ? "NULL, offsetof(" + type.StructName + ", fp_" + f.Name + ")"
+                                            ? "nullptr, offsetof(" + type.StructName + ", fp_" + f.Name + ")"
                                             : "(void*)" + _backend.GetFunctionPointer(f, dt) + ", 0"
                                    ) +
                                    ", " + f.IsStatic.ToLiteral() +
@@ -700,7 +700,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             _cpp.WriteLine("uDelegateType* " + type.TypeOfFunction + "()");
             _cpp.BeginScope();
             _cpp.WriteLine("static uSStrong<uDelegateType*> type;");
-            _cpp.WriteLine("if (type != NULL) return type;");
+            _cpp.WriteLine("if (type != nullptr) return type;");
             _cpp.Skip();
 
             _cpp.WriteLine("type = uDelegateType::New(" + type.ReflectedName.ToLiteral() +
@@ -734,7 +734,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             _cpp.WriteLine("uEnumType* " + type.TypeOfFunction + "()");
             _cpp.BeginScope();
             _cpp.WriteLine("static uSStrong<uEnumType*> type;");
-            _cpp.WriteLine("if (type != NULL) return type;");
+            _cpp.WriteLine("if (type != nullptr) return type;");
             _cpp.Skip();
 
             _cpp.WriteLine("type = uEnumType::New(" + type.ReflectedName.ToLiteral() + ", " + _backend.GetTypeOf(dt.Base, dt, "type") + ", " + dt.Literals.Count + ");");

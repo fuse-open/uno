@@ -110,7 +110,7 @@ struct uWeakStateIntercept
     //      count reaches zero the callback will be invoked again, per point 1.
     //
     //      Returning false from the callback signals that object deletion is
-    //      pending; uLoadWeak will return NULL.
+    //      pending; uLoadWeak will return nullptr.
     //
     //
     //  For a given object, the callback will be invoked at least once with
@@ -244,7 +244,7 @@ struct uSWeak
     uSWeak() {
     }
     uSWeak(T object)
-        : _object(NULL) {
+        : _object(nullptr) {
         uStoreWeak(&_object, (uObject*)object);
     }
     uSWeak<T>& operator =(T object) {
@@ -289,7 +289,7 @@ struct uStrong : uSStrong<T>
     using uSStrong<T>::operator =;
 
     uStrong() {
-        _object = NULL;
+        _object = nullptr;
     }
     uStrong(T object)
         : uSStrong<T>(object) {
@@ -309,13 +309,13 @@ struct uWeak : uSWeak<T>
     using uSWeak<T>::operator =;
 
     uWeak() {
-        _object = NULL;
+        _object = nullptr;
     }
     uWeak(T object)
         : uSWeak<T>(object) {
     }
     ~uWeak() {
-        uStoreWeak(&_object, NULL);
+        uStoreWeak(&_object, nullptr);
     }
 };
 /** @} */

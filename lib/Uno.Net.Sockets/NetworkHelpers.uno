@@ -13,9 +13,9 @@ namespace Uno.Net
             if (err == 0)
                 return uString::Utf8("Unknown error");
 
-            LPSTR buf = NULL;
+            LPSTR buf = nullptr;
             DWORD size = FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                                        NULL, err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&buf, 0, NULL);
+                                        nullptr, err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&buf, 0, nullptr);
             if (size == 0)
                 return uString::Utf8("Unknown error (FormatMessage failed)");
 

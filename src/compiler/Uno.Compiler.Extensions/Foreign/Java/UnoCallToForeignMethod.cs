@@ -47,7 +47,7 @@ namespace Uno.Compiler.Extensions.Foreign.Java
 			}
 
 			if (fm.UnoReturnType == convert.Essentials.String)
-				tearDown.Add("if (__jresult!=NULL && U_JNIVAR->GetObjectRefType(__jresult) == JNILocalRefType) U_JNIVAR->DeleteLocalRef(__jresult);");
+				tearDown.Add("if (__jresult!=nullptr && U_JNIVAR->GetObjectRefType(__jresult) == JNILocalRefType) U_JNIVAR->DeleteLocalRef(__jresult);");
 
 			//--------------------------
 

@@ -7,8 +7,8 @@ uPosixResetEvent* uPosixCreateResetEvent(bool initialState, bool autoReset)
 {
     uPosixResetEvent* resetEvent = new uPosixResetEvent();
 
-    pthread_mutex_init(&resetEvent->mutex, NULL);
-    pthread_cond_init(&resetEvent->cond, NULL);
+    pthread_mutex_init(&resetEvent->mutex, nullptr);
+    pthread_cond_init(&resetEvent->cond, nullptr);
     resetEvent->flag = initialState;
     resetEvent->autoReset = autoReset;
 
@@ -40,7 +40,7 @@ bool uPosixWaitOneResetEvent(uPosixResetEvent* resetEvent, int timeoutMillis)
     pthread_mutex_lock(&resetEvent->mutex);
 
     struct timeval now;
-    gettimeofday(&now, NULL);
+    gettimeofday(&now, nullptr);
     uint64_t nanoseconds = (now.tv_sec * 1000000000ull) + (now.tv_usec * 1000);
     uint64_t timeoutNanoseconds = (timeoutMillis * 1000000ull) + nanoseconds;
 

@@ -57,7 +57,7 @@ static void uBuildOperators(uType* type);
 static uType* uGetGenericType(size_t index);
 uType* uSwapThreadType(uType* type);
 
-void uInvoke(const void* func, void** args = NULL, size_t count = 0);
+void uInvoke(const void* func, void** args = nullptr, size_t count = 0);
 void uBuildMemory(uType* type);
 #if @(REFLECTION:Defined)
 void uBuildReflection(uType* type);
@@ -636,7 +636,7 @@ static void uVerifyBuild(uType* type)
             ? (uint8_t*)type + sizeof(uClassType) :
         type->Type == uTypeTypeStruct
             ? (uint8_t*)type + sizeof(uStructType)
-            : NULL;
+            : nullptr;
 
     // Verify that v-table is fully assigned (non-abstract type)
     if (vtable)
@@ -711,7 +711,7 @@ uType* uType::MakeMethod(size_t index, uType* first, ...)
     for (size_t i = 1; i < count; i++)
         key.Arguments[GenericCount + i] = U_ASSERT_PTR(va_arg(ap, uType*));
 
-    U_ASSERT(va_arg(ap, uType*) == NULL);
+    U_ASSERT(va_arg(ap, uType*) == nullptr);
     va_end(ap);
     return uGetParameterization(key);
 }
@@ -727,7 +727,7 @@ uType* uType::MakeType(uType* first, ...)
     for (size_t i = 1; i < GenericCount; i++)
         key.Arguments[i] = U_ASSERT_PTR(va_arg(ap, uType*));
 
-    U_ASSERT(va_arg(ap, uType*) == NULL);
+    U_ASSERT(va_arg(ap, uType*) == nullptr);
     va_end(ap);
     return uGetParameterization(key);
 }
@@ -965,7 +965,7 @@ uString* uString::Ansi(const char* cstr)
 {
     return cstr
         ? Ansi(cstr, strlen(cstr))
-        : NULL;
+        : nullptr;
 }
 
 uString* uString::Utf8(const char* mutf8, size_t length)
@@ -1033,7 +1033,7 @@ uString* uString::Utf8(const char* mutf8)
 {
     return mutf8
         ? Utf8(mutf8, strlen(mutf8))
-        : NULL;
+        : nullptr;
 }
 
 uString* uString::Utf16(const char16_t* utf16, size_t length)
@@ -1054,7 +1054,7 @@ uString* uString::Utf16(const char16_t* nullTerminatedUtf16)
         return Utf16(nullTerminatedUtf16, (size_t)length);
     }
 
-    return NULL;
+    return nullptr;
 }
 
 uString* uString::CharArray(const uArray* array)
@@ -1126,7 +1126,7 @@ char* uAllocCStr(const uString* string, size_t* length)
     {
         if (length)
             *length = 0;
-        return NULL;
+        return nullptr;
     }
 
     // Convert UTF-16 to UTF-8
@@ -1411,7 +1411,7 @@ uObject* uBoxPtr(uType* type, const void* src, void* stack, bool ref)
         return object;
     }
     case uTypeTypeVoid:
-        return NULL;
+        return nullptr;
     default:
         return ref
             ? *U_ASSERT_PTR((uObject**)src)
@@ -1516,7 +1516,7 @@ void uDelegateType::SetSignature(uType* returnType, ...)
 
 void uDelegate::InvokeVoid()
 {
-    if (_prev != NULL)
+    if (_prev != nullptr)
         _prev->InvokeVoid();
 
     uDelegateType* type = (uDelegateType*)__type;
@@ -1536,7 +1536,7 @@ void uDelegate::InvokeVoid()
 
 void uDelegate::InvokeVoid(void* arg)
 {
-    if (_prev != NULL)
+    if (_prev != nullptr)
         _prev->InvokeVoid(arg);
 
     uDelegateType* type = (uDelegateType*)__type;
@@ -1556,7 +1556,7 @@ void uDelegate::InvokeVoid(void* arg)
 
 void uDelegate::Invoke(uTRef retval, void** args, size_t count)
 {
-    if (_prev != NULL)
+    if (_prev != nullptr)
         _prev->Invoke(retval, args, count);
 
     uDelegateType* type = (uDelegateType*)__type;
@@ -1595,7 +1595,7 @@ void uDelegate::Invoke(uTRef retval, size_t count, ...)
     va_start(ap, count);
     void** args = count > 0
         ? (void**)U_ALLOCA(count * sizeof(void*))
-        : NULL;
+        : nullptr;
 
     for (size_t i = 0; i < count; i++)
         args[i] = va_arg(ap, void*);
@@ -1609,7 +1609,7 @@ uObject* uDelegate::Invoke(uArray* array)
     uDelegateType* type = (uDelegateType*)GetType();
     size_t count = type->ParameterCount;
     uType** params = type->ParameterTypes;
-    void** args = NULL;
+    void** args = nullptr;
 
     if (array)
     {
@@ -1621,7 +1621,7 @@ uObject* uDelegate::Invoke(uArray* array)
         uObject** objects = (uObject**)array->Ptr();
         void** ptr = args = count > 0
             ? (void**)U_ALLOCA(count * sizeof(void*))
-            : NULL;
+            : nullptr;
 
         for (size_t i = 0; i < count; i++)
         {
@@ -1654,10 +1654,10 @@ uObject* uDelegate::Invoke(uArray* array)
     uType* returnType = type->ReturnType;
     void* retval = !U_IS_VOID(returnType)
         ? U_ALLOCA(returnType->ValueSize)
-        : NULL;
+        : nullptr;
 
     Invoke(retval, args, count);
-    return uBoxPtr(returnType, retval, NULL, true);
+    return uBoxPtr(returnType, retval, nullptr, true);
 }
 
 uObject* uDelegate::Invoke(size_t count, ...)
@@ -1666,7 +1666,7 @@ uObject* uDelegate::Invoke(size_t count, ...)
     va_start(ap, count);
     void** args = count > 0
         ? (void**)U_ALLOCA(count * sizeof(void*))
-        : NULL;
+        : nullptr;
 
     for (size_t i = 0; i < count; i++)
         args[i] = va_arg(ap, void*);
@@ -1675,10 +1675,10 @@ uObject* uDelegate::Invoke(size_t count, ...)
     uType* returnType = ((uDelegateType*)__type)->ReturnType;
     void* retval = !U_IS_VOID(returnType)
         ? U_ALLOCA(returnType->ValueSize)
-        : NULL;
+        : nullptr;
 
     Invoke(retval, args, count);
-    return uBoxPtr(returnType, retval, NULL, true);
+    return uBoxPtr(returnType, retval, nullptr, true);
 }
 
 uDelegate* uDelegate::Copy()

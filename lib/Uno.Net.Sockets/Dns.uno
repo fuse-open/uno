@@ -19,7 +19,7 @@ namespace Uno.Net
         @{
             ifaddrs *addr, *curr;
             if (getifaddrs(&addr) != 0)
-                return NULL;
+                return nullptr;
 
             std::vector<@{IPAddress}> addresses;
             for (curr = addr; curr; curr = curr->ifa_next)
@@ -100,10 +100,10 @@ namespace Uno.Net
         @{
             char *tmp = uAllocCStr(hostNameOrAddress);
             struct addrinfo *addr, *curr;
-            int error = getaddrinfo(tmp, NULL, NULL, &addr);
+            int error = getaddrinfo(tmp, nullptr, nullptr, &addr);
             free(tmp);
             if (error != 0)
-                return NULL;
+                return nullptr;
 
             std::vector<@{IPAddress}> addresses;
             for (curr = addr; curr; curr = curr->ai_next)
