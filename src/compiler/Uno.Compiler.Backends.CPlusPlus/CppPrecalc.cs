@@ -297,7 +297,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 !(Function.IsGenericMethod && CppBackend.Compare(dt, Function.GenericType)) &&
                 !CppBackend.Compare(dt, Type) &&
                 !dt.IsGenericParameter &&
-                dt.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+                dt.MasterDefinition.HasRefCount)
                 _func.PrecalcedTypes.Add(dt);
         }
 
@@ -306,7 +306,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             if (!(Function.IsGenericMethod && CppBackend.Compare(dt, Function.GenericType)) &&
                 !CppBackend.Compare(dt, Type) && dt.HasInitializer &&
                 dt.BuiltinType != BuiltinType.String && dt.BuiltinType != BuiltinType.Char &&
-                dt.MasterDefinition.Stats.HasFlag(EntityStats.RefCount))
+                dt.MasterDefinition.HasRefCount)
                 _func.Dependencies.Add(dt);
         }
     }

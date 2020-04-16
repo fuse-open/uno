@@ -19,6 +19,7 @@ namespace Uno.Compiler.API.Domain.IL
         NamescopeType NamescopeType { get; }
         IEntity MasterDefinition { get; }
 
+        bool HasRefCount { get; }
         bool IsStripped { get; }
         bool IsPublic { get; }
         bool IsProtected { get; }

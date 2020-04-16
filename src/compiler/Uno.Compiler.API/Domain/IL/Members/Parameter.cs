@@ -49,6 +49,7 @@ namespace Uno.Compiler.API.Domain.IL.Members
         string IEntity.FullName => Name;
         string IEntity.UnoName => UnoName;
         string IEntity.Name => Name;
+        bool IEntity.HasRefCount => true;
         bool IEntity.IsStripped => false;
         bool IEntity.IsPublic => true;
         bool IEntity.IsProtected => false;
