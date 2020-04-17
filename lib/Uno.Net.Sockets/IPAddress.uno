@@ -142,7 +142,7 @@ namespace Uno.Net
             free(tmp);
 
             if (err != 1)
-                return NULL;
+                return nullptr;
 
             return uArray::New(@{byte[]:TypeOf}, int(sizeof(struct in6_addr)), buf);
         @}
@@ -212,8 +212,8 @@ namespace Uno.Net
 
             char buf[INET6_ADDRSTRLEN];
             const char *ret = inet_ntop(AF_INET6, &addr, buf, INET6_ADDRSTRLEN);
-            if (ret == NULL)
-                return NULL;
+            if (ret == nullptr)
+                return nullptr;
 
             return uString::Utf8(ret);
         @}

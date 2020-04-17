@@ -300,14 +300,6 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                     return TryCompileImplicitCast(src, expectedType,
                         ILFactory.NewObject(src, arrayEnumerable, value), reportErrorIfNotFound);
                 }
-
-                // string -> IEnumerable<T>
-                if (value.ReturnType == Essentials.String && expectedType.MasterDefinition == Essentials.IEnumerable_T)
-                {
-                    ImplicitCastStack.RemoveLast();
-                    return TryCompileImplicitCast(src, expectedType,
-                        ILFactory.NewObject(src, Essentials.StringEnumerable, value), reportErrorIfNotFound);
-                }
             }
 
         ERROR:

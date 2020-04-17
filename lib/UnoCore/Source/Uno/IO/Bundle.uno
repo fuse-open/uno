@@ -464,7 +464,7 @@ namespace Uno.IO
             if (!@{$$._fp})
                 return;
             AAsset_close(@{$$._fp});
-            @{$$._fp} = NULL;
+            @{$$._fp} = nullptr;
         @}
 
         void CheckDisposed()

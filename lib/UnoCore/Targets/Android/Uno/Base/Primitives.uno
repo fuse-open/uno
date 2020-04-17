@@ -148,7 +148,7 @@ namespace Android.Base.Primitives
     {
         public static ujclass Null
         {
-            get { return extern<ujclass> "NULL"; }
+            get { return extern<ujclass> "nullptr"; }
         }
 
         public static bool operator == (ujclass lhs, ujclass rhs)
@@ -167,7 +167,7 @@ namespace Android.Base.Primitives
     {
         public static ujstring Null
         {
-            get { return extern<ujstring> "NULL"; }
+            get { return extern<ujstring> "nullptr"; }
         }
     }
 
@@ -176,7 +176,7 @@ namespace Android.Base.Primitives
     {
         public static ujobject Null
         {
-            get { return extern<ujobject> "NULL"; }
+            get { return extern<ujobject> "nullptr"; }
         }
 
         public static implicit operator ujobject(ujclass v)

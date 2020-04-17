@@ -302,7 +302,7 @@ struct uMainLoop : Xli::WindowEventHandler
     }
 };
 
-static void uUnhandledException(const char* msg, const char* function = NULL, int line = 0)
+static void uUnhandledException(const char* msg, const char* function = nullptr, int line = 0)
 {
     std::stringstream ss;
     ss << msg;
@@ -311,7 +311,7 @@ static void uUnhandledException(const char* msg, const char* function = NULL, in
 
     std::string str = ss.str();
     uLog(uLogLevelFatal, "Unhandled Exception: %s", str.c_str());
-    Xli::MessageBox::Show(NULL, str.c_str(), "Unhandled Exception", Xli::DialogButtonsOK, Xli::DialogHintsError);
+    Xli::MessageBox::Show(nullptr, str.c_str(), "Unhandled Exception", Xli::DialogButtonsOK, Xli::DialogHintsError);
 }
 
 int main(int argc, char** argv)
@@ -378,7 +378,7 @@ void uInitRtti()
     static uType*(*factories[])() =
     {
         @(TypeObjects.FunctionPointer:JoinSorted('\n        ', '', ','))
-        NULL
+        nullptr
     };
 
     uInitRtti(factories);

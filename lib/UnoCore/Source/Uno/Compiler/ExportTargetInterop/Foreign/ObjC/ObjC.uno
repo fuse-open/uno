@@ -5,7 +5,7 @@ namespace ObjC
 {
     [Set("FileExtension", "mm")]
     [Set("TypeName", "::id")]
-    [Set("DefaultValue", "NULL")]
+    [Set("DefaultValue", "nullptr")]
     [Set("Include", "objc/objc.h")]
     public extern(FOREIGN_OBJC_SUPPORTED) struct ID
     {

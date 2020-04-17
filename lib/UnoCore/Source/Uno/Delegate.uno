@@ -25,7 +25,7 @@ namespace Uno
                 uDelegate copy;
                 uDelegate *prev = &copy;
 
-                for (uDelegate* d = $1; d != NULL; d = d->_prev)
+                for (uDelegate* d = $1; d != nullptr; d = d->_prev)
                     prev = prev->_prev = d->Copy();
 
                 prev->_prev = $0;
@@ -39,19 +39,19 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             @{
-                if ($0 == NULL || $1 == NULL)
+                if ($0 == nullptr || $1 == nullptr)
                     return $0;
                 if ($1->__type != $0->__type)
                     U_THROW_ICE();
 
-                for (uDelegate *first = $0; first != NULL; first = first->_prev)
+                for (uDelegate *first = $0; first != nullptr; first = first->_prev)
                 {
                     bool match = true;
                     uDelegate *last = first;
 
-                    for (uDelegate *d = $1; d != NULL; d = d->_prev, last = last->_prev)
+                    for (uDelegate *d = $1; d != nullptr; d = d->_prev, last = last->_prev)
                     {
-                        if (last == NULL ||
+                        if (last == nullptr ||
                             d->_func != last->_func ||
                             d->_this != last->_this)
                         {
@@ -84,7 +84,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 return $0 == $1 || (
-                        $0 != NULL && $1 != NULL &&
+                        $0 != nullptr && $1 != nullptr &&
                         $0->__type == $1->__type &&
                         $0->_func == $1->_func &&
                         $0->_this == $1->_this &&

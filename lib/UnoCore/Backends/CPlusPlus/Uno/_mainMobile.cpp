@@ -11,7 +11,7 @@ void uInitRtti()
     static uType*(*factories[])() =
     {
         @(TypeObjects.FunctionPointer:JoinSorted('\n        ', '', ','))
-        NULL
+        nullptr
     };
 
     uInitRtti(factories);

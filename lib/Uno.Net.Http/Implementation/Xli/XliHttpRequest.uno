@@ -52,7 +52,7 @@ namespace Uno.Net.Http.Implementation
         public void Dispose()
         {
             extern(_requestHandle) "$0->Release()";
-            _requestHandle = extern<XliHttpRequestHandle> "NULL";
+            _requestHandle = extern<XliHttpRequestHandle> "nullptr";
             _request = null; // AutoRelease request object so it's deleted later
         }
 

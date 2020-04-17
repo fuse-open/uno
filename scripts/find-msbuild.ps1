@@ -5,6 +5,12 @@ If (Get-Command "vswhere.exe" -ErrorAction SilentlyContinue)
 {
     vswhere.exe | Out-String -Stream | Select-String -SimpleMatch "installationPath:" | ForEach {
         $installationPath = $_ -Replace "^installationPath: ", ""
+        $msbuild = "$installationPath\MSBuild\Current\bin\msbuild.exe"
+        If (Test-Path $msbuild)
+        {
+            Write-Output $msbuild
+            exit 0
+        }
         $msbuild = "$installationPath\MSBuild\15.0\bin\msbuild.exe"
         If (Test-Path $msbuild)
         {
@@ -29,6 +35,7 @@ ElseIf (Test-Path $msbuild2)
 
 Write-Error -Message @"
 ERROR: Microsoft Build Tools 2015+ not installed (C# 6/.NET 4.5 support)
+(not found) vswhere / Visual Studio 2019
 (not found) vswhere / Visual Studio 2017
 (not found) $msbuild1"
 (not found) $msbuild2"

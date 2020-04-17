@@ -32,12 +32,12 @@ namespace Uno.Threading
     }
 
     [DotNetType("System.Threading.Thread")]
-    [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):Call((@{Thread}) arg)}; return NULL; }")]
+    [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):Call((@{Thread}) arg)}; return nullptr; }")]
     [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):Call((@{Thread}) lpParam)}; return 0; }")]
     [extern(WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
     public sealed class Thread
     {
-        extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(NULL)";
+        extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";
 
         extern(CPLUSPLUS) static void ThreadMain(Thread thread)
         {
@@ -99,7 +99,7 @@ namespace Uno.Threading
 
             if defined(UNIX)
             {
-                if (extern<int> "pthread_create(&@{$$._threadHandle}, NULL, _ThreadFunc, (void*)$$)" != 0)
+                if (extern<int> "pthread_create(&@{$$._threadHandle}, nullptr, _ThreadFunc, (void*)$$)" != 0)
                 {
                     extern "uRelease($$)";
                     throw new InvalidOperationException("pthread_create() failed!");
@@ -107,7 +107,7 @@ namespace Uno.Threading
             }
             else if defined(WIN32)
             {
-                extern "@{$$._threadHandle} = ::CreateThread(NULL, 0, _ThreadFunc, (LPVOID)$$, 0, NULL)";
+                extern "@{$$._threadHandle} = ::CreateThread(nullptr, 0, _ThreadFunc, (LPVOID)$$, 0, nullptr)";
 
                 if (extern<bool>(_threadHandle) "!$0" )
                 {
@@ -123,7 +123,7 @@ namespace Uno.Threading
                 throw new ThreadStateException("Thread has not been started.");
 
             if defined(UNIX)
-                extern(_threadHandle) "pthread_join($0, NULL)";
+                extern(_threadHandle) "pthread_join($0, nullptr)";
             else if defined(WIN32)
                 extern(_threadHandle) "::WaitForSingleObject($0, INFINITE)";
         }

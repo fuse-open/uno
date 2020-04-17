@@ -64,6 +64,7 @@ namespace Uno.Compiler.API.Domain.IL
         MemberType IEntity.MemberType => MemberType.Other;
         NewObject[] IEntity.Attributes => AttributeList.Empty;
         string IEntity.DocComment => null;
+        bool IEntity.HasRefCount => true;
         bool IEntity.IsStripped => false;
         bool IEntity.IsPublic => false;
         bool IEntity.IsProtected => false;

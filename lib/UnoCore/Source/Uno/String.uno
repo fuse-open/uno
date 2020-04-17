@@ -2,13 +2,14 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Text;
 using Uno.Collections;
 using Uno.Runtime.Implementation.Internal;
+using Uno.Math;
 
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.String")]
     [extern(CPLUSPLUS) Set("TypeName", "uString*")]
     /** Represents text as a sequence of UTF-16 code units. */
-    public sealed intrinsic class String
+    public sealed intrinsic class String : IEnumerable<char>
     {
         public static readonly string Empty = "";
 
@@ -112,7 +113,7 @@ namespace Uno
 
         public override bool Equals(object other)
         @{
-            if ($0 != NULL && $$->__type == $0->__type)
+            if ($0 != nullptr && $$->__type == $0->__type)
             {
                 uString* str = (uString*)$0;
                 return $$->_length == str->_length &&
@@ -762,7 +763,7 @@ namespace Uno
 
         public static int Compare(string a, string b)
         {
-            for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
+            for (int i = 0; i < Min(a.Length, b.Length); i++)
             {
                 if (a[i] < b[i])
                     return -1;
@@ -795,6 +796,52 @@ namespace Uno
         public bool Contains(string str)
         {
             return IndexOf(str, 0) >= 0;
+        }
+
+        public IEnumerator<char> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        class Enumerator : IEnumerator<char>
+        {
+            readonly string _source;
+            char _current;
+            int _iterator;
+
+            public Enumerator(string source)
+            {
+                _source = source;
+                _iterator = -1;
+            }
+
+            public char Current
+            {
+                get { return _current; }
+            }
+
+            public void Dispose()
+            {
+            }
+
+            public void Reset()
+            {
+                _iterator = -1;
+                _current = '\0';
+            }
+
+            public bool MoveNext()
+            {
+                _iterator++;
+
+                if (_iterator < _source.Length)
+                {
+                    _current = _source[_iterator];
+                    return true;
+                }
+
+                return false;
+            }
         }
     }
 }

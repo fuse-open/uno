@@ -39,6 +39,37 @@
 #endif
     <uses-feature android:glEsVersion="0x00020000"/>
 
+#if @(Project.Android.UsesFeatures.AndroidHardwareLocation:IsSet)
+    <uses-feature android:name="android.hardware.location" android:required="@(Project.Android.UsesFeatures.AndroidHardwareLocation:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareLocationGPS:IsSet)
+    <uses-feature android:name="android.hardware.location.gps" android:required="@(Project.Android.UsesFeatures.AndroidHardwareLocationGPS:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareLocationNetwork:IsSet)
+    <uses-feature android:name="android.hardware.location.network" android:required="@(Project.Android.UsesFeatures.AndroidHardwareLocationNetwork:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareCamera:IsSet)
+    <uses-feature android:name="android.hardware.camera" android:required="@(Project.Android.UsesFeatures.AndroidHardwareCamera:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareCameraAutofocus:IsSet)
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="@(Project.Android.UsesFeatures.AndroidHardwareCameraAutofocus:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareMicrophone:IsSet)
+    <uses-feature android:name="android.hardware.microphone" android:required="@(Project.Android.UsesFeatures.AndroidHardwareMicrophone:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareTelephony:IsSet)
+    <uses-feature android:name="android.hardware.telephony" android:required="@(Project.Android.UsesFeatures.AndroidHardwareTelephony:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareScreenPortrait:IsSet)
+    <uses-feature android:name="android.hardware.screen.portrait" android:required="@(Project.Android.UsesFeatures.AndroidHardwareScreenPortrait:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidHardwareScreenLandscape:IsSet)
+    <uses-feature android:name="android.hardware.screen.landscape" android:required="@(Project.Android.UsesFeatures.AndroidHardwareScreenLandscape:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.UsesFeatures.AndroidSoftwareWebview:IsSet)
+    <uses-feature android:name="android.software.webview" android:required="@(Project.Android.UsesFeatures.AndroidSoftwareWebview:Bool:ToLower)"/>
+#endif
+
     @(AndroidManifest.Permission:Join('\n    ', '<uses-permission android:name="', '" />'))
     @(AndroidManifest.RootElement:Join('\n    '))
 

@@ -48,7 +48,7 @@
             <Body>
 
                      JNIEnv* jni;
-                     JniHelper::GetVM()->AttachCurrentThread(&jni, NULL);
+                     JniHelper::GetVM()->AttachCurrentThread(&jni, nullptr);
                      return jni;
 
             </Body>
@@ -204,7 +204,7 @@
             <Body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():Call()};
-                     jobject rtn = jni->NewObjectArray((jsize)$1, $0, NULL);
+                     jobject rtn = jni->NewObjectArray((jsize)$1, $0, nullptr);
                      jobject newArray = reinterpret_cast<jobject>(jni->NewGlobalRef(rtn));
                      jni->DeleteLocalRef(rtn);
                      return newArray;
@@ -442,7 +442,7 @@
 
         #define CLASS_INIT(CLASS,INITCALL) if (uEnterCriticalIfNull(&CLASS)) { INITCALL; uExitCritical(); }
 
-        #define JARG_TO_UNO(ARG,UNOTYPE,NEWUNO) UNOTYPE tmp ## ARG = (ARG==0 ? NULL : (ARG == -1 ? NEWUNO : (UNOTYPE)uLoadWeak((uWeakObject*)ARG)));
+        #define JARG_TO_UNO(ARG,UNOTYPE,NEWUNO) UNOTYPE tmp ## ARG = (ARG==0 ? nullptr : (ARG == -1 ? NEWUNO : (UNOTYPE)uLoadWeak((uWeakObject*)ARG)));
 
         #define JNFUN(RETURNTYPE,FUNCNAME,...) RETURNTYPE JNICALL FUNCNAME(JNIEnv *env, jclass clazz, ##__VA_ARGS__)
 

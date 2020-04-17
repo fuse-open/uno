@@ -412,7 +412,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                             ) + index + ")";
 
                     Log.Error("C++: Failed to get typeof(" + dt.VerboseName + ") in " + ((object) func ?? parent).Quote());
-                    return "NULL";
+                    return "nullptr";
                 }
                 default:
                 {
@@ -445,7 +445,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                             foreach (var a in dt.GenericArguments)
                                 sb.Append(", " + GetTypeOf(a, parent, type, func, cache));
 
-                            sb.Append(", NULL)");
+                            sb.Append(", nullptr)");
                             return sb.ToString();
                         }
                         else
@@ -468,7 +468,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                                 comma = true;
                             }
 
-                            sb.Append(", NULL)");
+                            sb.Append(", nullptr)");
                             return sb.ToString();
                         }
                     }
@@ -624,11 +624,11 @@ namespace Uno.Compiler.Backends.CPlusPlus
             return Environment.TryGetValue(dt, "DefaultValue", out result)
                     ? result.String :
                 dt.IsReferenceType
-                    ? "NULL" :
+                    ? "nullptr" :
                 IsConstrained(dt)
                     ? (u == ExpressionUsage.VarArg ? "(void*)" : null) +
                         "uT(" + GetTypeOf(dt, parent, func, cache) +
-                        ", U_ALLOCA(" + GetTypeOf(dt, parent, func, cache) + "->ValueSize))"
+                        ", alloca(" + GetTypeOf(dt, parent, func, cache) + "->ValueSize))"
                     : "uDefault" + GetTemplateString(dt, parent) + "()";
         }
 

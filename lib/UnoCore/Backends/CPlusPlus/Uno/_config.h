@@ -42,7 +42,7 @@ void uLogv(int level, const char* format, va_list args);
 #define U_ERROR(...) uLog(uLogLevelError, __VA_ARGS__)
 
 // Kill switch
-U_NORETURN void uFatal(const char* src = NULL, const char* msg = NULL);
+U_NORETURN void uFatal(const char* src = nullptr, const char* msg = nullptr);
 #define U_FATAL(...) uFatal(U_SOURCE, "" __VA_ARGS__)
 
 // Asserts
@@ -65,6 +65,7 @@ T uAssertPtr(T ptr, const char* src, const char* msg) {
 #else
 #include <alloca.h>
 #endif
+// Deprecated -- use alloca() directly instead.
 #define U_ALLOCA(SIZE) alloca(SIZE)
 
 // C++11 compatibility

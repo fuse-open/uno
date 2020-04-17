@@ -37,8 +37,8 @@ struct uObject
 protected:
     uObject() {}
 private:
-    uObject& operator =(const uObject&);
-    uObject(const uObject&);
+    uObject& operator =(const uObject&) = delete;
+    uObject(const uObject&) = delete;
 };
 
 enum uTypeType
@@ -251,13 +251,15 @@ uType* uVoid_typeof();
 */
 struct uThrowable : public std::exception
 {
-    @{Uno.Exception} Exception;
+    uStrong<@{Uno.Exception}> Exception;
     const char* Function;
     int Line;
 
-    uThrowable(@{Uno.Exception} exception, const char* func, int line);
-    uThrowable(const uThrowable& copy);
-    virtual ~uThrowable() throw();
+    uThrowable(@{Uno.Exception} exception, const char* func, int line)
+        : Exception(exception)
+        , Function(func)
+        , Line(line) {}
+    uThrowable(const uThrowable&) = default;
     virtual const char* what() const throw();
 
     static U_NORETURN void ThrowIndexOutOfRange(const char* func, int line);
@@ -267,8 +269,8 @@ struct uThrowable : public std::exception
     static U_NORETURN void ThrowNullReference(const char* func, int line);
 
 private:
-    uThrowable& operator =(const uThrowable&);
-    uThrowable();
+    uThrowable& operator =(const uThrowable&) = delete;
+    uThrowable() = delete;
 };
 
 #define U_THROW(exception) throw uThrowable((exception), U_FUNCTION, __LINE__)
@@ -298,7 +300,7 @@ inline bool uIs(const uObject* object, const uType* type) {
 template<class T>
 T uAs(uObject* object, const uType* type) {
     U_ASSERT(sizeof(T) == type->ValueSize);
-    return object && object->__type->Is(type) ? (T)object : NULL;
+    return object && object->__type->Is(type) ? (T)object : nullptr;
 }
 template<class T>
 T uCast(uObject* object, const uType* type) {
@@ -390,13 +392,13 @@ struct uDelegate : uObject
     void InvokeVoid(void* arg);
     void Invoke(uTRef retval, void** args, size_t count);
     void Invoke(uTRef retval, size_t count = 0, ...);
-    uObject* Invoke(uArray* args = NULL);
+    uObject* Invoke(uArray* args = nullptr);
     uObject* Invoke(size_t count, ...);
     uDelegate* Copy();
 
-    static uDelegate* New(uType* type, const void* func, uObject* object = NULL, uType* generic = NULL);
-    static uDelegate* New(uType* type, uObject* object, size_t offset, uType* generic = NULL);
-    static uDelegate* New(uType* type, const uInterface& iface, size_t offset, uType* generic = NULL);
+    static uDelegate* New(uType* type, const void* func, uObject* object = nullptr, uType* generic = nullptr);
+    static uDelegate* New(uType* type, uObject* object, size_t offset, uType* generic = nullptr);
+    static uDelegate* New(uType* type, const uInterface& iface, size_t offset, uType* generic = nullptr);
 };
 /** @} */
 
@@ -414,11 +416,11 @@ struct uStructType : uType
     void(*fp_ToString_struct)(void*, uType*, uString**);
 };
 
-uObject* uBoxPtr(uType* type, const void* src, void* stack = NULL, bool ref = false);
+uObject* uBoxPtr(uType* type, const void* src, void* stack = nullptr, bool ref = false);
 void uUnboxPtr(uType* type, uObject* object, void* dst);
 
 template<class T>
-uObject* uBox(uType* type, const T& value, void* stack = NULL) {
+uObject* uBox(uType* type, const T& value, void* stack = nullptr) {
     U_ASSERT(type && type->ValueSize == sizeof(T));
     return uBoxPtr(type, &value, stack, true);
 }
@@ -514,7 +516,7 @@ struct uArray : uObject
         return ((uStrong<T>*)_ptr)[index];
     }
 
-    static uArray* New(uType* type, size_t length, const void* optionalData = NULL);
+    static uArray* New(uType* type, size_t length, const void* optionalData = nullptr);
     static uArray* InitT(uType* type, size_t length, ...);
 
     template<class T>
@@ -567,7 +569,7 @@ struct uString : uObject
 };
 
 // Leak warning: The returned string must be deleted using free()
-char* uAllocCStr(const uString* string, size_t* length = NULL);
+char* uAllocCStr(const uString* string, size_t* length = nullptr);
 // Deprecated: Use free() instead - the parameter type shouldn't be const
 void DEPRECATED("Use free() instead") uFreeCStr(const char* cstr);
 
@@ -657,8 +659,8 @@ struct uTRef
     }
 
 private:
-    uTRef& operator =(const uTRef&);
-    uTRef();
+    uTRef& operator =(const uTRef&) = delete;
+    uTRef() = delete;
 };
 
 struct uTStrongRef : uTBase
@@ -786,8 +788,8 @@ struct uTPtr
     }
 
 private:
-    uTPtr& operator =(const uTPtr&);
-    uTPtr();
+    uTPtr& operator =(const uTPtr&) = delete;
+    uTPtr() = delete;
 };
 
 template<class T>

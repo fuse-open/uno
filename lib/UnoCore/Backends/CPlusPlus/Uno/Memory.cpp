@@ -97,8 +97,8 @@ uStackFrame::~uStackFrame()
 #endif
     _thread->CallStackPtr--;
 #ifdef DEBUG_UNSAFE
-    frame->Type = NULL;
-    frame->Function = NULL;
+    frame->Type = nullptr;
+    frame->Function = nullptr;
 #endif
 }
 
@@ -258,11 +258,11 @@ void uReleaseStruct(uType* type, void* address)
     {
         uObject*& ptr = *(uObject**)((uint8_t*)address + type->Refs.Strong[i]);
         uRelease(ptr);
-        ptr = NULL;
+        ptr = nullptr;
     }
 
     for (size_t i = 0; i < type->Refs.WeakCount; i++)
-        uStoreWeak((uWeakObject**)((uint8_t*)address + type->Refs.Weak[i]), NULL);
+        uStoreWeak((uWeakObject**)((uint8_t*)address + type->Refs.Weak[i]), nullptr);
 }
 
 void uAutoReleaseStruct(uType* type, void* address)
@@ -543,7 +543,7 @@ void uBuildMemory(uType* type)
     }
 
 #ifdef DEBUG_UNSAFE
-    uint8_t* layout = (uint8_t*)U_ALLOCA(type->ObjectSize);
+    uint8_t* layout = (uint8_t*)alloca(type->ObjectSize);
     memset(layout, 0, type->ObjectSize);
 
     for (size_t i = 0; i < type->FieldCount; i++)
@@ -594,7 +594,7 @@ static bool uTryClearWeak_inner(uObject* object)
     }
 
     object->__weakptr->ZombieState = uWeakObject::Dead;
-    object->__weakptr->Object = NULL;
+    object->__weakptr->Object = nullptr;
     return true;
 }
 
@@ -611,7 +611,7 @@ static bool uTryClearWeak(uObject* object)
         if (--object->__weakptr->RefCount == 0)
             free(object->__weakptr);
 
-        object->__weakptr = NULL;
+        object->__weakptr = nullptr;
     }
 
     return true;
@@ -637,7 +637,7 @@ void uStoreWeak(uWeakObject** address, uObject* object)
 
     if (!object)
     {
-        *address = NULL;
+        *address = nullptr;
         return;
     }
 
@@ -655,8 +655,8 @@ static uObject* uLoadWeak_inner(uWeakObject* weak)
         if (!weak->ZombieStateIntercept(uWeakStateIntercept::OnLoad, weak->Object))
         {
             weak->ZombieState = uWeakObject::Dead;
-            weak->Object = NULL;
-            return NULL;
+            weak->Object = nullptr;
+            return nullptr;
         }
 
         weak->ZombieState = uWeakObject::Infected;
@@ -669,7 +669,7 @@ static uObject* uLoadWeak_inner(uWeakObject* weak)
 uObject* uLoadWeak(uWeakObject* weak)
 {
     if (!weak)
-        return NULL;
+        return nullptr;
 
     uObject* object = uCallWithWeakRefLock(&uLoadWeak_inner, weak);
     uAutoRelease(object);
@@ -900,7 +900,7 @@ static void uDumpStaticStrongRefs(FILE* fp, uType* type)
         if (U_IS_OBJECT(fieldInfo.Type) && ((fieldInfo.Flags & uFieldFlagsWeak) == 0) &&
             ((fieldInfo.Flags & uFieldFlagsStatic) != 0))
         {
-            uObject* target = field->GetValue(NULL);
+            uObject* target = field->GetValue(nullptr);
             if (target)
             {
                 uCString fieldName(field->Name);

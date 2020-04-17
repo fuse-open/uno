@@ -462,7 +462,7 @@ namespace Uno.IO
                 if defined(WIN32)
                 @{
                     delete (WIN32_FIND_DATA*) @{$$._findData};
-                    @{$$._findData} = NULL;
+                    @{$$._findData} = nullptr;
                 @}
             }
 
@@ -473,12 +473,12 @@ namespace Uno.IO
                 if defined(WIN32)
                 @{
                     FindClose((HANDLE) @{$$._handle});
-                    @{$$._handle} = NULL;
+                    @{$$._handle} = nullptr;
                 @}
                 else if defined(UNIX)
                 @{
                     closedir((DIR*) @{$$._handle});
-                    @{$$._handle} = NULL;
+                    @{$$._handle} = nullptr;
                 @}
             }
 

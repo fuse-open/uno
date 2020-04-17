@@ -1,6 +1,7 @@
 using Uno.Collections;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Text;
+using Uno.Math;
 
 namespace Uno.Runtime.Implementation.Internal
 {
@@ -171,7 +172,7 @@ namespace Uno.Runtime.Implementation.Internal
                     // Some snprintf implementations return -1 and sets errno to
                     // ERANGE instead of returning the desired length, so let's
                     // reconstruct the value we want here.
-                    len = snprintf(NULL, 0, "%.*f", desiredDigits, d);
+                    len = snprintf(nullptr, 0, "%.*f", desiredDigits, d);
                     U_ASSERT(len > sizeof(buf));
                 }
 
@@ -253,7 +254,7 @@ namespace Uno.Runtime.Implementation.Internal
             var str = i.ToString();
             if (desiredDigits >= str.Length || desiredDigits == 0)
                 return str;
-            var rounded = RoundToDigits((double)i / Math.Pow(10, str.Length-1), desiredDigits - 1).ToString();
+            var rounded = RoundToDigits((double)i / Pow(10, str.Length-1), desiredDigits - 1).ToString();
             var exponent = (str.Length - 1).ToString();
             return rounded + "E+" + Padding(2 - exponent.Length) + exponent;
         }
@@ -289,11 +290,11 @@ namespace Uno.Runtime.Implementation.Internal
             if (d == 0)
                 return "0";
 
-            var magnitude = Math.Log10(Math.Abs(d));
+            var magnitude = Log10(Math.Abs(d));
 
             if (magnitude < desiredDigits)
             {
-                var intDigits = (int)Math.Ceil(magnitude);
+                var intDigits = (int)Ceil(magnitude);
                 var str = FormatFixedPoint(d, desiredDigits - intDigits);
                 return PruneNeedlessDecimals(str);
             }
@@ -307,12 +308,12 @@ namespace Uno.Runtime.Implementation.Internal
             if (d < 0)
                 sb.Append('-');
 
-            var significandDigits = Math.Max(0, desiredDigits - 1);
-            significand = Math.Round(significand, significandDigits);
+            var significandDigits = Max(0, desiredDigits - 1);
+            significand = Round(significand, significandDigits);
             sb.Append(PruneNeedlessDecimals(FormatFixedPoint(significand, significandDigits)));
             sb.Append(char.IsUpper(formatString[0]) ? 'E' : 'e');
             sb.Append(exponent < 0 ? '-' : '+');
-            sb.Append(FormatDecimal((ulong)Math.Abs(exponent), 2));
+            sb.Append(FormatDecimal((ulong)Abs(exponent), 2));
 
             return sb.ToString();
         }
@@ -377,7 +378,7 @@ namespace Uno.Runtime.Implementation.Internal
 
         private static string FormatCustom(string formatString, double value)
         {
-            var absoluteValue = Math.Abs(value);
+            var absoluteValue = Abs(value);
             int decimalPoint = formatString.IndexOf('.');
             if (decimalPoint == -1)
                 return FormatCustomIntegerPart(formatString, (ulong)absoluteValue);

@@ -64,16 +64,16 @@ uArray* uGetNativeStackTrace(int skipFrames)
 uArray* uGetNativeStackTrace(int skipFrames)
 {
     void* callStack[64];
-    int callStackDepth = CaptureStackBackTrace(skipFrames, sizeof(callStack) / sizeof(callStack[0]), callStack, NULL);
+    int callStackDepth = CaptureStackBackTrace(skipFrames, sizeof(callStack) / sizeof(callStack[0]), callStack, nullptr);
     return uArray::New(@{Uno.IntPtr[]:TypeOf}, callStackDepth, callStack);
 }
 
 #else
 
-// last resort, we don't have any way of getting a native stack-trace, return NULL :(
+// last resort, we don't have any way of getting a native stack-trace, return nullptr :(
 uArray* uGetNativeStackTrace(int skipFrames)
 {
-    return NULL;
+    return nullptr;
 }
 
 #endif

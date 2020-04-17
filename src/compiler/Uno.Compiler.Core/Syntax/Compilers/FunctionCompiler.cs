@@ -51,7 +51,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             : this(compiler)
         {
             Function = func;
-            Namescope = (func as Method)?.GenericType ?? parameterizedParent;
+            Namescope = func.GenericType ?? parameterizedParent;
             Body = body;
         }
 
@@ -135,19 +135,26 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             reqStatements.Add(s);
         }
 
-        public void Compile()
+        public void Compile(bool force = false)
         {
             // Set _dummyScope so that function.HasBody is true in CanLink()
             if (Function.Body == null)
                 Function.SetBody(_dummyScope);
 
-            if (Compiler.Backend.CanLink(Function))
+            if (!force &&
+                !Function.IsGenerated &&
+                Compiler.Backend.CanLink(Function))
             {
                 Function.Stats |= EntityStats.CanLink;
                 Function.SetBody(null);
             }
             else
             {
+                if (Function.Stats.HasFlag(EntityStats.IsCompiled))
+                    return;
+
+                Function.Stats |= EntityStats.IsCompiled;
+
                 var result = CompileScope(Body);
 
                 if (Function.Body.Statements.Count > 0)

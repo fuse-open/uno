@@ -147,6 +147,11 @@
 	<string>@(Project.iOS.PList.NSMotionUsageDescription)</string>
 #endif
 
+#if @(Project.iOS.PList.NSFaceIDUsageDescription:IsSet)
+	<key>NSFaceIDUsageDescription</key>
+	<string>@(Project.iOS.PList.NSFaceIDUsageDescription)</string>
+#endif
+
 #if @(FontFile:IsRequired)
 	<key>UIAppFonts</key>
 	<array>

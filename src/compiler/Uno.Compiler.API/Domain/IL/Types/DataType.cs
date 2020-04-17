@@ -524,6 +524,7 @@ namespace Uno.Compiler.API.Domain.IL
         public bool IsGenericMethodType => Stats.HasFlag(EntityStats.GenericMethodType);
         public bool IsParameterizedDefinition => Stats.HasFlag(EntityStats.ParameterizedDefinition);
         public bool CanLink => MasterDefinition.Stats.HasFlag(EntityStats.CanLink);
+        public bool HasRefCount => Stats.HasFlag(EntityStats.RefCount);
 
         Source IEntity.Source => Source;
         IEntity IEntity.MasterDefinition => MasterDefinition;

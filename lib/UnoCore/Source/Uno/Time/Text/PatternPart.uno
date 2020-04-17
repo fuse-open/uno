@@ -1,3 +1,5 @@
+using Uno.Math;
+
 namespace Uno.Time.Text
 {
     internal interface IPatternPart<T>
@@ -78,7 +80,7 @@ namespace Uno.Time.Text
 
         public override string Write(T value)
         {
-            return string.Format("{0:D" + ExpectedSize + "}", Math.Abs(Get(value)));
+            return string.Format("{0:D" + ExpectedSize + "}", Abs(Get(value)));
         }
     }
 
@@ -114,7 +116,7 @@ namespace Uno.Time.Text
                 return 0;
             var number = int.Parse(line.Substring(position, numberCount > ExpectedSize ? ExpectedSize : numberCount));
             if (numberCount < ExpectedSize)
-                number *= (int)Math.Pow(10, ExpectedSize - numberCount);
+                number *= (int)Pow(10, ExpectedSize - numberCount);
             Set(value, number);
             return numberCount;
         }

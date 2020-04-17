@@ -1,5 +1,6 @@
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Text;
+using Uno.Math;
 
 namespace Uno.IO
 {
@@ -111,7 +112,7 @@ namespace Uno.IO
             var charsCount = 0;
             while (charsCount != count && _charLen != 0)
             {
-                var symbols = Math.Min(_charLen - _charPos, count - charsCount);
+                var symbols = Min(_charLen - _charPos, count - charsCount);
                 for (var i = 0; i < symbols; ++i)
                 {
                     buffer[index + charsCount + i] = _charBuffer[_charPos];
