@@ -98,8 +98,8 @@
     <!-- Launch images -->
 
     <!-- Launch Screen Image for Launch Screen Storyboard -->
-
-    <ImageFile Name="@(Project.iOS.Icons.LaunchScreen.image:Path || Project.iOS.Icons.iPhone_60_3x:Path || '@//Assets/DefaultIcon.png')" TargetName="@(Project.Name)/LaunchScreenImage.png" />
+    <Set LaunchScreenImagePath="@(Project.Name)" />
+    <ImageFile Name="@(Project.iOS.Icons.LaunchScreen.image:Path || Project.iOS.Icons.iPhone_60_3x:Path || '@//Assets/DefaultIcon.png')" TargetName="@(LaunchScreenImagePath)/LaunchScreenImage.png" />
 
     <!-- Launch Images are replaced by Launch Screen Storyboard from iOS 13, yet launch screeen storyboards are supported since iOS 8 & Xcode 6
     <Set LaunchImages="@(Project.Name)/Images.xcassets/LaunchImage.launchimage" />
