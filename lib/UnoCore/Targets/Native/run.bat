@@ -20,8 +20,8 @@ if "%1" == "debug" (
     cmake -G"@(CMake.Generator)" .
     if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
-    echo Opening Visual Studio 2017
-    @(Uno) open -a"Visual Studio 2017" -t"@(Project.Name) - Microsoft Visual Studio" "@(Project.Name).sln"
+    echo Opening Visual Studio 2019
+    @(Uno) open -a"Visual Studio 2019" -t"@(Project.Name) - Microsoft Visual Studio" "@(Project.Name).sln"
     popd && exit /b %ERRORLEVEL%
 )
 
