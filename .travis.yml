@@ -12,7 +12,7 @@ matrix:
       before_script:
         - export UNO_TEST_ARGS=-DDEBUG_UNSAFE
     - os: linux
-      dist: xenial
+      dist: bionic
       env: TARGET=native
       addons:
         apt:
