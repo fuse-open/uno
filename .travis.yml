@@ -1,13 +1,14 @@
-language: csharp
-mono: latest
-
 matrix:
   include:
     - os: osx
       osx_image: xcode9.2
+      language: csharp
+      mono: latest
       env: TARGET=dotnet
     - os: osx
       osx_image: xcode9.2
+      language: csharp
+      mono: latest
       env: TARGET=native
       before_script:
         - export UNO_TEST_ARGS=-DDEBUG_UNSAFE
@@ -32,6 +33,12 @@ matrix:
         - export GALLIUM_DRIVER=softpipe
         - export LIBGL_ALWAYS_SOFTWARE=true
         - export UNO_TEST_ARGS="--only-build -DDEBUG_UNSAFE"
+        # Install Mono.
+        - sudo apt install gnupg ca-certificates
+        - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+        - echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+        - sudo apt update
+        - sudo apt install mono-devel msbuild nuget
 
 before_script:
   - |
