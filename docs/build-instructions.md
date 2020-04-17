@@ -12,7 +12,7 @@ Uno is built using the command-line on Linux, macOS or Windows – or [from insi
 Our cross-platform build scripts are written in `bash`, and `make` is a convenient way to invoke the different build tasks.
 Bash is included in [Git for Windows](https://git-scm.com/downloads).
 
-On Windows, we need [vswhere] to locate your Visual Studio 2017 installation. Please make sure we can find `vswhere` in
+On Windows, we need [vswhere] to locate your Visual Studio installation. Please make sure we can find `vswhere` in
 `%PATH%` or at `%PROGRAMFILES(x86)%\Microsoft Visual Studio\Installer`.
 
 [vswhere]: https://github.com/Microsoft/vswhere

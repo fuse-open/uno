@@ -65,7 +65,7 @@ iOS.DeveloperTeam: ABCD012345
 To support building native apps, we need [CMake](https://cmake.org/) and C++ compilers.
 
 - **macOS:** Xcode with command line tools
-- **Windows:** Visual Studio 2017
+- **Windows:** Visual Studio 2019
 
 ## Node.js
 
