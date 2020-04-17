@@ -628,7 +628,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 IsConstrained(dt)
                     ? (u == ExpressionUsage.VarArg ? "(void*)" : null) +
                         "uT(" + GetTypeOf(dt, parent, func, cache) +
-                        ", U_ALLOCA(" + GetTypeOf(dt, parent, func, cache) + "->ValueSize))"
+                        ", alloca(" + GetTypeOf(dt, parent, func, cache) + "->ValueSize))"
                     : "uDefault" + GetTemplateString(dt, parent) + "()";
         }
 

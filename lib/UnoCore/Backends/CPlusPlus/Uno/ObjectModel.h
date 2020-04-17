@@ -37,8 +37,8 @@ struct uObject
 protected:
     uObject() {}
 private:
-    uObject& operator =(const uObject&);
-    uObject(const uObject&);
+    uObject& operator =(const uObject&) = delete;
+    uObject(const uObject&) = delete;
 };
 
 enum uTypeType
@@ -251,13 +251,15 @@ uType* uVoid_typeof();
 */
 struct uThrowable : public std::exception
 {
-    @{Uno.Exception} Exception;
+    uStrong<@{Uno.Exception}> Exception;
     const char* Function;
     int Line;
 
-    uThrowable(@{Uno.Exception} exception, const char* func, int line);
-    uThrowable(const uThrowable& copy);
-    virtual ~uThrowable() throw();
+    uThrowable(@{Uno.Exception} exception, const char* func, int line)
+        : Exception(exception)
+        , Function(func)
+        , Line(line) {}
+    uThrowable(const uThrowable&) = default;
     virtual const char* what() const throw();
 
     static U_NORETURN void ThrowIndexOutOfRange(const char* func, int line);
@@ -267,8 +269,8 @@ struct uThrowable : public std::exception
     static U_NORETURN void ThrowNullReference(const char* func, int line);
 
 private:
-    uThrowable& operator =(const uThrowable&);
-    uThrowable();
+    uThrowable& operator =(const uThrowable&) = delete;
+    uThrowable() = delete;
 };
 
 #define U_THROW(exception) throw uThrowable((exception), U_FUNCTION, __LINE__)
@@ -657,8 +659,8 @@ struct uTRef
     }
 
 private:
-    uTRef& operator =(const uTRef&);
-    uTRef();
+    uTRef& operator =(const uTRef&) = delete;
+    uTRef() = delete;
 };
 
 struct uTStrongRef : uTBase
@@ -786,8 +788,8 @@ struct uTPtr
     }
 
 private:
-    uTPtr& operator =(const uTPtr&);
-    uTPtr();
+    uTPtr& operator =(const uTPtr&) = delete;
+    uTPtr() = delete;
 };
 
 template<class T>
