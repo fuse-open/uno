@@ -36,4 +36,4 @@ test_script:
       src\testing\Uno.TestRunner.Tests\bin\Release\Uno.TestRunner.Tests.dll
       src\ux\Uno.UX.Markup.AST\Tests\bin\Release\Uno.UX.Markup.AST.Tests.dll
       src\ux\Uno.UX.Markup.UXIL\Tests\bin\Release\Uno.UX.Markup.UXIL.Tests.dll
-  - bash scripts\test.sh %TARGET%
+  - npm test %TARGET%

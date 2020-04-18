@@ -42,8 +42,9 @@ before_script:
     fi
 
 script:
-  - scripts/build.sh --release
-  - scripts/test.sh $TARGET
+  - npm install
+  - npm pack --silent
+  - npm test $TARGET
 
 after_failure:
   - |
