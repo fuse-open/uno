@@ -15,7 +15,7 @@ if not %ERRORLEVEL% == 0 (
 
 pushd "%~dp0"
 
-cmake -G"@(CMake.Generator)" .
+cmake -G"Visual Studio 16 2019" .
 if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
 cmake --build . -- /p:Configuration=@(Native.Configuration) /m

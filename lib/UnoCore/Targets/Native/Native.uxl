@@ -33,7 +33,6 @@
     <Set Condition="!WIN32 && !LIBRARY" Product="@(BinaryDirectory)/@(Project.Name)" />
     <Set Condition="!WIN32 && LIBRARY" Product="@(BinaryDirectory)/lib@(Project.Name).@(MAC:Defined:Test('dylib', 'so'))" />
     <Set Condition="WIN32" Product="@(BinaryDirectory)/@(Project.Name).@(LIBRARY:Defined:Test('dll', 'exe'))" />
-    <Set Condition="WIN32" CMake.Generator="Visual Studio 16 2019" />
 
     <Set Commands.Build="@(WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
     <Set Commands.Run="@(WIN32:Defined:Test('run.bat', 'bash run.sh'))" />
