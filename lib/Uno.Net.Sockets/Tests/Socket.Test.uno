@@ -62,7 +62,7 @@ namespace Uno.Net.Sockets.Test
             listener.Close();
         }
 
-        [Test]
+        [Test, Ignore("Throws exception on Linux.", "LINUX")]
         public void ListenAndConnectIPv6()
         {
             var listener = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
