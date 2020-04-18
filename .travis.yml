@@ -17,19 +17,13 @@ matrix:
       env: TARGET=native
       addons:
         apt:
-          sources:
-            # For g++-7
-            - sourceline: "ppa:ubuntu-toolchain-r/test"
           packages:
-            - g++-7
             - libsdl2-dev
             - libglew-dev
             - uuid-dev
       services:
         - xvfb
       before_script:
-        - export CC=gcc-7
-        - export CXX=g++-7
         - export GALLIUM_DRIVER=softpipe
         - export LIBGL_ALWAYS_SOFTWARE=true
         - export UNO_TEST_ARGS="--only-build -DDEBUG_UNSAFE"
