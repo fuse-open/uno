@@ -17,6 +17,9 @@ COMMIT=""
 if [ -n "$APPVEYOR" ]; then
     BUILD_NUMBER=$APPVEYOR_BUILD_NUMBER
     COMMIT=$APPVEYOR_REPO_COMMIT
+elif [ -n "$TRAVIS" ]; then
+    BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+    COMMIT=$TRAVIS_COMMIT
 elif [ -d .git ]; then
     # Get commit SHA from local git-repo.
     COMMIT=`git rev-parse HEAD 2> /dev/null || :`
