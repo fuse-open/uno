@@ -1,6 +1,6 @@
 {
   "name": "@fuse-open/uno",
-  "version": "1.15.0-canary.3",
+  "version": "1.15.0-canary.4",
   "description": "Fast, native C# dialect and cross-compiler.",
   "dependencies": {
     "dotnet-run": "^1.2.0"
@@ -40,8 +40,8 @@
     "url": "https://github.com/fuse-open/uno/issues"
   },
   "funding": {
-    "type" : "opencollective",
-    "url" : "https://opencollective.com/fuse-open"
+    "type": "opencollective",
+    "url": "https://opencollective.com/fuse-open"
   },
   "homepage": "https://github.com/fuse-open/uno#readme"
 }
