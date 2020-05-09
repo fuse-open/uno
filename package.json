@@ -19,9 +19,9 @@
     "uno": "bin/uno.js"
   },
   "files": [
+    ".unoconfig",
     "bin/*",
-    "lib/build/*",
-    "release/*"
+    "lib/build/*"
   ],
   "repository": {
     "type": "git",
