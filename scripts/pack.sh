@@ -42,3 +42,22 @@ bash scripts/build.sh --release --version=$VERSION
 
 # Remove GlobalAssemblyInfo.Override.cs
 rm -f src/GlobalAssemblyInfo.Override.cs
+
+# Clean up
+function find-all {
+    local root="$1"
+    shift
+    while [ $# -gt 0 ]; do
+        bash -lc "find \"$root\" -name \"$1\""
+        shift
+    done
+}
+
+function rm-all {
+    IFS=$'\n'
+    for i in `find-all "$@"`; do
+        rm -rf "$i"
+    done
+}
+
+rm-all bin *.config *.mdb *.pdb *.xml
