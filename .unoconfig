@@ -1,11 +1,11 @@
 // Core config
-Assemblies.Test: bin/uno-test.exe
-Assemblies.Uno: bin/uno.exe
+Uno.Test: bin/uno-test.exe
+Uno.Exe: bin/uno.exe
 
 if WIN32 {
-    Paths.AppLoader: bin/win
+    Uno.AppLoader: bin/win
 } else if MAC {
-    Paths.AppLoader: bin/mac
+    Uno.AppLoader: bin/mac
 }
 
 // Package config

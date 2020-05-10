@@ -188,9 +188,9 @@ namespace Uno.Build
 
             var unoExe = _config.GetFullPath("UnoExe", false);
             if (unoExe != null)
-                Log.Warning(".unoconfig: 'UnoExe' is deprecated -- replace with 'Assemblies.Uno'");
+                Log.Warning(".unoconfig: 'UnoExe' is deprecated -- replace with 'Uno.Exe'");
             else
-                unoExe = _config.GetFullPath("Assemblies.Uno");
+                unoExe = _config.GetFullPath("Uno.Exe");
 
             _env.Set("Uno", PlatformDetection.IsWindows
                 ? unoExe.QuoteSpace()
