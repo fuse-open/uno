@@ -2,9 +2,9 @@
 using System.Net;
 using Uno.TestRunner.BasicTypes;
 
-namespace Uno.TestRunner.CLI
+namespace Uno.TestRunner
 {
-    public class UnoTestClient
+    public class Program
     {
         public static int Main(string[] args)
         {
