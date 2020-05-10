@@ -34,6 +34,5 @@ before_test:
 test_script:
   - nunit3-console
       src\test\Uno.TestRunner.Tests\bin\Release\Uno.TestRunner.Tests.dll
-      src\ux\Uno.UX.Markup.AST\Tests\bin\Release\Uno.UX.Markup.AST.Tests.dll
-      src\ux\Uno.UX.Markup.UXIL\Tests\bin\Release\Uno.UX.Markup.UXIL.Tests.dll
+      src\ux\Uno.UX.Markup.Tests\bin\Release\Uno.UX.Markup.Tests.dll
   - npm test %TARGET%

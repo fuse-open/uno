@@ -140,9 +140,9 @@
       <Project>{C4CF7639-0705-4093-B16D-3261A92F6260}</Project>
       <Name>Uno.Compiler.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ux\Uno.UX.Markup.CodeGeneration\Uno.UX.Markup.CodeGeneration.csproj">
-      <Project>{ED8E09C6-2288-469E-960C-A5E1D7CA50C3}</Project>
-      <Name>Uno.UX.Markup.CodeGeneration</Name>
+    <ProjectReference Include="..\..\ux\Uno.UX.Markup\Uno.UX.Markup.csproj">
+      <Project>{05538951-c4a9-4298-bba7-fe9f96e3ddc1}</Project>
+      <Name>Uno.UX.Markup</Name>
     </ProjectReference>
     <ProjectReference Include="..\Uno.ProjectFormat\Uno.ProjectFormat.csproj">
       <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
