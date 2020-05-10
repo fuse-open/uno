@@ -1,4 +1,4 @@
-# Uno/UX core
+# Uno/UX compiler
 
 [![AppVeyor build status](https://img.shields.io/appveyor/ci/fusetools/uno/master.svg?logo=appveyor&logoColor=silver&style=flat-square)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
 [![Travis CI build status](https://img.shields.io/travis/fuse-open/uno/master.svg?style=flat-square)](https://travis-ci.org/fuse-open/uno)
@@ -118,7 +118,7 @@ Please report issues [here](https://github.com/fuse-open/uno/issues).
 
 ### Code Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]
 <a href="https://github.com/fuse-open/uno/graphs/contributors"><img src="https://opencollective.com/fuse-open/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
