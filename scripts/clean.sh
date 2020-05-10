@@ -3,10 +3,7 @@ SELF=`echo $0 | sed 's/\\\\/\\//g'`
 cd "`dirname "$SELF"`/.." || exit 1
 source scripts/common.sh
 
-# Clean pack.sh artifacts
-rm -rf release upload
-
-# Clean Uno projects in `Packages.SourcePaths`
+# Clean stdlib
 IFS=$'\n'
 for dir in `uno config Packages.SourcePaths`; do
     if [ -d "$dir" ]; then
@@ -15,9 +12,12 @@ for dir in `uno config Packages.SourcePaths`; do
     fi
 done
 
-# Clean Uno projects in tests/
+# Clean tests
 uno clean --recursive tests
 
-# Clean C# projects
+# Clean C# solutions
 csharp-clean runtime.sln 1> /dev/null
 csharp-clean uno.sln 1> /dev/null
+
+# Clean other artifacts
+rm -rf bin packages
