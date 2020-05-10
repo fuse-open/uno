@@ -38,7 +38,7 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
     src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
 # Release build
-bash scripts/build.sh --release --version=$VERSION
+bash scripts/build.sh --install --release --version=$VERSION
 
 # Remove GlobalAssemblyInfo.Override.cs
 rm -f src/GlobalAssemblyInfo.Override.cs

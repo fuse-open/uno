@@ -3,16 +3,35 @@ SELF=`echo $0 | sed 's/\\\\/\\//g'`
 cd "`dirname "$SELF"`/.." || exit 1
 source scripts/common.sh
 
-if [ "$1" = --release ]; then
-    CONFIGURATION="Release"
-    shift
-elif [ -z "$CONFIGURATION" ]; then
+while [ $# -gt 0 ]; do
+    case "$1" in
+    -i|--install)
+        shift
+        INSTALL=1
+        ;;
+    -r|--release)
+        shift
+        CONFIGURATION="Release"
+        ;;
+    *)
+        break
+        ;;
+    esac
+done
+
+if [ -z "$CONFIGURATION" ]; then
     CONFIGURATION="Debug"
 fi
 
-h1 "Installing packages"
-nuget restore uno.sln
-nuget restore runtime.sln
+if [ ! -d packages/ ]; then
+    INSTALL=1
+fi
+
+if [ "$INSTALL" = 1 ]; then
+    h1 "Installing dependencies"
+    nuget restore uno.sln
+    nuget restore runtime.sln
+fi
 
 h1 "Building uno"
 csharp-build uno.sln
