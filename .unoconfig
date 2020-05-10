@@ -10,7 +10,3 @@ if WIN32 {
 
 // Package config
 Packages.SourcePaths += lib
-
-// Avoid overriding core settings when running an uno.exe other than 'bin/uno.exe',
-// to make sure assembly paths remain consistent.
-SkipIfNotRoot: true
