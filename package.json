@@ -1,7 +1,7 @@
 {
   "name": "@fuse-open/uno",
   "version": "1.15.0-canary.4",
-  "description": "Fast, native C# dialect and cross-compiler.",
+  "description": "Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.",
   "dependencies": {
     "dotnet-run": "^1.2.0"
   },

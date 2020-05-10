@@ -7,6 +7,8 @@
 [![Slack](https://img.shields.io/badge/chat-on%20slack-blue.svg?style=flat-square)](https://slackcommunity.fusetools.com/)
 [![Financial Contributors on Open Collective](https://opencollective.com/fuse-open/all/badge.svg?label=financial+contributors&style=flat-square)](https://opencollective.com/fuse-open)
 
+> Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.
+
 Welcome to Uno, the core component in [Fuse Open], a native app development tool suite.
 
 ## Install
