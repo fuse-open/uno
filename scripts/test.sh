@@ -17,7 +17,7 @@ fi
 # Run compiler tests
 function uno-compiler-test {
     for config in Debug Release; do
-        exe=src/testing/Uno.CompilerTestRunner/bin/$config/uno-compiler-test.exe
+        exe=src/test/Uno.CompilerTestRunner/bin/$config/uno-compiler-test.exe
         if [ -f $exe ]; then
             dotnet-clr $exe
             return $?
