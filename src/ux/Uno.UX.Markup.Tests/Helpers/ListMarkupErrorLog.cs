@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Uno.UX.Markup.Common;
 
-namespace Uno.UX.Markup.AST.Tests.Helpers
+namespace Uno.UX.Markup.Tests.Helpers
 {
     public class ListMarkupErrorLogSource : IEquatable<ListMarkupErrorLogSource>
     {

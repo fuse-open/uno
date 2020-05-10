@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using Uno.UX.Markup.AST.Tests.Helpers;
+using Uno.UX.Markup.Tests.Helpers;
 
-namespace Uno.UX.Markup.AST.Tests.ParserTests
+namespace Uno.UX.Markup.Tests.ParserTests
 {
     [TestFixture]
     public class ErrorTests

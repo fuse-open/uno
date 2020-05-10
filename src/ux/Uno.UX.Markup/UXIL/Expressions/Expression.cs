@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("Uno.UX.Markup.Tests")]
 
 namespace Uno.UX.Markup.UXIL.Expressions
 {

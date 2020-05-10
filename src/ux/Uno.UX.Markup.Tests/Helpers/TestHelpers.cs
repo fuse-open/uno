@@ -3,9 +3,10 @@ using System.IO;
 using System.Text;
 using System.Xml.Linq;
 using NUnit.Framework;
+using Uno.UX.Markup.AST;
 using Uno.UX.Markup.Common;
 
-namespace Uno.UX.Markup.AST.Tests.Helpers
+namespace Uno.UX.Markup.Tests.Helpers
 {
     public static class TestHelpers
     {

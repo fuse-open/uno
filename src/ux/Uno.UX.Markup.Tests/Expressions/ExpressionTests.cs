@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 using Uno.UX.Markup.UXIL.Expressions;
-using Uno.UX.Markup.UXIL.Tests.Helpers;
+using Uno.UX.Markup.Tests.Helpers;
 
-namespace Uno.UX.Markup.UXIL.Tests.Expressions
+namespace Uno.UX.Markup.Tests.Expressions
 {
     [TestFixture]
     public class ExpressionTests
