@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{26B75FBD-DBF7-4EBE-8B7B-5B04ACC28F13}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Uno.TestRunner</RootNamespace>
-    <AssemblyName>Uno.TestRunner</AssemblyName>
+    <AssemblyName>uno-test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,23 +24,39 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>$(SolutionDir)bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Options, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Mono.Options.6.6.0.161\lib\net40\Mono.Options.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
+    <Compile Include="BasicTypes\Assertion.cs" />
+    <Compile Include="BasicTypes\CommandLineOptions.cs" />
+    <Compile Include="BasicTypes\Test.cs" />
+    <Compile Include="Loggers\AbstractLogger.cs" />
+    <Compile Include="Loggers\ColorHelper.cs" />
+    <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="Loggers\ConsoleWriter.cs" />
+    <Compile Include="Loggers\FileHelpers.cs" />
+    <Compile Include="Loggers\ITestResultLogger.cs" />
+    <Compile Include="Loggers\IWriter.cs" />
+    <Compile Include="Loggers\LogFileWriter.cs" />
+    <Compile Include="Loggers\LoggerFactory.cs" />
     <Compile Include="ProjectDiscoverer.cs" />
     <Compile Include="TestProjectRunner.cs" />
     <Compile Include="DebugLogTestFilter.cs" />
     <Compile Include="TestRun.cs" />
     <Compile Include="UnoTest.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\tool\Uno.Build\Uno.Build.csproj">
@@ -55,18 +71,12 @@
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.TestRunner.BasicTypes\Uno.TestRunner.BasicTypes.csproj">
-      <Project>{1411310F-C68B-43EA-93F0-7E5FEEEE8AE5}</Project>
-      <Name>Uno.TestRunner.BasicTypes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Uno.TestRunner.Loggers\Uno.TestRunner.Loggers.csproj">
-      <Project>{1DD24807-AC00-4927-B837-DCEAE562C8D7}</Project>
-      <Name>Uno.TestRunner.Loggers</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

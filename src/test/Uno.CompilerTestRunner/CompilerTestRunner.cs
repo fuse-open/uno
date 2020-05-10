@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Uno.Build;
 using Uno.Build.Packages;
-using Uno.Build.Targets;
 using Uno.Logging;
 using Uno.ProjectFormat;
 using Uno.TestRunner.BasicTypes;

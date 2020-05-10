@@ -60,17 +60,13 @@
       <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
       <Name>Uno.ProjectFormat</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.TestRunner.BasicTypes\Uno.TestRunner.BasicTypes.csproj">
-      <Project>{1411310F-C68B-43EA-93F0-7E5FEEEE8AE5}</Project>
-      <Name>Uno.TestRunner.BasicTypes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Uno.TestRunner.Loggers\Uno.TestRunner.Loggers.csproj">
-      <Project>{1DD24807-AC00-4927-B837-DCEAE562C8D7}</Project>
-      <Name>Uno.TestRunner.Loggers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uno.TestRunner\Uno.TestRunner.csproj">
+      <Project>{26b75fbd-dbf7-4ebe-8b7b-5b04acc28f13}</Project>
+      <Name>Uno.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
