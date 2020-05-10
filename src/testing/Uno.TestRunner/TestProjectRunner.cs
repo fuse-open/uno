@@ -52,7 +52,7 @@ namespace Uno.TestRunner
                         OutputDirectory = outputDirectory,
                         WarningLevel = 1,
                         Library = _options.Library,
-                        PackageTarget = Build.Targets.BuildTargets.Package
+                        PackageTarget = BuildTargets.Package
                     };
 
                     options.Defines.AddRange(_options.Defines);

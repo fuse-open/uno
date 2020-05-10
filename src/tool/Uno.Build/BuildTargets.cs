@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Build.Targets;
 using Uno.Logging;
 
-namespace Uno.Build.Targets
+namespace Uno.Build
 {
     public static class BuildTargets
     {
