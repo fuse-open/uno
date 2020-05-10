@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props" Condition="Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -39,6 +41,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\lib\net45\Xamarin.Mac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -74,6 +79,21 @@
     <Compile Include="Stuff\StuffWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Targets\AndroidBuild.cs" />
+    <Compile Include="BuildTargets.cs" />
+    <Compile Include="Targets\DocsBuild.cs" />
+    <Compile Include="Targets\DotNetBuild.cs" />
+    <Compile Include="Targets\Generators\AndroidGenerator.cs" />
+    <Compile Include="Targets\Generators\CMakeGenerator.cs" />
+    <Compile Include="Targets\Generators\PackageGenerator.cs" />
+    <Compile Include="Targets\Generators\XcodeFile.cs" />
+    <Compile Include="Targets\Generators\XcodeGenerator.cs" />
+    <Compile Include="Targets\iOSBuild.cs" />
+    <Compile Include="Targets\MetadataBuild.cs" />
+    <Compile Include="Targets\NativeBuild.cs" />
+    <Compile Include="Targets\PackageBuild.cs" />
+    <Compile Include="Targets\PInvokeBuild.cs" />
+    <Compile Include="Targets\Utilities\DevelopmentTeam.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
@@ -83,6 +103,34 @@
     <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CIL\Uno.Compiler.Backends.CIL.csproj">
+      <Project>{b3b455c8-dd3d-4655-b10c-3c6be878911e}</Project>
+      <Name>Uno.Compiler.Backends.CIL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.CPlusPlus\Uno.Compiler.Backends.CPlusPlus.csproj">
+      <Project>{9e0318a1-528e-4afd-ab87-c8d58e0cd060}</Project>
+      <Name>Uno.Compiler.Backends.CPlusPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.Metadata\Uno.Compiler.Backends.Metadata.csproj">
+      <Project>{0a4e8b45-e8a4-4371-9e66-b0ef3c9d3b6f}</Project>
+      <Name>Uno.Compiler.Backends.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.OpenGL\Uno.Compiler.Backends.OpenGL.csproj">
+      <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
+      <Name>Uno.Compiler.Backends.OpenGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj">
+      <Project>{089a6b84-6e72-4bc9-b379-c4829dcf41cc}</Project>
+      <Name>Uno.Compiler.Backends.PInvoke</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.UnoDoc\Uno.Compiler.Backends.UnoDoc.csproj">
+      <Project>{eb7a1bf1-f78f-41ec-933d-e3a44c021e3d}</Project>
+      <Name>Uno.Compiler.Backends.UnoDoc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Extensions\Uno.Compiler.Extensions.csproj">
+      <Project>{853abab6-9ffd-4749-9d32-0a205c5e72b3}</Project>
+      <Name>Uno.Compiler.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
@@ -109,6 +157,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -117,4 +166,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\FuseOpen.Xamarin.Mac.3.4.0.2\build\net45\FuseOpen.Xamarin.Mac.props'))" />
+  </Target>
 </Project>

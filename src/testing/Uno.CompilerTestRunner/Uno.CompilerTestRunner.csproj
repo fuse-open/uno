@@ -52,10 +52,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\tool\Uno.Build.Targets\Uno.Build.Targets.csproj">
-      <Project>{387C856A-FB1A-4926-BD42-CABFE51485D8}</Project>
-      <Name>Uno.Build.Targets</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\tool\Uno.Build\Uno.Build.csproj">
       <Project>{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}</Project>
       <Name>Uno.Build</Name>
