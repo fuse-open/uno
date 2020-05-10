@@ -122,11 +122,11 @@
     <Resource Include="UnoIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\engine\Uno.Build.Targets\Uno.Build.Targets.csproj">
+    <ProjectReference Include="..\..\tool\Uno.Build.Targets\Uno.Build.Targets.csproj">
       <Project>{387c856a-fb1a-4926-bd42-cabfe51485d8}</Project>
       <Name>Uno.Build.Targets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\engine\Uno.Build\Uno.Build.csproj">
+    <ProjectReference Include="..\..\tool\Uno.Build\Uno.Build.csproj">
       <Project>{ee7b3e9e-c1af-41a1-8b71-42213dab19f4}</Project>
       <Name>Uno.Build</Name>
     </ProjectReference>

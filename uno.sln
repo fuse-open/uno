@@ -2,9 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D400}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI", "src\main\Uno.CLI\Uno.CLI.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI", "src\tool\Uno.CLI\Uno.CLI.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D401}"
 EndProject
@@ -30,15 +28,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Extensions", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Frontend", "src\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj", "{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "engine", "engine", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D404}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Build", "src\engine\Uno.Build\Uno.Build.csproj", "{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Build", "src\tool\Uno.Build\Uno.Build.csproj", "{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Build.Targets", "src\engine\Uno.Build.Targets\Uno.Build.Targets.csproj", "{387C856A-FB1A-4926-BD42-CABFE51485D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Build.Targets", "src\tool\Uno.Build.Targets\Uno.Build.Targets.csproj", "{387C856A-FB1A-4926-BD42-CABFE51485D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Configuration", "src\engine\Uno.Configuration\Uno.Configuration.csproj", "{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Configuration", "src\tool\Uno.Configuration\Uno.Configuration.csproj", "{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.ProjectFormat", "src\engine\Uno.ProjectFormat\Uno.ProjectFormat.csproj", "{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.ProjectFormat", "src\tool\Uno.ProjectFormat\Uno.ProjectFormat.csproj", "{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing", "testing", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D406}"
 EndProject
@@ -211,7 +209,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5813CAEE-0804-45C2-A0C7-E30720EFBB45} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D400}
+		{5813CAEE-0804-45C2-A0C7-E30720EFBB45} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D404}
 		{D159DC86-F510-4FCF-9573-E339BDD6D166} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D401}
 		{B819B724-1A1F-458E-A4AF-4A5BB330C2C4} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}
 		{B3B455C8-DD3D-4655-B10C-3C6BE878911E} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}

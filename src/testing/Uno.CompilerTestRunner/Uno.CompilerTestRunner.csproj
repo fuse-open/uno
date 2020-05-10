@@ -52,15 +52,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\engine\Uno.Build.Targets\Uno.Build.Targets.csproj">
+    <ProjectReference Include="..\..\tool\Uno.Build.Targets\Uno.Build.Targets.csproj">
       <Project>{387C856A-FB1A-4926-BD42-CABFE51485D8}</Project>
       <Name>Uno.Build.Targets</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\engine\Uno.Build\Uno.Build.csproj">
+    <ProjectReference Include="..\..\tool\Uno.Build\Uno.Build.csproj">
       <Project>{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}</Project>
       <Name>Uno.Build</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\engine\Uno.ProjectFormat\Uno.ProjectFormat.csproj">
+    <ProjectReference Include="..\..\tool\Uno.ProjectFormat\Uno.ProjectFormat.csproj">
       <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
       <Name>Uno.ProjectFormat</Name>
     </ProjectReference>
