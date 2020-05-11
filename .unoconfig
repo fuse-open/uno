@@ -1,5 +1,4 @@
 // Core config
-Uno.Test: bin/uno-test.exe
 Uno.Exe: bin/uno.exe
 
 if WIN32 {

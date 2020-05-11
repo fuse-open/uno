@@ -178,44 +178,39 @@ Available options
 ```
 Usage: uno test [target] [options] [paths-to-search]
 
+Run test project(s).
+
 [paths-to-search] is a list of paths to unoprojs to run tests from, and/or
 directories in which to search for test projects.
 When a directory is given, uno test searches recursively in that directory
 for projects named '*Test.unoproj'
 
-Available options:
-  -h, -?, --help             Show help
-  -r, --reporter=VALUE       Reporter type (not used)
-  -l, --logfile=VALUE        Write output to this file instead of stdout
-  -t, --target=VALUE         Build target. Supported: android, dotnet and native
-  -v, --verbose              Verbose, always prints output from compiler and
-                               debug_log
-  -q, --quiet                Quiet, only prints output from compiler and debug_
-                               log in case of errors.
-  -f, --filter=VALUE         Only run tests matching this string
-  -e, --regex-filter=VALUE   Only run tests matching this regular expression
-  -o, --timeout=VALUE        Timeout for individual tests (in seconds)
-      --startup-timeout=VALUE
-                             Timeout for connection from uno process (in
-                               seconds)
-      --trace                Print trace information from unotest
-      --only-build           Don't run compiled program.
-      --allow-debugger       Don't run compiled program, allow user to start it
-                               from a debugger.
-  -d, --debug                Open IDE for debugging tests.
-      --run-local            Run the test directly (not used)
-      --no-uninstall         Don't uninstall tests after running on device
-  -D, --define=VALUE         Add define, to enable a feature
-  -U, --undefine=VALUE       Remove define, to disable a feature
-      --output-dir=VALUE     Override output directory
-      --libs                 Rebuild package library if necessary
-
-Examples:
+Examples
   uno test
   uno test path/projects
   uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj
   uno test path/projects path/other-projects/FooTest.unoproj
   uno test native -v path/projects
+
+Available options
+  -l, --logfile=PATH          Write output to this file instead of stdout
+  -t, --target=STRING         Build target. Supported: android, dotnet and native
+  -v, --verbose               Verbose, always prints output from compiler and debug_log
+  -q, --quiet                 Quiet, only prints output from compiler and debug_log in case of errors.
+  -f, --filter=               Only run tests matching this string
+  -e, --regex-filter=STRING   Only run tests matching this regular expression
+      --trace                 Print trace information from unotest
+      --build-only            Don't run compiled program.
+      --no-uninstall          Don't uninstall tests after running on device
+  -D, --define=STRING         Add define, to enable a feature
+  -U, --undefine=STRING       Remove define, to disable a feature
+      --out-dir=PATH          Override output directory
+
+Available build targets
+  * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * native             C++/GL code, CMake project and native executable.
+  * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
 ## uno doctor

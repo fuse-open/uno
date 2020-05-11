@@ -16,11 +16,11 @@ namespace Uno.TestRunner
     public class TestProjectRunner
     {
         private readonly string _unoProj;
-        private readonly CommandLineOptions _options;
+        private readonly TestOptions _options;
         private readonly ITestResultLogger _logger;
         private TestRun _testRun;
 
-        public TestProjectRunner(string unoProj, CommandLineOptions options, ITestResultLogger logger)
+        public TestProjectRunner(string unoProj, TestOptions options, ITestResultLogger logger)
         {
             _unoProj = unoProj;
             _options = options;

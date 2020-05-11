@@ -20,7 +20,7 @@ namespace Uno.CLI
             new Projects.BuildCommand(),
             new Projects.NoBuild(),
             new Projects.Clean(),
-            new Testing.Test(),
+            new Projects.Test(),
             new Packages.Doctor(),
             new Diagnostics.Config(),
             new Diagnostics.Ls(),

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Uno.TestRunner.BasicTypes;
 using Uno.TestRunner.Loggers;
 
@@ -7,7 +9,7 @@ namespace Uno.TestRunner
 {
     public class UnoTest
     {
-        public static bool DiscoverAndRun(CommandLineOptions options)
+        public static bool DiscoverAndRun(TestOptions options)
         {
             var logger = LoggerFactory.CreateLogger(options);
             var discoveredProjects = ProjectDiscoverer.Discover(options.Paths, logger);

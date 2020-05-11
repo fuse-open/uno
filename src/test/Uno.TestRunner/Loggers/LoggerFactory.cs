@@ -5,7 +5,7 @@ namespace Uno.TestRunner.Loggers
 {
     public static class LoggerFactory
     {
-        public static ITestResultLogger CreateLogger(CommandLineOptions options)
+        public static ITestResultLogger CreateLogger(TestOptions options)
         {
             IWriter writer;
             if (string.IsNullOrEmpty(options.LogFileName))
