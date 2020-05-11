@@ -12,7 +12,6 @@ namespace Uno.Build.Targets
     {
         public override string Identifier => "iOS";
         public override string Description => "(Objective-)C++/GLES2 code and Xcode project. (macOS only)";
-        public override bool IsExperimental => !PlatformDetection.IsMac;
 
         public override Backend CreateBackend()
         {
