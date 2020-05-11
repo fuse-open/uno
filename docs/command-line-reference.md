@@ -133,12 +133,12 @@ GLSL options
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
-  * ios        (-x)    (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
-  * docs       (-x)    Uno documentation files.
-  * metadata   (-x)    Metadata for code completion.
-  * pinvoke    (-x)    PInvoke libraries.
-  * package    (-x)    Uno package files.
+  * docs               Uno documentation files.
+  * metadata           Metadata for code completion.
+  * pinvoke            PInvoke libraries.
+  * package            Uno package files.
 ```
 
 ## uno no-build
