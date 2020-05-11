@@ -15,19 +15,19 @@ int main(int argc, char **argv)
     NSString *monoBundleDir = [appDir stringByAppendingPathComponent: @"Contents/MonoBundle"];
     NSString *currentExeName = [[NSString stringWithUTF8String: argv[0]] lastPathComponent];
     NSString *monoExecutable = [monoBundleDir stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.exe", currentExeName]];
-    
+
     // Load mono
     NSString *monoRoot = @"/Library/Frameworks/Mono.framework/Versions/Current";
     NSString *libmonosgen = [monoRoot stringByAppendingPathComponent: @"lib/libmonosgen-2.0.dylib"];
     void *libMono = dlopen([libmonosgen UTF8String], RTLD_LAZY);
-    if (libMono == nil) 
+    if (libMono == nil)
     {
         NSLog(@"Failed to load '%@': %s.", libmonosgen, dlerror());
         return 1;
     }
 
     mono_main _mono_main = (mono_main) dlsym (libMono, "mono_main");
-    if (!_mono_main) 
+    if (!_mono_main)
     {
         NSLog(@"Could not load mono_main(): %s.", dlerror());
         return 1;
@@ -37,9 +37,11 @@ int main(int argc, char **argv)
     int nargc = argc + 1;
     const char **newArgs = (const char**)malloc(sizeof(char)*nargc);
     int i = 0;
-    for(int j = 0;j < argc;++j)
-        newArgs[i++] = argv[j];    
-    newArgs[i++] = [monoExecutable UTF8String]; 
+
+    newArgs[i++] = argv[0];
+    newArgs[i++] = [monoExecutable UTF8String];
+    for(int j = 1; j < argc; ++j)
+        newArgs[i++] = argv[j];
 
     int result = _mono_main(nargc, newArgs);
     [pool drain];
