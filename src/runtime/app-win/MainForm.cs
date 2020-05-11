@@ -20,7 +20,7 @@ namespace Uno.AppLoader
         FormBorderStyle _style = FormBorderStyle.Sizable;
         readonly UnoGLControl _control = new UnoGLControl();
 
-        public MainForm()
+        public MainForm(Action initializeApp)
         {
             InitializeComponent();
             Controls.Add(_control);
@@ -32,7 +32,7 @@ namespace Uno.AppLoader
             FormClosed += (sender, e) => _control.OnClosed();
             Title = GetAssemblyTitle();
 
-            LoadApplication();
+            initializeApp();
             Platform2.Internal.Application.Start();
         }
 
@@ -46,12 +46,6 @@ namespace Uno.AppLoader
             return (string) typeof(MainForm).Assembly.CustomAttributes
                 .First(a => a.AttributeType.Name == "AssemblyTitleAttribute")
                 .ConstructorArguments.First().Value;
-        }
-
-        void LoadApplication()
-        {
-            // The Uno compiler will replace this
-            new DummyApp();
         }
 
         public void MainLoop()

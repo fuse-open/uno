@@ -30,8 +30,8 @@ namespace Uno.AppLoader
             _window.MakeKeyAndOrderFront (_control);
             _control.Initialize();
 
-            LoadApplication();
-            Uno.Platform2.Internal.Application.Start();
+            Program.UnoGenerated();
+            Platform2.Internal.Application.Start();
             _control.Run(60.0);
         }
 
@@ -40,12 +40,6 @@ namespace Uno.AppLoader
             return (string) typeof(AppDelegate).Assembly.CustomAttributes
                 .First(a => a.AttributeType.Name == "AssemblyTitleAttribute")
                 .ConstructorArguments.First().Value;
-        }
-
-        void LoadApplication()
-        {
-            // The Uno compiler will replace this
-            new DummyUnoApp();
         }
     }
 }

@@ -1,10 +1,14 @@
 // Core config
+AppLoader.Mac: bin/mac
+AppLoader.Windows: bin/win
 Uno.Exe: bin/uno.exe
 
 if WIN32 {
-    Uno.AppLoader: bin/win
+    AppLoader.Exe: bin/win/uno-app.exe
 } else if MAC {
-    Uno.AppLoader: bin/mac
+    AppLoader.Exe: bin/mac/uno-app.exe
+} else {
+    AppLoader.Exe: bin/generic/uno-app.exe
 }
 
 // Package config

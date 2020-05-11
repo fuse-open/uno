@@ -13,7 +13,7 @@ namespace Uno.AppLoader
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             DpiAwareness.SetDpiAware(DpiAwareness.ProcessDpiAwareness.SystemAware);
-            new MainForm().MainLoop();
+            new MainForm(UnoGenerated).MainLoop();
         }
 
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
@@ -29,6 +29,12 @@ namespace Uno.AppLoader
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
+        }
+
+        static void UnoGenerated()
+        {
+            // Uno compiler will replace this.
+            new DummyApp();
         }
     }
 }
