@@ -1,7 +1,0 @@
-digraph {
-    Core -> Frontend -> API;
-    Foreign -> Backends -> API;
-    Plugins -> API;
-    Common [style=dashed];
-    API -> Common [style=dashed];
-}

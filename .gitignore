@@ -48,7 +48,6 @@ build/
 .vs/
 **/bin/
 obj/
-/diagrams/
 /packages/
 /release/
 /upload/
