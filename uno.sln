@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.UnoDo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Core", "src\compiler\Uno.Compiler.Core\Uno.Compiler.Core.csproj", "{C4CF7639-0705-4093-B16D-3261A92F6260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Extensions", "src\compiler\Uno.Compiler.Extensions\Uno.Compiler.Extensions.csproj", "{853ABAB6-9FFD-4749-9D32-0A205C5E72B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Foreign", "src\compiler\Uno.Compiler.Foreign\Uno.Compiler.Foreign.csproj", "{853ABAB6-9FFD-4749-9D32-0A205C5E72B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Frontend", "src\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj", "{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}"
 EndProject

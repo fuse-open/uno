@@ -114,9 +114,9 @@
       <Project>{c4cf7639-0705-4093-b16d-3261a92f6260}</Project>
       <Name>Uno.Compiler.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Extensions\Uno.Compiler.Extensions.csproj">
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Foreign\Uno.Compiler.Foreign.csproj">
       <Project>{853abab6-9ffd-4749-9d32-0a205c5e72b3}</Project>
-      <Name>Uno.Compiler.Extensions</Name>
+      <Name>Uno.Compiler.Foreign</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

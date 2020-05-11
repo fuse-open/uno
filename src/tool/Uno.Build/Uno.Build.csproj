@@ -128,9 +128,9 @@
       <Project>{eb7a1bf1-f78f-41ec-933d-e3a44c021e3d}</Project>
       <Name>Uno.Compiler.Backends.UnoDoc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Extensions\Uno.Compiler.Extensions.csproj">
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Foreign\Uno.Compiler.Foreign.csproj">
       <Project>{853abab6-9ffd-4749-9d32-0a205c5e72b3}</Project>
-      <Name>Uno.Compiler.Extensions</Name>
+      <Name>Uno.Compiler.Foreign</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
