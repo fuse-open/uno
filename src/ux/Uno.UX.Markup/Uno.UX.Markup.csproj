@@ -106,9 +106,9 @@
       <Project>{b819b724-1a1f-458e-a4af-4a5bb330c2c4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.OpenGL\Uno.Compiler.Backends.OpenGL.csproj">
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Graphics.OpenGL\Uno.Compiler.Graphics.OpenGL.csproj">
       <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
-      <Name>Uno.Compiler.Backends.OpenGL</Name>
+      <Name>Uno.Compiler.Graphics.OpenGL</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Core\Uno.Compiler.Core.csproj">
       <Project>{c4cf7639-0705-4093-b16d-3261a92f6260}</Project>

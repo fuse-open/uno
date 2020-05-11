@@ -116,9 +116,9 @@
       <Project>{0a4e8b45-e8a4-4371-9e66-b0ef3c9d3b6f}</Project>
       <Name>Uno.Compiler.Backends.Metadata</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.OpenGL\Uno.Compiler.Backends.OpenGL.csproj">
+    <ProjectReference Include="..\..\compiler\Uno.Compiler.Graphics.OpenGL\Uno.Compiler.Graphics.OpenGL.csproj">
       <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
-      <Name>Uno.Compiler.Backends.OpenGL</Name>
+      <Name>Uno.Compiler.Graphics.OpenGL</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\compiler\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj">
       <Project>{089a6b84-6e72-4bc9-b379-c4829dcf41cc}</Project>

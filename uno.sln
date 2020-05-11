@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.CIL",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.CPlusPlus", "src\compiler\Uno.Compiler.Backends.CPlusPlus\Uno.Compiler.Backends.CPlusPlus.csproj", "{9E0318A1-528E-4AFD-AB87-C8D58E0CD060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.OpenGL", "src\compiler\Uno.Compiler.Backends.OpenGL\Uno.Compiler.Backends.OpenGL.csproj", "{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Graphics.OpenGL", "src\compiler\Uno.Compiler.Graphics.OpenGL\Uno.Compiler.Graphics.OpenGL.csproj", "{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.PInvoke", "src\compiler\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj", "{089A6B84-6E72-4BC9-B379-C4829DCF41CC}"
 EndProject
@@ -53,6 +53,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\compiler\IKVM.Reflection\reflect\IKVM.Reflection.csproj", "{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.Metadata", "src\compiler\Uno.Compiler.Backends.Metadata\Uno.Compiler.Backends.Metadata.csproj", "{0A4E8B45-E8A4-4371-9E66-B0EF3C9D3B6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{9F736FD4-CA38-4A73-BA0F-302FF323E043}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -170,6 +172,7 @@ Global
 		{05538951-C4A9-4298-BBA7-FE9F96E3DDC1} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D407}
 		{4CB170EF-DFE6-4A56-9E1B-A85449E827A7} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}
 		{0A4E8B45-E8A4-4371-9E66-B0EF3C9D3B6F} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}
+		{9F736FD4-CA38-4A73-BA0F-302FF323E043} = {4E38220C-6F5B-7B70-8691-9CB2BFD3D402}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2804552-8993-4386-8F1F-49F98D24EBAA}
