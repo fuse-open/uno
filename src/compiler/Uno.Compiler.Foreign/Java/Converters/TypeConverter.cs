@@ -4,7 +4,7 @@ using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Types;
 
-namespace Uno.Compiler.Extensions.Foreign.Java.Converters
+namespace Uno.Compiler.Foreign.Java.Converters
 {
     internal partial class Converter
 	{

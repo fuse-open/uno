@@ -8,10 +8,10 @@ using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.API.Domain.IL.Types;
 using Uno.Compiler.Backends.CPlusPlus;
-using Uno.Compiler.Extensions.Foreign.CPlusPlus;
+using Uno.Compiler.Foreign.CPlusPlus;
 using Uno.IO;
 
-namespace Uno.Compiler.Extensions.Foreign
+namespace Uno.Compiler.Foreign
 {
     enum ErrorCode
     {

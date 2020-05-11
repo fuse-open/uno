@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
 
-namespace Uno.Compiler.Extensions.Foreign.Java
+namespace Uno.Compiler.Foreign.Java
 {
     internal class MacroParam
 	{

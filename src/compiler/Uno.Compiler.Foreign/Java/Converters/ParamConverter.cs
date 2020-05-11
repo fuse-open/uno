@@ -1,6 +1,6 @@
 ﻿using Uno.Compiler.API.Domain.IL.Members;
 
-namespace Uno.Compiler.Extensions.Foreign.Java.Converters
+namespace Uno.Compiler.Foreign.Java.Converters
 {
     internal partial class Converter
 	{

@@ -4,7 +4,7 @@ using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.Backends.CPlusPlus;
 
-namespace Uno.Compiler.Extensions.Foreign.Java
+namespace Uno.Compiler.Foreign.Java
 {
     partial class ForeignJavaPass : ForeignPass
     {		

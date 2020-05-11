@@ -4,10 +4,10 @@ using System.IO;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.Backends.CPlusPlus;
-using Uno.Compiler.Extensions.Foreign.ObjC;
+using Uno.Compiler.Foreign.ObjC;
 using Uno.IO;
 
-namespace Uno.Compiler.Extensions.Foreign
+namespace Uno.Compiler.Foreign
 {
     public class ForeignFilePass : Pass
     {

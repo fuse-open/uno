@@ -2,7 +2,7 @@
 using System.IO;
 using Uno.IO;
 
-namespace Uno.Compiler.Extensions.Foreign.Java
+namespace Uno.Compiler.Foreign.Java
 {
     internal class UnoCallToForeignMethod
 	{

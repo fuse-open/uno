@@ -12,7 +12,7 @@ using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.Compiler.API.Domain.IL.Types;
 using Uno.Compiler.Backends.CPlusPlus;
 
-namespace Uno.Compiler.Extensions.Foreign
+namespace Uno.Compiler.Foreign
 {
 	class ForeignHelpers
 	{

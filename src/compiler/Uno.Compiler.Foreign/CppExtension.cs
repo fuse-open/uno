@@ -1,10 +1,9 @@
 ﻿using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.CPlusPlus;
-using Uno.Compiler.Extensions.Foreign;
-using Uno.Compiler.Extensions.Foreign.Java;
-using Uno.Compiler.Extensions.Foreign.ObjC;
+using Uno.Compiler.Foreign.Java;
+using Uno.Compiler.Foreign.ObjC;
 
-namespace Uno.Compiler.Extensions
+namespace Uno.Compiler.Foreign
 {
     public class CppExtension : BackendExtension
     {

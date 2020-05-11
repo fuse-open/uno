@@ -3,7 +3,7 @@ using System.Runtime.Remoting.Messaging;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
 
-namespace Uno.Compiler.Extensions.Foreign.ObjC
+namespace Uno.Compiler.Foreign.ObjC
 {
     [Flags]
     enum ConversionFlags

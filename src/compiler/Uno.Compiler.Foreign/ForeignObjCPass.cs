@@ -12,7 +12,7 @@ using Uno.Compiler.API.Domain.IL.Types;
 using Uno.Compiler.Backends.CPlusPlus;
 using Uno.IO;
 
-namespace Uno.Compiler.Extensions.Foreign.ObjC
+namespace Uno.Compiler.Foreign.ObjC
 {
     class ForeignObjCPass : ForeignPass
     {

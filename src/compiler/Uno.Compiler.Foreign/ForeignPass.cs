@@ -2,7 +2,7 @@
 using Uno.Compiler.Backends.CPlusPlus;
 using System.Collections.Generic;
 
-namespace Uno.Compiler.Extensions.Foreign
+namespace Uno.Compiler.Foreign
 {
 	abstract class ForeignPass : Pass
 	{
