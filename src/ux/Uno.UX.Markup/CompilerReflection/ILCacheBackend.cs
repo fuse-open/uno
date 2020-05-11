@@ -1,5 +1,5 @@
 ﻿using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.OpenGL;
+using Uno.Compiler.Graphics.OpenGL;
 
 namespace Uno.UX.Markup.CompilerReflection
 {

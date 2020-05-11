@@ -10,7 +10,7 @@ using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.Compiler.API.Domain.IL.Types;
 
-namespace Uno.Compiler.Backends.OpenGL
+namespace Uno.Compiler.Graphics.OpenGL
 {
     class GLGenerator : ShaderPass
     {

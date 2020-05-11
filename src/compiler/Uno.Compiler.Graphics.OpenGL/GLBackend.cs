@@ -5,7 +5,7 @@ using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Expressions;
 using Uno.Compiler.API.Domain.IL.Members;
 
-namespace Uno.Compiler.Backends.OpenGL
+namespace Uno.Compiler.Graphics.OpenGL
 {
     public class GLBackend : ShaderBackend
     {

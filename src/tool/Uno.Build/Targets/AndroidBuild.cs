@@ -6,7 +6,7 @@ using Uno.Build.Targets.Generators;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.CPlusPlus;
-using Uno.Compiler.Backends.OpenGL;
+using Uno.Compiler.Graphics.OpenGL;
 using Uno.Compiler.Foreign;
 using Uno.IO;
 

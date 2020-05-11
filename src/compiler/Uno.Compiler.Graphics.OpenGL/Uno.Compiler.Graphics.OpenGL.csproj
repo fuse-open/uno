@@ -6,8 +6,8 @@
     <ProjectGuid>{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Uno.Compiler.Backends.OpenGL</RootNamespace>
-    <AssemblyName>Uno.Compiler.Backends.OpenGL</AssemblyName>
+    <RootNamespace>Uno.Compiler.Graphics.OpenGL</RootNamespace>
+    <AssemblyName>Uno.Compiler.Graphics.OpenGL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

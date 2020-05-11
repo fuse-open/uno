@@ -1,6 +1,6 @@
 ﻿using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.CIL;
-using Uno.Compiler.Backends.OpenGL;
+using Uno.Compiler.Graphics.OpenGL;
 
 namespace Uno.Build.Targets
 {
