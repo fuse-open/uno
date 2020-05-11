@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CLI", "src\tool\Uno.CLI\Uno.CLI.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uno", "src\tool\uno\uno.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D401}"
 EndProject
@@ -38,7 +38,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.ProjectFormat", "src\to
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.CompilerTestRunner", "src\test\Uno.CompilerTestRunner\Uno.CompilerTestRunner.csproj", "{452AD3C8-8B77-4188-B70F-C9AFF210F45C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "compiler-test", "src\test\compiler-test\compiler-test.csproj", "{452AD3C8-8B77-4188-B70F-C9AFF210F45C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.TestRunner", "src\test\Uno.TestRunner\Uno.TestRunner.csproj", "{26B75FBD-DBF7-4EBE-8B7B-5B04ACC28F13}"
 EndProject
