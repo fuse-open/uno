@@ -64,6 +64,16 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpenTK\BufferDisposable.cs" />
+    <Compile Include="OpenTK\FramebufferDisposable.cs" />
+    <Compile Include="OpenTK\GL.cs" />
+    <Compile Include="OpenTK\GLHelpers.cs" />
+    <Compile Include="OpenTK\GLVersion.cs" />
+    <Compile Include="OpenTK\IContextObjectDisposable.cs" />
+    <Compile Include="OpenTK\ProgramDisposable.cs" />
+    <Compile Include="OpenTK\RenderbufferDisposable.cs" />
+    <Compile Include="OpenTK\ShaderDisposable.cs" />
+    <Compile Include="OpenTK\TextureDisposable.cs" />
     <Compile Include="Program.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -90,26 +100,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="IUnoWindow.cs" />
-    <Compile Include="RenderingContextInfo.cs" />
-    <Compile Include="UnoGLControl.cs">
+    <Compile Include="WinForms\IUnoWindow.cs" />
+    <Compile Include="WinForms\RenderingContextInfo.cs" />
+    <Compile Include="WinForms\UnoGLControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="WheelDeltaMode.cs" />
-    <Compile Include="WinFormsGraphicsContext.cs" />
-    <Compile Include="WinFormsHelper.cs" />
-    <Compile Include="WinFormsPlatformWindow.cs" />
+    <Compile Include="WinForms\WheelDeltaMode.cs" />
+    <Compile Include="WinForms\WinFormsGraphicsContext.cs" />
+    <Compile Include="WinForms\WinFormsHelper.cs" />
+    <Compile Include="WinForms\WinFormsPlatformWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Uno.Support.OpenTK\Uno.Support.OpenTK.csproj">
-      <Project>{6B1665F8-45F6-4610-8365-8EC747378186}</Project>
-      <Name>Uno.Support.OpenTK</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="d3dcompiler_47.dll">
@@ -122,6 +126,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

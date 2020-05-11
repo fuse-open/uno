@@ -17,7 +17,6 @@
     <Require UnmanagedLibrary="@(PrebuiltDirectory)/Xamarin.Mac.dll" Condition="HOST_MAC" />
     <Require UnmanagedLibrary="@(PrebuiltDirectory)/libxammac.dylib" Condition="HOST_MAC" />
     <Require UnmanagedLibrary="@(PrebuiltDirectory)/OpenTK.dll" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/Uno.Support.OpenTK.dll" Condition="!HOST_MAC" />
     <Require UnmanagedLibrary="@(PrebuiltDirectory)/libEGL.dll" Condition="HOST_WIN32" />
     <Require UnmanagedLibrary="@(PrebuiltDirectory)/libGLESv2.dll" Condition="HOST_WIN32" />
     <Require UnmanagedLibrary="@(PrebuiltDirectory)/d3dcompiler_47.dll" Condition="HOST_WIN32" />
