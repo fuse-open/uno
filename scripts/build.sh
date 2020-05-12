@@ -36,6 +36,7 @@ fi
 
 h1 "Building uno"
 csharp-build uno.sln
+chmod +x bin/uno
 
 h1 "Building runtime"
 uno build lib/UnoCore -DLIBRARY
