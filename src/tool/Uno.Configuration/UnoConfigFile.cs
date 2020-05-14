@@ -12,14 +12,7 @@ namespace Uno.Configuration
     public class UnoConfigFile
     {
         public static readonly HashSet<string> Defines = new HashSet<string>(EnumerateDefines());
-        public static readonly Dictionary<string, string> Constants = new Dictionary<string, string>
-        {
-#if DEBUG
-            {"Configuration", "Debug"}
-#else
-            {"Configuration", "Release"}
-#endif
-        };
+        public static readonly Dictionary<string, string> Constants = new Dictionary<string, string>();
 
         static IEnumerable<string> EnumerateDefines()
         {
