@@ -240,7 +240,7 @@ namespace Uno.Compiler.Backends.CIL
                     result = asm.GetType(dt.CilTypeName());
 
                 if (result == null)
-                    throw new FatalException(dt.Source, ErrorCode.E0000, ".NET type not resolved: " + dt + " [flags: " + dt.Stats + "]");
+                    throw new FatalException(dt.Source, ErrorCode.E0000, ".NET type not resolved: " + dt + " [flags: " + dt.Stats.ToString().ToLower() + "]");
             }
 
             _types.Add(dt, result);
@@ -404,7 +404,7 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             if (result == null)
-                throw new FatalException(f.Source, ErrorCode.E0000, ".NET method not resolved: " + f + " [flags: " + f.Stats + "]");
+                throw new FatalException(f.Source, ErrorCode.E0000, ".NET method not resolved: " + f + " [flags: " + f.Stats.ToString().ToLower() + "]");
 
             _methods.Add(f, result);
             return result;
@@ -438,7 +438,7 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             if (result == null)
-                throw new FatalException(f.Source, ErrorCode.E0000, ".NET constructor not resolved: " + f + " [flags: " + f.Stats + "]");
+                throw new FatalException(f.Source, ErrorCode.E0000, ".NET constructor not resolved: " + f + " [flags: " + f.Stats.ToString().ToLower() + "]");
 
             _constructors.Add(f, result);
             return result;
@@ -461,7 +461,7 @@ namespace Uno.Compiler.Backends.CIL
                 result = type.GetField(f.Name, _memberFlags);
 
             if (result == null)
-                throw new FatalException(f.Source, ErrorCode.E0000, ".NET field not resolved: " + f + " [flags: " + f.Stats + "]");
+                throw new FatalException(f.Source, ErrorCode.E0000, ".NET field not resolved: " + f + " [flags: " + f.Stats.ToString().ToLower() + "]");
 
             _fields.Add(f, result);
             return result;
@@ -486,7 +486,7 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             if (result == null)
-                throw new FatalException(dt.Source, ErrorCode.E0000, ".NET delegate constructor not resolved: " + dt + " [flags: " + dt.Stats + "]");
+                throw new FatalException(dt.Source, ErrorCode.E0000, ".NET delegate constructor not resolved: " + dt + " [flags: " + dt.Stats.ToString().ToLower() + "]");
 
             _typeConstructors.Add(dt, result);
             return result;
@@ -518,7 +518,7 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             if (result == null)
-                throw new FatalException(dt.Source, ErrorCode.E0000, ".NET delegate invoke method not resolved: " + dt + " [flags: " + dt.Stats + "]");
+                throw new FatalException(dt.Source, ErrorCode.E0000, ".NET delegate invoke method not resolved: " + dt + " [flags: " + dt.Stats.ToString().ToLower() + "]");
 
             _typeMethods.Add(dt, result);
             return result;
