@@ -59,15 +59,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
       <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Core\Uno.Compiler.Core.csproj">
+    <ProjectReference Include="..\..\compiler\core\Uno.Compiler.Core.csproj">
       <Project>{c4cf7639-0705-4093-b16d-3261a92f6260}</Project>
       <Name>Uno.Compiler.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.UX.Markup\Uno.UX.Markup.csproj">
+    <ProjectReference Include="..\markup\Uno.UX.Markup.csproj">
       <Project>{05538951-c4a9-4298-bba7-fe9f96e3ddc1}</Project>
       <Name>Uno.UX.Markup</Name>
     </ProjectReference>

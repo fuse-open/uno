@@ -2,55 +2,55 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uno", "src\tool\uno\uno.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uno", "src\tool\cli\uno.csproj", "{5813CAEE-0804-45C2-A0C7-E30720EFBB45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Common", "src\common\Uno.Common\Uno.Common.csproj", "{D159DC86-F510-4FCF-9573-E339BDD6D166}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Common", "src\common\Uno.Common.csproj", "{D159DC86-F510-4FCF-9573-E339BDD6D166}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "compiler", "compiler", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.API", "src\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj", "{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.API", "src\compiler\api\Uno.Compiler.API.csproj", "{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.CIL", "src\compiler\Uno.Compiler.Backends.CIL\Uno.Compiler.Backends.CIL.csproj", "{B3B455C8-DD3D-4655-B10C-3C6BE878911E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.CIL", "src\compiler\backend\cil\Uno.Compiler.Backends.CIL.csproj", "{B3B455C8-DD3D-4655-B10C-3C6BE878911E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.CPlusPlus", "src\compiler\Uno.Compiler.Backends.CPlusPlus\Uno.Compiler.Backends.CPlusPlus.csproj", "{9E0318A1-528E-4AFD-AB87-C8D58E0CD060}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.CPlusPlus", "src\compiler\backend\cpp\Uno.Compiler.Backends.CPlusPlus.csproj", "{9E0318A1-528E-4AFD-AB87-C8D58E0CD060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Graphics.OpenGL", "src\compiler\Uno.Compiler.Graphics.OpenGL\Uno.Compiler.Graphics.OpenGL.csproj", "{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Graphics.OpenGL", "src\compiler\graphics\opengl\Uno.Compiler.Graphics.OpenGL.csproj", "{AFCAAF4E-198D-45F5-A019-ACED9CDCCADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.PInvoke", "src\compiler\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj", "{089A6B84-6E72-4BC9-B379-C4829DCF41CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.PInvoke", "src\compiler\backend\pinvoke\Uno.Compiler.Backends.PInvoke.csproj", "{089A6B84-6E72-4BC9-B379-C4829DCF41CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.UnoDoc", "src\compiler\Uno.Compiler.Backends.UnoDoc\Uno.Compiler.Backends.UnoDoc.csproj", "{EB7A1BF1-F78F-41EC-933D-E3A44C021E3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.UnoDoc", "src\compiler\backend\unodoc\Uno.Compiler.Backends.UnoDoc.csproj", "{EB7A1BF1-F78F-41EC-933D-E3A44C021E3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Core", "src\compiler\Uno.Compiler.Core\Uno.Compiler.Core.csproj", "{C4CF7639-0705-4093-B16D-3261A92F6260}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Core", "src\compiler\core\Uno.Compiler.Core.csproj", "{C4CF7639-0705-4093-B16D-3261A92F6260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Foreign", "src\compiler\Uno.Compiler.Foreign\Uno.Compiler.Foreign.csproj", "{853ABAB6-9FFD-4749-9D32-0A205C5E72B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Foreign", "src\compiler\foreign\Uno.Compiler.Foreign.csproj", "{853ABAB6-9FFD-4749-9D32-0A205C5E72B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Frontend", "src\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj", "{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Frontend", "src\compiler\frontend\Uno.Compiler.Frontend.csproj", "{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Build", "src\tool\Uno.Build\Uno.Build.csproj", "{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Build", "src\tool\engine\Uno.Build.csproj", "{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Configuration", "src\tool\Uno.Configuration\Uno.Configuration.csproj", "{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Configuration", "src\tool\config\Uno.Configuration.csproj", "{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.ProjectFormat", "src\tool\Uno.ProjectFormat\Uno.ProjectFormat.csproj", "{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.ProjectFormat", "src\tool\project\Uno.ProjectFormat.csproj", "{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D406}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "compiler-test", "src\test\compiler-test\compiler-test.csproj", "{452AD3C8-8B77-4188-B70F-C9AFF210F45C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.TestRunner", "src\test\Uno.TestRunner\Uno.TestRunner.csproj", "{26B75FBD-DBF7-4EBE-8B7B-5B04ACC28F13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.TestRunner", "src\test\runner\Uno.TestRunner.csproj", "{26B75FBD-DBF7-4EBE-8B7B-5B04ACC28F13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.TestRunner.Tests", "src\test\Uno.TestRunner.Tests\Uno.TestRunner.Tests.csproj", "{CD586CDD-BA3B-4673-ABE8-97C867B8445A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.TestRunner.Tests", "src\test\tests\Uno.TestRunner.Tests.csproj", "{CD586CDD-BA3B-4673-ABE8-97C867B8445A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ux", "ux", "{4E38220C-6F5B-7B70-8691-9CB2BFD3D407}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup.Tests", "src\ux\Uno.UX.Markup.Tests\Uno.UX.Markup.Tests.csproj", "{5FBF0E14-E093-47D7-A331-B3709A63D409}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup.Tests", "src\ux\tests\Uno.UX.Markup.Tests.csproj", "{5FBF0E14-E093-47D7-A331-B3709A63D409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup", "src\ux\Uno.UX.Markup\Uno.UX.Markup.csproj", "{05538951-C4A9-4298-BBA7-FE9F96E3DDC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup", "src\ux\markup\Uno.UX.Markup.csproj", "{05538951-C4A9-4298-BBA7-FE9F96E3DDC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\compiler\IKVM.Reflection\reflect\IKVM.Reflection.csproj", "{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\compiler\backend\ikvm\reflect\IKVM.Reflection.csproj", "{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.Metadata", "src\compiler\Uno.Compiler.Backends.Metadata\Uno.Compiler.Backends.Metadata.csproj", "{0A4E8B45-E8A4-4371-9E66-B0EF3C9D3B6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.Compiler.Backends.Metadata", "src\compiler\backend\meta\Uno.Compiler.Backends.Metadata.csproj", "{0A4E8B45-E8A4-4371-9E66-B0EF3C9D3B6F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{9F736FD4-CA38-4A73-BA0F-302FF323E043}"
 EndProject

@@ -54,7 +54,7 @@
     <Compile Include="UnoConfigString.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
       <Project>{d159dc86-f510-4fcf-9573-e339bdd6d166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>

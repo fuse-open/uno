@@ -31,5 +31,5 @@
 CHANGELOG.md merge=union
 
 # Mark vendored code
-src/compiler/IKVM.Reflection/**                 linguist-vendored
+src/compiler/backend/ikvm/**                    linguist-vendored
 lib/Uno.Data.Xml/Targets/CPlusPlus/Source/**    linguist-vendored

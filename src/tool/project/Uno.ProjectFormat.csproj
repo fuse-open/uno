@@ -66,11 +66,11 @@
     <Compile Include="UnoprojSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Configuration\Uno.Configuration.csproj">
+    <ProjectReference Include="..\config\Uno.Configuration.csproj">
       <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
       <Name>Uno.Configuration</Name>
     </ProjectReference>

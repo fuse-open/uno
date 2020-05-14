@@ -433,7 +433,7 @@
     <Compile Include="Utilities\IKeywords.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>

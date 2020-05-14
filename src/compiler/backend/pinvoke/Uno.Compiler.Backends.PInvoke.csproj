@@ -29,22 +29,22 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <Import Project="..\..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="PInvokeDecompiler.cs" />
     <Compile Include="PInvokeBackend.cs" />
     <Compile Include="PInvokeWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IKVM.Reflection\reflect\IKVM.Reflection.csproj">
+    <ProjectReference Include="..\ikvm\reflect\IKVM.Reflection.csproj">
       <Project>{4cb170ef-dfe6-4a56-9e1b-a85449e827a7}</Project>
       <Name>IKVM.Reflection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Compiler.API\Uno.Compiler.API.csproj">
+    <ProjectReference Include="..\..\api\Uno.Compiler.API.csproj">
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\..\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>

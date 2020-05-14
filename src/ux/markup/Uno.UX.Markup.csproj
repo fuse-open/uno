@@ -94,27 +94,27 @@
     <Compile Include="XmlHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\compiler\Uno.Compiler.Frontend\Uno.Compiler.Frontend.csproj">
+    <ProjectReference Include="..\..\..\src\compiler\frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301a9-d14e-48c0-a757-2dbd2d4d0e3f}</Project>
       <Name>Uno.Compiler.Frontend</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\src\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\..\src\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.API\Uno.Compiler.API.csproj">
+    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj">
       <Project>{b819b724-1a1f-458e-a4af-4a5bb330c2c4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Graphics.OpenGL\Uno.Compiler.Graphics.OpenGL.csproj">
+    <ProjectReference Include="..\..\compiler\graphics\opengl\Uno.Compiler.Graphics.OpenGL.csproj">
       <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
       <Name>Uno.Compiler.Graphics.OpenGL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Core\Uno.Compiler.Core.csproj">
+    <ProjectReference Include="..\..\compiler\core\Uno.Compiler.Core.csproj">
       <Project>{c4cf7639-0705-4093-b16d-3261a92f6260}</Project>
       <Name>Uno.Compiler.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\compiler\Uno.Compiler.Foreign\Uno.Compiler.Foreign.csproj">
+    <ProjectReference Include="..\..\compiler\foreign\Uno.Compiler.Foreign.csproj">
       <Project>{853abab6-9ffd-4749-9d32-0a205c5e72b3}</Project>
       <Name>Uno.Compiler.Foreign</Name>
     </ProjectReference>

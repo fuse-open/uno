@@ -34,21 +34,21 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Cecil, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.dll</HintPath>
+      <HintPath>..\..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+      <HintPath>..\..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>..\..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks, Version=0.11.2.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>..\..\..\..\packages\Mono.Cecil.0.11.2\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <Import Project="..\..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="AppLoader.cs" />
     <Compile Include="CilBackend.cs" />
@@ -67,19 +67,19 @@
     <Compile Include="CilTypeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IKVM.Reflection\reflect\IKVM.Reflection.csproj">
+    <ProjectReference Include="..\ikvm\reflect\IKVM.Reflection.csproj">
       <Project>{4cb170ef-dfe6-4a56-9e1b-a85449e827a7}</Project>
       <Name>IKVM.Reflection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Compiler.API\Uno.Compiler.API.csproj">
+    <ProjectReference Include="..\..\api\Uno.Compiler.API.csproj">
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\..\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uno.Compiler.Backends.PInvoke\Uno.Compiler.Backends.PInvoke.csproj">
+    <ProjectReference Include="..\pinvoke\Uno.Compiler.Backends.PInvoke.csproj">
       <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
       <Name>Uno.Compiler.Backends.PInvoke</Name>
     </ProjectReference>

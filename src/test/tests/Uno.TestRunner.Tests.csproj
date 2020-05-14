@@ -61,7 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Uno.TestRunner\Uno.TestRunner.csproj">
+    <ProjectReference Include="..\runner\Uno.TestRunner.csproj">
       <Project>{26B75FBD-DBF7-4EBE-8B7B-5B04ACC28F13}</Project>
       <Name>Uno.TestRunner</Name>
     </ProjectReference>

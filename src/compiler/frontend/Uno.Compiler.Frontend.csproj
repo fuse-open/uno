@@ -62,11 +62,11 @@
     <Compile Include="Analysis\TokenType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Uno.Compiler.API\Uno.Compiler.API.csproj">
+    <ProjectReference Include="..\api\Uno.Compiler.API.csproj">
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\common\Uno.Common\Uno.Common.csproj">
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
