@@ -69,7 +69,7 @@ namespace Uno.TestRunner.Loggers
         {
             base.ProjectStarting(projectName, targetName);
             ColorHelper.SetForeground(ConsoleColor.Cyan);
-            Write("Starting project '{0}', target '{1}'", projectName, targetName);
+            Write("Starting project '{0}', target '{1}'", projectName, targetName.ToLower());
             ColorHelper.SetDefault();
             _microseconds = 0;
             _watch.Restart();

@@ -265,7 +265,7 @@ namespace Uno.Build
 
         public void BuildNative()
         {
-            using (Log.StartAnimation("Building " + _target + (
+            using (Log.StartAnimation("Building " + _target.ToString().ToLower() + (
                     _backend.BuildType == BuildType.Executable && !_env.IsDefined("LIBRARY")
                         ? " app"
                         : " library")))
