@@ -22,7 +22,7 @@ function uno-compiler-test {
     for config in Debug Release; do
         exe=src/test/compiler-test/bin/$config/uno-compiler-test.exe
         if [ -f $exe ]; then
-            dotnet-clr $exe
+            dotnet-run $exe
             return $?
         fi
     done
