@@ -31,7 +31,7 @@ if [ "$INSTALL" = 1 ]; then
     h1 "Installing dependencies"
     nuget restore uno.sln
     nuget restore runtime.sln
-    chmod +x src/runtime/app-mac/monostub
+    chmod +x src/runtime/mac/monostub
 fi
 
 h1 "Building uno"

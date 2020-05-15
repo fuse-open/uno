@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-win", "src\runtime\app-win\app-win.csproj", "{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-win", "src\runtime\win\app-win.csproj", "{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-mac", "src\runtime\app-mac\app-mac.csproj", "{C919203A-A0FD-41E4-A8D7-3E1B1C12DDAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-mac", "src\runtime\mac\app-mac.csproj", "{C919203A-A0FD-41E4-A8D7-3E1B1C12DDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-generic", "src\runtime\app-generic\app-generic.csproj", "{196B010D-AD36-4947-95AA-14FC4A27BD18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-generic", "src\runtime\generic\app-generic.csproj", "{196B010D-AD36-4947-95AA-14FC4A27BD18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
