@@ -31,12 +31,10 @@ if [ "$INSTALL" = 1 ]; then
     h1 "Installing dependencies"
     nuget restore uno.sln
     nuget restore runtime.sln
-    chmod +x src/runtime/mac/monostub
 fi
 
 h1 "Building uno"
 csharp-build uno.sln
-chmod +x bin/uno
 
 h1 "Building runtime"
 uno build lib/UnoCore -DLIBRARY
