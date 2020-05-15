@@ -217,7 +217,10 @@ public class UploadTask extends AsyncTask<Object, Integer, Boolean> {
         		urlConnection.setConnectTimeout(timeout);
         		urlConnection.setReadTimeout(timeout);
         	}
-            urlConnection.setUseCaches(true);
+            if (useCaching){
+                urlConnection.setUseCaches(true);
+                urlConnection.addRequestProperty("Cache-Control", "max-stale=" + 60*60*24 * 28); // tolerate 4-weeks stale
+            }
             urlConnection.setDoOutput(hasPayload);
             // urlConnection.setDoInput(true);
             urlConnection.setRequestMethod(method);
