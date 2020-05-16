@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{452AD3C8-8B77-4188-B70F-C9AFF210F45C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uno.CompilerTestRunner</RootNamespace>
+    <AssemblyName>uno-compiler-test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <ItemGroup>
+    <Compile Include="ErrorItem.cs" />
+    <Compile Include="ErrorItemComparer.cs" />
+    <Compile Include="ErrorType.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="CompilerTestRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\tool\engine\Uno.Build.csproj">
+      <Project>{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}</Project>
+      <Name>Uno.Build</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tool\project\Uno.ProjectFormat.csproj">
+      <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
+      <Name>Uno.ProjectFormat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
+      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
+      <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\runner\Uno.TestRunner.csproj">
+      <Project>{26b75fbd-dbf7-4ebe-8b7b-5b04acc28f13}</Project>
+      <Name>Uno.TestRunner</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

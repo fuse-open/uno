@@ -7,34 +7,46 @@
 [![Slack](https://img.shields.io/badge/chat-on%20slack-blue.svg?style=flat-square)](https://slackcommunity.fusetools.com/)
 [![Financial Contributors on Open Collective](https://opencollective.com/fuse-open/all/badge.svg?label=financial+contributors&style=flat-square)](https://opencollective.com/fuse-open)
 
+![Target platforms](https://img.shields.io/badge/target%20os-Android%20%7C%20iOS%20%7C%20Linux%20%7C%20macOS%20%7C%20Windows-7F5AB6?style=flat-square&logo=android&logoColor=silver)
+![Host platforms](https://img.shields.io/badge/host%20os-Linux%20%7C%20macOS%20%7C%20Windows-7F5AB6?style=flat-square)
+
+> Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.
+
 Welcome to Uno, the core component in [Fuse Open], a native app development tool suite.
 
 ## Install
 
 ```
-npm install @fuse-open/uno
+$ npm install @fuse-open/uno
 ```
 
-This will install the [`uno`][doc2] command and core libraries.
+This will install the [`uno`][doc2] command and standard library.
 
-## Abstract
+### Related packages
 
-We're here to help [Fuse Open] development by building and maintaining several related pieces of core technology.
+* [android-build-tools](https://www.npmjs.com/package/android-build-tools)
+* [fuse-sdk](https://www.npmjs.com/package/fuse-sdk)
+* [fuselibs](https://www.npmjs.com/package/@fuse-open/fuselibs)
 
-* Cross-platform tools for building and running applications
-* Core libraries and platform abstraction
-* Uno programming language and compiler
-* Uno project format and build engine
-* UX markup language and compiler
-* Uno/UX test runner
+## Introduction
+
+Uno is a collection of compiler and platform abstraction technologies.
+
+* [Uno programming language](src/compiler)
+* [UX markup language](src/ux)
+* [Project tooling](src/tool)
+* [Standard library](lib)
+* [Test runner](src/test)
 
 Uno is used on Linux, macOS and Windows, and makes native apps for the following platforms:
 
-* Android
-* iOS
-* Linux (native)
-* macOS (native or Mono)
-* Windows (native or .NET)
+| Platform  | Build targets       |
+|:----------|:--------------------|
+| Android   | `android`           |
+| iOS       | `ios`               |
+| Linux     | `native`, `dotnet`  |
+| macOS     | `native`, `dotnet`  |
+| Windows   | `native`, `dotnet`  |
 
 [Fuse Open]: https://fuseopen.com/
 
@@ -85,21 +97,27 @@ The following foreign languages are supported:
 [generics]: https://en.wikipedia.org/wiki/Generic_programming
 [reflection]: https://en.wikipedia.org/wiki/Reflection_(computer_programming)
 
-See https://fuseopen.com/docs/ for more information about the Uno/UX (and JavaScript) stack.
+> Please see [our documentation](https://fuseopen.com/docs/) for information about building apps.
 
-## Build instructions
+## Build Instructions
 
-Please read [the build instructions](docs/build-instructions.md) for details
+```
+$ make
+```
+
+Uno is built using the command-line on Linux, macOS or Windows – or [from inside an IDE](docs/build-instructions.md#building-from-an-ide).
+
+> Please see [the build instructions](docs/build-instructions.md) for details
 on how to build the source code.
 
 ## Configuration
 
-Please read [the configuration reference documentation][doc1] for details on how to
+> Please see [the configuration reference documentation][doc1] for details on how to
 set up uno's configuration files for your build-environment.
 
 ## Command Line Reference
 
-Please read [the command-line reference documentation][doc2] for details on how to
+> Please see [the command-line reference documentation][doc2] for details on how to
 use uno's command-line interface.
 
 [doc1]: docs/configuration.md
@@ -107,7 +125,7 @@ use uno's command-line interface.
 
 ## Contributing
 
-Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of
+> Please see [CONTRIBUTING](CONTRIBUTING.md) for details on our code of
 conduct, and the process for submitting pull requests to us.
 
 ### Reporting issues

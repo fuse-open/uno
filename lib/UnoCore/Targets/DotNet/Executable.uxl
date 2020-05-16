@@ -1,6 +1,5 @@
 <Extensions Backend="CIL" Condition="!LIBRARY">
 
-    <Set PrebuiltDirectory="@(Config.Paths.AppLoader:Path)" />
     <Set AppDirectory="@(Project.Name).app" Condition="HOST_MAC" />
     <Set AssemblyDirectory="@(HOST_MAC:Defined:Test('@(AppDirectory)/Contents/MonoBundle', '.'))" />
     <Set Product="@(AssemblyDirectory)/@(Project.Name).exe" />
@@ -9,22 +8,22 @@
     <Set Commands.Run="@(Product:QuoteSpace)" />
 
     <!-- AppLoader & dependencies -->
-    <Set AppLoader.Assembly="@(PrebuiltDirectory)/uno-app.exe" />
-    <Set AppLoader.Class="Uno.AppLoader.AppDelegate" Condition="HOST_MAC" />
-    <Set AppLoader.Class="Uno.AppLoader.MainForm" Condition="HOST_WIN32" />
-    <Set AppLoader.Method="LoadApplication" />
+    <Set AppLoader.Assembly="@(Config.AppLoader.Exe:Path)" />
+    <Set AppLoader.Class="Uno.AppLoader.Program" />
+    <Set AppLoader.Method="UnoGenerated" />
 
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/Xamarin.Mac.dll" Condition="HOST_MAC" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/libxammac.dylib" Condition="HOST_MAC" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/OpenTK.dll" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/Uno.Support.OpenTK.dll" Condition="!HOST_MAC" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/libEGL.dll" Condition="HOST_WIN32" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/libGLESv2.dll" Condition="HOST_WIN32" />
-    <Require UnmanagedLibrary="@(PrebuiltDirectory)/d3dcompiler_47.dll" Condition="HOST_WIN32" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/OpenTK.dll" Condition="HOST_MAC" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/Xamarin.Mac.dll" Condition="HOST_MAC" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/libxammac.dylib" Condition="HOST_MAC" />
+    
+    <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/OpenTK.dll" Condition="HOST_WIN32" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/libEGL.dll" Condition="HOST_WIN32" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/libGLESv2.dll" Condition="HOST_WIN32" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/d3dcompiler_47.dll" Condition="HOST_WIN32" />
 
     <!-- macOS bundle -->
     <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="HOST_MAC" />    
-    <CopyFile Name="@(PrebuiltDirectory)/monostub" TargetName="@(AppDirectory)/Contents/MacOS/@(Project.Name)" IsExecutable=true Condition="HOST_MAC" />
+    <CopyFile Name="@(Config.AppLoader.Mac:Path)/monostub" TargetName="@(AppDirectory)/Contents/MacOS/@(Project.Name)" IsExecutable=true Condition="HOST_MAC" />
     <CopyFile Name="@(Project.Mac.Icon:Path || @//Assets/Icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="HOST_MAC" />
 
 </Extensions>

@@ -6,6 +6,9 @@ source scripts/common.sh
 # Arguments
 TARGET=$1
 
+# Show uno config
+uno config
+
 # Run uno tests
 uno test $TARGET lib $UNO_TEST_ARGS
 
@@ -17,9 +20,9 @@ fi
 # Run compiler tests
 function uno-compiler-test {
     for config in Debug Release; do
-        exe=src/testing/Uno.CompilerTestRunner/bin/$config/uno-compiler-test.exe
+        exe=src/test/compiler-test/bin/$config/uno-compiler-test.exe
         if [ -f $exe ]; then
-            dotnet-clr $exe
+            dotnet-run $exe
             return $?
         fi
     done

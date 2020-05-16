@@ -4,8 +4,16 @@
         "*.uxl": "xml"
     },
     "files.exclude": {
+        "**/.uno": true,
+        "**/.vs": true,
+        "**/bin": true,
         "**/build": true,
         "**/node_modules": true,
-        "**/.uno": true
+        "**/packages": true,
+        "**/obj": true,
+        "**/*.user": true,
+        "*.exe": true,
+        "*.pkg": true,
+        "*.tgz": true
     }
 }

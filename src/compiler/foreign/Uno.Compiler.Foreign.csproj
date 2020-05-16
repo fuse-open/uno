@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{853ABAB6-9FFD-4749-9D32-0A205C5E72B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uno.Compiler.Foreign</RootNamespace>
+    <AssemblyName>Uno.Compiler.Foreign</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <ItemGroup>
+    <Compile Include="CppExtension.cs" />
+    <Compile Include="ForeignCPlusPlusPass.cs" />
+    <Compile Include="ForeignFilePass.cs" />
+    <Compile Include="ForeignHelpers.cs" />
+    <Compile Include="ForeignJavaPass.cs" />
+    <Compile Include="ForeignObjCPass.cs" />
+    <Compile Include="ForeignPass.cs" />
+    <Compile Include="Java\Converters\Converter.cs" />
+    <Compile Include="Java\Converters\NameConverter.cs" />
+    <Compile Include="Java\Converters\ParamConverter.cs" />
+    <Compile Include="Java\Converters\SignatureConverter.cs" />
+    <Compile Include="Java\Converters\TypeConverter.cs" />
+    <Compile Include="Java\Delegates.cs" />
+    <Compile Include="Java\Entrypoints.cs" />
+    <Compile Include="Java\ForeignMacroExpr.cs" />
+    <Compile Include="Java\ForeignMethod.cs" />
+    <Compile Include="Java\JavaClass.cs" />
+    <Compile Include="Java\JavaMethod.cs" />
+    <Compile Include="Java\MacroParam.cs" />
+    <Compile Include="Java\Macros.cs" />
+    <Compile Include="Java\UnoCallToForeignMethod.cs" />
+    <Compile Include="ObjC\Conversion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\api\Uno.Compiler.API.csproj">
+      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
+      <Name>Uno.Compiler.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
+      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
+      <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\backend\cpp\Uno.Compiler.Backends.CPlusPlus.csproj">
+      <Project>{9e0318a1-528e-4afd-ab87-c8d58e0cd060}</Project>
+      <Name>Uno.Compiler.Backends.CPlusPlus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

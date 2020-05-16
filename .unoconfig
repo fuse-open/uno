@@ -1,16 +1,15 @@
 // Core config
-Assemblies.Test: src/testing/Uno.TestRunner.CLI/bin/$(Configuration)/uno-test.exe
-Assemblies.Uno: src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe
+AppLoader.Mac: bin/mac
+AppLoader.Windows: bin/win
+Uno.Exe: bin/uno.exe
 
 if WIN32 {
-    Paths.AppLoader: src/runtime/Uno.AppLoader-WinForms/bin/$(Configuration)
+    AppLoader.Exe: bin/win/uno-app.exe
 } else if MAC {
-    Paths.AppLoader: src/runtime/Uno.AppLoader-MonoMac/bin/$(Configuration)
+    AppLoader.Exe: bin/mac/uno-app.exe
+} else {
+    AppLoader.Exe: bin/generic/uno-app.exe
 }
 
 // Package config
 Packages.SourcePaths += lib
-
-// Avoid overriding core settings when running an uno.exe other than 'src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe',
-// to make sure assembly paths remain consistent.
-SkipIfNotRoot: true

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB7A1BF1-F78F-41EC-933D-E3A44C021E3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uno.Compiler.Backends.UnoDoc</RootNamespace>
+    <AssemblyName>Uno.Compiler.Backends.UnoDoc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <Import Project="..\..\..\GlobalAssemblyInfo.targets" />
+  <ItemGroup>
+    <Compile Include="Builders\AttachedMemberCache.cs" />
+    <Compile Include="Builders\AttachedUxEvent.cs" />
+    <Compile Include="Builders\AttachedUxEventEqualityComparer.cs" />
+    <Compile Include="Builders\AttachedUxProperty.cs" />
+    <Compile Include="Builders\AttachedUxPropertyEqualityComparer.cs" />
+    <Compile Include="Builders\Builder.cs" />
+    <Compile Include="Builders\SourceComment.cs" />
+    <Compile Include="Builders\CommentParser.cs" />
+    <Compile Include="Builders\EntityTypes\DataTypeBuilder.cs" />
+    <Compile Include="Builders\EntityNaming.cs" />
+    <Compile Include="Builders\EntityTypes\MemberBuilder.cs" />
+    <Compile Include="Builders\ExportableCheck.cs" />
+    <Compile Include="Builders\Extensions\BlockExtensions.cs" />
+    <Compile Include="Builders\Extensions\DataTypeExtensions.cs" />
+    <Compile Include="Builders\Extensions\FlatteningExtensions.cs" />
+    <Compile Include="Builders\Extensions\IdGenerationExtensions.cs" />
+    <Compile Include="Builders\Extensions\MemberExtensions.cs" />
+    <Compile Include="Builders\Extensions\ModifiersExtensions.cs" />
+    <Compile Include="Builders\Extensions\ParameterExtensions.cs" />
+    <Compile Include="Builders\Extensions\ToStringExtensions.cs" />
+    <Compile Include="Builders\Extensions\UriExtensions.cs" />
+    <Compile Include="Builders\ICommentParser.cs" />
+    <Compile Include="Builders\IEntityNaming.cs" />
+    <Compile Include="Builders\IExportableCheck.cs" />
+    <Compile Include="Builders\IOutlineBuilder.cs" />
+    <Compile Include="Builders\ISyntaxGenerator.cs" />
+    <Compile Include="Builders\EntityTypes\NamespaceBuilder.cs" />
+    <Compile Include="Builders\Naming\BlockNaming.cs" />
+    <Compile Include="Builders\Naming\DataTypeNaming.cs" />
+    <Compile Include="Builders\Naming\MemberNaming.cs" />
+    <Compile Include="Builders\Naming\NamespaceNaming.cs" />
+    <Compile Include="Builders\Naming\Naming.cs" />
+    <Compile Include="Builders\SyntaxGenerator.cs" />
+    <Compile Include="Builders\Syntax\BlockSyntaxGenerator.cs" />
+    <Compile Include="Builders\Syntax\DataTypeSyntaxGenerator.cs" />
+    <Compile Include="Builders\Syntax\MemberSyntaxGenerator.cs" />
+    <Compile Include="Builders\Syntax\NamespaceSyntaxGenerator.cs" />
+    <Compile Include="Builders\Syntax\SyntaxGenerator.cs" />
+    <Compile Include="Builders\CRC32.cs" />
+    <Compile Include="DocumentViewModelEqualityComparer.cs" />
+    <Compile Include="ExportConstants.cs" />
+    <Compile Include="HashSetExtensions.cs" />
+    <Compile Include="PackagePathProcessor.cs" />
+    <Compile Include="Rendering\Renderer.cs" />
+    <Compile Include="Rendering\ApiReferenceJsonRenderer.cs" />
+    <Compile Include="Rendering\IndexJsonRenderer.cs" />
+    <Compile Include="Rendering\TableOfContentsBuilder.cs" />
+    <Compile Include="UnoDocBackend.cs" />
+    <Compile Include="ViewModelExporter.cs" />
+    <Compile Include="ViewModels\AttachedMemberViewModel.cs" />
+    <Compile Include="ViewModels\IParameterEnabledViewModel.cs" />
+    <Compile Include="ViewModels\IReturnEnabledViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\BasicCommentViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\CommentAttributesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\CommentViewModel.cs" />
+    <Compile Include="ViewModels\DataTypeViewModel.cs" />
+    <Compile Include="ViewModels\DocumentViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\CommentViewModelBase.cs" />
+    <Compile Include="ViewModels\MetaData\MemberFlagsViewModel.cs" />
+    <Compile Include="ViewModels\RootPageViewModel.cs" />
+    <Compile Include="ViewModels\RootViewModel.cs" />
+    <Compile Include="ViewModels\MemberViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\AttachedMemberSourceViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\DocumentReferenceViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\DocumentUriViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\DocumentIdViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ImplementedInterfacesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ImplementedInterfaceViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\IndexTitlesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\InheritanceNodeViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\InheritanceViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\LocationViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ParameterViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ReturnsViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\TableOfContentsEntryViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\TableOfContentsViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\UxClassPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\UxMemberPropertiesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\UxNamespaceEntryViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\UxNamespaceViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ValuesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ValueViewModel.cs" />
+    <Compile Include="ViewModels\NamespaceViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\SyntaxViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\TitlesViewModel.cs" />
+    <Compile Include="ViewModels\PageViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\ParametersViewModel.cs" />
+    <Compile Include="ViewModels\SubclassIndexPageViewModel.cs" />
+    <Compile Include="ViewModels\SwizzlerTypeViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\TableOfContentsEntryGroupViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\AttributesViewModel.cs" />
+    <Compile Include="ViewModels\MetaData\AttributeViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\api\Uno.Compiler.API.csproj">
+      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
+      <Name>Uno.Compiler.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\common\Uno.Common.csproj">
+      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
+      <Name>Uno.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

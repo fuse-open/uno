@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4CF7639-0705-4093-B16D-3261A92F6260}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uno.Compiler.Core</RootNamespace>
+    <AssemblyName>Uno.Compiler.Core</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <ItemGroup>
+    <Compile Include="Compiler.cs" />
+    <Compile Include="BuildEnvironment.cs" />
+    <Compile Include="CompilerOptions.cs" />
+    <Compile Include="ErrorCode.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\Closure.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\ClosureConversionTransform.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\ClosureConvertFunction.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\LambdaDetector.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\LambdaToLift.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\Tree.cs" />
+    <Compile Include="IL\Building\Functions\Lambdas\Variables.cs" />
+    <Compile Include="IL\Building\Types\ConstructorPair.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.Condition.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.Emit.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.Expression.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.FixOp.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.Operator.cs" />
+    <Compile Include="IL\Bytecode\BytecodeCompiler.Statement.cs" />
+    <Compile Include="IL\CompilerPass.cs" />
+    <Compile Include="BuildStep.cs" />
+    <Compile Include="IL\Optimizing\A1.cs" />
+    <Compile Include="IL\Optimizing\A2.cs" />
+    <Compile Include="IL\Testing\TestMethod.cs" />
+    <Compile Include="IL\Validation\ControlFlow\Condition.cs" />
+    <Compile Include="IL\Validation\FinallyVerifier.cs" />
+    <Compile Include="IL\Validation\ThisVerifier.cs" />
+    <Compile Include="IL\Validation\VariableUsage.cs" />
+    <Compile Include="BuildData.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Lambda.cs" />
+    <Compile Include="Syntax\Macros\MacroArguments.cs" />
+    <Compile Include="Syntax\Macros\MacroContext.cs" />
+    <Compile Include="Syntax\Macros\MacroExpander.cs" />
+    <Compile Include="Syntax\UxlProcessor.cs" />
+    <Compile Include="IL\Validation\ControlFlow\ControlFlowVerifier.cs" />
+    <Compile Include="IL\Utilities\Analyzing\DependencyFinder.cs" />
+    <Compile Include="IL\Utilities\Dependencies.cs" />
+    <Compile Include="IL\Validation\ILAnalyzer.cs" />
+    <Compile Include="IL\Validation\ILVerifier.Block.cs" />
+    <Compile Include="IL\Validation\ILVerifier.cs" />
+    <Compile Include="IL\Validation\ILVerifier.Type.cs" />
+    <Compile Include="IL\Validation\ILVerifier.Expression.cs" />
+    <Compile Include="IL\Validation\ILVerifier.Member.cs" />
+    <Compile Include="IL\Validation\ILVerifier.Statement.cs" />
+    <Compile Include="IL\Testing\TestSetupTransform.cs" />
+    <Compile Include="IL\Building\Entrypoint\BestMainClassSelector.cs" />
+    <Compile Include="IL\Building\Entrypoint\MainClassFinder.cs" />
+    <Compile Include="IL\Optimizing\ConstantFolder.cs" />
+    <Compile Include="IL\Optimizing\ILStripper.cs" />
+    <Compile Include="IL\Building\Functions\BackendTransform.cs" />
+    <Compile Include="IL\Building\Functions\ExternTransform.cs" />
+    <Compile Include="IL\Building\Functions\IndirectionTransform.cs" />
+    <Compile Include="IL\Building\Functions\NativeTransform.cs" />
+    <Compile Include="IL\Building\Functions\ExtensionTransform.cs" />
+    <Compile Include="IL\Building\Types\FixedArrayTransform.cs" />
+    <Compile Include="IL\Building\Types\MemberTransform.cs" />
+    <Compile Include="IL\Building\Types\NameTransform.cs" />
+    <Compile Include="IL\EntitySwapper.cs" />
+    <Compile Include="Syntax\Builders\BundleBuilder.cs" />
+    <Compile Include="Syntax\AstILNode.cs" />
+    <Compile Include="Syntax\AstProcessor.cs" />
+    <Compile Include="Syntax\Builders\ReqStatementFinder.cs" />
+    <Compile Include="Syntax\Compilers\AstIL.cs" />
+    <Compile Include="Syntax\Compilers\Extensions.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Operator.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Call.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Cast.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Helper.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Expression.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Import.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.New.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.Partial.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Expressions.VertexAttrib.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.OverloadResolver.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Statements.Scope.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Statements.Statement.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.Statements.Variable.cs" />
+    <Compile Include="Syntax\Compilers\VariableScope.cs" />
+    <Compile Include="Syntax\Generators\DrawableFinder.cs" />
+    <Compile Include="Syntax\Generators\DrawCallGenerator.cs" />
+    <Compile Include="Syntax\Generators\MetaObjectReplacer.cs" />
+    <Compile Include="Syntax\Generators\Passes\FixedArrayProcessor.cs" />
+    <Compile Include="Syntax\Generators\Passes\MetaPropertyEmitter.cs" />
+    <Compile Include="Syntax\Generators\Passes\ScopeProcessor.cs" />
+    <Compile Include="Syntax\Generators\Passes\ScopeInliner.cs" />
+    <Compile Include="Syntax\Generators\Passes\ShaderProcessor.cs" />
+    <Compile Include="Syntax\Generators\Passes\VariableInliner.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.FixedArray.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.Inline.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.MetaProperty.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.PixelSampler.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.Stage.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.Struct.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.Trace.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.Value.cs" />
+    <Compile Include="Syntax\Generators\ShaderGenerator.VertexAttrib.cs" />
+    <Compile Include="Syntax\Generators\Expressions.cs" />
+    <Compile Include="Syntax\Generators\StageValue.cs" />
+    <Compile Include="Syntax\Generators\TraceData.cs" />
+    <Compile Include="Syntax\Generators\TraceError.cs" />
+    <Compile Include="Syntax\ErrorMessages.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.NameResolver.TypeMember.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.NameResolver.Expression.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.NameResolver.Identifier.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.NameResolver.LookUp.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.NameResolver.Member.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.MetaProperty.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.Expression.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.Member.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.Type.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.TypeCasts.cs" />
+    <Compile Include="Syntax\Compilers\FunctionCompiler.NameResolver.TypeExtension.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.TypeMember.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.TypeOperators.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.UsingNamespace.cs" />
+    <Compile Include="Syntax\Binding\NameResolver.UsingType.cs" />
+    <Compile Include="Syntax\Binding\NamescopeKey.cs" />
+    <Compile Include="Syntax\Binding\NamespaceUsings.cs" />
+    <Compile Include="Syntax\Binding\PartialArrayElement.cs" />
+    <Compile Include="Syntax\Binding\PartialBlock.cs" />
+    <Compile Include="Syntax\Binding\PartialType.cs" />
+    <Compile Include="Syntax\Binding\PartialEvent.cs" />
+    <Compile Include="Syntax\Binding\PartialExpression.cs" />
+    <Compile Include="Syntax\Binding\PartialExpressionType.cs" />
+    <Compile Include="Syntax\Binding\PartialExtensionGroup.cs" />
+    <Compile Include="Syntax\Binding\PartialField.cs" />
+    <Compile Include="Syntax\Binding\PartialIndexer.cs" />
+    <Compile Include="Syntax\Binding\PartialMember.cs" />
+    <Compile Include="Syntax\Binding\PartialMethodGroup.cs" />
+    <Compile Include="Syntax\Binding\PartialNamespace.cs" />
+    <Compile Include="Syntax\Binding\PartialParameter.cs" />
+    <Compile Include="Syntax\Binding\PartialProperty.cs" />
+    <Compile Include="Syntax\Binding\PartialThis.cs" />
+    <Compile Include="Syntax\Binding\PartialValue.cs" />
+    <Compile Include="Syntax\Binding\PartialVariable.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.CompileApply.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.CompileDraw.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.CreateBlock.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.CreateMetaProperty.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.FlattenType.cs" />
+    <Compile Include="Syntax\Builders\BlockBuilder.PopulateBlock.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.CompileBaseTypes.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.CompileFieldInitializers.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.CreateClass.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.CreateDelegate.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.CreateEnum.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.Parameterize.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.PopulateClass.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.ImplementInterfaces.cs" />
+    <Compile Include="Syntax\Builders\TypeBuilder.FlattenClass.cs" />
+    <Compile Include="TestOptions.cs" />
+    <Compile Include="IL\Utilities\Essentials.cs" />
+    <Compile Include="IL\Utilities\Transforms.cs" />
+    <Compile Include="IL\Utilities\Utilities.cs" />
+    <Compile Include="IL\Utilities\ILFactory.cs" />
+    <Compile Include="IL\Validation\ControlFlow\BasicBlock.cs" />
+    <Compile Include="IL\Validation\ControlFlow\BlockEnding.cs" />
+    <Compile Include="IL\Validation\ControlFlow\ControlFlowValidator.Condition.cs" />
+    <Compile Include="IL\Validation\ControlFlow\ControlFlowValidator.cs" />
+    <Compile Include="IL\Validation\ControlFlow\ControlFlowValidator.Emit.cs" />
+    <Compile Include="IL\Validation\ControlFlow\ControlFlowValidator.Expression.cs" />
+    <Compile Include="IL\Validation\ControlFlow\ControlFlowValidator.Statement.cs" />
+    <Compile Include="IL\Validation\ControlFlow\Instruction.cs" />
+    <Compile Include="IL\Validation\ControlFlow\Opcodes.cs" />
+    <Compile Include="IL\Validation\Visibilities.cs" />
+    <Compile Include="IL\Validation\Visibility.cs" />
+    <Compile Include="IL\Validation\VisibilityLevel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\api\Uno.Compiler.API.csproj">
+      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
+      <Name>Uno.Compiler.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
+      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
+      <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\backend\pinvoke\Uno.Compiler.Backends.PInvoke.csproj">
+      <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
+      <Name>Uno.Compiler.Backends.PInvoke</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\frontend\Uno.Compiler.Frontend.csproj">
+      <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
+      <Name>Uno.Compiler.Frontend</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IL\Validation\ILVerifier.Name.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

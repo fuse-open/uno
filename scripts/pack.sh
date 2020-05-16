@@ -4,10 +4,9 @@ cd "`dirname "$SELF"`/.." || exit 1
 source scripts/common.sh
 
 # Initialize
-DST="release"
 shopt -s dotglob
-rm -rf ${DST:?}/* 2> /dev/null || :
-mkdir -p $DST
+rm -rf bin/* 2> /dev/null || :
+mkdir -p bin
 
 # Detect version info
 VERSION=`bash scripts/get-version.sh`
@@ -39,36 +38,26 @@ sed -e 's/\(AssemblyVersion("\)[^"]*\(")\)/\1'$VERSION_TRIPLET.$BUILD_NUMBER'\2/
     src/GlobalAssemblyInfo.cs > src/GlobalAssemblyInfo.Override.cs
 
 # Release build
-bash scripts/build.sh --release --version=$VERSION
+bash scripts/build.sh --install --release --version=$VERSION
 
 # Remove GlobalAssemblyInfo.Override.cs
 rm -f src/GlobalAssemblyInfo.Override.cs
 
-h1 "Preparing release"
-######################
-
-# Copy assemblies
-cp src/main/Uno.CLI.Main/bin/Release/*.{dll,exe,dylib} $DST
-cp -f src/testing/Uno.TestRunner.CLI/bin/Release/*.{dll,exe} $DST
-
-# Put app loaders for macOS and Windows in subdirectories to avoid conflicts
-mkdir -p $DST/apploader-mac
-cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/*.{dll,exe,dylib} $DST/apploader-mac
-cp -f src/runtime/Uno.AppLoader-MonoMac/bin/Release/monostub $DST/apploader-mac
-
-mkdir -p $DST/apploader-win
-cp -f src/runtime/Uno.AppLoader-WinForms/bin/Release/*.{dll,exe} $DST/apploader-win
-
-# Generate config file
-cat <<EOF >> $DST/.unoconfig
-Assemblies.Test: uno-test.exe
-Assemblies.Uno: uno.exe
-
-if WIN32 {
-    Paths.AppLoader: apploader-win
-} else if MAC {
-    Paths.AppLoader: apploader-mac
+# Clean up
+function find-all {
+    local root="$1"
+    shift
+    while [ $# -gt 0 ]; do
+        bash -lc "find \"$root\" -name \"$1\""
+        shift
+    done
 }
 
-Packages.SearchPaths += ../lib/build
-EOF
+function rm-all {
+    IFS=$'\n'
+    for i in `find-all "$@"`; do
+        rm -rf "$i"
+    done
+}
+
+rm-all bin *.config *.mdb *.pdb *.xml

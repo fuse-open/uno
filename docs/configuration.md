@@ -36,16 +36,16 @@ specify other locations as demonstrated below.
 ### Windows
 
 ```javascript
-Android.NDK.Directory: `%LOCALAPPDATA%\Android\sdk\ndk-bundle`
-Android.SDK.Directory: `%LOCALAPPDATA%\Android\sdk`
-Java.JDK.Directory: `%PROGRAMFILES%\Java\jdk1.8.0_40`
+Android.NDK: `%LOCALAPPDATA%\Android\sdk\ndk-bundle`
+Android.SDK: `%LOCALAPPDATA%\Android\sdk`
+Java.JDK: `%PROGRAMFILES%\Java\jdk1.8.0_40`
 ```
 
 ### macOS
 
 ```javascript
-Android.NDK.Directory: ~/Library/Android/sdk/ndk-bundle
-Android.SDK.Directory: ~/Library/Android/sdk
+Android.NDK: ~/Library/Android/sdk/ndk-bundle
+Android.SDK: ~/Library/Android/sdk
 ```
 
 ## iOS

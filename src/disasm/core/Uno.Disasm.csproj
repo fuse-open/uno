@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E26C610-B4BE-4548-82B0-70CFF33267C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Uno.Disasm</RootNamespace>
+    <AssemblyName>Uno.Disasm</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <Import Project="..\..\GlobalAssemblyInfo.targets" />
+  <ItemGroup>
+    <Compile Include="Disassemblers\BytecodeDisassembler.cs" />
+    <Compile Include="Disassembler.cs" />
+    <Compile Include="Disassemblers\UnoDisassembler.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="IILView.cs" />
+    <Compile Include="ILView\Commands\CopyFullPath.cs" />
+    <Compile Include="ILView\Commands\IFile.cs" />
+    <Compile Include="ILView\Commands\OpenWith.cs" />
+    <Compile Include="ILView\Commands\ShowInExplorer.cs" />
+    <Compile Include="ILView\ILCommand.cs" />
+    <Compile Include="ILView\ILIconInfo.cs" />
+    <Compile Include="ILView\Namespaces\BlockItem.cs" />
+    <Compile Include="ILView\ILItemBuilder.cs" />
+    <Compile Include="ILView\Members\LiteralItem.cs" />
+    <Compile Include="ILView\Namespaces\OverloadCollection.cs" />
+    <Compile Include="ILView\Packages\BundleFileItem.cs" />
+    <Compile Include="ILView\Packages\FileBase.cs" />
+    <Compile Include="ILView\Packages\FileItem.cs" />
+    <Compile Include="ILView\Packages\FolderBase.cs" />
+    <Compile Include="ILView\Packages\FolderItem.cs" />
+    <Compile Include="ILView\Packages\PackageFolderItem.cs" />
+    <Compile Include="ILView\Packages\PackageItem.cs" />
+    <Compile Include="ILView\Packages\ReferenceItem.cs" />
+    <Compile Include="ILView\Packages\ReferenceCollection.cs" />
+    <Compile Include="ILView\Namespaces\TypeItem.cs" />
+    <Compile Include="ILView\Members\DrawItem.cs" />
+    <Compile Include="ILView\Members\EventItem.cs" />
+    <Compile Include="ILView\Members\FieldItem.cs" />
+    <Compile Include="ILView\Members\FunctionItem.cs" />
+    <Compile Include="ILView\Namespaces\DefinitionCollection.cs" />
+    <Compile Include="ILView\Namespaces\ParameterizationCollection.cs" />
+    <Compile Include="ILView\ILItem.cs" />
+    <Compile Include="ILView\ILIcon.cs" />
+    <Compile Include="ILView\Members\MetaPropertyItem.cs" />
+    <Compile Include="ILView\Namespaces\NamespaceItem.cs" />
+    <Compile Include="ILView\Members\PropertyItem.cs" />
+    <Compile Include="ILView\BuildItem.cs" />
+    <Compile Include="BuildService.cs" />
+    <Compile Include="ILView\Packages\ResourceCollection.cs" />
+    <Compile Include="ILView\Syntax.cs" />
+    <Compile Include="VisibilityMode.cs" />
+    <Compile Include="VisibilityFlags.cs" />
+    <Compile Include="IBuildLog.cs" />
+    <Compile Include="SortedCollection.cs" />
+    <Compile Include="SynchronizedWriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\tool\project\Uno.ProjectFormat.csproj">
+      <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
+      <Name>Uno.ProjectFormat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tool\engine\Uno.Build.csproj">
+      <Project>{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}</Project>
+      <Name>Uno.Build</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\common\Uno.Common.csproj">
+      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
+      <Name>Uno.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj">
+      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
+      <Name>Uno.Compiler.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tool\cli\Uno.CLI.csproj">
+      <Project>{5813CAEE-0804-45C2-A0C7-E30720EFBB45}</Project>
+      <Name>Uno.CLI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ApplicationDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ApplicationDocumentExcludedFromBuild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\BlockFactory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\BlockNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Cast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Class.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ClassNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Component.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Constant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ConstantNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Constructor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ConstructorNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ConstructorStatic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ConstructorStaticNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Delegate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\DelegateNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\DrawablePath.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Enum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\EnumNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Event.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\EventNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\EventStatic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\EventStaticNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Expandable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Expanded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Field.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\FieldNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\FieldStatic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\FieldStaticNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\File.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\FolderClosed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\FolderOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\GenericParameterizations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Importer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Indexer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Interface.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\InterfaceNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Keyword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\MetaProperty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Method.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\MethodNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\MethodStatic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\MethodStaticNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\MissingFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Namespace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\NewFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\NewFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\NonIncludedFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\NonIncludedFolderClosed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\NonIncludedFolderOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\OK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Operator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ProjectPackageReference.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ProjectProjectReference.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ProjectReferenceCollection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Property.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\PropertyNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\PropertyStatic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\PropertyStaticNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ResourceLibrary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\SceneDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\SceneDocumentExcludedFromBuild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Solution.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\SolutionFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Static.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Struct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\StructNonPublic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\SwizzlerType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Texture2D.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\TimelineDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\TimelineDocumentExcludedFromBuild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\UnitTest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\UnoDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\UnoDocumentExcludedFromBuild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\UnoDocumentPartialClass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\UxlDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\UxlDocumentExcludedFromBuild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\Warning.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
