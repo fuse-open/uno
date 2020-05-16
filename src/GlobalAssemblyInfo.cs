@@ -22,6 +22,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("d159dc86-f510-4fcf-9573-e339bdd6d166")]
 
 // Version information.
-[assembly: AssemblyVersion("1.15.0.0")]
-[assembly: AssemblyFileVersion("1.15.0.0")]
-[assembly: AssemblyInformationalVersion("1.15.0-canary.4")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyInformationalVersion("2.0.0-beta.0")]
