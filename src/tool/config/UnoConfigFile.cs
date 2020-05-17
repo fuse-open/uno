@@ -79,8 +79,8 @@ namespace Uno.Configuration
         string GetConstant(Source src, string key, object context)
         {
             return !Constants.TryGetValue(key, out string result)
-                ? $"$({key})"
-                : result; 
+                ? $"\\$({key})"
+                : result;
         }
     }
 }
