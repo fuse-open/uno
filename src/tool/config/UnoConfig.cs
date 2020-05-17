@@ -286,7 +286,7 @@ namespace Uno.Configuration
         {
             var file = GetFile(filename);
 
-            // Avoid overriding core settings when running an uno.exe other than 'src/main/Uno.CLI.Main/bin/$(Configuration)/uno.exe',
+            // Avoid overriding core settings when running an uno.exe other than bin/uno.exe,
             // to make sure assembly paths remain consistent.
             StuffItem skipIfNotRoot;
             if (_files.Count > 0 &&
