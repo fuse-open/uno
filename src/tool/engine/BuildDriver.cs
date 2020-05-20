@@ -357,10 +357,6 @@ namespace Uno.Build
 
         string GetMonoPath()
         {
-            var mono = _config.GetFullPath("Mono", false);
-            if (!string.IsNullOrEmpty(mono))
-                return mono;
-
             try
             {
                 if (PlatformDetection.IsMac)
