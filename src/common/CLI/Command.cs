@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using Uno.Diagnostics;
 using Uno.IO;
 using Uno.Logging;
@@ -244,13 +246,25 @@ namespace Uno.CLI
             WriteLine(UnoVersion.LongHeader);
             WriteLine(UnoVersion.Copyright);
 
-            WriteHead("Product information", 24, 0);
-            WriteRow("Product.Commit",         UnoVersion.CommitSha);
-            WriteRow("Product.Version",        UnoVersion.FileVersion.FileVersion);
+            WriteHead("Product", 10, 0);
+            WriteRow("Commit",      UnoVersion.CommitSha);
+            WriteRow("Version",     UnoVersion.FileVersion.FileVersion);
 
-            WriteHead("Runtime environment", 24, 0);
-            WriteRow("Environment.OSVersion",  Environment.OSVersion.VersionString);
-            WriteRow("Environment.Version",    Environment.Version);
+            WriteHead("Environment", 10, 0);
+            WriteRow("OSVersion",   Environment.OSVersion.VersionString);
+            WriteRow("Version",     Environment.Version);
+
+            // Mono version
+            var mono = Type.GetType("Mono.Runtime");
+            if (mono != null)
+            {
+                WriteHead("Mono", 10, 0);
+                WriteRow("Path",            GetMonoPath());
+
+                var displayName = mono.GetMethod("GetDisplayName", BindingFlags.NonPublic | BindingFlags.Static);
+                if (displayName != null)
+                    WriteRow("Version",     displayName.Invoke(null, null));
+            }
         }
 
         protected bool Confirm(string question)
@@ -275,5 +289,31 @@ namespace Uno.CLI
                     return false;
             return true;
         }
+
+        string GetMonoPath()
+        {
+            try
+            {
+                if (PlatformDetection.IsMac)
+                {
+                    var sb = new StringBuilder(4096);
+                    var len = (uint) sb.Capacity;
+                    var retval = _NSGetExecutablePath(sb, ref len);
+                    if (retval != 0)
+                        throw new InvalidOperationException("returned " + retval + ", len " + len);
+                    return sb.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Warning("GetMonoPath() failed: " + e.Message);
+                Log.Trace(e);
+            }
+
+            return "mono";
+        }
+
+        [DllImport("/usr/lib/libSystem.dylib")]
+        static extern int _NSGetExecutablePath(StringBuilder buf, ref uint bufsize);
     }
 }
