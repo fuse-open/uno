@@ -366,8 +366,7 @@ namespace Uno.Build
                     var retval = _NSGetExecutablePath(sb, ref len);
                     if (retval != 0)
                         throw new InvalidOperationException("returned " + retval + ", len " + len);
-                    var str = sb.ToString();
-                    return str.QuoteSpace();
+                    return sb.ToString();
                 }
             }
             catch (Exception e)
