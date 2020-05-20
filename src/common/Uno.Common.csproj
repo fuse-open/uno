@@ -44,6 +44,7 @@
     <Compile Include="Collections\ListDictionary.cs" />
     <Compile Include="Compiler\ForeignItem.cs" />
     <Compile Include="Compiler\SourceFile.cs" />
+    <Compile Include="Diagnostics\MonoInfo.cs" />
     <Compile Include="Diagnostics\ProcessExtensions.cs" />
     <Compile Include="Compiler\FileItem.cs" />
     <Compile Include="Diagnostics\ProcessRunner.cs" />

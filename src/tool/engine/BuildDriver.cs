@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using Uno.Build.Packages;
 using Uno.Build.Stuff;
 using Uno.Compiler;
@@ -193,7 +191,7 @@ namespace Uno.Build
 
             _env.Set("Uno", PlatformDetection.IsWindows
                 ? unoExe.QuoteSpace()
-                : GetMonoPath().QuoteSpace() + " " + unoExe.QuoteSpace());
+                : MonoInfo.GetPath().QuoteSpace() + " " + unoExe.QuoteSpace());
 
             if (Log.HasErrors)
                 return null;
@@ -354,31 +352,5 @@ namespace Uno.Build
             => value != null && value.Length > maxLength && !Log.IsVerbose
                 ? value.Substring(0, maxLength - 3) + "..."
                 : value;
-
-        string GetMonoPath()
-        {
-            try
-            {
-                if (PlatformDetection.IsMac)
-                {
-                    var sb = new StringBuilder(4096);
-                    var len = (uint) sb.Capacity;
-                    var retval = _NSGetExecutablePath(sb, ref len);
-                    if (retval != 0)
-                        throw new InvalidOperationException("returned " + retval + ", len " + len);
-                    return sb.ToString();
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Warning("GetMonoPath() failed: " + e.Message);
-                Log.Trace(e);
-            }
-
-            return "mono";
-        }
-
-        [DllImport("/usr/lib/libSystem.dylib")]
-        static extern int _NSGetExecutablePath(StringBuilder buf, ref uint bufsize);
     }
 }
