@@ -4,14 +4,6 @@ Uno is built using the command-line on Linux, macOS or Windows – or [from insi
 
 ## Building from command-line
 
-```
-$ make
-```
-
-This will build `uno` and standard library. Then use `<uno-root>/bin/uno` to run your local-built Uno.
-
-> You can also try `npm run build` or `bash scripts/build.sh` for similar results.
-
 ### Prerequisites
 
 - [Mono](http://www.mono-project.com/download/) / [Visual Studio](https://www.visualstudio.com/downloads/)
@@ -26,12 +18,32 @@ This will build `uno` and standard library. Then use `<uno-root>/bin/uno` to run
 
 [vswhere]: https://github.com/Microsoft/vswhere
 
+### Build
+
+```
+make
+```
+
+This will build `uno` and standard library.
+
+> You can also try `npm run build` or `bash scripts/build.sh` for similar results.
+
+### Install and run
+
+```
+make install
+uno --version
+```
+
+This will add your local-built `uno` to PATH and print version information.
+
+> You can also try `npm link` or `<uno-root>/bin/uno` for similar results.
+
 ### Additional make commands
 
 | Command         | Description                                                 |
 |:----------------|:------------------------------------------------------------|
 | `make lib`      | Build projects in `lib/` only (instead of a full build).    |
-| `make install`  | Symlink `uno` in `/usr/local/bin`.                          |
 | `make release`  | Build in release configuration.                             |
 | `make clean`    | Remove build artifacts.                                     |
 | `make check`    | Run test suite.                                             |
