@@ -6,7 +6,7 @@ using Uno.Diagnostics;
 
 namespace Uno.CLI.Android
 {
-    class AdbRunner
+    public class AdbRunner
     {
         static string SdkDirectory => UnoConfig.Current.GetFullPath("Android.SDK", "Android.SDK.Directory");
         static bool IgnoreNetworkDevices => UnoConfig.Current.GetBool("Android.IgnoreNetworkDevices");

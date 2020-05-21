@@ -7,7 +7,7 @@ using Uno.Diagnostics;
 
 namespace Uno.CLI.Android
 {
-    class AdbDevice
+    public class AdbDevice
     {
         readonly Shell _shell;
         readonly string _adb;
