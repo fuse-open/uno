@@ -13,33 +13,33 @@ namespace Uno.Build.Adb
         static bool IgnoreNetworkDevices => UnoConfig.Current.GetBool("Android.IgnoreNetworkDevices");
 
         readonly Shell _shell;
-        readonly string _adb = Path.Combine(SdkDirectory,
-            "platform-tools", PlatformDetection.IsWindows ? "adb.exe" : "adb");
+        public readonly string Location = Path.Combine(SdkDirectory, "platform-tools",
+                                                       PlatformDetection.IsWindows ? "adb.exe" : "adb");
 
         public AdbRunner(Shell shell)
         {
             _shell = shell;
 
-            if (!File.Exists(_adb))
-                throw new FileNotFoundException("Android 'adb' was not found at " + _adb.Quote());
+            if (!File.Exists(Location))
+                throw new FileNotFoundException("Android 'adb' was not found at " + Location.Quote());
         }
 
         public int Run(string args)
         {
-            return _shell.Run(_adb, args);
+            return _shell.Run(Location, args);
         }
 
         public List<AdbDevice> GetDevices()
         {
             var devices = new List<AdbDevice>();
-            var output = _shell.GetOutput(_adb, "devices");
+            var output = _shell.GetOutput(Location, "devices");
 
             foreach (var line in output.Split('\n').Skip(1))
             {
                 var parts = line.Cut();
                 if (parts.Count == 2 && parts[1] == "device" &&
                         (!IgnoreNetworkDevices || !IsIpAndPort(parts[0])))
-                    devices.Add(new AdbDevice(_shell, _adb, parts[0]));
+                    devices.Add(new AdbDevice(_shell, Location, parts[0]));
             }
 
             return devices;
