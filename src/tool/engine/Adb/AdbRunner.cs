@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.CLI;
 using Uno.Configuration;
 using Uno.Diagnostics;
 
-namespace Uno.CLI.Android
+namespace Uno.Build.Adb
 {
     public class AdbRunner
     {

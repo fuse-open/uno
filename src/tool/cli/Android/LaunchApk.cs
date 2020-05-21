@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Mono.Options;
+using Uno.Build.Adb;
 using Uno.Configuration;
 using Uno.Diagnostics;
 using Timer = System.Timers.Timer;
