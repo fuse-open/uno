@@ -68,9 +68,9 @@ namespace Uno.Build
                 throw new Exception(Target + " run failed");
         }
 
-        public async Task RunAsync(Log log = null, CancellationToken ct = default(CancellationToken))
+        public async Task RunAsync(Log log = null, CancellationToken ct = default)
         {
-            if (!Target.CanRun(File) || 
+            if (!Target.CanRun(File) ||
                     ! await Target.Run(GetShell(log), File, RunArguments, ct))
                 throw new Exception(Target + " run failed");
         }
