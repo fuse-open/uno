@@ -127,8 +127,10 @@ namespace Uno.IO
                 sb.Append(fileParts.Last());
 
             var result = sb.ToString();
-            // Don't return a longer than input filename
+
+            // Don't return a longer than input filename (characters or dir parts)
             return forceRelative || result.Length < filename.Length
+                                        && (dirParts.Length - s) <= s
                     ? result
                     : filename;
         }
