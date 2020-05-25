@@ -5,7 +5,7 @@ namespace Uno.Platform
 {
     using Xli;
 
-    public abstract class GraphicsContextBackend : Uno.Runtime.Implementation.GraphicsContextHandle
+    public abstract class GraphicsContextBackend
     {
         internal static GraphicsContextBackend Instance;
 
