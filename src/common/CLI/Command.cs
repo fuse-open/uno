@@ -244,13 +244,21 @@ namespace Uno.CLI
             WriteLine(UnoVersion.LongHeader);
             WriteLine(UnoVersion.Copyright);
 
-            WriteHead("Product information", 24, 0);
-            WriteRow("Product.Commit",         UnoVersion.CommitSha);
-            WriteRow("Product.Version",        UnoVersion.FileVersion.FileVersion);
+            WriteHead("Product", 10, 0);
+            WriteRow("Commit",      UnoVersion.CommitSha);
+            WriteRow("Version",     UnoVersion.FileVersion.FileVersion);
 
-            WriteHead("Runtime environment", 24, 0);
-            WriteRow("Environment.OSVersion",  Environment.OSVersion.VersionString);
-            WriteRow("Environment.Version",    Environment.Version);
+            WriteHead("Environment", 10, 0);
+            WriteRow("OSVersion",   Environment.OSVersion.VersionString);
+            WriteRow("Version",     Environment.Version);
+
+            // Mono version
+            if (MonoInfo.IsRunningMono)
+            {
+                WriteHead("Mono", 10, 0);
+                WriteRow("Path",    MonoInfo.GetPath());
+                WriteRow("Version", MonoInfo.GetVersion());
+            }
         }
 
         protected bool Confirm(string question)

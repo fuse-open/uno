@@ -16,8 +16,22 @@ int main(int argc, char **argv)
     NSString *currentExeName = [[NSString stringWithUTF8String: argv[0]] lastPathComponent];
     NSString *monoExecutable = [monoBundleDir stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.exe", currentExeName]];
 
-    // Load mono
+    // Default Mono location
     NSString *monoRoot = @"/Library/Frameworks/Mono.framework/Versions/Current";
+
+    // Look for Mono installed by the dotnet-run package
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *monoLink = [NSHomeDirectory() stringByAppendingPathComponent: @".dotnet-run/.bin/mono"];
+
+    if ([fileManager fileExistsAtPath:monoLink])
+    {
+        NSString *monoResolved = [[[NSURL fileURLWithPath:monoLink] URLByResolvingSymlinksInPath] path];
+
+        if ([fileManager fileExistsAtPath:monoResolved])
+            monoRoot = [[monoResolved stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+    }
+
+    // Load mono
     NSString *libmonosgen = [monoRoot stringByAppendingPathComponent: @"lib/libmonosgen-2.0.dylib"];
     void *libMono = dlopen([libmonosgen UTF8String], RTLD_LAZY);
     if (libMono == nil)
