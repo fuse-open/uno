@@ -31,7 +31,9 @@ function uno-compiler-test {
     return 1
 }
 
-uno-compiler-test
+if [[ "$TARGET" == dotnet ]]; then
+    uno-compiler-test
+fi
 
 # Check that all packages build without errors
 uno build $TARGET --no-strip tests/pkgtest
