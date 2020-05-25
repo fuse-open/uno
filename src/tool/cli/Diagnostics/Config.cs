@@ -23,6 +23,7 @@ namespace Uno.CLI.Diagnostics
             WriteHead("Available options");
             WriteRow("-a, --asm",          "Print .NET assemblies");
             WriteRow("-l, --libs",         "Print libraries in search paths");
+            WriteRow("-n, --node-modules", "Print nodejs modules");
             WriteRow("-s, --system",       "Print system settings");
             WriteRow("-v",                 "Print everything");
         }
@@ -31,11 +32,13 @@ namespace Uno.CLI.Diagnostics
         {
             var asm = false;
             var libs = false;
+            var node = false;
             var system = false;
             
             var input = new OptionSet {
                     { "a|asm", value => asm = true },
                     { "l|libs", value => libs = true },
+                    { "n|node-modules", value => node = true },
                     { "s|sys|system", value => system = true }
                 }.Parse(args);
 
@@ -79,6 +82,13 @@ namespace Uno.CLI.Diagnostics
                 WriteHead("Uno libraries", 28, 0);
                 foreach (var lib in GetUnoLibraries())
                     WriteRow(lib.Name, lib.Location.ToRelativePath(), parse: false);
+            }
+
+            if (node || Log.IsVerbose)
+            {
+                WriteHead("Node.js modules", 28, 0);
+                foreach (var module in UnoConfig.Current.NodeModules)
+                    WriteRow(module.Key, module.Value, parse: false);
             }
 
             if (system || Log.IsVerbose)
