@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Uno.Build.JavaScript;
+using Uno.Build.FuseJS;
 using Uno.Collections;
 using Uno.Compiler;
 using Uno.Configuration;
@@ -29,7 +29,7 @@ namespace Uno.Build.Packages
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
         readonly UnoConfig _config;
         readonly bool _enableFuseJS;
-        FuseJS _fusejs;
+        Transpiler _fusejs;
 
         public IEnumerable<string> SearchPaths => _sourcePaths.Concat(_searchPaths).Where(Directory.Exists);
 
@@ -182,7 +182,7 @@ namespace Uno.Build.Packages
 
                 // Ensure FuseJS is initialized before starting a task
                 if (_fusejs == null)
-                    _fusejs = new FuseJS(Log, _config);
+                    _fusejs = new Transpiler(Log, _config);
 
                 name = inputFile.ToRelativePath();
                 Log.Verbose("Transpiling " + name);

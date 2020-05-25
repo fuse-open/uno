@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -12,9 +11,9 @@ using Uno.Logging;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Uno.Build.JavaScript
+namespace Uno.Build.FuseJS
 {
-    public class FuseJS : LogObject, IDisposable
+    public class Transpiler : LogObject, IDisposable
     {
         readonly Task<int> _task;
         readonly StringBuilder _output = new StringBuilder();
@@ -23,7 +22,7 @@ namespace Uno.Build.JavaScript
         bool _disposed;
         bool _isFaulted;
 
-        public FuseJS(Log log, UnoConfig config)
+        public Transpiler(Log log, UnoConfig config)
             : base(log)
         {
             var script = Path.Combine(
