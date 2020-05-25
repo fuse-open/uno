@@ -52,11 +52,6 @@ namespace Uno.Build.JavaScript
             return string.IsNullOrEmpty(port) == false;
         }
 
-        public FuseJS(Log log)
-            : this(log, UnoConfig.Current)
-        {
-        }
-
         public void Dispose()
         {
             if (_disposed)
