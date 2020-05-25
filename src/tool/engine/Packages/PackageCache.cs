@@ -27,6 +27,7 @@ namespace Uno.Build.Packages
         readonly Dictionary<string, string> _locks = new Dictionary<string, string>();
         readonly Dictionary<string, SourcePackage> _cache = new Dictionary<string, SourcePackage>();
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
+        readonly UnoConfig _config;
         readonly bool _enableFuseJS;
         FuseJS _fusejs;
 
@@ -40,10 +41,11 @@ namespace Uno.Build.Packages
         public PackageCache(Log log, UnoConfig config, bool enableFuseJS = true)
             : base(log ?? Log.Null)
         {
-            _enableFuseJS = enableFuseJS;
-
             if (config == null)
                 config = UnoConfig.Current;
+
+            _config = config;
+            _enableFuseJS = enableFuseJS;
 
             foreach (var src in config.GetFullPathArray("Packages.SourcePaths"))
                 _sourcePaths.AddOnce(Path.Combine(
@@ -51,6 +53,7 @@ namespace Uno.Build.Packages
                         ? Path.GetDirectoryName(src)
                         : src,
                     "build"));
+
             foreach (var src in config.GetFullPathArray("Packages.SearchPaths"))
                 _searchPaths.AddOnce(src);
         }
@@ -179,7 +182,7 @@ namespace Uno.Build.Packages
 
                 // Ensure FuseJS is initialized before starting a task
                 if (_fusejs == null)
-                    _fusejs = new FuseJS(this);
+                    _fusejs = new FuseJS(Log, _config);
 
                 name = inputFile.ToRelativePath();
                 Log.Verbose("Transpiling " + name);

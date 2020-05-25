@@ -6,7 +6,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Uno.Build.Packages;
 using Uno.Configuration;
 using Uno.Diagnostics;
 using Uno.Logging;
@@ -24,12 +23,14 @@ namespace Uno.Build.JavaScript
         bool _disposed;
         bool _isFaulted;
 
-        public FuseJS(PackageCache packages)
-            : base(packages.Log)
+        public FuseJS(Log log, UnoConfig config)
+            : base(log)
         {
-            var upk = packages.GetPackage("FuseJS.Transpiler");
-            var script = Path.Combine(upk.SourceDirectory, "server.min.js");
-            _task = new Shell(packages.Log).Start(
+            var script = Path.Combine(
+                config.GetNodeModuleDirectory("@fuse-open/transpiler"),
+                "server.min.js");
+
+            _task = new Shell(log).Start(
                 "node",
                 script.QuoteSpace(),
                 outputReceived: (sender, args) => {
@@ -52,7 +53,7 @@ namespace Uno.Build.JavaScript
         }
 
         public FuseJS(Log log)
-            : this(new PackageCache(log, UnoConfig.Current))
+            : this(log, UnoConfig.Current)
         {
         }
 
