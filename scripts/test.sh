@@ -9,6 +9,9 @@ TARGET=$1
 # Show uno config
 uno config -v
 
+h1 "Starting test suite"
+########################
+
 # Run uno tests
 if [[ "$SKIP_LIB_TESTS" != 1 ]]; then
     uno test $TARGET lib $UNO_TEST_ARGS
