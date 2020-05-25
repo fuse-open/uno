@@ -24,9 +24,20 @@ namespace Uno.Configuration
         readonly Dictionary<string, UnoConfig> _configCache = new Dictionary<string, UnoConfig>();
         readonly Dictionary<string, UnoConfigFile> _fileCache = new Dictionary<string, UnoConfigFile>();
         readonly Dictionary<string, List<UnoConfigString>> _stringCache = new Dictionary<string, List<UnoConfigString>>();
+        readonly Dictionary<string, string> _modules = new Dictionary<string, string>();
         readonly HashSet<string> _visitedDirectories = new HashSet<string>();
 
         public IReadOnlyList<UnoConfigFile> Files => _files;
+        public IReadOnlyDictionary<string, string> NodeModules => _modules;
+
+        public string GetNodeModuleDirectory(string name)
+        {
+            string path;
+            if (!_modules.TryGetValue(name, out path))
+                throw new FileNotFoundException($"The node module {name.Quote()} is not installed.");
+
+            return path;
+        }
 
         public UnoConfig GetDirectoryConfig(string dir)
         {
@@ -221,6 +232,7 @@ namespace Uno.Configuration
         UnoConfig(UnoConfig parent)
         {
             _files.AddRange(parent._files);
+            _modules.AddRange(parent._modules);
         }
 
         UnoConfig(UnoConfig parent, string dir)
@@ -265,9 +277,9 @@ namespace Uno.Configuration
                 LoadFile(dir, filename);
         }
 
-        void LoadNodeModules(string node_modules)
+        void LoadNodeModules(string parentDir)
         {
-            foreach (var dir in Directory.EnumerateDirectories(node_modules))
+            foreach (var dir in Directory.EnumerateDirectories(parentDir))
             {
                 if (Path.GetFileName(dir).StartsWith("@"))
                 {
@@ -279,7 +291,20 @@ namespace Uno.Configuration
 
                 if (File.Exists(filename))
                     LoadFile(dir, filename, false);
+
+                var package = Path.Combine(dir, "package.json");
+
+                if (File.Exists(package))
+                    _modules[GetNodeModuleName(dir)] = dir;
             }
+        }
+
+        static string GetNodeModuleName(string path)
+        {
+            const string node_modules = "node_modules";
+            return path
+                .Substring(path.LastIndexOf(node_modules) + node_modules.Length + 1)
+                .NativeToUnix();
         }
 
         void LoadFile(string dir, string filename, bool scanParentDir = true)
