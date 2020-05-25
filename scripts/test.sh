@@ -7,7 +7,7 @@ source scripts/common.sh
 TARGET=$1
 
 # Show uno config
-uno config
+uno config -v
 
 # Run uno tests
 if [[ "$SKIP_LIB_TESTS" != 1 ]]; then
