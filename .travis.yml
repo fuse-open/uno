@@ -11,6 +11,7 @@ matrix:
       mono: latest
       env: TARGET=ios
       before_script:
+        - export SKIP_LIB_TESTS=1
         - export UNO_TEST_ARGS="-DDEBUG_UNSAFE --build-only"
         - export XCODE_XCCONFIG_FILE=$TRAVIS_BUILD_DIR/.travis.xcconfig
     # - os: osx
