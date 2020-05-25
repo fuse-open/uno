@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Uno.CLI;
 using Uno.Diagnostics;
 
-namespace Uno.CLI.Android
+namespace Uno.Build.Adb
 {
-    class AdbDevice
+    public class AdbDevice
     {
         readonly Shell _shell;
         readonly string _adb;

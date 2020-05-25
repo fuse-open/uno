@@ -51,6 +51,8 @@
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
+    <Compile Include="Adb\AdbDevice.cs" />
+    <Compile Include="Adb\AdbRunner.cs" />
     <Compile Include="BuildConfiguration.cs" />
     <Compile Include="BuildDriver.cs" />
     <Compile Include="BuildFile.cs" />

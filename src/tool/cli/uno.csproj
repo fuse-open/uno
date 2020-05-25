@@ -41,13 +41,11 @@
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="Android\AdbDevice.cs" />
     <Compile Include="Android\Adb.cs" />
     <Compile Include="Diagnostics\Ls.cs" />
     <Compile Include="Packages\Doctor.cs" />
     <Compile Include="Diagnostics\Lint.cs" />
     <Compile Include="Projects\NoBuild.cs" />
-    <Compile Include="Android\AdbRunner.cs" />
     <Compile Include="Android\LaunchApk.cs" />
     <Compile Include="System\Open.cs" />
     <Compile Include="Projects\Test.cs" />
