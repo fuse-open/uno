@@ -102,11 +102,16 @@ The following foreign languages are supported:
 
 ## Build Instructions
 
+Uno is built using the command-line on Linux, macOS or Windows – or [from inside an IDE](docs/build-instructions.md#building-from-an-ide).
+
 ```
-$ make
+make
 ```
 
-Uno is built using the command-line on Linux, macOS or Windows – or [from inside an IDE](docs/build-instructions.md#building-from-an-ide).
+```
+make install
+uno --version
+```
 
 > Please see [the build instructions](docs/build-instructions.md) for details
 on how to build the source code.

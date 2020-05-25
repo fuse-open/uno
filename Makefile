@@ -1,4 +1,5 @@
 .PHONY: lib release
+
 default:
 	@bash scripts/build.sh
 lib:
@@ -10,4 +11,4 @@ check:
 clean:
 	@bash scripts/clean.sh
 install:
-	@ln -sfv "`pwd -P`"/bin/uno /usr/local/bin
+	@npm link -f
