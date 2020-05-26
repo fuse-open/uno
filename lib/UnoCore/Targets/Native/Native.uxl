@@ -10,8 +10,6 @@
 
     <!-- Environment -->
     <Define MSVC="HOST_WIN32" />
-    <!-- Deprecated -->
-    <Define MSVC12="HOST_WIN32" />
 
     <!-- Architecture (override by -DX86 or -DX64) -->
     <Define ARM="HOST_ARM" />

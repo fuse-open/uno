@@ -26,7 +26,4 @@
     <Require Assembly="System" />
     <Require Assembly="System.Core" />
 
-    <!-- Deprecated -->
-    <Deprecate AssemblyReference="Assembly" />
-
 </Extensions>
