@@ -36,7 +36,7 @@ namespace Uno.Graphics.OpenGL
             return new GLProgram(vsSource, fsSource, constCount, attribCount, constAttribAndUniformNames);
         }
 
-        GLCompiledProgram GetCompiledProgramInternal(string[] constStrings)
+        GLCompiledProgram CompileProgram(string[] constStrings)
         {
             var vsPrefix = "#ifdef GL_ES\nprecision highp float;\n#endif\n";
             var fsPrefix = new StringBuilder("#ifdef GL_ES\n#extension GL_OES_standard_derivatives : enable\n");
@@ -65,7 +65,7 @@ namespace Uno.Graphics.OpenGL
             if (constStrings.Length == 0)
             {
                 if (_singleProgram == null)
-                    _singleProgram = GetCompiledProgramInternal(constStrings);
+                    _singleProgram = CompileProgram(constStrings);
 
                 return _singleProgram;
             }
@@ -78,7 +78,7 @@ namespace Uno.Graphics.OpenGL
             GLCompiledProgram result;
             if (!_cachedPrograms.TryGetValue(key, out result))
             {
-                result = GetCompiledProgramInternal(constStrings);
+                result = CompileProgram(constStrings);
                 _cachedPrograms.Add(key, result);
             }
 
