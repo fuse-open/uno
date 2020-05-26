@@ -1,6 +1,6 @@
 using Uno.Compiler.ExportTargetInterop;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
     public extern(OPENGL) class GLException : Exception
     {

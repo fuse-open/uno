@@ -3,7 +3,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Collections;
 using Uno.Text;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
     public extern(OPENGL) sealed class GLProgram
     {

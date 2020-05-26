@@ -3,7 +3,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Collections;
 using Uno.Graphics;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
     public extern(OPENGL) struct GLDrawCall
     {

@@ -1,6 +1,6 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Graphics.OpenGL;
 
 namespace Uno.Graphics
 {

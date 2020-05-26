@@ -1,5 +1,5 @@
 using OpenGL;
-using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Graphics.OpenGL;
 
 namespace Uno.Graphics
 {

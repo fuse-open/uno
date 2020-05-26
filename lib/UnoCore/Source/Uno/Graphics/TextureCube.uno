@@ -1,5 +1,5 @@
 using OpenGL;
-using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Graphics.OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.IO;
 

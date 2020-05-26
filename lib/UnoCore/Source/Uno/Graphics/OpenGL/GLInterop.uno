@@ -2,7 +2,7 @@ using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Graphics;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
     public static extern(OPENGL) class GLInterop
     {

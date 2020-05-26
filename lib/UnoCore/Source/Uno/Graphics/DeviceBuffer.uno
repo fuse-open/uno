@@ -1,6 +1,6 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Graphics.OpenGL;
 using Uno.Runtime.InteropServices;
 
 namespace Uno.Graphics
