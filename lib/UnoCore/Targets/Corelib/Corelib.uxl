@@ -1,3 +1,0 @@
-<Extensions Backend="CSharp" Condition="CORELIB">
-    <Define PREVIEW />
-</Extensions>
