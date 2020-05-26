@@ -80,9 +80,6 @@ T uAssertPtr(T ptr, const char* src, const char* msg) {
 #define DEPRECATED(msg)
 #endif
 
-// Legacy char type
-typedef DEPRECATED("use char16_t instead") char16_t uChar;
-
 // Disable free()
 #if DEBUG_ARC >= 4
 #define free(X) void()
