@@ -28,8 +28,8 @@ namespace Uno.Build.Packages
         readonly Dictionary<string, SourcePackage> _cache = new Dictionary<string, SourcePackage>();
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
         readonly UnoConfig _config;
-        readonly bool _enableFuseJS;
-        Transpiler _fusejs;
+        readonly bool _enableTranspiler;
+        Transpiler _transpiler;
 
         public IEnumerable<string> SearchPaths => _sourcePaths.Concat(_searchPaths).Where(Directory.Exists);
 
@@ -38,14 +38,14 @@ namespace Uno.Build.Packages
         {
         }
 
-        public PackageCache(Log log, UnoConfig config, bool enableFuseJS = true)
+        public PackageCache(Log log, UnoConfig config, bool enableTranspiler = true)
             : base(log ?? Log.Null)
         {
             if (config == null)
                 config = UnoConfig.Current;
 
             _config = config;
-            _enableFuseJS = enableFuseJS;
+            _enableTranspiler = enableTranspiler;
 
             foreach (var src in config.GetFullPathArray("Packages.SourcePaths"))
                 _sourcePaths.AddOnce(Path.Combine(
@@ -60,8 +60,8 @@ namespace Uno.Build.Packages
 
         public void Dispose()
         {
-            _fusejs?.Dispose();
-            _fusejs = null;
+            _transpiler?.Dispose();
+            _transpiler = null;
         }
 
         public SourcePackage GetPackage(string name, string version = null)
@@ -159,7 +159,7 @@ namespace Uno.Build.Packages
             foreach (var f in project.FuseJSFiles)
             {
                 // We don't need to spend time on this in UXNinja, tests, etc.
-                if (!_enableFuseJS)
+                if (!_enableTranspiler)
                     continue;
 
                 var name = f.NativePath;
@@ -180,15 +180,15 @@ namespace Uno.Build.Packages
                     File.GetLastWriteTime(outputFile) >= File.GetLastWriteTime(inputFile))
                     continue;
 
-                // Ensure FuseJS is initialized before starting a task
-                if (_fusejs == null)
-                    _fusejs = new Transpiler(Log, _config);
+                // Ensure Transpiler is initialized before starting a task
+                if (_transpiler == null)
+                    _transpiler = new Transpiler(Log, _config);
 
                 name = inputFile.ToRelativePath();
                 Log.Verbose("Transpiling " + name);
                 
                 string output;
-                if (_fusejs.TryTranspile(name, File.ReadAllText(inputFile), out output))
+                if (_transpiler.TryTranspile(name, File.ReadAllText(inputFile), out output))
                 {
                     using (var file = Disk.CreateText(outputFile))
                         file.Write(output);
