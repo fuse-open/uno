@@ -21,7 +21,7 @@ namespace Uno.Graphics.OpenGL
             }
         }
 
-        public static PolygonWinding ToUnoGraphicsPolygonWinding(this GLFrontFaceDirection x)
+        public static PolygonWinding ToPolygonWinding(this GLFrontFaceDirection x)
         {
             switch (x)
             {
@@ -57,7 +57,7 @@ namespace Uno.Graphics.OpenGL
             }
         }
 
-        public static PolygonFace ToUnoGraphicsPolygonFace(this GLCullFaceMode x)
+        public static PolygonFace ToPolygonFace(this GLCullFaceMode x)
         {
             switch (x)
             {
@@ -111,7 +111,7 @@ namespace Uno.Graphics.OpenGL
             }
         }
 
-        public static CompareFunc ToUnoGraphicsCompareFunc(this GLDepthFunction x)
+        public static CompareFunc ToCompareFunc(this GLDepthFunction x)
         {
             switch (x)
             {
@@ -168,7 +168,7 @@ namespace Uno.Graphics.OpenGL
             }
         }
 
-        public static PrimitiveType ToUnoGraphicsPrimitiveType(this GLPrimitiveType x)
+        public static PrimitiveType ToPrimitiveType(this GLPrimitiveType x)
         {
             switch (x)
             {
@@ -231,7 +231,7 @@ namespace Uno.Graphics.OpenGL
             }
         }
 
-        public static BlendOperand ToUnoGraphicsBlendOperand(this GLBlendingFactor x)
+        public static BlendOperand ToBlendOperand(this GLBlendingFactor x)
         {
             switch (x)
             {
@@ -288,7 +288,7 @@ namespace Uno.Graphics.OpenGL
             }
         }
 
-        public static BlendEquation ToUnoGraphicsBlendEquation(this GLBlendEquation x)
+        public static BlendEquation ToBlendEquation(this GLBlendEquation x)
         {
             switch (x)
             {

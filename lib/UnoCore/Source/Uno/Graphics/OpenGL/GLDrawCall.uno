@@ -44,37 +44,37 @@ namespace Uno.Graphics.OpenGL
 
         public BlendEquation BlendEquationRgb
         {
-            get { return _blendEqRgb.ToUnoGraphicsBlendEquation(); }
+            get { return _blendEqRgb.ToBlendEquation(); }
             set { _blendEqRgb = value.ToGLBlendEquation(); }
         }
 
         public BlendEquation BlendEquationAlpha
         {
-            get { return _blendEqAlpha.ToUnoGraphicsBlendEquation(); }
+            get { return _blendEqAlpha.ToBlendEquation(); }
             set { _blendEqAlpha = value.ToGLBlendEquation(); }
         }
 
         public BlendOperand BlendSrcRgb
         {
-            get { return _blendSrcRgb.ToUnoGraphicsBlendOperand(); }
+            get { return _blendSrcRgb.ToBlendOperand(); }
             set { _blendSrcRgb = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendSrcAlpha
         {
-            get { return _blendSrcAlpha.ToUnoGraphicsBlendOperand(); }
+            get { return _blendSrcAlpha.ToBlendOperand(); }
             set { _blendSrcAlpha = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendDstRgb
         {
-            get { return _blendDstRgb.ToUnoGraphicsBlendOperand(); }
+            get { return _blendDstRgb.ToBlendOperand(); }
             set { _blendDstRgb = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendDstAlpha
         {
-            get { return _blendDstAlpha.ToUnoGraphicsBlendOperand(); }
+            get { return _blendDstAlpha.ToBlendOperand(); }
             set { _blendDstAlpha = value.ToGLBlendingFactor(); }
         }
 
@@ -86,25 +86,25 @@ namespace Uno.Graphics.OpenGL
 
         public CompareFunc DepthFunc
         {
-            get { return _depthFunc.ToUnoGraphicsCompareFunc(); }
+            get { return _depthFunc.ToCompareFunc(); }
             set { _depthFunc = value.ToGLDepthFunction(); }
         }
 
         public PolygonFace CullFace
         {
-            get { return _cullFace.ToUnoGraphicsPolygonFace(); }
+            get { return _cullFace.ToPolygonFace(); }
             set { _cullFace = value.ToGLCullFaceMode(); }
         }
 
         public PolygonWinding PolygonWinding
         {
-            get { return _frontFace.ToUnoGraphicsPolygonWinding(); }
+            get { return _frontFace.ToPolygonWinding(); }
             set { _frontFace = value.ToGLFrontFaceDirection(); }
         }
 
         public PrimitiveType PrimitiveType
         {
-            get { return _primitiveType.ToUnoGraphicsPrimitiveType(); }
+            get { return _primitiveType.ToPrimitiveType(); }
             set { _primitiveType = value.ToGLPrimitiveType(); }
         }
 
