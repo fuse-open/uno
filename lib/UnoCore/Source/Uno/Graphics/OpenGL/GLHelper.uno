@@ -6,7 +6,7 @@ using Uno.Runtime.InteropServices;
 
 namespace Uno.Graphics.OpenGL
 {
-    public static extern(OPENGL) class GLHelpers
+    public static extern(OPENGL) class GLHelper
     {
         public static void CheckError()
         {
@@ -98,8 +98,8 @@ namespace Uno.Graphics.OpenGL
                 result.HasDepth = true;
             }
 
-            GLHelpers.CheckFramebufferStatus();
-            GLHelpers.CheckError();
+            GLHelper.CheckFramebufferStatus();
+            GLHelper.CheckError();
 
             GL.BindFramebuffer(GLFramebufferTarget.Framebuffer, prevHandle);
 

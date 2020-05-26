@@ -4,7 +4,7 @@ using Uno.Graphics;
 
 namespace Uno.Graphics.OpenGL
 {
-    public static extern(OPENGL) class GLInterop
+    public static extern(OPENGL) class GLConverter
     {
         public static GLFrontFaceDirection ToGLFrontFaceDirection(PolygonWinding x)
         {

@@ -161,7 +161,7 @@ namespace Uno.Graphics
                 GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.MinFilter, GLTextureParameterValue.Linear);
                 GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapS, GLTextureParameterValue.ClampToEdge);
                 GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapT, GLTextureParameterValue.ClampToEdge);
-                GLHelpers.TexImage2DFromIntPtr(GLTextureTarget.Texture2D, Size.X, Size.Y, 0, Format, mip0);
+                GLHelper.TexImage2DFromIntPtr(GLTextureTarget.Texture2D, Size.X, Size.Y, 0, Format, mip0);
                 GL.BindTexture(GLTextureTarget.Texture2D, GLTextureHandle.Zero);
             }
             else
@@ -184,7 +184,7 @@ namespace Uno.Graphics
                 GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.MinFilter, GLTextureParameterValue.Linear);
                 GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapS, GLTextureParameterValue.ClampToEdge);
                 GL.TexParameter(GLTextureTarget.Texture2D, GLTextureParameterName.WrapT, GLTextureParameterValue.ClampToEdge);
-                GLHelpers.TexImage2DFromBytes(GLTextureTarget.Texture2D, Size.X, Size.Y, 0, Format, mip0);
+                GLHelper.TexImage2DFromBytes(GLTextureTarget.Texture2D, Size.X, Size.Y, 0, Format, mip0);
                 GL.BindTexture(GLTextureTarget.Texture2D, GLTextureHandle.Zero);
             }
             else
@@ -214,7 +214,7 @@ namespace Uno.Graphics
                 for (int i = 0; i < MipCount; i++)
                 {
                     if (i >= firstMip)
-                        GLHelpers.TexImage2DFromBytes(GLTextureTarget.Texture2D, w, h, i, Format, mips[i]);
+                        GLHelper.TexImage2DFromBytes(GLTextureTarget.Texture2D, w, h, i, Format, mips[i]);
 
                     w = w >> 1;
                     h = h >> 1;

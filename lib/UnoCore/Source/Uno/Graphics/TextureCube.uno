@@ -92,7 +92,7 @@ namespace Uno.Graphics
                 GL.TexParameter(GLTextureTarget.TextureCubeMap, GLTextureParameterName.MinFilter, GLTextureParameterValue.Linear);
                 GL.TexParameter(GLTextureTarget.TextureCubeMap, GLTextureParameterName.WrapS, GLTextureParameterValue.ClampToEdge);
                 GL.TexParameter(GLTextureTarget.TextureCubeMap, GLTextureParameterName.WrapT, GLTextureParameterValue.ClampToEdge);
-                GLHelpers.TexImage2DFromBytes((GLTextureTarget)((int)GLTextureTarget.TextureCubeMapPositiveX + (int)face), Size, Size, 0, Format, mip0);
+                GLHelper.TexImage2DFromBytes((GLTextureTarget)((int)GLTextureTarget.TextureCubeMapPositiveX + (int)face), Size, Size, 0, Format, mip0);
                 GL.BindTexture(GLTextureTarget.TextureCubeMap, GLTextureHandle.Zero);
             }
             else
@@ -121,7 +121,7 @@ namespace Uno.Graphics
                 for (int i = 0; i < MipCount; i++)
                 {
                     if (i >= firstMip)
-                        GLHelpers.TexImage2DFromBytes((GLTextureTarget)((int)GLTextureTarget.TextureCubeMapPositiveX + (int)face), wh, wh, i, Format, mips[i]);
+                        GLHelper.TexImage2DFromBytes((GLTextureTarget)((int)GLTextureTarget.TextureCubeMapPositiveX + (int)face), wh, wh, i, Format, mips[i]);
 
                     wh = wh >> 1;
 
