@@ -44,7 +44,7 @@ namespace Uno.Graphics
             if defined(OPENGL)
             {
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-                GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, GLConverter.ToGLBufferUsage(Usage));
+                GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, Usage.ToGLBufferUsage());
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
             }
         }
@@ -97,7 +97,7 @@ namespace Uno.Graphics
                     GL.BufferSubData(GLBufferTarget, 0, sizeInBytes, addr);
                 else
                 {
-                    GL.BufferData(GLBufferTarget, sizeInBytes, addr, GLConverter.ToGLBufferUsage(Usage));
+                    GL.BufferData(GLBufferTarget, sizeInBytes, addr, Usage.ToGLBufferUsage());
                     SizeInBytes = sizeInBytes;
                 }
 

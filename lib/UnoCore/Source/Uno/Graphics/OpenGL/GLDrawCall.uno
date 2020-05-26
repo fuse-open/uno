@@ -44,38 +44,38 @@ namespace Uno.Graphics.OpenGL
 
         public BlendEquation BlendEquationRgb
         {
-            get { return GLConverter.ToUnoGraphicsBlendEquation(_blendEqRgb); }
-            set { _blendEqRgb = GLConverter.ToGLBlendEquation(value); }
+            get { return _blendEqRgb.ToUnoGraphicsBlendEquation(); }
+            set { _blendEqRgb = value.ToGLBlendEquation(); }
         }
 
         public BlendEquation BlendEquationAlpha
         {
-            get { return GLConverter.ToUnoGraphicsBlendEquation(_blendEqAlpha); }
-            set { _blendEqAlpha = GLConverter.ToGLBlendEquation(value); }
+            get { return _blendEqAlpha.ToUnoGraphicsBlendEquation(); }
+            set { _blendEqAlpha = value.ToGLBlendEquation(); }
         }
 
         public BlendOperand BlendSrcRgb
         {
-            get { return GLConverter.ToUnoGraphicsBlendOperand(_blendSrcRgb); }
-            set { _blendSrcRgb = GLConverter.ToGLBlendingFactor(value); }
+            get { return _blendSrcRgb.ToUnoGraphicsBlendOperand(); }
+            set { _blendSrcRgb = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendSrcAlpha
         {
-            get { return GLConverter.ToUnoGraphicsBlendOperand(_blendSrcAlpha); }
-            set { _blendSrcAlpha = GLConverter.ToGLBlendingFactor(value); }
+            get { return _blendSrcAlpha.ToUnoGraphicsBlendOperand(); }
+            set { _blendSrcAlpha = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendDstRgb
         {
-            get { return GLConverter.ToUnoGraphicsBlendOperand(_blendDstRgb); }
-            set { _blendDstRgb = GLConverter.ToGLBlendingFactor(value); }
+            get { return _blendDstRgb.ToUnoGraphicsBlendOperand(); }
+            set { _blendDstRgb = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendDstAlpha
         {
-            get { return GLConverter.ToUnoGraphicsBlendOperand(_blendDstAlpha); }
-            set { _blendDstAlpha = GLConverter.ToGLBlendingFactor(value); }
+            get { return _blendDstAlpha.ToUnoGraphicsBlendOperand(); }
+            set { _blendDstAlpha = value.ToGLBlendingFactor(); }
         }
 
         public bool DepthTestEnabled
@@ -86,26 +86,26 @@ namespace Uno.Graphics.OpenGL
 
         public CompareFunc DepthFunc
         {
-            get { return GLConverter.ToUnoGraphicsCompareFunc(_depthFunc); }
-            set { _depthFunc = GLConverter.ToGLDepthFunction(value); }
+            get { return _depthFunc.ToUnoGraphicsCompareFunc(); }
+            set { _depthFunc = value.ToGLDepthFunction(); }
         }
 
         public PolygonFace CullFace
         {
-            get { return GLConverter.ToUnoGraphicsPolygonFace(_cullFace); }
-            set { _cullFace = GLConverter.ToGLCullFaceMode(value); }
+            get { return _cullFace.ToUnoGraphicsPolygonFace(); }
+            set { _cullFace = value.ToGLCullFaceMode(); }
         }
 
         public PolygonWinding PolygonWinding
         {
-            get { return GLConverter.ToUnoGraphicsPolygonWinding(_frontFace); }
-            set { _frontFace = GLConverter.ToGLFrontFaceDirection(value); }
+            get { return _frontFace.ToUnoGraphicsPolygonWinding(); }
+            set { _frontFace = value.ToGLFrontFaceDirection(); }
         }
 
         public PrimitiveType PrimitiveType
         {
-            get { return GLConverter.ToUnoGraphicsPrimitiveType(_primitiveType); }
-            set { _primitiveType = GLConverter.ToGLPrimitiveType(value); }
+            get { return _primitiveType.ToUnoGraphicsPrimitiveType(); }
+            set { _primitiveType = value.ToGLPrimitiveType(); }
         }
 
         public bool WriteRed
@@ -228,7 +228,7 @@ namespace Uno.Graphics.OpenGL
             int componentCount;
             GLDataType componentType;
             bool normalized;
-            GLConverter.ToGLVertexAttributeType(type, out componentCount, out componentType, out normalized);
+            type.ToGLVertexAttributeType(out componentCount, out componentType, out normalized);
             Attrib(index, componentCount, componentType, normalized, buf, stride, offset);
         }
 
@@ -539,7 +539,7 @@ namespace Uno.Graphics.OpenGL
             if (type == IndexType.Undefined)
                 DrawArrays(count);
             else
-                DrawElements(count, GLConverter.ToGLIndexType(type), buf);
+                DrawElements(count, type.ToGLIndexType(), buf);
         }
     }
 }
