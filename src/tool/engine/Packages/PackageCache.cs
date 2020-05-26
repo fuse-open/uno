@@ -257,7 +257,7 @@ namespace Uno.Build.Packages
                     if (versionRange.IsCompatible(dir.Name))
                         return PackageFile.Load(dir.FullName);
 
-                // Fallback to "best" version for now
+                // Fallback to "best" version.
                 if (dirs.Length > 0)
                     return PackageFile.Load(dirs[0].FullName);
             }
@@ -280,7 +280,7 @@ namespace Uno.Build.Packages
                     if (versionRange.IsCompatible(dir.Name))
                         return PackageFile.Load(dir.FullName);
 
-                // Fallback to "best" version for now
+                // Fallback to "best" version.
                 if (dirs.Length > 0)
                     return PackageFile.Load(dirs[0].FullName);
             }
