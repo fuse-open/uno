@@ -18,8 +18,11 @@ install:
 build_script:
   - npm pack --silent
 
-artifacts:
-  - path: '*.tgz'
+after_build:
+  - ps: |
+      if ($env:Target -eq "dotnet") {
+        Push-AppveyorArtifact "*.tgz"
+      }
 
 before_test:
   - ps: |
