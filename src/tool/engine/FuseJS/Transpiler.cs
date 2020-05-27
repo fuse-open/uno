@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Uno.Build.Packages;
 using Uno.Configuration;
 using Uno.Diagnostics;
 using Uno.Logging;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Uno.Build.JavaScript
+namespace Uno.Build.FuseJS
 {
-    public class FuseJS : LogObject, IDisposable
+    public class Transpiler : LogObject, IDisposable
     {
         readonly Task<int> _task;
         readonly StringBuilder _output = new StringBuilder();
@@ -24,12 +22,14 @@ namespace Uno.Build.JavaScript
         bool _disposed;
         bool _isFaulted;
 
-        public FuseJS(PackageCache packages)
-            : base(packages.Log)
+        public Transpiler(Log log, UnoConfig config)
+            : base(log)
         {
-            var upk = packages.GetPackage("FuseJS.Transpiler");
-            var script = Path.Combine(upk.SourceDirectory, "server.min.js");
-            _task = new Shell(packages.Log).Start(
+            var script = Path.Combine(
+                config.GetNodeModuleDirectory("@fuse-open/transpiler"),
+                "server.min.js");
+
+            _task = new Shell(log).Start(
                 "node",
                 script.QuoteSpace(),
                 outputReceived: (sender, args) => {
@@ -49,11 +49,6 @@ namespace Uno.Build.JavaScript
             var match = _portFinder.Match(data ?? "");
             port = match.Success ? match.Groups[1].Value : "";
             return string.IsNullOrEmpty(port) == false;
-        }
-
-        public FuseJS(Log log)
-            : this(new PackageCache(log, UnoConfig.Current))
-        {
         }
 
         public void Dispose()

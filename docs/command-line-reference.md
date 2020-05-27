@@ -238,13 +238,15 @@ Available options
 Usage: uno config [property ...]
   or   uno config [options]
 
-Print information about your Uno environment.
+Print information about your Uno configuration.
 
 Available options
   -a, --asm             Print .NET assemblies
+  -e, --env             Print environment variables
   -l, --libs            Print libraries in search paths
-  -s, --system          Print system settings
-  -v                    Print everything
+  -n, --node-modules    Print nodejs modules
+  -vv                   Print everything
+  -v                    Verbose mode
 ```
 
 ## uno ls

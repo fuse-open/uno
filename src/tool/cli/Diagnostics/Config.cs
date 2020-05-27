@@ -14,29 +14,34 @@ namespace Uno.CLI.Diagnostics
     class Config : Command
     {
         public override string Name => "config";
-        public override string Description => "Print information about your Uno environment.";
+        public override string Description => "Print information about your Uno configuration.";
 
         public override void Help()
         {
             WriteUsage("[property ...]", "[options]");
 
             WriteHead("Available options");
-            WriteRow("-a, --asm",          "Print .NET assemblies");
-            WriteRow("-l, --libs",         "Print libraries in search paths");
-            WriteRow("-s, --system",       "Print system settings");
-            WriteRow("-v",                 "Print everything");
+            WriteRow("-a, --asm",           "Print .NET assemblies");
+            WriteRow("-e, --env",           "Print environment variables");
+            WriteRow("-l, --libs",          "Print libraries in search paths");
+            WriteRow("-n, --node-modules",  "Print nodejs modules");
+            WriteRow("-vv",                 "Print everything");
+            WriteRow("-v",                  "Verbose mode");
         }
 
         public override void Execute(IEnumerable<string> args)
         {
             var asm = false;
             var libs = false;
+            var node = false;
             var system = false;
             
             var input = new OptionSet {
                     { "a|asm", value => asm = true },
+                    { "e|env", value => system = true },
                     { "l|libs", value => libs = true },
-                    { "s|sys|system", value => system = true }
+                    { "n|node-modules", value => node = true },
+                    { "s|sys|system", value => system = true }  // legacy
                 }.Parse(args);
 
             if (input.Count > 0)
@@ -52,17 +57,20 @@ namespace Uno.CLI.Diagnostics
             else
                 Log.ProductHeader();
 
-            WriteHead("Uno settings", indent: 0);
-            WriteRow(UnoConfig.Current);
+            if (!asm && !libs && !node && !system || Log.IsVerbose)
+            {
+                WriteHead("Uno settings", indent: 0);
+                WriteRow(UnoConfig.Current);
 
-            WriteHead("Config files", indent: 0);
-            foreach (var f in UnoConfig.Current.GetFilenames(Log.IsVerbose))
-                WriteRow(f.ToRelativePath());
+                WriteHead("Config files", indent: 0);
+                foreach (var f in UnoConfig.Current.GetFilenames(Log.IsVerbose))
+                    WriteRow(f.ToRelativePath());
 
-            WriteHead("Config defines", indent: 0);
-            var defines = UnoConfigFile.Defines.ToArray();
-            Array.Sort(defines);
-            WriteLine(string.Join(" ", defines));
+                WriteHead("Config defines", indent: 0);
+                var defines = UnoConfigFile.Defines.ToArray();
+                Array.Sort(defines);
+                WriteLine(string.Join(" ", defines));
+            }
 
             if (asm || Log.IsVerbose)
             {
@@ -74,16 +82,23 @@ namespace Uno.CLI.Diagnostics
                         WriteRow(f.Location.ToRelativePath() + " (" + f.GetName().Version + ")");
             }
 
-            if (libs || Log.IsVerbose)
+            if (libs || Log.IsVeryVerbose)
             {
                 WriteHead("Uno libraries", 28, 0);
                 foreach (var lib in GetUnoLibraries())
                     WriteRow(lib.Name, lib.Location.ToRelativePath(), parse: false);
             }
 
-            if (system || Log.IsVerbose)
+            if (node || Log.IsVeryVerbose)
             {
-                WriteHead("System settings", 24, 0);
+                WriteHead("Node.js modules", 28, 0);
+                foreach (var module in UnoConfig.Current.NodeModules)
+                    WriteRow(module.Key, module.Value, parse: false);
+            }
+
+            if (system || Log.IsVeryVerbose)
+            {
+                WriteHead("Environment variables", 24, 0);
                 foreach (DictionaryEntry e in Environment.GetEnvironmentVariables())
                     WriteRow(e.Key, e.Value, parse: false);
             }

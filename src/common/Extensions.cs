@@ -63,6 +63,12 @@ namespace Uno
                 set.Add(e);
         }
 
+        public static void AddRange<TKey, TValue>(this Dictionary<TKey, TValue> self, Dictionary<TKey, TValue> items)
+        {
+            foreach (var e in items)
+                self.Add(e.Key, e.Value);
+        }
+
         public static bool StartsWith(this string str, char a, char b = '\0')
         {
             if (str.Length > 0)

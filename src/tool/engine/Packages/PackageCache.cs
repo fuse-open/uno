@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Uno.Build.JavaScript;
+using Uno.Build.FuseJS;
 using Uno.Collections;
 using Uno.Compiler;
 using Uno.Configuration;
@@ -27,8 +27,9 @@ namespace Uno.Build.Packages
         readonly Dictionary<string, string> _locks = new Dictionary<string, string>();
         readonly Dictionary<string, SourcePackage> _cache = new Dictionary<string, SourcePackage>();
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
-        readonly bool _enableFuseJS;
-        FuseJS _fusejs;
+        readonly UnoConfig _config;
+        readonly bool _enableTranspiler;
+        Transpiler _transpiler;
 
         public IEnumerable<string> SearchPaths => _sourcePaths.Concat(_searchPaths).Where(Directory.Exists);
 
@@ -37,13 +38,14 @@ namespace Uno.Build.Packages
         {
         }
 
-        public PackageCache(Log log, UnoConfig config, bool enableFuseJS = true)
+        public PackageCache(Log log, UnoConfig config, bool enableTranspiler = true)
             : base(log ?? Log.Null)
         {
-            _enableFuseJS = enableFuseJS;
-
             if (config == null)
                 config = UnoConfig.Current;
+
+            _config = config;
+            _enableTranspiler = enableTranspiler;
 
             foreach (var src in config.GetFullPathArray("Packages.SourcePaths"))
                 _sourcePaths.AddOnce(Path.Combine(
@@ -51,14 +53,15 @@ namespace Uno.Build.Packages
                         ? Path.GetDirectoryName(src)
                         : src,
                     "build"));
+
             foreach (var src in config.GetFullPathArray("Packages.SearchPaths"))
                 _searchPaths.AddOnce(src);
         }
 
         public void Dispose()
         {
-            _fusejs?.Dispose();
-            _fusejs = null;
+            _transpiler?.Dispose();
+            _transpiler = null;
         }
 
         public SourcePackage GetPackage(string name, string version = null)
@@ -156,7 +159,7 @@ namespace Uno.Build.Packages
             foreach (var f in project.FuseJSFiles)
             {
                 // We don't need to spend time on this in UXNinja, tests, etc.
-                if (!_enableFuseJS)
+                if (!_enableTranspiler)
                     continue;
 
                 var name = f.NativePath;
@@ -177,15 +180,15 @@ namespace Uno.Build.Packages
                     File.GetLastWriteTime(outputFile) >= File.GetLastWriteTime(inputFile))
                     continue;
 
-                // Ensure FuseJS is initialized before starting a task
-                if (_fusejs == null)
-                    _fusejs = new FuseJS(this);
+                // Ensure Transpiler is initialized before starting a task
+                if (_transpiler == null)
+                    _transpiler = new Transpiler(Log, _config);
 
                 name = inputFile.ToRelativePath();
                 Log.Verbose("Transpiling " + name);
                 
                 string output;
-                if (_fusejs.TryTranspile(name, File.ReadAllText(inputFile), out output))
+                if (_transpiler.TryTranspile(name, File.ReadAllText(inputFile), out output))
                 {
                     using (var file = Disk.CreateText(outputFile))
                         file.Write(output);
@@ -254,7 +257,7 @@ namespace Uno.Build.Packages
                     if (versionRange.IsCompatible(dir.Name))
                         return PackageFile.Load(dir.FullName);
 
-                // Fallback to "best" version for now
+                // Fallback to "best" version.
                 if (dirs.Length > 0)
                     return PackageFile.Load(dirs[0].FullName);
             }
@@ -277,7 +280,7 @@ namespace Uno.Build.Packages
                     if (versionRange.IsCompatible(dir.Name))
                         return PackageFile.Load(dir.FullName);
 
-                // Fallback to "best" version for now
+                // Fallback to "best" version.
                 if (dirs.Length > 0)
                     return PackageFile.Load(dirs[0].FullName);
             }

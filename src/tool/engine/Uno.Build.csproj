@@ -57,7 +57,7 @@
     <Compile Include="BuildDriver.cs" />
     <Compile Include="BuildFile.cs" />
     <Compile Include="ErrorCode.cs" />
-    <Compile Include="JavaScript\FuseJS.cs" />
+    <Compile Include="FuseJS\Transpiler.cs" />
     <Compile Include="Packages\PackageDoctor.cs" />
     <Compile Include="Packages\PackageSearchPaths.cs" />
     <Compile Include="Packages\PackageCache.cs" />

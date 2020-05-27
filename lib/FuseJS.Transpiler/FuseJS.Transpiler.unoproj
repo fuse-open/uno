@@ -1,8 +1,0 @@
-{
-  "Copyright": "Copyright (c) Fuse Open 2018",
-  "Publisher": "Fuse Open",
-  "Description": "A Node.js server that transpiles FuseJS -> ES5 using Babel.js.",
-  "Includes": [
-    "server.min.js:File"
-  ]
-}
