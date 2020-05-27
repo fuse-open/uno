@@ -25,12 +25,15 @@ fi
 
 if [ ! -d packages/ ]; then
     INSTALL=1
+elif [ ! -d node_modules/ ]; then
+    INSTALL=1
 fi
 
 if [ "$INSTALL" = 1 ]; then
     h1 "Installing dependencies"
     nuget restore uno.sln
     nuget restore runtime.sln
+    npm install
 fi
 
 h1 "Building uno"
