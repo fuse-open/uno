@@ -82,7 +82,7 @@ namespace Uno.UX
 	}
 
 	/** Interface used by the preview engine to simulate properties on an object. */
-	extern(DESIGNER) public static class SimulatedProperties
+	extern(PREVIEW) public static class SimulatedProperties
 	{
 		public static void Set(PropertyObject obj, string name, object value, IPropertyListener origin)
 		{

@@ -38,7 +38,7 @@ namespace Uno.Build.Stuff
                 File.WriteAllBytes(timestampFile, new byte[0]);
         }
 
-        public static void CollectGarbage(Log log, double days = 14.0)
+        public static void CollectGarbage(Log log, double days = 60.0)
         {
             CollectGarbage(log, StuffDirectory, days);
         }

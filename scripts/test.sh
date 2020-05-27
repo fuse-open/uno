@@ -7,15 +7,17 @@ source scripts/common.sh
 TARGET=$1
 
 # Show uno config
-uno config
+uno config -v
+
+h1 "Starting test suite"
+########################
 
 # Run uno tests
 if [[ "$SKIP_LIB_TESTS" != 1 ]]; then
     uno test $TARGET lib $UNO_TEST_ARGS
 fi
 
-# Skip when testing 'native' on AppVeyor
-if [[ "$APPVEYOR" != True || "$TARGET" != native ]]; then
+if [[ "$SKIP_UNO_TESTS" != 1 ]]; then
     uno test $TARGET tests/src/{Uno,UX}Test $UNO_TEST_ARGS
 fi
 

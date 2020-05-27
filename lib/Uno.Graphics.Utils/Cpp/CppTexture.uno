@@ -1,11 +1,12 @@
 using Uno.Compiler.ExportTargetInterop;
 using Uno.IO;
+using Uno;
 using OpenGL;
 
 namespace Uno.Graphics.Utils.Cpp
 {
-    [extern(CPLUSPLUS) Require("Source.Include", "@{Uno.Graphics.Texture2D:Include}")]
-    [extern(CPLUSPLUS) Require("Source.Include", "@{Uno.Exception:Include}")]
+    [extern(CPLUSPLUS) Require("Source.Include", "@{texture2D:Include}")]
+    [extern(CPLUSPLUS) Require("Source.Include", "@{Exception:Include}")]
     [extern(CPLUSPLUS) Require("Source.Include", "uBase/Buffer.h")]
     [extern(CPLUSPLUS) Require("Source.Include", "uBase/BufferStream.h")]
     [extern(CPLUSPLUS) Require("Source.Include", "uBase/Memory.h")]
@@ -58,11 +59,11 @@ namespace Uno.Graphics.Utils.Cpp
 
                 GLuint handle = uCreateGLTexture(tex, false, &info);
 
-                return @{Uno.Graphics.Texture2D(OpenGL.GLTextureHandle,int2,int,Uno.Graphics.Format):New(handle, @{int2(int,int):New(originalWidth, originalHeight)}, info.MipCount, @{Uno.Graphics.Format.Unknown})};
+                return @{texture2D(GLTextureHandle,int2,int,Format):New(handle, @{int2(int,int):New(originalWidth, originalHeight)}, info.MipCount, @{Format.Unknown})};
             }
             catch (const uBase::Exception &e)
             {
-                U_THROW(@{Uno.Exception(string):New(uStringFromXliString(e.GetMessage()))});
+                U_THROW(@{Exception(string):New(uStringFromXliString(e.GetMessage()))});
             }
         @}
 
@@ -88,11 +89,11 @@ namespace Uno.Graphics.Utils.Cpp
                 uGLTextureInfo info;
                 GLuint handle = uCreateGLTexture(tex, false, &info);
 
-                return @{Uno.Graphics.Texture2D(OpenGL.GLTextureHandle,int2,int,Uno.Graphics.Format):New(handle, @{int2(int,int):New(originalWidth, originalHeight)}, info.MipCount, @{Uno.Graphics.Format.Unknown})};
+                return @{texture2D(GLTextureHandle,int2,int,Format):New(handle, @{int2(int,int):New(originalWidth, originalHeight)}, info.MipCount, @{Format.Unknown})};
             }
             catch (const uBase::Exception &e)
             {
-                U_THROW(@{Uno.Exception(string):New(uStringFromXliString(e.GetMessage()))});
+                U_THROW(@{Exception(string):New(uStringFromXliString(e.GetMessage()))});
             }
         @}
     }

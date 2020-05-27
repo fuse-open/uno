@@ -4,7 +4,7 @@
   "description": "Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.",
   "dependencies": {
     "@fuse-open/transpiler": "^1.14.0",
-    "dotnet-run": "^1.3.0"
+    "dotnet-run": "^1.3.1"
   },
   "devDependencies": {
     "xbash": "^1.4.1"

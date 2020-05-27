@@ -370,9 +370,6 @@ namespace Uno
                    m.M21 * m.M12;
         }
 
-        /**
-            @deprecated Use TryInvert
-        */
         public static float4x4 Invert(float4x4 value)
         {
             float4x4 result;
@@ -435,9 +432,6 @@ namespace Uno
             return Abs(det) > ZeroTolerance;
         }
 
-        /**
-            @deprecated Use TryInvert
-        */
         public static float3x3 Invert(float3x3 value)
         {
             float3x3 result;
@@ -471,9 +465,6 @@ namespace Uno
             return Abs(det) > ZeroTolerance;
         }
 
-        /**
-            @deprecated Use TryInvert
-        */
         public static float2x2 Invert(float2x2 value)
         {
             float2x2 result;

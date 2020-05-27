@@ -6,6 +6,7 @@ environment:
   - TARGET: dotnet
   - TARGET: native
     UNO_TEST_ARGS: -DDEBUG_UNSAFE
+    SKIP_UNO_TESTS: 1
 
 install:
   - ps: |
@@ -18,8 +19,11 @@ install:
 build_script:
   - npm pack --silent
 
-artifacts:
-  - path: '*.tgz'
+after_build:
+  - ps: |
+      if ($env:Target -eq "dotnet") {
+        Push-AppveyorArtifact "*.tgz"
+      }
 
 before_test:
   - ps: |

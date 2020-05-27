@@ -106,9 +106,6 @@ Uno is built using the command-line on Linux, macOS or Windows – or [from insi
 
 ```
 make
-```
-
-```
 make install
 uno --version
 ```

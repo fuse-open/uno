@@ -15,9 +15,9 @@ namespace Uno.Configuration
         static UnoConfig _current;
         public static UnoConfig Current => _current ?? (_current = new UnoConfig());
 
-        public static UnoConfig Get(IPathObject obj)
+        public static UnoConfig Get(string path)
         {
-            return Current.GetDirectoryConfig(Path.GetDirectoryName(obj.FullPath));
+            return Current.GetDirectoryConfig(Path.GetDirectoryName(path));
         }
 
         readonly List<UnoConfigFile> _files = new List<UnoConfigFile>();

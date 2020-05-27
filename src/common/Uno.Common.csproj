@@ -51,7 +51,6 @@
     <Compile Include="Diagnostics\RunFlags.cs" />
     <Compile Include="Either.cs" />
     <Compile Include="IO\DiskObject.cs" />
-    <Compile Include="IO\IPathObject.cs" />
     <Compile Include="IO\PathFlags.cs" />
     <Compile Include="Logging\ErrorList.cs" />
     <Compile Include="Logging\FatalException.cs" />
