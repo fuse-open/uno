@@ -65,8 +65,6 @@ T uAssertPtr(T ptr, const char* src, const char* msg) {
 #else
 #include <alloca.h>
 #endif
-// Deprecated -- use alloca() directly instead.
-#define U_ALLOCA(SIZE) alloca(SIZE)
 
 // C++11 compatibility
 #ifdef _MSC_VER
@@ -81,9 +79,6 @@ T uAssertPtr(T ptr, const char* src, const char* msg) {
 #else
 #define DEPRECATED(msg)
 #endif
-
-// Legacy char type
-typedef DEPRECATED("use char16_t instead") char16_t uChar;
 
 // Disable free()
 #if DEBUG_ARC >= 4

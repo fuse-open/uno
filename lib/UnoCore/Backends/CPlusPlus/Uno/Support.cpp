@@ -13,7 +13,6 @@
 #include <XliPlatform/MessageBox.h>
 #include <mutex>
 @{byte:IncludeDirective}
-@{Uno.Buffer:IncludeDirective}
 
 #if ANDROID
 #include <android/log.h>
@@ -193,18 +192,6 @@ uBase::Vector2i uInt2ToXliVector2i(const @{int2}& vec)
 uBase::Vector2 uFloat2ToXliVector2(const @{float2}& vec)
 {
     return *(uBase::Vector2*)&vec;
-}
-
-@{Uno.Buffer} uBufferFromXliDataAccessor(const uBase::DataAccessor* data)
-{
-    if (!data)
-    {
-        uThrowable::ThrowNullReference(U_FUNCTION, __LINE__);
-        return NULL;
-    }
-
-    uArray* arr = uArray::New(@{byte[]:TypeOf}, data->GetSizeInBytes(), data->GetPtr());
-    return @{Uno.Buffer(byte[],int,int):New(arr, 0, arr->Length())};
 }
 
 uImage::Texture* uLoadXliTexture(const uBase::String& filename, uArray* data)

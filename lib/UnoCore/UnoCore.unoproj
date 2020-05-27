@@ -40,7 +40,6 @@
     "Backends/CPlusPlus/Uno/SupportApple.mm:File",
     "Backends/CPlusPlus/Uno/Uno.h:File",
     "Backends/CPlusPlus/Uno/WinAPIHelper.h:File",
-    "Backends/CPlusPlus/Uno/XliInterop.h:File",
     "prebuilt/uno-base.stuff:Stuff",
     "prebuilt/uno-base.uxl:Extensions",
     "prebuilt/uno-base-pinvoke.uxl:Extensions",

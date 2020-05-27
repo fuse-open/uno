@@ -21,7 +21,6 @@
     <ProcessFile SourceFile="Uno/SupportApple.mm" Condition="APPLE" />
     <ProcessFile HeaderFile="Uno/Uno.h" />
     <ProcessFile HeaderFile="Uno/WinAPIHelper.h" />
-    <ProcessFile HeaderFile="Uno/XliInterop.h" />
     <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
     <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
 
