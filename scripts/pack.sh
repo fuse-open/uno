@@ -60,4 +60,24 @@ function rm-all {
     done
 }
 
+function rm-identical {
+    local root=$1
+    shift
+    IFS=$'\n'
+    for i in `find-all "$@"`; do
+        local file="$root/`basename $i`"
+        [ -f "$file" ] || continue
+        node_modules/.bin/filecompare "$i" "$file" > /dev/null || continue
+        echo "stripping $file"
+        rm -rf "$file"
+    done
+}
+
+h1 "Optimizing package"
+
+# Xamarin.Mac will be added back by restore.js
+rm-identical bin node_modules/@fuse-open/xamarin-mac *.dll *.dylib
+rm-identical bin/mac node_modules/@fuse-open/xamarin-mac *.dll *.dylib
+
+# Drop superfluous build artifacts
 rm-all bin *.config *.mdb *.pdb *.xml
