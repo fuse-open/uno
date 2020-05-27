@@ -1,7 +1,7 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
     public extern(OPENGL) sealed class GLCompiledProgram : IDisposable
     {
@@ -27,10 +27,10 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
 
         internal GLCompiledProgram(string vsSource, string fsSource, int constCount, int attribCount, string[] constAttribAndUniformNames)
         {
-            _vsHandle = GLHelpers.CompileShader(GLShaderType.VertexShader, vsSource);
-            _fsHandle = GLHelpers.CompileShader(GLShaderType.FragmentShader, fsSource);
+            _vsHandle = GLHelper.CompileShader(GLShaderType.VertexShader, vsSource);
+            _fsHandle = GLHelper.CompileShader(GLShaderType.FragmentShader, fsSource);
 
-            GLProgramHandle = GLHelpers.LinkProgram(_vsHandle, _fsHandle);
+            GLProgramHandle = GLHelper.LinkProgram(_vsHandle, _fsHandle);
 
             _locations = new int[constAttribAndUniformNames.Length];
 

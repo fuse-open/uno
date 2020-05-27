@@ -3,7 +3,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Collections;
 using Uno.Graphics;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
     public extern(OPENGL) struct GLDrawCall
     {
@@ -44,38 +44,38 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
 
         public BlendEquation BlendEquationRgb
         {
-            get { return GLInterop.ToUnoGraphicsBlendEquation(_blendEqRgb); }
-            set { _blendEqRgb = GLInterop.ToGLBlendEquation(value); }
+            get { return _blendEqRgb.ToBlendEquation(); }
+            set { _blendEqRgb = value.ToGLBlendEquation(); }
         }
 
         public BlendEquation BlendEquationAlpha
         {
-            get { return GLInterop.ToUnoGraphicsBlendEquation(_blendEqAlpha); }
-            set { _blendEqAlpha = GLInterop.ToGLBlendEquation(value); }
+            get { return _blendEqAlpha.ToBlendEquation(); }
+            set { _blendEqAlpha = value.ToGLBlendEquation(); }
         }
 
         public BlendOperand BlendSrcRgb
         {
-            get { return GLInterop.ToUnoGraphicsBlendOperand(_blendSrcRgb); }
-            set { _blendSrcRgb = GLInterop.ToGLBlendingFactor(value); }
+            get { return _blendSrcRgb.ToBlendOperand(); }
+            set { _blendSrcRgb = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendSrcAlpha
         {
-            get { return GLInterop.ToUnoGraphicsBlendOperand(_blendSrcAlpha); }
-            set { _blendSrcAlpha = GLInterop.ToGLBlendingFactor(value); }
+            get { return _blendSrcAlpha.ToBlendOperand(); }
+            set { _blendSrcAlpha = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendDstRgb
         {
-            get { return GLInterop.ToUnoGraphicsBlendOperand(_blendDstRgb); }
-            set { _blendDstRgb = GLInterop.ToGLBlendingFactor(value); }
+            get { return _blendDstRgb.ToBlendOperand(); }
+            set { _blendDstRgb = value.ToGLBlendingFactor(); }
         }
 
         public BlendOperand BlendDstAlpha
         {
-            get { return GLInterop.ToUnoGraphicsBlendOperand(_blendDstAlpha); }
-            set { _blendDstAlpha = GLInterop.ToGLBlendingFactor(value); }
+            get { return _blendDstAlpha.ToBlendOperand(); }
+            set { _blendDstAlpha = value.ToGLBlendingFactor(); }
         }
 
         public bool DepthTestEnabled
@@ -86,26 +86,26 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
 
         public CompareFunc DepthFunc
         {
-            get { return GLInterop.ToUnoGraphicsCompareFunc(_depthFunc); }
-            set { _depthFunc = GLInterop.ToGLDepthFunction(value); }
+            get { return _depthFunc.ToCompareFunc(); }
+            set { _depthFunc = value.ToGLDepthFunction(); }
         }
 
         public PolygonFace CullFace
         {
-            get { return GLInterop.ToUnoGraphicsPolygonFace(_cullFace); }
-            set { _cullFace = GLInterop.ToGLCullFaceMode(value); }
+            get { return _cullFace.ToPolygonFace(); }
+            set { _cullFace = value.ToGLCullFaceMode(); }
         }
 
         public PolygonWinding PolygonWinding
         {
-            get { return GLInterop.ToUnoGraphicsPolygonWinding(_frontFace); }
-            set { _frontFace = GLInterop.ToGLFrontFaceDirection(value); }
+            get { return _frontFace.ToPolygonWinding(); }
+            set { _frontFace = value.ToGLFrontFaceDirection(); }
         }
 
         public PrimitiveType PrimitiveType
         {
-            get { return GLInterop.ToUnoGraphicsPrimitiveType(_primitiveType); }
-            set { _primitiveType = GLInterop.ToGLPrimitiveType(value); }
+            get { return _primitiveType.ToPrimitiveType(); }
+            set { _primitiveType = value.ToGLPrimitiveType(); }
         }
 
         public bool WriteRed
@@ -228,7 +228,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             int componentCount;
             GLDataType componentType;
             bool normalized;
-            GLInterop.ToGLVertexAttributeType(type, out componentCount, out componentType, out normalized);
+            type.ToGLVertexAttributeType(out componentCount, out componentType, out normalized);
             Attrib(index, componentCount, componentType, normalized, buf, stride, offset);
         }
 
@@ -539,7 +539,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             if (type == IndexType.Undefined)
                 DrawArrays(count);
             else
-                DrawElements(count, GLInterop.ToGLIndexType(type), buf);
+                DrawElements(count, type.ToGLIndexType(), buf);
         }
     }
 }

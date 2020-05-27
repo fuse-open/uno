@@ -2,11 +2,11 @@ using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Graphics;
 
-namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
+namespace Uno.Graphics.OpenGL
 {
-    public static extern(OPENGL) class GLInterop
+    public static extern(OPENGL) class GLConverter
     {
-        public static GLFrontFaceDirection ToGLFrontFaceDirection(PolygonWinding x)
+        public static GLFrontFaceDirection ToGLFrontFaceDirection(this PolygonWinding x)
         {
             switch (x)
             {
@@ -21,7 +21,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static PolygonWinding ToUnoGraphicsPolygonWinding(GLFrontFaceDirection x)
+        public static PolygonWinding ToPolygonWinding(this GLFrontFaceDirection x)
         {
             switch (x)
             {
@@ -36,7 +36,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLCullFaceMode ToGLCullFaceMode(PolygonFace x)
+        public static GLCullFaceMode ToGLCullFaceMode(this PolygonFace x)
         {
             switch (x)
             {
@@ -57,7 +57,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static PolygonFace ToUnoGraphicsPolygonFace(GLCullFaceMode x)
+        public static PolygonFace ToPolygonFace(this GLCullFaceMode x)
         {
             switch (x)
             {
@@ -78,7 +78,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLDepthFunction ToGLDepthFunction(CompareFunc x)
+        public static GLDepthFunction ToGLDepthFunction(this CompareFunc x)
         {
             switch (x)
             {
@@ -111,7 +111,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static CompareFunc ToUnoGraphicsCompareFunc(GLDepthFunction x)
+        public static CompareFunc ToCompareFunc(this GLDepthFunction x)
         {
             switch (x)
             {
@@ -144,7 +144,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLPrimitiveType ToGLPrimitiveType(PrimitiveType x)
+        public static GLPrimitiveType ToGLPrimitiveType(this PrimitiveType x)
         {
             switch (x)
             {
@@ -168,7 +168,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static PrimitiveType ToUnoGraphicsPrimitiveType(GLPrimitiveType x)
+        public static PrimitiveType ToPrimitiveType(this GLPrimitiveType x)
         {
             switch (x)
             {
@@ -192,7 +192,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLBlendingFactor ToGLBlendingFactor(BlendOperand x)
+        public static GLBlendingFactor ToGLBlendingFactor(this BlendOperand x)
         {
             switch (x)
             {
@@ -231,7 +231,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static BlendOperand ToUnoGraphicsBlendOperand(GLBlendingFactor x)
+        public static BlendOperand ToBlendOperand(this GLBlendingFactor x)
         {
             switch (x)
             {
@@ -270,7 +270,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLBlendEquation ToGLBlendEquation(BlendEquation x)
+        public static GLBlendEquation ToGLBlendEquation(this BlendEquation x)
         {
             switch (x)
             {
@@ -288,7 +288,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static BlendEquation ToUnoGraphicsBlendEquation(GLBlendEquation x)
+        public static BlendEquation ToBlendEquation(this GLBlendEquation x)
         {
             switch (x)
             {
@@ -306,7 +306,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLBufferUsage ToGLBufferUsage(BufferUsage x)
+        public static GLBufferUsage ToGLBufferUsage(this BufferUsage x)
         {
             switch (x)
             {
@@ -324,7 +324,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static GLIndexType ToGLIndexType(IndexType x)
+        public static GLIndexType ToGLIndexType(this IndexType x)
         {
             switch (x)
             {
@@ -339,7 +339,7 @@ namespace Uno.Runtime.Implementation.ShaderBackends.OpenGL
             }
         }
 
-        public static void ToGLVertexAttributeType(VertexAttributeType x, out int componentCount, out GLDataType componentType, out bool normalized)
+        public static void ToGLVertexAttributeType(this VertexAttributeType x, out int componentCount, out GLDataType componentType, out bool normalized)
         {
             switch (x)
             {

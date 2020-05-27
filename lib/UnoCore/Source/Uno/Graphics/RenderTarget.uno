@@ -1,6 +1,6 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Graphics.OpenGL;
 
 namespace Uno.Graphics
 {
@@ -50,7 +50,7 @@ namespace Uno.Graphics
         public static RenderTarget Create(texture2D texture, int mip, bool depth)
         {
             if defined(OPENGL)
-                return GLHelpers.CreateRenderTarget(GLTextureTarget.Texture2D, texture.GLTextureHandle, mip, TextureHelpers.GetMipSize(texture, mip), depth);
+                return GLHelper.CreateRenderTarget(GLTextureTarget.Texture2D, texture.GLTextureHandle, mip, TextureHelpers.GetMipSize(texture, mip), depth);
             else
                 build_error;
         }
@@ -59,7 +59,7 @@ namespace Uno.Graphics
         public static RenderTarget Create(textureCube texture, CubeFace face, int mip, bool depth)
         {
             if defined(OPENGL)
-                return GLHelpers.CreateRenderTarget((GLTextureTarget)((int)GLTextureTarget.TextureCubeMapPositiveX + (int)face), texture.GLTextureHandle, mip, TextureHelpers.GetMipSize(texture, mip), depth);
+                return GLHelper.CreateRenderTarget((GLTextureTarget)((int)GLTextureTarget.TextureCubeMapPositiveX + (int)face), texture.GLTextureHandle, mip, TextureHelpers.GetMipSize(texture, mip), depth);
             else
                 build_error;
         }

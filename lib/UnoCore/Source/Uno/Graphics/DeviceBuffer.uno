@@ -1,6 +1,6 @@
 using OpenGL;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation.ShaderBackends.OpenGL;
+using Uno.Graphics.OpenGL;
 using Uno.Runtime.InteropServices;
 
 namespace Uno.Graphics
@@ -44,7 +44,7 @@ namespace Uno.Graphics
             if defined(OPENGL)
             {
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle);
-                GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, GLInterop.ToGLBufferUsage(Usage));
+                GL.BufferData(GLBufferTarget, sizeInBytes, IntPtr.Zero, Usage.ToGLBufferUsage());
                 GL.BindBuffer(GLBufferTarget, GLBufferHandle.Zero);
             }
         }
@@ -97,7 +97,7 @@ namespace Uno.Graphics
                     GL.BufferSubData(GLBufferTarget, 0, sizeInBytes, addr);
                 else
                 {
-                    GL.BufferData(GLBufferTarget, sizeInBytes, addr, GLInterop.ToGLBufferUsage(Usage));
+                    GL.BufferData(GLBufferTarget, sizeInBytes, addr, Usage.ToGLBufferUsage());
                     SizeInBytes = sizeInBytes;
                 }
 

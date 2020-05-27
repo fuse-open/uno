@@ -85,7 +85,7 @@ namespace Uno.Compiler.Graphics.OpenGL
                 if (initMethod == null)
                     throw new SourceException(src, "No 'init_DrawCalls()' method was found in " + Type.Quote());
 
-                var dc = ILFactory.NewObject(src, "Uno.Runtime.Implementation.ShaderBackends.OpenGL.GLDrawCall", prog);
+                var dc = ILFactory.NewObject(src, "Uno.Graphics.OpenGL.GLDrawCall", prog);
                 result = new Field(src, Type, "_draw_" + draw.State.Path.Suffix, null, Modifiers.Private | Modifiers.Generated, 0, dc.ReturnType);
                 initMethod.Body.Statements.Add(new StoreField(src, new This(src, Type), result, dc));
                 Type.Fields.Add(result);
@@ -125,7 +125,7 @@ namespace Uno.Compiler.Graphics.OpenGL
                 array[index++] = new Constant(src, Essentials.String, v.Name);
 
             var prog = ILFactory.CallMethod(src,
-                "Uno.Runtime.Implementation.ShaderBackends.OpenGL.GLProgram", "Create",
+                "Uno.Graphics.OpenGL.GLProgram", "Create",
                 new Constant(src, Essentials.String, vsSource),
                 new Constant(src, Essentials.String, fsSource),
                 new Constant(src, Essentials.Int, constCount),
