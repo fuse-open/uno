@@ -6,14 +6,14 @@ namespace Uno.Platform.Xli
     [Set("TypeName", "::Xli::Window*")]
     [Set("ForwardDeclaration", "namespace Xli { class Window; }")]
     [Require("Header.Include", "XliPlatform/Window.h")]
-    extern(CPLUSPLUS) struct XliWindowPtr
+    extern(CPLUSPLUS && !MOBILE) struct XliWindowPtr
     {
     }
 
     [Require("Source.Include", "Uno/Support.h")]
     [Require("Source.Include", "XliPlatform/Display.h")]
     [Require("Source.Declaration", "extern ::Xli::Window* _XliWindowPtr;")]
-    extern(CPLUSPLUS) class XliWindow : WindowBackend
+    extern(CPLUSPLUS && !MOBILE) class XliWindow : WindowBackend
     {
         readonly XliWindowPtr _ptr;
 

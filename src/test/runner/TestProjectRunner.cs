@@ -58,6 +58,9 @@ namespace Uno.TestRunner
                     options.Defines.AddRange(_options.Defines);
                     options.Undefines.AddRange(_options.Undefines);
 
+                    if (_options.Target is iOSBuild && !proj.MutableProperties.ContainsKey("iOS.BundleIdentifier"))
+                        proj.MutableProperties["iOS.BundleIdentifier"] = "dev.testprojects." + proj.Name.ToIdentifier(true).ToLower();
+
                     var builder = new ProjectBuilder(log, target, options);
                     var result = builder.Build(proj);
                     if (result.ErrorCount != 0)

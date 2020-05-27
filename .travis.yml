@@ -1,17 +1,26 @@
 matrix:
   include:
+    # - os: osx
+    #   osx_image: xcode9.2
+    #   language: csharp
+    #   mono: latest
+    #   env: TARGET=dotnet
     - os: osx
       osx_image: xcode9.2
       language: csharp
       mono: latest
-      env: TARGET=dotnet
-    - os: osx
-      osx_image: xcode9.2
-      language: csharp
-      mono: latest
-      env: TARGET=native
+      env: TARGET=ios
       before_script:
-        - export UNO_TEST_ARGS=-DDEBUG_UNSAFE
+        - export SKIP_LIB_TESTS=1
+        - export UNO_TEST_ARGS="-DDEBUG_UNSAFE --build-only"
+        - export XCODE_XCCONFIG_FILE=$TRAVIS_BUILD_DIR/.travis.xcconfig
+    # - os: osx
+    #   osx_image: xcode9.2
+    #   language: csharp
+    #   mono: latest
+    #   env: TARGET=native
+    #   before_script:
+    #     - export UNO_TEST_ARGS=-DDEBUG_UNSAFE
     - os: linux
       dist: bionic
       env: TARGET=native

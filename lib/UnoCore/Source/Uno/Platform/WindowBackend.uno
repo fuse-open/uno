@@ -8,7 +8,7 @@ namespace Uno.Platform
     {
         internal static WindowBackend Instance;
 
-        extern(CPLUSPLUS)
+        extern(CPLUSPLUS && !MOBILE)
         static WindowBackend()
         {
             Instance = new XliWindow();
