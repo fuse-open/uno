@@ -5,13 +5,17 @@
   "dependencies": {
     "@fuse-open/transpiler": "^1.14.0",
     "@fuse-open/xamarin-mac": "^3.4.0",
-    "dotnet-run": "^1.3.1"
+    "dotnet-run": "^1.3.1",
+    "findup-sync": "^4.0.0"
   },
   "devDependencies": {
+    "filecompare": "^1.0.4",
     "xbash": "^1.4.1"
   },
   "scripts": {
     "build": "xbash scripts/build.sh",
+    "postinstall": "node scripts/restore.js",
+    "postpack": "node scripts/restore.js",
     "prepack": "xbash scripts/pack.sh",
     "test": "xbash scripts/test.sh",
     "version": "xbash scripts/version.sh",
@@ -23,7 +27,8 @@
   "files": [
     ".unoconfig",
     "bin/*",
-    "lib/build/*"
+    "lib/build/*",
+    "scripts/restore.js"
   ],
   "repository": {
     "type": "git",
