@@ -64,9 +64,9 @@ namespace Uno
             return Next(low, high);
         }
 
-        public float NextDouble()
+        public double NextDouble()
         {
-            return (float)Next() / 0x7FFFFFF;
+            return (double)Next() / 0x7FFFFFF;
         }
 
         [Obsolete("Use NextDouble() instead")]
