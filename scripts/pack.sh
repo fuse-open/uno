@@ -60,6 +60,10 @@ function rm-all {
     done
 }
 
+function filecompare {
+    node_modules/.bin/filecompare "$i" "$file" | grep true > /dev/null
+}
+
 function rm-identical {
     local root=$1
     shift
@@ -67,7 +71,7 @@ function rm-identical {
     for i in `find-all "$@"`; do
         local file="$root/`basename $i`"
         [ -f "$file" ] || continue
-        node_modules/.bin/filecompare "$i" "$file" > /dev/null || continue
+        filecompare "$i" "$file" || continue
         echo "stripping $file"
         rm -rf "$file"
     done
