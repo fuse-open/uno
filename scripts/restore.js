@@ -1,6 +1,20 @@
 const fs = require("fs");
 const path = require("path");
-const findup = require("findup-sync");
+
+function findup(suffix) {
+    for (let dir = __dirname, parent = undefined;;
+             dir = path.dirname(dir)) {
+
+        if (dir == parent)
+            throw Error(`${suffix} was not found`);
+
+        parent = dir;
+        const file = path.join(dir, suffix);
+
+        if (fs.existsSync(file))
+            return file;
+    }
+}
 
 function findNodeModule(name) {
     const package = findup(`node_modules/${name}/package.json`);
