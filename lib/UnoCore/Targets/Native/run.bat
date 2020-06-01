@@ -21,7 +21,7 @@ if "%1" == "debug" (
     if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
     echo Opening Visual Studio 2019
-    @(Uno) open -a"Visual Studio 2019" -t"@(Project.Name) - Microsoft Visual Studio" "@(Project.Name).sln"
+    @(uno) open -a"Visual Studio 2019" -t"@(Project.Name) - Microsoft Visual Studio" "@(Project.Name).sln"
     popd && exit /b %ERRORLEVEL%
 )
 

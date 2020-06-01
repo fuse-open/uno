@@ -12,7 +12,7 @@ debug)
     ;;
 uninstall)
     echo "Uninstalling @(Activity.Package)"
-    @(Uno) adb uninstall "@(Activity.Package)"
+    @(uno) adb uninstall "@(Activity.Package)"
     exit $?
     ;;
 esac
@@ -21,7 +21,7 @@ esac
 echo "ERROR: @(Product) is a library and cannot be run directly." >&2
 exit 1
 #else
-@(Uno) launch-apk "@(Product)" \
+@(uno) launch-apk "@(Product)" \
     --package=@(Activity.Package) \
     --activity=@(Activity.Name) \
     --sym-dir="app/src/main/.uno" \

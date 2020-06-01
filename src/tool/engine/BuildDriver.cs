@@ -189,7 +189,7 @@ namespace Uno.Build
             else
                 unoExe = _config.GetFullPath("Uno.Exe");
 
-            _env.Set("Uno", PlatformDetection.IsWindows
+            _env.Set("uno", PlatformDetection.IsWindows
                 ? unoExe.QuoteSpace()
                 : MonoInfo.GetPath().QuoteSpace() + " " + unoExe.QuoteSpace());
 
