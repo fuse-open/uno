@@ -13,6 +13,7 @@
     <Set AppLoader.Method="UnoGenerated" />
 
     <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/OpenTK.dll" Condition="HOST_MAC" />
+    <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/System.Drawing.Common.dll" Condition="HOST_MAC" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/Xamarin.Mac.dll" Condition="HOST_MAC" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/libxammac.dylib" Condition="HOST_MAC" />
     
