@@ -9,15 +9,15 @@
   },
   "devDependencies": {
     "filecompare": "^1.0.4",
-    "xbash": "^1.4.1"
+    "xbash": "^1.5.0"
   },
   "scripts": {
-    "build": "xbash scripts/build.sh",
+    "build": "bash scripts/build.sh",
     "postinstall": "node scripts/restore.js",
     "postpack": "node scripts/restore.js",
-    "prepack": "xbash scripts/pack.sh",
-    "test": "xbash scripts/test.sh",
-    "version": "xbash scripts/version.sh",
+    "prepack": "bash scripts/pack.sh",
+    "test": "bash scripts/test.sh",
+    "version": "bash scripts/version.sh",
     "uno": "dotnet-run bin/uno.exe"
   },
   "bin": {
