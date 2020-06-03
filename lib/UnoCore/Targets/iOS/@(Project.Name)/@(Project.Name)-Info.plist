@@ -130,6 +130,8 @@
 #if @(Project.iOS.PList.NSLocationAlwaysUsageDescription:IsSet)
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>@(Project.iOS.PList.NSLocationAlwaysUsageDescription)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>@(Project.iOS.PList.NSLocationAlwaysUsageDescription)</string>
 #endif
 
 #if @(Project.iOS.PList.NSLocationUsageDescription:IsSet)
