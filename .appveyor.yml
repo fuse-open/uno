@@ -22,7 +22,7 @@ build_script:
 after_build:
   - ps: |
       if ($env:Target -eq "dotnet") {
-        Push-AppveyorArtifact "*.tgz"
+        Push-AppveyorArtifact "fuse-open-uno-*.tgz"
       }
 
 before_test:

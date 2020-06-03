@@ -540,9 +540,9 @@ namespace Uno.Test
             {
                 for (int j = 0; j < 100; ++j)
                 {
-                    var significand = 1.0 + random.NextFloat();
+                    var significand = 1.0 + (float)random.NextDouble();
                     var x = significand * (1L << i);
-                    var a = random.NextFloat();
+                    var a = (float)random.NextDouble();
 
                     var expected = Math.Exp(Math.Log(x) * a);
                     var doubleTolerance = Math.Max(1e-12, Math.Abs(expected * 1e-12));

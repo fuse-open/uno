@@ -6,7 +6,6 @@ matrix:
     #   mono: latest
     #   env: TARGET=dotnet
     - os: osx
-      osx_image: xcode9.2
       language: csharp
       mono: latest
       env: TARGET=ios
@@ -47,7 +46,6 @@ before_script:
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       ulimit -c unlimited -S
-      rm -rf /cores/core.*
     fi
 
 script:

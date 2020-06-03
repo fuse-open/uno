@@ -1,5 +1,5 @@
 <Extensions Backend="CPlusPlus">
-	<Define FOREIGN_OBJC_SUPPORTED="iOS || CMake && HOST_OSX" />
+	<Define FOREIGN_OBJC_SUPPORTED="IOS || NATIVE && HOST_MAC" />
 	<ProcessFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Foreign.h" />
 	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Box.h" />
 	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Function.h" />
