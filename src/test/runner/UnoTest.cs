@@ -9,7 +9,7 @@ namespace Uno.TestRunner
 {
     public class UnoTest
     {
-        public static bool DiscoverAndRun(TestOptions options)
+        public static int DiscoverAndRun(TestOptions options)
         {
             var logger = LoggerFactory.CreateLogger(options);
             var discoveredProjects = ProjectDiscoverer.Discover(options.Paths, logger);
@@ -37,7 +37,7 @@ namespace Uno.TestRunner
                     logger.Log("  Failed:  {0}", test.Name);
                 }
             }
-            return tests.Count(t => t.Failed) != 0;
+            return tests.Count(t => t.Failed);
         }
     }
 }

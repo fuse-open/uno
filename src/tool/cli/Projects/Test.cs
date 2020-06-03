@@ -55,26 +55,31 @@ namespace Uno.CLI.Projects
             try
             {
                 var options = Parse(args);
-                if (options != null)
-                    UnoTest.DiscoverAndRun(options);
+                ExitCode = options != null
+                            ? UnoTest.DiscoverAndRun(options)
+                            : -1;
             }
             catch (HttpListenerException e)
             {
                 Log.Error("Failed to open network socket for test communication: " + e.Message);
                 Log.WriteErrorLine(
-                    "If you're trying to run your tests on an external device, remember to run UnoTest as Administrator.");
+                    "If you're trying to run your tests on an external device, remember to run 'uno test' as Administrator.");
+                ExitCode = 1;
             }
             catch (ArgumentException e)
             {
                 Log.Error("Invalid argument: " + e.Message);
+                ExitCode = 1;
             }
             catch (AggregateException)
             {
                 Log.Error("Internal error(s) occured.");
+                ExitCode = 1;
             }
             catch (Exception e)
             {
                 Log.Error("Exited with exception: " + e.Message);
+                ExitCode = 1;
             }
         }
 
