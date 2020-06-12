@@ -21,11 +21,9 @@ function findNodeModule(name) {
     return path.dirname(package);
 }
 
-function restoreXamarinMac(dst) {
+function restoreFiles(src, dst) {
     if (!fs.existsSync(dst))
         return;
-
-    const src = findNodeModule("@fuse-open/xamarin-mac");
 
     for (file of fs.readdirSync(src)) {
         const srcf = path.join(src, file);
@@ -43,5 +41,10 @@ function restoreXamarinMac(dst) {
 }
 
 // Restore Xamarin.Mac binaries.
-restoreXamarinMac(path.join(__dirname, "..", "bin"));
-restoreXamarinMac(path.join(__dirname, "..", "bin", "mac"));
+const xamarin = findNodeModule("@fuse-open/xamarin-mac");
+restoreFiles(xamarin, path.join(__dirname, "..", "bin"));
+restoreFiles(xamarin, path.join(__dirname, "..", "bin", "mac"));
+
+// Restore OpenTK and ANGLE (Windows only).
+const opentk = findNodeModule("@fuse-open/opentk");
+restoreFiles(opentk, path.join(__dirname, "..", "bin", "win"));

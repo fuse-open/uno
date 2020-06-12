@@ -81,9 +81,10 @@ function rm-identical {
 
 h1 "Optimizing package"
 
-# Xamarin.Mac will be added back by restore.js
+# OpenTK and Xamarin.Mac will be added back by restore.js
 rm-identical bin node_modules/@fuse-open/xamarin-mac *.dll *.dylib
 rm-identical bin/mac node_modules/@fuse-open/xamarin-mac *.dll *.dylib
+rm-identical bin/win node_modules/@fuse-open/opentk *.dll
 
 # Drop superfluous build artifacts
 rm-all bin *.config *.mdb *.pdb *.xml
