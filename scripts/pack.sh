@@ -74,6 +74,8 @@ function rm-identical {
         filecompare "$i" "$file" || continue
         echo "stripping $file"
         rm -rf "$file"
+        # Add placeholder for restore.js
+        touch "$file.restore"
     done
 }
 
