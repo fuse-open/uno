@@ -16,7 +16,7 @@ namespace Uno.Build.Targets
 
         public override Backend CreateBackend()
         {
-            return new CppBackend(new GLBackend(), new CppExtension());
+            return new CppBackend(new GLBackend(), new ForeignExtension());
         }
 
         public override void Configure(ICompiler compiler)
