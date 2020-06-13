@@ -43,7 +43,7 @@ namespace Uno.TestRunner
                     var log = Log.Default;
                     var target = _options.Target;
                     var proj = Project.Load(_unoProj);
-                    var outputDirectory = _options.OutputDirectory ?? Path.GetFullPath(Path.Combine(proj.BuildDirectory, "Test", target.Identifier));
+                    var outputDirectory = _options.OutputDirectory ?? proj.GetOutputDirectory("Test", target);
 
                     var options = new BuildOptions {
                         Test = true,
