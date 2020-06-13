@@ -6,7 +6,6 @@ namespace Uno.Build
     public class BuildOptions
     {
         public BuildConfiguration Configuration = BuildConfiguration.Debug;
-        public BuildTarget PackageTarget;
         public bool Force;
         public bool Native = true;
         public bool Parallel = true;

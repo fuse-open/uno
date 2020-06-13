@@ -24,14 +24,12 @@ namespace Uno.Build.Packages
 
         readonly ListDictionary<string, LibraryProject> _libMap = new ListDictionary<string, LibraryProject>();
         readonly HashSet<string> _dirty = new HashSet<string>();
-        readonly BuildTarget _target;
         readonly Disk _disk;
 
-        public LibraryBuilder(Disk disk, BuildTarget target)
+        public LibraryBuilder(Disk disk)
             : base(disk)
         {
             _disk = disk;
-            _target = target;
             Express = Log.EnableExperimental;
         }
 
@@ -142,7 +140,7 @@ namespace Uno.Build.Packages
 
             var result = new ProjectBuilder(
                     buildLog,
-                    _target,
+                    BuildTargets.Package,
                     new BuildOptions
                     {
                         Configuration = GetConfiguration(lib),

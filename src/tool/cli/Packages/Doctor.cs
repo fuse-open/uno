@@ -31,7 +31,7 @@ namespace Uno.CLI.Packages
         public override void Execute(IEnumerable<string> args)
         {
             var force = false;
-            var lib = new LibraryBuilder(Disk, BuildTargets.Package);
+            var lib = new LibraryBuilder(Disk);
             lib.RebuildList = new OptionSet {
                     { "a|all", value => lib.RebuildAll = true },
                     { "f|force", value => force = true },

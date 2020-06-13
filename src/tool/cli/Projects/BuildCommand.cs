@@ -88,7 +88,7 @@ namespace Uno.CLI.Projects
                 log = Log;
 
             string targetName = null;
-            var options = new BuildOptions {PackageTarget = BuildTargets.Package};
+            var options = new BuildOptions();
             var nativeArgs = new List<string>();
             var runArgs = new List<string>();
             var run = false;

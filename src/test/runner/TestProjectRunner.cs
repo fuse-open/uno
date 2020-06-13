@@ -51,8 +51,7 @@ namespace Uno.TestRunner
                         TestFilter = _options.Filter,
                         OutputDirectory = outputDirectory,
                         WarningLevel = 1,
-                        Library = _options.Library,
-                        PackageTarget = BuildTargets.Package
+                        Library = _options.Library
                     };
 
                     options.Defines.AddRange(_options.Defines);
