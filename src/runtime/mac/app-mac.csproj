@@ -7,7 +7,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C919203A-A0FD-41E4-A8D7-3E1B1C12DDAE}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Uno.AppLoader</RootNamespace>
     <AssemblyName>uno-app</AssemblyName>
@@ -55,7 +55,6 @@
     <Reference Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
       <HintPath>..\..\..\node_modules\@fuse-open\xamarin-mac\Xamarin.Mac.dll</HintPath>
     </Reference>
-    <Reference Include="mscorlib" />
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
