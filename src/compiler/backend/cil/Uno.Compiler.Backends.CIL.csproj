@@ -65,6 +65,11 @@
     <Compile Include="CilTransform.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="CilTypeFactory.cs" />
+    <Compile Include="MetadataBackend.cs" />
+    <Compile Include="MetadataGenerator.cs" />
+    <Compile Include="PInvokeBackend.cs" />
+    <Compile Include="PInvokeDecompiler.cs" />
+    <Compile Include="PInvokeWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ikvm\reflect\IKVM.Reflection.csproj">
@@ -78,10 +83,6 @@
     <ProjectReference Include="..\..\..\common\Uno.Common.csproj">
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\pinvoke\Uno.Compiler.Backends.PInvoke.csproj">
-      <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
-      <Name>Uno.Compiler.Backends.PInvoke</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
