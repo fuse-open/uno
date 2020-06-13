@@ -108,10 +108,4 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props'))" />
-  </Target>
 </Project>
