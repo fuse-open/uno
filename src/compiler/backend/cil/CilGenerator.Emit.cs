@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IKVM.Reflection.Emit;
 using Uno.Compiler.API;
+using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.Bytecode;
 using Uno.Compiler.API.Domain.IL;

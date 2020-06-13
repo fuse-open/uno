@@ -8,7 +8,6 @@ using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Expressions;
 using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.API.Domain.IL.Types;
-using Uno.Compiler.Backends.PInvoke;
 using Uno.Logging;
 using ParameterModifier = Uno.Compiler.API.Domain.ParameterModifier;
 using Type = IKVM.Reflection.Type;

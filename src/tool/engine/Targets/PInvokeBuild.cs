@@ -1,7 +1,7 @@
 using Uno.Build.Targets.Generators;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.PInvoke;
+using Uno.Compiler.Backends.CIL;
 
 namespace Uno.Build.Targets
 {

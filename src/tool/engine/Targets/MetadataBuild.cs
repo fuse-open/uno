@@ -1,5 +1,5 @@
 ﻿using Uno.Compiler.API.Backends;
-using Uno.Compiler.Backends.Metadata;
+using Uno.Compiler.Backends.CIL;
 using Uno.Compiler.Graphics.OpenGL;
 
 namespace Uno.Build.Targets
