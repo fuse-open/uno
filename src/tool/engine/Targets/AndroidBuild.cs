@@ -14,7 +14,7 @@ namespace Uno.Build.Targets
 {
     public class AndroidBuild : BuildTarget
     {
-        public override string Identifier => "Android";
+        public override string Identifier => "android";
         public override string Description => "C++/JNI/GLES2 code and APK. Runs on device.";
 
         public override Backend CreateBackend()

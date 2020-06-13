@@ -7,8 +7,8 @@ namespace Uno.Build.Targets
 {
     public class PInvokeBuild : BuildTarget
     {
-        public override string Identifier => "PInvoke";
-        public override string Description => "PInvoke libraries.";
+        public override string Identifier => "pinvoke";
+        public override string Description => "P/Invoke libraries.";
         public override bool IsExperimental => true;
         public override bool DefaultStrip => false;
 

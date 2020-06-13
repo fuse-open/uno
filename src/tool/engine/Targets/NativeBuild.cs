@@ -9,9 +9,9 @@ namespace Uno.Build.Targets
 {
     public class NativeBuild : BuildTarget
     {
-        public override string Identifier => "Native";
-        public override string FormerName => "CMake";
-        public override string[] FormerNames => new[] {"CMake", "MSVC"};
+        public override string Identifier => "native";
+        public override string FormerName => "cmake";
+        public override string[] FormerNames => new[] {"cmake", "msvc"};
         public override string Description => "C++/GL code, CMake project and native executable.";
 
         public override Backend CreateBackend()

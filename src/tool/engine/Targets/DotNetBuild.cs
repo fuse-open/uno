@@ -6,8 +6,8 @@ namespace Uno.Build.Targets
 {
     public class DotNetBuild : BuildTarget
     {
-        public override string Identifier => "DotNet";
-        public override string FormerName => "DotNetExe";
+        public override string Identifier => "dotnet";
+        public override string FormerName => "dotnetexe";
         public override string Description => ".NET/GL bytecode and executable. (default)";
         public override bool DefaultStrip => false;
 
