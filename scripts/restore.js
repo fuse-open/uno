@@ -28,23 +28,17 @@ function restoreXamarinMac(dst) {
     const src = findNodeModule("@fuse-open/xamarin-mac");
 
     for (file of fs.readdirSync(src)) {
-        switch (file.split('.').pop()) {
-            case "dll":
-            case "dylib":
-                break;
-            default:
-                continue;
-        }
-
         const srcf = path.join(src, file);
         const dstf = path.join(dst, file);
+        const placeholder = dstf + ".restore";
 
-        if (fs.existsSync(dstf))
+        if (!fs.existsSync(placeholder))
             continue;
 
         const relative = path.relative(process.cwd(), dstf);
         console.log(`restoring ${relative}`);
         fs.copyFileSync(srcf, dstf);
+        fs.unlinkSync(placeholder);
     }
 }
 
