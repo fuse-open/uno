@@ -19,7 +19,8 @@ namespace Uno.Graphics.Utils.Cpp
     {
         public static textureCube LoadCube(string filename, byte[] data)
         @{
-            uBase::Auto<uImage::Texture> tex = uLoadXliTexture(uStringToXliString($0), $1);
+            uCString temp($0);
+            uBase::Auto<uImage::Texture> tex = uLoadXliTexture(uBase::String(temp.Ptr, (int)temp.Length), $1);
 
             if (tex->Faces.Length() == 1)
             {
@@ -63,7 +64,8 @@ namespace Uno.Graphics.Utils.Cpp
             }
             catch (const uBase::Exception &e)
             {
-                U_THROW(@{Exception(string):New(uStringFromXliString(e.GetMessage()))});
+                const auto temp = e.GetMessage();
+                U_THROW(@{Exception(string):New(uString::Utf8(temp.Ptr(), temp.Length()))});
             }
         @}
 
@@ -93,7 +95,8 @@ namespace Uno.Graphics.Utils.Cpp
             }
             catch (const uBase::Exception &e)
             {
-                U_THROW(@{Exception(string):New(uStringFromXliString(e.GetMessage()))});
+                const auto temp = e.GetMessage();
+                U_THROW(@{Exception(string):New(uString::Utf8(temp.Ptr(), temp.Length()))});
             }
         @}
     }

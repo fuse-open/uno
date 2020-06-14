@@ -21,7 +21,8 @@ namespace Uno.Graphics.Utils.Cpp
     {
         static CppFontFaceHandle LoadFontFaceHandle(string filename)
         @{
-            uBase::Auto<uBase::Stream> f = uBase::Bundle->OpenFile(uStringToXliString($0));
+            uCString temp($0);
+            uBase::Auto<uBase::Stream> f = uBase::Bundle->OpenFile(uBase::String(temp.Ptr, (int)temp.Length));
             return uImage::FontFace::Load(f);
         @}
 
@@ -51,12 +52,20 @@ namespace Uno.Graphics.Utils.Cpp
 
         public override string FamilyName
         {
-            get @{ return uStringFromXliString(@{$$._handle}->GetFamilyName()); @}
+            get
+            @{
+                const auto temp = @{$$._handle}->GetFamilyName();
+                return uString::Utf8(temp.Ptr(), temp.Length());
+            @}
         }
 
         public override string StyleName
         {
-            get @{ return uStringFromXliString(@{$$._handle}->GetStyleName()); @}
+            get
+            @{
+                const auto temp = @{$$._handle}->GetStyleName();
+                return uString::Utf8(temp.Ptr(), temp.Length());
+            @}
         }
 
         public override float GetAscender(float size)

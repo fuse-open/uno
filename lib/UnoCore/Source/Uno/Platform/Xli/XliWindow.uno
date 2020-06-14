@@ -29,22 +29,25 @@ namespace Uno.Platform.Xli
 
         public override string GetTitle()
         @{
-            return uStringFromXliString(@{$$._ptr}->GetTitle());
+            const auto temp = @{$$._ptr}->GetTitle();
+            return uString::Utf8(temp.Ptr(), temp.Length());
         @}
 
         public override void SetTitle(string title)
         @{
-            @{$$._ptr}->SetTitle(uStringToXliString($0));
+            uCString temp($0);
+            @{$$._ptr}->SetTitle(uBase::String(temp.Ptr, (int)temp.Length));
         @}
 
         public override int2 GetClientSize()
         @{
-            return uInt2FromXliVector2i(@{$$._ptr}->GetClientSize());
+            const auto temp = @{$$._ptr}->GetClientSize();
+            return *(@{int2}*)&temp;
         @}
 
         public override void SetClientSize(int2 size)
         @{
-            @{$$._ptr}->SetClientSize(uInt2ToXliVector2i($0));
+            @{$$._ptr}->SetClientSize(*(uBase::Vector2i*)&$0);
         @}
 
         public override bool GetFullscreen()
@@ -109,17 +112,19 @@ namespace Uno.Platform.Xli
 
         public override void SetOnscreenKeyboardPosition(int2 position)
         @{
-            return @{$$._ptr}->SetOnscreenKeyboardPosition(uInt2ToXliVector2i($0));
+            return @{$$._ptr}->SetOnscreenKeyboardPosition(*(uBase::Vector2i*)&$0);
         @}
 
         public override int2 GetOnscreenKeyboardPosition()
         @{
-            return uInt2FromXliVector2i(@{$$._ptr}->GetOnscreenKeyboardPosition());
+            const auto temp = @{$$._ptr}->GetOnscreenKeyboardPosition();
+            return *(@{int2}*)&temp;
         @}
 
         public override int2 GetOnscreenKeyboardSize()
         @{
-            return uInt2FromXliVector2i(@{$$._ptr}->GetOnscreenKeyboardSize());
+            const auto temp = @{$$._ptr}->GetOnscreenKeyboardSize();
+            return *(@{int2}*)&temp;
         @}
 
         public override bool IsStatusBarVisible()
@@ -129,12 +134,14 @@ namespace Uno.Platform.Xli
 
         public override int2 GetStatusBarPosition()
         @{
-            return uInt2FromXliVector2i(@{$$._ptr}->GetStatusBarPosition());
+            const auto temp = @{$$._ptr}->GetStatusBarPosition();
+            return *(@{int2}*)&temp;
         @}
 
         public override int2 GetStatusBarSize()
         @{
-            return uInt2FromXliVector2i(@{$$._ptr}->GetStatusBarSize());
+            const auto temp = @{$$._ptr}->GetStatusBarSize();
+            return *(@{int2}*)&temp;
         @}
     }
 }

@@ -162,37 +162,6 @@ void uExitCritical()
     _Critical.unlock();
 }
 
-uBase::String uStringToXliString(uString* ustr)
-{
-    uCString cstr(ustr);
-    return uBase::String(cstr.Ptr, (int) cstr.Length);
-}
-
-uString* uStringFromXliString(const uBase::String& str)
-{
-    return uString::Utf8(str.Ptr(), str.Length());
-}
-
-@{int2} uInt2FromXliVector2i(const uBase::Vector2i& vec)
-{
-    return *(@{int2}*)&vec;
-}
-
-uBase::Vector2i uInt2ToXliVector2i(const @{int2}& vec)
-{
-    return *(uBase::Vector2i*)&vec;
-}
-
-@{float2} uFloat2FromXliVector2(const uBase::Vector2& vec)
-{
-    return *(@{float2}*)&vec;
-}
-
-uBase::Vector2 uFloat2ToXliVector2(const @{float2}& vec)
-{
-    return *(uBase::Vector2*)&vec;
-}
-
 uImage::Texture* uLoadXliTexture(const uBase::String& filename, uArray* data)
 {
     uBase::String fnUpper = filename.ToUpper();
