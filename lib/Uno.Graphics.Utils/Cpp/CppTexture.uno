@@ -5,15 +5,15 @@ using OpenGL;
 
 namespace Uno.Graphics.Utils.Cpp
 {
-    [extern(CPLUSPLUS) Require("Source.Include", "@{texture2D:Include}")]
-    [extern(CPLUSPLUS) Require("Source.Include", "@{Exception:Include}")]
-    [extern(CPLUSPLUS) Require("Source.Include", "Uno/GLHelper.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uBase/Buffer.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uBase/BufferStream.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uBase/Memory.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uImage/Jpeg.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uImage/Png.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uImage/Texture.h")]
+    [Require("Source.Include", "@{texture2D:Include}")]
+    [Require("Source.Include", "@{Exception:Include}")]
+    [Require("Source.Include", "Uno/GLHelper.h")]
+    [Require("Source.Include", "uBase/Buffer.h")]
+    [Require("Source.Include", "uBase/BufferStream.h")]
+    [Require("Source.Include", "uBase/Memory.h")]
+    [Require("Source.Include", "uImage/Jpeg.h")]
+    [Require("Source.Include", "uImage/Png.h")]
+    [Require("Source.Include", "uImage/Texture.h")]
     [Require("Template", "uImage")]
     extern(CPLUSPLUS) static class CppTexture
     {
