@@ -39,6 +39,7 @@ namespace Uno.CLI.Projects
             WriteRow("-e, --regex-filter=STRING",   "Only run tests matching this regular expression");
             WriteRow("    --trace",                 "Print trace information from unotest");
             WriteRow("    --build-only",            "Don't run compiled program.");
+            WriteRow("    --gen-only",              "Don't compile generated source code.");
             WriteRow("    --no-uninstall",          "Don't uninstall tests after running on device");
             WriteRow("-D, --define=STRING",         "Add define, to enable a feature");
             WriteRow("-U, --undefine=STRING",       "Remove define, to disable a feature");
@@ -104,6 +105,7 @@ namespace Uno.CLI.Projects
                 { "startup-timeout=",       v => Log.Warning("--startup-timeout is deprecated and has no effect.") },
                 { "trace",                  v => { options.Trace = v != null; } },
                 { "build-only|only-build",  v => options.OnlyBuild = v != null },
+                { "gen-only",               v => options.On = v != null },
                 { "allow-debugger",         v => Log.Warning("--allow-debugger is deprecated and has no effect.") },
                 { "d|debug",                v => Log.Warning("--debug is deprecated and has no effect.") },
                 { "run-local",              v => Log.Warning("--run-local is deprecated and has no effect.") },

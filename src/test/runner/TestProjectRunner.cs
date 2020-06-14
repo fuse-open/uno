@@ -61,11 +61,16 @@ namespace Uno.TestRunner
                     if (_options.Target is iOSBuild && !proj.MutableProperties.ContainsKey("iOS.BundleIdentifier"))
                         proj.MutableProperties["iOS.BundleIdentifier"] = "dev.testprojects." + proj.Name.ToIdentifier(true).ToLower();
 
+                    if (_options.OnlyGenerate)
+                        options.Native = false;
+
                     var builder = new ProjectBuilder(log, target, options);
                     var result = builder.Build(proj);
+
                     if (result.ErrorCount != 0)
                         throw new Exception("Build failed.");
-                    if (_options.OnlyBuild)
+
+                    if (_options.OnlyBuild || _options.OnlyGenerate)
                         return tests;
 
                     // We don't need a window when running tests.
