@@ -27,7 +27,7 @@ namespace Uno.CLI.Projects
             WriteHead("Available build targets", 19);
 
             foreach (var c in BuildTargets.Enumerate(Log.EnableExperimental))
-                WriteRow("* " + c.Identifier.ToLowerInvariant());
+                WriteRow("* " + c.Identifier, c.Description);
         }
 
         public override void Execute(IEnumerable<string> args)

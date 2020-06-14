@@ -21,7 +21,7 @@ namespace Uno.CLI.System
 
             WriteHead("Available options");
             WriteRow("-a, --app=NAME",      "The name of the application to open");
-            WriteRow("-a, --exe=PATH",      "The path to the executable to open", true);
+            WriteRow("-e, --exe=PATH",      "The path to the executable to open", true);
             WriteRow("-t, --title=NAME",    "Look for an existing window with this title", true);
             WriteRow("-n, --new",           "Create a new process");
         }

@@ -69,7 +69,7 @@ namespace Uno.CLI.Projects
             WriteHead("Available build targets", 19);
 
             foreach (var c in BuildTargets.Enumerate(Log.EnableExperimental))
-                WriteRow("* " + c.Identifier.ToLowerInvariant(), c.Description);
+                WriteRow("* " + c.Identifier, c.Description);
         }
 
         public override void Execute(IEnumerable<string> args)
@@ -99,7 +99,7 @@ namespace Uno.CLI.Projects
                     { "c=|configuration=",      value => options.Configuration = value.ParseEnum<BuildConfiguration>("configuration") },
                     { "s=|set=",                value => value.ParseProperty("s|set", options.Settings) },
                     { "p|print-internals",      value => options.PrintInternals = true },
-                    { "o=|out-dir|output-dir=", value => options.OutputDirectory = value },
+                    { "o=|out-dir=|output-dir=",    value => options.OutputDirectory = value },
                     { "m=|main=|main-class=",   value => options.MainClass = value },
                     { "n=|native-args=",        nativeArgs.Add },
                     { "a=|run-args=",           runArgs.Add },
