@@ -1,7 +1,6 @@
 <Extensions Backend="CPlusPlus">
 
     <Require Template="XliPlatform" />
-    <Require Template="uImage" />
 
     <ProcessFile HeaderFile="Uno.h" />
     <ProcessFile HeaderFile="Uno/_config.h" />

@@ -15,7 +15,7 @@ namespace Uno.Graphics.Utils.Cpp
 
     [Require("Source.Include", "uBase/BufferStream.h")]
     [Require("Source.Include", "uBase/Bundle.h")]
-    [Require("Source.Include", "Uno/Support.h")]
+    [Require("Template", "uImage")]
     extern(CPLUSPLUS)
     class CppFontFace : FontFace
     {
