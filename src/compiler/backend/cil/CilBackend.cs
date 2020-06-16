@@ -12,6 +12,9 @@ namespace Uno.Compiler.Backends.CIL
         CilLinker _linker;
         string _outputDir;
 
+        internal bool EnableReflection { get; private set; }
+        internal DataType TypeAliasAttribute { get; private set; }
+
         public override string Name => "CIL";
 
         public CilBackend(ShaderBackend shaderBackend)
@@ -31,6 +34,10 @@ namespace Uno.Compiler.Backends.CIL
                 Environment.ExpandSingleLine("@(AssemblyDirectory || '.')")).TrimPath();
             _linker = new CilLinker(Log, Essentials);
             Scheduler.AddTransform(new CilTransform(this));
+            EnableReflection = Environment.IsDefined("REFLECTION");
+            TypeAliasAttribute = EnableReflection
+                                ? ILFactory.GetType("Uno.Reflection.TypeAliasAttribute")
+                                : DataType.Invalid;
         }
 
         public override bool CanLink(SourcePackage upk)
