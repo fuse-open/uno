@@ -34,9 +34,7 @@ namespace Uno.Build
 
             var config = project.Config;
             if (_options.Library ?? config.GetBool("IsSourceTree"))
-                new LibraryBuilder(Log) {
-                        Express = true
-                    }.Build(config);
+                new LibraryBuilder(Log).Build(config);
 
             try
             {
