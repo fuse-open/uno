@@ -281,6 +281,7 @@
     "Source/Uno/Random.uno:Source",
     "Source/Uno/Rect.uno:Source",
     "Source/Uno/Reflection/CppReflection.uno:Source",
+    "Source/Uno/Reflection/TypeAliasAttribute.uno:Source",
     "Source/Uno/Runtime/Implementation/DirectBuffer.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/ArrayEnumerable.uno:Source",
     "Source/Uno/Runtime/Implementation/Internal/Bootstrapper.uno:Source",
