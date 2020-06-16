@@ -116,7 +116,7 @@ namespace Uno.Compiler.Backends.CIL
 
             foreach (var m in Definition.Methods)
             {
-                if (_backend.IsPInvokable(_essentials, m))
+                if (m.IsPInvokable(_essentials, Log))
                 {
                     var mb = PInvokeBackend.CreateCilPInvokeMethod(
                         _linker.Universe,
@@ -205,7 +205,7 @@ namespace Uno.Compiler.Backends.CIL
 
             mb.SetImplementationFlags(MethodImplAttributes.Runtime | MethodImplAttributes.Managed);
 
-            if (_backend.IsPInvokable(_essentials, dt))
+            if (dt.IsPInvokable(_essentials))
             {
                 for (int i = 0; i < dt.Parameters.Length; i++)
                 {

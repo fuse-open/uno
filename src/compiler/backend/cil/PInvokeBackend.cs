@@ -91,7 +91,7 @@ namespace Uno.Compiler.Backends.CIL
         {
             foreach (var f in dt.Methods)
             {
-                if (this.IsPInvokable(Essentials, f))
+                if (f.IsPInvokable(Essentials, Log))
                 {
                     List<Function> l;
                     if (_pinvokeTypes.TryGetValue(dt, out l))
@@ -208,7 +208,7 @@ namespace Uno.Compiler.Backends.CIL
 
         public static string CName(Function f) => CName(f.DeclaringType) + "__" + f.Name;
 
-        public override bool CanLink(Function f) => Environment.IsGeneratingCode && !this.IsPInvokable(Essentials, f);
+        public override bool CanLink(Function f) => Environment.IsGeneratingCode && !f.IsPInvokable(Essentials, Log);
         public override bool CanLink(DataType dt) => false;
 
         public string GetForeignParamType(Source src, Parameter p)

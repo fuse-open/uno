@@ -336,7 +336,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
                     var e = s as ExternScope;
                     // Skip PInvoke methods since they use e.g. C++ features when targeting C#.
                     // Is there a cleaner way to do this?
-                    if (!Backend.IsPInvokable(Essentials, Function))
+                    if (!Function.IsPInvokable(Essentials, Log))
                         Environment.Expand(e.Source, e.String, false, Function, e.Scopes);
                     break;
                 }

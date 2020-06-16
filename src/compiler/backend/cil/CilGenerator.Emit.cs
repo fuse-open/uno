@@ -19,7 +19,7 @@ namespace Uno.Compiler.Backends.CIL
 
             if (!f.HasBody)
             {
-                if (!f.IsAbstract && !_backend.IsPInvokable(_essentials, f))
+                if (!f.IsAbstract && !f.IsPInvokable(_essentials, Log))
                     Log.Error(f.Source, ErrorCode.E0093, f.Quote() + " does not provide an implementation");
 
                 return;

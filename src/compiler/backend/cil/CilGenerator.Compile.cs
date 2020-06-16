@@ -59,7 +59,7 @@ namespace Uno.Compiler.Backends.CIL
                         foreach (var a in m.Definition.Attributes)
                             m.Builder.SetCustomAttribute(CreateAttributeBuilder(a));
 
-                    if (_backend.IsPInvokable(_essentials, m.Definition))
+                    if (m.Definition.IsPInvokable(_essentials, Log))
                         continue;
 
                     for (int i = 0; i < m.Definition.Parameters.Length; i++)
