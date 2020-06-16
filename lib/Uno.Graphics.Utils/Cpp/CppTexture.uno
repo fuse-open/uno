@@ -31,7 +31,7 @@ namespace Uno.Graphics.Utils.Cpp
             GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):Call(tex, true, &info)};
 
             if (info.GLTarget != GL_TEXTURE_CUBE_MAP)
-                throw uBase::Exception("Invalid cube map");
+                U_THROW_IOE("Invalid cube map");
 
             return @{textureCube(GLTextureHandle,int,int,Format):New(handle, info.Width, info.MipCount, @{Format.Unknown})};
         @}
@@ -137,7 +137,7 @@ namespace Uno.Graphics.Utils.Cpp
             else if (fnUpper.EndsWith(".JPG") || fnUpper.EndsWith(".JPEG"))
                 ir = uImage::Jpeg::CreateReader(&stream);
             else
-                throw uBase::Exception("Unsupported texture extension '" + uBase::Path::GetExtension(fnUpper) + "'");
+                U_THROW_IOE("Unsupported texture extension");
 
             uBase::Auto<uImage::Bitmap> bmp = ir->ReadBitmap();
             return uImage::Texture::Create(bmp);
@@ -175,7 +175,7 @@ namespace Uno.Graphics.Utils.Cpp
 
                     GLenum glFormat, glType;
                     if (!@{TryGetGLFormat(NativeFormat, ref uint, ref uint):Call(bmp->GetFormat(), &glFormat, &glType)})
-                        throw uBase::Exception("Unsupported texture format: " + uImage::FormatInfo::ToString(bmp->GetFormat()));
+                        U_THROW_IOE("Unsupported texture format");
 
                     glTexImage2D(texFace, j, glFormat, bmp->GetWidth(), bmp->GetHeight(), 0, glFormat, glType, bmp->GetPtr());
                 }

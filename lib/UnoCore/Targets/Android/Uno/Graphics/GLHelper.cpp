@@ -56,15 +56,15 @@ void GLHelper::InitGL()
 
     // Create context
     _eglPBufferContext = eglCreateContext(_eglDisplay, _eglPBufferConfig, EGL_NO_CONTEXT, _contextAttribs);
-    if (_eglPBufferContext == EGL_NO_CONTEXT) throw uBase::Exception("Unable to create EGL PBuffer Context");
+    if (_eglPBufferContext == EGL_NO_CONTEXT) U_THROW_IOE("Unable to create EGL PBuffer Context");
 
     // Create surface context: uses the config for rendering (so no buffer bit)
     _eglSurfaceContext = eglCreateContext(_eglDisplay, _eglRenderConfig, _eglPBufferContext, _contextAttribs);
-    if (_eglSurfaceContext == EGL_NO_CONTEXT) throw uBase::Exception("Unable to create EGL Surface Context");
+    if (_eglSurfaceContext == EGL_NO_CONTEXT) U_THROW_IOE("Unable to create EGL Surface Context");
 
     // Create worker-thread context: uses the config for rendering (so no buffer bit)
     _eglWorkerThreadContext = eglCreateContext(_eglDisplay, _eglRenderConfig, _eglPBufferContext, _contextAttribs);
-    if (_eglWorkerThreadContext == EGL_NO_CONTEXT) throw uBase::Exception("Unable to create EGL Surface Context");
+    if (_eglWorkerThreadContext == EGL_NO_CONTEXT) U_THROW_IOE("Unable to create EGL Surface Context");
 
     // Create the surface
     CreatePBufferSurfaceAndMakeCurrent();
@@ -89,7 +89,7 @@ void GLHelper::CreatePBufferSurfaceAndMakeCurrent()
     if (_eglPBufferSurface == EGL_FALSE)
     {
         uBase::Error->WriteLine((uBase::String)"Unable to make EGL pbuffer surface");
-        throw uBase::Exception("Unable to make EGL pbuffer surface");
+        U_THROW_IOE("Unable to make EGL pbuffer surface");
     }
     MakeCurrent(_eglPBufferContext, _eglPBufferSurface);
 }
@@ -99,7 +99,7 @@ void GLHelper::MakeCurrent(EGLContext context, EGLSurface surface)
     if (eglMakeCurrent(GLHelper::_eglDisplay, surface, surface, context) == EGL_FALSE)
     {
         uBase::Error->WriteLine((uBase::String)"GLHelper::MakeCurrent: Unable to make EGL context current:" + (uBase::String)eglGetError());
-        throw uBase::Exception("Unable to make EGL context current");
+        U_THROW_IOE("Unable to make EGL context current");
     }
 }
 
@@ -183,7 +183,7 @@ void GLHelper::CreateEGLSurfaceFromANativeWindow(ANativeWindow* nativeWindow, EG
     eglGetConfigAttrib(GLHelper::_eglDisplay, config, EGL_NATIVE_VISUAL_ID, &format);
     ANativeWindow_setBuffersGeometry(nativeWindow, 0, 0, format);
     newSurface = eglCreateWindowSurface(GLHelper::_eglDisplay, config, nativeWindow, nullptr);
-    if (newSurface == EGL_NO_SURFACE) throw uBase::Exception("Unable to create EGL Surface");
+    if (newSurface == EGL_NO_SURFACE) U_THROW_IOE("Unable to create EGL Surface");
 }
 
 void GLHelper::CreateNewSurfaceAndMakeCurrent(ANativeWindow* nativeWindow, EGLSurface& newSurface)
@@ -219,7 +219,7 @@ void GLHelper::_setEGLConfig(bool forPBuffer)
     if (!eglChooseConfig(_eglDisplay, _configAttribsPrimary, configs, 128, &numConfigs) || (numConfigs == 0))
     {
         if (!eglChooseConfig(_eglDisplay, _configAttribsFallback, configs, 128, &numConfigs) || (numConfigs == 0))
-            throw uBase::Exception("Unable to choose suitable EGL attribs for config");
+            U_THROW_IOE("Unable to choose suitable EGL attribs for config");
     }
 
     EGLint cs = 0, cd = 0, cb = 0;
