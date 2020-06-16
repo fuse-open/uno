@@ -33,7 +33,7 @@ namespace Uno.Build
                 throw new ArgumentNullException(nameof(project));
 
             var config = project.Config;
-            if (_options.Library ?? config.GetBool("IsSourceTree"))
+            if (_options.UpdateLibrary ?? config.GetBool("IsSourceTree"))
                 new LibraryBuilder(Log).Build(config);
 
             try

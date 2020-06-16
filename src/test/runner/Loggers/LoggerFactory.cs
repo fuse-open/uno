@@ -8,13 +8,13 @@ namespace Uno.TestRunner.Loggers
         public static ITestResultLogger CreateLogger(TestOptions options)
         {
             IWriter writer;
-            if (string.IsNullOrEmpty(options.LogFileName))
+            if (string.IsNullOrEmpty(options.LogFile))
             {
                 writer = new ConsoleWriter();
             }
             else
             {
-                writer = new LogFileWriter(options.LogFileName);
+                writer = new LogFileWriter(options.LogFile);
             }
 
             return new ConsoleLogger(writer, options.Trace);

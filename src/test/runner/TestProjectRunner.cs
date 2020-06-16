@@ -51,7 +51,7 @@ namespace Uno.TestRunner
                         TestFilter = _options.Filter,
                         OutputDirectory = outputDirectory,
                         WarningLevel = 1,
-                        Library = _options.Library
+                        UpdateLibrary = _options.UpdateLibrary
                     };
 
                     options.Defines.AddRange(_options.Defines);
@@ -61,7 +61,7 @@ namespace Uno.TestRunner
                         proj.MutableProperties["iOS.BundleIdentifier"] = "dev.testprojects." + proj.Name.ToIdentifier(true).ToLower();
 
                     if (_options.OnlyGenerate)
-                        options.Native = false;
+                        options.NativeBuild = false;
 
                     var builder = new ProjectBuilder(log, target, options);
                     var result = builder.Build(proj);
@@ -89,7 +89,7 @@ namespace Uno.TestRunner
                     finally
                     {
                         if ((target is AndroidBuild || target is iOSBuild) &&
-                            !_options.NoUninstall &&
+                            !_options.DontUninstall &&
                             runTask != null)
                         {
                             // Wait a little more for app to quit, after that we don't care
