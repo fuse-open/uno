@@ -148,7 +148,6 @@
     "Source/Uno/Delegate.uno:Source",
     "Source/Uno/Diagnostics/Clock.uno:Source",
     "Source/Uno/Diagnostics/Debug.uno:Source",
-    "Source/Uno/Diagnostics/IdMap.uno:Source",
     "Source/Uno/Double.uno:Source",
     "Source/Uno/Enum.uno:Source",
     "Source/Uno/Environment.uno:Source",
