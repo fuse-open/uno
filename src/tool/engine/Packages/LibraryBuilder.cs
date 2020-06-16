@@ -10,7 +10,7 @@ using Uno.ProjectFormat;
 
 namespace Uno.Build.Packages
 {
-    public class LibraryBuilder : LogObject
+    public class LibraryBuilder : DiskObject
     {
         public bool Clean;
         public bool Express;
@@ -24,12 +24,10 @@ namespace Uno.Build.Packages
 
         readonly ListDictionary<string, LibraryProject> _libMap = new ListDictionary<string, LibraryProject>();
         readonly HashSet<string> _dirty = new HashSet<string>();
-        readonly Disk _disk;
 
-        public LibraryBuilder(Disk disk)
-            : base(disk)
+        public LibraryBuilder(Log log)
+            : base(log)
         {
-            _disk = disk;
             Express = Log.EnableExperimental;
         }
 
@@ -75,7 +73,7 @@ namespace Uno.Build.Packages
 
             if (RebuildAll && Clean)
                 foreach (var source in sourceDirectories)
-                    _disk.DeleteDirectory(Path.Combine(
+                    Disk.DeleteDirectory(Path.Combine(
                                 File.Exists(source)
                                     ? Path.GetDirectoryName(Path.GetFullPath(source))
                                     : source,
@@ -118,16 +116,16 @@ namespace Uno.Build.Packages
             if (Clean)
             {
                 new ProjectCleaner(buildLog).Clean(lib.Project);
-                _disk.DeleteDirectory(lib.PackageDirectory);
+                Disk.DeleteDirectory(lib.PackageDirectory);
             }
             else if (Directory.Exists(lib.PackageDirectory))
             {
                 // Remove old versions
                 foreach (var dir in Directory.EnumerateDirectories(lib.PackageDirectory))
                     if (dir != lib.VersionDirectory)
-                        _disk.DeleteDirectory(dir, true);
+                        Disk.DeleteDirectory(dir, true);
 
-                _disk.DeleteDirectory(Path.Combine(lib.CacheDirectory));
+                Disk.DeleteDirectory(Path.Combine(lib.CacheDirectory));
             }
 
             var fail = TryGetFailedReference(lib, failed);
