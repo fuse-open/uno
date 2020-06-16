@@ -15,5 +15,11 @@ namespace Uno.Build.Stuff
             request.UserAgent = UserAgent;
             return request;
         }
+
+        static StuffWebClient()
+        {
+            // https://devblogs.microsoft.com/nuget/deprecating-tls-1-0-and-1-1-on-nuget-org/
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+        }
     }
 }
