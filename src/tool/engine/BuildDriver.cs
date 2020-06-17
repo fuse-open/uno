@@ -246,6 +246,7 @@ namespace Uno.Build
                 _file.Product = _env.GetString("Product");
                 _file.BuildCommand = _env.GetString("Commands.Build");
                 _file.RunCommand = _env.GetString("Commands.Run");
+                _file.UnoVersion = UnoVersion.InformationalVersion;
 
                 if (!Log.HasErrors)
                 {

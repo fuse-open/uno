@@ -8,6 +8,7 @@ namespace Uno.Build
     {
         public readonly string RootDirectory;
         public readonly string FullName;
+        public string UnoVersion;
         public string RunCommand;
         public string BuildCommand;
         public string Product;
@@ -16,7 +17,8 @@ namespace Uno.Build
         public DateTime Timestamp => File.GetLastWriteTime(FullName);
         public bool IsProductUpToDate => !string.IsNullOrEmpty(Product) && 
                                          File.Exists(Path.Combine(RootDirectory, Product)) && 
-                                            File.GetLastWriteTime(Path.Combine(RootDirectory, Product)) >= Timestamp;
+                                         File.GetLastWriteTime(Path.Combine(RootDirectory, Product)) >= Timestamp &&
+                                         UnoVersion == Diagnostics.UnoVersion.InformationalVersion;
 
         public BuildFile(string dir)
         {
@@ -28,6 +30,7 @@ namespace Uno.Build
         {
             var stuff = StuffObject.Load(FullName);
             stuff.TryGetValue("$", out int hash);
+            stuff.TryGetValue(nameof(UnoVersion), out UnoVersion);
             stuff.TryGetValue(nameof(BuildCommand), out BuildCommand);
             stuff.TryGetValue(nameof(RunCommand), out RunCommand);
             stuff.TryGetValue(nameof(Product), out Product);
@@ -39,6 +42,7 @@ namespace Uno.Build
             Directory.CreateDirectory(RootDirectory);
             new StuffObject {
                 {"$", hash },
+                {nameof(UnoVersion), UnoVersion},
                 {nameof(BuildCommand), BuildCommand},
                 {nameof(RunCommand), RunCommand},
                 {nameof(Product), Product}
