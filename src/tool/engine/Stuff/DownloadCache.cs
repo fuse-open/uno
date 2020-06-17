@@ -142,7 +142,7 @@ namespace Uno.Build.Stuff
         public static string UrlToFile(this string url, int max = 75)
         {
             var hash = url.GetHashCode();
-            var ext = url.ToUpper().EndsWith(".TAR.GZ")
+            var ext = url.ToUpper().EndsWith(".TAR.GZ", ".TGZ")
                     ? ".tar.gz"
                     : ".zip";
             return new string(url

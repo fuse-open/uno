@@ -93,6 +93,11 @@ namespace Uno
             return false;
         }
 
+        public static bool EndsWith(this string str, string a, string b)
+        {
+            return str.EndsWith(a) || str.EndsWith(b);
+        }
+
         public static string[] PathSplit(this string str)
         {
             var parts = str.Split(':');
