@@ -1,7 +1,7 @@
 // This file was generated based on lib/UnoCore/Source/Uno/Int3.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
-namespace Uno
+namespace Uno.UX.Markup.Types
 {
     public struct Int3
     {

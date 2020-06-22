@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Uno.UX.Markup.Types.UX;
 
 namespace Uno.UX.Markup
 {
@@ -11,24 +12,24 @@ namespace Uno.UX.Markup
         {
             s = s.Trim('f');
 
-            Uno.UX.Unit unit = Uno.UX.Unit.Unspecified;
+            Unit unit = Unit.Unspecified;
             if (s.EndsWith("%"))
             {
-                unit = Uno.UX.Unit.Percent;
+                unit = Unit.Percent;
                 s = s.Trim('%');
             }
             else if (s.EndsWith("px"))
             {
-                unit = Uno.UX.Unit.Pixels;
+                unit = Unit.Pixels;
                 s = s.Substring(0, s.Length - 2);
             }
             else if (s.EndsWith("pt"))
             {
-                unit = Uno.UX.Unit.Points;
+                unit = Unit.Points;
                 s = s.Substring(0, s.Length - 2);
             }
 
-            var d = double.Parse(s, System.Globalization.CultureInfo.InvariantCulture);
+            var d = double.Parse(s, CultureInfo.InvariantCulture);
 
             return new Size((float)(dynamic)d, unit.ToString(), src);
         }
@@ -52,7 +53,7 @@ namespace Uno.UX.Markup
         public static Scalar<T> ParseFloat<T>(string s, FileSourceInfo src) where T : IFormattable
         {
             s = s.Trim('f');
-            var d = double.Parse(s, System.Globalization.CultureInfo.InvariantCulture);
+            var d = double.Parse(s, CultureInfo.InvariantCulture);
 
             return new Scalar<T>((T)(dynamic)d, src);
         }
