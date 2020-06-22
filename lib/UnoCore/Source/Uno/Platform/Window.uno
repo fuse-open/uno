@@ -1,5 +1,4 @@
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation;
 
 namespace Uno.Platform
 {

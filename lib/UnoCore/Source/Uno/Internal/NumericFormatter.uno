@@ -3,7 +3,7 @@ using Uno.Compiler.ExportTargetInterop;
 using Uno.Text;
 using Uno.Math;
 
-namespace Uno.Runtime.Implementation.Internal
+namespace Uno.Internal
 {
     internal enum FormatSpecifier
     {

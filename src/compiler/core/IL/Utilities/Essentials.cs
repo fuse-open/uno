@@ -142,7 +142,7 @@ namespace Uno.Compiler.Core.IL.Utilities
             IndexBuffer = ilf.GetType("Uno.Graphics.IndexBuffer");
             IDisposable = ilf.GetType("Uno.IDisposable");
             IEnumerable_T = ilf.GetType("Uno.Collections.IEnumerable<>");
-            ArrayEnumerable_T = ilf.GetType("Uno.Runtime.Implementation.Internal.ArrayEnumerable<>");
+            ArrayEnumerable_T = ilf.GetType("Uno.Internal.ArrayEnumerable<>");
             Bundle = ilf.GetType("Uno.IO.Bundle");
             Monitor = ilf.GetType("Uno.Threading.Monitor");
             ValueType = ilf.GetType("Uno.ValueType");

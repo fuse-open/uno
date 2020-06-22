@@ -1,4 +1,4 @@
-namespace Uno.Runtime.Implementation.Internal
+namespace Uno.Internal
 {
     public class FormatStringLiteral : FormatStringToken
     {

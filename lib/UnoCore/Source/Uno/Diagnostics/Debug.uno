@@ -1,5 +1,4 @@
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation;
 using System;
 
 namespace Uno.Diagnostics

@@ -1,5 +1,4 @@
 using Uno;
-using Uno.Runtime.Implementation;
 using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform.EventSources

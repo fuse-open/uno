@@ -4,7 +4,7 @@ namespace Uno.Collections
     {
         public static IEnumerable<T> AsEnumerable<T>(this T[] self)
         {
-            return new Uno.Runtime.Implementation.Internal.ArrayEnumerable<T>(self);
+            return new Uno.Internal.ArrayEnumerable<T>(self);
         }
 
         public static IEnumerable<U> OfType<T, U>(this IEnumerable<T> self)

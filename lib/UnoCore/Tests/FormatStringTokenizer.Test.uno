@@ -2,7 +2,7 @@ using Uno;
 using Uno.Collections;
 using Uno.Graphics;
 using Uno.Testing;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Internal;
 
 namespace Uno.Test
 {

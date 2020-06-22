@@ -1,6 +1,6 @@
 using Uno.Collections;
 
-namespace Uno.Runtime.Implementation.Internal
+namespace Uno.Internal
 {
     public sealed class ArrayEnumerator<T> : IEnumerator<T>
     {
