@@ -2,7 +2,7 @@
 
     <Require Template="XliPlatform" />
 
-    <ProcessFile HeaderFile="Uno.h" />
+    <ProcessFile HeaderFile="uno.h" />
     <ProcessFile HeaderFile="Uno/_config.h" />
     <ProcessFile HeaderFile="Uno/_internal.h" />
     <ProcessFile SourceFile="Uno/_invoke.cpp" />

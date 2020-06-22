@@ -4,7 +4,7 @@
 #   define NS_DESIGNATED_INITIALIZER
 #endif
 
-#include <Uno.h>
+#include <uno.h>
 #include <@{global::ObjC.ID:Include}>
 #include <@{global::ObjC.Object:Include}>
 #include "uObjC.Box.h"
