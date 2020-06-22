@@ -2,7 +2,7 @@ using Foundation;
 using AppKit;
 using System.Linq;
 using CoreGraphics;
-using Uno.Support.MonoMac;
+using Uno.AppLoader.MonoMac;
 using Uno.Platform.Internal;
 
 namespace Uno.AppLoader

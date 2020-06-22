@@ -1,6 +1,6 @@
 using GL = OpenTK.Graphics.OpenGL.GL;
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     class BufferDisposable : IContextObjectDisposable
     {

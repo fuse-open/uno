@@ -1,4 +1,4 @@
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     public enum WheelDeltaMode
     {

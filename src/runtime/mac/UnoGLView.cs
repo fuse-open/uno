@@ -9,7 +9,7 @@ using Uno.Diagnostics;
 using Uno.Platform;
 using Uno.Platform.Internal;
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     public class UnoGLView : NSView
     {

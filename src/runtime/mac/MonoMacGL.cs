@@ -12,7 +12,7 @@ using MacGL = OpenTK.Graphics.OpenGL.GL;
 #pragma warning disable 1572
 #pragma warning disable 1573
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     public class MonoMacGL : IGL
     {
