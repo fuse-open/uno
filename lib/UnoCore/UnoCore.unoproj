@@ -287,6 +287,7 @@
     "Source/Uno/Rect.uno:Source",
     "Source/Uno/Reflection/CppReflection.uno:Source",
     "Source/Uno/Reflection/TypeAliasAttribute.uno:Source",
+    "Source/Uno/Runtime/Implementation/Internal/Unsafe.uno:Source",
     "Source/Uno/Runtime/InteropServices/GCHandle.uno:Source",
     "Source/Uno/Runtime/InteropServices/GCHandleType.uno:Source",
     "Source/Uno/SByte.uno:Source",
