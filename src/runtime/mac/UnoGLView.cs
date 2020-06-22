@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Linq;
 using Foundation;
 using AppKit;
+using CoreGraphics;
 using OpenTK.Graphics.OpenGL;
 using Uno.Diagnostics;
 using Uno.Platform;
-using Uno.Runtime.Implementation.Internal;
-using CoreGraphics;
+using Uno.Platform.Internal;
 
 namespace Uno.Support.MonoMac
 {

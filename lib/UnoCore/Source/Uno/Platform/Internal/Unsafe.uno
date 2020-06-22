@@ -1,7 +1,6 @@
-using Uno.Platform;
 using Uno.Compiler.ExportTargetInterop;
 
-namespace Uno.Runtime.Implementation.Internal
+namespace Uno.Platform.Internal
 {
     // For code that should never be used in production but is useful for internal work
     static public class Unsafe
