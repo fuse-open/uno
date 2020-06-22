@@ -274,6 +274,7 @@
     "Source/Uno/Platform/WindowBackend.uno:Source",
     "Source/Uno/Platform/Xli/XliGraphicsContext.uno:Source",
     "Source/Uno/Platform/Xli/XliWindow.uno:Source",
+    "Source/Uno/Platform2/Internal/Application.uno:Source",
     "Source/Uno/Predicate.uno:Source",
     "Source/Uno/Quaternion.uno:Source",
     "Source/Uno/Random.uno:Source",
