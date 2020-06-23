@@ -12,6 +12,7 @@ namespace Uno.TestRunner
         public string Filter;
         public bool Trace;
         public bool OnlyBuild;
+        public bool OnlyGenerate;
         public bool NoUninstall;
         public bool Library;
         public string OutputDirectory;

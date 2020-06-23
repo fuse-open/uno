@@ -20,15 +20,16 @@ namespace Uno.CLI.Projects
             Log.Skip();
             WriteLine("[paths-to-search] is a list of paths to unoprojs to run tests from, and/or");
             WriteLine("directories in which to search for test projects.");
+            Log.Skip();
             WriteLine("When a directory is given, uno test searches recursively in that directory");
             WriteLine("for projects named '*Test.unoproj'");
             
             WriteHead("Examples");
-            WriteLine(@"  uno test");
-            WriteLine(@"  uno test path/projects");
-            WriteLine(@"  uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj");
-            WriteLine(@"  uno test path/projects path/other-projects/FooTest.unoproj");
-            WriteLine(@"  uno test native -v path/projects");
+            WriteLine("  uno test");
+            WriteLine("  uno test path/projects");
+            WriteLine("  uno test path/projects/FooTest.unoproj path/projects/BarTest.unoproj");
+            WriteLine("  uno test path/projects path/other-projects/FooTest.unoproj");
+            WriteLine("  uno test native -v path/projects");
 
             WriteHead("Available options", 26);
             WriteRow("-l, --logfile=PATH",          "Write output to this file instead of stdout");
@@ -38,16 +39,17 @@ namespace Uno.CLI.Projects
             WriteRow("-f, --filter=",               "Only run tests matching this string");
             WriteRow("-e, --regex-filter=STRING",   "Only run tests matching this regular expression");
             WriteRow("    --trace",                 "Print trace information from unotest");
-            WriteRow("    --build-only",            "Don't run compiled program.");
+            WriteRow("-b, --build-only",            "Don't run tests; only build.");
+            WriteRow("-g, --gen-only",              "Don't run tests; only generate code.");
             WriteRow("    --no-uninstall",          "Don't uninstall tests after running on device");
             WriteRow("-D, --define=STRING",         "Add define, to enable a feature");
             WriteRow("-U, --undefine=STRING",       "Remove define, to disable a feature");
-            WriteRow("    --out-dir=PATH",          "Override output directory");
+            WriteRow("-o, --out-dir=PATH",          "Override output directory");
 
             WriteHead("Available build targets", 19);
 
             foreach (var c in BuildTargets.Enumerate(false))
-                WriteRow("* " + c.Identifier.ToLowerInvariant(), c.Description);
+                WriteRow("* " + c.Identifier, c.Description);
         }
 
         public override void Execute(IEnumerable<string> args)
@@ -100,17 +102,18 @@ namespace Uno.CLI.Projects
                 { "q|quiet",                v => quiet = v != null },
                 { "f|filter=",              v => options.Filter = Regex.Escape(v) },
                 { "e|regex-filter=",        v => options.Filter = v },
-                { "o|timeout=",             v => Log.Warning("--timeout is deprecated and has no effect.") },
+                { "timeout=",               v => Log.Warning("--timeout is deprecated and has no effect.") },
                 { "startup-timeout=",       v => Log.Warning("--startup-timeout is deprecated and has no effect.") },
                 { "trace",                  v => { options.Trace = v != null; } },
-                { "build-only|only-build",  v => options.OnlyBuild = v != null },
+                { "b|build-only|only-build",    v => options.OnlyBuild = v != null },
+                { "g|gen-only",             v => options.OnlyGenerate = v != null },
                 { "allow-debugger",         v => Log.Warning("--allow-debugger is deprecated and has no effect.") },
                 { "d|debug",                v => Log.Warning("--debug is deprecated and has no effect.") },
                 { "run-local",              v => Log.Warning("--run-local is deprecated and has no effect.") },
                 { "no-uninstall",           v => options.NoUninstall = v != null },
                 { "D=|define=",             options.Defines.Add },
                 { "U=|undefine=",           options.Undefines.Add },
-                { "out-dir=|output-dir=",   v => options.OutputDirectory = v },
+                { "o=|out-dir=|output-dir=",    v => options.OutputDirectory = v },
                 { "libs",                   v => options.Library = true },
             };
 

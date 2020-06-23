@@ -19,9 +19,9 @@ Available commands
   update         Update packages and project(s)
   build          Build a project for given target
   clean          Delete generated build and cache directories in project(s)
-  test           Run unit test project(s) and print results
+  test           Run test project(s)
   doctor         Repair/rebuild packages found in search paths
-  config         Print information about your Uno environment
+  config         Print information about your Uno configuration
   ls             Print project items found to STDOUT
 
 Experimental commands
@@ -106,6 +106,7 @@ Additional options
   -s, --set:NAME=STRING       Override build system property
   -o, --out-dir=PATH          Override output directory
   -b, --build-only            Build only; don't run or open debugger
+  -g, --gen-only              Generate only; don't compile generated code.
   -f, --force                 Build even if output is up-to-date
   -l, --libs                  Rebuild package library if necessary
   -p, --print-internals       Print a list of build system properties
@@ -124,21 +125,12 @@ C++ options
   -DSTACKTRACE                Enable stack traces on Exception
   -DDEBUG_UNSAFE              Enable C++ asserts in unsafe code
   -DDEBUG_NATIVE              Disable C++ optimizations when debugging
-  -DDEBUG_ARC<0..4>           Log events from ARC/memory management
-  -DDEBUG_DUMPS               Dump GraphViz files to help identify cycles in memory
-
-GLSL options
-  -DDUMP_SHADERS              Dump shaders to build directory for inspection
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
-  * docs               Uno documentation files.
-  * metadata           Metadata for code completion.
-  * pinvoke            PInvoke libraries.
-  * package            Uno package files.
 ```
 
 ## uno no-build
@@ -165,12 +157,24 @@ Additional options
 ## uno clean
 
 ```
-Usage: uno clean [options] [project-path ...]
+Usage: uno clean [target] [options] [project-path ...]
 
 Delete generated build and cache directories in project(s).
 
+Examples
+  uno clean                     Clean all build-files (in current directory)
+  uno clean android -c Release  Clean only Android files (Release configuration)
+
 Available options
-  -r, --recursive       Look for project files recursively
+  -t, --target=STRING         Build target (see: Available build targets)
+  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -r, --recursive             Look for project files recursively
+
+Available build targets
+  * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * native             C++/GL code, CMake project and native executable.
+  * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
 ## uno test
@@ -182,6 +186,7 @@ Run test project(s).
 
 [paths-to-search] is a list of paths to unoprojs to run tests from, and/or
 directories in which to search for test projects.
+
 When a directory is given, uno test searches recursively in that directory
 for projects named '*Test.unoproj'
 
@@ -200,11 +205,12 @@ Available options
   -f, --filter=               Only run tests matching this string
   -e, --regex-filter=STRING   Only run tests matching this regular expression
       --trace                 Print trace information from unotest
-      --build-only            Don't run compiled program.
+  -b, --build-only            Don't run tests; only build.
+  -g, --gen-only              Don't run tests; only generate code.
       --no-uninstall          Don't uninstall tests after running on device
   -D, --define=STRING         Add define, to enable a feature
   -U, --undefine=STRING       Remove define, to disable a feature
-      --out-dir=PATH          Override output directory
+  -o, --out-dir=PATH          Override output directory
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
@@ -306,7 +312,7 @@ Open file(s) in external application.
 
 Available options
   -a, --app=NAME        The name of the application to open
-  -a, --exe=PATH        The path to the executable to open [optional]
+  -e, --exe=PATH        The path to the executable to open [optional]
   -t, --title=NAME      Look for an existing window with this title [optional]
   -n, --new             Create a new process
 ```

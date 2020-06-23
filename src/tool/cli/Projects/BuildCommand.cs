@@ -37,6 +37,7 @@ namespace Uno.CLI.Projects
             WriteRow("-s, --set:NAME=STRING",       "Override build system property");
             WriteRow("-o, --out-dir=PATH",          "Override output directory");
             WriteRow("-b, --build-only",            "Build only; don't run or open debugger");
+            WriteRow("-g, --gen-only",              "Generate only; don't compile generated code.");
             WriteRow("-f, --force",                 "Build even if output is up-to-date");
             WriteRow("-l, --libs",                  "Rebuild package library if necessary");
             WriteRow("-p, --print-internals",       "Print a list of build system properties");
@@ -68,7 +69,7 @@ namespace Uno.CLI.Projects
             WriteHead("Available build targets", 19);
 
             foreach (var c in BuildTargets.Enumerate(Log.EnableExperimental))
-                WriteRow("* " + c.Identifier.ToLowerInvariant(), c.Description);
+                WriteRow("* " + c.Identifier, c.Description);
         }
 
         public override void Execute(IEnumerable<string> args)
@@ -92,12 +93,13 @@ namespace Uno.CLI.Projects
             var runArgs = new List<string>();
             var run = false;
             var buildOnly = false;
+            var genOnly = false;
             var input = new OptionSet {
                     { "t=|target=",             value => targetName = value },
                     { "c=|configuration=",      value => options.Configuration = value.ParseEnum<BuildConfiguration>("configuration") },
                     { "s=|set=",                value => value.ParseProperty("s|set", options.Settings) },
                     { "p|print-internals",      value => options.PrintInternals = true },
-                    { "o=|out-dir|output-dir=", value => options.OutputDirectory = value },
+                    { "o=|out-dir=|output-dir=",    value => options.OutputDirectory = value },
                     { "m=|main=|main-class=",   value => options.MainClass = value },
                     { "n=|native-args=",        nativeArgs.Add },
                     { "a=|run-args=",           runArgs.Add },
@@ -114,6 +116,7 @@ namespace Uno.CLI.Projects
                     { "d|debug",                value => runArgs.Add("debug") },
                     { "r|run",                  value => run = true },
                     { "b|build-only",           value => buildOnly = true },
+                    { "g|gen-only",             value => genOnly = true },
                     { "l|libs",                 value => options.Library = true },
                     { "f|force",                value => options.Force = true },
                     { "cd=",                    value => Directory.SetCurrentDirectory(value.ParseString("cd")) },
@@ -132,8 +135,11 @@ namespace Uno.CLI.Projects
                 options.Defines.Add("DEBUG_NATIVE"); // disable native optimizations (debug build)
             }
 
-            if (buildOnly)
+            if (buildOnly || genOnly)
             {
+                if (genOnly)
+                    options.Native = false;
+
                 runArgs.Clear();
                 run = false;
             }
