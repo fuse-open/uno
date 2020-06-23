@@ -15,7 +15,7 @@
     "Assets/icon.xml:File",
     "Backends/CIL/CIL.uxl:Extensions",
     "Backends/CPlusPlus/CPlusPlus.uxl:Extensions",
-    "Backends/CPlusPlus/Uno.cpp.uxl:Extensions",
+    "Backends/CPlusPlus/uno.cpp.uxl:Extensions",
     "Backends/CPlusPlus/uno.h:File",
     "Backends/CPlusPlus/Uno/_config.h:File",
     "Backends/CPlusPlus/Uno/_internal.h:File",
