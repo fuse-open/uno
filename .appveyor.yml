@@ -7,8 +7,16 @@ environment:
   - TARGET: native
     UNO_TEST_ARGS: -DDEBUG_UNSAFE
     SKIP_UNO_TESTS: 1
+  # - TARGET: android
+  #   UNO_TEST_ARGS: -DDEBUG_UNSAFE --build-only
+  #   GRADLE_OPTS: -Dorg.gradle.daemon=false
+  #   SKIP_LIB_TESTS: 1
 
 install:
+  - ps: |
+      if ($env:Target -eq "android") {
+        Invoke-Expression "npm install android-build-tools -g"
+      }
   - ps: |
       if ($env:Target -eq "native") {
         Invoke-WebRequest https://www.nuget.org/api/v2/package/mesa3d-x64/18.3.4 -OutFile mesa.zip
