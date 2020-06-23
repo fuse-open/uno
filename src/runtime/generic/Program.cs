@@ -5,7 +5,7 @@ using System.Threading;
 using Uno.AppLoader.Dummy;
 using Uno.Diagnostics;
 using Uno.Platform;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Platform.Internal;
 
 namespace Uno.AppLoader
 {
@@ -19,7 +19,7 @@ namespace Uno.AppLoader
             WindowBackend.SetInstance(new DummyWindow());
 
             UnoGenerated();
-            Platform2.Internal.Application.Start();
+            DotNetApplication.Start();
 
             const double targetTime = 1.0 / 60;
 

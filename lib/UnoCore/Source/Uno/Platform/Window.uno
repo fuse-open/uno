@@ -1,5 +1,4 @@
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation;
 
 namespace Uno.Platform
 {
@@ -16,7 +15,7 @@ namespace Uno.Platform
         [Obsolete("Deprecated on mobile. This will perform an unsafe quit which is bad practise on Android and will disqualify the app from the iOS app store")]
         public void Close()
         {
-            Uno.Runtime.Implementation.Internal.Unsafe.Quit();
+            Internal.Unsafe.Quit();
         }
 
         [Obsolete("Deprecated on mobile: Window titles cannot be controlled at runtime across mobile devices")]

@@ -1,8 +1,9 @@
 using Foundation;
 using AppKit;
-using Uno.Support.MonoMac;
 using System.Linq;
 using CoreGraphics;
+using Uno.Support.MonoMac;
+using Uno.Platform.Internal;
 
 namespace Uno.AppLoader
 {
@@ -31,7 +32,7 @@ namespace Uno.AppLoader
             _control.Initialize();
 
             Program.UnoGenerated();
-            Platform2.Internal.Application.Start();
+            DotNetApplication.Start();
             _control.Run(60.0);
         }
 

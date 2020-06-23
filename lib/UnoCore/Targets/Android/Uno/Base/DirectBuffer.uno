@@ -1,6 +1,7 @@
 using Uno.Compiler.ExportTargetInterop;
+using Uno;
 
-namespace Uno.Runtime.Implementation
+namespace Android.Base.Types
 {
     public class DirectBuffer : IDisposable
     {
@@ -22,6 +23,7 @@ namespace Uno.Runtime.Implementation
         {
             return new DirectBuffer(ptr, size, null);
         }
+
         public static DirectBuffer Create(IntPtr ptr, long size, IDisposable dispose)
         {
             return new DirectBuffer(ptr, size, dispose);

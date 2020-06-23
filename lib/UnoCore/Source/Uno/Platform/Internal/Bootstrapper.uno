@@ -1,9 +1,8 @@
 using OpenGL;
-using Uno.Platform;
 using Uno.Diagnostics;
 using Uno.Compiler.ExportTargetInterop;
 
-namespace Uno.Runtime.Implementation.Internal
+namespace Uno.Platform.Internal
 {
     public extern(!MOBILE) static class Bootstrapper
     {

@@ -1,7 +1,7 @@
 using Uno;
 using Uno.Collections;
 using Uno.Compiler.ExportTargetInterop;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Internal;
 using Android.Base.Primitives;
 
 namespace Android.Base.Wrappers

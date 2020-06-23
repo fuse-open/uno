@@ -23,7 +23,7 @@ namespace Uno.Testing
 
         private override void Stop()
         {
-            Uno.Runtime.Implementation.Internal.Unsafe.Quit();
+            Platform.Internal.Unsafe.Quit();
         }
 
         private override void TestStarting(string name)

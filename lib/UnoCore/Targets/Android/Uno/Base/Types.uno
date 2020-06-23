@@ -83,12 +83,12 @@ namespace Android.Base.Types
         [TargetSpecificImplementation]
         public static extern long GetDirectBufferCapacity(ujobject directByteBuffer);
 
-        public static Uno.Runtime.Implementation.DirectBuffer WrappedToUnoDirect(JWrapper directByteBuffer)
+        public static DirectBuffer WrappedToUnoDirect(JWrapper directByteBuffer)
         {
             ujobject obj = directByteBuffer._GetJavaObject();
             var addr = GetDirectBufferAddress(obj);
             var len = GetDirectBufferCapacity(obj);
-            return Uno.Runtime.Implementation.DirectBuffer.Create(addr, len, directByteBuffer);
+            return DirectBuffer.Create(addr, len, directByteBuffer);
         }
     }
 

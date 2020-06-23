@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 using System.Windows.Forms;
 using Uno.Diagnostics;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Platform.Internal;
 using Uno.Support.WinForms;
 
 namespace Uno.AppLoader
@@ -33,7 +30,7 @@ namespace Uno.AppLoader
             Title = GetAssemblyTitle();
 
             initializeApp();
-            Platform2.Internal.Application.Start();
+            DotNetApplication.Start();
         }
 
         protected override void SetVisibleCore(bool value)

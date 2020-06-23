@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using OpenGL;
@@ -8,8 +7,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Platform;
 using Uno.Platform;
-using Uno.Runtime.Implementation;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Platform.Internal;
 using Uno.Support.OpenTK;
 using GL = Uno.Support.OpenTK.GL;
 
@@ -197,14 +195,14 @@ namespace Uno.Support.WinForms
                     e.Handled = Bootstrapper.OnTextInput(CoreWindow, e.KeyChar.ToString());
             };
 
-            GotFocus += (sender, e) => Platform2.Internal.Application.EnterInteractive();
-            LostFocus += (senders, e) => Platform2.Internal.Application.ExitInteractive();
+            GotFocus += (sender, e) => DotNetApplication.EnterInteractive();
+            LostFocus += (senders, e) => DotNetApplication.ExitInteractive();
         }
 
         public void StartApp(MethodInfo entrypoint)
         {
             entrypoint.Invoke(null, null);
-            Platform2.Internal.Application.Start();
+            DotNetApplication.Start();
         }
 
         Size _oldClientSize;

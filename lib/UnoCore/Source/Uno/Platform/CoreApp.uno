@@ -2,7 +2,6 @@ using OpenGL;
 using Uno.Collections;
 using Uno.Graphics;
 using Uno.Platform;
-using Uno.Runtime.Implementation;
 using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Platform

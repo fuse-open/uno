@@ -12,7 +12,7 @@ namespace Uno
         {
             get
             {
-                var wrapper = new Uno.Runtime.Implementation.Internal.ArrayList<Exception>(_innerExceptions);
+                var wrapper = new Uno.Internal.ArrayList<Exception>(_innerExceptions);
                 return new ReadOnlyCollection<Exception>(wrapper);
             }
         }

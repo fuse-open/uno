@@ -1,7 +1,7 @@
 using Uno;
 using Uno.Testing;
 using Uno.Testing.Assert;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Internal;
 
 namespace Uno.Test
 {

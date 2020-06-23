@@ -1,7 +1,7 @@
 using Uno.Compiler.ExportTargetInterop;
 using Uno.Text;
 using Uno.Collections;
-using Uno.Runtime.Implementation.Internal;
+using Uno.Internal;
 using Uno.Math;
 
 namespace Uno

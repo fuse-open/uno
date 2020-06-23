@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using AppKit;
-using Uno.Platform;
-using Uno.Runtime.Implementation.Internal;
 using CoreGraphics;
+using Uno.Platform;
+using Uno.Platform.Internal;
 
 namespace Uno.Support.MonoMac
 {
@@ -40,9 +40,9 @@ namespace Uno.Support.MonoMac
             };
         }
 
-        Uno.Int2 InternalGetClientSize()
+        Int2 InternalGetClientSize()
         {
-            return new Uno.Int2 ((int)(_view.Bounds.Width * GetDensity ()), (int)(_view.Bounds.Height * GetDensity ()));
+            return new Int2 ((int)(_view.Bounds.Width * GetDensity ()), (int)(_view.Bounds.Height * GetDensity ()));
         }
 
         float InternalGetDensity()
