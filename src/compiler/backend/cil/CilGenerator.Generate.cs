@@ -1,5 +1,6 @@
 ﻿using System;
 using IKVM.Reflection;
+using IKVM.Reflection.Emit;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.API.Domain.IL.Types;
@@ -20,7 +21,33 @@ namespace Uno.Compiler.Backends.CIL
             foreach (var e in _linkedTypes)
                 ValidateType(e);
 
+            // Emit TypeAlias attributes, used at run-time by Fuse Simulator.
+            if (_backend.EnableReflection)
+                EmitTypeAliasAttributes();
+
             Log.Verbose("Generated " + _types.Count + " .NET type".Plural(_types) + " for " + _assembly.GetName().Name.Quote() + " assembly");
+        }
+
+        void EmitTypeAliasAttributes()
+        {
+            var attribute = _linker.GetType(_backend.TypeAliasAttribute)
+                    .GetConstructor(new[] {
+                        _linker.GetType(_essentials.String),
+                        _linker.GetType(_essentials.String)});
+
+            foreach (var alias in _linker.TypeMap)
+                if (alias.Key.Package == _package &&
+                        !alias.Key.IsArray &&
+                        !alias.Key.IsGenericParameter &&
+                        !alias.Key.IsGenericParameterization &&
+                        !string.IsNullOrEmpty(alias.Value.FullName) &&
+                        alias.Key.FullName != alias.Value.FullName.Replace("+", "."))
+                    _assembly.SetCustomAttribute(
+                        new CustomAttributeBuilder(
+                            attribute,
+                            new object[] {
+                                alias.Key.FullName,
+                                alias.Value.FullName}));
         }
 
         void Process(Namespace root)

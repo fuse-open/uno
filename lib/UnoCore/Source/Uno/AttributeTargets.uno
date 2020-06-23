@@ -7,10 +7,10 @@ namespace Uno
     public enum AttributeTargets
     {
         /*
-            Note: Outcommented ones are taken from .NET, but are not useful in Uno.
+            Note: Outcommented ones are taken from .NET, but are not used in Uno (yet).
         */
 
-        //Assembly = 1
+        Assembly = 1,
         //Module = 2,
         Class = 4,
         Struct = 8,
