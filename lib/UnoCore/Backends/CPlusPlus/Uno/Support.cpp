@@ -10,13 +10,13 @@
 #include <uImage/Png.h>
 #include <uImage/Texture.h>
 #include <XliPlatform/GL.h>
-#include <XliPlatform/MessageBox.h>
 #include <mutex>
 @{byte:IncludeDirective}
 
-#if ANDROID
+#ifdef ANDROID
 #include <android/log.h>
-#elif IOS
+#elif defined(__APPLE__)
+#include <TargetConditionals.h>
 void uLogApple(const char* prefix, const char* format, va_list args);
 #else
 #include <cstdio>
@@ -47,7 +47,7 @@ void uLogv(int level, const char* format, va_list args)
     else if (level > uLogLevelFatal)
         level = uLogLevelFatal;
 
-#if ANDROID
+#ifdef ANDROID
     int logs[] = {
         ANDROID_LOG_DEBUG,  // uLogLevelDebug
         ANDROID_LOG_INFO,   // uLogLevelInformation
@@ -64,7 +64,7 @@ void uLogv(int level, const char* format, va_list args)
         "Error: ",      // uLogLevelError
         "Fatal: "       // uLogLevelFatal
     };
-#if IOS
+#if TARGET_OS_IPHONE
     // Defined in ObjC file to call NSLog()
     uLogApple(strings[level], format, args);
 #else
@@ -94,7 +94,6 @@ void uFatal(const char* src, const char* msg)
     uLog(uLogLevelFatal, "Runtime Error in %s: %s",
         src && strlen(src) ? src : "(unknown)",
         msg && strlen(msg) ? msg : "(no message)");
-    Xli::MessageBox::Show(NULL, "The application has crashed.", "Fatal Error", Xli::DialogButtonsOK, Xli::DialogHintsError);
     abort();
 }
 

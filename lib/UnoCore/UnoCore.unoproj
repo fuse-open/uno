@@ -26,6 +26,7 @@
     "Backends/CPlusPlus/Uno/_invoke.cpp:File",
     "Backends/CPlusPlus/Uno/_main.cpp:File",
     "Backends/CPlusPlus/Uno/_mainMobile.cpp:File",
+    "Backends/CPlusPlus/Uno/GLHelper.h:File",
     "Backends/CPlusPlus/Uno/GraphicsContext.h:File",
     "Backends/CPlusPlus/Uno/Memory.cpp:File",
     "Backends/CPlusPlus/Uno/Memory.h:File",
