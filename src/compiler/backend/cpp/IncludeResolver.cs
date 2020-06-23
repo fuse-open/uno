@@ -91,7 +91,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 cppIncludes.Add(_backend.GetIncludeFilename(e));
 
             if (hIncludes.Count == 0)
-                hIncludes.Add("Uno.h");
+                hIncludes.Add("uno.h");
 
             foreach (var e in _env.GetSet(dt, "Header.Declaration"))
                 hDeclarations.Add(e.Trim());

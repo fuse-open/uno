@@ -136,10 +136,6 @@ namespace Uno.Graphics
                 build_error;
 
             IsDisposed = true;
-            if defined(Profile)
-            {
-                Profile.Free("Uno.Graphics.Texture2D", this);
-            }
         }
 
         public bool CanUpdate

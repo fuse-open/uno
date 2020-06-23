@@ -3,7 +3,6 @@
 
 #include <XliHttpClient/HttpClient.h>
 #include <@{Uno.Net.Http.HttpMessageHandlerRequest:Include}>
-#include <Uno/Support.h>
 
 class uXliHttpEventHandler: public Xli::HttpEventHandler
 {

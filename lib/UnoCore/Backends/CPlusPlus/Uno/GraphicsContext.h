@@ -31,7 +31,8 @@ struct uGraphicsContext
 
     @{int2} GetBackbufferSize()
     {
-        return uInt2FromXliVector2i(context->GetDrawableSize());
+        const auto temp = context->GetDrawableSize();
+        return *(@{int2}*)&temp;
     }
 
 private:
