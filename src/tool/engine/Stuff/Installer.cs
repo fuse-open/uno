@@ -196,7 +196,7 @@ namespace Uno.Build.Stuff
                         {
                             // Use system tar/unzip to preserve file permissions and links
                             // (ZipFile doesn't handle this)
-                            if (Path.GetFileName(file).ToUpper().EndsWith(".TAR.GZ"))
+                            if (Path.GetFileName(file).ToUpper().EndsWith(".TAR.GZ", ".TGZ"))
                                 Shell.Untar(Log, file, targetDir);
                             else
                                 Shell.Unzip(Log, file, targetDir);

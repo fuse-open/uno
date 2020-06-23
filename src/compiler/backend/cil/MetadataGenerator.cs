@@ -2,10 +2,9 @@
 using IKVM.Reflection.Emit;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.IL;
-using Uno.Compiler.Backends.CIL;
 using Uno.IO;
 
-namespace Uno.Compiler.Backends.Metadata
+namespace Uno.Compiler.Backends.CIL
 {
     class MetadataGenerator : DiskObject
     {

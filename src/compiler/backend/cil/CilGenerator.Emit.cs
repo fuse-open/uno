@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IKVM.Reflection.Emit;
 using Uno.Compiler.API;
+using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.Bytecode;
 using Uno.Compiler.API.Domain.IL;
@@ -14,11 +15,11 @@ namespace Uno.Compiler.Backends.CIL
     {
         void EmitFunction(ILGenerator cil, Function f)
         {
-            var document = ResolveDocument(f.Source.FullPath);
+            var document = GetDocument(f.Source.FullPath);
 
             if (!f.HasBody)
             {
-                if (!f.IsAbstract && !_backend.IsPInvokable(_essentials, f))
+                if (!f.IsAbstract && !f.IsPInvokable(_essentials, Log))
                     Log.Error(f.Source, ErrorCode.E0093, f.Quote() + " does not provide an implementation");
 
                 return;

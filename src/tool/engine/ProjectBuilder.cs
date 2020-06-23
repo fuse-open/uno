@@ -33,10 +33,8 @@ namespace Uno.Build
                 throw new ArgumentNullException(nameof(project));
 
             var config = project.Config;
-            if (_options.Library ?? config.GetBool("IsSourceTree"))
-                new LibraryBuilder(new Disk(Log), _options.PackageTarget) {
-                        Express = true
-                    }.Build(config);
+            if (_options.UpdateLibrary ?? config.GetBool("IsSourceTree"))
+                new LibraryBuilder(Log).Build(config);
 
             try
             {

@@ -6,11 +6,10 @@ namespace Uno.Build
     public class BuildOptions
     {
         public BuildConfiguration Configuration = BuildConfiguration.Debug;
-        public BuildTarget PackageTarget;
         public bool Force;
-        public bool Native = true;
+        public bool NativeBuild = true;
         public bool Parallel = true;
-        public bool? Library;
+        public bool? UpdateLibrary;
         public bool? Strip;
         public bool Clean;
         public bool Test;
@@ -31,7 +30,7 @@ namespace Uno.Build
         {
             var hash = 27;
             hash = 3 * hash + Configuration.GetHashCode();
-            hash = 3 * hash + Library.NullableHashCode();
+            hash = 3 * hash + UpdateLibrary.NullableHashCode();
             hash = 3 * hash + Strip.NullableHashCode();
             hash = 2 * hash + Test.GetHashCode();
             hash = 13 * hash + MainClass.NullableHashCode();

@@ -123,7 +123,7 @@ namespace Uno.Compiler.Backends.CIL
             Locations.Add(new Location(ilOffset, path, line, column));
         }
 
-        ISymbolDocumentWriter ResolveDocument(string path)
+        ISymbolDocumentWriter GetDocument(string path)
         {
             ISymbolDocumentWriter result;
             if (_documents.TryGetValue(path, out result))

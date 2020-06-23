@@ -225,10 +225,6 @@
       <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
       <Name>Uno.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\backend\pinvoke\Uno.Compiler.Backends.PInvoke.csproj">
-      <Project>{089A6B84-6E72-4BC9-B379-C4829DCF41CC}</Project>
-      <Name>Uno.Compiler.Backends.PInvoke</Name>
-    </ProjectReference>
     <ProjectReference Include="..\frontend\Uno.Compiler.Frontend.csproj">
       <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
       <Name>Uno.Compiler.Frontend</Name>

@@ -5,7 +5,7 @@ using Uno.Compiler.Foreign.ObjC;
 
 namespace Uno.Compiler.Foreign
 {
-    public class CppExtension : BackendExtension
+    public class ForeignExtension : BackendExtension
     {
         CppBackend _backend;
 

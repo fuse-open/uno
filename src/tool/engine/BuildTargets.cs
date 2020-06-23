@@ -75,7 +75,7 @@ namespace Uno.Build
                 {
                     if (n.ToUpperInvariant() == nameUpper)
                     {
-                        Log.Default.Warning($"The build target '{n.ToLowerInvariant()}' is deprecated -- use '{t.Identifier.ToLowerInvariant()}' to silence this message.");
+                        Log.Default.Warning($"The build target '{n}' is deprecated -- use '{t.Identifier}' to silence this message.");
                         return t;
                     }
                 }

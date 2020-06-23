@@ -39,7 +39,7 @@
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
-    <Compile Include="CppExtension.cs" />
+    <Compile Include="ForeignExtension.cs" />
     <Compile Include="ForeignCPlusPlusPass.cs" />
     <Compile Include="ForeignFilePass.cs" />
     <Compile Include="ForeignHelpers.cs" />

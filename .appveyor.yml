@@ -29,7 +29,7 @@ before_test:
   - ps: |
       if ($env:Target -eq "native") {
         Get-ChildItem -Path lib -Recurse -Include *Test.unoproj | Select-Object -ExpandProperty DirectoryName | Foreach-Object {
-          $buildDir = Join-Path $_ build\Test\Native
+          $buildDir = Join-Path $_ build\$env:Target\Test
           New-Item -Force -ItemType directory -Path $buildDir | Out-Null
           Copy-Item -Path mesa\opengl32.dll -Destination (Join-Path $buildDir opengl32.dll)
         }

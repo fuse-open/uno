@@ -7,7 +7,7 @@ namespace Uno.Build.Targets
     public class DocsBuild : BuildTarget
     {
         public override string Identifier => "docs";
-        public override string FormerName => "UnoDoc";
+        public override string FormerName => "unodoc";
         public override string Description => "Uno documentation files.";
         public override bool IsExperimental => true;
         public override bool DefaultStrip => false;

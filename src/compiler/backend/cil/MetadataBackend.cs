@@ -1,8 +1,7 @@
-﻿using Uno.Compiler.Backends.CIL;
-using Uno.Compiler.API.Backends;
+﻿using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain.IL;
 
-namespace Uno.Compiler.Backends.Metadata
+namespace Uno.Compiler.Backends.CIL
 {
     public class MetadataBackend : Backend
     {

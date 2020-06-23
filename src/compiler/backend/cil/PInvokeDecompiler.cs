@@ -3,7 +3,7 @@ using System.Text;
 using Uno.Compiler.API.Backends.Decompilers;
 using Uno.Compiler.API.Domain.IL;
 
-namespace Uno.Compiler.Backends.PInvoke
+namespace Uno.Compiler.Backends.CIL
 {
     public class PInvokeDecompiler : Decompiler
     {

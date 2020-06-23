@@ -88,7 +88,7 @@ namespace Uno.CLI.Projects
                 log = Log;
 
             string targetName = null;
-            var options = new BuildOptions {PackageTarget = BuildTargets.Package};
+            var options = new BuildOptions();
             var nativeArgs = new List<string>();
             var runArgs = new List<string>();
             var run = false;
@@ -104,7 +104,7 @@ namespace Uno.CLI.Projects
                     { "n=|native-args=",        nativeArgs.Add },
                     { "a=|run-args=",           runArgs.Add },
                     { "P|no-parallel",          value => options.Parallel = false },
-                    { "N|q|no-native",          value => options.Native = false },
+                    { "N|q|no-native",          value => options.NativeBuild = false },
                     { "S|e|no-strip",           value => options.Strip = false },
                     { "E=|max-errors=",         value => Log.MaxErrorCount = value.ParseInt("E") },
                     { "W=",                     value => options.WarningLevel = value.ParseInt("W") },
@@ -117,7 +117,7 @@ namespace Uno.CLI.Projects
                     { "r|run",                  value => run = true },
                     { "b|build-only",           value => buildOnly = true },
                     { "g|gen-only",             value => genOnly = true },
-                    { "l|libs",                 value => options.Library = true },
+                    { "l|libs",                 value => options.UpdateLibrary = true },
                     { "f|force",                value => options.Force = true },
                     { "cd=",                    value => Directory.SetCurrentDirectory(value.ParseString("cd")) },
                     { "v",                      value => log.Level++ },
@@ -131,14 +131,14 @@ namespace Uno.CLI.Projects
 
             if (runArgs.Count > 0 && runArgs[0] == "debug")
             {
-                options.Native = false; // disable native build
+                options.NativeBuild = false; // disable native build
                 options.Defines.Add("DEBUG_NATIVE"); // disable native optimizations (debug build)
             }
 
             if (buildOnly || genOnly)
             {
                 if (genOnly)
-                    options.Native = false;
+                    options.NativeBuild = false;
 
                 runArgs.Clear();
                 run = false;

@@ -38,6 +38,7 @@
   <Import Project="..\..\GlobalAssemblyInfo.targets" />
   <ItemGroup>
     <Compile Include="Backends\BackendExtension.cs" />
+    <Compile Include="Backends\PInvokeHelper.cs" />
     <Compile Include="Backends\Shaders\ShaderPass.cs" />
     <Compile Include="CompilerFactory.cs" />
     <Compile Include="Domain\ApplyModifier.cs" />

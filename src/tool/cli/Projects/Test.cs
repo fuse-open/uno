@@ -96,7 +96,7 @@ namespace Uno.CLI.Projects
             var p = new OptionSet
             {
                 { "r|reporter=",            v => Log.Warning("--reporter is deprecated and has no effect.") },
-                { "l|logfile=",             v => options.LogFileName = v },
+                { "l|logfile=",             v => options.LogFile = v },
                 { "t|target=",              v => targetName = v },
                 { "v|verbose",              v => verbose = v != null },
                 { "q|quiet",                v => quiet = v != null },
@@ -110,11 +110,11 @@ namespace Uno.CLI.Projects
                 { "allow-debugger",         v => Log.Warning("--allow-debugger is deprecated and has no effect.") },
                 { "d|debug",                v => Log.Warning("--debug is deprecated and has no effect.") },
                 { "run-local",              v => Log.Warning("--run-local is deprecated and has no effect.") },
-                { "no-uninstall",           v => options.NoUninstall = v != null },
+                { "no-uninstall",           v => options.DontUninstall = v != null },
                 { "D=|define=",             options.Defines.Add },
                 { "U=|undefine=",           options.Undefines.Add },
                 { "o=|out-dir=|output-dir=",    v => options.OutputDirectory = v },
-                { "libs",                   v => options.Library = true },
+                { "libs",                   v => options.UpdateLibrary = true },
             };
 
             try

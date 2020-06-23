@@ -39,7 +39,7 @@ namespace Uno.Build
         public bool IsUpToDate => !_options.Force && _file.Exists &&
                                   !_input.HasAnythingChangedSince(_file.Timestamp) &&
                                   _file.Load() == GetHashCode();
-        public bool CanBuildNative => _options.Native && _target.CanBuild(_file) && (
+        public bool CanBuildNative => _options.NativeBuild && _target.CanBuild(_file) && (
                                       _options.Force ||
                                       !_file.IsProductUpToDate);
 
@@ -246,6 +246,7 @@ namespace Uno.Build
                 _file.Product = _env.GetString("Product");
                 _file.BuildCommand = _env.GetString("Commands.Build");
                 _file.RunCommand = _env.GetString("Commands.Run");
+                _file.UnoVersion = UnoVersion.InformationalVersion;
 
                 if (!Log.HasErrors)
                 {

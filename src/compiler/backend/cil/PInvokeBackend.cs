@@ -13,7 +13,7 @@ using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.Compiler.API.Domain.IL.Types;
 using Type = IKVM.Reflection.Type;
 
-namespace Uno.Compiler.Backends.PInvoke
+namespace Uno.Compiler.Backends.CIL
 {
     public class PInvokeBackend : SourceBackend
     {
@@ -91,7 +91,7 @@ namespace Uno.Compiler.Backends.PInvoke
         {
             foreach (var f in dt.Methods)
             {
-                if (this.IsPInvokable(Essentials, f))
+                if (f.IsPInvokable(Essentials, Log))
                 {
                     List<Function> l;
                     if (_pinvokeTypes.TryGetValue(dt, out l))
@@ -208,7 +208,7 @@ namespace Uno.Compiler.Backends.PInvoke
 
         public static string CName(Function f) => CName(f.DeclaringType) + "__" + f.Name;
 
-        public override bool CanLink(Function f) => Environment.IsGeneratingCode && !this.IsPInvokable(Essentials, f);
+        public override bool CanLink(Function f) => Environment.IsGeneratingCode && !f.IsPInvokable(Essentials, Log);
         public override bool CanLink(DataType dt) => false;
 
         public string GetForeignParamType(Source src, Parameter p)
@@ -402,40 +402,4 @@ namespace Uno.Compiler.Backends.PInvoke
             return null;
         }
     }
-}
-
-public static class PInvokeBackendExtensions
-{
-    public static bool IsPInvokable(this Backend backend, IEssentials essentials, Function f)
-    {
-        foreach (var attr in f.Attributes)
-        {
-            if (attr.ReferencedType == essentials.ForeignAttribute &&
-                essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == "CPlusPlus")
-            {
-                if (!f.IsStatic)
-                    backend.Log.Error(f.Source, ErrorCode.E0000, "Foreign CPlusPlus methods must be static.");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static bool IsPInvokable(this Backend backend, IEssentials essentials, DelegateType dt)
-    {
-        foreach (var attr in dt.Attributes)
-        {
-            if (attr.ReferencedType == essentials.ForeignAttribute &&
-                essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == "CPlusPlus")
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-}
-
-enum ErrorCode
-{
-    E0000
 }
