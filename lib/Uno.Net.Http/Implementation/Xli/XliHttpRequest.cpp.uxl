@@ -15,14 +15,12 @@
 
         <Require Source.Include="XliHttpClient/HttpClient.h" />
         <Require Source.Include="XliHttpEventHandler.h" />
-        <Require Source.Include="Uno/Support.h" />
     </Type>
 
     <Type Name="XliHttpRequest">
         <Require Template="XliHttpClient" />
 
         <Require Source.Include="XliHttpClient/HttpClient.h" />
-        <Require Source.Include="Uno/Support.h" />
 
         <Method Signature="GetResponseHeader(string):string">
             <Body>
