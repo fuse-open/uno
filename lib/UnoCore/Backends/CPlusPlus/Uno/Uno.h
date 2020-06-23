@@ -1,5 +1,5 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
-//#pragma message ( "Deprecated: Please use <Uno.h>" )
-#include <Uno.h>
-#include <Uno/Support.h>
+
+//#pragma message ( "Deprecated: Please include <uno.h> instead." )
+#include <uno.h>

@@ -19,7 +19,7 @@
     <ProcessFile SourceFile="Uno/Support.cpp" />
     <ProcessFile HeaderFile="Uno/Support.h" />
     <ProcessFile SourceFile="Uno/SupportApple.mm" Condition="APPLE" />
-    <ProcessFile HeaderFile="Uno/Uno.h" />
+    <ProcessFile HeaderFile="Uno/Uno.h" Condition="APPLE" />
     <ProcessFile HeaderFile="Uno/WinAPIHelper.h" Condition="WIN32" />
     <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
     <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
