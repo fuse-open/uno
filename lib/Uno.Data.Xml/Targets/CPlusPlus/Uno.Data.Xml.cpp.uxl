@@ -8,7 +8,6 @@
         <CopyFile Type="HeaderFile" Name="Source/pugiconfig.hpp" />
         <CopyFile Type="SourceFile" Name="Source/pugixml.cpp" />
 
-        <Require Source.Include="Uno/Support.h" />
         <Require Source.Include="Source/pugixml.hpp" />
 
         <Method Signature="Parse(string):XmlNodeHandle">
