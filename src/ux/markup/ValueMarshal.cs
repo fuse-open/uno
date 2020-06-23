@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Uno.UX.Markup;
+using Uno.UX.Markup.Types;
 
 namespace Uno.UX
 {
@@ -100,12 +101,12 @@ namespace Uno.UX
 
         public static bool IsVectorType(this Type t)
         {
-            return t == typeof (Uno.Float2) ||
-                   t == typeof (Uno.Float3) ||
-                   t == typeof (Uno.Float4) ||
-                   t == typeof (Uno.Int2) ||
-                   t == typeof (Uno.Int3) ||
-                   t == typeof (Uno.Int4);
+            return t == typeof (Float2) ||
+                   t == typeof (Float3) ||
+                   t == typeof (Float4) ||
+                   t == typeof (Int2) ||
+                   t == typeof (Int3) ||
+                   t == typeof (Int4);
         }
 
         public static string Encode(object value, bool includeSuffixes = false)
