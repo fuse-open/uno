@@ -10,7 +10,6 @@ namespace Uno.Platform.Xli
     {
     }
 
-    [Require("Source.Include", "Uno/Support.h")]
     [Require("Source.Include", "XliPlatform/Display.h")]
     [Require("Source.Declaration", "extern ::Xli::Window* _XliWindowPtr;")]
     extern(CPLUSPLUS && !MOBILE) class XliWindow : WindowBackend
