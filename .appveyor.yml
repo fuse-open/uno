@@ -7,10 +7,10 @@ environment:
   - TARGET: native
     UNO_TEST_ARGS: -DDEBUG_UNSAFE
     SKIP_UNO_TESTS: 1
-  - TARGET: android
-    UNO_TEST_ARGS: -DDEBUG_UNSAFE --build-only
-    GRADLE_OPTS: -Dorg.gradle.daemon=false
-    SKIP_LIB_TESTS: 1
+  # - TARGET: android
+  #   UNO_TEST_ARGS: -DDEBUG_UNSAFE --build-only
+  #   GRADLE_OPTS: -Dorg.gradle.daemon=false
+  #   SKIP_LIB_TESTS: 1
 
 install:
   - ps: |
