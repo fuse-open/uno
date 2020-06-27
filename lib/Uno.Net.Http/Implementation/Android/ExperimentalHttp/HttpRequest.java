@@ -48,12 +48,9 @@ public abstract class HttpRequest {
     {
     	try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                HttpResponseCache cache = HttpResponseCache.getInstalled();
-                if (cache == null) {
-        			File httpCacheDir = new File(activity.getCacheDir(), "http");
-        			HttpResponseCache.install(httpCacheDir, cacheSize);
-                    _cacheSize = cacheSize;
-                }
+    			File httpCacheDir = new File(activity.getCacheDir(), "http");
+    			HttpResponseCache.install(httpCacheDir, cacheSize);
+                _cacheSize = cacheSize;
     			return true;
     		} else {
                 _cacheSize = 0;
@@ -124,13 +121,6 @@ public abstract class HttpRequest {
 
     public final void SetCaching(boolean set) throws Exception {
         _useCaching = set;
-        if (set)
-            InstallCache(_activity, 10 * 1024 * 1024); // cache size : 10 MB
-        else {
-            CacheClose();
-            CacheFlush();
-            CacheDelete();
-        }
     }
 
     public final void CacheResponseString(String content)
