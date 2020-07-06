@@ -23,7 +23,8 @@
     <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/d3dcompiler_47.dll" Condition="HOST_WIN32" />
 
     <!-- macOS bundle -->
-    <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="HOST_MAC" />    
+    <Set BundleIdentifier="@(Project.Mac.BundleIdentifier || 'com.apps.@(Project.Name:QIdentifier:Replace('_', '-'):ToLower)')" Condition="HOST_MAC" />
+    <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="HOST_MAC" />
     <CopyFile Name="@(Config.AppLoader.Mac:Path)/monostub" TargetName="@(AppDirectory)/Contents/MacOS/@(Project.Name)" IsExecutable=true Condition="HOST_MAC" />
     <CopyFile Name="@(Project.Mac.Icon:Path || @//Assets/Icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="HOST_MAC" />
 

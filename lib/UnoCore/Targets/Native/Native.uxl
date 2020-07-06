@@ -42,6 +42,7 @@
     <ProcessFile Name="CMakeLists.txt" />
 
     <!-- macOS bundle -->
+    <Set BundleIdentifier="@(Project.Mac.BundleIdentifier || 'com.apps.@(Project.Name:QIdentifier:Replace('_', '-'):ToLower)')" Condition="MAC && !LIBRARY" />
     <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="MAC && !LIBRARY" />
     <CopyFile Name="@(Project.Mac.Icon:Path || @//Assets/Icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="MAC && !LIBRARY" />
 
