@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.2</string>
+	<string>@(PACKAGE_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>xmmd</string>
 	<key>CFBundleVersion</key>
-	<string>2.2</string>
+	<string>@(PACKAGE_VERSION)</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>NO</string>
 	<key>NSPrincipalClass</key>
