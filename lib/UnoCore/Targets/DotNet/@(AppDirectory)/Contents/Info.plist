@@ -5,21 +5,17 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>@(Project.Identifier)</string>
+	<string>@(Project.Name)</string>
 	<key>CFBundleIconFile</key>
-	<string>Icon.icns</string>
+	<string>Icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>@(BundleIdentifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>@(Project.Name)</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>@(PACKAGE_VERSION)</string>
-	<key>CFBundleSignature</key>
-	<string>xmmd</string>
 	<key>CFBundleVersion</key>
 	<string>@(PACKAGE_VERSION)</string>
 	<key>NSAppleScriptEnabled</key>
