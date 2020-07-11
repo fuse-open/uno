@@ -84,6 +84,11 @@ namespace Uno.Support.MonoMac
             if (Window == null || !Window.IsVisible)
                 return;
 
+            // This fixes rendering with Xcode 10 (macOS Mojave) and newer.
+            // https://github.com/xamarin/xamarin-macios/issues/4959#issuecomment-621914507
+            if (_openGLContext.View == null)
+                _openGLContext.View = this;
+
             if (Application.Current != null)
             {
                 Bootstrapper.OnDraw();
