@@ -46,7 +46,7 @@ namespace Uno.Support.MonoMac
             _openGLContext = new NSOpenGLContext(pixelFormat, null);
             _openGLContext.MakeCurrentContext();
 
-            _notificationProxy = NSNotificationCenter.DefaultCenter.AddObserver(NSView.GlobalFrameChangedNotification, HandleReshape);
+            _notificationProxy = NSNotificationCenter.DefaultCenter.AddObserver(GlobalFrameChangedNotification, HandleReshape);
 
             WantsBestResolutionOpenGLSurface = true;
 
@@ -57,7 +57,7 @@ namespace Uno.Support.MonoMac
         bool _hasDown;
         int _lastX;
         int _lastY;
-        Uno.Platform.MouseButton _lastButton;
+        MouseButton _lastButton;
 
         public void RaiseMouseUp()
         {
@@ -75,7 +75,7 @@ namespace Uno.Support.MonoMac
             }
 
             OnPreUpdate();
-            if (Uno.Application.Current != null)
+            if (Application.Current != null)
                 Bootstrapper.OnUpdate();
         }
 
@@ -84,7 +84,7 @@ namespace Uno.Support.MonoMac
             if (Window == null || !Window.IsVisible)
                 return;
 
-            if (Uno.Application.Current != null)
+            if (Application.Current != null)
             {
                 Bootstrapper.OnDraw();
                 OnPostDraw();
@@ -124,11 +124,11 @@ namespace Uno.Support.MonoMac
             if (handler != null) handler();
         }
 
-        public Uno.Int2 DrawableSize
+        public Int2 DrawableSize
         {
             get {
                 var bounds = ConvertRectToBacking(Bounds);
-                return new Uno.Int2((int)bounds.Width, (int)bounds.Height);
+                return new Int2((int)bounds.Width, (int)bounds.Height);
             }
         }
 
