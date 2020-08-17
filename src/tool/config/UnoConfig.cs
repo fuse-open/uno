@@ -33,6 +33,7 @@ namespace Uno.Configuration
         readonly Dictionary<string, List<UnoConfigString>> _stringCache = new Dictionary<string, List<UnoConfigString>>();
         readonly Dictionary<string, string> _modules = new Dictionary<string, string>();
         readonly HashSet<string> _visitedDirectories = new HashSet<string>();
+        readonly DateTime _timestamp = DateTime.Now;
 
         public IReadOnlyList<UnoConfigFile> Files => _files;
         public IReadOnlyDictionary<string, string> NodeModules => _modules;
@@ -68,6 +69,10 @@ namespace Uno.Configuration
 
         public bool IsUpToDate()
         {
+            // Force invalidate every five seconds.
+            if ((DateTime.Now - _timestamp).TotalSeconds > 5.0)
+                return false;
+
             foreach (var f in _files)
                 if (!f.IsUpToDate())
                     return false;
