@@ -145,7 +145,7 @@ namespace Uno.Build
             if (_compilerOptions.Debug)
                 _env.Define("DEBUG");
             if (_options.Configuration != BuildConfiguration.Debug)
-                _env.Define(_options.Configuration.ToString().ToUpperInvariant());
+                _env.Define(_options.Configuration.ToString());
             if (_options.Configuration == BuildConfiguration.Preview)
                 _env.Define("REFLECTION", "SIMULATOR", "STACKTRACE");
 
