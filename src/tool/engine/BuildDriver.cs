@@ -153,7 +153,7 @@ namespace Uno.Build
                 _env.Define("HOST_" + def);
             foreach (var def in _options.Defines)
                 _env.Define(def);
-            foreach (var def in (_project.GetString(_target.Identifier + ".Defines") ?? "").Split('\n'))
+            foreach (var def in (_project.GetString(_target.ProjectGroup + ".Defines") ?? "").Split('\n'))
                 if (!string.IsNullOrEmpty(def))
                     _env.Define(def);
 

@@ -14,6 +14,7 @@ namespace Uno.Build
     public abstract class BuildTarget
     {
         public abstract string Identifier { get; }
+        public abstract string ProjectGroup { get; }
         public virtual string FormerName => "";
         public virtual string[] FormerNames => new[] {FormerName};
         public virtual string Description => "";
