@@ -45,7 +45,7 @@ namespace Uno.ProjectFormat
         public string RootDirectory => Path.GetDirectoryName(_fullPath);
 
         public Source Source => new Source(_fullPath);
-        public UnoConfig Config => _config ?? (_config = UnoConfig.Get(_fullPath));
+        public UnoConfig Config => UnoConfig.GetUpToDate(_config) ?? (_config = UnoConfig.Get(_fullPath));
 
         public IReadOnlyList<PackageReference> PackageReferences => (IReadOnlyList<PackageReference>)_doc.OptionalPackages ?? new PackageReference[0];
         public IReadOnlyList<ProjectReference> ProjectReferences => GetFlattenedProjects();
