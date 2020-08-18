@@ -8,6 +8,7 @@ namespace Uno.Build.Targets
     {
         public override string Identifier => "package";
         public override string FormerName => "unopackage";
+        public override string ProjectGroup => "Package";
         public override string Description => "Uno package files.";
         public override bool IsExperimental => true;
         public override bool DefaultStrip => false;

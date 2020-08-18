@@ -145,7 +145,7 @@ namespace Uno.Build
             if (_compilerOptions.Debug)
                 _env.Define("DEBUG");
             if (_options.Configuration != BuildConfiguration.Debug)
-                _env.Define(_options.Configuration.ToString().ToUpperInvariant());
+                _env.Define(_options.Configuration.ToString());
             if (_options.Configuration == BuildConfiguration.Preview)
                 _env.Define("REFLECTION", "SIMULATOR", "STACKTRACE");
 
@@ -153,7 +153,7 @@ namespace Uno.Build
                 _env.Define("HOST_" + def);
             foreach (var def in _options.Defines)
                 _env.Define(def);
-            foreach (var def in (_project.GetString(_target.Identifier + ".Defines") ?? "").Split('\n'))
+            foreach (var def in (_project.GetString(_target.ProjectGroup + ".Defines") ?? "").Split('\n'))
                 if (!string.IsNullOrEmpty(def))
                     _env.Define(def);
 
