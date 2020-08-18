@@ -22,11 +22,26 @@ namespace Uno.Configuration
         }
 
         public readonly StuffFile Stuff;
+        public readonly DateTime Timestamp;
         StuffMap _data;
 
         internal UnoConfigFile(string filename)
         {
             Stuff = new StuffFile(filename, Defines);
+            Timestamp = File.GetLastWriteTime(filename);
+        }
+
+        public bool IsUpToDate()
+        {
+            try
+            {
+                return Timestamp == File.GetLastWriteTime(Stuff.Filename);
+            }
+            catch (IOException)
+            {
+                // File may be deleted at this point.
+                return false;
+            }
         }
 
         public StuffMap GetData()
