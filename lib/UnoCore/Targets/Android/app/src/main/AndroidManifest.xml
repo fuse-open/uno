@@ -77,10 +77,18 @@
     <application android:description="@string/description">
 #else
     <application android:label="@string/app_name"
-    #if @(Project.Android.Icons.Vector:IsSet)
-                 android:icon="@drawable/icon"
-    #else
+
+    #if @(USE_ADAPTIVE_ICON:Defined) || @(USE_ROUND_ADAPTIVE_ICON:Defined)
                  android:icon="@mipmap/icon"
+      #if @(USE_ROUND_ADAPTIVE_ICON:Defined)
+                 android:roundIcon="@mipmap/icon_round"
+      #endif
+    #else
+      #if @(Project.Android.Icons.Vector:IsSet)
+                 android:icon="@drawable/icon"
+      #else
+                 android:icon="@mipmap/icon"
+      #endif
     #endif
                  android:description="@string/description"
                  android:largeHeap="@(Project.Android.LargeHeap:IsSet:Test(@(Project.Android.LargeHeap:Bool),false))"
