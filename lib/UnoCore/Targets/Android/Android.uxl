@@ -231,6 +231,23 @@
         TargetWidth="144" TargetName="app/src/main/res/mipmap-xxhdpi/icon.png" />
     <ImageFile Name="@(Project.Android.Icons.XXXHDPI:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="192" TargetName="app/src/main/res/mipmap-xxxhdpi/icon.png" />
+    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.ANYDPI_v26:Path || '@//Assets/adaptive_icon/mipmap-anydpi-v26/icon.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon.xml" />
+
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.MDPI_Round:Path || '@//Assets/adaptive_icon/mipmap-mdpi/icon_round.png')"
+        TargetWidth="48" TargetName="app/src/main/res/mipmap-mdpi/icon_round.png" />
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.HDPI_Round:Path || '@//Assets/adaptive_icon/mipmap-hdpi/icon_round.png')"
+        TargetWidth="72" TargetName="app/src/main/res/mipmap-hdpi/icon_round.png" />
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.XHDPI_Round:Path || '@//Assets/adaptive_icon/mipmap-xhdpi/icon_round.png')"
+        TargetWidth="96" TargetName="app/src/main/res/mipmap-xhdpi/icon_round.png" />
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.XXHDPI_Round:Path || '@//Assets/adaptive_icon/mipmap-xxhdpi/icon_round.png')"
+        TargetWidth="144" TargetName="app/src/main/res/mipmap-xxhdpi/icon_round.png" />
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.XXXHDPI_Round:Path || '@//Assets/adaptive_icon/mipmap-xxxhdpi/icon_round.png')"
+        TargetWidth="192" TargetName="app/src/main/res/mipmap-xxxhdpi/icon_round.png" />
+    <CopyFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.ANYDPI_v26_Round:Path || '@//Assets/adaptive_icon/mipmap-anydpi-v26/icon_round.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon_round.xml" />
+
+    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.foreground:Path || '@//Assets/adaptive_icon/drawable/icon_foreground.xml')" TargetName="app/src/main/res/drawable/icon_foreground.xml" />
+    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.background:Path || '@//Assets/adaptive_icon/drawable/icon_background.xml')" TargetName="app/src/main/res/drawable/icon_background.xml" />
+
 
     <!-- Build system -->
 
