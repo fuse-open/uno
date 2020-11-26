@@ -78,7 +78,7 @@
 
     <Set Outputs.AAR="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
     <Set Outputs.APK="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
-    <Set Outputs.Bundle="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app.aab" />
+    <Set Outputs.Bundle="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).aab" />
 
     <!-- Run-time properties -->
 
