@@ -283,7 +283,7 @@ namespace Uno
         extern(CPLUSPLUS) uint ToUint(string str)
         @{
             uCString cstr(str);
-            unsigned long i;
+            uint32_t i;
             std::stringstream ss;
             ss << std::hex << cstr.Ptr;
             ss >> i;
