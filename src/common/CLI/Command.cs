@@ -256,7 +256,6 @@ namespace Uno.CLI
             if (MonoInfo.IsRunningMono)
             {
                 WriteHead("Mono", 10, 0);
-                WriteRow("Path",    MonoInfo.GetPath());
                 WriteRow("Version", MonoInfo.GetVersion());
             }
         }

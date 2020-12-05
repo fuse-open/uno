@@ -19,31 +19,5 @@ namespace Uno.Diagnostics
             var displayName = mono?.GetMethod("GetDisplayName", BindingFlags.NonPublic | BindingFlags.Static);
             return displayName?.Invoke(null, null)?.ToString();
         }
-
-        public static string GetPath()
-        {
-            try
-            {
-                if (PlatformDetection.IsMac)
-                {
-                    var sb = new StringBuilder(4096);
-                    var len = (uint)sb.Capacity;
-                    var retval = _NSGetExecutablePath(sb, ref len);
-                    if (retval != 0)
-                        throw new InvalidOperationException("returned " + retval + ", len " + len);
-                    return sb.ToString();
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Default.Warning("MonoInfo.GetPath() failed: " + e.Message);
-                Log.Default.Trace(e);
-            }
-
-            return "mono";
-        }
-
-        [DllImport("/usr/lib/libSystem.dylib")]
-        static extern int _NSGetExecutablePath(StringBuilder buf, ref uint bufsize);
     }
 }
