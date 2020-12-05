@@ -179,15 +179,7 @@ namespace Uno.Build
             foreach (var e in _options.Settings)
                 _env.Set(e.Key, GetCommandLineValue(e.Value), Disambiguation.Override);
 
-            var unoExe = _config.GetFullPath("UnoExe", false);
-            if (unoExe != null)
-                Log.Warning(".unoconfig: 'UnoExe' is deprecated -- replace with 'Uno.Exe'");
-            else
-                unoExe = _config.GetFullPath("Uno.Exe");
-
-            _env.Set("uno", PlatformDetection.IsWindows
-                ? unoExe.QuoteSpace()
-                : MonoInfo.GetPath().QuoteSpace() + " " + unoExe.QuoteSpace());
+            _env.Set("uno", _config.GetFullPath("Uno.Command").QuoteSpace());
 
             if (Log.HasErrors)
                 return null;
