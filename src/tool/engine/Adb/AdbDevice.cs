@@ -36,21 +36,27 @@ namespace Uno.Build.Adb
 
         bool TryInstall(string package, string filename, out string output)
         {
-            output = _shell.GetOutput(_adb, "-s " + _id + " install -r " + filename.QuoteSpace());
-            if (!output.Contains("\nFailure"))
+            int exitCode;
+            output = _shell.GetOutput(_adb, "-s " + _id + " install -r " + filename.QuoteSpace(), null, RunFlags.NoThrow, null, out exitCode);
+            if (exitCode == 0)
                 return true;
 
-            var isInstalled = !string.IsNullOrWhiteSpace(_shell.GetOutput(_adb, "-s " + _id + " shell pm path " + package));
+            var isInstalled = !string.IsNullOrWhiteSpace(_shell.GetOutput(_adb, "-s " + _id + " shell pm path " + package, null, RunFlags.NoThrow, null, out exitCode));
             if (!isInstalled)
                 return false;
 
             // ADB might refuse to replace app when signed using a different key, so uninstall and try again
-            output = _shell.GetOutput(_adb, "-s " + _id + " uninstall " + package);
-            if (output.Contains("\nFailure"))
+            // - Failure [INSTALL_FAILED_UPDATE_INCOMPATIBLE: Package $NAME signatures do not match previously installed version; ignoring!]
+            _shell.Log.WriteLine("Uninstalling " + package);
+            var uninstall = _shell.GetOutput(_adb, "-s " + _id + " uninstall " + package, null, RunFlags.NoThrow, null, out exitCode);
+            if (exitCode != 0)
+            {
+                _shell.Log.WriteLine(uninstall.TrimEnd());
                 return false;
+            }
 
-            output = _shell.GetOutput(_adb, "-s " + _id + " install -r " + filename.QuoteSpace());
-            return !output.Contains("\nFailure");
+            output = _shell.GetOutput(_adb, "-s " + _id + " install -r " + filename.QuoteSpace(), null, RunFlags.NoThrow, null, out exitCode);
+            return exitCode == 0;
         }
 
         public void Start(string package, string activity)
