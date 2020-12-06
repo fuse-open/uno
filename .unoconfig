@@ -5,10 +5,13 @@ Uno.Exe: bin/uno.exe
 
 if WIN32 {
     AppLoader.Exe: bin/win/uno-app.exe
+    Uno.Command: bin/uno.exe
 } else if MAC {
     AppLoader.Exe: bin/mac/uno-app.exe
+    Uno.Command: bin/uno.js
 } else {
     AppLoader.Exe: bin/generic/uno-app.exe
+    Uno.Command: bin/uno.js
 }
 
 // Package config
