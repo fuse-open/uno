@@ -164,7 +164,7 @@ namespace Uno.Net.Sockets
                 sa->sin6_family = family;
                 sa->sin6_port = htons(port);
                 memcpy(&sa->sin6_addr, address->Ptr(), 16);
-                sa->sin6_scope_id = (unsigned long)scopeId;
+                sa->sin6_scope_id = (uint32_t)scopeId;
             }
 
             return connect(sock, (sockaddr *)&ss, size);
@@ -190,7 +190,7 @@ namespace Uno.Net.Sockets
                 sa->sin6_family = family;
                 sa->sin6_port = htons(port);
                 memcpy(&sa->sin6_addr, address->Ptr(), 16);
-                sa->sin6_scope_id = (unsigned long)scopeId;
+                sa->sin6_scope_id = (uint32_t)scopeId;
             }
 
             return bind(sock, (sockaddr *)&ss, size);
