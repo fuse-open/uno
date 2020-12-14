@@ -25,6 +25,9 @@ namespace Uno.Compiler.Backends.UnoDoc
             var renderToPath = Environment.ExpandSingleLine("@(ReferenceOutputPath:NativePath)");
             var skipDeleteDeprecated = Environment.ExpandSingleLine("@(ReferenceSkipDeleteDeprecated)") == "true";
 
+            if (string.IsNullOrEmpty(renderToPath))
+                renderToPath = Environment.OutputDirectory;
+
             var apiPath = Path.Combine(renderToPath, "api");
             var indexPath = Path.Combine(renderToPath, "indicies");
 
