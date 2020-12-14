@@ -65,7 +65,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
 
         protected void LogMessage(string message)
         {
-            Log.Message($"[{RendererName}] {message}");
+            Log.Verbose($"[{RendererName}] {message}");
         }
 
         public int Render(bool skipDeleteDeprecated)
