@@ -47,7 +47,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             Attributes = ParseMacros(macros);
         }
 
-        private static CommentAttributes ParseMacros(IList<Tuple<string, StringBuilder>> macros)
+        static CommentAttributes ParseMacros(IList<Tuple<string, StringBuilder>> macros)
         {
             var macroNames = new HashSet<string>(macros.Select(e => e.Item1.ToLowerInvariant()));
             var macrosByKey = new Dictionary<string, List<string>>();
@@ -131,7 +131,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
                                          experimental);
         }
 
-        private static string GetMacroValue(IDictionary<string, List<string>> macrosByKey, string key, bool requiresReturnValue = false)
+        static string GetMacroValue(IDictionary<string, List<string>> macrosByKey, string key, bool requiresReturnValue = false)
         {
             var result = macrosByKey.ContainsKey(key)
                                  ? macrosByKey[key].Last() ?? ""

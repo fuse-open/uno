@@ -8,9 +8,9 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
 {
     public class TableOfContentsBuilder
     {
-        private readonly DocumentViewModel _viewModel;
-        private readonly Dictionary<string, HashSet<DocumentViewModel>> _viewModelsByParent;
-        private readonly Dictionary<string, DocumentViewModel> _viewModelsById;
+        readonly DocumentViewModel _viewModel;
+        readonly Dictionary<string, HashSet<DocumentViewModel>> _viewModelsByParent;
+        readonly Dictionary<string, DocumentViewModel> _viewModelsById;
 
         public TableOfContentsBuilder(DocumentViewModel viewModel,
                                       Dictionary<string, HashSet<DocumentViewModel>> viewModelsByParent,
@@ -50,7 +50,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return toc;
         }
 
-        private static bool IsUxClass(DocumentViewModel model)
+        static bool IsUxClass(DocumentViewModel model)
         {
             var dataType = model as DataTypeViewModel;
             if (dataType == null || (dataType.Comment?.Attributes?.Advanced ?? false))
@@ -61,7 +61,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return dataType.UxProperties != null;
         }
 
-        private static bool IsUxMember(DocumentViewModel model)
+        static bool IsUxMember(DocumentViewModel model)
         {
             var member = model as MemberViewModel;
             if (member == null || (member.Comment?.Attributes?.Advanced ?? false))
@@ -72,18 +72,18 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return member.UxProperties != null;
         }
 
-        private static bool IsAttachedMember(DocumentViewModel model)
+        static bool IsAttachedMember(DocumentViewModel model)
         {
             return model is AttachedMemberViewModel;
         }
 
-        private List<TableOfContentsEntryGroupViewModel> GetGroupedChildren(string typeId, bool isAttached, Func<DocumentViewModel, bool> filter = null)
+        List<TableOfContentsEntryGroupViewModel> GetGroupedChildren(string typeId, bool isAttached, Func<DocumentViewModel, bool> filter = null)
         {
             var result = GroupByAncestry(GetChildren(typeId, filter), isAttached);
             return result;
         }
 
-        private List<TableOfContentsEntryViewModel> GetChildren(string typeId, Func<DocumentViewModel, bool> filter = null)
+        List<TableOfContentsEntryViewModel> GetChildren(string typeId, Func<DocumentViewModel, bool> filter = null)
         {
             var children = _viewModelsByParent.ContainsKey(_viewModel.Id.Id)
                                    ? _viewModelsByParent[_viewModel.Id.Id].Where(e => e.Id.Type == typeId)
@@ -113,7 +113,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return models;
         }
 
-        private List<TableOfContentsEntryGroupViewModel> GroupByAncestry(List<TableOfContentsEntryViewModel> entries, bool isAttached)
+        List<TableOfContentsEntryGroupViewModel> GroupByAncestry(List<TableOfContentsEntryViewModel> entries, bool isAttached)
         {
             var dataType = _viewModel as DataTypeViewModel;
             if (dataType != null)
@@ -139,7 +139,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
                            : new List<TableOfContentsEntryGroupViewModel> { new TableOfContentsEntryGroupViewModel(null, entries) };
         }
 
-        private List<TableOfContentsEntryGroupViewModel> GroupByAncestry(InheritanceViewModel inheritance, List<TableOfContentsEntryViewModel> entries, bool isAttached)
+        List<TableOfContentsEntryGroupViewModel> GroupByAncestry(InheritanceViewModel inheritance, List<TableOfContentsEntryViewModel> entries, bool isAttached)
         {
             // If there is no inheritance, just return an empty group
             if (inheritance == null)
@@ -195,7 +195,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return groups;
         }
 
-        private void BuildTocGroupsFrom(InheritanceNodeViewModel ancestor, Dictionary<string, Tuple<DocumentReferenceViewModel, List<TableOfContentsEntryViewModel>>> entriesByDeclaringType, List<TableOfContentsEntryGroupViewModel> target)
+        void BuildTocGroupsFrom(InheritanceNodeViewModel ancestor, Dictionary<string, Tuple<DocumentReferenceViewModel, List<TableOfContentsEntryViewModel>>> entriesByDeclaringType, List<TableOfContentsEntryGroupViewModel> target)
         {
             var key = ancestor.Uri;
             if (entriesByDeclaringType.ContainsKey(key))

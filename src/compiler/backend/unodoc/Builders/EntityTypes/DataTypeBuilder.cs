@@ -13,7 +13,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
 {
     public class DataTypeBuilder : Builder
     {
-        private readonly ICommentParser _commentParser;
+        readonly ICommentParser _commentParser;
 
         public DataTypeBuilder(IEntityNaming naming,
                                ISyntaxGenerator syntax,
@@ -66,7 +66,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new DocumentReferenceViewModel(id, uri, titles);
         }
 
-        private void ExportMembers(IEnumerable<Member> members, DataType dataType, HashSet<DocumentViewModel> target, HashSet<string> seenMembers)
+        void ExportMembers(IEnumerable<Member> members, DataType dataType, HashSet<DocumentViewModel> target, HashSet<string> seenMembers)
         {
             var invisibleMembers = members.Where(e => Exportable.IsExportableAndVisible(e) && !Exportable.IsExportableAndVisible(e.DeclaringType)).ToList();
             if (invisibleMembers.Count > 0)
@@ -85,17 +85,17 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             });
         }
 
-        private void ExportAttachedProperties(IEnumerable<AttachedUxProperty> properties, DataType dataType, HashSet<DocumentViewModel> target)
+        void ExportAttachedProperties(IEnumerable<AttachedUxProperty> properties, DataType dataType, HashSet<DocumentViewModel> target)
         {
             properties.ToList().ForEach(prop => GetMemberBuilder().Build(prop, dataType, target));
         }
 
-        private void ExportAttachedEvents(IEnumerable<AttachedUxEvent> events, DataType dataType, HashSet<DocumentViewModel> target)
+        void ExportAttachedEvents(IEnumerable<AttachedUxEvent> events, DataType dataType, HashSet<DocumentViewModel> target)
         {
             events.ToList().ForEach(evt => GetMemberBuilder().Build(evt, dataType, target));
         }
 
-        private void ExportJsMembers(DataType dataType, HashSet<DocumentViewModel> target)
+        void ExportJsMembers(DataType dataType, HashSet<DocumentViewModel> target)
         {
             var parentDataType = dataType.Base;
             while (parentDataType != null)
@@ -107,7 +107,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             }
         }
 
-        private void ExportJsMembers(IEnumerable<Member> members, DataType dataType, HashSet<DocumentViewModel> target)
+        void ExportJsMembers(IEnumerable<Member> members, DataType dataType, HashSet<DocumentViewModel> target)
         {
             foreach (var member in members)
             {
@@ -123,7 +123,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             }
         }
 
-        private void AddDataTypeToTarget(DataType dataType, DataType swizzlerParent, HashSet<DocumentViewModel> target)
+        void AddDataTypeToTarget(DataType dataType, DataType swizzlerParent, HashSet<DocumentViewModel> target)
         {
             var ns = dataType.FindNamespace();
             var titles = BuildDataTypeTitles(dataType);
@@ -176,7 +176,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             target.AddIfNotExists(viewModel);
         }
 
-        private List<DataType> GetTypeAndBaseTypes(DataType dataType)
+        List<DataType> GetTypeAndBaseTypes(DataType dataType)
         {
             var types = new List<DataType> { dataType };
             if (dataType.GetId() == ExportConstants.RootDataTypeId)
@@ -194,7 +194,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return types;
         }
 
-        private InheritanceViewModel GetInheritance(DataType dataType)
+        InheritanceViewModel GetInheritance(DataType dataType)
         {
             if (dataType.GetId() == ExportConstants.RootDataTypeId)
             {
@@ -246,7 +246,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new InheritanceViewModel(roots.First());
         }
 
-        private ParametersViewModel GetParameters(DataType dataType)
+        ParametersViewModel GetParameters(DataType dataType)
         {
             var parameters = dataType.GetParametersOrNull();
             if (parameters == null)
@@ -284,7 +284,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new ParametersViewModel(list);
         }
 
-        private ReturnsViewModel BuildReturns(DataType dataType)
+        ReturnsViewModel BuildReturns(DataType dataType)
         {
             var delegateType = dataType as DelegateType;
             if (delegateType == null || delegateType.ReturnType.FullName == ExportConstants.VoidTypeName) return null;
@@ -300,7 +300,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                         Naming.GetFullIndexTitle(delegateType.ReturnType));
         }
 
-        private DocumentIdViewModel BuildDataTypeId(DataType dataType, SourceComment comment)
+        DocumentIdViewModel BuildDataTypeId(DataType dataType, SourceComment comment)
         {
             var id = new DocumentIdViewModel(dataType.GetUri(),
                                              dataType.Parent.GetUri(),
@@ -309,19 +309,19 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return id;
         }
 
-        private DocumentUriViewModel BuildDataTypeUri(DataType dataType)
+        DocumentUriViewModel BuildDataTypeUri(DataType dataType)
         {
             return new DocumentUriViewModel(dataType.GetUri(), dataType.GetUri(), false);
         }
 
-        private IndexTitlesViewModel BuildDataTypeIndexTitles(DataType dataType)
+        IndexTitlesViewModel BuildDataTypeIndexTitles(DataType dataType)
         {
             var titles = new IndexTitlesViewModel(Naming.GetIndexTitle(dataType),
                                                   Naming.GetFullIndexTitle(dataType));
             return titles;
         }
 
-        private TitlesViewModel BuildDataTypeTitles(DataType dataType)
+        TitlesViewModel BuildDataTypeTitles(DataType dataType)
         {
             var titles = new TitlesViewModel(Naming.GetPageTitle(dataType),
                                              Naming.GetIndexTitle(dataType),
@@ -331,20 +331,20 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return titles;
         }
 
-        private DocumentReferenceViewModel BuildBaseType(DataType dataType)
+        DocumentReferenceViewModel BuildBaseType(DataType dataType)
         {
             return dataType.Base == null
                            ? null
                            : BuildReference(dataType.Base);
         }
 
-        private UxClassPropertiesViewModel BuildUxProperties(DataType dataType)
+        UxClassPropertiesViewModel BuildUxProperties(DataType dataType)
         {
             var props = dataType.GetUxClassProperties();
             return props == null ? null : new UxClassPropertiesViewModel(props.Namespace, props.NamespaceUri, props.Name);
         }
 
-        private ValuesViewModel BuildValues(DataType dataType)
+        ValuesViewModel BuildValues(DataType dataType)
         {
             if (dataType.TypeType != TypeType.Enum || dataType.Literals == null || dataType.Literals.Count == 0)
             {
@@ -359,7 +359,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new ValuesViewModel(values);
         }
 
-        private IEnumerable<InterfaceType> GetAllInterfaces(DataType dataType)
+        IEnumerable<InterfaceType> GetAllInterfaces(DataType dataType)
         {
             var result = (dataType.Interfaces ?? new InterfaceType[0]).ToList();
             if (dataType.Base != null)
@@ -370,7 +370,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return result;
         }
 
-        private ImplementedInterfacesViewModel BuildImplementedInterfaces(DataType dataType)
+        ImplementedInterfacesViewModel BuildImplementedInterfaces(DataType dataType)
         {
             var result = new List<ImplementedInterfaceViewModel>();
 
@@ -392,7 +392,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new ImplementedInterfacesViewModel(result);
         }
 
-        private AttributesViewModel BuildAttributes(DataType dataType)
+        AttributesViewModel BuildAttributes(DataType dataType)
         {
             var models = new List<AttributeViewModel>();
 
@@ -411,12 +411,12 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new AttributesViewModel(models);
         }
 
-        private MemberBuilder GetMemberBuilder()
+        MemberBuilder GetMemberBuilder()
         {
             return new MemberBuilder(Naming, Syntax, Exportable, AttachedMembers, _commentParser);
         }
 
-        private static string GetTypeName(DataType dataType, SourceComment comment)
+        static string GetTypeName(DataType dataType, SourceComment comment)
         {
             if (comment.Attributes.ScriptModule != null)
             {

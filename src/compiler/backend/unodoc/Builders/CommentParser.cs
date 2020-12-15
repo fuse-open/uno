@@ -12,7 +12,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 {
     public class CommentParser : LogObject, ICommentParser
     {
-        private static readonly HashSet<string> SupportedMacros = new HashSet<string>(new[]
+        static readonly HashSet<string> SupportedMacros = new HashSet<string>(new[]
         {
             "advanced",
             "scriptmodule",
@@ -37,13 +37,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             "deprecated"
         });
 
-        private const string DefaultIndentation = "    ";
-        private static readonly Regex LeadingLineBreaksPattern = new Regex(@"^[\r\n]+", RegexOptions.Compiled);
-        private static readonly Regex TrailingLineBreaksPattern = new Regex(@"[\r\n]+$", RegexOptions.Compiled);
-        private static readonly Regex MultipleLineBreaksPattern = new Regex(@"\n{2,}", RegexOptions.Compiled);
-        private static readonly Regex TabsPattern = new Regex(@"\t", RegexOptions.Compiled);
+        const string DefaultIndentation = "    ";
+        static readonly Regex LeadingLineBreaksPattern = new Regex(@"^[\r\n]+", RegexOptions.Compiled);
+        static readonly Regex TrailingLineBreaksPattern = new Regex(@"[\r\n]+$", RegexOptions.Compiled);
+        static readonly Regex MultipleLineBreaksPattern = new Regex(@"\n{2,}", RegexOptions.Compiled);
+        static readonly Regex TabsPattern = new Regex(@"\t", RegexOptions.Compiled);
 
-        private readonly IDictionary<string, SourceComment> _rawCache = new Dictionary<string, SourceComment>();
+        readonly IDictionary<string, SourceComment> _rawCache = new Dictionary<string, SourceComment>();
 
         public CommentParser(Log log)
             : base(log)
@@ -93,13 +93,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return new SourceComment();
         }
 
-        private SourceComment ReadInheritedMethodComment(Method method)
+        SourceComment ReadInheritedMethodComment(Method method)
         {
             var comment = Read(method.OverriddenMethod); // This will read up the hierarchy automatically
             return comment;
         }
 
-        private SourceComment GetGeneratedConstructorDefaultComment(Constructor ctor)
+        SourceComment GetGeneratedConstructorDefaultComment(Constructor ctor)
         {
             var declaringType = ctor.DeclaringType;
             var typeName = new EntityNaming().GetIndexTitle(declaringType);
@@ -107,7 +107,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return new SourceComment(comment, comment, comment, null, null, null, new List<Tuple<string, StringBuilder>>());
         }
 
-        private SourceComment ReadFromEntity(IEntity entity)
+        SourceComment ReadFromEntity(IEntity entity)
         {
             // Skip empty comments
             if (string.IsNullOrWhiteSpace(entity.DocComment))
@@ -141,7 +141,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return comment;
         }
 
-        private SourceComment BuildComment(IEntity entity, string commentText)
+        SourceComment BuildComment(IEntity entity, string commentText)
         {
             var lines = commentText.Trim().Split(new[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
             var processedLines = ProcessLines(lines);
@@ -199,7 +199,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
                                      macros);
         }
 
-        private static bool LineStartsKnownMacro(string text)
+        static bool LineStartsKnownMacro(string text)
         {
             var macro = text.Trim();
             if (!macro.StartsWith("@"))
@@ -217,13 +217,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return result;
         }
 
-        private Tuple<string, StringBuilder> ProcessMacro(string text,
-                                                          StringBuilder currentComment,
-                                                          StringBuilder currentRemarks,
-                                                          StringBuilder currentExamples,
-                                                          StringBuilder currentUx,
-                                                          string sourcePath,
-                                                          string packageSourceDirectory)
+        Tuple<string, StringBuilder> ProcessMacro(string text,
+                                                  StringBuilder currentComment,
+                                                  StringBuilder currentRemarks,
+                                                  StringBuilder currentExamples,
+                                                  StringBuilder currentUx,
+                                                  string sourcePath,
+                                                  string packageSourceDirectory)
         {
             if (text.Contains(" "))
             {
@@ -259,7 +259,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return new Tuple<string, StringBuilder>(text, new StringBuilder());
         }
 
-        private string ReadFile(string filename, string path, string packageSourceDirectory)
+        string ReadFile(string filename, string path, string packageSourceDirectory)
         {
             var filePath = Path.Combine(packageSourceDirectory, filename);
             if (!File.Exists(filePath))
@@ -271,7 +271,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return File.ReadAllText(filePath).Replace("\r\n", "\n");
         }
 
-        private static List<string> ProcessLines(List<string> lines)
+        static List<string> ProcessLines(List<string> lines)
         {
             var result = new List<string>();
 
@@ -368,12 +368,12 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return result;
         }
 
-        private static string NormalizeIndentation(string line)
+        static string NormalizeIndentation(string line)
         {
             return string.IsNullOrWhiteSpace(line) ? "" : TabsPattern.Replace(line, DefaultIndentation);
         }
 
-        private static int MeasureIndentation(string line)
+        static int MeasureIndentation(string line)
         {
             var indent = 0;
             foreach (var b in line)

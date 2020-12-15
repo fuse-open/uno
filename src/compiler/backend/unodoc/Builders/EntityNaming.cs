@@ -28,7 +28,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return GetNamingImplementationFor(entity).GetNavigationTitle(entity);
         }
 
-        private IEntityNaming GetNamingImplementationFor(IEntity entity)
+        IEntityNaming GetNamingImplementationFor(IEntity entity)
         {
             if (entity is Block)
             {

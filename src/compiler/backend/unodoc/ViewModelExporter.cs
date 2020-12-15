@@ -11,8 +11,8 @@ namespace Uno.Compiler.Backends.UnoDoc
 {
     public class ViewModelExporter : LogObject
     {
-        private readonly Namespace _rootNamespace;
-        private readonly IUtilities _utilities;
+        readonly Namespace _rootNamespace;
+        readonly IUtilities _utilities;
 
         public ViewModelExporter(Log log, Namespace rootNamespace, IUtilities utilities)
             : base(log)

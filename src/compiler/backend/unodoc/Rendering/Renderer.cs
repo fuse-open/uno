@@ -37,7 +37,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             ViewModels = new HashSet<DocumentViewModel>(ViewModels.Where(e => !e.Uri.IsVirtual));
         }
 
-        private HashSet<DocumentViewModel> StripEmptyNamespaces(HashSet<DocumentViewModel> viewModels)
+        HashSet<DocumentViewModel> StripEmptyNamespaces(HashSet<DocumentViewModel> viewModels)
         {
             var parentLookup = BuildParentCache(viewModels);
             var localViewModels = new HashSet<DocumentViewModel>(viewModels);
@@ -102,7 +102,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return count;
         }
 
-        private void RemoveDeprecatedDocuments()
+        void RemoveDeprecatedDocuments()
         {
             var newPaths = GetExpectedOutputPaths();
             if (HasIndexDocument)
@@ -125,7 +125,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
                              });
         }
 
-        private Dictionary<string, HashSet<DocumentViewModel>> BuildParentCache(IEnumerable<DocumentViewModel> viewModels)
+        Dictionary<string, HashSet<DocumentViewModel>> BuildParentCache(IEnumerable<DocumentViewModel> viewModels)
         {
             var result = new Dictionary<string, HashSet<DocumentViewModel>>();
 
@@ -142,7 +142,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return result;
         }
 
-        private Dictionary<string, DocumentViewModel> BuildViewModelCache(IEnumerable<DocumentViewModel> viewModels)
+        Dictionary<string, DocumentViewModel> BuildViewModelCache(IEnumerable<DocumentViewModel> viewModels)
         {
             var dict = new Dictionary<string, DocumentViewModel>();
             var hasDuplicates = false;

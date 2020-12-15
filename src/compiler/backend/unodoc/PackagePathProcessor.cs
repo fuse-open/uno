@@ -5,8 +5,8 @@ namespace Uno.Compiler.Backends.UnoDoc
 {
     internal class PackagePathProcessor
     {
-        private Log log;
-        private IReadOnlyList<SourcePackage> _packages;
+        Log log;
+        IReadOnlyList<SourcePackage> _packages;
         readonly Dictionary<string, string> _packagePaths = new Dictionary<string, string>();
 
         public PackagePathProcessor(Log log, IReadOnlyList<SourcePackage> _packages)
@@ -16,7 +16,7 @@ namespace Uno.Compiler.Backends.UnoDoc
             BuildPackagePaths();
         }
 
-        private void BuildPackagePaths()
+        void BuildPackagePaths()
         {
             foreach (var p in _packages)
             {

@@ -35,7 +35,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
             return title;
         }
 
-        private string GetIndexTitleInternal(IEntity entity, bool fullyQualified)
+        string GetIndexTitleInternal(IEntity entity, bool fullyQualified)
         {
             var dataType = (DataType) entity;
             var genericArguments = dataType.GetGenericParameterNamesOrNull(fullyQualified);
@@ -50,13 +50,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
             return GetPageTitle(entity);
         }
 
-        private string GetDataTypeName(DataType dataType)
+        string GetDataTypeName(DataType dataType)
         {
             string name;
             return TypeAliases.TryGetAliasFromType(dataType.QualifiedName, out name) ? name : dataType.Name;
         }
 
-        private static string GetTypeName(DataType dataType)
+        static string GetTypeName(DataType dataType)
         {
             switch (dataType.TypeType)
             {
