@@ -33,7 +33,11 @@ namespace Uno.Compiler.Backends.UnoDoc
 
             Log.Verbose("Starting view model generation");
             var sw = Stopwatch.StartNew();
-            var viewModels = new ViewModelExporter(Data.IL, Utilities).BuildExport();
+            var viewModels = new ViewModelExporter(Log, Data.IL, Utilities).BuildExport();
+
+            if (Log.ErrorCount > 0)
+                return null;
+
             sw.Stop();
             Log.Verbose("Generated " + viewModels.Count + " in " + sw.Elapsed);
 

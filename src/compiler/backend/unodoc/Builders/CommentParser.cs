@@ -6,10 +6,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
+using Uno.Logging;
 
 namespace Uno.Compiler.Backends.UnoDoc.Builders
 {
-    public class CommentParser : ICommentParser
+    public class CommentParser : LogObject, ICommentParser
     {
         private static readonly HashSet<string> SupportedMacros = new HashSet<string>(new[]
         {
@@ -43,6 +44,11 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
         private static readonly Regex TabsPattern = new Regex(@"\t", RegexOptions.Compiled);
 
         private readonly IDictionary<string, SourceComment> _rawCache = new Dictionary<string, SourceComment>();
+
+        public CommentParser(Log log)
+            : base(log)
+        {
+        }
 
         public SourceComment Read(SourceObject entity)
         {
@@ -135,7 +141,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return comment;
         }
 
-        private static SourceComment BuildComment(IEntity entity, string commentText)
+        private SourceComment BuildComment(IEntity entity, string commentText)
         {
             var lines = commentText.Trim().Split(new[] { "\r\n", "\n" }, StringSplitOptions.None).ToList();
             var processedLines = ProcessLines(lines);
@@ -211,13 +217,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return result;
         }
 
-        private static Tuple<string, StringBuilder> ProcessMacro(string text,
-                                                                 StringBuilder currentComment,
-                                                                 StringBuilder currentRemarks,
-                                                                 StringBuilder currentExamples,
-                                                                 StringBuilder currentUx,
-                                                                 string sourcePath,
-                                                                 string packageSourceDirectory)
+        private Tuple<string, StringBuilder> ProcessMacro(string text,
+                                                          StringBuilder currentComment,
+                                                          StringBuilder currentRemarks,
+                                                          StringBuilder currentExamples,
+                                                          StringBuilder currentUx,
+                                                          string sourcePath,
+                                                          string packageSourceDirectory)
         {
             if (text.Contains(" "))
             {
@@ -253,12 +259,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return new Tuple<string, StringBuilder>(text, new StringBuilder());
         }
 
-        private static string ReadFile(string filename, string path, string packageSourceDirectory)
+        private string ReadFile(string filename, string path, string packageSourceDirectory)
         {
             var filePath = Path.Combine(packageSourceDirectory, filename);
             if (!File.Exists(filePath))
             {
-                throw new FileNotFoundException($"Included file {filename} in {path} was not found in {packageSourceDirectory}");
+                Log.Error(new Source(path), null, $"Included file {filename} was not found in {packageSourceDirectory}");
+                return string.Empty;
             }
 
             return File.ReadAllText(filePath).Replace("\r\n", "\n");
