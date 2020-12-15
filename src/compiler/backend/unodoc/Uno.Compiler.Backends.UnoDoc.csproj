@@ -85,7 +85,6 @@
     <Compile Include="DocumentViewModelEqualityComparer.cs" />
     <Compile Include="ExportConstants.cs" />
     <Compile Include="HashSetExtensions.cs" />
-    <Compile Include="PackagePathProcessor.cs" />
     <Compile Include="Rendering\Renderer.cs" />
     <Compile Include="Rendering\ApiReferenceJsonRenderer.cs" />
     <Compile Include="Rendering\IndexJsonRenderer.cs" />
