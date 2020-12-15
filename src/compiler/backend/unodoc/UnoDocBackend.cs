@@ -9,6 +9,7 @@ namespace Uno.Compiler.Backends.UnoDoc
     public class UnoDocBackend : Backend
     {
         public override string Name => "UnoDoc";
+        public override string What => "api-docs";
 
         public UnoDocBackend()
         {
