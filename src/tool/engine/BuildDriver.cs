@@ -255,7 +255,8 @@ namespace Uno.Build
             using (Log.StartAnimation("Building " + _target.ToString().ToLower() + (
                     _backend.BuildType == BuildType.Executable && !_env.IsDefined("LIBRARY")
                         ? " app"
-                        : " library")))
+                        : " library") +
+                    " (" + _compilerOptions.Configuration.ToString().ToLower() + ")"))
             {
                 if (!_target.Build(_compiler.Shell, _file, _options.NativeArguments))
                     Log.Error(Source.Unknown, ErrorCode.E0200, _target + " build failed");
