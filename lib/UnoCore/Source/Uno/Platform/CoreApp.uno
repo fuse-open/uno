@@ -1,5 +1,6 @@
 using OpenGL;
 using Uno.Collections;
+using Uno.Diagnostics;
 using Uno.Graphics;
 using Uno.Platform;
 using Uno.Compiler.ExportTargetInterop;
@@ -87,11 +88,11 @@ namespace Uno.Platform
             switch (State)
             {
                 case ApplicationState.Terminating:
-                    debug_log "EnterForeground() called on terminating application";
+                    Log.Error("CoreApp: EnterForeground() called on terminating application");
                     return;
 
                 case ApplicationState.Uninitialized:
-                    debug_log "EnterForeground() called on uninitialized application";
+                    Log.Error("CoreApp: EnterForeground() called on uninitialized application");
                     return;
 
                 case ApplicationState.Background:
@@ -125,11 +126,11 @@ namespace Uno.Platform
             switch (State)
             {
                 case ApplicationState.Terminating:
-                    debug_log "EnterInteractive() called on terminating application";
+                    Log.Error("CoreApp: EnterInteractive() called on terminating application");
                     return;
 
                 case ApplicationState.Uninitialized:
-                    debug_log "EnterInteractive() called on uninitialized application";
+                    Log.Error("CoreApp: EnterInteractive() called on uninitialized application");
                     return;
 
                 case ApplicationState.Background:
