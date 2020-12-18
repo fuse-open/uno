@@ -13,7 +13,7 @@ namespace Uno.Graphics.OpenGL
             var err = GL.GetError();
 
             if (err != GLError.NoError)
-                Debug.Log("GL error (" + err.ToString() + ")", DebugMessageType.Error);
+                Log.Error("GL error (" + err.ToString() + ")");
         }
 
         public static void CheckFramebufferStatus()
@@ -21,7 +21,7 @@ namespace Uno.Graphics.OpenGL
             var status = GL.CheckFramebufferStatus(GLFramebufferTarget.Framebuffer);
 
             if (status != GLFramebufferStatus.FramebufferComplete)
-                Debug.Log("Incomplete GL framebuffer (" + status + ")", DebugMessageType.Error);
+                Log.Error("Incomplete GL framebuffer (" + status + ")");
         }
 
         public static void TexImage2DFromBytes(GLTextureTarget target, int w, int h, int mip, Format format, byte[] data)

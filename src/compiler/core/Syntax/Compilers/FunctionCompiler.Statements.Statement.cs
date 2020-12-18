@@ -556,10 +556,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                         return new NoOp(e.Source, "Stripped debug_log");
                     var s = (AstValueStatement) e;
                     var message = CompileExpression(s.Value);
-                    var messageType = ILFactory.GetExpression(s.Source, "Uno.Diagnostics.DebugMessageType.Debug");
-                    var file = new Constant(s.Source, Essentials.String, s.Source.File.ToString().Replace('\\', '/'));
-                    var line = new Constant(s.Source, Essentials.Int, s.Source.Line);
-                    return ILFactory.CallMethod(s.Source, "Uno.Diagnostics.Debug", "Log", message, messageType, file, line);
+                    return ILFactory.CallMethod(s.Source, "Uno.Diagnostics.Log", "Debug", message);
                 }
                 case AstStatementType.BuildError:
                     return CreateBuildError(e.Source, true);

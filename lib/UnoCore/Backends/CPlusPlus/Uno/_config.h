@@ -38,11 +38,11 @@ const float FLT_NAN = (float)DBL_NAN;
 
 // Logging
 enum uLogLevel {
-    uLogLevelDebug = @{Uno.Diagnostics.DebugMessageType.Debug},
-    uLogLevelInformation = @{Uno.Diagnostics.DebugMessageType.Information},
-    uLogLevelWarning = @{Uno.Diagnostics.DebugMessageType.Warning},
-    uLogLevelError = @{Uno.Diagnostics.DebugMessageType.Error},
-    uLogLevelFatal = @{Uno.Diagnostics.DebugMessageType.Fatal}
+    uLogLevelDebug = @{Uno.Diagnostics.LogLevel.Debug},
+    uLogLevelInformation = @{Uno.Diagnostics.LogLevel.Information},
+    uLogLevelWarning = @{Uno.Diagnostics.LogLevel.Warning},
+    uLogLevelError = @{Uno.Diagnostics.LogLevel.Error},
+    uLogLevelFatal = @{Uno.Diagnostics.LogLevel.Fatal}
 };
 void uLog(int level, const char* format, ...);
 void uLogv(int level, const char* format, va_list args);

@@ -440,7 +440,7 @@ namespace OpenGL
             var err = _gl.GetError();
             if (err != 0)
             {
-                Debug.Log("GL error (" + err + ")", DebugMessageType.Error);
+                Log.Error("GL error (" + err + ")");
                 var frames = new StackTrace().GetFrames();
 
                 for (int i = 3; i < frames.Length; i++)
@@ -449,7 +449,7 @@ namespace OpenGL
                     if (f.GetMethod().Name == "Main")
                         break;
 
-                    Debug.Log("in " + f.GetMethod().DeclaringType + "." + f.GetMethod().Name + "()");
+                    Log.Debug("in " + f.GetMethod().DeclaringType + "." + f.GetMethod().Name + "()");
                 }
             }
         }

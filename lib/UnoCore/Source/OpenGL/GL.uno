@@ -1580,9 +1580,9 @@ namespace OpenGL
             if (glVersion == null || glVersion.IndexOf('.') == -1 ||
                     int.Parse(glVersion.Substring(0, glVersion.IndexOf('.'))) < 2)
             {
-                Debug.Log("GL_VERSION: " + glVersion);
-                Debug.Log("GL_VENDOR: " + gl.GetString(GLStringName.Vendor));
-                Debug.Log("GL_RENDERER: " + gl.GetString(GLStringName.Renderer));
+                Log.Debug("GL_VERSION: " + glVersion);
+                Log.Debug("GL_VENDOR: " + gl.GetString(GLStringName.Vendor));
+                Log.Debug("GL_RENDERER: " + gl.GetString(GLStringName.Renderer));
                 throw new NotSupportedException("OpenGL 2.0 is required to run this application");
             }
         }

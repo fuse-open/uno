@@ -38,8 +38,8 @@ public class StringBuilderBenchmark : Uno.Application
         var str = sb.ToString();
 
         var endTick = Clock.GetSeconds();
-        Debug.Log("length: " + str.Length);
-        Debug.Log("time: " + (endTick - startTick) * 1000 + " ms");
+        Log.Debug("length: " + str.Length);
+        Log.Debug("time: " + (endTick - startTick) * 1000 + " ms");
     }
 
     public static void ShortStrings(int count)
@@ -60,8 +60,8 @@ public class StringBuilderBenchmark : Uno.Application
         var str = sb.ToString();
 
         var endTick = Clock.GetSeconds();
-        Debug.Log("length: " + str.Length);
-        Debug.Log("time: " + (endTick - startTick) * 1000 + " ms");
+        Log.Debug("length: " + str.Length);
+        Log.Debug("time: " + (endTick - startTick) * 1000 + " ms");
     }
 
     public static void Chars(int count)
@@ -79,8 +79,8 @@ public class StringBuilderBenchmark : Uno.Application
         var str = sb.ToString();
 
         var endTick = Clock.GetSeconds();
-        Debug.Log("length: " + str.Length);
-        Debug.Log("time: " + (endTick - startTick) * 1000 + " ms");
+        Log.Debug("length: " + str.Length);
+        Log.Debug("time: " + (endTick - startTick) * 1000 + " ms");
     }
 
     public static void CharArrays(int count)
@@ -98,26 +98,26 @@ public class StringBuilderBenchmark : Uno.Application
         var str = sb.ToString();
 
         var endTick = Clock.GetSeconds();
-        Debug.Log("length: " + str.Length);
-        Debug.Log("time: " + (endTick - startTick) * 1000 + " ms");
+        Log.Debug("length: " + str.Length);
+        Log.Debug("time: " + (endTick - startTick) * 1000 + " ms");
     }
 
     public StringBuilderBenchmark()
     {
-        Debug.Log("LongStrings:");
+        Log.Debug("LongStrings:");
         LongStrings(10000);
-        Debug.Log("");
+        Log.Debug("");
 
-        Debug.Log("ShortStrings:");
+        Log.Debug("ShortStrings:");
         ShortStrings(10000);
-        Debug.Log("");
+        Log.Debug("");
 
-        Debug.Log("Chars:");
+        Log.Debug("Chars:");
         Chars(10000);
-        Debug.Log("");
+        Log.Debug("");
 
-        Debug.Log("CharArrays:");
+        Log.Debug("CharArrays:");
         CharArrays(10000);
-        Debug.Log("");
+        Log.Debug("");
     }
 }

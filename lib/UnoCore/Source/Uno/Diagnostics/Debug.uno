@@ -14,6 +14,7 @@ namespace Uno.Diagnostics
 
     public delegate void AssertionHandler(bool value, string expression, string filename, int line, params object[] operands);
 
+    [Obsolete("Please use the Uno.Diagnostics.Log class instead.")]
     public delegate void LogHandler(string message, DebugMessageType type);
 
     public static class Debug
@@ -42,27 +43,31 @@ namespace Uno.Diagnostics
 
         static LogHandler _logHandler;
 
-        [Obsolete]
+        [Obsolete("Please use the Uno.Diagnostics.Log class instead.")]
         public static void SetLogHandler(LogHandler handler)
         {
             _logHandler = handler;
         }
 
+        [Obsolete("Please use the Uno.Diagnostics.Log class instead.")]
         public static void Log(string message, DebugMessageType type, string filename, int line)
         {
             EmitLog(message, type);
         }
 
+        [Obsolete("Please use the Uno.Diagnostics.Log class instead.")]
         public static void Log(object message, DebugMessageType type, string filename, int line)
         {
             EmitLog((message ?? string.Empty).ToString(), type);
         }
 
+        [Obsolete("Please use the Uno.Diagnostics.Log class instead.")]
         public static void Log(string message, DebugMessageType type = 0)
         {
             EmitLog(message, type);
         }
 
+        [Obsolete("Please use the Uno.Diagnostics.Log class instead.")]
         public static void Log(object message, DebugMessageType type = 0)
         {
             EmitLog(message.ToString(), type);

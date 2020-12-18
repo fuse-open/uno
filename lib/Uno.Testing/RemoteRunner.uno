@@ -93,7 +93,7 @@ namespace Uno.Testing
                 var isLast = i + chunkLen >= uri.Length;
                 var output = "{" + chunk.Length + "|" + chunk + "}" + (isLast ? ";" : "\\");
 
-                Debug.Log(output);
+                Log.Debug(output);
 
                 if defined(iOS)
                 {
@@ -108,7 +108,7 @@ namespace Uno.Testing
                     // This won't FIX the problem completely, at least not in theory.
                     // Ideally we should fix this permanently in ios-deploy, but hopefully
                     // this workaround will be sufficient in the meantime.
-                    Debug.Log(output + " (retransmit)");
+                    Log.Debug(output + " (retransmit)");
                 }
             }
         }

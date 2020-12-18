@@ -6,15 +6,15 @@ namespace Uno.Support.MonoMac
 {
     public static class MonoMacEnums
     {
-        public static NSAlertStyle GetAlertStyle(Uno.Diagnostics.DebugMessageType type)
+        public static NSAlertStyle GetAlertStyle(Uno.Diagnostics.LogLevel level)
         {
-            switch (type)
+            switch (level)
             {
-                case Uno.Diagnostics.DebugMessageType.Error:
+                case Uno.Diagnostics.LogLevel.Error:
                     return NSAlertStyle.Critical;
-                case Uno.Diagnostics.DebugMessageType.Warning:
+                case Uno.Diagnostics.LogLevel.Warning:
                     return NSAlertStyle.Warning;
-                case Uno.Diagnostics.DebugMessageType.Information:
+                case Uno.Diagnostics.LogLevel.Information:
                     return NSAlertStyle.Informational;
                 default:
                     return 0;
