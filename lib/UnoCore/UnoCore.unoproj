@@ -8,6 +8,15 @@
     "UnoCore.Test"
   ],
   "Includes": [
+    "Assets/adaptive_icon/drawable/icon_background.xml:File",
+    "Assets/adaptive_icon/drawable/icon_foreground.xml:File",
+    "Assets/adaptive_icon/mipmap-anydpi-v26/icon.xml:File",
+    "Assets/adaptive_icon/mipmap-anydpi-v26/icon_round.xml:File",
+    "Assets/adaptive_icon/mipmap-hdpi/icon_round.png:File",
+    "Assets/adaptive_icon/mipmap-mdpi/icon_round.png:File",
+    "Assets/adaptive_icon/mipmap-xhdpi/icon_round.png:File",
+    "Assets/adaptive_icon/mipmap-xxhdpi/icon_round.png:File",
+    "Assets/adaptive_icon/mipmap-xxxhdpi/icon_round.png:File",
     "Assets/Black.png:File",
     "Assets/DefaultIcon.png:File",
     "Assets/Icon.icns:File",
