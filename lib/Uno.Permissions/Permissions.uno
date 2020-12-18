@@ -6,6 +6,7 @@ using Uno.Compiler.ExportTargetInterop.Android;
 
 namespace Uno.Permissions
 {
+    [Obsolete("Please use Fuse.Android.Permissions.PlatformPermission (fuselibs) instead.")]
     public struct PlatformPermission
     {
         public readonly string Name;
@@ -16,12 +17,14 @@ namespace Uno.Permissions
         }
     }
 
+    [Obsolete("Please use Fuse.Android.Permissions.IPermissionPromise (fuselibs) instead.")]
     interface IPermissionPromise
     {
         void Resolve();
         void Reject(Exception e);
     }
 
+    [Obsolete("Please use Fuse.Android.Permissions.PermissionPromise (fuselibs) instead.")]
     class PermissionPromise : Promise<PlatformPermission>, IPermissionPromise
     {
         PlatformPermission _permission;
@@ -36,6 +39,7 @@ namespace Uno.Permissions
         }
     }
 
+    [Obsolete("Please use Fuse.Android.Permissions.PermissionsPromise (fuselibs) instead.")]
     class PermissionsPromise : Promise<PlatformPermission[]>, IPermissionPromise
     {
         PlatformPermission[] _permissions;
@@ -50,6 +54,7 @@ namespace Uno.Permissions
         }
     }
 
+    [Obsolete("Please use Fuse.Android.Permissions.Permissions (fuselibs) instead.")]
     public static extern(android) class Permissions
     {
 
@@ -274,6 +279,7 @@ namespace Uno.Permissions
         }
     }
 
+    [Obsolete("Please use Fuse.Android.Permissions.Permissions (fuselibs) instead.")]
     public static extern(!android) class Permissions
     {
         public static bool ShouldShowInformation(PlatformPermission x)
