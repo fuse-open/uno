@@ -107,10 +107,10 @@ namespace Uno.Diagnostics
             {
                 if (level == 0)
                     Console.WriteLine(message);
-                else if ((int) level < LogLevel.Warning)
-                    Console.Out.WriteLine(level + ": " + message);
+                else if (level == LogLevel.Information)
+                    Console.WriteLine("INFO: " + message);
                 else
-                    Console.Error.WriteLine(level + ": " + message);
+                    Console.Error.WriteLine(level.ToString().ToUpper() + ": " + message);
             }
             else
             {
