@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using OpenGL;
 using OpenTK.Graphics.ES20;
+using Uno.Diagnostics;
 using TKGL = OpenTK.Graphics.ES20.GL;
 
 namespace Uno.Support.OpenTK
@@ -299,7 +300,6 @@ namespace Uno.Support.OpenTK
 
         public void UniformMatrix4(int location, bool transpose, Float4x4 value)
         {
-            // Who is always changing this function creating a temp array? Please stop committing your workarounds. Thanks
             TKGL.UniformMatrix4(location, 1, transpose, ref value.M11);
         }
 
@@ -524,8 +524,7 @@ namespace Uno.Support.OpenTK
 
         public void PointSize(float size)
         {
-            // TODO: Remove method from GL interface.
-            // glPointSize isn't supported by OpenGL ES 2.0, instead use the built-in vertex shader variable 'gl_PointSize'.
+            Log.Warning("GL.PointSize() isn't supported by OpenGL ES 2.0, instead use the built-in vertex shader variable 'gl_PointSize'.");
         }
 
         public void PolygonOffset(float factor, float units)
