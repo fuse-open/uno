@@ -16,6 +16,7 @@ namespace Uno.Compiler.Backends.CIL
         internal DataType TypeAliasAttribute { get; private set; }
 
         public override string Name => "CIL";
+        public override string What => "assemblies";
 
         public CilBackend(ShaderBackend shaderBackend)
             : base(shaderBackend)

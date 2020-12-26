@@ -15,7 +15,6 @@ namespace Uno.Logging
         public static readonly Log Null = new Log(TextWriter.Null);
         public static readonly Log Default = new Log();
 
-
         static LogLevel GetEnvironmentLevel()
         {
             var level = Environment.GetEnvironmentVariable("LOG_LEVEL");
