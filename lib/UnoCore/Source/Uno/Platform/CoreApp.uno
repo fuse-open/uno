@@ -1,5 +1,6 @@
 using OpenGL;
 using Uno.Collections;
+using Uno.Diagnostics;
 using Uno.Graphics;
 using Uno.Platform;
 using Uno.Compiler.ExportTargetInterop;
@@ -67,7 +68,8 @@ namespace Uno.Platform
 
             if defined(CPlusPlus) extern "uInitRtti()";
 
-            assert State == ApplicationState.Uninitialized;
+            if (State != ApplicationState.Uninitialized)
+                throw new InvalidOperationException("CoreApp: Invalid state");
 
             if defined(CPlusPlus) extern "uStartApp()";
 
@@ -77,7 +79,8 @@ namespace Uno.Platform
             if (handler != null)
                 handler(State);
 
-            assert State == ApplicationState.Background;
+            if (State != ApplicationState.Background)
+                throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
         internal static void EnterForeground()
@@ -85,11 +88,11 @@ namespace Uno.Platform
             switch (State)
             {
                 case ApplicationState.Terminating:
-                    debug_log "EnterForeground() called on terminating application";
+                    Log.Error("CoreApp: EnterForeground() called on terminating application");
                     return;
 
                 case ApplicationState.Uninitialized:
-                    debug_log "EnterForeground() called on uninitialized application";
+                    Log.Error("CoreApp: EnterForeground() called on uninitialized application");
                     return;
 
                 case ApplicationState.Background:
@@ -101,7 +104,8 @@ namespace Uno.Platform
                     return;
             }
 
-            assert State == ApplicationState.Background;
+            if (State != ApplicationState.Background)
+                throw new InvalidOperationException("CoreApp: Invalid state");
 
             State = ApplicationState.Foreground;
 
@@ -109,7 +113,8 @@ namespace Uno.Platform
             if (handler != null)
                 handler(State);
 
-            assert State == ApplicationState.Foreground;
+            if (State != ApplicationState.Foreground)
+                throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
         [extern(android) Require("Source.Include", "Uno/Graphics/GLHelper.h")]
@@ -121,11 +126,11 @@ namespace Uno.Platform
             switch (State)
             {
                 case ApplicationState.Terminating:
-                    debug_log "EnterInteractive() called on terminating application";
+                    Log.Error("CoreApp: EnterInteractive() called on terminating application");
                     return;
 
                 case ApplicationState.Uninitialized:
-                    debug_log "EnterInteractive() called on uninitialized application";
+                    Log.Error("CoreApp: EnterInteractive() called on uninitialized application");
                     return;
 
                 case ApplicationState.Background:
@@ -139,7 +144,8 @@ namespace Uno.Platform
                     return;
             }
 
-            assert State == ApplicationState.Foreground;
+            if (State != ApplicationState.Foreground)
+                throw new InvalidOperationException("CoreApp: Invalid state");
 
             State = ApplicationState.Interactive;
 
@@ -147,7 +153,8 @@ namespace Uno.Platform
             if (handler != null)
                 handler(State);
 
-            assert State == ApplicationState.Interactive;
+            if (State != ApplicationState.Interactive)
+                throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
         internal static void ExitInteractive()
@@ -171,7 +178,8 @@ namespace Uno.Platform
                     break;
             }
 
-            assert State == ApplicationState.Interactive;
+            if (State != ApplicationState.Interactive)
+                throw new InvalidOperationException("CoreApp: Invalid state");
 
             State = ApplicationState.Foreground;
 
@@ -179,7 +187,8 @@ namespace Uno.Platform
             if (handler != null)
                 handler(State);
 
-            assert State == ApplicationState.Foreground;
+            if (State != ApplicationState.Foreground)
+                throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
         internal static void EnterBackground()
@@ -203,7 +212,8 @@ namespace Uno.Platform
                     break;
             }
 
-            assert State == ApplicationState.Foreground;
+            if (State != ApplicationState.Foreground)
+                throw new InvalidOperationException("CoreApp: Invalid state");
 
             State = ApplicationState.Background;
 
@@ -211,7 +221,8 @@ namespace Uno.Platform
             if (handler != null)
                 handler(State);
 
-            assert State == ApplicationState.Background;
+            if (State != ApplicationState.Background)
+                throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
         internal static void Terminate()
@@ -231,7 +242,8 @@ namespace Uno.Platform
                     break;
             }
 
-            assert State == ApplicationState.Background;
+            if (State != ApplicationState.Background)
+                throw new InvalidOperationException("CoreApp: Invalid state");
 
             State = ApplicationState.Terminating;
 
@@ -239,7 +251,9 @@ namespace Uno.Platform
             if (handler != null)
                 handler(State);
 
-            assert State == ApplicationState.Terminating;
+            if (State != ApplicationState.Terminating)
+                throw new InvalidOperationException("CoreApp: Invalid state");
+
             State = ApplicationState.Uninitialized;
         }
 

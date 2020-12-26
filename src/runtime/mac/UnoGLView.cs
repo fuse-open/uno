@@ -150,7 +150,7 @@ namespace Uno.Support.MonoMac
             if (MonoMacEnums.TryGetUnoKey((NSKey)theEvent.KeyCode, out key))
                 Bootstrapper.OnKeyDown(_unoWindow, key);
             else
-                Debug.Log("Unsupported key code: " + theEvent.KeyCode, DebugMessageType.Error);
+                Log.Error("Unsupported key code: " + theEvent.KeyCode);
 
             if (EnableText && IsTextInputEvent (ModifierFlags))
             {
@@ -180,7 +180,7 @@ namespace Uno.Support.MonoMac
             if (MonoMacEnums.TryGetUnoKey((NSKey)theEvent.KeyCode, out key))
                 Bootstrapper.OnKeyUp(_unoWindow, key);
             else
-                Debug.Log("Unsupported key code: " + theEvent.KeyCode, DebugMessageType.Error);
+                Log.Error("Unsupported key code: " + theEvent.KeyCode);
         }
 
         public override void MouseMoved(NSEvent theEvent)
@@ -204,7 +204,7 @@ namespace Uno.Support.MonoMac
             }
             else
             {
-                Debug.Log("Unsupported mouse button: " + theEvent.ButtonNumber, DebugMessageType.Error);
+                Log.Error("Unsupported mouse button: " + theEvent.ButtonNumber);
             }
         }
 
@@ -220,7 +220,7 @@ namespace Uno.Support.MonoMac
             }
             else
             {
-                Debug.Log("Unsupported mouse button: " + theEvent.ButtonNumber, DebugMessageType.Error);
+                Log.Error("Unsupported mouse button: " + theEvent.ButtonNumber);
             }
         }
 

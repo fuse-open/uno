@@ -51,10 +51,10 @@ void uLogv(int level, const char* format, va_list args)
 #else
     static const char* strings[] = {
         "",             // uLogLevelDebug
-        "Info: ",       // uLogLevelInformation
-        "Warning: ",    // uLogLevelWarning
-        "Error: ",      // uLogLevelError
-        "Fatal: "       // uLogLevelFatal
+        "INFO: ",       // uLogLevelInformation
+        "WARNING: ",    // uLogLevelWarning
+        "ERROR: ",      // uLogLevelError
+        "FATAL: "       // uLogLevelFatal
     };
 #if TARGET_OS_IPHONE
     // Defined in ObjC file to call NSLog()
