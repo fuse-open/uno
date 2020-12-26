@@ -13,7 +13,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
 {
     public class ApiReferenceJsonRenderer : Renderer
     {
-        private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
+        readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
         {
             DefaultValueHandling = DefaultValueHandling.Ignore,
             NullValueHandling = NullValueHandling.Ignore,
@@ -21,8 +21,8 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };
 
-        private readonly List<DocumentViewModel> _uxNamespaces = new List<DocumentViewModel>();
-        private readonly Dictionary<string, List<DataTypeViewModel>> _uxClassesByNamespace = new Dictionary<string, List<DataTypeViewModel>>();
+        readonly List<DocumentViewModel> _uxNamespaces = new List<DocumentViewModel>();
+        readonly Dictionary<string, List<DataTypeViewModel>> _uxClassesByNamespace = new Dictionary<string, List<DataTypeViewModel>>();
 
         public ApiReferenceJsonRenderer(Log log, string outputPath, HashSet<DocumentViewModel> viewModels) : base(log, outputPath, viewModels)
         {
@@ -85,7 +85,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return count;
         }
 
-        private void WriteAddAndUpdateProgress(int current, int total)
+        void WriteAddAndUpdateProgress(int current, int total)
         {
             if (current % 1000 == 0)
             {
@@ -101,7 +101,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return 1;
         }
 
-        private string GetRenderedDocumentBody(DocumentViewModel viewModel)
+        string GetRenderedDocumentBody(DocumentViewModel viewModel)
         {
             var tocBuilder = new TableOfContentsBuilder(viewModel, ViewModelsByParent, ViewModelsById);
             var toc = tocBuilder.Build();
@@ -110,7 +110,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return JsonConvert.SerializeObject(page, _jsonSerializerSettings);
         }
 
-        private string GetRenderedIndexBody(DocumentViewModel viewModel)
+        string GetRenderedIndexBody(DocumentViewModel viewModel)
         {
             var tocBuilder = new TableOfContentsBuilder(viewModel, ViewModelsByParent, ViewModelsById);
             var toc = tocBuilder.Build();                       

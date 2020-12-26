@@ -49,7 +49,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
             return props == null ? null : "<" + props.Name + " />";
         }
 
-        private List<DataType> FindInheritanceTypes(DataType dataType)
+        List<DataType> FindInheritanceTypes(DataType dataType)
         {
             var result = new List<DataType>();
 

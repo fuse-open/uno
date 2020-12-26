@@ -11,7 +11,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             return EnumerateFlattenedEvents(dataType, new FlatteningState(dataType));
         }
 
-        private static IEnumerable<Event> EnumerateFlattenedEvents(DataType dataType, FlatteningState state)
+        static IEnumerable<Event> EnumerateFlattenedEvents(DataType dataType, FlatteningState state)
         {
             foreach (var ev in EnumerateFlattenedMembers(dataType.Events, state))
             {
@@ -32,7 +32,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             return EnumerateFlattenedFields(dataType, new FlatteningState(dataType));
         }
 
-        private static IEnumerable<Field> EnumerateFlattenedFields(DataType dataType, FlatteningState state)
+        static IEnumerable<Field> EnumerateFlattenedFields(DataType dataType, FlatteningState state)
         {
             foreach (var field in EnumerateFlattenedMembers(dataType.Fields, state))
             {
@@ -53,7 +53,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             return EnumerateFlattenedMethods(dataType, new FlatteningState(dataType));
         }
 
-        private static IEnumerable<Method> EnumerateFlattenedMethods(DataType dataType, FlatteningState state)
+        static IEnumerable<Method> EnumerateFlattenedMethods(DataType dataType, FlatteningState state)
         {
             foreach (var method in EnumerateFlattenedMembers(dataType.Methods, state))
             {
@@ -74,7 +74,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             return EnumerateFlattenedProperties(dataType, new FlatteningState(dataType));
         }
 
-        private static IEnumerable<Property> EnumerateFlattenedProperties(DataType dataType, FlatteningState state)
+        static IEnumerable<Property> EnumerateFlattenedProperties(DataType dataType, FlatteningState state)
         {
             foreach (var property in EnumerateFlattenedMembers(dataType.Properties, state))
             {
@@ -90,7 +90,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             }
         }
 
-        private static IEnumerable<T> EnumerateFlattenedMembers<T>(IEnumerable<T> members, FlatteningState state) where T : Member
+        static IEnumerable<T> EnumerateFlattenedMembers<T>(IEnumerable<T> members, FlatteningState state) where T : Member
         {
             foreach (var member in members)
             {
@@ -102,10 +102,10 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             }
         }
 
-        private class FlatteningState
+        class FlatteningState
         {
-            private readonly IList<string> _seenSignatures = new List<string>();
-            private readonly DataType _originatingFrom;
+            readonly IList<string> _seenSignatures = new List<string>();
+            readonly DataType _originatingFrom;
 
             public FlatteningState(DataType originatingFrom)
             {

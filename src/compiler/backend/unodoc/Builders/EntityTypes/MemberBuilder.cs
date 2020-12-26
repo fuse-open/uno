@@ -13,7 +13,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
 {
     public class MemberBuilder : Builder
     {
-        private readonly ICommentParser _commentParser;
+        readonly ICommentParser _commentParser;
 
         public MemberBuilder(IEntityNaming naming,
                              ISyntaxGenerator syntax,
@@ -50,7 +50,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                       target);
         }
 
-        private Member ResolveOriginalDeclaration(Member member)
+        Member ResolveOriginalDeclaration(Member member)
         {
             var method = member as Method;
             if (method?.OverriddenMethod != null)
@@ -73,7 +73,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return member;
         }
 
-        private void AddMemberToTarget(Member member, DataType parentDataType, HashSet<DocumentViewModel> target)
+        void AddMemberToTarget(Member member, DataType parentDataType, HashSet<DocumentViewModel> target)
         {
             // If this is some kind of overridden member, try to resolve the original declaration as it's the one that's
             // interesting to us
@@ -129,7 +129,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             target.AddIfNotExists(viewModel);
         }
 
-        private void AddAttachedMemberToTarget(string name, MemberType memberType, Method underlyingMethod, DataType returnType, DataType parentDataType, HashSet<DocumentViewModel> target)
+        void AddAttachedMemberToTarget(string name, MemberType memberType, Method underlyingMethod, DataType returnType, DataType parentDataType, HashSet<DocumentViewModel> target)
         {
             var uxAttribute = underlyingMethod.Attributes.SingleOrDefault(e => e.ReturnType.QualifiedName == ExportConstants.UxAttachedPropertySetterAttributeName ||
                                                                                e.ReturnType.QualifiedName == ExportConstants.UxAttachedEventAdderAttributeName);
@@ -177,7 +177,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             target.AddIfNotExists(viewModel);
         }
 
-        private static string GetMemberUri(Member member, DataType dataType)
+        static string GetMemberUri(Member member, DataType dataType)
         {
             var property = member as Property;
             var evt = member as Event;
@@ -211,7 +211,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                     Naming.GetFullIndexTitle(elementType) + suffix);
         }
 
-        private ParametersViewModel GetParameters(Member member)
+        ParametersViewModel GetParameters(Member member)
         {
             var parameters = member.GetParametersOrNull();
             if (parameters == null)
@@ -238,7 +238,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new ParametersViewModel(list);
         }
 
-        private ReturnsViewModel GetReturns(Member member)
+        ReturnsViewModel GetReturns(Member member)
         {
             if (member.ReturnType != null && member.ReturnType.FullName != ExportConstants.VoidTypeName)
             {
@@ -247,7 +247,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return null;
         }
 
-        private ReturnsViewModel GetReturns(Member member, DataType returnDataType)
+        ReturnsViewModel GetReturns(Member member, DataType returnDataType)
         {
             var dataType = returnDataType.IsArray ? returnDataType.ElementType : returnDataType;
             var suffix = returnDataType.IsArray ? "[]" : "";
@@ -263,7 +263,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                         Naming.GetFullIndexTitle(dataType) + suffix);
         }
 
-        private UxMemberPropertiesViewModel GetUxProperties(Member member)
+        UxMemberPropertiesViewModel GetUxProperties(Member member)
         {
             // Only include public members
             if (!member.IsPublic) return null;
@@ -294,7 +294,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return null;
         }
 
-        private ValuesViewModel BuildValues(Member member)
+        ValuesViewModel BuildValues(Member member)
         {
             if (member.ReturnType == null || member.ReturnType.FullName == ExportConstants.VoidTypeName)
             {
@@ -304,7 +304,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return BuildValues(member.ReturnType);
         }
 
-        private MemberFlagsViewModel BuildFlags(Member member)
+        MemberFlagsViewModel BuildFlags(Member member)
         {
             var attrs = member.Attributes ?? new NewObject[0];
             var hasUxContent = attrs.Any(e => e.ReturnType.QualifiedName == ExportConstants.UxContentAttributeName);
@@ -314,7 +314,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new MemberFlagsViewModel(hasUxContent, hasUxPrimary, hasUxComponents);
         }
 
-        private AttributesViewModel BuildAttributes(Member member)
+        AttributesViewModel BuildAttributes(Member member)
         {
             var models = new List<AttributeViewModel>();
             foreach (var attr in member.Attributes ?? new NewObject[0])
@@ -332,7 +332,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new AttributesViewModel(models);
         }
 
-        private ValuesViewModel BuildValues(DataType dataType)
+        ValuesViewModel BuildValues(DataType dataType)
         {
             if (dataType.TypeType != TypeType.Enum)
             {
@@ -349,12 +349,12 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return new ValuesViewModel(values);
         }
 
-        private static string GetDataTypeUri(DataType dataType)
+        static string GetDataTypeUri(DataType dataType)
         {
             return dataType.IsGenericParameter ? null : dataType.GetUri();
         }
 
-        private static bool TypeInheritsFromGenericList(DataType dataType)
+        static bool TypeInheritsFromGenericList(DataType dataType)
         {
             if (dataType.GetUri() == ExportConstants.GenericListInterfaceTypeUri)
             {
@@ -363,7 +363,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             return dataType.Base != null && TypeInheritsFromGenericList(dataType.Base);
         }
 
-        private static string GetTypeName(Member member, SourceComment comment, UxMemberPropertiesViewModel uxProperties)
+        static string GetTypeName(Member member, SourceComment comment, UxMemberPropertiesViewModel uxProperties)
         {
             if (comment.Attributes.ScriptEvent != null)
             {

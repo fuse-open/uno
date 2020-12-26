@@ -7,8 +7,8 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 {
     public class AttachedMemberCache
     {
-        private readonly Dictionary<DataType, List<AttachedUxProperty>> _attachedProperties = new Dictionary<DataType, List<AttachedUxProperty>>();
-        private readonly Dictionary<DataType, List<AttachedUxEvent>> _attachedEvents = new Dictionary<DataType, List<AttachedUxEvent>>();
+        readonly Dictionary<DataType, List<AttachedUxProperty>> _attachedProperties = new Dictionary<DataType, List<AttachedUxProperty>>();
+        readonly Dictionary<DataType, List<AttachedUxEvent>> _attachedEvents = new Dictionary<DataType, List<AttachedUxEvent>>();
 
         public AttachedMemberCache(IEnumerable<DataType> types)
         {
@@ -56,7 +56,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return result.ToList();
         } 
 
-        private static Dictionary<DataType, List<AttachedUxProperty>> FindAttachedProperties(DataType dataType)
+        static Dictionary<DataType, List<AttachedUxProperty>> FindAttachedProperties(DataType dataType)
         {
             var result = new Dictionary<DataType, List<AttachedUxProperty>>();
 
@@ -83,7 +83,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return result;
         } 
 
-        private static Dictionary<DataType, List<AttachedUxEvent>> FindAttachedEvents(DataType dataType)
+        static Dictionary<DataType, List<AttachedUxEvent>> FindAttachedEvents(DataType dataType)
         {
             var result = new Dictionary<DataType, List<AttachedUxEvent>>();
 

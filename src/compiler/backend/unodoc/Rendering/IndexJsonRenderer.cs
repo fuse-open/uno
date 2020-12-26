@@ -14,14 +14,14 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
 {
     public class IndexJsonRenderer : Renderer
     {
-        private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
+        readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings
         {
             DefaultValueHandling = DefaultValueHandling.Ignore,
             NullValueHandling = NullValueHandling.Ignore,
             Formatting = Formatting.Indented,
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };
-        private readonly Dictionary<string, Tuple<DocumentReferenceViewModel, List<DataTypeViewModel>>> _classesByBaseType;
+        readonly Dictionary<string, Tuple<DocumentReferenceViewModel, List<DataTypeViewModel>>> _classesByBaseType;
 
         public IndexJsonRenderer(Log log, string outputPath, HashSet<DocumentViewModel> viewModels) : base(log, outputPath, viewModels)
         {
@@ -55,7 +55,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             LogMessage("Built indexable class descendant cache in " + sw.Elapsed);
         }
 
-        private static bool IsIndexableClass(DataTypeViewModel viewModel)
+        static bool IsIndexableClass(DataTypeViewModel viewModel)
         {
             if (viewModel.Id.Type != "Class" && viewModel.Id.Type != "UxClass")
             {
@@ -108,7 +108,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return count;
         }
 
-        private void WriteAddAndUpdateProgress(int current, int total)
+        void WriteAddAndUpdateProgress(int current, int total)
         {
             if (current % 100 == 0)
             {
@@ -116,7 +116,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             }
         }
 
-        private string GetRenderedDocumentBody(DocumentReferenceViewModel baseType)
+        string GetRenderedDocumentBody(DocumentReferenceViewModel baseType)
         {
             var descendants = FindDescendantsOf(baseType.Id.Id);
             var items = descendants.OrderBy(e => e.Titles.FullyQualifiedIndexTitle)
@@ -133,7 +133,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             return JsonConvert.SerializeObject(page, _jsonSerializerSettings);
         }
 
-        private List<DataTypeViewModel> FindDescendantsOf(string id)
+        List<DataTypeViewModel> FindDescendantsOf(string id)
         {
             if (!_classesByBaseType.ContainsKey(id))
             {

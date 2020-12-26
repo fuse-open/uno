@@ -8,8 +8,8 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 {
     public class SyntaxGenerator : ISyntaxGenerator
     {
-        private readonly IExportableCheck _exportableCheck;
-        private readonly IEntityNaming _entityNaming;
+        readonly IExportableCheck _exportableCheck;
+        readonly IEntityNaming _entityNaming;
 
         public SyntaxGenerator(IExportableCheck exportableCheck, IEntityNaming entityNaming)
         {
@@ -36,7 +36,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return GetSyntaxImplementationFor(entity).BuildUxSyntax(entity);
         }
 
-        private ISyntaxGenerator GetSyntaxImplementationFor(IEntity entity)
+        ISyntaxGenerator GetSyntaxImplementationFor(IEntity entity)
         {
             if (entity is Block)
             {

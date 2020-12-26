@@ -54,7 +54,7 @@ namespace Uno.Compiler.Backends.UnoDoc.ViewModels.MetaData
                                                   sourceComment.Attributes.Deprecated);
         }
 
-        private static Tuple<string, string> ParseCommentWithTypeHint(string comment)
+        static Tuple<string, string> ParseCommentWithTypeHint(string comment)
         {
             string typeHint = null;
 

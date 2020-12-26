@@ -4,13 +4,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 {
     internal sealed class CRC32 : HashAlgorithm
     {
-        private const uint DefaultPolynomial = 0xedb88320;
-        private const uint DefaultSeed = 0xffffffff;
+        const uint DefaultPolynomial = 0xedb88320;
+        const uint DefaultSeed = 0xffffffff;
 
-        private uint _hash;
-        private readonly uint _seed;
-        private readonly uint[] _table;
-        private static uint[] _defaultTable;
+        uint _hash;
+        readonly uint _seed;
+        readonly uint[] _table;
+        static uint[] _defaultTable;
 
         internal CRC32()
         {
@@ -60,7 +60,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return ~CalculateHash(InitializeTable(polynomial), seed, buffer, 0, buffer.Length);
         }
 
-        private static uint[] InitializeTable(uint polynomial)
+        static uint[] InitializeTable(uint polynomial)
         {
             if (polynomial == DefaultPolynomial && _defaultTable != null)
                 return _defaultTable;
@@ -83,7 +83,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return createTable;
         }
 
-        private static uint CalculateHash(uint[] table, uint seed, byte[] buffer, int start, int size)
+        static uint CalculateHash(uint[] table, uint seed, byte[] buffer, int start, int size)
         {
             uint crc = seed;
             for (int i = start; i < size; i++)
@@ -94,7 +94,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return crc;
         }
 
-        private byte[] UInt32ToBigEndianBytes(uint x)
+        byte[] UInt32ToBigEndianBytes(uint x)
         {
             return new[]
             {

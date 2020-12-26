@@ -93,7 +93,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
             return null;
         }
 
-        private string BuildExplicitImplementationPrefix(Member member)
+        string BuildExplicitImplementationPrefix(Member member)
         {
             var propertyMember = member as Property;
             var methodMember = member as Method;

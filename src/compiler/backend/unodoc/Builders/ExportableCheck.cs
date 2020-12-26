@@ -7,7 +7,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 {
     public class ExportableCheck : IExportableCheck
     {
-        private readonly ICommentParser _commentParser;
+        readonly ICommentParser _commentParser;
 
         public ExportableCheck(ICommentParser commentParser)
         {
@@ -19,13 +19,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             return IsExportable(entity) && IsVisible(entity);
         }
 
-        private static bool IsExportable(IEntity entity)
+        static bool IsExportable(IEntity entity)
         {
             var result = ExportConstants.AllowedPackagePrefixes.Any(prefix => prefix == entity.Source.Package.Name || entity.Source.Package.Name.StartsWith(prefix + "."));
             return result;
         }
 
-        private bool IsVisible(IEntity entity)
+        bool IsVisible(IEntity entity)
         {
             // Regardless of entity visibility, if it's annotated with one of these flags it should be exported regardless:
             //  - @scriptevent

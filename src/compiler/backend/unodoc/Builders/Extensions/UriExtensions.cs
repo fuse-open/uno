@@ -189,12 +189,12 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             return sb.ToString();
         }
 
-        private static void AppendSeparator(StringBuilder sb)
+        static void AppendSeparator(StringBuilder sb)
         {
             sb.AppendWhen(sb.Length > 0 && sb[sb.Length - 1] != '/', "/");
         }
 
-        private static string FormatSegment(string segment)
+        static string FormatSegment(string segment)
         {
             return segment.ToLower();
         }

@@ -10,7 +10,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
 {
     public static class DataTypeExtensions
     {
-        private static readonly HashSet<string> WhitelistedUxNamespaces = new HashSet<string>(new[]
+        static readonly HashSet<string> WhitelistedUxNamespaces = new HashSet<string>(new[]
         {
             "Fuse",
             "Fuse.Reactive",
@@ -30,12 +30,12 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             "Fuse.Native"
         });
 
-        private static readonly List<string> ExcludedUxBaseNamespaces = new List<string>
+        static readonly List<string> ExcludedUxBaseNamespaces = new List<string>
         {
             "Fuse.Elements"
         };
 
-        private static readonly List<string> UxClassNameExclusionFilters = new List<string>
+        static readonly List<string> UxClassNameExclusionFilters = new List<string>
         {
             "Internal",
             "Exception",
@@ -86,7 +86,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
             return null;
         }
 
-        private static string FormatGenericParameterName(DataType dataType, bool fullyQualified)
+        static string FormatGenericParameterName(DataType dataType, bool fullyQualified)
         {
             if (dataType.IsGenericParameter)
             {
@@ -157,7 +157,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Extensions
         }
 
 
-        private static bool IsWhitelistedUxNamespace(string ns, out string matchedNs)
+        static bool IsWhitelistedUxNamespace(string ns, out string matchedNs)
         {
             string bestMatch = null;
             foreach (var whitelistedNs in WhitelistedUxNamespaces)

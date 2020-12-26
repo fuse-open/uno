@@ -10,7 +10,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
 {
     internal class MemberNaming : Naming, IEntityNaming
     {
-        private static readonly IReadOnlyDictionary<string, string> OperatorSymbolMap = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>
+        static readonly IReadOnlyDictionary<string, string> OperatorSymbolMap = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>
         {
             { "op_UnaryPlus", "+" },
             { "op_UnaryNegation", "-" },
@@ -46,7 +46,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
             return ns.FullName + "." + GetIndexTitleInternal((Member) entity, true);
         }
 
-        private string GetIndexTitleInternal(Member member, bool fullyQualified)
+        string GetIndexTitleInternal(Member member, bool fullyQualified)
         {
             var dataType = member.DeclaringType;
             var baseName = GetPageBaseName(member, dataType, true);
@@ -81,7 +81,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
             return (baseName + FormatGenerics(genericArguments) + " " + typeName + " " + FormatParameters(parameterTypes, false)).Trim();
         }
 
-        private string GetPageBaseName(Member member, DataType dataType, bool isTocTitle)
+        string GetPageBaseName(Member member, DataType dataType, bool isTocTitle)
         {
             var constructorMember = member as Constructor;
             var castMember = member as Cast;
@@ -114,13 +114,13 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
                            : dataType.Name + "." + member.Name;
         }
 
-        private string GetPageBaseNameForConstructor(DataType context)
+        string GetPageBaseNameForConstructor(DataType context)
         {
             string name;
             return TypeAliases.TryGetAliasFromType(context.QualifiedName, out name) ? name : context.Name;
         }
 
-        private string GetPageBaseNameForCast(Cast cast, bool shortVersion)
+        string GetPageBaseNameForCast(Cast cast, bool shortVersion)
         {
             if (cast.Parameters.Length < 1)
             {
@@ -142,7 +142,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
                            : from + " to " + to + " " + explicitOrImplicit;
         }
 
-        private string GetPageBaseNameForOperator(Operator op)
+        string GetPageBaseNameForOperator(Operator op)
         {
             if (op.Parameters.Length < 1)
             {
@@ -164,7 +164,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
                            : leftSide + " " + operatorName + " " + rightSide;
         }
 
-        private string GetPageBaseNameForIndexer(Property property, DataType dataType, bool addDataTypeName)
+        string GetPageBaseNameForIndexer(Property property, DataType dataType, bool addDataTypeName)
         {
             if (property.Parameters.Length < 1)
             {
@@ -177,7 +177,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Naming
                            : "[" + type + "]";
         }
 
-        private string GetTypeName(Member member)
+        string GetTypeName(Member member)
         {
             switch (member.MemberType)
             {

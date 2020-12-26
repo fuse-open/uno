@@ -26,26 +26,33 @@ namespace Uno.Compiler.Backends.UnoDoc
             var renderToPath = Environment.ExpandSingleLine("@(ReferenceOutputPath:NativePath)");
             var skipDeleteDeprecated = Environment.ExpandSingleLine("@(ReferenceSkipDeleteDeprecated)") == "true";
 
+            if (string.IsNullOrEmpty(renderToPath))
+                renderToPath = Environment.OutputDirectory;
+
             var apiPath = Path.Combine(renderToPath, "api");
             var indexPath = Path.Combine(renderToPath, "indicies");
 
-            Log.Message("Starting view model generation");
+            Log.Verbose("Starting view model generation");
             var sw = Stopwatch.StartNew();
-            var viewModels = new ViewModelExporter(Data.IL, Utilities).BuildExport();
-            sw.Stop();
-            Log.Message("Generated " + viewModels.Count + " in " + sw.Elapsed);
+            var viewModels = new ViewModelExporter(Log, Data.IL, Utilities).BuildExport();
 
-            Log.Message("Rendering JSON api reference export to " + apiPath);
+            if (Log.ErrorCount > 0)
+                return null;
+
+            sw.Stop();
+            Log.Verbose("Generated " + viewModels.Count + " in " + sw.Elapsed);
+
+            Log.Verbose("Rendering JSON api reference export to " + apiPath);
             sw = Stopwatch.StartNew();
             var count = new ApiReferenceJsonRenderer(Log, apiPath, viewModels).Render(skipDeleteDeprecated);
             sw.Stop();
-            Log.Message("Rendered JSON api reference export (" + count + " documents) to " + apiPath + " in " + sw.Elapsed);
+            Log.Verbose("Rendered JSON api reference export (" + count + " documents) to " + apiPath + " in " + sw.Elapsed);
 
-            Log.Message("Rendering JSON index export to " + indexPath);
+            Log.Verbose("Rendering JSON index export to " + indexPath);
             sw = Stopwatch.StartNew();
             count = new IndexJsonRenderer(Log, indexPath, viewModels).Render(skipDeleteDeprecated);
             sw.Stop();
-            Log.Message("Rendered JSON index export (" + count + " documents) to " + indexPath + " in " + sw.Elapsed);
+            Log.Verbose("Rendered JSON index export (" + count + " documents) to " + indexPath + " in " + sw.Elapsed);
             return null;
         }
     }

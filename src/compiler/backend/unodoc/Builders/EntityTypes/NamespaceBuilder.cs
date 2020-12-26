@@ -9,7 +9,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
 {
     public class NamespaceBuilder : Builder
     {
-        private readonly ICommentParser _commentParser;
+        readonly ICommentParser _commentParser;
 
         public NamespaceBuilder(IEntityNaming naming,
                                 ISyntaxGenerator syntax,
@@ -40,7 +40,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                                                            Naming.GetFullIndexTitle(entity)));
         }
 
-        private void AddNamespaceToTarget(Namespace ns, HashSet<DocumentViewModel> target)
+        void AddNamespaceToTarget(Namespace ns, HashSet<DocumentViewModel> target)
         {
             var titles = new TitlesViewModel(Naming.GetPageTitle(ns),
                                              Naming.GetIndexTitle(ns),
@@ -57,7 +57,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                                          null));
         }
 
-        private DataTypeBuilder GetDataTypeBuilder()
+        DataTypeBuilder GetDataTypeBuilder()
         {
             return new DataTypeBuilder(Naming, Syntax, Exportable, AttachedMembers, _commentParser);
         }
