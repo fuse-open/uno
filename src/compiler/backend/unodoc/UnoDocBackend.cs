@@ -26,7 +26,7 @@ namespace Uno.Compiler.Backends.UnoDoc
             var skipDeleteDeprecated = Environment.ExpandSingleLine("@(ReferenceSkipDeleteDeprecated)") == "true";
 
             var apiPath = Path.Combine(renderToPath, "api");
-            var indexPath = Path.Combine(renderToPath, "indicies");
+            var indexPath = Path.Combine(renderToPath, "indices");
 
             Log.Message("Starting view model generation");
             var sw = Stopwatch.StartNew();
