@@ -39,7 +39,7 @@ namespace Uno.Platform.iOS
         {
             get
             @{
-                return [UIApplication sharedApplication].applicationIconBadgeNumber;
+                return (int32_t)[UIApplication sharedApplication].applicationIconBadgeNumber;
             @}
             set
             @{
