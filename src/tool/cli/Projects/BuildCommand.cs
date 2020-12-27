@@ -37,7 +37,7 @@ namespace Uno.CLI.Projects
             WriteRow("-s, --set:NAME=STRING",       "Override build system property");
             WriteRow("-o, --out-dir=PATH",          "Override output directory");
             WriteRow("-b, --build-only",            "Build only; don't run or open debugger");
-            WriteRow("-g, --gen-only",              "Generate only; don't compile generated code.");
+            WriteRow("-g, --gen-only",              "Generate only; don't compile generated code");
             WriteRow("-f, --force",                 "Build even if output is up-to-date");
             WriteRow("-l, --libs",                  "Rebuild package library if necessary");
             WriteRow("-p, --print-internals",       "Print a list of build system properties");
