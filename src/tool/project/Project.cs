@@ -100,6 +100,7 @@ namespace Uno.ProjectFormat
         public string GetOutputDirectory(object configuration, object target)
         {
             return OutputDirectory
+                .Replace("@(Configuration:ToLower)", configuration.ToString().ToLowerInvariant())
                 .Replace("@(Configuration)", configuration.ToString())
                 .Replace("@(Target)", target.ToString())
                 .UnixToNative();

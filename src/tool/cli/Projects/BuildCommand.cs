@@ -23,7 +23,7 @@ namespace Uno.CLI.Projects
             WriteRow("uno build native --debug",    "Build & open Visual C++ or Xcode, if available");
 
             WriteHead("Common options", 26);
-            WriteRow("-c, --configuration=STRING",  "Build configuration [Debug|Release]");
+            WriteRow("-c, --configuration=STRING",  "Build configuration (debug|release)");
             WriteRow("-t, --target=STRING",         "Build target (see: Available build targets)");
             WriteRow("-d, --debug",                 "Open IDE for debugging after successful build");
             WriteRow("-r, --run",                   "Start the program after successful build");

@@ -52,7 +52,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="UnoCore">
-      <HintPath>..\..\..\lib\UnoCore\build\dotnet\Debug\UnoCore.dll</HintPath>
+      <HintPath>..\..\..\lib\UnoCore\build\dotnet\debug\UnoCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />

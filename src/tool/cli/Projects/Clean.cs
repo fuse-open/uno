@@ -21,7 +21,7 @@ namespace Uno.CLI.Projects
 
             WriteHead("Available options", 26);
             WriteRow("-t, --target=STRING",         "Build target (see: Available build targets)");
-            WriteRow("-c, --configuration=STRING",  "Build configuration [Debug|Release]");
+            WriteRow("-c, --configuration=STRING",  "Build configuration (debug|release)");
             WriteRow("-r, --recursive",             "Look for project files recursively");
 
             WriteHead("Available build targets", 19);

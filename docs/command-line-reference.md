@@ -92,7 +92,7 @@ Examples
   uno build native --debug    Build & open Visual C++ or Xcode, if available
 
 Common options
-  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -c, --configuration=STRING  Build configuration (debug|release)
   -t, --target=STRING         Build target (see: Available build targets)
   -d, --debug                 Open IDE for debugging after successful build
   -r, --run                   Start the program after successful build
@@ -141,7 +141,7 @@ Usage: uno no-build [target] [options] [project-path]
 Invoke generated build steps without triggering a build.
 
 Common options
-  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -c, --configuration=STRING  Build configuration (debug|release)
   -o, --out-dir=PATH          Specify output directory [optional]
   -b, --build                 Execute native build command
   -d, --debug                 Open IDE for debugging
@@ -167,7 +167,7 @@ Examples
 
 Available options
   -t, --target=STRING         Build target (see: Available build targets)
-  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -c, --configuration=STRING  Build configuration (debug|release)
   -r, --recursive             Look for project files recursively
 
 Available build targets
@@ -232,7 +232,7 @@ Available options
   -f, --force                  Update package caches regardless of modification time
   -e, --express                Express mode. Don't rebuild packages depending on a modified package
   -z, --clean                  Clean projects before building them
-  -c, --configuration=NAME     Set build configuration (Debug|Release) [optional]
+  -c, --configuration=NAME     Set build configuration (debug|release) [optional]
   -n, --version=X.Y.Z-SUFFIX   Override version number for all packages built [optional]
   -C, --no-cache               Disable in-memory AST & IL caches
   -s, --silent                 Very quiet build log

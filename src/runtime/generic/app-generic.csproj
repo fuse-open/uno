@@ -41,7 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnoCore">
-      <HintPath>..\..\..\lib\UnoCore\build\dotnet\Debug\UnoCore.dll</HintPath>
+      <HintPath>..\..\..\lib\UnoCore\build\dotnet\debug\UnoCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="..\..\GlobalAssemblyInfo.targets" />

@@ -18,7 +18,7 @@ namespace Uno.CLI.Projects
             WriteUsage("[target] [options] [project-path]");
 
             WriteHead("Common options", 26);
-            WriteRow("-c, --configuration=STRING",  "Build configuration [Debug|Release]");
+            WriteRow("-c, --configuration=STRING",  "Build configuration (debug|release)");
             WriteRow("-o, --out-dir=PATH",          "Specify output directory", true);
             WriteRow("-b, --build",                 "Execute native build command");
             WriteRow("-d, --debug",                 "Open IDE for debugging");
@@ -57,9 +57,7 @@ namespace Uno.CLI.Projects
             var project = Project.Load(input.Path(".").GetProjectFile());
 
             if (string.IsNullOrEmpty(outputDir))
-                outputDir = project.OutputDirectory
-                    .Replace("@(Target)", target.Identifier)
-                    .Replace("@(Configuration)", configuration.ToString());
+                outputDir = project.GetOutputDirectory(configuration, target);
 
             var file = new BuildFile(outputDir);
 
