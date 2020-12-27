@@ -35,8 +35,20 @@ namespace Uno.Compiler.Backends.UnoDoc.ViewModels.MetaData
 
         public BasicCommentViewModel ToBasicComment()
         {
-            var attrs = Attributes;
-            attrs.SeeAlso.Clear(); // Don't include "See Also" in these comments as it can cause circular references
+            // Don't include "See Also" in these comments as it can cause circular references
+            var attrs = new CommentAttributesViewModel(Attributes.Advanced,
+                                                       Attributes.ScriptModule,
+                                                       Attributes.ScriptMethod,
+                                                       Attributes.ScriptProperty,
+                                                       Attributes.ScriptEvent,
+                                                       Attributes.Returns,
+                                                       Attributes.Published,
+                                                       Attributes.Parameters,
+                                                       null, // seeAlso
+                                                       Attributes.Topic,
+                                                       Attributes.Experimental,
+                                                       Attributes.Deprecated);
+
             return new BasicCommentViewModel(Brief, Full, attrs);
         }
     }
