@@ -30,7 +30,7 @@ namespace Uno.Compiler.Backends.UnoDoc
                 renderToPath = Environment.OutputDirectory;
 
             var apiPath = Path.Combine(renderToPath, "api");
-            var indexPath = Path.Combine(renderToPath, "indicies");
+            var indexPath = Path.Combine(renderToPath, "indices");
 
             Log.Verbose("Starting view model generation");
             var sw = Stopwatch.StartNew();
