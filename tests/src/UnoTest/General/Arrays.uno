@@ -27,23 +27,23 @@ namespace UnoTest.General
             var p = new object[] { null, "foo" };
             var q = new[] { new NonTrivial("foo") };
 
-            assert a[0] == 1;
-            assert b[0] == 1;
-            assert c[0] == 1;
-            assert d[0] == 1;
-            assert e[0] == 1;
-            assert f[0] == 1;
-            assert g[0] == 1;
-            assert h[0] == 1;
-            assert i[0] == 1;
-            assert j[0] == 1;
-            assert k[0] == true;
-            assert l[0] == byte2(1);
-            assert m[0] == short2(1);
-            assert n[0] == float3(1);
-            assert o[0] == int4(1);
-            assert p[0] == null;
-            assert q[0].Object == "foo";
+            Assert.AreEqual(a[0] == 1, true);
+            Assert.AreEqual(b[0] == 1, true);
+            Assert.AreEqual(c[0] == 1, true);
+            Assert.AreEqual(d[0] == 1, true);
+            Assert.AreEqual(e[0] == 1, true);
+            Assert.AreEqual(f[0] == 1, true);
+            Assert.AreEqual(g[0] == 1, true);
+            Assert.AreEqual(h[0] == 1, true);
+            Assert.AreEqual(i[0] == 1, true);
+            Assert.AreEqual(j[0] == 1, true);
+            Assert.AreEqual(k[0] == true, true);
+            Assert.AreEqual(l[0] == byte2(1), true);
+            Assert.AreEqual(m[0] == short2(1), true);
+            Assert.AreEqual(n[0] == float3(1), true);
+            Assert.AreEqual(o[0] == int4(1), true);
+            Assert.AreEqual(p[0] == null, true);
+            Assert.AreEqual(q[0].Object == "foo", true);
         }
 
         struct NonTrivial
