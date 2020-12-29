@@ -1,4 +1,4 @@
-namespace Uno.Support.WinForms
+namespace Uno.AppLoader.WinForms
 {
     public enum WheelDeltaMode
     {

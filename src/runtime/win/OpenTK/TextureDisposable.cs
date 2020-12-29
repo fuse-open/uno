@@ -1,4 +1,4 @@
-﻿namespace Uno.Support.OpenTK
+﻿namespace Uno.AppLoader.OpenTK
 {
     class TextureDisposable : IContextObjectDisposable
     {

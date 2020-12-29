@@ -7,7 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Uno.Diagnostics;
 using Uno.Platform.Internal;
-using Uno.Support.WinForms;
+using Uno.AppLoader.WinForms;
 
 namespace Uno.AppLoader
 {

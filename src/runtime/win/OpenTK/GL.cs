@@ -8,7 +8,7 @@ using OpenTK.Graphics.ES20;
 using Uno.Diagnostics;
 using TKGL = OpenTK.Graphics.ES20.GL;
 
-namespace Uno.Support.OpenTK
+namespace Uno.AppLoader.OpenTK
 {
     public class GL : IGL
     {

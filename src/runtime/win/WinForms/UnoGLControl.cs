@@ -8,10 +8,10 @@ using OpenTK.Graphics;
 using OpenTK.Platform;
 using Uno.Platform;
 using Uno.Platform.Internal;
-using Uno.Support.OpenTK;
-using GL = Uno.Support.OpenTK.GL;
+using Uno.AppLoader.OpenTK;
+using GL = Uno.AppLoader.OpenTK.GL;
 
-namespace Uno.Support.WinForms
+namespace Uno.AppLoader.WinForms
 {
     public class UnoGLControl : UserControl
     {

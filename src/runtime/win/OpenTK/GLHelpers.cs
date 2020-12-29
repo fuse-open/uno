@@ -3,7 +3,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
 
-namespace Uno.Support.OpenTK
+namespace Uno.AppLoader.OpenTK
 {
     public static class GLHelpers
     {
