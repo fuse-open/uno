@@ -23,7 +23,7 @@ namespace Uno.CLI.Projects
             WriteRow("uno build native --debug",    "Build & open Visual C++ or Xcode, if available");
 
             WriteHead("Common options", 26);
-            WriteRow("-c, --configuration=STRING",  "Build configuration [Debug|Release]");
+            WriteRow("-c, --configuration=STRING",  "Build configuration (debug|release)");
             WriteRow("-t, --target=STRING",         "Build target (see: Available build targets)");
             WriteRow("-d, --debug",                 "Open IDE for debugging after successful build");
             WriteRow("-r, --run",                   "Start the program after successful build");
@@ -37,7 +37,7 @@ namespace Uno.CLI.Projects
             WriteRow("-s, --set:NAME=STRING",       "Override build system property");
             WriteRow("-o, --out-dir=PATH",          "Override output directory");
             WriteRow("-b, --build-only",            "Build only; don't run or open debugger");
-            WriteRow("-g, --gen-only",              "Generate only; don't compile generated code.");
+            WriteRow("-g, --gen-only",              "Generate only; don't compile generated code");
             WriteRow("-f, --force",                 "Build even if output is up-to-date");
             WriteRow("-l, --libs",                  "Rebuild package library if necessary");
             WriteRow("-p, --print-internals",       "Print a list of build system properties");

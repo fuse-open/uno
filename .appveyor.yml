@@ -14,11 +14,11 @@ environment:
 
 install:
   - ps: |
-      if ($env:Target -eq "android") {
+      if ($env:TARGET -eq "android") {
         Invoke-Expression "npm install android-build-tools -g"
       }
   - ps: |
-      if ($env:Target -eq "native") {
+      if ($env:TARGET -eq "native") {
         Invoke-WebRequest https://www.nuget.org/api/v2/package/mesa3d-x64/18.3.4 -OutFile mesa.zip
         Expand-Archive mesa.zip mesa
       }
@@ -29,15 +29,15 @@ build_script:
 
 after_build:
   - ps: |
-      if ($env:Target -eq "dotnet") {
+      if ($env:TARGET -eq "dotnet") {
         Push-AppveyorArtifact "fuse-open-uno-*.tgz"
       }
 
 before_test:
   - ps: |
-      if ($env:Target -eq "native") {
+      if ($env:TARGET -eq "native") {
         Get-ChildItem -Path lib -Recurse -Include *Test.unoproj | Select-Object -ExpandProperty DirectoryName | Foreach-Object {
-          $buildDir = Join-Path $_ build\$env:Target\Test
+          $buildDir = Join-Path $_ build\$env:TARGET\test
           New-Item -Force -ItemType directory -Path $buildDir | Out-Null
           Copy-Item -Path mesa\opengl32.dll -Destination (Join-Path $buildDir opengl32.dll)
         }

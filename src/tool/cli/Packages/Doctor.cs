@@ -22,7 +22,7 @@ namespace Uno.CLI.Packages
             WriteRow("-f, --force",                "Update package caches regardless of modification time");
             WriteRow("-e, --express",              "Express mode. Don't rebuild packages depending on a modified package");
             WriteRow("-z, --clean",                "Clean projects before building them");
-            WriteRow("-c, --configuration=NAME",   "Set build configuration (Debug|Release)", true);
+            WriteRow("-c, --configuration=NAME",   "Set build configuration (debug|release)", true);
             WriteRow("-n, --version=X.Y.Z-SUFFIX", "Override version number for all packages built", true);
             WriteRow("-C, --no-cache",             "Disable in-memory AST & IL caches");
             WriteRow("-s, --silent",               "Very quiet build log");

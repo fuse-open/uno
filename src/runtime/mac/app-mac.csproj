@@ -50,7 +50,7 @@
       <HintPath>..\..\..\node_modules\@fuse-open\xamarin-mac\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="UnoCore">
-      <HintPath>..\..\..\lib\UnoCore\build\dotnet\Debug\UnoCore.dll</HintPath>
+      <HintPath>..\..\..\lib\UnoCore\build\dotnet\debug\UnoCore.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
       <HintPath>..\..\..\node_modules\@fuse-open\xamarin-mac\Xamarin.Mac.dll</HintPath>

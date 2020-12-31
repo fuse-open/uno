@@ -33,14 +33,14 @@ namespace Uno.CLI.Projects
 
             WriteHead("Available options", 26);
             WriteRow("-l, --logfile=PATH",          "Write output to this file instead of stdout");
-            WriteRow("-t, --target=STRING",         "Build target. Supported: android, dotnet and native");
-            WriteRow("-v, --verbose",               "Verbose, always prints output from compiler and debug_log");
-            WriteRow("-q, --quiet",                 "Quiet, only prints output from compiler and debug_log in case of errors.");
+            WriteRow("-t, --target=STRING",         "Build target (see: Available build targets)");
+            WriteRow("-v, --verbose",               "Verbose, always prints output from compiler and app");
+            WriteRow("-q, --quiet",                 "Quiet, only prints output from compiler and app in case of errors");
             WriteRow("-f, --filter=",               "Only run tests matching this string");
             WriteRow("-e, --regex-filter=STRING",   "Only run tests matching this regular expression");
             WriteRow("    --trace",                 "Print trace information from unotest");
-            WriteRow("-b, --build-only",            "Don't run tests; only build.");
-            WriteRow("-g, --gen-only",              "Don't run tests; only generate code.");
+            WriteRow("-b, --build-only",            "Don't run tests; only build");
+            WriteRow("-g, --gen-only",              "Don't run tests; only generate code");
             WriteRow("    --no-uninstall",          "Don't uninstall tests after running on device");
             WriteRow("-D, --define=STRING",         "Add define, to enable a feature");
             WriteRow("-U, --undefine=STRING",       "Remove define, to disable a feature");

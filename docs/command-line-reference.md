@@ -92,7 +92,7 @@ Examples
   uno build native --debug    Build & open Visual C++ or Xcode, if available
 
 Common options
-  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -c, --configuration=STRING  Build configuration (debug|release)
   -t, --target=STRING         Build target (see: Available build targets)
   -d, --debug                 Open IDE for debugging after successful build
   -r, --run                   Start the program after successful build
@@ -106,7 +106,7 @@ Additional options
   -s, --set:NAME=STRING       Override build system property
   -o, --out-dir=PATH          Override output directory
   -b, --build-only            Build only; don't run or open debugger
-  -g, --gen-only              Generate only; don't compile generated code.
+  -g, --gen-only              Generate only; don't compile generated code
   -f, --force                 Build even if output is up-to-date
   -l, --libs                  Rebuild package library if necessary
   -p, --print-internals       Print a list of build system properties
@@ -141,7 +141,7 @@ Usage: uno no-build [target] [options] [project-path]
 Invoke generated build steps without triggering a build.
 
 Common options
-  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -c, --configuration=STRING  Build configuration (debug|release)
   -o, --out-dir=PATH          Specify output directory [optional]
   -b, --build                 Execute native build command
   -d, --debug                 Open IDE for debugging
@@ -167,7 +167,7 @@ Examples
 
 Available options
   -t, --target=STRING         Build target (see: Available build targets)
-  -c, --configuration=STRING  Build configuration [Debug|Release]
+  -c, --configuration=STRING  Build configuration (debug|release)
   -r, --recursive             Look for project files recursively
 
 Available build targets
@@ -199,14 +199,14 @@ Examples
 
 Available options
   -l, --logfile=PATH          Write output to this file instead of stdout
-  -t, --target=STRING         Build target. Supported: android, dotnet and native
-  -v, --verbose               Verbose, always prints output from compiler and debug_log
-  -q, --quiet                 Quiet, only prints output from compiler and debug_log in case of errors.
+  -t, --target=STRING         Build target (see: Available build targets)
+  -v, --verbose               Verbose, always prints output from compiler and app
+  -q, --quiet                 Quiet, only prints output from compiler and app in case of errors
   -f, --filter=               Only run tests matching this string
   -e, --regex-filter=STRING   Only run tests matching this regular expression
       --trace                 Print trace information from unotest
-  -b, --build-only            Don't run tests; only build.
-  -g, --gen-only              Don't run tests; only generate code.
+  -b, --build-only            Don't run tests; only build
+  -g, --gen-only              Don't run tests; only generate code
       --no-uninstall          Don't uninstall tests after running on device
   -D, --define=STRING         Add define, to enable a feature
   -U, --undefine=STRING       Remove define, to disable a feature
@@ -232,7 +232,7 @@ Available options
   -f, --force                  Update package caches regardless of modification time
   -e, --express                Express mode. Don't rebuild packages depending on a modified package
   -z, --clean                  Clean projects before building them
-  -c, --configuration=NAME     Set build configuration (Debug|Release) [optional]
+  -c, --configuration=NAME     Set build configuration (debug|release) [optional]
   -n, --version=X.Y.Z-SUFFIX   Override version number for all packages built [optional]
   -C, --no-cache               Disable in-memory AST & IL caches
   -s, --silent                 Very quiet build log
