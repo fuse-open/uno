@@ -1,6 +1,6 @@
 using System;
 
-namespace Uno.Support.WinForms
+namespace Uno.AppLoader.WinForms
 {
     public class RenderingContextInfo
     {

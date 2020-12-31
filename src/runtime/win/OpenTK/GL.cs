@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using OpenGL;
 using OpenTK.Graphics.ES20;
-using Uno.Diagnostics;
 using TKGL = OpenTK.Graphics.ES20.GL;
 
-namespace Uno.Support.OpenTK
+namespace Uno.AppLoader.OpenTK
 {
     public class GL : IGL
     {
@@ -520,11 +517,6 @@ namespace Uno.Support.OpenTK
         public void LineWidth(float width)
         {
             TKGL.LineWidth(width);
-        }
-
-        public void PointSize(float size)
-        {
-            Log.Warning("GL.PointSize() isn't supported by OpenGL ES 2.0, instead use the built-in vertex shader variable 'gl_PointSize'.");
         }
 
         public void PolygonOffset(float factor, float units)

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Uno.Platform;
 
-namespace Uno.Support.WinForms
+namespace Uno.AppLoader.WinForms
 {
     public class WinFormsPlatformWindow : WindowBackend
     {

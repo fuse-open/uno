@@ -2,7 +2,7 @@
 using AppKit;
 using Uno.Platform;
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     public static class MonoMacEnums
     {

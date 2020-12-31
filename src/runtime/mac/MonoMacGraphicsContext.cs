@@ -1,7 +1,7 @@
 ﻿using OpenGL;
 using Uno.Platform;
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     class MonoMacGraphicsContext : GraphicsContextBackend
     {

@@ -5,7 +5,7 @@ using CoreGraphics;
 using Uno.Platform;
 using Uno.Platform.Internal;
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     // Be sure what you do when changing the implementation. MonoMacGameView getters and setters is very expensive, 
     // since they communicate with the OS

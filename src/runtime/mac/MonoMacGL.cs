@@ -12,7 +12,7 @@ using MacGL = OpenTK.Graphics.OpenGL.GL;
 #pragma warning disable 1572
 #pragma warning disable 1573
 
-namespace Uno.Support.MonoMac
+namespace Uno.AppLoader.MonoMac
 {
     public class MonoMacGL : IGL
     {
@@ -117,8 +117,7 @@ namespace Uno.Support.MonoMac
 
         public void ClearDepth(float depth)
         {
-            // Note: Must cast to double, else OpenTK will call glClearDepthf which is not available on ATI drivers
-            MacGL.ClearDepth((double)depth);
+            MacGL.ClearDepth(depth);
         }
 
         public void ColorMask(bool red, bool green, bool blue, bool alpha)
@@ -313,7 +312,6 @@ namespace Uno.Support.MonoMac
 
         public void UniformMatrix4(int location, bool transpose, Float4x4 value)
         {
-            // Who is always changing this function creating a temp array? Please stop committing your workarounds. Thanks
             MacGL.UniformMatrix4(location, 1, transpose, ref value.M11);
         }
 
@@ -534,11 +532,6 @@ namespace Uno.Support.MonoMac
         public void LineWidth(float width)
         {
             MacGL.LineWidth(width);
-        }
-
-        public void PointSize(float size)
-        {
-            MacGL.PointSize(size);
         }
 
         public void PolygonOffset(float factor, float units)
