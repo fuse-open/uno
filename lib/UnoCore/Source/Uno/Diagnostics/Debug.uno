@@ -92,25 +92,7 @@ namespace Uno.Diagnostics
         [Obsolete]
         static void EmitLog(string message, DebugMessageType type)
         {
-            if (_logHandler != null)
-                _logHandler(_indentStr + message, type);
-
-            if defined(CPLUSPLUS)
-            @{
-                uCString cstr($0);
-                uLog($1, "%s", cstr.Ptr);
-            @}
-            else if defined(DOTNET)
-            {
-                if (type == 0)
-                    Console.WriteLine(message);
-                else if ((int) type < DebugMessageType.Warning)
-                    Console.Out.WriteLine(type + ": " + message);
-                else
-                    Console.Error.WriteLine(type + ": " + message);
-            }
-            else
-                build_error;
+            Diagnostics.Log.WriteLine((LogLevel)type, message);
         }
     }
 }
