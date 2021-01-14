@@ -8,5 +8,6 @@
     <ProcessFile SourceFile="Uno-iOS/Uno-iOS.mm" />
 
     <Require Condition="LIBRARY" Xcode.PublicHeader="Uno-iOS/Context.h" />
+    <Require PreprocessorDefinition="GLES_SILENCE_DEPRECATION" />
 
 </Extensions>
