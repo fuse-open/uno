@@ -7,7 +7,7 @@ cd "`dirname "$0"`"
 case $1 in
 debug)
     echo "Opening Xcode"
-#if @(Cocoapods:Defined)
+#if @(COCOAPODS:Defined)
     pod install
     open -aXcode "@(Project.Name).xcworkspace"
 #else
@@ -32,7 +32,7 @@ uninstall)
     ;;
 esac
 
-#if @(Cocoapods:Defined)
+#if @(COCOAPODS:Defined)
 pod install
 ios-deploy --noninteractive --debug --bundle "build/Build/Products/@(Pbxproj.Configuration)-iphoneos/@(Project.Name).app" "$@"
 #else

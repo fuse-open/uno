@@ -12,7 +12,7 @@ if ! which xcodebuild > /dev/null 2>&1; then
     exit 1
 fi
 
-#if @(Cocoapods:Defined)
+#if @(COCOAPODS:Defined)
 if ! which pod > /dev/null 2>&1; then
     echo "ERROR: Unable to find the 'pod' command." >&2
     echo -e "\nYou can install Cocoapods using Ruby:" >&2
@@ -25,7 +25,7 @@ mkdir -p data
 
 function openXcode() {
     echo "Error: Xcode couldn't find a provisioning profile. Try building from the Xcode GUI and/or setting the 'iOS.DevelopmentTeam' variable in your '.unoproj' or '~/.unoconfig' to solve this problem. Pass the '--debug' flag to Uno to open the Xcode GUI. Pass the '-v' flag to Uno for more information about the error. Now opening Xcode."
-    #if @(Cocoapods:Defined)
+    #if @(COCOAPODS:Defined)
         open -aXcode "@(Project.Name).xcworkspace"
     #else
         open -aXcode "@(Project.Name).xcodeproj"
@@ -37,7 +37,7 @@ function checkForError() {
     grep "Xcode couldn't find a provisioning profile" | while read -r line; do openXcode; done
 }
 
-#if @(Cocoapods:Defined)
+#if @(COCOAPODS:Defined)
     pod install
     xcodebuild -workspace "@(Project.Name).xcworkspace" -scheme "@(Project.Name)" -derivedDataPath build "$@" | tee >(checkForError)
 #else
