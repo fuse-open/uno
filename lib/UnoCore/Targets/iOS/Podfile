@@ -1,6 +1,7 @@
-# Uncomment this line to define a global platform for your project
 #if @(Cocoapods.Platform.Name:IsSet)
-platform :@(Cocoapods.Platform.Name), '@(Cocoapods.Platform.Version:Or(''))'
+platform :@(Cocoapods.Platform.Name), '@(Cocoapods.Platform.Version || Project.iOS.DeploymentTarget)'
+#else
+platform :ios, '@(Project.iOS.DeploymentTarget)'
 #endif
 
 @(Cocoapods.Podfile.Pre:Join('\n'))
