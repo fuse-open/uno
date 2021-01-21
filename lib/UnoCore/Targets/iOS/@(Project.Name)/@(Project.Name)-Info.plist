@@ -203,7 +203,7 @@
 #endif
 
 	<key>UIStatusBarHidden</key>
-	<@(Mobile.DisableStatusbar:Bool)/>
+	<@(Project.iOS.StatusBarHidden:Bool)/>
 
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyle@(Project.iOS.StatusBarStyle)</string>

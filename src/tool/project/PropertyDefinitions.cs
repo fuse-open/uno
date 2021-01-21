@@ -55,6 +55,7 @@ namespace Uno.ProjectFormat
             {"iOS.BundleName", PropertyType.String, "$(Title)"},
             {"iOS.BundleVersion", PropertyType.String, "$(Version)"},
             {"iOS.BundleShortVersionString", PropertyType.String, "$(Version)"},
+            {"iOS.StatusBarHidden", PropertyType.Bool, "!$(Mobile.ShowStatusbar)"},
             {"iOS.StatusBarStyle", PropertyType.String, "Default"},
             {"iOS.Defines", PropertyType.String},
             {"iOS.DeploymentTarget", PropertyType.String, "9.0"},
