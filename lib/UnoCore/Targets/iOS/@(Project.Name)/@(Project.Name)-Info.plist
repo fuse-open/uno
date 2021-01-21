@@ -206,7 +206,7 @@
 	<@(Mobile.DisableStatusbar:Bool)/>
 
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
+	<string>UIStatusBarStyle@(Project.iOS.StatusBarStyle)</string>
 
 #if @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:IsSet)
 	<key>UISupportedExternalAccessoryProtocols</key>
