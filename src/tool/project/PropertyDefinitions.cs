@@ -54,6 +54,7 @@ namespace Uno.ProjectFormat
             {"iOS.BundleIdentifier", PropertyType.String},
             {"iOS.BundleName", PropertyType.String, "$(Title)"},
             {"iOS.BundleVersion", PropertyType.String, "$(Version)"},
+            {"iOS.BundleShortVersionString", PropertyType.String, "$(Version)"},
             {"iOS.Defines", PropertyType.String},
             {"iOS.DeploymentTarget", PropertyType.String, "9.0"},
             {"iOS.DevelopmentTeam", PropertyType.String},
