@@ -75,7 +75,7 @@ namespace Uno.ProjectFormat
             {"iOS.Icons.iPad_76_1x", PropertyType.Path, "$(Icon)"},
             {"iOS.Icons.iPad_76_2x", PropertyType.Path, "$(Icon)"},
             {"iOS.Icons.iPad_83.5_2x", PropertyType.Path, "$(Icon)"},
-            {"iOS.Icons.iOS-Marketing_1024_1x", PropertyType.Path, "$(Icon)"},
+            {"iOS.Icons.iOS_Marketing_1024_1x", PropertyType.Path, "$(Icon)"},
             {"iOS.LaunchImages.iPhone_Portrait_iPhoneX_3x", PropertyType.Path},
             {"iOS.LaunchImages.iPhone_Landscape_iPhoneX_3x", PropertyType.Path},
             {"iOS.LaunchImages.iPhone_Portrait_2x", PropertyType.Path},
@@ -100,6 +100,7 @@ namespace Uno.ProjectFormat
             {"CacheDir", "CacheDirectory"},
             {"VersionCount", "VersionCode"},
             {"ReferenceUnoCore", "UnoCoreReference"},
+            {"iOS.Icons.iOS-Marketing_1024_1x", "iOS.Icons.iOS_Marketing_1024_1x"},
         };
 
         public void Add(string property, PropertyType type, object defaultValue = null)

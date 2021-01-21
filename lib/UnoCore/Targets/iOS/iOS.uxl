@@ -96,8 +96,8 @@
         TargetWidth="152" TargetName="@(Icons)/iPad_76_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPad_83.5_2x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="167" TargetName="@(Icons)/iPad_83.5_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iOS-Marketing_1024_1x:Path || '@//Assets/DefaultIcon.png')"
-        TargetWidth="1024" TargetName="@(Icons)/iOS-Marketing_1024_1x.png" />
+    <ImageFile Name="@(Project.iOS.Icons.iOS_Marketing_1024_1x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="1024" TargetName="@(Icons)/iOS_Marketing_1024_1x.png" />
 
     <!-- Launch images -->
 
