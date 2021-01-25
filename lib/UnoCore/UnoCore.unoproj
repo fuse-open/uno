@@ -454,7 +454,6 @@
     "Targets/DotNet/Executable.uxl:Extensions",
     "Targets/DotNet/Library.uxl:Extensions",
     "Targets/iOS/@(Icons)/Contents.json:File",
-    "Targets/iOS/@(LaunchImages)/Contents.json:File",
     "Targets/iOS/@(Project.Name).xcodeproj/project.pbxproj:File",
     "Targets/iOS/@(Project.Name).xcodeproj/project.xcworkspace/contents.xcworkspacedata:File",
     "Targets/iOS/@(Project.Name)/@(Project.Name).entitlements:File",
