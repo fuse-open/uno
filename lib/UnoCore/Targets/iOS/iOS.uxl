@@ -55,9 +55,9 @@
 
     <!-- Icons -->
 
-    <!-- Default logo for Launch Screen Storyboard -->
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_40_3x:Path || '@//Assets/DefaultIcon.png')"
-        TargetWidth="64" TargetName="@(Project.Name)/default-logo.png" />
+    <!-- Image for Launch Screen Storyboard -->
+    <CopyFile Name="@(Project.iOS.LaunchScreen.Image:Path || '@//Assets/DefaultIcon.png')"
+        TargetName="@(Project.Name)/LaunchScreen.png" />
 
     <Set Icons="@(Project.Name)/Images.xcassets/AppIcon.appiconset" />
     <ProcessFile Name="@(Icons)/Contents.json" />
@@ -96,45 +96,8 @@
         TargetWidth="152" TargetName="@(Icons)/iPad_76_2x.png" />
     <ImageFile Name="@(Project.iOS.Icons.iPad_83.5_2x:Path || '@//Assets/DefaultIcon.png')"
         TargetWidth="167" TargetName="@(Icons)/iPad_83.5_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iOS-Marketing_1024_1x:Path || '@//Assets/DefaultIcon.png')"
-        TargetWidth="1024" TargetName="@(Icons)/iOS-Marketing_1024_1x.png" />
-
-    <!-- Launch images -->
-
-    <Set LaunchImages="@(Project.Name)/Images.xcassets/LaunchImage.launchimage" />
-    <ProcessFile Name="@(LaunchImages)/Contents.json" />
-
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_iPhoneXsMax_3x:Path || '@//Assets/Black.png')"
-        TargetWidth="1242" TargetHeight="2688" TargetName="@(LaunchImages)/iPhone_Portrait_iPhoneXsMax_3x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Landscape_iPhoneXsMax_3x:Path || '@//Assets/Black.png')"
-        TargetWidth="2688" TargetHeight="1242" TargetName="@(LaunchImages)/iPhone_Landscape_iPhoneXsMax_3x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_iPhoneXr_2x:Path || '@//Assets/Black.png')"
-        TargetWidth="828" TargetHeight="1792" TargetName="@(LaunchImages)/iPhone_Portrait_iPhoneXr_2x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Landscape_iPhoneXr_2x:Path || '@//Assets/Black.png')"
-        TargetWidth="1792" TargetHeight="828" TargetName="@(LaunchImages)/iPhone_Landscape_iPhoneXr_2x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_iPhoneX_3x:Path || '@//Assets/Black.png')"
-        TargetWidth="1125" TargetHeight="2436" TargetName="@(LaunchImages)/iPhone_Portrait_iPhoneX_3x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Landscape_iPhoneX_3x:Path || '@//Assets/Black.png')"
-        TargetWidth="2436" TargetHeight="1125" TargetName="@(LaunchImages)/iPhone_Landscape_iPhoneX_3x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_2x:Path || '@//Assets/Black.png')"
-        TargetWidth="640" TargetHeight="960" TargetName="@(LaunchImages)/iPhone_Portrait_2x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_R4:Path || '@//Assets/Black.png')"
-        TargetWidth="640" TargetHeight="1136" TargetName="@(LaunchImages)/iPhone_Portrait_R4.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_R47:Path || '@//Assets/Black.png')"
-        TargetWidth="750" TargetHeight="1334" TargetName="@(LaunchImages)/iPhone_Portrait_R47.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Portrait_R55:Path || '@//Assets/Black.png')"
-        TargetWidth="1242" TargetHeight="2208" TargetName="@(LaunchImages)/iPhone_Portrait_R55.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPhone_Landscape_R55:Path || '@//Assets/Black.png')"
-        TargetWidth="2208" TargetHeight="1242" TargetName="@(LaunchImages)/iPhone_Landscape_R55.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPad_Portrait_2x:Path || '@//Assets/Black.png')"
-        TargetWidth="1536" TargetHeight="2048" TargetName="@(LaunchImages)/iPad_Portrait_2x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPad_Landscape_2x:Path || '@//Assets/Black.png')"
-        TargetWidth="2048" TargetHeight="1536" TargetName="@(LaunchImages)/iPad_Landscape_2x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPad_Portrait_1x:Path || '@//Assets/Black.png')"
-        TargetWidth="768" TargetHeight="1024" TargetName="@(LaunchImages)/iPad_Portrait_1x.png" />
-    <ImageFile Name="@(Project.iOS.LaunchImages.iPad_Landscape_1x:Path || '@//Assets/Black.png')"
-        TargetWidth="1024" TargetHeight="768" TargetName="@(LaunchImages)/iPad_Landscape_1x.png" />
-
+    <ImageFile Name="@(Project.iOS.Icons.iOS_Marketing_1024_1x:Path || '@//Assets/DefaultIcon.png')"
+        TargetWidth="1024" TargetName="@(Icons)/iOS_Marketing_1024_1x.png" />
 
     <!-- Default plist descriptions -->
 

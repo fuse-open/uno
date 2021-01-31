@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>@(Project.Version)</string>
+	<string>@(Project.iOS.BundleShortVersionString)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -203,10 +203,10 @@
 #endif
 
 	<key>UIStatusBarHidden</key>
-	<@(Mobile.DisableStatusbar:Bool)/>
+	<@(Project.iOS.StatusBarHidden:Bool)/>
 
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleBlackOpaque</string>
+	<string>UIStatusBarStyle@(Project.iOS.StatusBarStyle)</string>
 
 #if @(Project.iOS.PList.UISupportedExternalAccessoryProtocols:IsSet)
 	<key>UISupportedExternalAccessoryProtocols</key>
