@@ -325,6 +325,14 @@ namespace Uno.Logging
         {
             if (level <= Level)
                 WriteLine(line, color);
+            else if (level <= Level + 1)
+            {
+                lock (_state)
+                {
+                    _state.Flush(OutWriter.Inner);
+                    _state.SetLine(OutWriter.Inner, line);
+                }
+            }
         }
 
         public void WriteLine(object line, ConsoleColor? color = null)
@@ -390,6 +398,7 @@ namespace Uno.Logging
             {
                 _state.Flush(writer.Inner);
                 _state.SetColor(writer.Inner, color);
+                _state.SetLine(writer.Inner, null);
                 writer.Inner.WriteLine(line.TrimEnd());
             }
         }
