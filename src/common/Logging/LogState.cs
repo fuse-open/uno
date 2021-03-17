@@ -41,6 +41,7 @@ namespace Uno.Logging
         ConsoleColor _resetColor;
         TextWriter _deferWriter;
         string _deferLine;
+        string _lastLine;
         double _deferTime;
         bool _resetLine;
 
@@ -79,6 +80,16 @@ namespace Uno.Logging
             }
         }
 
+        internal void SetLine(TextWriter writer, string line)
+        {
+            line = line?.Split('\n').Last().TrimEnd() ?? "";
+
+            if (line.Length > 70)
+                line = line.Substring(0, 67) + "...";
+
+            _lastLine = line;
+        }
+
         [SuppressMessage("ReSharper", "InconsistentlySynchronizedField")]
         internal IDisposable BeginDeferred(TextWriter writer, string line, ConsoleColor? color, bool animate)
         {
@@ -93,6 +104,7 @@ namespace Uno.Logging
             _deferTime = Time;
             _deferWriter = writer;
             _deferColor = color;
+            _lastLine = null;
 
             if (animate)
             {
@@ -185,8 +197,14 @@ namespace Uno.Logging
             else
                 _resetColor = SafeForegroundColor;
 
+            if (_deferLine == null && !string.IsNullOrEmpty(_lastLine))
+            {
+                SetColor(_deferWriter, null);
+                _deferWriter.Write(_lastLine);
+            }
+
             SetColor(_deferWriter, GetDark(_deferColor));
-            _deferWriter.Write(_deferLine != null ? "  " : "> ");
+            _deferWriter.Write(_deferLine != null || !string.IsNullOrEmpty(_lastLine) ? "  " : "> ");
             _deferWriter.Write(TimeSince(_deferTime));
             _deferWriter.Write(' ');
             _deferWriter.Write(_spinner[(int) (Time * _fps) % _spinner.Length]);
