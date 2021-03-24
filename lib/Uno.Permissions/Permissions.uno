@@ -111,13 +111,13 @@ namespace Uno.Permissions
         }
 
         [Foreign(Language.Java), ForeignFixedName]
-        static void permissionRequestSucceeded(object x)
+        static void permissionRequestSucceededLegacy(object x)
         @{
             @{Succeeded(object):Call(x)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
-        static void permissionRequestFailed(object x)
+        static void permissionRequestFailedLegacy(object x)
         @{
             @{Failed(object):Call(x)};
         @}
