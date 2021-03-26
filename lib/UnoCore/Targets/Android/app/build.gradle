@@ -51,7 +51,15 @@ android {
         targetSdkVersion @(SDK.TargetVersion)
         versionCode = @(Project.Android.VersionCode)
         versionName = '@(Project.Android.VersionName)'
-        multiDexEnabled @(Project.Android.MultiDexEnabled:IsSet:Test(@(Project.Android.MultiDexEnabled:Bool),true))
+
+ #if @(Project.Android.Optimize.MinifyEnabled:Test(1, 0))
+         //minifier handles multi-dexing for release
+         #if @(DEBUG:Defined)
+             multiDexEnabled @(Project.Android.MultiDexEnabled:IsSet:Test(@(Project.Android.MultiDexEnabled:Bool),true))
+         #endif
+ #else
+         multiDexEnabled @(Project.Android.MultiDexEnabled:IsSet:Test(@(Project.Android.MultiDexEnabled:Bool),true))
+ #endif
 
         ndk {
 #if @(DEBUG:Defined)
@@ -82,6 +90,12 @@ android {
 #endif
 
     }
+
+    //prevent gradle build crash - https://stackoverflow.com/a/47689687/2139770
+    dexOptions {
+        javaMaxHeapSize "4g"
+    } 
+
 
 #if @(Project.Android.Bundle.Language.EnableSplit:IsSet) || @(Project.Android.Bundle.Density.EnableSplit:IsSet) || @(Project.Android.Bundle.ABI.EnableSplit:IsSet)
     bundle {
@@ -133,8 +147,32 @@ android {
 #elif @(Project.Android.Key.Store:IsSet)
             signingConfig = signingConfigs.release
 #endif
-            minifyEnabled = false
-            proguardFiles 'proguard-rules.pro'
+
+#if @(Project.Android.Optimize.MinifyEnabled:IsSet)
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled @(Project.Android.Optimize.MinifyEnabled:ToLower)
+#else
+            minifyEnabled true
+#endif
+
+#if @(Project.Android.Optimize.ShrinkResources:IsSet)
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources @(Project.Android.Optimize.ShrinkResources:ToLower)
+#else
+            shrinkResources true
+#endif
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
+            proguardFiles getDefaultProguardFile(
+#if @(Project.Android.Optimize.DefaultAndroidProGuard:IsSet)
+                    '@(Project.Android.Optimize.DefaultAndroidProGuard:ToLower)'
+#else
+                    'proguard-android.txt'
+#endif
+            ), 'proguard-rules.pro'
         }
     }
 
