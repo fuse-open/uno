@@ -107,7 +107,7 @@
 #endif
                   android:taskAffinity=""
                   android:windowSoftInputMode="adjustResize"
-                  android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|uiMode"
+                  android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|uiMode|screenLayout"
 #if @(Project.Mobile.Orientations:Equals('Portrait'))
                   android:screenOrientation="portrait"
 #elif @(Project.Mobile.Orientations:Equals('LandscapeLeft'))
@@ -119,11 +119,47 @@
 #else
                   android:screenOrientation="user"
 #endif
+#if @(Project.Android.ResizeableActivity:Test(1, 0))
+                  android:resizeableActivity="true"
+#endif
+#if @(Project.Android.SupportsPictureInPicture:Test(1, 0))
+                  android:supportsPictureInPicture="true"
+#endif
                   android:windowActionBar="false">
+
+#if @(Project.Android.Layout.DefaultHeight:IsSet) ||
+     @(Project.Android.Layout.DefaultWidth:IsSet) ||
+     @(Project.Android.Layout.Gravity:IsSet) ||
+     @(Project.Android.Layout.MinHeight:IsSet) ||
+     @(Project.Android.Layout.MinWidth:IsSet)
+             <layout 
+               #if @(Project.Android.Layout.DefaultHeight:IsSet)
+                   android:defaultHeight="@(Project.Android.Layout.DefaultHeight)"
+               #endif
+               #if @(Project.Android.Layout.DefaultWidth:IsSet)
+                   android:defaultWidth="@(Project.Android.Layout.DefaultWidth)"
+               #endif
+               #if @(Project.Android.Layout.Gravity:IsSet)
+                   android:gravity="@(Project.Android.Layout.Gravity || 'top|end')"
+               #endif
+               #if @(Project.Android.Layout.MinHeight:IsSet)
+                   android:minHeight="@(Project.Android.Layout.MinHeight)"
+               #endif
+               #if @(Project.Android.Layout.MinWidth:IsSet)
+                   android:minWidth="@(Project.Android.Layout.MinWidth)"
+               #endif
+               />
+ #endif
             <meta-data android:name="android.app.lib_name" android:value="@(Activity.Name:EscapeXml)" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+#if @(Project.Android.MultiWindow.Enabled:Test(1, 0))
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+#endif
+#if @(Project.Android.PenWindow:Test(1, 0))
+                <category android:name="android.intent.category.PENWINDOW_LAUNCHER" />
+#endif
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -154,6 +190,34 @@
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
         <meta-data android:name="com.google.android.geo.API_KEY"
                    android:value="@(Project.Android.Geo.ApiKey)"/>
+#endif
+
+
+#if @(Project.Android.MultiWindow.Enabled:Test(1, 0))
+       <uses-library android:required="false" android:name="com.sec.android.app.multiwindow" />
+       <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
+   #if @(Project.Android.MultiWindow.DefaultSizeWidth:IsSet)
+       <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="@(Project.Android.MultiWindow.DefaultSizeWidth)" />
+   #endif
+   #if @(Project.Android.MultiWindow.DefaultSizeHeight:IsSet)
+       <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="@(Project.Android.MultiWindow.DefaultSizeHeight)" />
+   #endif
+#endif
+#if @(Project.Android.MaxAspect:IsSet)
+       <meta-data android:name="android.max_aspect" android:value="@(Project.Android.MaxAspect)" />
+#endif
+#if @(Project.Android.AllowMultipleResumedActivities:Test(1, 0))        
+       <meta-data
+           android:name="android.allow_multiple_resumed_activities"
+           android:value="true"/>
+#endif
+#if @(Project.Android.MultiWindow.MultiInstance:Test(1, 0))
+       <meta-data
+           android:name="com.samsung.android.sdk.multiwindow.multiinstance.enable"
+           android:value="true" />
+#endif
+#if @(Project.Android.PenWindow:Test(1, 0))
+       <meta-data android:name="com.samsung.android.sdk.multiwindow.penwindow.enable" android:value="true" />
 #endif
     </application>
 </manifest>

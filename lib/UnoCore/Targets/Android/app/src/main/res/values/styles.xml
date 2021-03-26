@@ -13,6 +13,9 @@
 #endif
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsTranslucent">@(Project.Android.WindowIsTranslucent || 'false')</item>
+#if @(Project.Android.WindowLayoutInDisplayCutoutMode:IsSet)
+	    <item name="android:windowLayoutInDisplayCutoutMode">@(Project.Android.WindowLayoutInDisplayCutoutMode || 'default')</item>
+#endif
     </style>
 
 </resources>
