@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using Uno.CLI;
 using Uno.Logging;
 
 #pragma warning disable 649
@@ -52,8 +53,9 @@ namespace Uno.Diagnostics
                                 : "x86"
                         );
                 if (IsMac)
-                    // macOS version should be roughly 10.(KERNEL_MAJOR - 4)
-                    return "macOS 10." + (Environment.OSVersion.Version.Major - 4) + " " + (
+                    return "macOS " + MacVersion + " " + (
+                            IsArm
+                                ? "ARM" + (Is64Bit ? "64" : null) :
                             Is64Bit
                                 ? "x86_64"
                                 : "i386"
@@ -67,6 +69,21 @@ namespace Uno.Diagnostics
                                 : "x86_32"
                         );
                 return Environment.OSVersion.VersionString + " (unsupported)";
+            }
+        }
+
+        static string MacVersion
+        {
+            get
+            {
+                try
+                {
+                    return Shell.Default.GetOutput("sw_vers").Grep("ProductVersion").First().Trim().Split(' ', '\t').Last();
+                }
+                catch
+                {
+                    return "10." + (Environment.OSVersion.Version.Major - 4);
+                }
             }
         }
 
