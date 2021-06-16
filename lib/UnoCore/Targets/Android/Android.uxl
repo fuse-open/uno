@@ -79,6 +79,9 @@
     <Set Outputs.AAR="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
     <Set Outputs.APK="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
     <Set Outputs.Bundle="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).aab" />
+    
+    <Set ProGuard.PrependRulesFile="@(Project.Android.Optimize.PrependRulesFile:ToLower)" />
+    <Set ProGuard.AppendRulesFile="@(Project.Android.Optimize.AppendRulesFile:ToLower)" />
 
     <!-- Run-time properties -->
 
