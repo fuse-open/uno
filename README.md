@@ -44,7 +44,7 @@ Uno is used on Linux, macOS and Windows, and makes native apps for the following
 | Platform  | Build targets       |
 |:----------|:--------------------|
 | Android   | `android`           |
-| iOS       | `ios`               |
+| iOS       | `ios`, `ios-sim`    |
 | Linux     | `native`, `dotnet`  |
 | macOS     | `native`, `dotnet`  |
 | Windows   | `native`, `dotnet`  |

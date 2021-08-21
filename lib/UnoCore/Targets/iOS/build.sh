@@ -37,9 +37,15 @@ function checkForError() {
     grep "Xcode couldn't find a provisioning profile" | while read -r line; do openXcode; done
 }
 
-#if @(COCOAPODS:Defined)
-    pod install
-    xcodebuild -workspace "@(Project.Name).xcworkspace" -scheme "@(Project.Name)" -derivedDataPath build "$@" | tee >(checkForError)
+#if @(IOS_SIMULATOR:Defined)
+BUILD_ARGS="-sdk iphonesimulator"
 #else
-    xcodebuild -project "@(Project.Name).xcodeproj" "$@" | tee >(checkForError)
+BUILD_ARGS=""
+#endif
+
+#if @(COCOAPODS:Defined)
+pod install
+xcodebuild $BUILD_ARGS -workspace "@(Project.Name).xcworkspace" -scheme "@(Project.Name)" -derivedDataPath build "$@" | tee >(checkForError)
+#else
+xcodebuild $BUILD_ARGS -project "@(Project.Name).xcodeproj" "$@" | tee >(checkForError)
 #endif

@@ -130,6 +130,7 @@ Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * ios-sim            (Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
