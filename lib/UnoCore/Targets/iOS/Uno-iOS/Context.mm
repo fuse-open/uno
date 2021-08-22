@@ -10,7 +10,11 @@
 {
 @private
     uRuntime* _uno;
+#if @(METAL:Defined)
+    MGLContext* _glContext;
+#else
     EAGLContext* _glContext;
+#endif
     UIWindow* (^_windowGetter)();
 }
 @end
@@ -77,8 +81,13 @@ static uContext* instance = nil;
     if (self = [super init])
     {
         _uno = new uRuntime();
+#if @(METAL:Defined)
+        _glContext = [[MGLContext alloc] initWithAPI:kMGLRenderingAPIOpenGLES2];
+        [MGLContext setCurrentContext:_glContext];
+#else
         _glContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
         [EAGLContext setCurrentContext:_glContext];
+#endif
 
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
 
