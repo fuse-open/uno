@@ -20,6 +20,11 @@ namespace Uno.Build.Targets
             return new CppBackend(new GLBackend(), new ForeignExtension());
         }
 
+        public override void Initialize(IEnvironment env)
+        {
+            env.Define("NATIVE");
+        }
+
         public override void Configure(ICompiler compiler)
         {
             new CMakeGenerator(compiler.Environment).Configure();

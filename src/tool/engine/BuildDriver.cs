@@ -139,8 +139,7 @@ namespace Uno.Build
             PrintRow("Output dir", _env.OutputDirectory);
 
             _file.Delete();
-            _env.Define(_target.Identifier, "TARGET_" + _target.Identifier,
-                _backend.Name, _backend.ShaderBackend.Name);
+            _env.Define(_backend.Name, _backend.ShaderBackend.Name);
 
             if (_compilerOptions.Debug)
                 _env.Define("DEBUG");
