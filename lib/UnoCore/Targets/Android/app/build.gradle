@@ -54,7 +54,9 @@ android {
         multiDexEnabled @(Project.Android.MultiDexEnabled:IsSet:Test(@(Project.Android.MultiDexEnabled:Bool),true))
 
         ndk {
-#if @(DEBUG:Defined)
+#if @(ANDROID_EMU:Defined)
+            abiFilters = ["x86_64"]
+#elif @(DEBUG:Defined)
             abiFilters = [@(Project.Android.Architectures.Debug:Join(', ', '\'', '\''))]
 #else
             abiFilters = [@(Project.Android.Architectures.Release:Join(', ', '\'', '\''))]

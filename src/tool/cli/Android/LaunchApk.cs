@@ -17,7 +17,7 @@ namespace Uno.CLI.Android
         const int Timeout = 7;
 
         public override string Name => "launch-apk";
-        public override string Description => "Deploy and start APK on a connected device";
+        public override string Description => "Deploy and start APK on a connected device or emulator";
         public override bool IsExperimental => true;
 
         public override void Help()
@@ -28,6 +28,7 @@ namespace Uno.CLI.Android
             WriteRow("-a, --activity=NAME",  "Android activity name");
             WriteRow("-p, --package=NAME",   "Java package name");
             WriteRow("-s, --sym-dir=PATH",   "Symbol directory, for stack traces", true);
+            WriteRow("-e, --emulator",       "Consider emulator(s) only");
             WriteRow("-i, --install",        "Install only, then exit");
             WriteRow("-C, --no-clear",       "Don't clear logcat logs before launch");
             WriteRow("-L, --no-log",         "Don't run logcat, just launch");
@@ -39,12 +40,14 @@ namespace Uno.CLI.Android
                 , package = null
                 , symbolDir = null;
             bool installOnly = false
+                , emulatorsOnly = false
                 , clearLog = true
                 , runLogcat = true;
             var filename = new OptionSet {
                     {"a=|activity=", value => activity = value},
                     {"p=|package=", value => package = value},
                     {"s=|sym-dir=", value => symbolDir = value},
+                    {"e|emulator", value => emulatorsOnly = true},
                     {"i|install", value => installOnly = true},
                     {"C|no-clear", value => clearLog = false},
                     {"L|no-log", value => runLogcat = false},
@@ -59,20 +62,25 @@ namespace Uno.CLI.Android
                 throw new FileNotFoundException("An APK was not found at " + filename.Quote());
 
             var adb = new AdbRunner(Shell);
-            var devices = adb.GetDevices();
+            var devices = adb.GetDevices(emulatorsOnly);
+            var deviceOrEmulator = emulatorsOnly
+                ? "emulator"
+                : "device";
 
             for (int i = Timeout; devices.Count == 0; i--)
             {
                 if (i == 0)
-                    throw new NotSupportedException("No Android device connected. Please make sure you have developer mode enabled, and any required drivers installed.");
+                    throw emulatorsOnly
+                        ? new NotSupportedException("No Android emulator running.")
+                        : new NotSupportedException("No Android device connected. Please make sure you have developer mode enabled, and any required drivers installed.");
 
-                Log.Message("Waiting for device (" + i + "..)");
+                Log.Message("Waiting for " + deviceOrEmulator + " (" + i + "..)");
                 Thread.Sleep(1000);
 
-                devices = adb.GetDevices();
+                devices = adb.GetDevices(emulatorsOnly);
             }
 
-            Log.Message("Installing APK on " + devices.Count + " device".Plural(devices));
+            Log.Message("Installing APK on " + devices.Count + " " + deviceOrEmulator.Plural(devices));
 
             foreach (var dev in devices)
                 dev.Install(package, filename);

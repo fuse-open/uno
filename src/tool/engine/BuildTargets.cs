@@ -15,6 +15,7 @@ namespace Uno.Build
         public static readonly BuildTarget[] All =
         {
             new AndroidBuild(),
+            new AndroidEmulatorBuild(),
             new NativeBuild(),
             new iOSBuild(),
             new iOSSimulatorBuild(),
