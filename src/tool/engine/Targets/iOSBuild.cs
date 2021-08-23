@@ -19,6 +19,11 @@ namespace Uno.Build.Targets
             return new CppBackend(new GLBackend(), new ForeignExtension());
         }
 
+        public override void Initialize(IEnvironment env)
+        {
+            env.Define("IOS");
+        }
+
         public override void Configure(ICompiler compiler)
         {
             XcodeGenerator.Configure(compiler.Environment, compiler.Data.Extensions.BundleFiles);
