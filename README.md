@@ -41,13 +41,13 @@ Uno is a collection of compiler and platform abstraction technologies.
 
 Uno is used on Linux, macOS and Windows, and makes native apps for the following platforms:
 
-| Platform  | Build targets       |
-|:----------|:--------------------|
-| Android   | `android`           |
-| iOS       | `ios`, `ios-sim`    |
-| Linux     | `native`, `dotnet`  |
-| macOS     | `native`, `dotnet`  |
-| Windows   | `native`, `dotnet`  |
+| Platform  | Build targets            |
+|:----------|:-------------------------|
+| Android   | `android`, `android-emu` |
+| iOS       | `ios`, `ios-sim`         |
+| Linux     | `native`, `dotnet`       |
+| macOS     | `native`, `dotnet`       |
+| Windows   | `native`, `dotnet`       |
 
 [Fuse Open]: https://fuseopen.com/
 

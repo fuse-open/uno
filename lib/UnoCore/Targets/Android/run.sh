@@ -25,5 +25,6 @@ exit 1
     --package=@(Activity.Package) \
     --activity=@(Activity.Name) \
     --sym-dir="app/src/main/.uno" \
+    @(ANDROID_EMU:Defined:Test('--emulator', '')) \
     "$@"
 #endif

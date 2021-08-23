@@ -29,7 +29,7 @@ namespace Uno.Build.Adb
             return _shell.Run(Location, args);
         }
 
-        public List<AdbDevice> GetDevices()
+        public List<AdbDevice> GetDevices(bool emulatorsOnly)
         {
             var devices = new List<AdbDevice>();
             var output = _shell.GetOutput(Location, "devices");
@@ -38,6 +38,7 @@ namespace Uno.Build.Adb
             {
                 var parts = line.Cut();
                 if (parts.Count == 2 && parts[1] == "device" &&
+                        (!emulatorsOnly || parts[0].Contains("emulator")) &&
                         (!IgnoreNetworkDevices || !IsIpAndPort(parts[0])))
                     devices.Add(new AdbDevice(_shell, Location, parts[0]));
             }

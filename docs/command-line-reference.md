@@ -128,6 +128,7 @@ C++ options
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * android-emu        C++/JNI/GLES2 code and APK. Runs on emulator (x86_64).
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
   * ios-sim            (Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)
@@ -299,6 +300,7 @@ Available options
   -a, --activity=NAME   Android activity name
   -p, --package=NAME    Java package name
   -s, --sym-dir=PATH    Symbol directory, for stack traces [optional]
+  -e, --emulator        Consider emulator(s) only
   -i, --install         Install only, then exit
   -C, --no-clear        Don't clear logcat logs before launch
   -L, --no-log          Don't run logcat, just launch

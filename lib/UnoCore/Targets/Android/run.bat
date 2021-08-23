@@ -26,6 +26,7 @@ if "%1" == "uninstall" (
     --package=@(Activity.Package) ^
     --activity=@(Activity.Name) ^
     --sym-dir="%~dp0src\main\.uno" ^
+    @(ANDROID_EMU:Defined:Test('--emulator', '')) ^
     %*
 exit /b %ERRORLEVEL%
 #endif

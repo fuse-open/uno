@@ -82,6 +82,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Targets\AndroidBuild.cs" />
+    <Compile Include="Targets\AndroidEmulatorBuild.cs" />
     <Compile Include="BuildTargets.cs" />
     <Compile Include="Targets\DocsBuild.cs" />
     <Compile Include="Targets\DotNetBuild.cs" />
