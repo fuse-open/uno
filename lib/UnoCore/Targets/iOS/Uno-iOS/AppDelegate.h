@@ -1,6 +1,9 @@
 #pragma once
 #ifdef __OBJC__
 #include <UIKit/UIKit.h>
+#if @(METAL:Defined)
+#include <MetalANGLE/MGLKit.h>
+#endif
 
 
 @(AppDelegate.HeaderFile.Declaration:Join())
@@ -10,7 +13,11 @@
 {
     uintptr_t primaryTouch;
 }
+#if @(METAL:Defined)
+@property (strong, nonatomic) MGLContext *context;
+#else
 @property (strong, nonatomic) EAGLContext *context;
+#endif
 @end
 
 

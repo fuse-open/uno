@@ -84,7 +84,7 @@
     <Require Condition="IOS" Xcode.Framework="CoreGraphics" />
     <Require Condition="IOS" Xcode.Framework="CoreMotion" />
     <Require Condition="IOS" Xcode.Framework="Foundation" />
-    <Require Condition="IOS" Xcode.Framework="OpenGLES" />
+    <Require Condition="IOS && !METAL" Xcode.Framework="OpenGLES" />
     <Require Condition="IOS" Xcode.Framework="QuartzCore" />
     <Require Condition="IOS" Xcode.Framework="UIKit" />
 

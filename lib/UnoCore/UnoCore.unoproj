@@ -464,6 +464,8 @@
     "Targets/iOS/@(Schemes)/xcschememanagement.plist:File",
     "Targets/iOS/build.sh:File",
     "Targets/iOS/iOS.uxl:Extensions",
+    "Targets/iOS/MetalANGLE.stuff:Stuff",
+    "Targets/iOS/MetalANGLE.uxl:Extensions",
     "Targets/iOS/Podfile:File",
     "Targets/iOS/run.sh:File",
     "Targets/iOS/Uno-iOS.uxl:Extensions",

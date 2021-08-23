@@ -34,7 +34,11 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#if @(METAL:Defined)
+    [MGLContext setCurrentContext:self.context];
+#else
     [EAGLContext setCurrentContext:self.context];
+#endif
     return [_unoContext
         application:application
         willFinishLaunchingWithOptions:launchOptions];
@@ -78,7 +82,11 @@
     if ([userActivity.activityType isEqualToString: NSUserActivityTypeBrowsingWeb]) {
         NSURL *url = userActivity.webpageURL;
 
+#if @(METAL:Defined)
+        [MGLContext setCurrentContext:self.context];
+#else
         [EAGLContext setCurrentContext:self.context];
+#endif
         return [_unoContext
                 application:application
                 continueUserActivity:url];

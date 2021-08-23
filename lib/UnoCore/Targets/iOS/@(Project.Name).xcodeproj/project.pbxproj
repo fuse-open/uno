@@ -391,6 +391,7 @@
 					"-Wno-dangling-else",
 					"-Wno-switch",
 					"-Wno-unguarded-availability-new",
+					"-Wno-quoted-include-in-framework-header",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

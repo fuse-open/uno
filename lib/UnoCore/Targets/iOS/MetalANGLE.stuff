@@ -1,0 +1,4 @@
+if METAL {
+    MetalANGLE.framework.ios: "https://github.com/kakashidinho/metalangle/releases/download/gles3-0.0.7/MetalANGLE.framework.ios.zip",
+    MetalANGLE.framework.ios.simulator: "https://github.com/kakashidinho/metalangle/releases/download/gles3-0.0.7/MetalANGLE.framework.ios.simulator.zip",
+}
