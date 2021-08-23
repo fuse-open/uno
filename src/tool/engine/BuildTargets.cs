@@ -17,6 +17,7 @@ namespace Uno.Build
             new AndroidBuild(),
             new NativeBuild(),
             new iOSBuild(),
+            new iOSSimulatorBuild(),
             Default,
             new DocsBuild(),
             new MetadataBuild(),

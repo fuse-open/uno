@@ -91,6 +91,7 @@
     <Compile Include="Targets\Generators\XcodeFile.cs" />
     <Compile Include="Targets\Generators\XcodeGenerator.cs" />
     <Compile Include="Targets\iOSBuild.cs" />
+    <Compile Include="Targets\iOSSimulatorBuild.cs" />
     <Compile Include="Targets\MetadataBuild.cs" />
     <Compile Include="Targets\NativeBuild.cs" />
     <Compile Include="Targets\PackageBuild.cs" />
