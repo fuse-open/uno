@@ -8,11 +8,10 @@ matrix:
     - os: osx
       language: csharp
       mono: latest
-      env: TARGET=ios
+      env: TARGET=ios-sim
       before_script:
         - export SKIP_LIB_TESTS=1
         - export UNO_TEST_ARGS="-DDEBUG_UNSAFE --build-only"
-        - export XCODE_XCCONFIG_FILE=$TRAVIS_BUILD_DIR/.travis.xcconfig
     # - os: osx
     #   osx_image: xcode9.2
     #   language: csharp
