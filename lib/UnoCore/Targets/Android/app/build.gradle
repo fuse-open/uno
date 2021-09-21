@@ -55,7 +55,7 @@ android {
 
         ndk {
 #if @(ANDROID_EMU:Defined)
-            abiFilters = ["x86_64"]
+            abiFilters = ["@(Config.Android.Emulator.Architecture || 'x86_64')"]
 #elif @(DEBUG:Defined)
             abiFilters = [@(Project.Android.Architectures.Debug:Join(', ', '\'', '\''))]
 #else

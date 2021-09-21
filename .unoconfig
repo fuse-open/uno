@@ -16,3 +16,6 @@ if WIN32 {
 
 // Package config
 Packages.SourcePaths += lib
+
+// Tooling
+Android.Emulator.Architecture: x86_64
