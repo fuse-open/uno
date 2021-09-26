@@ -4,6 +4,129 @@ Uno Changelog
 Unreleased
 ----------
 
+2.0
+---
+
+### Android
+- Upgrade Android SDK tools (#288, #394)
+    - Build tools version: `30.0.3`
+    - Compile version: `30`
+    - Target version: `30`
+- Vector-based launch icon (#290, #294)
+- Update project settings (#291)
+- Opt-in Kotlin support (#295)
+- Added Uses Features (#306)
+- ~~Make url response cache functional (#321, #352)~~
+- Adaptive icon (#363)
+- Fix AAB filename when `-DLIBRARY` (#365)
+- Update reinstall logic in `uno launch-apk` (#370)
+- Add `android-emu` build target (#398)
+
+### iOS
+- Update launch screen storyboard (#292)
+- Add FaceID usage description (#305)
+- Fix app delegate method signature (#327)
+- Add PList definition for location usage description (#340)
+- Fix compile-time warnings (#369, #376)
+- Recommend latest version of ios-deploy (#372)
+- Fix building for Simulator in Xcode 12 (#384)
+- Various fixes (#386)
+- Add LaunchScreen project properties (#387)
+- Add `ios-sim` build target (#395)
+- Support Metal graphics API (#396)
+
+### macOS
+- Mac and Mono enhancements (#323)
+- Update default icon and meta data (#355)
+- Fix regression with Xcode 10 (#357)
+- Fix version detection on Big Sur (#393)
+
+### Standard library
+- Remove remaining parts of `Uno.Content` namespace (#278)
+- Make `GraphicsController.UpdateBackbuffer()` public (#301)
+- Implement `IEnumerable<char>` on `string` (#307)
+- ~~Restore two GL entrypoints (#311)~~
+- Qualifier clean-ups in Math code (#315)
+- Drop legacy classes (#324)
+    - `Uno.Runtime.Implementation.GraphicsContext{Handle, Impl}`
+    - `Uno.Runtime.Implementation.PlatformWindow{Handle, Impl}`
+    - `Uno.Runtime.Implementation.WindowHelpers`
+- OpenGL helper namespace restructuring (#331)
+- Correct return type for `Random.NextDouble()` (#337)
+- Move internal classes (#350)
+- Handle exception in `Bundle.GetAssembly()` (#358)
+- New `Log` class, replacing `Debug` (#375, #383)
+    - `Uno.Diagnostics.Log`
+- Make assert statements obsolete (#375, #382)
+- Deprecate `Uno.Permissions` and fork off to Fuselibs (#371, #390)
+
+### .NET specific
+- Remove `dotnetdll` build target (#280)
+- Use `UnoCore.dll` build by Uno (#279, #284)
+- Emit one .NET assembly per Uno library (#282, #308)
+- Various enhancements (#281)
+
+### C++ specific
+- Build `.dll`, `.dylib` or `.so` depending on platform, when `-DLIBRARY` (#289)
+- Use `nullptr` in C++-code (#312)
+- Build C++ using Visual Studio 2019 on Windows (#316, #317)
+- C++ API clean-ups (#313, #356)
+- Drop various legacy things (#332)
+    - `U_ALLOCA()` macro
+    - `BufferUtils` class
+    - `uChar` typedef
+    - `XliInterop.h` header
+    - `uBufferFromXliDataAccessor()` function
+- Refactor support code (#349)
+- Upgrade to C++17 standard (#351)
+- Fix include nested too deeply (#354)
+- Handle more exceptions (#399)
+
+### Projects and tooling
+- Use `$npm_package_version` as default (#302)
+- Add `--gen-only` switch for `uno build` and `uno test` (#348)
+- Automatically reload config files (#361)
+- Build log enhancements (#373, #388)
+- Make configuration directory lower-case (#380)
+- Make target defines explicit (#397)
+
+### Compiler fixes
+- Fix bug and clean-up (#314).
+- Fix race condition in UnoDoc backend (#377)
+- Fix typo in UnoDoc output folder (#378)
+
+### Testing
+- Build for Android on AppVeyor CI (#334)
+- Build for iOS on Travis CI (#330)
+- Drop HTTP and TeamCity support (#283, #286)
+- Other clean-ups (#287)
+
+### Dependencies
+- Install `@fuse-open/transpiler` from NPM (#328, #360)
+- Install `@fuse-open/xamarin-mac` from NPM (#333, #338, #341)
+- Install `@fuse-open/opentk` from NPM (#342)
+- Upgrade GeoLocation dependencies (#285)
+- Upgrade NuGet packages (#310)
+- Upgrade dependencies (#366)
+- ~~Upgrade transpiler dependencies (#297, #298, #300)~~
+
+### Code base structure
+- Move `disasm.sln` (#303)
+- Build using Visual Studio 2019 when available (#309)
+- Upgrade to Ubuntu Bionic Beaver on Travis CI (#318)
+- 2.0 code base restructuring (#322, #339, #362)
+- Add `make install` (#325)
+- Expose AdbRunner for fuse X (#326)
+- Series of smaller patches (#329, #343)
+- Move copies of UnoCore types for UX (#345)
+- Run `uno.js` in generated build-scripts (#368)
+- UnoDoc backend clean-ups (#374)
+- AppLoader clean-ups (#379, #381, #385)
+
+[`v1.14.2...v1.15.0-canary.4`](https://github.com/fuse-open/uno/compare/v1.14.2...v1.15.0-canary.4)<br/>
+[`v1.15.0-canary.4...v2.0.0-beta.3`](https://github.com/fuse-open/uno/compare/v1.15.0-canary.4...v2.0.0-beta.3)<br/>
+[`v2.0.0-beta.3...v2.0.0-beta.13`](https://github.com/fuse-open/uno/compare/v2.0.0-beta.3...v2.0.0-beta.13)<br/>
+
 1.14
 ----
 
