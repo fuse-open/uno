@@ -37,7 +37,7 @@ namespace Uno.Threading
 
         ## Make your own promises
 
-        You can also extend `Promise` and handle it yourself. Simply call `Resolve` or `Reject` once you have a result or a failure. The [Native Facebook login example](https://github.com/fusetools/fuse-samples/blob/feature-NativeFacebookLogin/Samples/NativeFacebookLogin/FacebookLogin/FacebookLoginModule.uno) is a good example of this being done in practice.
+        You can also extend `Promise` and handle it yourself. Simply call `Resolve` or `Reject` once you have a result or a failure. The [Native Facebook login example](https://github.com/fuse-open/fuse-samples/blob/feature-NativeFacebookLogin/Samples/NativeFacebookLogin/FacebookLogin/FacebookLoginModule.uno) is a good example of this being done in practice.
     
         Notice that `Resolve` and `Reject` are public, so you can also theoretically both resolve and reject promises from elsewhere.
 
