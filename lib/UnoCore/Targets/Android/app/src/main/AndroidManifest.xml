@@ -94,12 +94,14 @@
                  android:largeHeap="@(Project.Android.LargeHeap:IsSet:Test(@(Project.Android.LargeHeap:Bool),false))"
                  android:allowBackup="@(Project.Android.AllowBackup:IsSet:Test(@(Project.Android.AllowBackup:Bool),false))"
                  android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))"
+                 android:hardwareAccelerated="@(Project.Android.HardwareAccelerated:IsSet:Test(@(Project.Android.HardwareAccelerated:Bool),true))"
                  android:extractNativeLibs="@(Project.Android.ExtractNativeLibs:IsSet:Test(@(Project.Android.ExtractNativeLibs:Bool),true))"
                  >
 
         <activity android:name="@(Activity.Name:EscapeXml)"
                   android:label="@(Project.Android.ApplicationLabel:EscapeXml)"
                   android:launchMode="singleTask"
+                  android:hardwareAccelerated="@(Project.Android.HardwareAccelerated:IsSet:Test(@(Project.Android.HardwareAccelerated:Bool),true))"
 #if @(AndroidManifest.DisableTheme:Defined)
                   android:theme="@style/AppTheme"
 #else
