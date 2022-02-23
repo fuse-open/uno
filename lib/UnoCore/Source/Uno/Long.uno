@@ -21,7 +21,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 int hash = 27;
-                hash = (13 * hash) + (*$$ & UINT32_MAX);
+                hash = (13 * hash) + (int)(*$$ & UINT32_MAX);
                 hash = (13 * hash) + (*$$ >> 32);
                 return hash;
             @}
