@@ -4,6 +4,19 @@ Uno Changelog
 Unreleased
 ----------
 
+2.1
+---
+
+### Android
+- Add HardwareAccelerated project property (#400)
+- Upgrade to Gradle v6.9.2 (#401)
+
+### iOS
+- Use iPhone-13 as default Simulator device (#402)
+- Silence C++ warning (#403)
+
+[`v2.0.1...v2.1.0`](https://github.com/fuse-open/uno/compare/v2.0.1...v2.1.0)
+
 2.0
 ---
 
