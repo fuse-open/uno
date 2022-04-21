@@ -28,9 +28,9 @@ fi
 
 #if @(COCOAPODS:Defined)
 pod install
-ios-sim launch -d"@(iOS.Simulator.Device || 'iPhone-12')" "build/Build/Products/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
+ios-sim launch -d"@(Config.iOS.Simulator.Device || 'iPhone-12')" "build/Build/Products/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
 #else
-ios-sim launch -d"@(iOS.Simulator.Device || 'iPhone-12')" "build/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
+ios-sim launch -d"@(Config.iOS.Simulator.Device || 'iPhone-12')" "build/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
 #endif
 
 #else // @(IOS_SIMULATOR:Defined)
