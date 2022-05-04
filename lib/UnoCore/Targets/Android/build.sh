@@ -9,7 +9,7 @@ echo "ERROR: Could not locate the Android SDK or NDK." >&2
 echo "" >&2
 echo "These dependencies can be acquired by installing 'android-build-tools':" >&2
 echo "" >&2
-echo "    npm install android-build-tools -g" >&2
+echo "    npm install android-build-tools@1.x -g" >&2
 echo "" >&2
 echo "After installing, pass --force to make sure the new configuration is picked up." >&2
 echo "" >&2
