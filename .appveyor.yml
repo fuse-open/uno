@@ -15,7 +15,7 @@ environment:
 install:
   - ps: |
       if ($env:TARGET -eq "android") {
-        Invoke-Expression "npm install android-build-tools -g"
+        Invoke-Expression "npm install android-build-tools@1.x -g"
       }
   - ps: |
       if ($env:TARGET -eq "native") {

@@ -30,7 +30,7 @@ Run `uno doctor` to build your standard library.
 ## Android
 
 To support building Android apps, we need to know where your [Android SDKs](https://developer.android.com/studio/index.html)
-are installed. Running `npm install -g android-build-tools` will set this up automatically, or you can
+are installed. Running `npm install -g android-build-tools@1.x` will set this up automatically, or you can
 specify other locations as demonstrated below.
 
 ### Windows
