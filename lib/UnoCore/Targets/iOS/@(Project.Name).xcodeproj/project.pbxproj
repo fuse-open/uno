@@ -392,6 +392,7 @@
 					"-Wno-switch",
 					"-Wno-unguarded-availability-new",
 					"-Wno-quoted-include-in-framework-header",
+					"-Wno-deprecated-implementations",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,6 +458,8 @@
 					"-Wno-dangling-else",
 					"-Wno-switch",
 					"-Wno-unguarded-availability-new",
+					"-Wno-quoted-include-in-framework-header",
+					"-Wno-deprecated-implementations",
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
