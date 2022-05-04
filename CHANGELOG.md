@@ -4,6 +4,22 @@ Uno Changelog
 Unreleased
 ----------
 
+2.2
+---
+
+### Android
+- Use android-build-tools 1.x (#406)
+- Fix C++ error when running test suite (#407)
+
+### iOS
+- Get Simulator device from .unoconfig (#405)
+- Silence warnings on Xcode 13 (#405)
+
+### Other
+- Bump minimist (#404)
+
+[`v2.1.1...v2.2.0`](https://github.com/fuse-open/uno/compare/v2.1.1...v2.2.0)
+
 2.1
 ---
 
