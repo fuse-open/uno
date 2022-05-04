@@ -39,6 +39,7 @@ namespace Uno.Threading
     {
         extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";
 
+        [Require("Source.Include", "@{Uno.Exception:Include}")]
         extern(CPLUSPLUS) static void ThreadMain(Thread thread)
         @{
             uAutoReleasePool pool;
