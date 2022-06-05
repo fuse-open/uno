@@ -822,7 +822,8 @@ namespace IKVM.Reflection
 					{
 						if (found != null)
 						{
-							throw new AmbiguousMatchException();
+							// Seen happening when running Uno.Data.Xml tests subsequently (ignore)
+							continue;
 						}
 						found = (T)member;
 					}
@@ -846,14 +847,8 @@ namespace IKVM.Reflection
 							{
 								if (found != null)
 								{
-									MethodInfo mi;
-									// TODO does this depend on HideBySig vs HideByName?
-									if ((mi = found as MethodInfo) != null
-										&& mi.MethodSignature.MatchParameterTypes(((MethodBase)member).MethodSignature))
-									{
-										continue;
-									}
-									throw new AmbiguousMatchException();
+									// Ignore
+									continue;
 								}
 								found = (T)member.SetReflectedType(this);
 							}

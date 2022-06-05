@@ -81,8 +81,19 @@ namespace Uno.Build.Stuff
 
                 try
                 {
-                    _stream = File.OpenWrite(Filename);
-                    _stream.Lock(0, 0);
+                    if (OperatingSystem.IsWindows())
+                    {
+                        _stream = File.OpenWrite(Filename);
+                        _stream.Lock(0, 0);
+                    }
+                    else
+                    {
+                        // Use FileShare instead of Lock()
+                        _stream = new FileStream(Filename,
+                            FileMode.OpenOrCreate,
+                            FileAccess.Write,
+                            FileShare.None);
+                    }
                     return true;
                 }
                 catch (IOException)

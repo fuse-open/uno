@@ -982,6 +982,9 @@ namespace IKVM.Reflection
             return ab;
         }
 
+#if NET6_0_OR_GREATER
+        [Obsolete]
+#endif
         private static void AddLegacyPermissionSet(AssemblyBuilder ab, PermissionSet permissionSet, System.Security.Permissions.SecurityAction action)
         {
             if (permissionSet != null)

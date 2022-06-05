@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
 using IKVM.Reflection;
 using IKVM.Reflection.Emit;
@@ -8,7 +9,9 @@ using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.API.Domain.IL.Types;
+using Uno.IO;
 using Uno.Logging;
+using ResolveEventArgs = IKVM.Reflection.ResolveEventArgs;
 using Type = IKVM.Reflection.Type;
 
 namespace Uno.Compiler.Backends.CIL
@@ -24,6 +27,7 @@ namespace Uno.Compiler.Backends.CIL
         readonly IEssentials _essentials;
         readonly HashSet<Assembly> _copyAssemblies = new HashSet<Assembly>();
         readonly Dictionary<string, Assembly> _assemblies = new Dictionary<string, Assembly>();
+        readonly Dictionary<string, Assembly> _assemblyFiles = new Dictionary<string, Assembly>();
         readonly Dictionary<Field, FieldInfo> _fields = new Dictionary<Field, FieldInfo>();
         readonly Dictionary<Function, MethodInfo> _methods = new Dictionary<Function, MethodInfo>();
         readonly Dictionary<Constructor, ConstructorInfo> _constructors = new Dictionary<Constructor, ConstructorInfo>();
@@ -31,6 +35,7 @@ namespace Uno.Compiler.Backends.CIL
         readonly Dictionary<DataType, MethodInfo> _typeMethods = new Dictionary<DataType, MethodInfo>();
         readonly Dictionary<DataType, Type> _types = new Dictionary<DataType, Type>();
         readonly bool _isReferenceAssembly;
+        readonly string _outputDir;
 
         public IEnumerable<Assembly> CopyAssemblies => _copyAssemblies;
         public IReadOnlyDictionary<DataType, Type> TypeMap => _types;
@@ -51,11 +56,13 @@ namespace Uno.Compiler.Backends.CIL
         public readonly MethodInfo System_Activator_CreateInstance;
         public readonly MethodInfo System_Type_GetTypeFromHandle;
 
-        public CilLinker(Log log, IEssentials essentials, bool isReferenceAssembly = false)
+        public CilLinker(Log log, IEssentials essentials, string outputDir, bool isReferenceAssembly = false)
             : base(log)
         {
             _essentials = essentials;
             _isReferenceAssembly = isReferenceAssembly;
+            _outputDir = outputDir;
+            Universe.AssemblyResolve += ResolveAssemblyEvent;
             System_Object = Universe.Import(typeof(object));
             System_String = Universe.Import(typeof(string));
             System_ValueType = Universe.Import(typeof(ValueType));
@@ -74,10 +81,63 @@ namespace Uno.Compiler.Backends.CIL
             _types.Add(DataType.Void, System_Void);
         }
 
+        Assembly ResolveAssemblyEvent(object sender, ResolveEventArgs args)
+        {
+            return ResolveAssembly(args.Name);
+        }
+
+        Assembly ResolveAssembly(string partialName)
+        {
+            var filename = GetAssemblyFilename(partialName);
+            var path = Path.Combine(_outputDir, filename);
+
+            if (File.Exists(path))
+                return AddAssemblyFile(path);
+
+            if (_isReferenceAssembly)
+            {
+                path = Path.Combine(DotNet.RefAssemblyDirectory, filename);
+                if (File.Exists(path))
+                    return AddAssemblyFile(path);
+            }
+            else
+            {
+                path = Path.Combine(DotNet.RuntimeDirectory, filename);
+                if (File.Exists(path))
+                    return AddAssemblyFile(path);
+            }
+
+            if (OperatingSystem.IsWindows())
+            {
+                path = Path.Combine(DotNet.WindowsDesktopAppDirectory, filename);
+                if (File.Exists(path))
+                    return AddAssemblyFile(path);
+            }
+
+            throw new FileNotFoundException(partialName);
+        }
+
+        static string GetAssemblyFilename(string partialName)
+        {
+            var filename = partialName;
+            var trimEnd = filename.IndexOf(", Version=");
+
+            if (trimEnd != -1)
+                filename = filename.Substring(0, trimEnd);
+
+            return filename + ".dll";
+        }
+
         public Assembly AddAssemblyFile(string filename, bool copyToOutputDir = false)
         {
-            var asm = Universe.LoadFile(filename);
-            _assemblies[asm.FullName] = asm;
+            Assembly asm;
+            if (!_assemblyFiles.TryGetValue(filename, out asm))
+            {
+                Log.Verbose("Loading " + filename.ToRelativePath());
+                asm = Universe.LoadFile(filename);
+                _assemblies[asm.FullName] = asm;
+                _assemblyFiles[filename] = asm;
+            }
 
             if (copyToOutputDir)
                 _copyAssemblies.Add(asm);
@@ -87,16 +147,7 @@ namespace Uno.Compiler.Backends.CIL
 
         public void AddAssembly(string partialName)
         {
-            // LoadWithPartialName() generates a warning because the result will be affected when specified assembly is upgraded in GAC.
-            // However, for convenience, we want to be able to load i.e. "System.Core" without having to specify the full strong name.
-#pragma warning disable 0618
-            var partial = System.Reflection.Assembly.LoadWithPartialName(partialName);
-#pragma warning restore 0618
-
-            if (partial == null)
-                throw new Exception("Not found in GAC. Please check the name.");
-
-            var asm = Universe.Load(partial.FullName);
+            var asm = ResolveAssembly(partialName);
             _assemblies[asm.FullName] = asm;
         }
 

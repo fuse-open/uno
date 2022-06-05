@@ -21,6 +21,7 @@
   jeroen@frijters.net
   
 */
+#if !NET6_0_OR_GREATER
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
@@ -1192,3 +1193,4 @@ namespace IKVM.Reflection.Impl
         }
     }
 }
+#endif // !NET6_0_OR_GREATER

@@ -1,5 +1,5 @@
 version: '{build}'
-image: Visual Studio 2019
+image: Visual Studio 2022
 
 environment:
   matrix:
@@ -44,7 +44,4 @@ before_test:
       }
 
 test_script:
-  - nunit3-console
-      src\test\tests\bin\Release\Uno.TestRunner.Tests.dll
-      src\ux\tests\bin\Release\Uno.UX.Markup.Tests.dll
-  - npm test %TARGET%
+  - npm test %TARGET% Release

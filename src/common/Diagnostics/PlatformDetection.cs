@@ -1,23 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using Microsoft.Win32;
 using Uno.CLI;
-using Uno.Logging;
-
-#pragma warning disable 649
-#pragma warning disable 169
 
 namespace Uno.Diagnostics
 {
     public static class PlatformDetection
     {
-        public static readonly bool IsWindows;
-        public static readonly bool IsLinux;
-        public static readonly bool IsMac;
-        public static readonly bool IsArm;
-        public static readonly bool Is64Bit;
-
         public static string HomeDirectory
         {
             get
@@ -26,7 +16,7 @@ namespace Uno.Diagnostics
                 if (!string.IsNullOrEmpty(home))
                     return home;
 
-                if (IsWindows)
+                if (OperatingSystem.IsWindows())
                 {
                     var userProfile = Environment.GetEnvironmentVariable("USERPROFILE");
                     if (!string.IsNullOrEmpty(userProfile))
@@ -46,25 +36,35 @@ namespace Uno.Diagnostics
         {
             get
             {
-                if (IsWindows)
+                var arch = RuntimeInformation.OSArchitecture;
+
+                if (OperatingSystem.IsWindows())
                     return WindowsVersion + " " + (
-                            Is64Bit
+                            arch == Architecture.Arm
+                                ? "ARM" :
+                            arch == Architecture.Arm64
+                                ? "ARM64" :
+                            IntPtr.Size == 8
                                 ? "x64"
                                 : "x86"
                         );
-                if (IsMac)
+                if (OperatingSystem.IsMacOS())
                     return "macOS " + MacVersion + " " + (
-                            IsArm
-                                ? "ARM" + (Is64Bit ? "64" : null) :
-                            Is64Bit
+                            arch == Architecture.Arm
+                                ? "ARM" :
+                            arch == Architecture.Arm64
+                                ? "ARM64" :
+                            IntPtr.Size == 8
                                 ? "x86_64"
                                 : "i386"
                         );
-                if (IsLinux)
+                if (OperatingSystem.IsLinux())
                     return "Linux " + Environment.OSVersion.Version.ToString(2) + " " + (
-                            IsArm
-                                ? "ARM" + (Is64Bit ? "64" : null) :
-                            Is64Bit
+                            arch == Architecture.Arm
+                                ? "ARM" :
+                            arch == Architecture.Arm64
+                                ? "ARM64" :
+                            IntPtr.Size == 8
                                 ? "x86_64"
                                 : "x86_32"
                         );
@@ -72,6 +72,7 @@ namespace Uno.Diagnostics
             }
         }
 
+        [SupportedOSPlatform("macOS")]
         static string MacVersion
         {
             get
@@ -87,6 +88,7 @@ namespace Uno.Diagnostics
             }
         }
 
+        [SupportedOSPlatform("windows")]
         static string WindowsVersion
         {
             get
@@ -106,55 +108,5 @@ namespace Uno.Diagnostics
                 }
             }
         }
-
-        static PlatformDetection()
-        {
-            IsWindows = Path.DirectorySeparatorChar == '\\';
-            Is64Bit = IntPtr.Size == 8;
-
-            if (IsWindows)
-                return;
-
-            try
-            {
-                _Utsname utsname;
-                if (Mono_Posix_Syscall_uname(out utsname) == 0)
-                {
-                    try
-                    {
-                        var sysname = Marshal.PtrToStringAnsi(utsname.sysname);
-                        var machine = Marshal.PtrToStringAnsi(utsname.machine);
-                        IsLinux = sysname == "Linux";
-                        IsMac = sysname == "Darwin";
-                        IsArm = machine.StartsWith("arm", StringComparison.InvariantCulture);
-                    }
-                    finally
-                    {
-                        free(utsname._buf_);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Default.Warning("uname() failed: " + e.Message);
-            }
-        }
-
-        struct _Utsname
-        {
-            public IntPtr sysname;
-            public IntPtr nodename;
-            public IntPtr release;
-            public IntPtr version;
-            public IntPtr machine;
-            public IntPtr domainname;
-            public IntPtr _buf_;
-        }
-
-        [DllImport("MonoPosixHelper", SetLastError = true)]
-        static extern int Mono_Posix_Syscall_uname(out _Utsname buf);
-
-        [DllImport("msvcrt", CallingConvention = CallingConvention.Cdecl)]
-        static extern void free(IntPtr ptr);
     }
 }

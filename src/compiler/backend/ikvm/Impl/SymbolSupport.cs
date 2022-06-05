@@ -65,7 +65,12 @@ namespace IKVM.Reflection.Impl
             }
             else
             {
+#if NET6_0_OR_GREATER
+                // COM isn't supported on .NET 6, so use a dummy instead (FIXME)
+                return new DummyWriter();
+#else
                 return new PdbWriter(moduleBuilder);
+#endif
             }
         }
 

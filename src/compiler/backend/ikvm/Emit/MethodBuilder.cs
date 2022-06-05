@@ -282,6 +282,9 @@ namespace IKVM.Reflection.Emit
             declarativeSecurity.Add(customBuilder);
         }
 
+#if NET6_0_OR_GREATER
+        [Obsolete]
+#endif
         public void AddDeclarativeSecurity(System.Security.Permissions.SecurityAction securityAction, System.Security.PermissionSet permissionSet)
         {
             this.ModuleBuilder.AddDeclarativeSecurity(pseudoToken, securityAction, permissionSet);

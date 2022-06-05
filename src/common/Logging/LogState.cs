@@ -20,13 +20,13 @@ namespace Uno.Logging
             {
                 return Math.Max(Console.WindowWidth - 1, 0);
             }
-            catch (System.IO.IOException)
+            catch (IOException)
             {
                 return 80; // not attached to a terminal?
             }
         }
 
-        static readonly string _spinner = PlatformDetection.IsWindows
+        static readonly string _spinner = OperatingSystem.IsWindows()
                                         ? "|/-\\" // The Windows shell can't print the dot characters
                                         : "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
         static readonly Stopwatch _w = Stopwatch.StartNew();

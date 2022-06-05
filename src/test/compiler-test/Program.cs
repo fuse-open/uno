@@ -13,9 +13,9 @@ namespace Uno.CompilerTestRunner
         {
             try
             {
-                var testsPath = string.Format("{0}..{1}..{1}..{1}..{1}..{1}tests{1}compiler", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar);
+                var testsPath = string.Format("{0}..{1}..{1}..{1}..{1}..{1}..{1}tests{1}compiler", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar);
                 if (!Directory.Exists(testsPath))
-                    testsPath = string.Format("{0}..{1}tests{1}compiler", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar);
+                    testsPath = string.Format("{0}..{1}..{1}tests{1}compiler", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar);
 
                 _compilerTestsRunner = new CompilerTestsRunner(testsPath, Filter(args));
                 _compilerTestsRunner.Run(GetLogger(args));

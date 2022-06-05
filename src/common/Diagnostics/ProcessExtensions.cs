@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Versioning;
 using Uno.Logging;
 
 namespace Uno.Diagnostics
@@ -10,28 +11,31 @@ namespace Uno.Diagnostics
     {
         private static string FindIndexedProcessName(int pid)
         {
-            try
+            if (OperatingSystem.IsWindows())
             {
-                var processName = Process.GetProcessById(pid).ProcessName;
-                var processesByName = Process.GetProcessesByName(processName);
-
-                for (var index = 0; index < processesByName.Length; index++)
+                try
                 {
-                    var indexedName = index == 0 ? processName : processName + "#" + index;
-                    var processId = new PerformanceCounter("Process", "ID Process", indexedName);
-                    if ((int)processId.NextSample().RawValue == pid)
-                        return indexedName;
+                    var processName = Process.GetProcessById(pid).ProcessName;
+                    var processesByName = Process.GetProcessesByName(processName);
+
+                    for (var index = 0; index < processesByName.Length; index++)
+                    {
+                        var indexedName = index == 0 ? processName : processName + "#" + index;
+                        var processId = new PerformanceCounter("Process", "ID Process", indexedName);
+                        if ((int)processId.NextSample().RawValue == pid)
+                            return indexedName;
+                    }
                 }
-            }
-            catch (InvalidOperationException e)
-            {
-                Log.Default.Warning(
-                    "Exception in FindIndexedProcessName(): " + e.Message + "\n\n" + 
-                    "This may be resolved when resetting performance counters in Windows.\n" + 
-                    "To do this type the following in cmd.exe:\n" +
-                    "    lodctr /R\n" +
-                    "    lodctr \"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.20506\\corperfmonsymbols.ini\"\n" +
-                    "(Source: http://stackoverflow.com/questions/1540777/performancecounters-on-net-4-0-windows-7 )\n");
+                catch (InvalidOperationException e)
+                {
+                    Log.Default.Warning(
+                        "Exception in FindIndexedProcessName(): " + e.Message + "\n\n" + 
+                        "This may be resolved when resetting performance counters in Windows.\n" + 
+                        "To do this type the following in cmd.exe:\n" +
+                        "    lodctr /R\n" +
+                        "    lodctr \"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.20506\\corperfmonsymbols.ini\"\n" +
+                        "(Source: http://stackoverflow.com/questions/1540777/performancecounters-on-net-4-0-windows-7 )\n");
+                }
             }
 
             return null;
@@ -39,27 +43,32 @@ namespace Uno.Diagnostics
 
         public static Process GetParent(this Process process)
         {
-            var indexedProcessName = FindIndexedProcessName(process.Id);
+            if (OperatingSystem.IsWindows())
+            {
+                var indexedProcessName = FindIndexedProcessName(process.Id);
 
-            if (indexedProcessName == null)
-                return null;
+                if (indexedProcessName == null)
+                    return null;
 
-            var parentId = new PerformanceCounter("Process", "Creating Process ID", indexedProcessName);
-            var pid = parentId.NextSample().RawValue;
-            return Process
-                .GetProcesses()
-                .FirstOrDefault(
-                    p =>
-                    {
-                        try
+                var parentId = new PerformanceCounter("Process", "Creating Process ID", indexedProcessName);
+                var pid = parentId.NextSample().RawValue;
+                return Process
+                    .GetProcesses()
+                    .FirstOrDefault(
+                        p =>
                         {
-                            return p.Id == pid && p.StartTime <= process.StartTime;
-                        }
-                        catch
-                        {
-                            return false;
-                        }
-                    });
+                            try
+                            {
+                                return p.Id == pid && p.StartTime <= process.StartTime;
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        });
+            }
+
+            return null;
         }
 
         public static List<Process> GetParents(this Process process)

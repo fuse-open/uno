@@ -86,6 +86,8 @@
     "cil/config.cil.uxl:Extensions",
     "cil/dll.cil.uxl:Extensions",
     "cil/exe.cil.uxl:Extensions",
+    "cil/run.bat:File",
+    "cil/run.sh:File",
     "cpp/config.cpp.uxl:Extensions",
     "cpp/uno.cpp.uxl:Extensions",
     "cpp/uno.h:File",

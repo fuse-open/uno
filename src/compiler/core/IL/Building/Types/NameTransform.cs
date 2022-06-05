@@ -85,12 +85,27 @@ namespace Uno.Compiler.Core.IL.Building.Types
             {
                 if (f is Finalizer)
                     continue;
+                if (f.IsStatic)
+                    continue;
 
                 var m = f as Method;
                 if (m?.OverriddenMethod != null)
                     m.SetName(m.OverriddenMethod.Name);
                 else
                     members.Add(f);
+            }
+
+            // The order after sorting lists have changed in .NET 6.0:
+            // Add static functions last to compensate -- otherwise object.Equals()
+            // functions end up being emitted with changed names, breaking builds.
+            foreach (var f in dt.EnumerateFunctions())
+            {
+                if (f is Finalizer)
+                    continue;
+                if (!f.IsStatic)
+                    continue;
+
+                members.Add(f);
             }
 
             members.AddRange(dt.EnumerateFields());

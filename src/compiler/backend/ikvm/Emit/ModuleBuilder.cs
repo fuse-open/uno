@@ -500,7 +500,10 @@ namespace IKVM.Reflection.Emit
 			this.DeclSecurity.AddRecord(rec);
 		}
 
-		internal void AddDeclarativeSecurity(int token, System.Security.Permissions.SecurityAction securityAction, System.Security.PermissionSet permissionSet)
+#if NET6_0_OR_GREATER
+        [Obsolete]
+#endif
+        internal void AddDeclarativeSecurity(int token, System.Security.Permissions.SecurityAction securityAction, System.Security.PermissionSet permissionSet)
 		{
 			// like Ref.Emit, we're using the .NET 1.x xml format
 			AddDeclSecurityRecord(token, (int)securityAction, this.Blobs.Add(ByteBuffer.Wrap(System.Text.Encoding.Unicode.GetBytes(permissionSet.ToXml().ToString()))));
@@ -515,7 +518,11 @@ namespace IKVM.Reflection.Emit
 				// check for HostProtectionAttribute without SecurityAction
 				if (cab.ConstructorArgumentCount == 0)
 				{
+#if NET6_0_OR_GREATER
+					action = 6;
+#else
 					action = (int)System.Security.Permissions.SecurityAction.LinkDemand;
+#endif
 				}
 				else
 				{
@@ -924,6 +931,13 @@ namespace IKVM.Reflection.Emit
 
 		private int FindOrAddAssemblyRef(AssemblyName name, bool alwaysAdd)
 		{
+#if NET6_0_OR_GREATER
+			// Don't reference private assemblies since our assembly becomes unusable
+			if (name.Name == "System.Private.CoreLib")
+			{
+				name = universe.CoreLib.GetName();
+			}
+#endif
 			AssemblyRefTable.Record rec = new AssemblyRefTable.Record();
 			Version ver = name.Version ?? new Version(0, 0, 0, 0);
 			rec.MajorVersion = (ushort)ver.Major;

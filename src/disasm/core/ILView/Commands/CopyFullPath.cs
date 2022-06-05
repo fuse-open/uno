@@ -1,4 +1,5 @@
-using System.Windows.Forms;
+//using System.Windows.Forms;
+using System;
 using Uno.Diagnostics;
 
 namespace Uno.Disasm.ILView.Commands
@@ -9,13 +10,13 @@ namespace Uno.Disasm.ILView.Commands
 
         public override bool CanShow(ILItem item)
         {
-            return PlatformDetection.IsWindows && item is IFile;
+            return OperatingSystem.IsWindows() && item is IFile;
         }
 
         public override void Execute(ILItem item)
         {
             var file = (IFile)item;
-            Clipboard.SetText(file.FullName);
+            //Clipboard.SetText(file.FullName);
         }
     }
 }

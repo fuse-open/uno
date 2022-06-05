@@ -25,5 +25,9 @@
     <!-- Core assemblies -->
     <Require Assembly="System" />
     <Require Assembly="System.Core" />
+    <Require Assembly="System.Collections" />
+    <Require Assembly="System.Console" />
+    <Require Assembly="System.Runtime" />
+    <Require Assembly="System.Threading" />
 
 </Extensions>

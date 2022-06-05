@@ -96,7 +96,11 @@ namespace MyHttpLib
 
             // Write the post data to the request stream
             return request.GetHttpRequestStreamAsync()
-                          .Then(stream => stream.WriteAsync(buffer).Then(stream.Dispose))
+                          .Then(stream =>
+                          {
+                              stream.Write(buffer);
+                              stream.Dispose();
+                          })
                           .Then(() => request.GetHttpResponseAsync());
         }
 
@@ -109,7 +113,7 @@ namespace MyHttpLib
         {
             Send(request, buffer).Then(httpWebResponse =>
             {
-                if(httpWebResponse == null)
+                if (httpWebResponse == null)
                     throw new ArgumentNullException("httpWebResponse");
 
                 onHeadersReceived(httpWebResponse);

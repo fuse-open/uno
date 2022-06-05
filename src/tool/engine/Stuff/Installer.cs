@@ -190,7 +190,7 @@ namespace Uno.Build.Stuff
 
                     try
                     {
-                        if (PlatformDetection.IsWindows)
+                        if (OperatingSystem.IsWindows())
                             LongPathZipFile.ExtractToDirectory(file, targetDir);
                         else
                         {

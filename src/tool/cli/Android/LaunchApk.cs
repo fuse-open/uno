@@ -159,7 +159,7 @@ namespace Uno.CLI.Android
         {
             var filename = Path.Combine(NdkDirectory, "ndk-stack");
 
-            if (PlatformDetection.IsWindows)
+            if (OperatingSystem.IsWindows())
                 filename = File.Exists(filename + ".exe")
                     ? filename + ".exe"
                     : filename + ".cmd";

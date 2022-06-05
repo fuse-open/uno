@@ -84,7 +84,7 @@ namespace Uno.IO
                 }
             }
 
-            if (PlatformDetection.IsWindows)
+            if (OperatingSystem.IsWindows())
             {
                 // Convert drive letters to uppercase to avoid bugs
                 if (filename.Length > 1 && filename[1] == ':' && char.IsLower(filename[0]))

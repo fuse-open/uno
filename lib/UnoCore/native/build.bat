@@ -15,7 +15,7 @@ if not %ERRORLEVEL% == 0 (
 
 pushd "%~dp0"
 
-cmake -G"Visual Studio 16 2019" .
+cmake -G"Visual Studio 17 2022" .
 if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
 cmake --build . -- /p:Configuration=@(Native.Configuration) /m

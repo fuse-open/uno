@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -50,7 +51,7 @@ namespace Uno.Diagnostics
                 var copyright = GetAttribute<AssemblyCopyrightAttribute>()?.Copyright;
                 return string.IsNullOrEmpty(copyright)
                         ? "(no copyright information)" :
-                    PlatformDetection.IsWindows // The Windows shell can't print the © character
+                    OperatingSystem.IsWindows() // The Windows shell can't print the © character
                         ? copyright.Replace("©", "(C)")
                         : copyright;
             }

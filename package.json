@@ -6,7 +6,7 @@
     "@fuse-open/opentk": "^3.2.0",
     "@fuse-open/transpiler": "^1.17.3",
     "@fuse-open/xamarin-mac": "^8.8.0",
-    "dotnet-run": "^1.5.0"
+    "dotnet-run": "^2.0.0-beta.1"
   },
   "devDependencies": {
     "filecompare": "^1.0.4",
@@ -19,10 +19,10 @@
     "prepack": "bash scripts/pack.sh",
     "test": "bash scripts/test.sh",
     "version": "bash scripts/version.sh",
-    "uno": "dotnet-run bin/uno.exe"
+    "uno": "node bin/net6.0/uno.js"
   },
   "bin": {
-    "uno": "bin/uno.js"
+    "uno": "bin/net6.0/uno.js"
   },
   "files": [
     ".unoconfig",
@@ -39,7 +39,8 @@
     "programming-language",
     "fuse",
     "cross-platform",
-    "c-sharp"
+    "c-sharp",
+    "dotnet"
   ],
   "author": "Fuse Open",
   "license": "MIT",

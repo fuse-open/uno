@@ -23,6 +23,7 @@
 */
 using System;
 using System.IO;
+using System.Runtime.Versioning;
 using System.Security.Cryptography;
 
 namespace IKVM.Reflection
@@ -76,12 +77,13 @@ namespace IKVM.Reflection
 		{
 			get
 			{
+#if !NET6_0_OR_GREATER
 				if (Universe.MonoRuntime)
 				{
 					// MONOBUG workaround for https://bugzilla.xamarin.com/show_bug.cgi?id=5299
 					return MonoGetPublicKey();
 				}
-
+#endif
 				using (RSACryptoServiceProvider rsa = CreateRSA())
 				{
 					var rsaParameters = rsa.ExportParameters(false);
@@ -112,6 +114,12 @@ namespace IKVM.Reflection
 					rsa.ImportParameters(RSAParametersFromByteArray(keyPairArray));
 					return rsa;
 				}
+#if NET6_0_OR_GREATER
+				else if (!OperatingSystem.IsWindows())
+				{
+					throw new NotSupportedException();
+				}
+#endif
 				else
 				{
 					CspParameters parm = new CspParameters();
@@ -237,13 +245,14 @@ namespace IKVM.Reflection
 			return rsaParameters;
 		}
 
-		[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+#if !NET6_0_OR_GREATER
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
 		private byte[] MonoGetPublicKey()
 		{
 			return keyPairArray != null
 				? new System.Reflection.StrongNameKeyPair(keyPairArray).PublicKey
 				: new System.Reflection.StrongNameKeyPair(keyPairContainer).PublicKey;
 		}
-
-	}
+#endif
+    }
 }

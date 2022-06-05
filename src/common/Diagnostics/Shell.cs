@@ -27,9 +27,9 @@ namespace Uno.Diagnostics
         {
             var command = GetCommand(filename, args, null);
 
-            if (PlatformDetection.IsMac)
+            if (OperatingSystem.IsMacOS())
                 Run("open", command);
-            else if (PlatformDetection.IsWindows && string.IsNullOrEmpty(args))
+            else if (OperatingSystem.IsWindows() && string.IsNullOrEmpty(args))
                 Run("explorer", command);
             else
             {
@@ -250,7 +250,7 @@ namespace Uno.Diagnostics
             // When pressing CTRL+C at this point, the signal is handled by the first cmd.exe which doesn't kill the entire
             // process tree, leaving dangling processes around unless we detect that the parent process has exited.
 
-            if (PlatformDetection.IsWindows && !_timerInited)
+            if (OperatingSystem.IsWindows() && !_timerInited)
             {
                 lock (Lock)
                 {

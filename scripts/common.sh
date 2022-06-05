@@ -1,46 +1,8 @@
 #!/bin/bash
 set -e
 
-function find-msbuild {
-    powershell -ExecutionPolicy ByPass -File scripts/find-msbuild.ps1
-}
-
-function csharp-build {
-    if [ -z "$CONFIGURATION" ]; then
-        CONFIGURATION="Debug"
-    fi
-
-    if [ "$OSTYPE" = msys ]; then
-        msbuild=`find-msbuild`
-        if [ $? != 0 ]; then
-            exit $?
-        fi
-        "$msbuild" //m //p:Configuration=$CONFIGURATION //v:minimal "$@"
-    else
-        msbuild /m /property:Configuration=$CONFIGURATION /verbosity:minimal "$@"
-    fi
-}
-
-function csharp-clean {
-    if [ "$OSTYPE" = msys ]; then
-        msbuild=`find-msbuild`
-        if [ $? != 0 ]; then
-            exit $?
-        fi
-        "$msbuild" //m //t:Clean //p:Configuration=Debug "$@"
-        "$msbuild" //m //t:Clean //p:Configuration=Release "$@"
-    else
-        msbuild /m /target:Clean /property:Configuration=Debug "$@"
-        msbuild /m /target:Clean /property:Configuration=Release "$@"
-    fi
-}
-
-function dotnet-run {
-    node_modules/.bin/dotnet-run "$@"
-}
-
 function uno {
-    dotnet-run bin/uno.exe "$@"
+    dotnet bin/net6.0/uno.dll "$@"
 }
 
 function h1 {

@@ -64,7 +64,7 @@ namespace Uno.Test
         public void FixedPointWithDouble()
         {
             Assert.AreEqual("0.00" , NumericFormatter.Format("F", 0.0));
-            Assert.AreEqual("0.00" , NumericFormatter.Format("F", -0.0));
+            Assert.AreEqual("-0.00", NumericFormatter.Format("F", -0.0));
             Assert.AreEqual("0.0" , NumericFormatter.Format("F1", 0.0));
             Assert.AreEqual("1.23" , NumericFormatter.Format("F", 1.234));
             Assert.AreEqual("43.13" , NumericFormatter.Format("F2", 43.13));

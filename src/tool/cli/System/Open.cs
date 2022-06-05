@@ -48,7 +48,7 @@ namespace Uno.CLI.System
 
         void Start(string filename, string app, string exe, string title, bool newWindow)
         {
-            if (PlatformDetection.IsMac)
+            if (OperatingSystem.IsMacOS())
             {
                 var args = new List<string>();
 
@@ -62,7 +62,7 @@ namespace Uno.CLI.System
                 return;
             }
 
-            if (PlatformDetection.IsWindows && (
+            if (OperatingSystem.IsWindows() && (
                     !string.IsNullOrEmpty(app) ||
                     !string.IsNullOrEmpty(exe)
                 ))

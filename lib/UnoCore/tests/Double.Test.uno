@@ -104,7 +104,7 @@ namespace Uno.Test
             }
             else
             {
-                Assert.AreEqual("1.79769313486232E+308", maxValueString);
+                Assert.AreEqual("1.7976931348623157E+308", maxValueString);
             }
         }
     }

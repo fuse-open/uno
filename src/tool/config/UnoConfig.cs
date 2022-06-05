@@ -277,7 +277,7 @@ namespace Uno.Configuration
                 return;
 
             // Convert drive letter to uppercase to avoid mixed case bugs
-            if (PlatformDetection.IsWindows && dir.Length >= 2 && dir[1] == ':' && char.IsLower(dir[0]))
+            if (OperatingSystem.IsWindows() && dir.Length >= 2 && dir[1] == ':' && char.IsLower(dir[0]))
                 dir = char.ToUpper(dir[0]) + dir.Substring(1);
 
             if (_visitedDirectories.Contains(dir))
@@ -356,9 +356,7 @@ namespace Uno.Configuration
         {
             if (asm == null)
                 return null;
-            var uri = new UriBuilder(asm.CodeBase);
-            var path = Uri.UnescapeDataString(uri.Path);
-            return Path.GetDirectoryName(path);
+            return Path.GetDirectoryName(asm.Location);
         }
 
         public override string ToString()

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Management;
+using System.Runtime.Versioning;
 
 namespace Uno.Diagnostics
 {
@@ -9,13 +10,13 @@ namespace Uno.Diagnostics
     {
         public static void KillTree(int pid)
         {
-            if (PlatformDetection.IsWindows)
+            if (OperatingSystem.IsWindows())
             {
                 KillWindowsTree(pid);
             }
-            else if (PlatformDetection.IsMac)
+            else if (OperatingSystem.IsMacOS())
             {
-                KillOsxTree(pid);
+                KillMacTree(pid);
             }
             else
             {
@@ -24,6 +25,7 @@ namespace Uno.Diagnostics
         }
 
         //http://stackoverflow.com/a/10402906/7084
+        [SupportedOSPlatform("windows")]
         private static void KillWindowsTree(int pid)
         {
             var searcher = new ManagementObjectSearcher("Select * From Win32_Process Where ParentProcessID=" + pid);
@@ -46,10 +48,11 @@ namespace Uno.Diagnostics
             }
         }
 
-        private static void KillOsxTree(int pid)
+        [SupportedOSPlatform("macOS")]
+        private static void KillMacTree(int pid)
         {
             const string scriptPath = "/tmp/uno_kill_script.sh";
-            File.WriteAllText(scriptPath, (OsxKillScript.Replace("PID_GOES_HERE", pid.ToString())).Replace("\r", ""));
+            File.WriteAllText(scriptPath, (MacKillScript.Replace("PID_GOES_HERE", pid.ToString())).Replace("\r", ""));
             var p = new Process
             {
                 StartInfo =
@@ -62,7 +65,8 @@ namespace Uno.Diagnostics
             p.Start();
         }
 
-        private const string OsxKillScript = @"#!/bin/sh
+        [SupportedOSPlatform("macOS")]
+        private const string MacKillScript = @"#!/bin/sh
 
 kill_tree() {
     ps -o pid,ppid | while read line; do
