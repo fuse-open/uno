@@ -38,8 +38,11 @@
     <Declare Element="Activity.OnNewIntent.Declaration" />
     <Declare Element="Activity.OnWindowFocusChanged.Declaration" />
     <Declare Element="Android.ResStrings.Declaration" />
+    <Declare Element="AndroidManifest.ActivityAttribute" />
     <Declare Element="AndroidManifest.ActivityElement" />
+    <Declare Element="AndroidManifest.ApplicationAttribute" />
     <Declare Element="AndroidManifest.ApplicationElement" />
+    <Declare Element="AndroidManifest.ManifestAttribute" />
     <Declare Element="AndroidManifest.Permission" />
     <Declare Element="AndroidManifest.RootElement" />
     <Declare Element="AndroidManifest.Activity.ViewIntentFilter" />

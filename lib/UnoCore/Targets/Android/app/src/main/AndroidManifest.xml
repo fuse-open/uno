@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
+          @(AndroidManifest.ManifestAttribute:Join('\n          '))
           package="@(Activity.Package)">
 
     #if @(Project.Android.SupportsScreens.Resizable:IsSet) || @(Project.Android.SupportsScreens.SmallScreens:IsSet) || @(Project.Android.SupportsScreens.NormalScreens:IsSet) || @(Project.Android.SupportsScreens.LargeScreens:IsSet) || @(Project.Android.SupportsScreens.XLargeScreens:IsSet) || @(Project.Android.SupportsScreens.AnyDensity:IsSet) || @(Project.Android.SupportsScreens.RequiresSmallestWidthDp:IsSet) || @(Project.Android.SupportsScreens.CompatibleWidthLimitDp:IsSet) || @(Project.Android.SupportsScreens.LargestWidthLimitDp:IsSet)
@@ -97,6 +98,7 @@
                  android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))"
                  android:hardwareAccelerated="@(Project.Android.HardwareAccelerated:IsSet:Test(@(Project.Android.HardwareAccelerated:Bool),true))"
                  android:extractNativeLibs="@(Project.Android.ExtractNativeLibs:IsSet:Test(@(Project.Android.ExtractNativeLibs:Bool),true))"
+                 @(AndroidManifest.ApplicationAttribute:Join('\n                 '))
                  >
 
         <activity android:name="@(Activity.Name:EscapeXml)"
@@ -122,7 +124,9 @@
 #else
                   android:screenOrientation="user"
 #endif
-                  android:windowActionBar="false">
+                  android:windowActionBar="false"
+                  @(AndroidManifest.ActivityAttribute:Join('\n                  '))
+                  >
             <meta-data android:name="android.app.lib_name" android:value="@(Activity.Name:EscapeXml)" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
