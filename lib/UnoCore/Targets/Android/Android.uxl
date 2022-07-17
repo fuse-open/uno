@@ -292,4 +292,8 @@
     <ProcessFile Name=".idea/runConfigurations.xml" Overwrite=false />
     <ProcessFile Name=".idea/vcs.xml" Overwrite=false />
 
+    <!-- Git ignore -->
+
+    <ProcessFile Name="gitignore" TargetName=".gitignore" />
+
 </Extensions>
