@@ -7,7 +7,6 @@
         "Uno.Graphics.Utils",
         "Uno.Net.Http",
         "Uno.Net.Sockets",
-        "Uno.Permissions",
         "Uno.Testing",
         "Uno.Threading",
         "UnoCore"
