@@ -258,7 +258,6 @@
     "src/Uno/DateTime.uno:Source",
     "src/Uno/Delegate.uno:Source",
     "src/Uno/Diagnostics/Clock.uno:Source",
-    "src/Uno/Diagnostics/Debug.uno:Source",
     "src/Uno/Diagnostics/Log.uno:Source",
     "src/Uno/Double.uno:Source",
     "src/Uno/Enum.uno:Source",
