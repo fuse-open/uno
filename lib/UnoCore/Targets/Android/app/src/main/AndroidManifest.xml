@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="@(Activity.Package)">
 
     #if @(Project.Android.SupportsScreens.Resizable:IsSet) || @(Project.Android.SupportsScreens.SmallScreens:IsSet) || @(Project.Android.SupportsScreens.NormalScreens:IsSet) || @(Project.Android.SupportsScreens.LargeScreens:IsSet) || @(Project.Android.SupportsScreens.XLargeScreens:IsSet) || @(Project.Android.SupportsScreens.AnyDensity:IsSet) || @(Project.Android.SupportsScreens.RequiresSmallestWidthDp:IsSet) || @(Project.Android.SupportsScreens.CompatibleWidthLimitDp:IsSet) || @(Project.Android.SupportsScreens.LargestWidthLimitDp:IsSet)
@@ -127,7 +128,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
