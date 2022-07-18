@@ -65,6 +65,7 @@ public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityC
     {
         return fuseApp.onKeyUp(keyCode, event);
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -72,8 +73,8 @@ public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityC
     }
 
     @Override
-    public void onActivityResult (int arg0, int arg1, android.content.Intent arg2)
-    {
+    public void onActivityResult(int arg0, int arg1, android.content.Intent arg2) {
+        super.onActivityResult(arg0, arg1, arg2);
         fuseApp.onActivityResult(arg0, arg1, arg2);
     }
 
@@ -128,8 +129,8 @@ public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityC
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         fuseApp.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
