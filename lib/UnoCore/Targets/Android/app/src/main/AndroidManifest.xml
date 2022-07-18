@@ -98,6 +98,7 @@
                  android:usesCleartextTraffic="@(Project.Android.UsesCleartextTraffic:IsSet:Test(@(Project.Android.UsesCleartextTraffic:Bool),false))"
                  android:hardwareAccelerated="@(Project.Android.HardwareAccelerated:IsSet:Test(@(Project.Android.HardwareAccelerated:Bool),true))"
                  android:extractNativeLibs="@(Project.Android.ExtractNativeLibs:IsSet:Test(@(Project.Android.ExtractNativeLibs:Bool),true))"
+                 android:requestLegacyExternalStorage="@(Project.Android.RequestLegacyExternalStorage:IsSet:Test(@(Project.Android.RequestLegacyExternalStorage:Bool),false))"
                  @(AndroidManifest.ApplicationAttribute:Join('\n                 '))
                  >
 
