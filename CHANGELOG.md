@@ -4,6 +4,27 @@ Uno Changelog
 Unreleased
 ----------
 
+2.3
+---
+
+### Android
+- Fix missing super-calls in Activity (#409)
+- Fix linter warning in AndroidManifest.xml (#410)
+- Generate .gitignore file (#411)
+- Add new UXL properties (#412)
+    - `AndroidManifest.ActivityAttribute`
+    - `AndroidManifest.ApplicationAttribute`
+    - `AndroidManifest.ManifestAttribute`
+- Add new unoproj property (#414)
+    - `Android.RequestLegacyExternalStorage`
+
+### Other
+- Upgrade Newtonsoft.Json to v13.0.1 (#408)
+- Upgrade Xamarin.Mac to v8.8.0 (#413)
+- Upgrade dotnet-run and transpiler
+
+[`v2.2.0...v2.3.0`](https://github.com/fuse-open/uno/compare/v2.2.0...v2.3.0)
+
 2.2
 ---
 
