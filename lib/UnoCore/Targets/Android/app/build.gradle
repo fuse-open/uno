@@ -43,6 +43,8 @@ android {
     compileSdkVersion = @(SDK.CompileVersion)
     buildToolsVersion = '@(SDK.BuildToolsVersion)'
 
+    ndkVersion '@(NDK.Version)'
+
     defaultConfig {
 #if !@(LIBRARY:Defined)
         applicationId = '@(Activity.Package)'
@@ -72,10 +74,9 @@ android {
                 // binaries are only really useful when actually debugging generated C++ code.
                 // Running 'uno build android --debug' will produce debuggable C++ code.
                 arguments '-DCMAKE_BUILD_TYPE=@(Native.Configuration)',
-                    '-DANDROID_STL=@(STL)',
-                    '-DANDROID_PLATFORM=android-@(NDK.PlatformVersion)',
-                    '-DANDROID_TOOLCHAIN=clang',
-                    '-DANDROID_NDK=@(NDK.Directory)'
+                          '-DANDROID_PLATFORM=android-@(NDK.PlatformVersion)',
+                          '-DANDROID_STL=@(STL)',
+                          '-DANDROID_TOOLCHAIN=clang'
             }
         }
 

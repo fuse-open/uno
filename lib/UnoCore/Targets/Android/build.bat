@@ -4,10 +4,10 @@
 pushd "%~dp0"
 setlocal
 
-#if !@(SDK.Directory:IsSet) || !@(NDK.Directory:IsSet)
-echo ERROR: Could not locate the Android SDK or NDK. >&2
+#if !@(SDK.Directory:IsSet)
+echo ERROR: Could not locate the Android SDK. >&2
 echo. >&2
-echo These dependencies can be acquired by installing 'android-build-tools': >&2
+echo This dependency can be acquired by installing 'android-build-tools': >&2
 echo. >&2
 echo     npm install android-build-tools@1.x -g >&2
 echo. >&2

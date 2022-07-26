@@ -13,12 +13,13 @@
     <Set PathSeparator="@(HOST_WIN32:Defined:Test(';', ':'))" />
     <!-- Deprecated -->
     <Set ABI="${ANDROID_ABI}" />
+    <Set NDK.Directory="@(Config.Android.NDK:Path || Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
 
     <!-- Build tools config -->
 
     <Set JDK.Directory="@(Config.Java.JDK:Path || Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
-    <Set NDK.Directory="@(Config.Android.NDK:Path || Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
     <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '16')" />
+    <Set NDK.Version="@(Project.Android.NDK.Version || Config.Android.NDK.Version || '21.4.7075529')" />
     <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '30.0.3')" />
     <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '30')" />
     <Set SDK.Directory="@(Config.Android.SDK:Path || Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
