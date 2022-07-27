@@ -22,10 +22,10 @@
     <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '16')" />
     <Set NDK.Version="@(Project.Android.NDK.Version || Config.Android.NDK.Version || '21.4.7075529')" />
     <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '30.0.3')" />
-    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '30')" />
+    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '31')" />
     <Set SDK.Directory="@(Config.Android.SDK:Path || Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
     <Set SDK.MinVersion="@(Project.Android.SDK.MinVersion || Config.Android.SDK.MinVersion || '16')" />
-    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '30')" />
+    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '31')" />
 
     <!-- Build properties -->
 
