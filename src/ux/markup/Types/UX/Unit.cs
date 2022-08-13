@@ -1,4 +1,4 @@
-// This file was generated based on lib/UnoCore/Source/Uno/UX/Size.uno.
+// This file was generated based on lib/UnoCore/src/Uno/UX/Size.uno.
 // WARNING: Changes might be lost if you edit this file directly.
 
 namespace Uno.UX.Markup.Types.UX
