@@ -11,6 +11,7 @@
     <Set SourceDirectory="app/src/main/jni" />
     <Set BinaryDirectory="app/src/main/jniLibs" />
     <Set PathSeparator="@(HOST_WIN32:Defined:Test(';', ':'))" />
+
     <!-- Deprecated -->
     <Set ABI="${ANDROID_ABI}" />
     <Set NDK.Directory="@(Config.Android.NDK:Path || Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
@@ -118,90 +119,6 @@
     <ProcessFile HeaderFile="Uno/Graphics/GLHelper.h" />
     <ProcessFile SourceFile="Uno/Graphics/GLHelper.cpp" />
 
-    <Require Entity="Android.Bootstrapper" />
-    <Require Entity="Android.Base.JNI" />
-    <Require Entity="Android.Base.JNI.Init(Android.Base.Primitives.ujobject)" />
-    <Require Entity="Android.Base.JNI.LoadClass(Android.Base.Primitives.JNIEnvPtr,Android.Base.Primitives.ConstCharPtr)" />
-    <Require Entity="Android.Base.JNI.CheckException()" />
-    <Require Entity="Android.Base.Types.Bridge" />
-    <Require Entity="Android.Base.Types.String.UnoToJava(string)" />
-    <Require Entity="Android.Base.AndroidBindingMacros" />
-    <Require Entity="Android.Base.Types.Bridge.RegisterUnoType(Android.Base.Primitives.ConstCharPtr,int,Uno.Type)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost.RegisterFunctions()" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject" />
-    <Require Entity="Android.Base.Wrappers.JavaObjectHelper.JObjectToJWrapper(Android.Base.Primitives.ujobject, bool)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(bool[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(sbyte[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(byte[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(short[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(int[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(long[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(float[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(double[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(string[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(object[])" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.BoxDelegate(object,Android.Base.Primitives.ConstCharPtr)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.UnBox(Android.Base.Primitives.ujobject)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.UnBoxFreeingLocalRef(Android.Base.Primitives.ujobject)" />
-    <Require Entity="Uno.Platform.EventSources.InterAppInvoke.ReceivedURI" />
-    <Require Entity="Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetBool(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetByte(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetShort(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetInt(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetLong(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetFloat(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetDouble(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetString(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetObject(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getBool(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getByte(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getShort(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getInt(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setInt(object,int,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getLong(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getFloat(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getDouble(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getString(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.getObject(object,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetBool(object,int,bool)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetByte(object,int,sbyte)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetShort(object,int,short)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetInt(object,int,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetLong(object,int,long)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetFloat(object,int,float)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetDouble(object,int,double)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetString(object,int,string)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.SetObject(object,int,object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setBool(object,int,bool)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setByte(object,int,sbyte)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setShort(object,int,short)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setInt(object,int,int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setLong(object,int,long)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setFloat(object,int,float)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setDouble(object,int,double)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setString(object,int,string)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.setObject(object,int,object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewBoolArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewByteArrayPtr(int,bool)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewCharArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewShortArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewIntArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewLongArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewFloatArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewDoubleArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewStringArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.NewObjectArrayPtr(int)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.BoolArrayToUnoArrayPtr(Java.Object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.ByteArrayToUnoArrayPtr(Java.Object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.ShortArrayToUnoArrayPtr(Java.Object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.IntArrayToUnoArrayPtr(Java.Object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.LongArrayToUnoArrayPtr(Java.Object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.FloatArrayToUnoArrayPtr(Java.Object)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.DoubleArrayToUnoArrayPtr(Java.Object)" />
-
     <!-- Java source -->
 
     <Set Java.ProjectDirectory="app/src" />
@@ -251,7 +168,6 @@
 
     <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.foreground:Path || '@//assets/adaptive_icon/drawable/icon_foreground.xml')" TargetName="app/src/main/res/drawable/icon_foreground.xml" />
     <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.background:Path || '@//assets/adaptive_icon/drawable/icon_background.xml')" TargetName="app/src/main/res/drawable/icon_background.xml" />
-
 
     <!-- Build system -->
 

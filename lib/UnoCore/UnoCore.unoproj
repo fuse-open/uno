@@ -18,6 +18,7 @@
     "android/.idea/vcs.xml:File",
     "android/@(Java.PackageDirectory)/@(Activity.Name).java:File",
     "android/android.uxl:Extensions",
+    "android/api-refs.uxl:Extensions",
     "android/app/build.gradle:File",
     "android/app/src/main/AndroidManifest.xml:File",
     "android/app/src/main/CMakeLists.txt:File",
