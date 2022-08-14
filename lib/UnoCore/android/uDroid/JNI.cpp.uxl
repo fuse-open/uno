@@ -23,7 +23,7 @@
     <Type Name="JNI">
         <Require Header.Include="android/log.h" />
         <Require Header.Include="jni.h" />
-        <Require Header.Include="Uno/JNIHelper.h" />
+        <Require Header.Include="uDroid/JNIHelper.h" />
         <Require Header.Include="@{Uno.Exception:Include}" />
         <Require Entity="Android.Base.Types.Bridge" />
         <Require Entity="Android.Base.Types.ByteBuffer" />

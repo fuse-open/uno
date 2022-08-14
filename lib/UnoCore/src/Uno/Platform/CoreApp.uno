@@ -117,7 +117,7 @@ namespace Uno.Platform
                 throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
-        [extern(android) Require("Source.Include", "Uno/Graphics/GLHelper.h")]
+        [extern(android) Require("Source.Include", "uDroid/GLHelper.h")]
         internal static void EnterInteractive()
         {
             if defined(Android) {

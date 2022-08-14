@@ -28,7 +28,7 @@ namespace Uno.Compiler.Foreign.Java
 			Helpers = helpers;
 			CppHeadersForDeclaringType = new List<string> {
 					"jni.h",
-					"Uno/JNIHelper.h",
+					"uDroid/JNIHelper.h",
 					"@{global::Android.Base.Wrappers.JWrapper:Include}",
 					"@{global::Android.Base.Wrappers.JavaObjectHelper:Include}",
 					"@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ":Include}"
