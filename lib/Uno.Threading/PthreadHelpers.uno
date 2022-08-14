@@ -11,14 +11,14 @@ namespace Uno.Threading
         {
         }
 
-        [Require("Source.Include", "Implementation/Posix/posix_mutex.h")]
+        [Require("Source.Include", "uThread/posix_mutex.h")]
         public static void CreateMutex(ref MutexHandle mutexHandle)
         @{
             if (!uPthreadCreateMutex(mutexHandle) != 0)
                 U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPthreadCreateMutex failed!"))});
         @}
 
-        [Require("Source.Include", "Implementation/Posix/posix_mutex.h")]
+        [Require("Source.Include", "uThread/posix_mutex.h")]
         public static bool WaitOneMutex(ref MutexHandle mutexHandle, int millisecondsTimeout)
         @{
             return uPthreadWaitOneMutex(mutexHandle, millisecondsTimeout);
@@ -35,13 +35,13 @@ namespace Uno.Threading
         @}
 
         [TargetSpecificType]
-        [Set("Include", "Implementation/Posix/posix_semaphore.h")]
+        [Set("Include", "uThread/posix_semaphore.h")]
         [Set("TypeName", "uPosixSemaphore *")]
         public struct SemaphoreHandle
         {
         }
 
-        [Require("Source.Include", "Implementation/Posix/posix_semaphore.h")]
+        [Require("Source.Include", "uThread/posix_semaphore.h")]
         public static SemaphoreHandle CreateSemaphore(int initialCount, int maxCount)
         @{
             uPosixSemaphore* semaphoreHandle = uPosixCreateSemaphore(initialCount, maxCount);
@@ -52,13 +52,13 @@ namespace Uno.Threading
             return semaphoreHandle;
         @}
 
-        [Require("Source.Include", "Implementation/Posix/posix_semaphore.h")]
+        [Require("Source.Include", "uThread/posix_semaphore.h")]
         public static bool WaitOneSemaphore(SemaphoreHandle semaphoreHandle, int timeoutMillis)
         @{
             return uPosixWaitOneSemaphore(semaphoreHandle, timeoutMillis);
         @}
 
-        [Require("Source.Include", "Implementation/Posix/posix_semaphore.h")]
+        [Require("Source.Include", "uThread/posix_semaphore.h")]
         public static int ReleaseSemaphore(SemaphoreHandle semaphoreHandle, int releaseCount)
         @{
             int ret = uPosixReleaseSemaphore(semaphoreHandle, releaseCount);
@@ -73,7 +73,7 @@ namespace Uno.Threading
         @}
 
         [TargetSpecificType]
-        [Set("Include", "Implementation/Posix/posix_reset_event.h")]
+        [Set("Include", "uThread/posix_reset_event.h")]
         [Set("TypeName", "uPosixResetEvent *")]
         public struct ResetEventHandle
         {
