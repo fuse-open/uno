@@ -4,11 +4,11 @@
     <Type Name="Uno.Data.Xml.XmlNodeHandle" />
     <Type Name="Uno.Data.Xml.XmlAttributeHandle" />
     <Type Name="Uno.Data.Xml.XmlNodeImpl">
-        <CopyFile Type="HeaderFile" Name="Source/pugixml.hpp" />
-        <CopyFile Type="HeaderFile" Name="Source/pugiconfig.hpp" />
-        <CopyFile Type="SourceFile" Name="Source/pugixml.cpp" />
+        <CopyFile Type="HeaderFile" Name="pugixml.hpp" />
+        <CopyFile Type="HeaderFile" Name="pugiconfig.hpp" />
+        <CopyFile Type="SourceFile" Name="pugixml.cpp" />
 
-        <Require Source.Include="Source/pugixml.hpp" />
+        <Require Source.Include="pugixml.hpp" />
 
         <Method Signature="Parse(string):XmlNodeHandle">
             <Require Source.Include="@{Uno.Data.Xml.XmlException:Include}" />
