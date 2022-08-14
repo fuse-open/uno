@@ -11,7 +11,7 @@
 Thumbs.db
 
 # Rider files
-.idea/
+#.idea/
 *.iml
 
 # Node.js files
