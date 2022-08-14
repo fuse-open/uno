@@ -6,10 +6,10 @@
     "Uno.Testing.Test"
   ],
   "Includes": [
-    "Attributes/IgnoreAttribute.uno:Source",
-    "Attributes/TestAttribute.uno:Source",
-    "Exceptions/AssertionFailedException.uno:Source",
-    "Exceptions/IgnoreException.uno:Source",
+    "attributes/IgnoreAttribute.uno:Source",
+    "attributes/TestAttribute.uno:Source",
+    "exceptions/AssertionFailedException.uno:Source",
+    "exceptions/IgnoreException.uno:Source",
     "AbstractRunner.uno:Source",
     "Assert.uno:Source",
     "NamedTestMethod.uno:Source",
