@@ -106,6 +106,7 @@
                   android:label="@(Project.Android.ApplicationLabel:EscapeXml)"
                   android:launchMode="singleTask"
                   android:hardwareAccelerated="@(Project.Android.HardwareAccelerated:IsSet:Test(@(Project.Android.HardwareAccelerated:Bool),true))"
+                  android:exported="@(Project.Android.Exported:IsSet:Test(@(Project.Android.Exported:Bool),true))"
 #if @(AndroidManifest.DisableTheme:Defined)
                   android:theme="@style/AppTheme"
 #else
