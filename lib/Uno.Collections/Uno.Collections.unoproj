@@ -3,14 +3,14 @@
   "Description": "Collection extras",
   "Publisher": "Fuse Open",
   "Includes": [
-    "Extensions/EmptyEnumerable.uno:Source",
-    "Extensions/EnumerableExtensions.uno:Source",
-    "Extensions/IListExtensions.uno:Source",
-    "Extensions/OfType.uno:Source",
-    "Extensions/OrderBy.uno:Source",
-    "Extensions/Select.uno:Source",
-    "Extensions/Union.uno:Source",
-    "Extensions/Where.uno:Source",
+    "extensions/EmptyEnumerable.uno:Source",
+    "extensions/Enumerableextensions.uno:Source",
+    "extensions/IListextensions.uno:Source",
+    "extensions/OfType.uno:Source",
+    "extensions/OrderBy.uno:Source",
+    "extensions/Select.uno:Source",
+    "extensions/Union.uno:Source",
+    "extensions/Where.uno:Source",
     "ObservableList.uno:Source"
   ]
 }

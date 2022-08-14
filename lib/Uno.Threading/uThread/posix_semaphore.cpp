@@ -1,4 +1,4 @@
-#include <Implementation/Posix/posix_semaphore.h>
+#include <uThread/posix_semaphore.h>
 #include <errno.h>
 #include <time.h>
 #include <sys/time.h>

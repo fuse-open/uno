@@ -1,4 +1,4 @@
-#include <Implementation/Posix/posix_reset_event.h>
+#include <uThread/posix_reset_event.h>
 #include <errno.h>
 #include <sys/time.h>
 #include <stdint.h>
