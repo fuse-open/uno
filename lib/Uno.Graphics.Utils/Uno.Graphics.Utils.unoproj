@@ -2,9 +2,6 @@
   "Copyright": "Copyright (c) Fuse Open",
   "Description": "Font and texture loading",
   "Publisher": "Fuse Open",
-  "InternalsVisibleTo": [
-    "Experimental.TextureLoader"
-  ],
   "Includes": [
     "Bitmap.uno:Source",
     "cpp/CppFontFace.uno:Source",
