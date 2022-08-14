@@ -6,11 +6,11 @@
     "../Uno.Collections/Uno.Collections.unoproj"
   ],
   "Includes": [
-    "Source/JsonDataType.uno:Source",
-    "Source/JsonException.uno:Source",
-    "Source/JsonReader.uno:Source",
-    "Source/JsonValue.uno:Source",
-    "Source/JsonWriter.uno:Source",
-    "Source/Parser.uno:Source",
+    "JsonDataType.uno:Source",
+    "JsonException.uno:Source",
+    "JsonReader.uno:Source",
+    "JsonValue.uno:Source",
+    "JsonWriter.uno:Source",
+    "Parser.uno:Source",
   ]
 }

@@ -1,7 +1,6 @@
 {
   "Packages": [
     "Uno.Data.Json",
-    "Uno.Data.Json",
     "Uno.Testing"
   ],
   "Includes": [
