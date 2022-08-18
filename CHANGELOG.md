@@ -4,6 +4,25 @@ Uno Changelog
 Unreleased
 ----------
 
+2.4
+---
+
+### Android
+- Upgrade Gradle to v7.5 (#415)
+- Upgrade `appcompat` and `material` packages (#415)
+- Drop old `jenter()` repositores (#415)
+    - This silences build warnings
+- Drop legacy packages (#416)
+    - `androidx.legacy:legacy-support-v4`
+    - `androidx.multidex:multidex`
+- Add `android:exported` in AndroidManifest (#417)
+    - Needed when targeting API 31 (Android 12)
+
+### Other
+- Organize files in Uno libraries (#418, #419)
+
+[`v2.3.0...v2.4.0`](https://github.com/fuse-open/uno/compare/v2.3.0...v2.4.0)
+
 2.3
 ---
 
