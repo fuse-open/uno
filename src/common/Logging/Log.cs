@@ -337,10 +337,7 @@ namespace Uno.Logging
 
         public void WriteLine(object line, ConsoleColor? color = null)
         {
-            Flush();
-            Write(line, color);
-            lock (_state)
-                OutWriter.Inner.WriteLine();
+            WriteLine((line ?? "").ToString(), color, OutWriter);
         }
 
         public void WriteLine(string line, ConsoleColor? color = null)
