@@ -21,7 +21,7 @@
 @{string:IncludeDirective}
 
 #if WIN32
-#include <Uno/WinAPIHelper.h>
+#include <uPlatform/WinAPIHelper.h>
 #include <Shellapi.h>
 #elif LINUX || OSX
 #include <XliPlatform/PlatformSpecific/SDL2.h>

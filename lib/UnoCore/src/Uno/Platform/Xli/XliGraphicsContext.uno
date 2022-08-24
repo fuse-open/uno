@@ -5,12 +5,12 @@ namespace Uno.Platform.Xli
 {
     [TargetSpecificType]
     [Set("TypeName", "uGraphicsContext")]
-    [Set("Include", "Uno/GraphicsContext.h")]
+    [Set("Include", "uPlatform/GraphicsContext.h")]
     extern(CPLUSPLUS && !MOBILE) struct XliGraphicsContextPtr
     {
     }
 
-    [Require("Header.Include", "Uno/GraphicsContext.h")]
+    [Require("Header.Include", "uPlatform/GraphicsContext.h")]
     extern(CPLUSPLUS && !MOBILE) class XliGraphicsContext : GraphicsContextBackend
     {
         readonly XliGraphicsContextPtr _ptr;

@@ -10,7 +10,7 @@ namespace Uno.IO
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "unistd.h")]
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/stat.h")]
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/types.h")]
-    [extern(CPLUSPLUS && WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
+    [extern(CPLUSPLUS && WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
     public static class File
     {
         public static FileStream Open(string filename, FileMode filemode)
@@ -222,7 +222,7 @@ namespace Uno.IO
         }
     }
 
-    [Require("Source.Include", "Uno/WinAPIHelper.h")]
+    [Require("Source.Include", "uPlatform/WinAPIHelper.h")]
     extern(WIN32) static class WinAPI
     {
         public static string GetLastErrorString()

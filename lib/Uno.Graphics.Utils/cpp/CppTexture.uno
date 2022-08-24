@@ -7,7 +7,7 @@ namespace Uno.Graphics.Utils.Cpp
 {
     [Require("Source.Include", "@{texture2D:Include}")]
     [Require("Source.Include", "@{Exception:Include}")]
-    [Require("Source.Include", "Uno/GLHelper.h")]
+    [Require("Source.Include", "uPlatform/GLHelper.h")]
     [Require("Source.Include", "uBase/Buffer.h")]
     [Require("Source.Include", "uBase/BufferStream.h")]
     [Require("Source.Include", "uBase/Memory.h")]
