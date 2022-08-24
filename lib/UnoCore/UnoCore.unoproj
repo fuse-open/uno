@@ -128,7 +128,7 @@
     "ios/Uno-iOS/AppDelegate.h:File",
     "ios/Uno-iOS/AppDelegate.mm:File",
     "ios/Uno-iOS/Context.h:File",
-    "ios/Uno-iOS/Context.mm:File",
+    "ios/Uno-iOS/Context.mm:ObjCSource:iOS",
     "ios/Uno-iOS/Main.mm:File",
     "ios/Uno-iOS/Uno-iOS.h:File",
     "ios/Uno-iOS/Uno-iOS.mm:File",
