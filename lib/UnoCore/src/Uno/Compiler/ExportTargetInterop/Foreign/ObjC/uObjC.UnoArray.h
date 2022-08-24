@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Uno/Uno.h>
+#include <uno.h>
 #include <Foundation/Foundation.h>
 
 @protocol UnoArray <NSObject>

@@ -1,4 +1,4 @@
-#include <Uno/Uno.h>
+#include <uno.h>
 #include <Uno-iOS/Uno-iOS.h>
 #include <Window.h>
 @{Uno.Platform.iOSDisplay:IncludeDirective}
