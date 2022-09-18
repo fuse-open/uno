@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Mono.Options;
-using Uno.Build.Packages;
 using Uno.Diagnostics;
 
 namespace Uno.CLI
@@ -46,7 +45,7 @@ namespace Uno.CLI
             foreach (var cmd in _commands.Where(value => !value.IsExperimental))
                 WriteRow(cmd.Name, (cmd.Description ?? "(no description)").TrimEnd('.'));
 
-            WriteHead("Experimental commands", 13);
+            WriteHead("Additional commands", 13);
 
             foreach (var cmd in _commands.Where(value => value.IsExperimental))
                 WriteRow(cmd.Name, (cmd.Description ?? "(no description)").TrimEnd('.'));
