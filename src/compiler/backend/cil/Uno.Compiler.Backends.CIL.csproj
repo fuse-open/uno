@@ -72,7 +72,7 @@
     <Compile Include="PInvokeWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ikvm\reflect\IKVM.Reflection.csproj">
+    <ProjectReference Include="..\ikvm\IKVM.Reflection.csproj">
       <Project>{4cb170ef-dfe6-4a56-9e1b-a85449e827a7}</Project>
       <Name>IKVM.Reflection</Name>
     </ProjectReference>
