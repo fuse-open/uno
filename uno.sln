@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup.Tests", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uno.UX.Markup", "src\ux\markup\Uno.UX.Markup.csproj", "{05538951-C4A9-4298-BBA7-FE9F96E3DDC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\compiler\backend\ikvm\reflect\IKVM.Reflection.csproj", "{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKVM.Reflection", "src\compiler\backend\ikvm\IKVM.Reflection.csproj", "{4CB170EF-DFE6-4A56-9E1B-A85449E827A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{9F736FD4-CA38-4A73-BA0F-302FF323E043}"
 EndProject
