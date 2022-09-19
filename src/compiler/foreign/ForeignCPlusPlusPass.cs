@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Configuration;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
