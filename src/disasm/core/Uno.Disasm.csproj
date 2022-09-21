@@ -99,9 +99,9 @@
       <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
       <Name>Uno.Compiler.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\tool\cli\Uno.CLI.csproj">
+    <ProjectReference Include="..\..\tool\cli\uno.csproj">
       <Project>{5813CAEE-0804-45C2-A0C7-E30720EFBB45}</Project>
-      <Name>Uno.CLI</Name>
+      <Name>uno</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
