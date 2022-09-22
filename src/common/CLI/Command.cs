@@ -244,11 +244,11 @@ namespace Uno.CLI
             WriteLine(UnoVersion.LongHeader);
             WriteLine(UnoVersion.Copyright);
 
-            WriteHead("Product", 10, 0);
+            WriteHead("Uno compiler", 10, 0);
             WriteRow("Commit",      UnoVersion.CommitSha);
             WriteRow("Version",     UnoVersion.FileVersion.FileVersion);
 
-            WriteHead("Environment", 10, 0);
+            WriteHead(".NET runtime", 10, 0);
             WriteRow("OSVersion",   Environment.OSVersion.VersionString);
             WriteRow("Version",     Environment.Version);
 
