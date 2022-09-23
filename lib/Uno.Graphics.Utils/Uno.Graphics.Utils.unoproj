@@ -1,4 +1,7 @@
 {
+  "Copyright": "Copyright (c) Fuse Open",
+  "Description": "Font and texture loading",
+  "Publisher": "Fuse Open",
   "InternalsVisibleTo": [
     "Experimental.TextureLoader"
   ],

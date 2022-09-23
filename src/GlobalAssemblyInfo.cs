@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Fast, native C# dialect and cross-compiler.")]
-[assembly: AssemblyDescription("Fast, native C# dialect and cross-compiler.")]
+[assembly: AssemblyTitle("Fast, native C# dialect and cross-compiler")]
+[assembly: AssemblyDescription("Fast, native C# dialect and cross-compiler")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fuse Open")]
 [assembly: AssemblyProduct("uno")]
-[assembly: AssemblyCopyright("Copyright © 2018-present Fuse Open")]
+[assembly: AssemblyCopyright("Copyright © 2018-2022 Fuse Open")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

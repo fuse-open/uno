@@ -1,7 +1,7 @@
 {
-  "Copyright": "Copyright (c) Fuse Open 2018",
+  "Copyright": "Copyright (c) Fuse Open",
   "Publisher": "Fuse Open",
-  "Description": "Basic threading api",
+  "Description": "Threading extras",
   "Includes": [
     "AutoResetEvent.uno:Source",
     "ConcurrentDictionary.uno:Source",

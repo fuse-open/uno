@@ -1,6 +1,6 @@
 {
-  "Copyright": "Copyright (c) Fuse Open 2018",
-  "Description": "Uno native socket abstraction",
+  "Copyright": "Copyright (c) Fuse Open",
+  "Description": "Native socket abstraction",
   "Publisher": "Fuse Open",
   "Includes": [
     "Dns.uno:Source",

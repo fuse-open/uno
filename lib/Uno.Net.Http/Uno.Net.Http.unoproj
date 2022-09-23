@@ -1,6 +1,6 @@
 {
-  "Copyright": "Copyright (c) Fuse Open 2018",
-  "Description": "Uno.Net.Http",
+  "Copyright": "Copyright (c) Fuse Open",
+  "Description": "HTTP library",
   "Publisher": "Fuse Open",
   "Projects": [
     "../Uno.Threading/Uno.Threading.unoproj"
