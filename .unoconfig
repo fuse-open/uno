@@ -6,7 +6,8 @@ if WIN32 {
     AppLoader.Assembly: bin/win/net6.0-windows/uno-app.dll
     Uno.Command: bin/net6.0/uno.exe
 } else if MAC {
-    AppLoader.Assembly: bin/mac/net6.0/uno-app.dll
+    // FIXME: Xamarin.Mac doesn't work on .NET 6.0:
+    AppLoader.Assembly: bin/generic/net6.0/uno-app.dll
     Uno.Command: bin/net6.0/uno
 } else {
     AppLoader.Assembly: bin/generic/net6.0/uno-app.dll
