@@ -41,8 +41,7 @@ namespace IKVM.Reflection.Reader
 		{
 			this.module = module;
 			this.index = index;
-			// empty typeName is not allowed, but obfuscators...
-			this.typeName = module.GetString(module.TypeDef.records[index].TypeName) ?? "";
+			this.typeName = module.GetString(module.TypeDef.records[index].TypeName);
 			this.typeNamespace = module.GetString(module.TypeDef.records[index].TypeNamespace);
 			MarkKnownType(typeNamespace, typeName);
 		}
@@ -373,6 +372,24 @@ namespace IKVM.Reflection.Reader
 		internal override bool IsBaked
 		{
 			get { return true; }
+		}
+
+		protected override bool IsValueTypeImpl
+		{
+			get
+			{
+				Type baseType = this.BaseType;
+				if (baseType != null && baseType.IsEnumOrValueType && !this.IsEnumOrValueType)
+				{
+					typeFlags |= TypeFlags.ValueType;
+					return true;
+				}
+				else
+				{
+					typeFlags |= TypeFlags.NotValueType;
+					return false;
+				}
+			}
 		}
 	}
 }

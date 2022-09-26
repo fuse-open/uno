@@ -41,6 +41,20 @@ namespace IKVM.Reflection
 		WindowsRuntime = 1,
 	}
 
+	public enum AssemblyHashAlgorithm
+	{
+		None = 0,
+		MD5 = 0x8003,
+		SHA1 = 0x8004,
+	}
+
+	public enum AssemblyVersionCompatibility
+	{
+		SameMachine = 1,
+		SameProcess = 2,
+		SameDomain = 3,
+	}
+
 	[Flags]
 	public enum BindingFlags
 	{

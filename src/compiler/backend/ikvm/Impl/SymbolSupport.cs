@@ -22,204 +22,61 @@
   
 */
 using System;
-using System.Runtime.InteropServices;
-#if !NO_SYMBOL_WRITER
 using System.Diagnostics.SymbolStore;
-#endif
+using System.Runtime.InteropServices;
+
 using IKVM.Reflection.Emit;
 
 namespace IKVM.Reflection.Impl
 {
-	[StructLayout(LayoutKind.Sequential)]
-	struct IMAGE_DEBUG_DIRECTORY
-	{
-		public uint Characteristics;
-		public uint TimeDateStamp;
-		public ushort MajorVersion;
-		public ushort MinorVersion;
-		public uint Type;
-		public uint SizeOfData;
-		public uint AddressOfRawData;
-		public uint PointerToRawData;
-	}
+    [StructLayout(LayoutKind.Sequential)]
+    struct IMAGE_DEBUG_DIRECTORY
+    {
+        public uint Characteristics;
+        public uint TimeDateStamp;
+        public ushort MajorVersion;
+        public ushort MinorVersion;
+        public uint Type;
+        public uint SizeOfData;
+        public uint AddressOfRawData;
+        public uint PointerToRawData;
+    }
 
-#if NO_SYMBOL_WRITER
-	struct SymbolToken
-	{
-		internal SymbolToken(int value) { }
-	}
+    interface ISymbolWriterImpl : ISymbolWriter
+    {
+        byte[] GetDebugInfo(ref IMAGE_DEBUG_DIRECTORY idd);
+        void RemapToken(int oldToken, int newToken);
+        void DefineLocalVariable2(string name, FieldAttributes attributes, int signature, SymAddressKind addrKind, int addr1, int addr2, int addr3, int startOffset, int endOffset);
+        void OpenMethod(SymbolToken symbolToken, MethodBase mb);
+        bool IsDeterministic { get; }
+    }
 
-	interface ISymbolWriterImpl
-	{
-		byte[] GetDebugInfo(ref IMAGE_DEBUG_DIRECTORY idd);
-		void RemapToken(int oldToken, int newToken);
-		void DefineLocalVariable2(string name, FieldAttributes attributes, int signature, int addrKind, int addr1, int addr2, int addr3, int startOffset, int endOffset);
-		void OpenMethod(SymbolToken symbolToken, MethodBase mb);
-		bool IsDeterministic { get; }
-	}
-#else
-	interface ISymbolWriterImpl : ISymbolWriter
-	{
-		byte[] GetDebugInfo(ref IMAGE_DEBUG_DIRECTORY idd);
-		void RemapToken(int oldToken, int newToken);
-		void DefineLocalVariable2(string name, FieldAttributes attributes, int signature, SymAddressKind addrKind, int addr1, int addr2, int addr3, int startOffset, int endOffset);
-		void OpenMethod(SymbolToken symbolToken, MethodBase mb);
-		bool IsDeterministic { get; }
-	}
-#endif
-
-	static class SymbolSupport
-	{
-		internal static ISymbolWriterImpl CreateSymbolWriterFor(ModuleBuilder moduleBuilder)
-		{
-#if NO_SYMBOL_WRITER
-			throw new NotSupportedException("IKVM.Reflection compiled with NO_SYMBOL_WRITER does not support writing debugging symbols.");
-#else
-			if (Universe.MonoRuntime)
-			{
+    static class SymbolSupport
+    {
+        internal static ISymbolWriterImpl CreateSymbolWriterFor(ModuleBuilder moduleBuilder)
+        {
+            if (Universe.MonoRuntime)
+            {
 #if MONO
 				return new MdbWriter(moduleBuilder);
 #else
-				return new DummySymbolWriter();
+                throw new NotSupportedException("IKVM.Reflection must be compiled with MONO defined to support writing Mono debugging symbols.");
 #endif
-			}
-			else
-			{
-				return new PdbWriter(moduleBuilder);
-			}
-#endif
-		}
-
-		internal static byte[] GetDebugInfo(ISymbolWriterImpl writer, ref IMAGE_DEBUG_DIRECTORY idd)
-		{
-			return writer.GetDebugInfo(ref idd);
-		}
-
-		internal static void RemapToken(ISymbolWriterImpl writer, int oldToken, int newToken)
-		{
-			writer.RemapToken(oldToken, newToken);
-		}
-	}
-
-    class DummySymbolDocumentWriter : ISymbolDocumentWriter
-    {
-        public void SetSource(byte[] source)
-        {
+            }
+            else
+            {
+                return new PdbWriter(moduleBuilder);
+            }
         }
 
-        public void SetCheckSum(Guid algorithmId, byte[] checkSum)
+        internal static byte[] GetDebugInfo(ISymbolWriterImpl writer, ref IMAGE_DEBUG_DIRECTORY idd)
         {
-        }
-    }
-
-    class DummySymbolWriter : ISymbolWriterImpl
-    {
-        public void Initialize(IntPtr emitter, string filename, bool fFullBuild)
-        {
+            return writer.GetDebugInfo(ref idd);
         }
 
-        public ISymbolDocumentWriter DefineDocument(string url, Guid language, Guid languageVendor, Guid documentType)
+        internal static void RemapToken(ISymbolWriterImpl writer, int oldToken, int newToken)
         {
-            return new DummySymbolDocumentWriter();
+            writer.RemapToken(oldToken, newToken);
         }
-
-        public void SetUserEntryPoint(SymbolToken entryMethod)
-        {
-        }
-
-        public void OpenMethod(SymbolToken method)
-        {
-        }
-
-        public void CloseMethod()
-        {
-        }
-
-        public void DefineSequencePoints(ISymbolDocumentWriter document, int[] offsets, int[] lines, int[] columns, int[] endLines,
-            int[] endColumns)
-        {
-        }
-
-        public int OpenScope(int startOffset)
-        {
-            return 0;
-        }
-
-        public void CloseScope(int endOffset)
-        {
-        }
-
-        public void SetScopeRange(int scopeID, int startOffset, int endOffset)
-        {
-        }
-
-        public void DefineLocalVariable(string name, System.Reflection.FieldAttributes attributes, byte[] signature, SymAddressKind addrKind, int addr1,
-            int addr2, int addr3, int startOffset, int endOffset)
-        {
-        }
-
-        public void DefineParameter(string name, System.Reflection.ParameterAttributes attributes, int sequence, SymAddressKind addrKind, int addr1,
-            int addr2, int addr3)
-        {
-        }
-
-        public void DefineField(SymbolToken parent, string name, System.Reflection.FieldAttributes attributes, byte[] signature, SymAddressKind addrKind,
-            int addr1, int addr2, int addr3)
-        {
-        }
-
-        public void DefineGlobalVariable(string name, System.Reflection.FieldAttributes attributes, byte[] signature, SymAddressKind addrKind, int addr1,
-            int addr2, int addr3)
-        {
-        }
-
-        public void Close()
-        {
-        }
-
-        public void SetSymAttribute(SymbolToken parent, string name, byte[] data)
-        {
-        }
-
-        public void OpenNamespace(string name)
-        {
-        }
-
-        public void CloseNamespace()
-        {
-        }
-
-        public void UsingNamespace(string fullName)
-        {
-        }
-
-        public void SetMethodSourceRange(ISymbolDocumentWriter startDoc, int startLine, int startColumn, ISymbolDocumentWriter endDoc,
-            int endLine, int endColumn)
-        {
-        }
-
-        public void SetUnderlyingWriter(IntPtr underlyingWriter)
-        {
-        }
-
-        public byte[] GetDebugInfo(ref IMAGE_DEBUG_DIRECTORY idd)
-        {
-            return new byte[0];
-        }
-
-        public void RemapToken(int oldToken, int newToken)
-        {
-        }
-
-        public void DefineLocalVariable2(string name, FieldAttributes attributes, int signature, SymAddressKind addrKind, int addr1,
-            int addr2, int addr3, int startOffset, int endOffset)
-        {
-        }
-
-        public void OpenMethod(SymbolToken symbolToken, MethodBase mb)
-        {
-        }
-
-        public bool IsDeterministic => true;
     }
 }

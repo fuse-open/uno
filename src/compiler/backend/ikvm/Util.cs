@@ -26,15 +26,13 @@ using System.Collections.Generic;
 
 namespace IKVM.Reflection
 {
-	public interface ICustomAttributeProvider
+    public interface ICustomAttributeProvider
 	{
 		bool IsDefined(Type attributeType, bool inherit);
 		IList<CustomAttributeData> __GetCustomAttributes(Type attributeType, bool inherit);
 	}
 
-#if !CORECLR
 	[Serializable]
-#endif
 	public sealed class FileFormatLimitationExceededException : InvalidOperationException
 	{
 		public const int META_E_STRINGSPACE_FULL = unchecked((int)0x80131198);
@@ -45,12 +43,10 @@ namespace IKVM.Reflection
 			this.HResult = hresult;
 		}
 
-#if !CORECLR
 		private FileFormatLimitationExceededException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 			: base(info, context)
 		{
 		}
-#endif
 
 		public int ErrorCode
 		{
@@ -58,19 +54,14 @@ namespace IKVM.Reflection
 		}
 	}
 
-#if !CORECLR
 	[Serializable]
-#endif
 	public sealed class Missing
-#if !CORECLR
 		: System.Runtime.Serialization.ISerializable
-#endif
 	{
 		public static readonly Missing Value = new Missing();
 
 		private Missing() { }
 
-#if !CORECLR
 		void System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 		{
 			info.SetType(typeof(SingletonSerializationHelper));
@@ -84,7 +75,6 @@ namespace IKVM.Reflection
 				return Value;
 			}
 		}
-#endif
 	}
 
 	static class Empty<T>
@@ -263,4 +253,37 @@ namespace IKVM.Reflection
 			return c.f;
 		}
 	}
+
+    static class TypeUtil
+    {
+        internal static bool IsEnum(System.Type type)
+        {
+            return type.IsEnum;
+        }
+
+        internal static System.Reflection.Assembly GetAssembly(System.Type type)
+        {
+            return type.Assembly;
+        }
+
+        internal static System.Reflection.MethodBase GetDeclaringMethod(System.Type type)
+        {
+            return type.DeclaringMethod;
+        }
+
+        internal static bool IsGenericType(System.Type type)
+        {
+            return type.IsGenericType;
+        }
+
+        internal static bool IsGenericTypeDefinition(System.Type type)
+        {
+            return type.IsGenericTypeDefinition;
+        }
+
+        internal static System.Type[] GetGenericArguments(System.Type type)
+        {
+            return type.GetGenericArguments();
+        }
+    }
 }

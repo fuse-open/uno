@@ -23,22 +23,19 @@
 */
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Diagnostics;
-#if !NO_SYMBOL_WRITER
 using System.Diagnostics.SymbolStore;
-#endif
-using System.Security.Cryptography;
+using System.IO;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
 using IKVM.Reflection.Impl;
 using IKVM.Reflection.Metadata;
 using IKVM.Reflection.Writer;
 
 namespace IKVM.Reflection.Emit
 {
-	public sealed class ModuleBuilder : Module, ITypeOwner
+    public sealed class ModuleBuilder : Module, ITypeOwner
 	{
 		private static readonly bool usePublicKeyAssemblyReference = false;
 		private Guid mvid;
@@ -79,23 +76,14 @@ namespace IKVM.Reflection.Emit
 		private struct ResourceWriterRecord
 		{
 			private readonly string name;
-#if !CORECLR
 			private readonly ResourceWriter rw;
-#endif
 			private readonly Stream stream;
 			private readonly ResourceAttributes attributes;
 
-#if CORECLR
-			internal ResourceWriterRecord(string name, Stream stream, ResourceAttributes attributes)
-			{
-				this.name = name;
-				this.stream = stream;
-				this.attributes = attributes;
-			}
-#else
 			internal ResourceWriterRecord(string name, Stream stream, ResourceAttributes attributes)
 				: this(name, null, stream, attributes)
 			{
+
 			}
 
 			internal ResourceWriterRecord(string name, ResourceWriter rw, Stream stream, ResourceAttributes attributes)
@@ -105,16 +93,14 @@ namespace IKVM.Reflection.Emit
 				this.stream = stream;
 				this.attributes = attributes;
 			}
-#endif
 
 			internal void Emit(ModuleBuilder mb, int offset)
 			{
-#if !CORECLR
 				if (rw != null)
 				{
 					rw.Generate();
 				}
-#endif
+
 				ManifestResourceTable.Record rec = new ManifestResourceTable.Record();
 				rec.Offset = offset;
 				rec.Flags = (int)attributes;
@@ -142,12 +128,10 @@ namespace IKVM.Reflection.Emit
 
 			internal void Close()
 			{
-#if !CORECLR
 				if (rw != null)
 				{
 					rw.Close();
 				}
-#endif
 			}
 		}
 
@@ -516,13 +500,11 @@ namespace IKVM.Reflection.Emit
 			this.DeclSecurity.AddRecord(rec);
 		}
 
-#if !CORECLR
 		internal void AddDeclarativeSecurity(int token, System.Security.Permissions.SecurityAction securityAction, System.Security.PermissionSet permissionSet)
 		{
 			// like Ref.Emit, we're using the .NET 1.x xml format
 			AddDeclSecurityRecord(token, (int)securityAction, this.Blobs.Add(ByteBuffer.Wrap(System.Text.Encoding.Unicode.GetBytes(permissionSet.ToXml().ToString()))));
 		}
-#endif
 
 		internal void AddDeclarativeSecurity(int token, List<CustomAttributeBuilder> declarativeSecurity)
 		{
@@ -580,7 +562,6 @@ namespace IKVM.Reflection.Emit
 			resourceWriters.Add(new ResourceWriterRecord(name, stream, attribute));
 		}
 
-#if !CORECLR
 		public IResourceWriter DefineResource(string name, string description)
 		{
 			return DefineResource(name, description, ResourceAttributes.Public);
@@ -595,7 +576,6 @@ namespace IKVM.Reflection.Emit
 			resourceWriters.Add(new ResourceWriterRecord(name, rw, mem, attribute));
 			return rw;
 		}
-#endif
 
 		internal void EmitResources()
 		{
@@ -685,12 +665,10 @@ namespace IKVM.Reflection.Emit
 			}
 		}
 
-#if !NO_SYMBOL_WRITER
 		public ISymbolDocumentWriter DefineDocument(string url, Guid language, Guid languageVendor, Guid documentType)
 		{
 			return symbolWriter.DefineDocument(url, language, languageVendor, documentType);
 		}
-#endif
 
 		public int __GetAssemblyToken(Assembly assembly)
 		{
@@ -979,7 +957,7 @@ namespace IKVM.Reflection.Emit
 			}
 			rec.PublicKeyOrToken = this.Blobs.Add(ByteBuffer.Wrap(publicKeyOrToken));
 			rec.Name = this.Strings.Add(name.Name);
-			rec.Culture = name.Culture == null ? 0 : this.Strings.Add(name.Culture);
+			rec.Culture = name.CultureName == null ? 0 : this.Strings.Add(name.CultureName);
 			if (name.hash != null)
 			{
 				rec.HashValue = this.Blobs.Add(ByteBuffer.Wrap(name.hash));
@@ -1462,12 +1440,10 @@ namespace IKVM.Reflection.Emit
 			get { return moduleName; }
 		}
 
-#if !NO_SYMBOL_WRITER
 		public ISymbolWriter GetSymWriter()
 		{
 			return symbolWriter;
 		}
-#endif
 
 		public void DefineUnmanagedResource(string resourceFileName)
 		{
@@ -1489,12 +1465,10 @@ namespace IKVM.Reflection.Emit
 			{
 				token = -token | 0x06000000;
 			}
-#if !NO_SYMBOL_WRITER
 			if (symbolWriter != null)
 			{
 				symbolWriter.SetUserEntryPoint(new SymbolToken(token));
 			}
-#endif
 		}
 
 		public StringToken GetStringConstant(string str)
@@ -1530,11 +1504,6 @@ namespace IKVM.Reflection.Emit
 		internal override IKVM.Reflection.Reader.ByteReader GetBlob(int blobIndex)
 		{
 			return Blobs.GetBlob(blobIndex);
-		}
-
-		internal sealed override Guid GetGuid(int guidIndex)
-		{
-			throw new NotImplementedException();
 		}
 
 		internal int GetSignatureBlobIndex(Signature sig)
@@ -1634,7 +1603,7 @@ namespace IKVM.Reflection.Emit
 			IList<CustomAttributeData> attributes = asm.GetCustomAttributesData(null);
 			if (attributes.Count > 0)
 			{
-				int mscorlib = ImportAssemblyRef(universe.Mscorlib);
+				int mscorlib = ImportAssemblyRef(universe.CoreLib);
 				int[] placeholderTokens = new int[4];
 				string[] placeholderTypeNames = new string[] { "AssemblyAttributesGoHere", "AssemblyAttributesGoHereM", "AssemblyAttributesGoHereS", "AssemblyAttributesGoHereSM" };
 				foreach (CustomAttributeData cad in attributes)

@@ -23,21 +23,19 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Configuration.Assemblies;
 using System.IO;
-using System.Diagnostics;
-using System.Globalization;
 using System.Resources;
 using System.Security.Cryptography;
-using System.Security;
+
 using IKVM.Reflection.Metadata;
-using IKVM.Reflection.Impl;
 using IKVM.Reflection.Writer;
 
 namespace IKVM.Reflection.Emit
 {
-	public sealed class AssemblyBuilder : Assembly
+
+    public sealed class AssemblyBuilder : Assembly
 	{
+
 		private readonly string name;
 		private ushort majorVersion;
 		private ushort minorVersion;
@@ -82,9 +80,7 @@ namespace IKVM.Reflection.Emit
 			internal string Name;
 			internal string FileName;
 			internal ResourceAttributes Attributes;
-#if !CORECLR
 			internal ResourceWriter Writer;
-#endif
 		}
 
 		internal AssemblyBuilder(Universe universe, AssemblyName name, string dir, IEnumerable<CustomAttributeBuilder> customAttributes)
@@ -92,9 +88,9 @@ namespace IKVM.Reflection.Emit
 		{
 			this.name = name.Name;
 			SetVersionHelper(name.Version);
-			if (!string.IsNullOrEmpty(name.Culture))
+			if (!string.IsNullOrEmpty(name.CultureName))
 			{
-				this.culture = name.Culture;
+				this.culture = name.CultureName;
 			}
 			this.flags = name.RawFlags;
 			this.hashAlgorithm = name.HashAlgorithm;
@@ -120,13 +116,13 @@ namespace IKVM.Reflection.Emit
 			{
 				this.customAttributes.AddRange(customAttributes);
 			}
-			if (universe.HasMscorlib && !universe.Mscorlib.__IsMissing && universe.Mscorlib.ImageRuntimeVersion != null)
+			if (universe.HasCoreLib && !universe.CoreLib.__IsMissing && universe.CoreLib.ImageRuntimeVersion != null)
 			{
-				this.imageRuntimeVersion = universe.Mscorlib.ImageRuntimeVersion;
+				this.imageRuntimeVersion = universe.CoreLib.ImageRuntimeVersion;
 			}
 			else
 			{
-				this.imageRuntimeVersion = typeof(object).Assembly.ImageRuntimeVersion;
+				this.imageRuntimeVersion = TypeUtil.GetAssembly(typeof(object)).ImageRuntimeVersion;
 			}
 			universe.RegisterDynamicAssembly(this);
 		}
@@ -225,7 +221,7 @@ namespace IKVM.Reflection.Emit
 			AssemblyName n = new AssemblyName();
 			n.Name = name;
 			n.Version = new Version(majorVersion, minorVersion, buildVersion, revisionVersion);
-			n.Culture = culture ?? "";
+			n.CultureName = culture ?? "";
 			n.HashAlgorithm = hashAlgorithm;
 			n.RawFlags = flags;
 			n.SetPublicKey(publicKey != null ? (byte[])publicKey.Clone() : Empty<byte>.Array);
@@ -415,13 +411,11 @@ namespace IKVM.Reflection.Emit
 
 			foreach (ResourceFile resfile in resourceFiles)
 			{
-#if !CORECLR
 				if (resfile.Writer != null)
 				{
 					resfile.Writer.Generate();
 					resfile.Writer.Close();
 				}
-#endif
 				int fileToken = AddFile(manifestModule, resfile.FileName, 1 /*ContainsNoMetaData*/);
 				ManifestResourceTable.Record rec = new ManifestResourceTable.Record();
 				rec.Offset = 0;
@@ -472,23 +466,18 @@ namespace IKVM.Reflection.Emit
 
 		private int AddFile(ModuleBuilder manifestModule, string fileName, int flags)
 		{
-			using (var hash = SHA1.Create())
+			string fullPath = fileName;
+			if (dir != null)
 			{
-				string fullPath = fileName;
-				if (dir != null)
-				{
-					fullPath = Path.Combine(dir, fileName);
-				}
-				using (FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read))
-				{
-					using (CryptoStream cs = new CryptoStream(Stream.Null, hash, CryptoStreamMode.Write))
-					{
-						byte[] buf = new byte[8192];
-						ModuleWriter.HashChunk(fs, cs, buf, (int)fs.Length);
-					}
-				}
-				return manifestModule.__AddModule(flags, Path.GetFileName(fileName), hash.Hash);
+				fullPath = Path.Combine(dir, fileName);
 			}
+			byte[] hash;
+			using (SHA1 sha1 = SHA1.Create())
+			using (FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read))
+			{
+				hash = sha1.ComputeHash(fs);
+			}
+			return manifestModule.__AddModule(flags, Path.GetFileName(fileName), hash);
 		}
 
 		public void AddResourceFile(string name, string fileName)
@@ -505,7 +494,6 @@ namespace IKVM.Reflection.Emit
 			resourceFiles.Add(resfile);
 		}
 
-#if !CORECLR
 		public IResourceWriter DefineResource(string name, string description, string fileName)
 		{
 			return DefineResource(name, description, fileName, ResourceAttributes.Public);
@@ -529,7 +517,6 @@ namespace IKVM.Reflection.Emit
 			resourceFiles.Add(resfile);
 			return rw;
 		}
-#endif
 
 		public void DefineVersionInfoResource()
 		{

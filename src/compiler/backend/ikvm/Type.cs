@@ -22,9 +22,10 @@
   
 */
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Collections.Generic;
+
 using IKVM.Reflection.Emit;
 
 namespace IKVM.Reflection
@@ -58,7 +59,7 @@ namespace IKVM.Reflection
 			HasNestedTypes = 2,
 			Baked = 4,
 
-			// for use by MissingType
+			// for use by IsValueType to cache result of IsValueTypeImpl
 			ValueType = 8,
 			NotValueType = 16,
 
@@ -222,15 +223,24 @@ namespace IKVM.Reflection
 			get { return sigElementType == Signature.ELEMENT_TYPE_FNPTR; }
 		}
 
-		public virtual bool IsValueType
+		public bool IsValueType
 		{
 			get
 			{
-				Type baseType = this.BaseType;
-				return baseType != null
-					&& baseType.IsEnumOrValueType
-					&& !this.IsEnumOrValueType;
+				// MissingType sets both flags for WinRT projection types
+				switch (typeFlags & (TypeFlags.ValueType | TypeFlags.NotValueType))
+				{
+					case 0:
+					case TypeFlags.ValueType | TypeFlags.NotValueType:
+						return IsValueTypeImpl;
+				}
+				return (typeFlags & TypeFlags.ValueType) != 0;
 			}
+		}
+
+		protected abstract bool IsValueTypeImpl
+		{
+			get;
 		}
 
 		public bool IsGenericParameter
@@ -525,7 +535,6 @@ namespace IKVM.Reflection
 			return names.ToArray();
 		}
 
-#if !CORECLR
 		public string GetEnumName(object value)
 		{
 			if (!IsEnum)
@@ -538,7 +547,7 @@ namespace IKVM.Reflection
 			}
 			try
 			{
-				value = Convert.ChangeType(value, GetTypeCode(GetEnumUnderlyingType()));
+				value = Convert.ChangeType(value, __GetSystemType(GetTypeCode(GetEnumUnderlyingType())));
 			}
 			catch (FormatException)
 			{
@@ -561,7 +570,6 @@ namespace IKVM.Reflection
 			}
 			return null;
 		}
-#endif
 
 		public bool IsEnumDefined(object value)
 		{
@@ -577,7 +585,7 @@ namespace IKVM.Reflection
 			{
 				throw new ArgumentNullException();
 			}
-			if (System.Type.GetTypeCode(value.GetType()) != GetTypeCode(GetEnumUnderlyingType()))
+			if (value.GetType() != __GetSystemType(GetTypeCode(GetEnumUnderlyingType())))
 			{
 				throw new ArgumentException();
 			}
@@ -1042,7 +1050,6 @@ namespace IKVM.Reflection
 		public ConstructorInfo GetConstructor(BindingFlags bindingAttr, Binder binder, Type[] types, ParameterModifier[] modifiers)
 		{
 			ConstructorInfo ci1 = null;
-			bindingAttr |= BindingFlags.DeclaredOnly;
 			if ((bindingAttr & BindingFlags.Instance) != 0)
 			{
 				ci1 = GetConstructorImpl(ConstructorInfo.ConstructorName, bindingAttr, binder, types, modifiers);
@@ -1405,17 +1412,15 @@ namespace IKVM.Reflection
 			get { return IsClass && IsImport; }
 		}
 
-#if !CORECLR
 		public bool IsContextful
 		{
-			get { return IsSubclassOf(this.Module.universe.Import(typeof(ContextBoundObject))); }
+			get { return IsSubclassOf(this.Module.universe.System_ContextBoundObject); }
 		}
 
 		public bool IsMarshalByRef
 		{
-			get { return IsSubclassOf(this.Module.universe.Import(typeof(MarshalByRefObject))); }
+			get { return IsSubclassOf(this.Module.universe.System_MarshalByRefObject); }
 		}
-#endif
 
 		public virtual bool IsVisible
 		{
@@ -2159,6 +2164,11 @@ namespace IKVM.Reflection
 			return this;
 		}
 
+		internal virtual Type SetCyclicTypeSpec()
+		{
+			return this;
+		}
+
 		protected void MarkKnownType(string typeNamespace, string typeName)
 		{
 			// we assume that mscorlib won't have nested types with these names,
@@ -2197,10 +2207,10 @@ namespace IKVM.Reflection
 
 		private bool ResolvePotentialEnumOrValueType()
 		{
-			if (this.Assembly == this.Universe.Mscorlib
+			if (this.Assembly == this.Universe.CoreLib
 				|| this.Assembly.GetName().Name.Equals("mscorlib", StringComparison.OrdinalIgnoreCase)
 				// check if mscorlib forwards the type (.NETCore profile reference mscorlib forwards System.Enum and System.ValueType to System.Runtime.dll)
-				|| this.Universe.Mscorlib.FindType(TypeName) == this)
+				|| this.Universe.CoreLib.FindType(TypeName) == this)
 			{
 				typeFlags = (typeFlags & ~TypeFlags.PotentialEnumOrValueType) | TypeFlags.EnumOrValueType;
 				return true;
@@ -2212,7 +2222,7 @@ namespace IKVM.Reflection
 			}
 		}
 
-		private bool IsEnumOrValueType
+		internal bool IsEnumOrValueType
 		{
 			get
 			{
@@ -2264,6 +2274,11 @@ namespace IKVM.Reflection
 		}
 
 		public virtual bool __IsCyclicTypeForwarder
+		{
+			get { return false; }
+		}
+
+		public virtual bool __IsCyclicTypeSpec
 		{
 			get { return false; }
 		}
@@ -2358,6 +2373,11 @@ namespace IKVM.Reflection
 				return type.__ContainsMissingType
 					|| mods.ContainsMissingType;
 			}
+		}
+
+		protected sealed override bool IsValueTypeImpl
+		{
+			get { return false; }
 		}
 
 		internal sealed override Type BindTypeParameters(IGenericBinder binder)
@@ -2875,7 +2895,7 @@ namespace IKVM.Reflection
 			}
 		}
 
-		public override bool IsValueType
+		protected override bool IsValueTypeImpl
 		{
 			get { return type.IsValueType; }
 		}
@@ -3134,87 +3154,6 @@ namespace IKVM.Reflection
 		}
 	}
 
-	sealed class FunctionPointerType : TypeInfo
-	{
-		private readonly Universe universe;
-		private readonly __StandAloneMethodSig sig;
-
-		internal static Type Make(Universe universe, __StandAloneMethodSig sig)
-		{
-			return universe.CanonicalizeType(new FunctionPointerType(universe, sig));
-		}
-
-		private FunctionPointerType(Universe universe, __StandAloneMethodSig sig)
-			: base(Signature.ELEMENT_TYPE_FNPTR)
-		{
-			this.universe = universe;
-			this.sig = sig;
-		}
-
-		public override bool Equals(object obj)
-		{
-			FunctionPointerType other = obj as FunctionPointerType;
-			return other != null
-				&& other.universe == universe
-				&& other.sig.Equals(sig);
-		}
-
-		public override int GetHashCode()
-		{
-			return sig.GetHashCode();
-		}
-
-		public override __StandAloneMethodSig __MethodSignature
-		{
-			get { return sig; }
-		}
-
-		public override Type BaseType
-		{
-			get { return null; }
-		}
-
-		public override TypeAttributes Attributes
-		{
-			get { return 0; }
-		}
-
-		public override string Name
-		{
-			get { throw new InvalidOperationException(); }
-		}
-
-		public override string FullName
-		{
-			get { throw new InvalidOperationException(); }
-		}
-
-		public override Module Module
-		{
-			get { throw new InvalidOperationException(); }
-		}
-
-		internal override Universe Universe
-		{
-			get { return universe; }
-		}
-
-		public override string ToString()
-		{
-			return "<FunctionPtr>";
-		}
-
-		protected override bool ContainsMissingTypeImpl
-		{
-			get { return sig.ContainsMissingType; }
-		}
-
-		internal override bool IsBaked
-		{
-			get { return true; }
-		}
-	}
-
 	sealed class MarkerType : Type
 	{
 		// used by CustomModifiers and SignatureHelper
@@ -3223,6 +3162,8 @@ namespace IKVM.Reflection
 		// used by SignatureHelper
 		internal static readonly Type Sentinel = new MarkerType(Signature.SENTINEL);
 		internal static readonly Type Pinned = new MarkerType(Signature.ELEMENT_TYPE_PINNED);
+		// used by ModuleReader.LazyForwardedType and TypeSpec resolution
+		internal static readonly Type LazyResolveInProgress = new MarkerType(0xFF);
 
 		private MarkerType(byte sigElementType)
 			: base(sigElementType)
@@ -3262,6 +3203,11 @@ namespace IKVM.Reflection
 		public override bool __IsMissing
 		{
 			get { return false; }
+		}
+
+		protected override bool IsValueTypeImpl
+		{
+			get { throw new InvalidOperationException(); }
 		}
 	}
 }

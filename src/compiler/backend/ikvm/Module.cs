@@ -156,16 +156,8 @@ namespace IKVM.Reflection
 		internal readonly GenericParamTable GenericParam = new GenericParamTable();
 		internal readonly MethodSpecTable MethodSpec = new MethodSpecTable();
 		internal readonly GenericParamConstraintTable GenericParamConstraint = new GenericParamConstraintTable();
-		internal readonly DocumentTable Document = new DocumentTable();
-		internal readonly MethodDebugInformationTable MethodDebugInformation = new MethodDebugInformationTable();
-		internal readonly LocalScopeTable LocalScope = new LocalScopeTable();
-		internal readonly LocalVariableTable LocalVariable = new LocalVariableTable();
-		internal readonly LocalConstantTable LocalConstant = new LocalConstantTable();
-		internal readonly ImportScopeTable ImportScope = new ImportScopeTable();
-		internal readonly StateMachineTable StateMachine = new StateMachineTable();
-		internal readonly CustomDebugInformationTable CustomDebugInformation = new CustomDebugInformationTable();
 
-		protected Module(Universe universe)
+		internal Module(Universe universe)
 		{
 			this.universe = universe;
 		}
@@ -212,14 +204,6 @@ namespace IKVM.Reflection
 			tables[GenericParamTable.Index] = GenericParam;
 			tables[MethodSpecTable.Index] = MethodSpec;
 			tables[GenericParamConstraintTable.Index] = GenericParamConstraint;
-			tables[DocumentTable.Index] = Document;
-			tables[MethodDebugInformationTable.Index] = MethodDebugInformation;
-			tables[LocalScopeTable.Index] = LocalScope;
-			tables[LocalVariableTable.Index] = LocalVariable;
-			tables[LocalConstantTable.Index] = LocalConstant;
-			tables[ImportScopeTable.Index] = ImportScope;
-			tables[StateMachineTable.Index] = StateMachine;
-			tables[CustomDebugInformationTable.Index] = CustomDebugInformation;
 			return tables;
 		}
 
@@ -568,11 +552,6 @@ namespace IKVM.Reflection
 			get { throw new NotSupportedException(); }
 		}
 
-		public virtual bool __IsMetadataOnly
-		{
-			get { throw new NotSupportedException(); }
-		}
-
 		public IEnumerable<CustomAttributeData> __EnumerateCustomAttributeTable()
 		{
 			List<CustomAttributeData> list = new List<CustomAttributeData>(CustomAttribute.RowCount);
@@ -614,8 +593,6 @@ namespace IKVM.Reflection
 		internal abstract Type GetModuleType();
 
 		internal abstract ByteReader GetBlob(int blobIndex);
-
-		internal abstract Guid GetGuid(int guidIndex);
 
 		internal IList<CustomAttributeData> GetDeclarativeSecurity(int metadataToken)
 		{
@@ -669,11 +646,6 @@ namespace IKVM.Reflection
 		}
 
 		internal sealed override ByteReader GetBlob(int blobIndex)
-		{
-			throw InvalidOperationException();
-		}
-
-		internal sealed override Guid GetGuid(int guidIndex)
 		{
 			throw InvalidOperationException();
 		}
