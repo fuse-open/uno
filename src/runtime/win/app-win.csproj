@@ -18,7 +18,7 @@
       <HintPath>..\..\..\node_modules\@fuse-open\opentk\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="UnoCore">
-      <HintPath>..\..\..\lib\UnoCore\build\dotnet\debug\UnoCore.dll</HintPath>
+      <HintPath>..\..\..\lib\UnoCore\build\debug\dotnet\UnoCore.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
