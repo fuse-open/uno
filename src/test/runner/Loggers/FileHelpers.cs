@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Remoting.Contexts;
+//using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Uno.TestRunner.Loggers
 {
-    [Synchronization]
+    //[Synchronization]
     public class FileHelpers
     {
         private static readonly object FileLock = new object();

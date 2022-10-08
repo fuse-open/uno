@@ -1,22 +1,16 @@
 # Build instructions
 
-Uno is built using the command-line on Linux, macOS or Windows – or [from inside an IDE](#building-from-an-ide).
+Uno is built using the command-line on Linux, macOS or Windows – or [from Visual Studio 2022](#building-from-an-ide).
 
 ## Building from command-line
 
 ### Prerequisites
 
-- [Mono](http://www.mono-project.com/download/) / [Visual Studio](https://www.visualstudio.com/downloads/)
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/6.0) / [Visual Studio 2022](https://www.visualstudio.com/downloads/)
 - [Bash](http://www.msys2.org/) and [Make](http://gnuwin32.sourceforge.net/packages/make.htm)
 - [Node.js](https://nodejs.org/en/download/)
-- [NuGet](https://www.nuget.org/downloads/)
 
 > Our cross-platform build scripts are written in `bash`, and `make` is a convenient way to invoke build tasks. Bash is included in [Git for Windows](https://git-scm.com/downloads).
-
-> On Windows, we need [vswhere] to locate your Visual Studio installation. Please make sure we can find `vswhere` in
-`%PATH%` or at `%PROGRAMFILES(x86)%\Microsoft Visual Studio\Installer`.
-
-[vswhere]: https://github.com/Microsoft/vswhere
 
 ### Build
 
@@ -58,7 +52,7 @@ This will add your local-built `uno` to PATH and print version information.
 
 ## Building from an IDE
 
-Open `uno.sln` in an IDE that supports C# (Visual Studio or JetBrains Rider?).
+Open `uno.sln` in Visual Studio 2022.
 
 Make sure to set `tool/uno` as startup project when launching `uno`.
 

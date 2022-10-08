@@ -14,7 +14,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ThisExpression();
 
             Assert.IsTrue(e.IsTrivial);
-            Assert.AreEqual("this", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("this"));
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new Literal("abcd");
 
             Assert.IsTrue(e.IsTrivial);
-            Assert.AreEqual("abcd", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("abcd"));
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new StringLiteral("hi");
 
             Assert.IsTrue(e.IsTrivial);
-            Assert.AreEqual("\"hi\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("\"hi\""));
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new Identifier("hello");
 
             Assert.IsTrue(e.IsTrivial);
-            Assert.AreEqual("hello", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("hello"));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new Binding(new Identifier("a"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("{a}", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("{a}"));
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new Binding(new Literal("17"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("{17}", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("{17}"));
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.Clear);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("Clear \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("Clear \"xyz\""));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.Read);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("Read \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("Read \"xyz\""));
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.Write);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("Write \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("Write \"xyz\""));
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.ReadClear);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("ReadClear \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("ReadClear \"xyz\""));
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.WriteClear);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("WriteClear \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("WriteClear \"xyz\""));
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.ReadWrite);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("Default \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("Default \"xyz\""));
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.ReadWriteClear);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("ReadWriteClear \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("ReadWriteClear \"xyz\""));
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ModeExpression(new StringLiteral("xyz"), Modifier.Default);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("Default \"xyz\"", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("Default \"xyz\""));
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             //  parsed to the tree above. We could do some magic when printing the expression string, but it makes most sense with other cases
             //  (such as "WriteClear this") to just always add the extra space between the mode and the ModeExpression's Expression, at the expense
             //  of ModeExpression + UserDefinedUnaryOperator looking slightly different.
-            Assert.AreEqual("WriteClear Property this", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("WriteClear Property this"));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new RawExpression(new Literal("a"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("{= a}", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("{= a}"));
         }
 
         [Test]
@@ -162,7 +162,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new RawExpression(new StringLiteral("a"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("{= \"a\"}", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("{= \"a\"}"));
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new UserDefinedUnaryOperator("MyOp", new Literal("1337"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("MyOp 1337", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("MyOp 1337"));
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new MemberExpression(new Literal("a"), "xyz");
 
             Assert.IsTrue(e.IsTrivial);
-            Assert.AreEqual("a.xyz", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("a.xyz"));
         }
 
         [Test]
@@ -189,7 +189,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new MemberExpression(new Literal("xyz"), "a");
 
             Assert.IsTrue(e.IsTrivial);
-            Assert.AreEqual("xyz.a", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("xyz.a"));
         }
 
         [Test]
@@ -198,7 +198,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new MemberExpression(new RawExpression(new StringLiteral("xyz")), "a");
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("{= \"xyz\"}.a", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("{= \"xyz\"}.a"));
         }
 
         [Test]
@@ -207,7 +207,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LookUpExpression(new Literal("a"), new Literal("b"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("a[b]", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("a[b]"));
         }
 
         [Test]
@@ -216,7 +216,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LookUpExpression(new StringLiteral("123"), new StringLiteral("abc"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("\"123\"[\"abc\"]", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("\"123\"[\"abc\"]"));
         }
 
         [Test]
@@ -225,7 +225,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new ConditionalExpression(new Literal("true"), new Literal("yes"), new Literal("no"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(true ? yes : no)", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(true ? yes : no)"));
         }
 
         [Test]
@@ -234,8 +234,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new AddExpression(new StringLiteral("wheee"), new Literal("6"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(\"wheee\"+6)", e.ToString());
-            Assert.AreEqual("Add", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(\"wheee\"+6)"));
+            Assert.That(e.Name, Is.EqualTo("Add"));
         }
 
         [Test]
@@ -244,8 +244,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new SubtractExpression(new Literal("6"), new StringLiteral("wheee"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(6-\"wheee\")", e.ToString());
-            Assert.AreEqual("Subtract", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(6-\"wheee\")"));
+            Assert.That(e.Name, Is.EqualTo("Subtract"));
         }
 
         [Test]
@@ -254,8 +254,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new MultiplyExpression(new StringLiteral("hi"), new StringLiteral("bye"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(\"hi\"*\"bye\")", e.ToString());
-            Assert.AreEqual("Multiply", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(\"hi\"*\"bye\")"));
+            Assert.That(e.Name, Is.EqualTo("Multiply"));
         }
 
         [Test]
@@ -264,8 +264,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new DivideExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13/37)", e.ToString());
-            Assert.AreEqual("Divide", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13/37)"));
+            Assert.That(e.Name, Is.EqualTo("Divide"));
         }
 
         [Test]
@@ -274,8 +274,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LessThanExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13<37)", e.ToString());
-            Assert.AreEqual("LessThan", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13<37)"));
+            Assert.That(e.Name, Is.EqualTo("LessThan"));
         }
 
         [Test]
@@ -284,8 +284,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LessOrEqualExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13<=37)", e.ToString());
-            Assert.AreEqual("LessOrEqual", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13<=37)"));
+            Assert.That(e.Name, Is.EqualTo("LessOrEqual"));
         }
 
         [Test]
@@ -294,8 +294,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new GreaterThanExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13>37)", e.ToString());
-            Assert.AreEqual("GreaterThan", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13>37)"));
+            Assert.That(e.Name, Is.EqualTo("GreaterThan"));
         }
 
         [Test]
@@ -304,8 +304,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new GreaterOrEqualExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13>=37)", e.ToString());
-            Assert.AreEqual("GreaterOrEqual", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13>=37)"));
+            Assert.That(e.Name, Is.EqualTo("GreaterOrEqual"));
         }
 
         [Test]
@@ -314,8 +314,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new EqualExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13==37)", e.ToString());
-            Assert.AreEqual("Equal", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13==37)"));
+            Assert.That(e.Name, Is.EqualTo("Equal"));
         }
 
         [Test]
@@ -324,8 +324,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new NotEqualExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13!=37)", e.ToString());
-            Assert.AreEqual("NotEqual", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13!=37)"));
+            Assert.That(e.Name, Is.EqualTo("NotEqual"));
         }
 
         [Test]
@@ -334,8 +334,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LogicalOrExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13||37)", e.ToString());
-            Assert.AreEqual("LogicalOr", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13||37)"));
+            Assert.That(e.Name, Is.EqualTo("LogicalOr"));
         }
 
         [Test]
@@ -344,8 +344,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LogicalAndExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13&&37)", e.ToString());
-            Assert.AreEqual("LogicalAnd", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13&&37)"));
+            Assert.That(e.Name, Is.EqualTo("LogicalAnd"));
         }
 
         [Test]
@@ -354,8 +354,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new NullCoalesceExpression(new Literal("13"), new Literal("37"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(13??37)", e.ToString());
-            Assert.AreEqual("NullCoalesce", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(13??37)"));
+            Assert.That(e.Name, Is.EqualTo("NullCoalesce"));
         }
 
         [Test]
@@ -374,7 +374,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new VectorExpression(new Literal("a"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(a)", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(a)"));
             AssertExtensions.AreEqualValues(new Literal("a"), e.TryFold());
         }
 
@@ -384,7 +384,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new VectorExpression(new StringLiteral("a"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(\"a\")", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(\"a\")"));
             AssertExtensions.AreEqualValues(e, e.TryFold());
         }
 
@@ -394,7 +394,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new VectorExpression(new Literal("a"), new StringLiteral("b"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(a, \"b\")", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(a, \"b\")"));
             AssertExtensions.AreEqualValues(e, e.TryFold());
         }
 
@@ -404,7 +404,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new VectorExpression(new Literal("a"), new Literal("b"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(a, b)", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(a, b)"));
             AssertExtensions.AreEqualValues(new Literal("a, b"), e.TryFold());
         }
 
@@ -414,7 +414,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new VectorExpression(new Literal("a"), new Literal("b"), new StringLiteral("c"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(a, b, \"c\")", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(a, b, \"c\")"));
             AssertExtensions.AreEqualValues(e, e.TryFold());
         }
 
@@ -424,7 +424,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new VectorExpression(new Literal("a"), new Literal("b"), new Literal("c"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(a, b, c)", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(a, b, c)"));
             AssertExtensions.AreEqualValues(new Literal("a, b, c"), e.TryFold());
         }
 
@@ -434,7 +434,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new NameValuePairExpression(new Literal("Fuse"), new Literal("1337"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(Fuse: 1337)", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("(Fuse: 1337)"));
             AssertExtensions.AreEqualValues(e.Name, new Literal("Fuse"));
             AssertExtensions.AreEqualValues(e.Value, new Literal("1337"));
         }
@@ -445,8 +445,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new LogicalNotExpression(new StringLiteral("lol"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(!\"lol\")", e.ToString());
-            Assert.AreEqual("LogicalNot", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(!\"lol\")"));
+            Assert.That(e.Name, Is.EqualTo("LogicalNot"));
         }
 
         [Test]
@@ -455,8 +455,8 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new NegateExpression(new StringLiteral("lol"));
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("(-\"lol\")", e.ToString());
-            Assert.AreEqual("Negate", e.Name);
+            Assert.That(e.ToString(), Is.EqualTo("(-\"lol\")"));
+            Assert.That(e.Name, Is.EqualTo("Negate"));
         }
 
         [Test]
@@ -465,7 +465,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new FunctionCallExpression("someFunc", new Expression[0]);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("someFunc()", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("someFunc()"));
         }
 
         [Test]
@@ -474,7 +474,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new FunctionCallExpression("", new Expression[0]);
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("()", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("()"));
         }
 
         [Test]
@@ -483,7 +483,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new FunctionCallExpression("f", new[] { (Expression)new Literal("x") });
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("f(x)", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("f(x)"));
         }
 
         [Test]
@@ -492,7 +492,7 @@ namespace Uno.UX.Markup.Tests.Expressions
             var e = new FunctionCallExpression("f", new [] { (Expression)new Literal("x"), new StringLiteral("y") });
 
             Assert.IsFalse(e.IsTrivial);
-            Assert.AreEqual("f(x, \"y\")", e.ToString());
+            Assert.That(e.ToString(), Is.EqualTo("f(x, \"y\")"));
         }
     }
 }

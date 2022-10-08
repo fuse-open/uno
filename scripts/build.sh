@@ -23,24 +23,25 @@ if [ -z "$CONFIGURATION" ]; then
     CONFIGURATION="Debug"
 fi
 
-if [ ! -d packages/ ]; then
-    INSTALL=1
-elif [ ! -d node_modules/ ]; then
+if [ -z "$VERBOSITY" ]; then
+    VERBOSITY="minimal"
+fi
+
+if [ ! -d node_modules/ ]; then
     INSTALL=1
 fi
 
 if [ "$INSTALL" = 1 ]; then
-    h1 "Installing dependencies"
-    nuget restore uno.sln
+    h1 "Installing modules"
     npm install
 fi
 
 h1 "Building uno"
-csharp-build uno.sln
+dotnet build --configuration $CONFIGURATION --verbosity $VERBOSITY uno.sln
 
 h1 "Building runtime"
-uno build lib/UnoCore -DLIBRARY
-csharp-build runtime.sln
+uno build lib/UnoCore -DLIBRARY --trace
+dotnet build --configuration $CONFIGURATION --verbosity $VERBOSITY runtime.sln
 
 h1 "Building lib"
 uno doctor -ec$CONFIGURATION lib "$@"

@@ -148,7 +148,7 @@ namespace Uno.IO
 
         public void MakeExecutable(string filename)
         {
-            if (PlatformDetection.IsWindows)
+            if (OperatingSystem.IsWindows())
                 return;
 
             try

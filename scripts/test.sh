@@ -5,6 +5,11 @@ source scripts/common.sh
 
 # Arguments
 TARGET=$1
+CONFIGURATION=$2
+
+if [ -z "$CONFIGURATION" ]; then
+    CONFIGURATION="Debug"
+fi
 
 # Show uno config
 uno config -v
@@ -22,22 +27,17 @@ if [[ "$SKIP_UNO_TESTS" != 1 ]]; then
 fi
 
 # Run compiler tests
-function uno-compiler-test {
-    for config in Debug Release; do
-        exe=src/test/compiler-test/bin/$config/uno-compiler-test.exe
-        if [ -f $exe ]; then
-            dotnet-run $exe
-            return $?
-        fi
-    done
-
-    echo "ERROR: uno-compiler-test.exe was not found"
-    return 1
-}
-
 if [[ "$TARGET" == dotnet ]]; then
-    uno-compiler-test
+    dotnet src/test/compiler-test/bin/$CONFIGURATION/net6.0/compiler-test.dll
 fi
 
 # Check that all packages build without errors
 uno build $TARGET --no-strip tests/pkgtest
+
+# Run tests from dotnet solutions
+if [[ "$TARGET" == dotnet ]]; then
+    h1 "Running dotnet tests"
+    dotnet test --verbosity detailed \
+        src/test/tests/bin/$CONFIGURATION/net6.0/Uno.TestRunner.Tests.dll \
+        src/ux/tests/bin/$CONFIGURATION/net6.0/Uno.UX.Markup.Tests.dll
+fi

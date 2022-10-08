@@ -52,7 +52,7 @@ namespace UnoCore_Uno_IO
             if defined(HOST_WIN32)
             {
                 Assert.IsFalse(Path.HasExtension("foo.bar\\baz"));
-                Assert.IsFalse(Path.HasExtension(".:baz"));
+                Assert.IsTrue(Path.HasExtension(".:baz"));
             }
             else
             {
@@ -87,7 +87,7 @@ namespace UnoCore_Uno_IO
             if defined(HOST_WIN32)
             {
                 Assert.AreEqual("", Path.GetExtension("foo.bar\\baz"));
-                Assert.AreEqual("", Path.GetExtension(".:baz"));
+                Assert.AreEqual(".:baz", Path.GetExtension(".:baz"));
             }
             else
             {
@@ -174,9 +174,8 @@ namespace UnoCore_Uno_IO
 
             if defined(CIL && HOST_OSX)
             {
-                // This seems to be a Mono-bug
                 Assert.AreEqual("/", Path.GetDirectoryName("//"));
-                Assert.AreEqual("", Path.GetDirectoryName("///"));
+                Assert.AreEqual("/", Path.GetDirectoryName("///"));
             }
             else
             {

@@ -2,6 +2,6 @@
 const path = require('path');
 const run = require('dotnet-run');
 
-run(path.join(__dirname, 'uno.exe'),
+run(path.join(__dirname, 'uno.dll'),
     process.argv.slice(2),
     process.exit);

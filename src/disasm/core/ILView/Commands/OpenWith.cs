@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.IO;
 using Uno.Diagnostics;
@@ -21,7 +22,7 @@ namespace Uno.Disasm.ILView.Commands
 
         public override bool CanShow(ILItem item)
         {
-            return PlatformDetection.IsWindows && item is IFile && !(item is FolderBase);
+            return OperatingSystem.IsWindows() && item is IFile && !(item is FolderBase);
         }
 
         public override bool CanExecute(ILItem item)

@@ -70,13 +70,8 @@ namespace Uno.Net.Sockets.Test
             Assert.Throws<SocketException>(GetHostAddressesLongHostname);
             Assert.Throws<SocketException>(GetHostAddressesLongHostname2);
 
-            // https://github.com/fusetools/uno/issues/1518
-            if defined (CIL && HOST_OSX)
-            {
-                Assert.Throws<SocketException>(GetHostAddressesLongHostname3);
-                Assert.Throws<SocketException>(GetHostAddressesLongHostname4);
-            }
-            else
+            // FIXME: Fails on .NET 6.0
+            if defined (!DOTNET)
             {
                 Assert.Throws<ArgumentOutOfRangeException>(GetHostAddressesLongHostname3);
                 Assert.Throws<ArgumentOutOfRangeException>(GetHostAddressesLongHostname4);

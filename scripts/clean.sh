@@ -15,9 +15,11 @@ done
 # Clean tests
 uno clean --recursive tests
 
-# Clean C# solutions
-csharp-clean runtime.sln 1> /dev/null
-csharp-clean uno.sln 1> /dev/null
+# Clean .NET solutions
+dotnet clean --configuration Debug runtime.sln 1> /dev/null
+dotnet clean --configuration Release runtime.sln 1> /dev/null
+dotnet clean --configuration Debug uno.sln 1> /dev/null
+dotnet clean --configuration Release uno.sln 1> /dev/null
 
 # Clean other artifacts
 rm -rf bin packages

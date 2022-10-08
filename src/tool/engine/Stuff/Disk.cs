@@ -10,14 +10,14 @@ namespace Uno.Build.Stuff
     {
         public static void CreateDirectory(Log log, string path)
         {
-            var dirExists = PlatformDetection.IsWindows ? LongPathDisk.DirectoryExists(path) : Directory.Exists(path);
+            var dirExists = OperatingSystem.IsWindows() ? LongPathDisk.DirectoryExists(path) : Directory.Exists(path);
             if (path.Length > 1 && !dirExists)
             {
                 CreateDirectory(log, Path.GetDirectoryName(path));
                 log.Event(IOEvent.MkDir, path);
 
                 var isHidden = Path.GetFileName(path).StartsWith(".");
-                if (PlatformDetection.IsWindows)
+                if (OperatingSystem.IsWindows())
                 {
                     LongPathDisk.CreateDirectory(path);
                     if (isHidden)
@@ -36,14 +36,14 @@ namespace Uno.Build.Stuff
 
         public static void DeleteFile(Log log, string name)
         {
-            var fileExists = PlatformDetection.IsWindows ? LongPathDisk.FileExists(name) : File.Exists(name);
+            var fileExists = OperatingSystem.IsWindows() ? LongPathDisk.FileExists(name) : File.Exists(name);
             if (!fileExists)
                 return;
 
             try
             {
                 log.Event(IOEvent.Rm, name);
-                if (PlatformDetection.IsWindows)
+                if (OperatingSystem.IsWindows())
                     LongPathDisk.DeleteFile(name);
                 else
                     File.Delete(name);
@@ -56,7 +56,7 @@ namespace Uno.Build.Stuff
 
         public static void DeleteDirectory(Log log, string name)
         {
-            var directoryExists = PlatformDetection.IsWindows ? LongPathDisk.DirectoryExists(name) : Directory.Exists(name);
+            var directoryExists = OperatingSystem.IsWindows() ? LongPathDisk.DirectoryExists(name) : Directory.Exists(name);
             if (!directoryExists)
                 return;
 
@@ -64,7 +64,7 @@ namespace Uno.Build.Stuff
             {
                 log.Event(IOEvent.RmDir, name);
 
-                if (PlatformDetection.IsWindows)
+                if (OperatingSystem.IsWindows())
                     LongPathDisk.DeleteDirectory(name, true);
                 else
                     Directory.Delete(name, true);

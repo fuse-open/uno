@@ -17,7 +17,7 @@ namespace Uno.TestRunner.Tests
             Assert.Throws<InvalidOperationException>(() => run.EventOccured(MakeReadyEvent(1)));
             run.Start();
 
-            Assert.AreEqual(TestRun.State.WaitingForReady, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.WaitingForReady));
             Assert.Throws<InvalidOperationException>(() => run.EventOccured(MakeTestPassedEvent("foo")));
             Assert.Throws<InvalidOperationException>(() => run.EventOccured(MakeTestAssertedEvent("foo")));
 
@@ -29,15 +29,15 @@ namespace Uno.TestRunner.Tests
         public void StartupSequenceIsCorrect()
         {
             var run = new TestRun(new Mock<ITestResultLogger>().Object);
-            Assert.AreEqual(TestRun.State.NotStarted, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.NotStarted));
             run.Start();
-            Assert.AreEqual(TestRun.State.WaitingForReady, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.WaitingForReady));
             run.EventOccured(MakeReadyEvent(1));
-            Assert.AreEqual(TestRun.State.Ready, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.Ready));
             run.EventOccured(MakeTestStartedEvent("foo"));
-            Assert.AreEqual(TestRun.State.Running, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.Running));
             run.EventOccured(MakeTestPassedEvent("foo"));
-            Assert.AreEqual(TestRun.State.Finished, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.Finished));
         }
 
         [Test]
@@ -50,10 +50,10 @@ namespace Uno.TestRunner.Tests
             run.EventOccured(MakeTestPassedEvent("foo"));
             run.EventOccured(MakeTestStartedEvent("bar"));
             run.EventOccured(MakeTestAssertedEvent("bar"));
-            Assert.AreEqual(TestRun.State.Finished, run.CurrentState);
+            Assert.That(run.CurrentState, Is.EqualTo(TestRun.State.Finished));
 
             var result = run.WaitUntilFinished();
-            Assert.AreEqual(new string[]{ "foo", "bar" }, result.Select(test => test.Name));
+            Assert.That(result.Select(test => test.Name), Is.EqualTo(new string[]{ "foo", "bar" }));
         }
 
         private static NameValueCollection MakeReadyEvent(int testCount)

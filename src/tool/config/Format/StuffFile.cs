@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Uno.Diagnostics;
 using Uno.IO;
 
@@ -14,16 +15,17 @@ namespace Uno.Configuration.Format
 
         public static readonly Dictionary<string, bool> DefaultConstants = new Dictionary<string, bool>
         {
-            {"WINDOWS", PlatformDetection.IsWindows},
-            {"WIN32", PlatformDetection.IsWindows},
-            {"OSX", PlatformDetection.IsMac},
-            {"DARWIN", PlatformDetection.IsMac},
-            {"MAC", PlatformDetection.IsMac},
-            {"LINUX", PlatformDetection.IsLinux},
-            {"UNIX", !PlatformDetection.IsWindows},
-            {"ARM", PlatformDetection.IsArm},
-            {"X86", !PlatformDetection.IsArm && IntPtr.Size == 4},
-            {"X64", !PlatformDetection.IsArm && IntPtr.Size == 8}
+            {"WINDOWS", OperatingSystem.IsWindows()},
+            {"WIN32", OperatingSystem.IsWindows()},
+            {"OSX", OperatingSystem.IsMacOS()},
+            {"DARWIN", OperatingSystem.IsMacOS()},
+            {"MAC", OperatingSystem.IsMacOS()},
+            {"LINUX", OperatingSystem.IsLinux()},
+            {"UNIX", !OperatingSystem.IsWindows()},
+            {"ARM", RuntimeInformation.OSArchitecture == Architecture.Arm},
+            {"ARM64", RuntimeInformation.OSArchitecture == Architecture.Arm64},
+            {"X86", RuntimeInformation.OSArchitecture == Architecture.X86},
+            {"X64", RuntimeInformation.OSArchitecture == Architecture.X64}
         };
 
         public readonly string Filename;

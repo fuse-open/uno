@@ -33,7 +33,7 @@ namespace Uno.Compiler.Backends.CIL
         {
             _outputDir = Environment.Combine(
                 Environment.ExpandSingleLine("@(AssemblyDirectory || '.')")).TrimPath();
-            _linker = new CilLinker(Log, Essentials);
+            _linker = new CilLinker(Log, Essentials, _outputDir);
             Scheduler.AddTransform(new CilTransform(this));
             EnableReflection = Environment.IsDefined("REFLECTION");
             TypeAliasAttribute = EnableReflection
@@ -108,7 +108,7 @@ namespace Uno.Compiler.Backends.CIL
                 else if (Environment.IsDefined("X86"))
                     loader.SetX86();
 
-                Log.Verbose("Creating executable: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
+                Log.Verbose("Entrypoint: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
                 loader.SetAssemblyInfo(Input.Package.Name + "-loader",
                     Input.Package.ParseVersion(Log),
                     Environment.GetString);

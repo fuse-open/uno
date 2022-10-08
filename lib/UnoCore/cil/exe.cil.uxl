@@ -1,14 +1,16 @@
 <Extensions Backend="CIL" Condition="!LIBRARY">
 
     <Set AppDirectory="@(Project.Name).app" Condition="HOST_MAC" />
-    <Set AssemblyDirectory="@(HOST_MAC:Defined:Test('@(AppDirectory)/Contents/MonoBundle', '.'))" />
-    <Set Product="@(AssemblyDirectory)/@(Project.Name).exe" />
+    <Set AssemblyDirectory="@(HOST_MAC:Defined:Test('@(AppDirectory)/Contents/net6.0', '.'))" />
+    <Set Product="@(AssemblyDirectory)/@(Project.Name).app.dll" />
 
-    <Set Commands.Run="@('@(AppDirectory)/Contents/MacOS/@(Project.Name)':QuoteSpace)" Condition="HOST_MAC" />
-    <Set Commands.Run="@(Product:QuoteSpace)" />
+    <Set Commands.Run="bash @('@(AppDirectory)/Contents/MacOS/@(Project.Name)':QuoteSpace)" Condition="HOST_MAC" />
+    <ProcessFile Name="run.sh" TargetName="@(AppDirectory)/Contents/MacOS/@(Project.Name)" Condition="HOST_MAC" IsExecutable="true" />
+    <Set Commands.Run="run.bat" Condition="HOST_WIN32" />
+    <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
 
     <!-- AppLoader & dependencies -->
-    <Set AppLoader.Assembly="@(Config.AppLoader.Exe:Path)" />
+    <Set AppLoader.Assembly="@(Config.AppLoader.Assembly:Path)" />
     <Set AppLoader.Class="Uno.AppLoader.Program" />
     <Set AppLoader.Method="UnoGenerated" />
 
@@ -16,16 +18,17 @@
     <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/System.Drawing.Common.dll" Condition="HOST_MAC" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/Xamarin.Mac.dll" Condition="HOST_MAC" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Mac:Path)/libxammac.dylib" Condition="HOST_MAC" />
-    
+    <CopyFile Name="@(Config.AppLoader.Mac:Path)/uno-app.runtimeconfig.json" TargetName="@(AssemblyDirectory)/@(Project.Name).app.runtimeconfig.json" Condition="HOST_MAC" />
+
     <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/OpenTK.dll" Condition="HOST_WIN32" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/libEGL.dll" Condition="HOST_WIN32" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/libGLESv2.dll" Condition="HOST_WIN32" />
     <Require UnmanagedLibrary="@(Config.AppLoader.Windows:Path)/d3dcompiler_47.dll" Condition="HOST_WIN32" />
+    <CopyFile Name="@(Config.AppLoader.Windows:Path)/uno-app.runtimeconfig.json" TargetName="@(AssemblyDirectory)/@(Project.Name).app.runtimeconfig.json" Condition="HOST_WIN32" />
 
     <!-- macOS bundle -->
     <Set BundleIdentifier="@(Project.Mac.BundleIdentifier || 'com.apps.@(Project.Name:QIdentifier:Replace('_', '-'):ToLower)')" Condition="HOST_MAC" />
     <ProcessFile Name="@(AppDirectory)/Contents/Info.plist" Condition="HOST_MAC" />
-    <CopyFile Name="@(Config.AppLoader.Mac:Path)/monostub" TargetName="@(AppDirectory)/Contents/MacOS/@(Project.Name)" IsExecutable=true Condition="HOST_MAC" />
     <CopyFile Name="@(Project.Mac.Icon:Path || @//assets/icon.icns)" TargetName="@(AppDirectory)/Contents/Resources/Icon.icns" Condition="HOST_MAC" />
 
 </Extensions>

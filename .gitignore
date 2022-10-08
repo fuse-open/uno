@@ -51,7 +51,6 @@ obj/
 /packages/
 /release/
 /upload/
-MonoBundle
 
 # Sublime files
 *.sublime-project

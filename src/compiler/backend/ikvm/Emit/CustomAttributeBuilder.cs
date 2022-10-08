@@ -318,7 +318,7 @@ namespace IKVM.Reflection.Emit
 			private void GetTypeName(StringBuilder sb, Type type, bool isTypeParam)
 			{
 				bool v1 = !assembly.ManifestModule.__IsMissing && assembly.ManifestModule.MDStreamVersion < 0x20000;
-				bool includeAssemblyName = type.Assembly != assembly && (!v1 || type.Assembly != type.Module.universe.Mscorlib);
+				bool includeAssemblyName = type.Assembly != assembly && (!v1 || type.Assembly != type.Module.universe.CoreLib);
 				if (isTypeParam && includeAssemblyName)
 				{
 					sb.Append('[');
@@ -501,7 +501,7 @@ namespace IKVM.Reflection.Emit
 			}
 			else if (val != null)
 			{
-				if (typeof(T).IsEnum)
+				if (TypeUtil.IsEnum(typeof(T)))
 				{
 					Debug.Assert(Enum.GetUnderlyingType(typeof(T)) == val.GetType());
 					return (T)Enum.ToObject(typeof(T), val);
@@ -673,7 +673,13 @@ namespace IKVM.Reflection.Emit
 		{
 			get
 			{
-				TypeName typeName = con.DeclaringType.TypeName;
+				Type attributeType = con.DeclaringType;
+				if (attributeType.IsConstructedGenericType)
+				{
+					// a constructed generic type doesn't have a TypeName and we already know it's not a Known CA
+					return KnownCA.Unknown;
+				}
+				TypeName typeName = attributeType.TypeName;
 				switch (typeName.Namespace)
 				{
 					case "System":

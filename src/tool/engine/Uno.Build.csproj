@@ -1,170 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\GlobalAssemblyInfo.props" />
   <Import Project="..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props" Condition="Exists('..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE7B3E9E-C1AF-41A1-8B71-42213DAB19F4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Uno.Build</RootNamespace>
-    <AssemblyName>Uno.Build</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Mac, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065, processorArchitecture=MSIL">
+    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj" />
+    <ProjectReference Include="..\..\common\Uno.Common.csproj" />
+    <ProjectReference Include="..\..\compiler\backend\cil\Uno.Compiler.Backends.CIL.csproj" />
+    <ProjectReference Include="..\..\compiler\backend\cpp\Uno.Compiler.Backends.CPlusPlus.csproj" />
+    <ProjectReference Include="..\..\compiler\graphics\opengl\Uno.Compiler.Graphics.OpenGL.csproj" />
+    <ProjectReference Include="..\..\compiler\backend\unodoc\Uno.Compiler.Backends.UnoDoc.csproj" />
+    <ProjectReference Include="..\..\compiler\foreign\Uno.Compiler.Foreign.csproj" />
+    <ProjectReference Include="..\..\compiler\frontend\Uno.Compiler.Frontend.csproj" />
+    <ProjectReference Include="..\..\compiler\core\Uno.Compiler.Core.csproj" />
+    <ProjectReference Include="..\..\ux\markup\Uno.UX.Markup.csproj" />
+    <ProjectReference Include="..\project\Uno.ProjectFormat.csproj" />
+    <ProjectReference Include="..\config\Uno.Configuration.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.Mac">
       <HintPath>..\..\..\node_modules\@fuse-open\xamarin-mac\Xamarin.Mac.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />
-  <ItemGroup>
-    <Compile Include="Adb\AdbDevice.cs" />
-    <Compile Include="Adb\AdbRunner.cs" />
-    <Compile Include="BuildConfiguration.cs" />
-    <Compile Include="BuildDriver.cs" />
-    <Compile Include="BuildFile.cs" />
-    <Compile Include="ErrorCode.cs" />
-    <Compile Include="FuseJS\Transpiler.cs" />
-    <Compile Include="Packages\PackageDoctor.cs" />
-    <Compile Include="Packages\PackageSearchPaths.cs" />
-    <Compile Include="Packages\PackageCache.cs" />
-    <Compile Include="BuildTarget.cs" />
-    <Compile Include="Packages\LibraryBuilder.cs" />
-    <Compile Include="Packages\LibraryProject.cs" />
-    <Compile Include="Packages\PackageFile.cs" />
-    <Compile Include="ProjectBuilder.cs" />
-    <Compile Include="ProjectCleaner.cs" />
-    <Compile Include="BuildOptions.cs" />
-    <Compile Include="BuildResult.cs" />
-    <Compile Include="Packages\VersionRange.cs" />
-    <Compile Include="Stuff\Disk.cs" />
-    <Compile Include="Stuff\DownloadCache.cs" />
-    <Compile Include="Stuff\FileLock.cs" />
-    <Compile Include="Stuff\Installer.cs" />
-    <Compile Include="Stuff\IOEvent.cs" />
-    <Compile Include="Stuff\LongPathDisk.cs" />
-    <Compile Include="Stuff\LongPathZipFile.cs" />
-    <Compile Include="Stuff\Shell.cs" />
-    <Compile Include="Stuff\StuffWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Targets\AndroidBuild.cs" />
-    <Compile Include="Targets\AndroidEmulatorBuild.cs" />
-    <Compile Include="BuildTargets.cs" />
-    <Compile Include="Targets\DocsBuild.cs" />
-    <Compile Include="Targets\DotNetBuild.cs" />
-    <Compile Include="Targets\Generators\AndroidGenerator.cs" />
-    <Compile Include="Targets\Generators\CMakeGenerator.cs" />
-    <Compile Include="Targets\Generators\PackageGenerator.cs" />
-    <Compile Include="Targets\Generators\XcodeFile.cs" />
-    <Compile Include="Targets\Generators\XcodeGenerator.cs" />
-    <Compile Include="Targets\iOSBuild.cs" />
-    <Compile Include="Targets\iOSSimulatorBuild.cs" />
-    <Compile Include="Targets\MetadataBuild.cs" />
-    <Compile Include="Targets\NativeBuild.cs" />
-    <Compile Include="Targets\PackageBuild.cs" />
-    <Compile Include="Targets\PInvokeBuild.cs" />
-    <Compile Include="Targets\Utilities\DevelopmentTeam.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj">
-      <Project>{B819B724-1A1F-458E-A4AF-4A5BB330C2C4}</Project>
-      <Name>Uno.Compiler.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\common\Uno.Common.csproj">
-      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
-      <Name>Uno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\backend\cil\Uno.Compiler.Backends.CIL.csproj">
-      <Project>{b3b455c8-dd3d-4655-b10c-3c6be878911e}</Project>
-      <Name>Uno.Compiler.Backends.CIL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\backend\cpp\Uno.Compiler.Backends.CPlusPlus.csproj">
-      <Project>{9e0318a1-528e-4afd-ab87-c8d58e0cd060}</Project>
-      <Name>Uno.Compiler.Backends.CPlusPlus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\graphics\opengl\Uno.Compiler.Graphics.OpenGL.csproj">
-      <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
-      <Name>Uno.Compiler.Graphics.OpenGL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\backend\unodoc\Uno.Compiler.Backends.UnoDoc.csproj">
-      <Project>{eb7a1bf1-f78f-41ec-933d-e3a44c021e3d}</Project>
-      <Name>Uno.Compiler.Backends.UnoDoc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\foreign\Uno.Compiler.Foreign.csproj">
-      <Project>{853abab6-9ffd-4749-9d32-0a205c5e72b3}</Project>
-      <Name>Uno.Compiler.Foreign</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\frontend\Uno.Compiler.Frontend.csproj">
-      <Project>{660301A9-D14E-48C0-A757-2DBD2D4D0E3F}</Project>
-      <Name>Uno.Compiler.Frontend</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\core\Uno.Compiler.Core.csproj">
-      <Project>{C4CF7639-0705-4093-B16D-3261A92F6260}</Project>
-      <Name>Uno.Compiler.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ux\markup\Uno.UX.Markup.csproj">
-      <Project>{05538951-c4a9-4298-bba7-fe9f96e3ddc1}</Project>
-      <Name>Uno.UX.Markup</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\project\Uno.ProjectFormat.csproj">
-      <Project>{6C4066B0-F7EA-41B1-B103-0A4F1C3A77D5}</Project>
-      <Name>Uno.ProjectFormat</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\config\Uno.Configuration.csproj">
-      <Project>{95E969AF-23A7-46DE-8EEF-DF1BDDCA55D6}</Project>
-      <Name>Uno.Configuration</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props'))" />
-  </Target>
 </Project>

@@ -207,7 +207,7 @@ namespace Uno.Build.Targets.Generators
         static string FindCodeSigningDevelopmentTeam()
         {
             // Can only run on Mac
-            if (!PlatformDetection.IsMac)
+            if (!OperatingSystem.IsMacOS())
             {
                 Log.Default.Warning("Finding a development team for signing failed: This operation is only supported on macOS.");
                 return null;

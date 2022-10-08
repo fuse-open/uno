@@ -28,7 +28,7 @@ namespace Uno.UX.Markup.Tests.ParserTests
 
             var element = TestHelpers.Parse(docName, docCode);
             AssertElement(element, ElementType.Object, "TheElement", new FileSourceInfo(docName, 1), typeof(UnspecifiedGenerator), 0);
-            Assert.AreEqual(1, element.Properties.Count());
+            Assert.That(element.Properties.Count(), Is.EqualTo(1));
 
             var prop = element.Properties.ElementAt(0);
             AssertProperty(prop, "SomeProp", "SomeValue");
@@ -78,18 +78,18 @@ namespace Uno.UX.Markup.Tests.ParserTests
 
         void AssertElement(Element element, ElementType elementType, string typeName, FileSourceInfo source, Type generatorType, int childCount)
         {
-            Assert.AreEqual(elementType, element.ElementType);
-            Assert.AreEqual(typeName, element.TypeName);
-            Assert.AreEqual(source, element.Source);
-            Assert.AreEqual(generatorType, element.Generator.GetType());
-            Assert.AreEqual(childCount, element.Children.Count());
+            Assert.That(element.ElementType, Is.EqualTo(elementType));
+            Assert.That(element.TypeName, Is.EqualTo(typeName));
+            Assert.That(element.Source, Is.EqualTo(source));
+            Assert.That(element.Generator.GetType(), Is.EqualTo(generatorType));
+            Assert.That(element.Children.Count(), Is.EqualTo(childCount));
         }
 
         void AssertProperty(Property prop, string name, string value, string ns = "")
         {
-            Assert.AreEqual(name, prop.Name);
-            Assert.AreEqual(value, prop.Value);
-            Assert.AreEqual(ns, prop.Namespace);
+            Assert.That(prop.Name, Is.EqualTo(name));
+            Assert.That(prop.Value, Is.EqualTo(value));
+            Assert.That(prop.Namespace, Is.EqualTo(ns));
         }
     }
 }

@@ -22,17 +22,16 @@
   
 */
 using System;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
-#if !NO_SYMBOL_WRITER
-using System.Diagnostics.SymbolStore;
-#endif
 using System.Diagnostics;
+using System.Diagnostics.SymbolStore;
+using System.Runtime.InteropServices;
+
 using IKVM.Reflection.Writer;
 
 namespace IKVM.Reflection.Emit
 {
-	public struct Label
+    public struct Label
 	{
 		// 1-based here, to make sure that an uninitialized Label isn't valid
 		private readonly int index1;
@@ -104,6 +103,7 @@ namespace IKVM.Reflection.Emit
 
 	public sealed class ILGenerator
 	{
+
 		private readonly ModuleBuilder moduleBuilder;
 		private readonly ByteBuffer code;
 		private readonly SignatureHelper locals;
@@ -112,9 +112,7 @@ namespace IKVM.Reflection.Emit
 		private readonly List<int> labels = new List<int>();
 		private readonly List<int> labelStackHeight = new List<int>();
 		private readonly List<LabelFixup> labelFixups = new List<LabelFixup>();
-#if !NO_SYMBOL_WRITER
 		private readonly List<SequencePoint> sequencePoints = new List<SequencePoint>();
-#endif
 		private readonly List<ExceptionBlock> exceptions = new List<ExceptionBlock>();
 		private readonly Stack<ExceptionBlock> exceptionStack = new Stack<ExceptionBlock>();
 		private ushort maxStack;
@@ -187,14 +185,12 @@ namespace IKVM.Reflection.Emit
 
 		private struct SequencePoint
 		{
-#if !NO_SYMBOL_WRITER
 			internal ISymbolDocumentWriter document;
 			internal int offset;
 			internal int startLine;
 			internal int startColumn;
 			internal int endLine;
 			internal int endColumn;
-#endif
 		}
 
 		private sealed class Scope
@@ -202,6 +198,7 @@ namespace IKVM.Reflection.Emit
 			internal readonly Scope parent;
 			internal readonly List<Scope> children = new List<Scope>();
 			internal readonly List<LocalBuilder> locals = new List<LocalBuilder>();
+			internal readonly List<string> namespaces = new List<string>();
 			internal int startOffset;
 			internal int endOffset;
 
@@ -408,12 +405,10 @@ namespace IKVM.Reflection.Emit
 
 		public void UsingNamespace(string usingNamespace)
 		{
-#if !NO_SYMBOL_WRITER
-			if (moduleBuilder.symbolWriter != null)
+			if (scope != null)
 			{
-				moduleBuilder.symbolWriter.UsingNamespace(usingNamespace);
+				scope.namespaces.Add(usingNamespace);
 			}
-#endif
 		}
 
 		public LocalBuilder DeclareLocal(Type localType)
@@ -831,13 +826,13 @@ namespace IKVM.Reflection.Emit
 		{
 			Universe u = moduleBuilder.universe;
 			Emit(OpCodes.Ldstr, text);
-			Emit(OpCodes.Call, u.Import(typeof(Console)).GetMethod("WriteLine", new Type[] { u.System_String }));
+			Emit(OpCodes.Call, u.System_Console.GetMethod("WriteLine", new Type[] { u.System_String }));
 		}
 
 		public void EmitWriteLine(FieldInfo field)
 		{
 			Universe u = moduleBuilder.universe;
-			Emit(OpCodes.Call, u.Import(typeof(Console)).GetMethod("get_Out"));
+			Emit(OpCodes.Call, u.System_Console.GetMethod("get_Out"));
 			if (field.IsStatic)
 			{
 				Emit(OpCodes.Ldsfld, field);
@@ -847,15 +842,15 @@ namespace IKVM.Reflection.Emit
 				Emit(OpCodes.Ldarg_0);
 				Emit(OpCodes.Ldfld, field);
 			}
-			Emit(OpCodes.Callvirt, u.Import(typeof(System.IO.TextWriter)).GetMethod("WriteLine", new Type[] { field.FieldType }));
+			Emit(OpCodes.Callvirt, u.System_IO_TextWriter.GetMethod("WriteLine", new Type[] { field.FieldType }));
 		}
 
 		public void EmitWriteLine(LocalBuilder local)
 		{
 			Universe u = moduleBuilder.universe;
-			Emit(OpCodes.Call, u.Import(typeof(Console)).GetMethod("get_Out"));
+			Emit(OpCodes.Call, u.System_Console.GetMethod("get_Out"));
 			Emit(OpCodes.Ldloc, local);
-			Emit(OpCodes.Callvirt, u.Import(typeof(System.IO.TextWriter)).GetMethod("WriteLine", new Type[] { local.LocalType }));
+			Emit(OpCodes.Callvirt, u.System_IO_TextWriter.GetMethod("WriteLine", new Type[] { local.LocalType }));
 		}
 
 		public void EndScope()
@@ -890,7 +885,6 @@ namespace IKVM.Reflection.Emit
 			}
 		}
 
-#if !NO_SYMBOL_WRITER
 		public void MarkSequencePoint(ISymbolDocumentWriter document, int startLine, int startColumn, int endLine, int endColumn)
 		{
 			SequencePoint sp = new SequencePoint();
@@ -902,7 +896,6 @@ namespace IKVM.Reflection.Emit
 			sp.endColumn = endColumn;
 			sequencePoints.Add(sp);
 		}
-#endif
 
 		public void ThrowException(Type excType)
 		{
@@ -938,7 +931,6 @@ namespace IKVM.Reflection.Emit
 				rva = WriteFatHeaderAndCode(bb, localVarSigTok, initLocals);
 			}
 
-#if !NO_SYMBOL_WRITER
 			if (moduleBuilder.symbolWriter != null)
 			{
 				if (sequencePoints.Count != 0)
@@ -966,7 +958,6 @@ namespace IKVM.Reflection.Emit
 
 				WriteScope(scope, localVarSigTok);
 			}
-#endif
 			return rva;
 		}
 
@@ -1123,7 +1114,6 @@ namespace IKVM.Reflection.Emit
 			}
 		}
 
-#if !NO_SYMBOL_WRITER
 		private void WriteScope(Scope scope, int localVarSigTok)
 		{
 			moduleBuilder.symbolWriter.OpenScope(scope.startOffset);
@@ -1141,12 +1131,15 @@ namespace IKVM.Reflection.Emit
 					moduleBuilder.symbolWriter.DefineLocalVariable2(local.name, 0, localVarSigTok, SymAddressKind.ILOffset, local.LocalIndex, 0, 0, startOffset, endOffset);
 				}
 			}
+			foreach (string ns in scope.namespaces)
+			{
+				moduleBuilder.symbolWriter.UsingNamespace(ns);
+			}
 			foreach (Scope child in scope.children)
 			{
 				WriteScope(child, localVarSigTok);
 			}
 			moduleBuilder.symbolWriter.CloseScope(scope.endOffset);
 		}
-#endif
 	}
 }

@@ -251,13 +251,6 @@ namespace Uno.CLI
             WriteHead(".NET runtime", 10, 0);
             WriteRow("OSVersion",   Environment.OSVersion.VersionString);
             WriteRow("Version",     Environment.Version);
-
-            // Mono version
-            if (MonoInfo.IsRunningMono)
-            {
-                WriteHead("Mono", 10, 0);
-                WriteRow("Version", MonoInfo.GetVersion());
-            }
         }
 
         protected bool Confirm(string question)

@@ -175,7 +175,7 @@ namespace Uno.IO
             for (int i = filename.Length - 1; i >= 0; i--)
             {
                 var ch = filename[i];
-                if (IsDirectorySeparator(ch) || ch == VolumeSeparatorChar)
+                if (IsDirectorySeparator(ch))
                     break;
 
                 if (ch == '.')
@@ -200,7 +200,7 @@ namespace Uno.IO
             for (int i = filename.Length - 1; i >= 0; i--)
             {
                 var ch = filename[i];
-                if (IsDirectorySeparator(ch) || ch == VolumeSeparatorChar)
+                if (IsDirectorySeparator(ch))
                     return false;
 
                 if (ch == '.')

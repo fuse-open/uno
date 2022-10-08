@@ -161,10 +161,6 @@ namespace Uno.Internal
                 return System.String.Format("{0:F" + desiredDigits + "}", d);
             else if defined(CPLUSPLUS)
             @{
-                // make sure -0 gets formated as 0
-                if (d == 0.0)
-                    d = 0.0;
-
                 char buf[64];
                 int len = snprintf(buf, sizeof(buf), "%.*f", desiredDigits, d);
                 if (len < 0 && errno == ERANGE)
@@ -286,9 +282,6 @@ namespace Uno.Internal
             var desiredDigits = Digits(formatString);
             if (desiredDigits < 1)
                 desiredDigits = defaultPrecision;
-
-            if (d == 0)
-                return "0";
 
             var magnitude = Log10(Math.Abs(d));
 

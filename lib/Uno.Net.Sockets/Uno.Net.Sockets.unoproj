@@ -8,6 +8,7 @@
     "NetworkHelpers.uno:Source",
     "NetworkStream.uno:Source",
     "Socket.uno:Source",
+    "System.Net.Sockets.uxl:Extensions",
     "TcpListener.uno:Source"
   ]
 }

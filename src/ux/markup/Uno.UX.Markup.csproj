@@ -1,130 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\GlobalAssemblyInfo.props" />
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{05538951-C4A9-4298-BBA7-FE9F96E3DDC1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Uno.UX.Markup</RootNamespace>
-    <AssemblyName>Uno.UX.Markup</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
+    <ProjectReference Include="..\..\..\src\compiler\frontend\Uno.Compiler.Frontend.csproj" />
+    <ProjectReference Include="..\..\..\src\common\Uno.Common.csproj" />
+    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj" />
+    <ProjectReference Include="..\..\compiler\graphics\opengl\Uno.Compiler.Graphics.OpenGL.csproj" />
+    <ProjectReference Include="..\..\compiler\core\Uno.Compiler.Core.csproj" />
+    <ProjectReference Include="..\..\compiler\foreign\Uno.Compiler.Foreign.csproj" />
   </ItemGroup>
-  <Import Project="..\..\GlobalAssemblyInfo.targets" />
-  <ItemGroup>
-    <Compile Include="AST\Generator.cs" />
-    <Compile Include="AST\Node.cs" />
-    <Compile Include="AST\Parser.cs" />
-    <Compile Include="AtomicValue.cs" />
-    <Compile Include="AtomicValueParser.cs" />
-    <Compile Include="Attributes.cs" />
-    <Compile Include="CodeGeneration\CodeGenerator.cs" />
-    <Compile Include="CodeGeneration\Scope.cs" />
-    <Compile Include="CodeGeneration\UXProcessor.cs" />
-    <Compile Include="CompilerReflection\AttachedPropertyRegistry.cs" />
-    <Compile Include="CompilerReflection\CompilerReflection.cs" />
-    <Compile Include="CompilerReflection\Helpers.cs" />
-    <Compile Include="CompilerReflection\ILCache.cs" />
-    <Compile Include="CompilerReflection\ILCacheBackend.cs" />
-    <Compile Include="CompilerReflection\MarkupErrorLog.cs" />
-    <Compile Include="Configuration.cs" />
-    <Compile Include="ContentMode.cs" />
-    <Compile Include="IMarkupErrorLog.cs" />
-    <Compile Include="FileSourceInfo.cs" />
-    <Compile Include="InstanceType.cs" />
-    <Compile Include="Reflection\Reflection.cs" />
-    <Compile Include="TypeNameHelper.cs" />
-    <Compile Include="Types\Float2.cs" />
-    <Compile Include="Types\Float3.cs" />
-    <Compile Include="Types\Float4.cs" />
-    <Compile Include="Types\Int2.cs" />
-    <Compile Include="Types\Int3.cs" />
-    <Compile Include="Types\Int4.cs" />
-    <Compile Include="Types\UX\Unit.cs" />
-    <Compile Include="UXIL\AtomicValueParser.cs" />
-    <Compile Include="UXIL\ClassNode.cs" />
-    <Compile Include="UXIL\ClassNode.IDataType.cs" />
-    <Compile Include="UXIL\Compiler.cs" />
-    <Compile Include="UXIL\Compiler.ParseAttribute.cs" />
-    <Compile Include="UXIL\DeclaredUXParameter.cs" />
-    <Compile Include="UXIL\DeferredGenericType.cs" />
-    <Compile Include="UXIL\DocumentScope.cs" />
-    <Compile Include="UXIL\DocumentScope.InstantiationOrdering.cs" />
-    <Compile Include="UXIL\Expressions\Expression.cs" />
-    <Compile Include="UXIL\Expressions\Lexer\Lexer.cs" />
-    <Compile Include="UXIL\Expressions\Lexer\LexerBuilder.cs" />
-    <Compile Include="UXIL\Expressions\Lexer\Token.cs" />
-    <Compile Include="UXIL\Expressions\Lexer\TokenAttribute.cs" />
-    <Compile Include="UXIL\Expressions\Lexer\Tokens.cs" />
-    <Compile Include="UXIL\Expressions\Lexer\TokenType.cs" />
-    <Compile Include="UXIL\Expressions\Parser.cs" />
-    <Compile Include="UXIL\Expressions\Precedence.cs" />
-    <Compile Include="UXIL\GlobalResourceCache.cs" />
-    <Compile Include="UXIL\KeepAssemblyInfo.cs" />
-    <Compile Include="UXIL\NameTableNode.cs" />
-    <Compile Include="UXIL\Node.cs" />
-    <Compile Include="UXIL\ResolvedGenericProperty.cs" />
-    <Compile Include="ValueMarshal.cs" />
-    <Compile Include="XmlHelpers.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\src\compiler\frontend\Uno.Compiler.Frontend.csproj">
-      <Project>{660301a9-d14e-48c0-a757-2dbd2d4d0e3f}</Project>
-      <Name>Uno.Compiler.Frontend</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\common\Uno.Common.csproj">
-      <Project>{D159DC86-F510-4FCF-9573-E339BDD6D166}</Project>
-      <Name>Uno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj">
-      <Project>{b819b724-1a1f-458e-a4af-4a5bb330c2c4}</Project>
-      <Name>Uno.Compiler.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\graphics\opengl\Uno.Compiler.Graphics.OpenGL.csproj">
-      <Project>{afcaaf4e-198d-45f5-a019-aced9cdccadf}</Project>
-      <Name>Uno.Compiler.Graphics.OpenGL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\core\Uno.Compiler.Core.csproj">
-      <Project>{c4cf7639-0705-4093-b16d-3261a92f6260}</Project>
-      <Name>Uno.Compiler.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\compiler\foreign\Uno.Compiler.Foreign.csproj">
-      <Project>{853abab6-9ffd-4749-9d32-0a205c5e72b3}</Project>
-      <Name>Uno.Compiler.Foreign</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

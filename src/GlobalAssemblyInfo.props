@@ -1,4 +1,9 @@
-<Project ToolsVersion="14.0" DefaultTargets="Compile" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Condition="!Exists('$(MSBuildThisFileDirectory)\GlobalAssemblyInfo.Override.cs')" Include="$(MSBuildThisFileDirectory)\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>

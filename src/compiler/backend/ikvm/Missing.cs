@@ -27,14 +27,10 @@ using System.Runtime.InteropServices;
 
 namespace IKVM.Reflection
 {
-#if !CORECLR
 	[Serializable]
-#endif
 	public sealed class MissingAssemblyException : InvalidOperationException
 	{
-#if !CORECLR
 		[NonSerialized]
-#endif
 		private readonly MissingAssembly assembly;
 
 		internal MissingAssemblyException(MissingAssembly assembly)
@@ -43,12 +39,10 @@ namespace IKVM.Reflection
 			this.assembly = assembly;
 		}
 
-#if !CORECLR
 		private MissingAssemblyException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 			: base(info, context)
 		{
 		}
-#endif
 
 		public Assembly Assembly
 		{
@@ -56,14 +50,10 @@ namespace IKVM.Reflection
 		}
 	}
 
-#if !CORECLR
 	[Serializable]
-#endif
 	public sealed class MissingModuleException : InvalidOperationException
 	{
-#if !CORECLR
 		[NonSerialized]
-#endif
 		private readonly MissingModule module;
 
 		internal MissingModuleException(MissingModule module)
@@ -72,12 +62,10 @@ namespace IKVM.Reflection
 			this.module = module;
 		}
 
-#if !CORECLR
 		private MissingModuleException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 			: base(info, context)
 		{
 		}
-#endif
 
 		public Module Module
 		{
@@ -85,14 +73,10 @@ namespace IKVM.Reflection
 		}
 	}
 
-#if !CORECLR
 	[Serializable]
-#endif
 	public sealed class MissingMemberException : InvalidOperationException
 	{
-#if !CORECLR
 		[NonSerialized]
-#endif
 		private readonly MemberInfo member;
 
 		internal MissingMemberException(MemberInfo member)
@@ -101,12 +85,10 @@ namespace IKVM.Reflection
 			this.member = member;
 		}
 
-#if !CORECLR
 		private MissingMemberException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 			: base(info, context)
 		{
 		}
-#endif
 
 		public MemberInfo MemberInfo
 		{
@@ -399,6 +381,7 @@ namespace IKVM.Reflection
 		private int token;
 		private int flags;
 		private bool cyclicTypeForwarder;
+		private bool cyclicTypeSpec;
 
 		internal MissingType(Module module, Type declaringType, string ns, string name)
 		{
@@ -479,7 +462,7 @@ namespace IKVM.Reflection
 			get { return token; }
 		}
 
-		public override bool IsValueType
+		protected override bool IsValueTypeImpl
 		{
 			get
 			{
@@ -621,6 +604,12 @@ namespace IKVM.Reflection
 			return this;
 		}
 
+		internal override Type SetCyclicTypeSpec()
+		{
+			this.cyclicTypeSpec = true;
+			return this;
+		}
+
 		internal override bool IsBaked
 		{
 			get { throw new MissingMemberException(this); }
@@ -635,6 +624,11 @@ namespace IKVM.Reflection
 		public override bool __IsCyclicTypeForwarder
 		{
 			get { return cyclicTypeForwarder; }
+		}
+
+		public override bool __IsCyclicTypeSpec
+		{
+			get { return cyclicTypeSpec; }
 		}
 	}
 

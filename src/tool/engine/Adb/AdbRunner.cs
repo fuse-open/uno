@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Uno.Build.Adb
 
         readonly Shell _shell;
         public readonly string Location = Path.Combine(SdkDirectory, "platform-tools",
-                                                       PlatformDetection.IsWindows ? "adb.exe" : "adb");
+                                                       OperatingSystem.IsWindows() ? "adb.exe" : "adb");
 
         public AdbRunner(Shell shell)
         {
