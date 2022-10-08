@@ -93,7 +93,7 @@ namespace Uno.Disasm
             try
             {
                 _args = BuildCommand.Parse(args, _log);
-                _args.Options.Native = false;
+                _args.Options.NativeBuild = false;
                 _args.Options.PrintInternals = true;
                 _view.OnProjectChanged(_args.ProjectFile);
                 return true;

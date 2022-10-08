@@ -13,7 +13,7 @@ using ICSharpCode.AvalonEdit.CodeCompletion;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using Microsoft.Win32;
-using Uno.Build.Targets;
+using Uno.Build;
 using Uno.Disasm.ILView;
 
 namespace Uno.Disasm
