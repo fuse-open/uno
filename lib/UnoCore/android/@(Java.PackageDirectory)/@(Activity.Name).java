@@ -32,43 +32,35 @@ import com.fuse.Activity.ActivityListener;
 
 @(Activity.File.Declaration:Join())
 
-public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityCompat.OnRequestPermissionsResultCallback
-{
+public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityCompat.OnRequestPermissionsResultCallback {
+
 #if !@(LIBRARY:Defined)
+    private static com.fuse.App fuseApp;
 
-    // state
-    private static com.fuse.App fuseApp;  // lasts through all resurrections
-
-    //
-    public @(Activity.Name)()
-    {
+    public @(Activity.Name)() {
         super();
         fuseApp = com.fuse.App.Create(this);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        // mandatory call to super
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fuseApp.onCreate(savedInstanceState);
     }
 
     @Override
-    protected void onNewIntent (Intent intent)
-    {
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         fuseApp.onNewIntent(intent);
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         return fuseApp.onKeyUp(keyCode, event);
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         return fuseApp.onKeyDown(keyCode, event);
     }
 
@@ -140,14 +132,10 @@ public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityC
         fuseApp.onWindowFocusChanged(arg0);
     }
 #endif
-    //-----------------------------------------------------------
-    // Here be less favorable stuff that has tickets for cleanup
-    // used by c++ and annoyingly the custom view, fix this
+
     private static SurfaceTexture _keepDummySurfaceTexture;
-    public static Object CreateDummySurface(int texName)
-    {
-        // this is a temp hack. Moments like this make me want to make attribute
-        // that gives bad code a halflife, after 2 months it deletes itself.
+
+    public static Object CreateDummySurface(int texName) {
         _keepDummySurfaceTexture = new SurfaceTexture(texName);
         return new Surface(_keepDummySurfaceTexture);
     }
