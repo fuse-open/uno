@@ -4,9 +4,11 @@ using System.Threading;
 using AppKit;
 using ObjCRuntime;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 namespace Uno.AppLoader
 {
+    [SupportedOSPlatform("macOS10.14")]
     public static class Program
     {
         static Program()
@@ -52,6 +54,7 @@ namespace Uno.AppLoader
         }
     }
 
+    [SupportedOSPlatform("macOS10.14")]
     public static class ObjCExtensions
     {
         [DllImport ("/usr/lib/libobjc.dylib")]

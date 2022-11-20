@@ -1,8 +1,10 @@
-﻿using OpenGL;
+﻿using System.Runtime.Versioning;
+using OpenGL;
 using Uno.Platform;
 
 namespace Uno.AppLoader.MonoMac
 {
+    [SupportedOSPlatform("macOS10.14")]
     class MonoMacGraphicsContext : GraphicsContextBackend
     {
         UnoGLView _view;

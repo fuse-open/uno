@@ -8,9 +8,11 @@ using OpenTK.Graphics.OpenGL;
 using Uno.Diagnostics;
 using Uno.Platform;
 using Uno.Platform.Internal;
+using System.Runtime.Versioning;
 
 namespace Uno.AppLoader.MonoMac
 {
+    [SupportedOSPlatform("macOS10.14")]
     public class UnoGLView : NSView
     {
         readonly MonoMacPlatformWindow _unoWindow;
