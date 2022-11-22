@@ -120,12 +120,7 @@ namespace Uno.Build.Packages
             }
             else if (Directory.Exists(lib.PackageDirectory))
             {
-                // Remove old versions
-                foreach (var dir in Directory.EnumerateDirectories(lib.PackageDirectory))
-                    if (dir != lib.VersionDirectory)
-                        Disk.DeleteDirectory(dir, true);
-
-                Disk.DeleteDirectory(Path.Combine(lib.CacheDirectory));
+                Disk.DeleteDirectory(lib.CacheDirectory);
             }
 
             var fail = TryGetFailedReference(lib, failed);
@@ -142,7 +137,7 @@ namespace Uno.Build.Packages
                     new BuildOptions
                     {
                         Configuration = GetConfiguration(lib),
-                        OutputDirectory = lib.VersionDirectory,
+                        OutputDirectory = lib.PackageDirectory,
                         PackageCache = packageCache,
                         Force = true
                     })

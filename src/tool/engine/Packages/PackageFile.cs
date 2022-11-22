@@ -40,8 +40,11 @@ namespace Uno.Build.Packages
         public readonly string RootDirectory;
         public string CacheDirectory => Path.Combine(RootDirectory, ".uno");
         public string Filename => GetName(RootDirectory);
-        public string Version => RootDirectory.GetPathComponent(-1);
-        public string Name => RootDirectory.GetPathComponent(-2);
+        public string Version => _version ?? RootDirectory.GetPathComponent(-1);
+        public string Name => _name ?? RootDirectory.GetPathComponent(-2);
+
+        readonly string _name;
+        readonly string _version;
 
         PackageFile(string dir)
         {
@@ -51,6 +54,8 @@ namespace Uno.Build.Packages
         PackageFile(StuffObject stuff, string dir)
             : this(dir)
         {
+            stuff.TryGetValue(nameof(Name), out _name);
+            stuff.TryGetValue(nameof(Version), out _version);
             stuff.TryGetValue(nameof(BuildCondition), out BuildCondition);
             stuff.TryGetValue(nameof(SourceDirectory), out SourceDirectory);
             stuff.TryGetValue(nameof(IsTransitive), out IsTransitive);
@@ -74,6 +79,8 @@ namespace Uno.Build.Packages
         public PackageFile(SourcePackage upk, string dir)
             : this(dir)
         {
+            _name = upk.Name;
+            _version = upk.Version;
             BuildCondition = upk.BuildCondition;
             IsTransitive = upk.IsTransitive;
 
@@ -95,6 +102,8 @@ namespace Uno.Build.Packages
         public void Save()
         {
             new StuffObject {
+                {nameof(Name), Name},
+                {nameof(Version), Version},
                 {nameof(BuildCondition), BuildCondition},
                 {nameof(SourceDirectory), SourceDirectory},
                 {nameof(IsTransitive), IsTransitive},
