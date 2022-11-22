@@ -332,13 +332,6 @@ namespace Uno.Configuration
         {
             var file = GetFile(filename);
 
-            // Avoid overriding core settings when running an uno.exe other than bin/uno.exe,
-            // to make sure assembly paths remain consistent.
-            StuffItem skipIfNotRoot;
-            if (_files.Count > 0 &&
-                file.GetData().TryGetValue("SkipIfNotRoot", out skipIfNotRoot) && bool.Parse(skipIfNotRoot.Value))
-                return;
-
             // Don't load files that are already loaded
             foreach (var f in _files)
                 if (f.GetData().ContainsFile(file.Stuff.Filename))
@@ -347,8 +340,7 @@ namespace Uno.Configuration
             _files.Add(file);
             
             // Load parent configuration files
-            StuffItem isRoot;
-            if (scanParentDir && file.GetData().TryGetValue("IsRoot", out isRoot) && !bool.Parse(isRoot.Value))
+            if (scanParentDir)
                 LoadRecursive(Path.GetDirectoryName(dir));
         }
 
@@ -369,10 +361,6 @@ namespace Uno.Configuration
             foreach (var file in Files)
                 foreach (var key in file.GetData().Keys)
                     keySet.Add(key);
-
-            // Remove magic variables
-            keySet.Remove("IsRoot");
-            keySet.Remove("SkipIfNotRoot");
 
             var keys = keySet.ToArray();
             Array.Sort(keys);
