@@ -4,6 +4,26 @@ Uno Changelog
 Unreleased
 ----------
 
+2.5
+---
+
+### Android
+- Upgrade to API 31 (#423)
+- Upgrade Gradle Plugin and dependencies (#423)
+
+API 31 (Android 12) will be required by Google Play Store starting in November 2022.
+
+**BREAKING:** Note that the new Gradle Plugin and new versions of dependencies require Java 11. Older versions used to work on Java 8.
+
+If you run into trouble, make sure you have installed [JDK 11](https://adoptium.net/) and run `npm install android-build-tools -g` to redetect your JDK installation.
+
+### Other changes
+- Move IKVM.Reflection sources (#425)
+- Various improvements (#426, #427, #429)
+- Fix-up Uno.Disasm projects (#428, #430)
+
+[`v2.4.1...v2.5.0`](https://github.com/fuse-open/uno/compare/v2.4.1...v2.5.0)
+
 2.4
 ---
 

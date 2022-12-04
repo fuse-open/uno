@@ -3,6 +3,7 @@
 [![AppVeyor build status](https://img.shields.io/appveyor/ci/fusetools/uno/master.svg?logo=appveyor&logoColor=silver&style=flat-square)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
 [![Travis CI build status](https://img.shields.io/travis/fuse-open/uno/master.svg?style=flat-square)](https://travis-ci.org/fuse-open/uno)
 [![NPM package](https://img.shields.io/npm/v/@fuse-open/uno.svg?style=flat-square)](https://www.npmjs.com/package/@fuse-open/uno)
+[![NPM beta](https://img.shields.io/npm/v/@fuse-open/uno/beta.svg?style=flat-square)](https://www.npmjs.com/package/@fuse-open/uno)
 [![License: MIT](https://img.shields.io/github/license/fuse-open/uno.svg?style=flat-square)](LICENSE.txt)
 [![Slack](https://img.shields.io/badge/chat-on%20slack-blue.svg?style=flat-square)](https://fusecommunity.slack.com/)
 [![Financial Contributors on Open Collective](https://opencollective.com/fuse-open/all/badge.svg?label=financial+contributors&style=flat-square)](https://opencollective.com/fuse-open)
@@ -21,6 +22,10 @@ $ npm install @fuse-open/uno
 ```
 
 This will install the [`uno`][doc2] command and standard library.
+
+### Beta releases
+
+We are currently working on [`beta-3.0`](https://github.com/fuse-open/uno/tree/beta-3.0). Releases made from this branch are tagged `@beta` on NPM.
 
 ### Related packages
 

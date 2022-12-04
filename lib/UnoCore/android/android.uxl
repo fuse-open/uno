@@ -52,6 +52,8 @@
     <Declare Element="Gradle.Dependency" />
     <Declare Element="Gradle.Dependency.ClassPath" />
     <Declare Element="Gradle.Dependency.Implementation" />
+    <Declare Element="Gradle.Dependency.DebugImplementation" />
+    <Declare Element="Gradle.Dependency.ReleaseImplementation" />
     <Declare Element="Gradle.Dependency.NativeImplementation" />
     <Declare Element="Gradle.BuildFile.End" />
     <Declare Element="Gradle.Repository" />

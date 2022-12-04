@@ -9,6 +9,8 @@ configurations { native_implementation }
 dependencies {
     implementation fileTree(dir: 'src/main/libs', include: ['*.jar'])
     @(Gradle.Dependency.Implementation:Join('\n    ', 'implementation \'', '\''))
+    @(Gradle.Dependency.DebugImplementation:Join('\n    ', 'debugImplementation \'', '\''))
+    @(Gradle.Dependency.ReleaseImplementation:Join('\n    ', 'releaseImplementation \'', '\''))
     @(Gradle.Dependency.NativeImplementation:Join('\n    ', 'native_implementation \'', '\''))
     @(Gradle.Dependency:Join('\n    '))
 }
