@@ -4,6 +4,22 @@ Uno Changelog
 Unreleased
 ----------
 
+2.6
+---
+
+### Android
+- Call `super.onNewIntent()` (#431)
+- Add new UXL properties (#432)
+    - `Gradle.Dependency.DebugImplementation`
+    - `Gradle.Dependency.ReleaseImplementation`
+- Add new UXL element (#434)
+    - `Gradle.Properties`
+
+### Other changes
+- Use nodejs v14 on AppVeyor (#433)
+
+[`v2.5.0...v2.6.0`](https://github.com/fuse-open/uno/compare/v2.5.0...v2.6.0)
+
 2.5
 ---
 
