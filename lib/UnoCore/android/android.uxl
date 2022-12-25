@@ -48,6 +48,7 @@
     <Declare Element="AndroidManifest.Permission" />
     <Declare Element="AndroidManifest.RootElement" />
     <Declare Element="AndroidManifest.Activity.ViewIntentFilter" />
+    <Declare Element="Gradle.Properties" />
     <Declare Element="Gradle.Settings" />
     <Declare Element="Gradle.Dependency" />
     <Declare Element="Gradle.Dependency.ClassPath" />
