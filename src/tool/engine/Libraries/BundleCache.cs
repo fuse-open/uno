@@ -47,14 +47,14 @@ namespace Uno.Build.Libraries
             _config = config;
             _enableTranspiler = enableTranspiler;
 
-            foreach (var src in config.GetFullPathArray("Packages.SourcePaths"))
+            foreach (var src in config.GetFullPathArray("SearchPaths.Sources", "Packages.SourcePaths"))
                 _sourcePaths.AddOnce(Path.Combine(
                     File.Exists(src)
                         ? Path.GetDirectoryName(src)
                         : src,
                     "build"));
 
-            foreach (var src in config.GetFullPathArray("Packages.SearchPaths"))
+            foreach (var src in config.GetFullPathArray("SearchPaths", "Packages.SearchPaths"))
                 _searchPaths.AddOnce(src);
         }
 
