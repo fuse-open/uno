@@ -100,7 +100,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
                                              Naming.GetNavigationTitle(member),
                                              member.FullName);
             var syntax = new SyntaxViewModel(Syntax.BuildUnoSyntax(member, parentDataType), Syntax.BuildUxSyntax(member));
-            var location = new LocationViewModel(ns.FullName, ns.GetUri(), member.Source.Package.Name, member.Source.Package.Version);
+            var location = new LocationViewModel(ns.FullName, ns.GetUri(), member.Source.Bundle.Name, member.Source.Bundle.Version);
             var declaredIn = new DataTypeBuilder(Naming, Syntax, Exportable, AttachedMembers, _commentParser).BuildReference(member.DeclaringType);
             var parameters = GetParameters(member);
             var returns = GetReturns(member);

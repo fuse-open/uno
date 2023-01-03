@@ -15,7 +15,7 @@ namespace Uno.UX.Markup.CompilerReflection
 {
     public static class ILCache
     {
-        public static Compiler.Core.Compiler Create(Log log, SourcePackage project)
+        public static Compiler.Core.Compiler Create(Log log, SourceBundle project)
         {
             var backend = new ILCacheBackend();
 
@@ -69,7 +69,7 @@ namespace Uno.UX.Markup.CompilerReflection
             foreach (var c in elm.Elements()) EmitResources(file, log, c, code);
         }
 
-        static void FindNamespaces(Compiler.Core.Compiler comp, SourcePackage package, string path, XElement elm, List<string> result)
+        static void FindNamespaces(Compiler.Core.Compiler comp, SourceBundle bundle, string path, XElement elm, List<string> result)
         {
             foreach (var ns in elm.Attributes()
                 .Where(x => x.IsNamespaceDeclaration && x.Value != Configuration.UXNamespace)
@@ -79,7 +79,7 @@ namespace Uno.UX.Markup.CompilerReflection
             var foo = result.Where(x => x.Contains(":") && x != Configuration.UXNamespace);
             if (foo.Any())
             {
-                comp.Log.FatalError(new Source(package, path, ((IXmlLineInfo)elm).LineNumber), ErrorCode.E0000, "Invalid URL namespace: '" + foo.First() + "'. The only supported URL namespaces are: \n\n\t- " + Configuration.UXNamespace + "\n");
+                comp.Log.FatalError(new Source(bundle, path, ((IXmlLineInfo)elm).LineNumber), ErrorCode.E0000, "Invalid URL namespace: '" + foo.First() + "'. The only supported URL namespaces are: \n\n\t- " + Configuration.UXNamespace + "\n");
             }
 
             if (!elm.Attributes().Any(x => x.IsNamespaceDeclaration && x.Name == "xmlns"))
@@ -87,12 +87,12 @@ namespace Uno.UX.Markup.CompilerReflection
                     result.Add(ns);
         }
 
-        static void ParseUxDummyFiles(Compiler.Core.Compiler compiler, SourcePackage package)
+        static void ParseUxDummyFiles(Compiler.Core.Compiler compiler, SourceBundle bundle)
         {
-            foreach (var ux in package.UXFiles)
+            foreach (var ux in bundle.UXFiles)
             {
                 var code = new StringBuilder();
-                var fullUxPath = Path.Combine(package.SourceDirectory, ux.NativePath);
+                var fullUxPath = Path.Combine(bundle.SourceDirectory, ux.NativePath);
 
                 XElement elm;
                 try
@@ -101,7 +101,7 @@ namespace Uno.UX.Markup.CompilerReflection
                 }
                 catch (XmlException e)
                 {
-                    compiler.Log.Error(new Source(package, fullUxPath, e.LineNumber), ErrorCode.E0000, e.Message);
+                    compiler.Log.Error(new Source(bundle, fullUxPath, e.LineNumber), ErrorCode.E0000, e.Message);
                     continue;
                 }
                 catch (MarkupException)
@@ -110,7 +110,7 @@ namespace Uno.UX.Markup.CompilerReflection
                 }
 
                 var namespaces = new List<string>();
-                FindNamespaces(compiler, package, fullUxPath, elm, namespaces);
+                FindNamespaces(compiler, bundle, fullUxPath, elm, namespaces);
 
                 foreach (var ns in namespaces)
                     code.AppendLine("using " + ns + ";");
@@ -123,7 +123,7 @@ namespace Uno.UX.Markup.CompilerReflection
                 code.AppendLine();
 
                 EmitClassPredeclaration(true, fullUxPath, elm, code, compiler);
-                compiler.ParseSourceCode(((ICompiler) compiler).Input.Package, fullUxPath, code.ToString());
+                compiler.ParseSourceCode(((ICompiler) compiler).Input.Bundle, fullUxPath, code.ToString());
             }
         }
 

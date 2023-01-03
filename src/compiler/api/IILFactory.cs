@@ -7,7 +7,7 @@ namespace Uno.Compiler.API
     {
         IEssentials Essentials { get; }
 
-        SourcePackage TryGetPackage(string packageName);
+        SourceBundle TryGetBundle(string name);
 
         DataType GetType(string type);
         DataType GetType(Source src, string type);

@@ -26,8 +26,8 @@ namespace Uno.Compiler.Core.IL.Validation.ControlFlow
         public override bool Begin(DataType dt)
         {
             if (Backend.IsDefault && (
-                    dt.Package.IsCached ||
-                    dt.Package.IsVerified))
+                    dt.Bundle.IsCached ||
+                    dt.Bundle.IsVerified))
                 return false;
             return true;
         }

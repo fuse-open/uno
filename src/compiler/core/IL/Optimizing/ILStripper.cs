@@ -276,7 +276,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
                     f.SourceName.Source,
                     ref src,
                     PathFlags.AllowAbsolutePath))
-                Environment.Expand(new Source(f.SourceName.Source.Package, src, 1, 1), f.Preprocess(File.ReadAllText(src).Replace("\r\n", "\n")));
+                Environment.Expand(new Source(f.SourceName.Source.Bundle, src, 1, 1), f.Preprocess(File.ReadAllText(src).Replace("\r\n", "\n")));
         }
 
         void VisitField(Field f)

@@ -238,7 +238,7 @@ namespace Uno.IO
                 Log.Warning(src, null, "Absolute path " + path.Quote() + ". In Uno, paths should be relative to specifying file");
 
             path = path.StartsWith("@//", StringComparison.InvariantCulture)
-                ? path.Substring(3).UnixToNative().ToFullPath(src.Package.SourceDirectory)
+                ? path.Substring(3).UnixToNative().ToFullPath(src.Bundle.SourceDirectory)
                 : path.UnixToNative().ToFullPath(dir);
 
             if (flags.HasFlag(PathFlags.AllowNonExistingPath))

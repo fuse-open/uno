@@ -35,7 +35,7 @@ namespace Uno.UX.Markup.UXIL
             get
             {
                 var t = ResolveType(null, Configuration.DefaultNamespace, "Fuse.Reactive.DataBinding");
-                if (t == null) throw new Exception("Data binding type not found. Are you missing a package reference to Fuse.Reactive.Bindings ?");
+                if (t == null) throw new Exception("Data binding type not found. Are you missing a reference to Fuse.Reactive.Bindings ?");
                 return t;
             }
         }

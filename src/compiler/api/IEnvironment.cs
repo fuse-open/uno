@@ -14,7 +14,7 @@ namespace Uno.Compiler.API
         string CacheDirectory { get; }
         string BundleDirectory { get; }
 
-        bool IsUpToDate(SourcePackage upk, string filename);
+        bool IsUpToDate(SourceBundle bundle, string filename);
 
         void Define(string def);
         void Undefine(string def);

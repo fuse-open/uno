@@ -166,7 +166,7 @@ namespace Uno.Compiler.Core.Syntax.Generators
                 }
             }
 
-            return new Source(FrameScope.Source.Package, filename, 1);
+            return new Source(FrameScope.Source.Bundle, filename, 1);
         }
     }
 }

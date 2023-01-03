@@ -12,7 +12,7 @@ namespace Uno.Compiler
         readonly List<int> _lineOffsets = new List<int>();
         readonly List<int> _lineParts = new List<int> {1};
 
-        public readonly SourcePackage Package;
+        public readonly SourceBundle Bundle;
         public readonly string FullPath;
         public readonly bool IsUnknown;
         public readonly int StartLine;
@@ -25,13 +25,13 @@ namespace Uno.Compiler
                                             : "(unknown file)");
 
         public SourceFile(string fullPath, string text = null, int line = 1, int column = 1)
-            : this(SourcePackage.Unknown, fullPath, text, line, column)
+            : this(SourceBundle.Unknown, fullPath, text, line, column)
         {
         }
 
-        public SourceFile(SourcePackage upk, string fullPath, string text = null, int line = 1, int column = 1)
+        public SourceFile(SourceBundle bundle, string fullPath, string text = null, int line = 1, int column = 1)
         {
-            Package = upk;
+            Bundle = bundle;
             FullPath = fullPath;
             IsUnknown = !fullPath.IsValidPath() || !Path.IsPathRooted(fullPath);
             _text = text;

@@ -23,7 +23,7 @@ namespace Uno.ProjectFormat
             : base(new StreamReader(filename))
         {
             _log = log;
-            _file = new SourceFile(SourcePackage.Unknown, filename);
+            _file = new SourceFile(SourceBundle.Unknown, filename);
             _document = new UnoprojDocument();
         }
 
@@ -103,13 +103,13 @@ namespace Uno.ProjectFormat
                         }
                         case "Packages":
                         {
-                            _document.OptionalPackages = new List<PackageReference>();
+                            _document.OptionalPackages = new List<LibraryReference>();
 
                             foreach (var e in ReadArray())
                             {
                                 try
                                 {
-                                    _document.OptionalPackages.Add(PackageReference.FromString(GetSource(), e));
+                                    _document.OptionalPackages.Add(LibraryReference.FromString(GetSource(), e));
                                 }
                                 catch (Exception x)
                                 {

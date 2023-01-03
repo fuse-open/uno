@@ -158,7 +158,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             {
                 if (LineStartsKnownMacro(line))
                 {
-                    var macro = ProcessMacro(line.Trim(), text, remarks, examples, ux, entity.Source.File.FullPath, entity.Source.Package.SourceDirectory);
+                    var macro = ProcessMacro(line.Trim(), text, remarks, examples, ux, entity.Source.File.FullPath, entity.Source.Bundle.SourceDirectory);
                     macros.Add(macro);
                     lastMacroBuilder = macro.Item2;
                     continue;

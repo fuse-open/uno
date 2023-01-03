@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using Uno.Build;
 using Uno.TestRunner;
 
-namespace Uno.CLI.Projects
+namespace Uno.CLI.Building
 {
     class Test : Command
     {

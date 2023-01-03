@@ -12,10 +12,10 @@ namespace Uno.Compiler.Frontend.Xml
         readonly XmlReader Reader;
         readonly string Source;
 
-        protected XmlParserBase(Log log, SourcePackage upk, string filename)
+        protected XmlParserBase(Log log, SourceBundle bundle, string filename)
             : base(log)
         {
-            File = new SourceFile(upk, filename);
+            File = new SourceFile(bundle, filename);
             StartErrorCount = log.ErrorCount;
             Source = XmlPreprocessor.ProcessFile(filename);
             Reader = new XmlTextReader(Source, XmlNodeType.Document, null);

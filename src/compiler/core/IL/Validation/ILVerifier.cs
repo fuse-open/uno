@@ -161,7 +161,7 @@ namespace Uno.Compiler.Core.IL.Validation
                 {
                     Log.Error(src, ErrorCode.E0000,
                         entity.Quote() + " is not accessible from " + Function.Quote() + " because " +
-                        entity.Package.Name + " isn't referenced by " + Type.Package.Name);
+                        entity.Bundle.Name + " isn't referenced by " + Type.Bundle.Name);
                     return false;
                 }
             }
@@ -184,10 +184,10 @@ namespace Uno.Compiler.Core.IL.Validation
             }
 
             if (entity.IsPublic ||
-                entity.IsInternal && type.Package == entity.Package ||
+                entity.IsInternal && type.Bundle == entity.Bundle ||
                 declType.MasterDefinition == type.MasterDefinition ||
                 type.MasterDefinition.IsChildClassOf(declType.MasterDefinition) ||
-                entity.IsInternal && entity.Package.InternalsVisibleTo.Contains(type.Package.Name) ||
+                entity.IsInternal && entity.Bundle.InternalsVisibleTo.Contains(type.Bundle.Name) ||
                 Environment.IsGeneratingCode && type.IsGenerated)
                 return true;
 

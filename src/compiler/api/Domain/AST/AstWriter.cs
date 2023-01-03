@@ -11,18 +11,18 @@ namespace Uno.Compiler.API.Domain.AST
 {
     public sealed class AstWriter : CacheWriter
     {
-        public static AstWriter Create(SourcePackage upk, string filename, AstSerializationFlags flags)
+        public static AstWriter Create(SourceBundle bundle, string filename, AstSerializationFlags flags)
         {
-            if (upk.IsUnknown)
-                throw new InvalidOperationException("AstWriter: Unknown source package");
+            if (bundle.IsUnknown)
+                throw new InvalidOperationException("AstWriter: Unknown source bundle");
 
-            var w = new AstWriter(upk, filename, flags);
+            var w = new AstWriter(bundle, filename, flags);
             w.Write(AstSerialization.Magic);
             return w;
         }
 
-        public AstWriter(SourcePackage upk, string filename, AstSerializationFlags flags)
-            : base(upk, filename)
+        public AstWriter(SourceBundle bundle, string filename, AstSerializationFlags flags)
+            : base(bundle, filename)
         {
             OptimizeSources = flags.HasFlag(AstSerializationFlags.OptimizeSources);
         }

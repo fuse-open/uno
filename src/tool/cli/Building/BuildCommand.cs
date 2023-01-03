@@ -6,7 +6,7 @@ using Uno.Build.Targets;
 using Uno.Logging;
 using Uno.ProjectFormat;
 
-namespace Uno.CLI.Projects
+namespace Uno.CLI.Building
 {
     public class BuildCommand : Command
     {
@@ -39,7 +39,7 @@ namespace Uno.CLI.Projects
             WriteRow("-b, --build-only",            "Build only; don't run or open debugger");
             WriteRow("-g, --gen-only",              "Generate only; don't compile generated code");
             WriteRow("-f, --force",                 "Build even if output is up-to-date");
-            WriteRow("-l, --libs",                  "Rebuild package library if necessary");
+            WriteRow("-l, --libs",                  "Rebuild library sources if necessary");
             WriteRow("-p, --print-internals",       "Print a list of build system properties");
             WriteRow("-N, --no-native",             "Disable native build step (faster)");
             WriteRow("-P, --no-parallel",           "Disable multi-threading (slower)");

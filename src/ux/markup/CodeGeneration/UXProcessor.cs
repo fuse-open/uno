@@ -13,12 +13,12 @@ namespace Uno.UX.Markup.CodeGeneration
         // for proper cache invalidation!
         public const int Version = 15;
 
-        public static void Build(Disk disk, IReadOnlyList<SourcePackage> packages)
+        public static void Build(Disk disk, IReadOnlyList<SourceBundle> bundles)
         {
             var p = new UXProcessor(disk);
-            foreach (var upk in packages)
-                if (upk.IsProject && upk.UXFiles.Count > 0)
-                    p.Build(upk);
+            foreach (var bundle in bundles)
+                if (bundle.IsProject && bundle.UXFiles.Count > 0)
+                    p.Build(bundle);
         }
 
         UXProcessor(Disk disk)
@@ -26,31 +26,31 @@ namespace Uno.UX.Markup.CodeGeneration
         {
         }
 
-        void Build(SourcePackage upk)
+        void Build(SourceBundle bundle)
         {
             // Avoid multiple visits
-            upk.Flags &= ~SourcePackageFlags.Project;
+            bundle.Flags &= ~SourceBundleFlags.Project;
 
             try
             {
-                var cacheDir = Path.Combine(upk.CacheDirectory, "ux" + Version);
-                var listFile = Path.Combine(cacheDir, upk.Name + ".g");
+                var cacheDir = Path.Combine(bundle.CacheDirectory, "ux" + Version);
+                var listFile = Path.Combine(cacheDir, bundle.Name + ".g");
 
-                if (!IsDirty(upk, listFile))
+                if (!IsDirty(bundle, listFile))
                 {
                     foreach (var line in File.ReadAllText(listFile).Split('\n'))
                         if (line.Length > 0)
-                            upk.SourceFiles.Add(line.Trim());
+                            bundle.SourceFiles.Add(line.Trim());
                     return;
                 }
 
                 var unoFiles = new List<string>();
-                var generatedPath = Path.Combine(cacheDir, upk.Name + ".unoproj.g.uno");
-                var compiler = CompilerReflection.ILCache.Create(Log, upk);
-                var markupLog = new CompilerReflection.MarkupErrorLog(Log, upk);
-                var sourceFilePath = generatedPath.ToRelativePath(upk.SourceDirectory).NativeToUnix();
-                var uxSrc = upk.UXFiles.Select(x => new UXIL.Compiler.UXSource(Path.Combine(upk.SourceDirectory, x.NativePath)));
-                var doc = UXIL.Compiler.Compile(new Reflection.CompilerDataTypeProvider(compiler), uxSrc, upk.SourceDirectory, upk.Name, generatedPath, markupLog);
+                var generatedPath = Path.Combine(cacheDir, bundle.Name + ".unoproj.g.uno");
+                var compiler = CompilerReflection.ILCache.Create(Log, bundle);
+                var markupLog = new CompilerReflection.MarkupErrorLog(Log, bundle);
+                var sourceFilePath = generatedPath.ToRelativePath(bundle.SourceDirectory).NativeToUnix();
+                var uxSrc = bundle.UXFiles.Select(x => new UXIL.Compiler.UXSource(Path.Combine(bundle.SourceDirectory, x.NativePath)));
+                var doc = UXIL.Compiler.Compile(new Reflection.CompilerDataTypeProvider(compiler), uxSrc, bundle.SourceDirectory, bundle.Name, generatedPath, markupLog);
 
                 if (Log.HasErrors)
                     return;
@@ -70,7 +70,7 @@ namespace Uno.UX.Markup.CodeGeneration
                         CodeGenerator.GenerateCode(doc, cw, markupLog, className => {
                             var gp = Path.Combine(cacheDir, className + ".g.uno");
                             var ret = new TextFormatter(Disk.CreateText(gp));
-                            unoFiles.Add(gp.ToRelativePath(upk.SourceDirectory).NativeToUnix());
+                            unoFiles.Add(gp.ToRelativePath(bundle.SourceDirectory).NativeToUnix());
                             garbage.Add(ret);
                             return ret;
                         });
@@ -84,24 +84,24 @@ namespace Uno.UX.Markup.CodeGeneration
                 File.WriteAllText(listFile, string.Join("\n", unoFiles));
 
                 foreach (var f in unoFiles)
-                    upk.SourceFiles.Add(new FileItem(f));
+                    bundle.SourceFiles.Add(new FileItem(f));
             }
             catch (Exception e)
             {
-                Log.Error(upk.Source, null, e.Message);
+                Log.Error(bundle.Source, null, e.Message);
             }
         }
 
-        bool IsDirty(SourcePackage upk, string listFile)
+        bool IsDirty(SourceBundle bundle, string listFile)
         {
             if (!File.Exists(listFile))
                 return true;
 
             var listTime = File.GetLastWriteTime(listFile);
 
-            foreach (var f in upk.UXFiles)
+            foreach (var f in bundle.UXFiles)
                 if (listTime < File.GetLastWriteTime(
-                        Path.Combine(upk.SourceDirectory, f.NativePath)))
+                        Path.Combine(bundle.SourceDirectory, f.NativePath)))
                     return true;
 
             return false;

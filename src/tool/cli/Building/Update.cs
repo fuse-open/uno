@@ -3,12 +3,12 @@ using Mono.Options;
 using Uno.IO;
 using Uno.ProjectFormat;
 
-namespace Uno.CLI.Projects
+namespace Uno.CLI.Building
 {
     class Update : Command
     {
         public override string Name => "update";
-        public override string Description => "Update packages and project(s).";
+        public override string Description => "Update libraries and project(s).";
 
         public override void Help()
         {
@@ -18,7 +18,7 @@ namespace Uno.CLI.Projects
             WriteRow("uno update -pr --files",  "Update projects recursively, adding new files");
 
             WriteHead("Common options", 22);
-            WriteRow("    (default)",           "Install/update packages");
+            WriteRow("    (default)",           "Update library bundles");
             WriteRow("-p, --project",           "Update project file(s)");
             WriteRow("-r, --recursive",         "Look for project files recursively");
 

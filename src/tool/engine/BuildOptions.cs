@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Uno.Build.Packages;
+using Uno.Build.Libraries;
 
 namespace Uno.Build
 {
@@ -24,7 +24,7 @@ namespace Uno.Build
         public readonly List<string> Defines = new List<string>();
         public readonly List<string> Undefines = new List<string>();
         public readonly Dictionary<string, string> Settings = new Dictionary<string, string>();
-        public PackageCache PackageCache;
+        public BundleCache BundleCache;
 
         public override int GetHashCode()
         {

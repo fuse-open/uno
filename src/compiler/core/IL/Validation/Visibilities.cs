@@ -11,9 +11,9 @@ namespace Uno.Compiler.Core.IL.Validation
             return dt.GetVisibility().Level == VisibilityLevel.Global;
         }
 
-        public static bool IsVisibleInPackage(this DataType dt, SourcePackage package)
+        public static bool IsVisibleInPackage(this DataType dt, SourceBundle bundle)
         {
-            return dt.GetVisibility().IsVisibleInPackage(package);
+            return dt.GetVisibility().IsVisibleInBundle(bundle);
         }
 
         public static bool IsVisibleInType(this DataType dt, DataType otherType)
@@ -24,9 +24,9 @@ namespace Uno.Compiler.Core.IL.Validation
             {
                 case VisibilityLevel.Global:
                     return true;
-                case VisibilityLevel.Package:
-                    return otherType.Source.Package.Equals(dtv.Package) || 
-                        dtv.Package.InternalsVisibleTo.Contains(otherType.Source.Package.Name);
+                case VisibilityLevel.Bundle:
+                    return otherType.Source.Bundle.Equals(dtv.Bundle) || 
+                        dtv.Bundle.InternalsVisibleTo.Contains(otherType.Source.Bundle.Name);
                 case VisibilityLevel.SameType:
                     return otherType.MasterDefinition == dt.MasterDefinition || 
                         dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition);
@@ -40,8 +40,8 @@ namespace Uno.Compiler.Core.IL.Validation
                         dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition) || 
                         dt.IsSubclassOf(otherType) || 
                         dt.IsNestedType && dt.ParentType.IsVisibleInType(otherType) ||
-                        otherType.Source.Package.Equals(dtv.Package) || 
-                        dtv.Package.InternalsVisibleTo.Contains(otherType.Source.Package.Name);
+                        otherType.Source.Bundle.Equals(dtv.Bundle) || 
+                        dtv.Bundle.InternalsVisibleTo.Contains(otherType.Source.Bundle.Name);
                 default:
                     return false;
             }
@@ -55,7 +55,7 @@ namespace Uno.Compiler.Core.IL.Validation
                     dtLevel < VisibilityLevel.SameType &&
                     // Disallow exposing internal classes publicly
                     !(otherType.GetVisibility().Level == VisibilityLevel.Global &&
-                        dtLevel == VisibilityLevel.Package);
+                        dtLevel == VisibilityLevel.Bundle);
         }
 
         public static Visibility GetVisibility(this Member m)
@@ -74,7 +74,7 @@ namespace Uno.Compiler.Core.IL.Validation
             {
                 if (v.Level < VisibilityLevel.SameTypeOrSubclass)
                 {
-                    v.Level = VisibilityLevel.Package;
+                    v.Level = VisibilityLevel.Bundle;
                     v.Type = m.DeclaringType;
                 }
             }
@@ -108,7 +108,7 @@ namespace Uno.Compiler.Core.IL.Validation
             else if (dt.IsInternal)
             {
                 if (v.Level < VisibilityLevel.SameTypeOrSubclass)
-                    v.Level = VisibilityLevel.Package;
+                    v.Level = VisibilityLevel.Bundle;
             }
             else if (dt.IsProtected)
             {
@@ -138,7 +138,7 @@ namespace Uno.Compiler.Core.IL.Validation
                 return new Visibility(
                     dt.IsPublic
                         ? VisibilityLevel.Global
-                        : VisibilityLevel.Package, 
+                        : VisibilityLevel.Bundle, 
                     dt);
 
 

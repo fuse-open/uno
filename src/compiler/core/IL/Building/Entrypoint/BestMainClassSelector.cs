@@ -10,10 +10,10 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
     {
         readonly List<DataType> _foundMainClasses;
         readonly Log _log;
-        readonly SourcePackage _mainProject;
+        readonly SourceBundle _mainProject;
         readonly DataType _mainClassAttribute;
 
-        BestMainClassSelector(List<DataType> foundMainClasses, Log log, SourcePackage mainProject, DataType mainClassAttribute)
+        BestMainClassSelector(List<DataType> foundMainClasses, Log log, SourceBundle mainProject, DataType mainClassAttribute)
         {
             _foundMainClasses = foundMainClasses;
             _log = log;
@@ -21,7 +21,7 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
             _mainClassAttribute = mainClassAttribute;
         }
 
-        public static DataType GetBestMainClass(List<DataType> foundMainClasses, Log log, SourcePackage mainProject, DataType mainClassAttribute)
+        public static DataType GetBestMainClass(List<DataType> foundMainClasses, Log log, SourceBundle mainProject, DataType mainClassAttribute)
         {
             return new BestMainClassSelector(foundMainClasses, log, mainProject, mainClassAttribute).GetBestMainClass();
         }
@@ -62,7 +62,7 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
             }
             if (candidates.Count > 1)
             {
-                var inStartupProject = candidates.Where(c => Equals(c.Source.Package, _mainProject)).ToList();
+                var inStartupProject = candidates.Where(c => Equals(c.Source.Bundle, _mainProject)).ToList();
                 if (inStartupProject.Count == 0)
                 {
                     warningFunction(candidates[0]);

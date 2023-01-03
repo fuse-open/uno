@@ -21,35 +21,35 @@ namespace Uno.Compiler.Frontend
             _processedFiles = processedFiles;
         }
 
-        public abstract bool Parse(SourcePackage upk, string filename, List<T> result);
-        public abstract void Deserialize(SourcePackage upk, string filename, List<T> resultAsync);
-        public abstract void Serialize(SourcePackage upk, string filename, IEnumerable<T> value);
+        public abstract bool Parse(SourceBundle bundle, string filename, List<T> result);
+        public abstract void Deserialize(SourceBundle bundle, string filename, List<T> resultAsync);
+        public abstract void Serialize(SourceBundle bundle, string filename, IEnumerable<T> value);
 
-        public void Load(SourcePackage upk, string relative, List<T> resultAsync)
+        public void Load(SourceBundle bundle, string relative, List<T> resultAsync)
         {
             var sourceFilename = relative;
-            var cacheFilename = GetCacheFilename(upk, relative);
+            var cacheFilename = GetCacheFilename(bundle, relative);
 
-            if (!VerifyFilename(upk.Source, upk.SourceDirectory, ref sourceFilename))
+            if (!VerifyFilename(bundle.Source, bundle.SourceDirectory, ref sourceFilename))
                 return;
 
             if (!Disk.IsNewer(sourceFilename, cacheFilename))
             {
                 try
                 {
-                    Deserialize(upk, cacheFilename, resultAsync);
+                    Deserialize(bundle, cacheFilename, resultAsync);
                     return;
                 }
                 catch (Exception e)
                 {
-                    Log.Warning(upk.Source, ErrorCode.W0000, "Unable to load cache: " + e.Message);
+                    Log.Warning(bundle.Source, ErrorCode.W0000, "Unable to load cache: " + e.Message);
                 }
             }
 
             Log.Event(IOEvent.Read, sourceFilename);
 
             var result = new List<T>();
-            if (Parse(upk, sourceFilename, result))
+            if (Parse(bundle, sourceFilename, result))
             {
                 lock (resultAsync)
                     resultAsync.AddRange(result);
@@ -57,20 +57,20 @@ namespace Uno.Compiler.Frontend
                 try
                 {
                     Disk.CreateDirectory(Path.GetDirectoryName(cacheFilename));
-                    Serialize(upk, cacheFilename, result);
+                    Serialize(bundle, cacheFilename, result);
                 }
                 catch (Exception e)
                 {
-                    Log.Warning(upk.Source, ErrorCode.W0000, "Unable to save cache: " + e.Message);
+                    Log.Warning(bundle.Source, ErrorCode.W0000, "Unable to save cache: " + e.Message);
                 }
             }
             else
                 Disk.DeleteFile(cacheFilename);
         }
 
-        public string GetCacheFilename(SourcePackage upk, string relative)
+        public string GetCacheFilename(SourceBundle bundle, string relative)
         {
-            return Path.Combine(upk.CacheDirectory, MagicString, relative.GetNormalizedBasename());
+            return Path.Combine(bundle.CacheDirectory, MagicString, relative.GetNormalizedBasename());
         }
 
         public bool VerifyFilename(Source src, string dir, ref string filename)

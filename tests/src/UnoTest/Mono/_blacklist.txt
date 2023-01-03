@@ -1460,155 +1460,155 @@ test-xml-072.uno(12.36): E0000: Expected ',' or ';' following 'Severity' -- foun
 test-xml-074.uno(10.64): E0000: Expected identifier following '}' -- found '=' (Assign)
 gtest-129.uno(14.23): E3027: Only one of the partials may specify generic constraints
 gtest-147.uno(21.23): E3027: Only one of the partials may specify generic constraints
-AppDelegate.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-AppDelegate.uno(7.11): E3114: There is nothing named 'MonoTouch' accessible in this scope. Are you missing a package reference?
-AppDelegate.uno(8.11): E3114: There is nothing named 'MonoTouch' accessible in this scope. Are you missing a package reference?
-AppDelegate.uno(9.11): E3114: There is nothing named 'MonoTouch' accessible in this scope. Are you missing a package reference?
-dtest-005.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Dynamic'. Could you be missing a package reference?
-dtest-012.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-dtest-012.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-dtest-038.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a package reference?
-dtest-error-02.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a package reference?
-dtest-error-03.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a package reference?
-dtest-error-03.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Dynamic'. Could you be missing a package reference?
-dtest-error-03.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-dtest-error-04.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a package reference?
-dtest-etree-01.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-dtest-etree-02.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-dtest-friend-01-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-dtest-null-operator-01.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-dtest-optional-01.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-dtest-optional-02.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+AppDelegate.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+AppDelegate.uno(7.11): E3114: There is nothing named 'MonoTouch' accessible in this scope. Are you missing a reference?
+AppDelegate.uno(8.11): E3114: There is nothing named 'MonoTouch' accessible in this scope. Are you missing a reference?
+AppDelegate.uno(9.11): E3114: There is nothing named 'MonoTouch' accessible in this scope. Are you missing a reference?
+dtest-005.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Dynamic'. Could you be missing a reference?
+dtest-012.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+dtest-012.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+dtest-038.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a reference?
+dtest-error-02.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a reference?
+dtest-error-03.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a reference?
+dtest-error-03.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Dynamic'. Could you be missing a reference?
+dtest-error-03.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+dtest-error-04.uno(4.11): E3114: There is nothing named 'Microsoft' accessible in this scope. Are you missing a reference?
+dtest-etree-01.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+dtest-etree-02.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+dtest-friend-01-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+dtest-null-operator-01.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+dtest-optional-01.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+dtest-optional-02.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 gtest-053.uno(143.17): E3135: <Assign> cannot be used as a type
 gtest-053.uno(144.17): E3135: <Assign> cannot be used as a type
 gtest-055.uno(19.17): E3135: <Assign> cannot be used as a type
 gtest-066.uno(4.13): E3135: <Assign> cannot be used as a type
 gtest-068.uno(11.17): E3135: <Assign> cannot be used as a type
-gtest-180.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-gtest-186.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'Serialization'. Could you be missing a package reference?
-gtest-186.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'Serialization'. Could you be missing a package reference?
-gtest-197.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+gtest-180.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+gtest-186.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'Serialization'. Could you be missing a reference?
+gtest-186.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'Serialization'. Could you be missing a reference?
+gtest-197.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 gtest-201.uno(4.15): E3135: <Assign> cannot be used as a type
-gtest-214.uno(9.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-227.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-233.uno(7.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
-gtest-233-lib.uno(7.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
+gtest-214.uno(9.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-227.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-233.uno(7.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
+gtest-233-lib.uno(7.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
 gtest-247.uno(5.15): E3135: <Assign> cannot be used as a type
 gtest-249.uno(4.15): E3135: <Assign> cannot be used as a type
 gtest-250.uno(4.15): E3135: <Assign> cannot be used as a type
 gtest-251.uno(4.15): E3135: <Assign> cannot be used as a type
 gtest-253.uno(4.15): E3135: <Assign> cannot be used as a type
-gtest-296.uno(4.27): E3111: Uno.Collections does not contain type or namespace 'ObjectModel'. Could you be missing a package reference?
-gtest-297.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
+gtest-296.uno(4.27): E3111: Uno.Collections does not contain type or namespace 'ObjectModel'. Could you be missing a reference?
+gtest-297.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
 gtest-299.uno(4.13): E3135: <Assign> cannot be used as a type
 gtest-326-lib.uno(5.15): E3135: <Assign> cannot be used as a type
-gtest-341-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
+gtest-341-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
 gtest-350.uno(3.13): E3135: <Assign> cannot be used as a type
-gtest-386.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-408.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+gtest-386.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-408.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 gtest-431.uno(7.11): E3114: There is no identifier named 'Library' accessible in this scope.
 gtest-433.uno(5.14): E3135: <Assign> cannot be used as a type
 gtest-433.uno(6.14): E3135: <Assign> cannot be used as a type
 gtest-433.uno(7.15): E3135: <Assign> cannot be used as a type
 gtest-502.uno(4.21): E3135: <Assign> cannot be used as a type
 gtest-508.uno(3.13): E3135: <Assign> cannot be used as a type
-gtest-autoproperty-03.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-etree-02.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-03.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-04.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-05.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-06.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-08.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-10.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-11.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-12.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-13.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-13.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-14.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-14.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-15.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-16.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-17.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-18.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-19.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-20.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-22.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-23.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-24.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-25.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-26.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-27.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-28.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-29.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-30.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-etree-31.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-exmethod-08.uno(7.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-exmethod-12.uno(4.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a package reference?
-gtest-exmethod-24-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
+gtest-autoproperty-03.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-etree-02.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-03.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-04.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-05.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-06.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-08.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-10.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-11.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-12.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-13.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-13.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-14.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-14.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-15.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-16.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-17.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-18.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-19.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-20.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-22.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-23.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-24.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-25.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-26.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-27.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-28.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-29.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-30.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-etree-31.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-exmethod-08.uno(7.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-exmethod-12.uno(4.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a reference?
+gtest-exmethod-24-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
 gtest-exmethod-25.uno(5.11): E3114: There is no identifier named 'lib1' accessible in this scope.
-gtest-exmethod-30.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-exmethod-32.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-exmethod-44.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-friend-00-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-friend-01-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-friend-02-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-friend-13-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
+gtest-exmethod-30.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-exmethod-32.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-exmethod-44.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-friend-00-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-friend-01-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-friend-02-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-friend-13-lib.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
 gtest-friend-14.uno(5.11): E3114: There is no identifier named 'N' accessible in this scope.
-gtest-implicitarray-03.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-iter-19.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-iter-26.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-iter-29.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-iter-31.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-lambda-08.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-lambda-30.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-lambda-33.uno(7.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-lambda-34.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-linq-24.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-gtest-optional-11.uno(7.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-gtest-optional-11-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-gtest-optional-14.uno(4.25): E3111: Uno.Threading does not contain type or namespace 'Tasks'. Could you be missing a package reference?
-gtest-optional-17.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-gtest-optional-21.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-gtest-optional-24.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-optional-26-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-optional-35.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-100.uno(6.27): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-105.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-107.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-107.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'Remoting'. Could you be missing a package reference?
-test-118.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
-test-120.uno(9.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-148.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-test-178.uno(8.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
-test-181.uno(10.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-test-187.uno(10.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a package reference?
+gtest-implicitarray-03.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-iter-19.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-iter-26.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-iter-29.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-iter-31.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-lambda-08.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-lambda-30.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-lambda-33.uno(7.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-lambda-34.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-linq-24.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+gtest-optional-11.uno(7.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+gtest-optional-11-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+gtest-optional-14.uno(4.25): E3111: Uno.Threading does not contain type or namespace 'Tasks'. Could you be missing a reference?
+gtest-optional-17.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+gtest-optional-21.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+gtest-optional-24.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-optional-26-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-optional-35.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-100.uno(6.27): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-105.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-107.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-107.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'Remoting'. Could you be missing a reference?
+test-118.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
+test-120.uno(9.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-148.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+test-178.uno(8.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
+test-181.uno(10.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+test-187.uno(10.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a reference?
 test-198.uno(66.17): E3135: <Assign> cannot be used as a type
 test-198.uno(69.21): E3135: <Assign> cannot be used as a type
 test-214.uno(3.14): E3135: <Assign> cannot be used as a type
 test-215.uno(3.14): E3135: <Assign> cannot be used as a type
-test-220.uno(10.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a package reference?
+test-220.uno(10.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a reference?
 test-227.uno(4.15): E3135: <Assign> cannot be used as a type
-test-229.uno(5.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a package reference?
-test-250.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+test-229.uno(5.27): E3111: Uno.Collections does not contain type or namespace 'Specialized'. Could you be missing a reference?
+test-250.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-260.uno(5.16): E3135: <Assign> cannot be used as a type
-test-276.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-286.uno(25.19): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-295.uno(6.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a package reference?
+test-276.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-286.uno(25.19): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-295.uno(6.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a reference?
 test-304.uno(6.13): E3135: <Assign> cannot be used as a type
 test-306.uno(5.13): E3135: <Assign> cannot be used as a type
 test-307.uno(5.13): E3135: <Assign> cannot be used as a type
-test-308.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
-test-308.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
+test-308.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
+test-308.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
 test-327.uno(9.18): E3135: <Assign> cannot be used as a type
 test-327.uno(10.18): E3135: <Assign> cannot be used as a type
 test-328.uno(7.17): E3135: <Assign> cannot be used as a type
 test-328.uno(9.19): E3114: There is no identifier named 'Y' accessible in this scope.
 test-334.uno(4.19): E3135: <Assign> cannot be used as a type
-test-341.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-352.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-366.uno(9.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-412.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-412-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+test-341.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-352.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-366.uno(9.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-412.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-412-lib.uno(6.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-413.uno(5.17): E3135: <Assign> cannot be used as a type
 test-416.uno(5.11): E3114: There is no identifier named 'n1' accessible in this scope.
 test-426.uno(3.15): E3135: <Assign> cannot be used as a type
@@ -1621,108 +1621,108 @@ test-433.uno(3.15): E3135: <Assign> cannot be used as a type
 test-434.uno(3.15): E3135: <Assign> cannot be used as a type
 test-435.uno(3.15): E3135: <Assign> cannot be used as a type
 test-436.uno(3.15): E3135: <Assign> cannot be used as a type
-test-437.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-438.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
-test-438.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
-test-463.uno(3.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
-test-473.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-478.uno(4.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
-test-478.uno(5.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
+test-437.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-438.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
+test-438.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
+test-463.uno(3.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
+test-473.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-478.uno(4.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
+test-478.uno(5.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
 test-55.uno(3.13): E3135: <Assign> cannot be used as a type
 test-55.uno(4.13): E3135: <Assign> cannot be used as a type
 test-55.uno(5.19): E3135: <Assign> cannot be used as a type
-test-555.uno(5.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a package reference?
+test-555.uno(5.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a reference?
 test-571.uno(6.22): E3135: <Assign> cannot be used as a type
 test-599.uno(7.20): E3135: <Assign> cannot be used as a type
 test-599.uno(8.19): E3135: <Assign> cannot be used as a type
 test-599.uno(34.21): E3135: <Assign> cannot be used as a type
-test-607.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Configuration'. Could you be missing a package reference?
-test-621.uno(8.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-659.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-test-660.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
+test-607.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Configuration'. Could you be missing a reference?
+test-621.uno(8.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-659.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+test-660.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
 test-683.uno(4.20): E3135: <Assign> cannot be used as a type
-test-69.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-test-695.uno(8.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a package reference?
-test-695.uno(10.16): E3111: 'Mono' does not contain type or namespace 'Cecil'. Could you be missing a package reference?
-test-725.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+test-69.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+test-695.uno(8.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a reference?
+test-695.uno(10.16): E3111: 'Mono' does not contain type or namespace 'Cecil'. Could you be missing a reference?
+test-725.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-766.uno(5.20): E3135: <Assign> cannot be used as a type
-test-773.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-test-814.uno(6.16): E3111: 'Mono' does not contain type or namespace 'Cecil'. Could you be missing a package reference?
-test-815.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
+test-773.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+test-814.uno(6.16): E3111: 'Mono' does not contain type or namespace 'Cecil'. Could you be missing a reference?
+test-815.uno(3.23): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
 test-818.uno(13.17): E3135: <Assign> cannot be used as a type
 test-835.uno(3.13): E3135: <Assign> cannot be used as a type
 test-837.uno(14.22): E3135: <Assign> cannot be used as a type
 test-838.uno(6.19): E3135: <Assign> cannot be used as a type
 test-839.uno(5.29): E3135: <Assign> cannot be used as a type
-test-85.uno(10.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+test-85.uno(10.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-881.uno(19.17): E3135: <Assign> cannot be used as a type
 test-905.uno(4.13): E3135: <Assign> cannot be used as a type
-test-910.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
-test-910.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a package reference?
+test-910.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
+test-910.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Security'. Could you be missing a reference?
 test-912.uno(6.11): E3114: There is no identifier named 'TypeLib' accessible in this scope.
 test-913.uno(5.17): E3135: <Assign> cannot be used as a type
-test-anon-113.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-anon-122.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-test-anon-138.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-test-anon-160.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-test-anon-172.uno(4.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a package reference?
-test-anon-177.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-test-anon-34.uno(18.15): E3111: 'Uno' does not contain type or namespace 'Timers'. Could you be missing a package reference?
-test-async-25.uno(4.25): E3111: Uno.Threading does not contain type or namespace 'Tasks'. Could you be missing a package reference?
-test-cls-00.uno(7.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a package reference?
-test-com-01.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+test-anon-113.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-anon-122.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+test-anon-138.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+test-anon-160.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+test-anon-172.uno(4.26): E3111: Uno.Reflection does not contain type or namespace 'Emit'. Could you be missing a reference?
+test-anon-177.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+test-anon-34.uno(18.15): E3111: 'Uno' does not contain type or namespace 'Timers'. Could you be missing a reference?
+test-async-25.uno(4.25): E3111: Uno.Threading does not contain type or namespace 'Tasks'. Could you be missing a reference?
+test-cls-00.uno(7.15): E3111: 'Uno' does not contain type or namespace 'ComponentModel'. Could you be missing a reference?
+test-com-01.uno(4.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-com-02.uno(5.11): E3114: There is no identifier named 'Test' accessible in this scope.
-test-debug-17.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-test-null-operator-15.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
-test-partial-07.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-test-static-using-05.uno(4.22): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a package reference?
+test-debug-17.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+test-null-operator-15.uno(3.15): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
+test-partial-07.uno(5.23): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+test-static-using-05.uno(4.22): E3111: 'Uno' does not contain type or namespace 'Linq'. Could you be missing a reference?
 test-xml-027.uno(4.15): E3135: <Assign> cannot be used as a type
-test-xml-035.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Data'. Could you be missing a package reference?
-test-xml-035.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-xml-038.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-xml-044.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
+test-xml-035.uno(5.15): E3111: 'Uno' does not contain type or namespace 'Data'. Could you be missing a reference?
+test-xml-035.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-xml-038.uno(6.15): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-xml-044.uno(4.15): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
 
-gtest-exmethod-24.uno(5.11): E3114: There is nothing named 'lib1' accessible in this scope. Are you missing a package reference?
+gtest-exmethod-24.uno(5.11): E3114: There is nothing named 'lib1' accessible in this scope. Are you missing a reference?
 
-dtest-013.uno(7.34): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-dtest-017.uno(26.14): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-dtest-017.uno(26.25): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-dtest-019.uno(5.26): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-dtest-019.uno(6.31): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-dtest-020.uno(13.27): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-dtest-055.uno(14.30): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a package reference?
-gtest-009.uno(11.19): E3114: There is nothing named 'ICloneable' accessible in this scope. Are you missing a package reference?
+dtest-013.uno(7.34): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+dtest-017.uno(26.14): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+dtest-017.uno(26.25): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+dtest-019.uno(5.26): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+dtest-019.uno(6.31): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+dtest-020.uno(13.27): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+dtest-055.uno(14.30): E3114: There is nothing named 'dynamic' accessible in this scope. Are you missing a reference?
+gtest-009.uno(11.19): E3114: There is nothing named 'ICloneable' accessible in this scope. Are you missing a reference?
 gtest-102.uno(6.18): E3131: Expression is a generic type definition but is used as a type.
 gtest-102.uno(11.18): E3131: Expression is a generic type definition but is used as a type.
-gtest-114.uno(6.39): E3114: There is no identifier named 'IComparer<>' accessible in this scope. Did you mean 'IComparer`1' (as in 'Mono.gtest_105.A.IComparer`1'), 'IComparer`1' (as in 'Mono.gtest_105.B.IComparer`1') or 'IComparer`1' (as in 'Mono.gtest_106.IComparer`1'), or one of 1 other similar candidates? For example, try adding 'using Mono.gtest_105.A;' to the top of the code file. Could you be missing a package reference?
-gtest-219.uno(6.29): E3114: There is nothing named 'ICloneable' accessible in this scope. Are you missing a package reference?
+gtest-114.uno(6.39): E3114: There is no identifier named 'IComparer<>' accessible in this scope. Did you mean 'IComparer`1' (as in 'Mono.gtest_105.A.IComparer`1'), 'IComparer`1' (as in 'Mono.gtest_105.B.IComparer`1') or 'IComparer`1' (as in 'Mono.gtest_106.IComparer`1'), or one of 1 other similar candidates? For example, try adding 'using Mono.gtest_105.A;' to the top of the code file. Could you be missing a reference?
+gtest-219.uno(6.29): E3114: There is nothing named 'ICloneable' accessible in this scope. Are you missing a reference?
 gtest-246.uno(25.30): E3018: 'T' is not a class or interface
 gtest-273.uno(29.39): E3131: Expression is a generic type definition but is used as a type.
 gtest-273.uno(29.50): E3131: Expression is a generic type definition but is used as a type.
 gtest-273.uno(32.39): E3131: Expression is a generic type definition but is used as a type.
 gtest-273.uno(32.50): E3131: Expression is a generic type definition but is used as a type.
-gtest-326.uno(6.22): E3114: There is nothing named 'C5' accessible in this scope. Did you perhaps misspell 'C' (as in UnoTest.General.Base.C), 'C' (as in Mono.dtest_002.C) or 'C' (as in Mono.dtest_004.C), or one of 476 other similar candidates?  Could you be missing a package reference?
-gtest-341.uno(7.22): E3114: There is no identifier named 'IA' accessible in this scope. Did you mean 'IA`1' (as in 'Mono.dtest_017.IA`1'), 'IA' (as in Mono.gtest_121.IA) or 'IA`1' (as in 'Mono.gtest_125.IA`1'), or one of 48 other similar candidates? For example, try adding 'using Mono.dtest_017;' to the top of the code file. Could you be missing a package reference?
+gtest-326.uno(6.22): E3114: There is nothing named 'C5' accessible in this scope. Did you perhaps misspell 'C' (as in UnoTest.General.Base.C), 'C' (as in Mono.dtest_002.C) or 'C' (as in Mono.dtest_004.C), or one of 476 other similar candidates?  Could you be missing a reference?
+gtest-341.uno(7.22): E3114: There is no identifier named 'IA' accessible in this scope. Did you mean 'IA`1' (as in 'Mono.dtest_017.IA`1'), 'IA' (as in Mono.gtest_121.IA) or 'IA`1' (as in 'Mono.gtest_125.IA`1'), or one of 48 other similar candidates? For example, try adding 'using Mono.dtest_017;' to the top of the code file. Could you be missing a reference?
 gtest-356.uno(10.18): E3131: Expression is a generic type definition but is used as a type.
 gtest-374.uno(23.19): E3018: 'Y' is not a class or interface
 gtest-374.uno(23.22): E3018: 'Y2' is not a class or interface
-gtest-398.uno(11.50): E3114: There is nothing named 'IFormatProvider' accessible in this scope. Are you missing a package reference?
-gtest-398.uno(14.44): E3114: There is nothing named 'IFormattable' accessible in this scope. Are you missing a package reference?
+gtest-398.uno(11.50): E3114: There is nothing named 'IFormatProvider' accessible in this scope. Are you missing a reference?
+gtest-398.uno(14.44): E3114: There is nothing named 'IFormattable' accessible in this scope. Are you missing a reference?
 gtest-416.uno(7.19): E3018: 'Y' is not a class or interface
 gtest-417.uno(12.27): E3131: Expression is a generic type definition but is used as a type.
-gtest-431-lib-1.uno(8.50): E3114: There is no identifier named 'Attribute' accessible in this scope. Did you mean 'Attribute' (as in Uno.Attribute), 'Attribute' (as in Mono.test_262.n1.Attribute) or 'Attribute' (as in Mono.test_616.System.Attribute)? For example, try adding 'using Uno;' to the top of the code file. Could you be missing a package reference?
-gtest-462.uno(24.43): E3114: There is nothing named 'IConvertible' accessible in this scope. Are you missing a package reference?
+gtest-431-lib-1.uno(8.50): E3114: There is no identifier named 'Attribute' accessible in this scope. Did you mean 'Attribute' (as in Uno.Attribute), 'Attribute' (as in Mono.test_262.n1.Attribute) or 'Attribute' (as in Mono.test_616.System.Attribute)? For example, try adding 'using Uno;' to the top of the code file. Could you be missing a reference?
+gtest-462.uno(24.43): E3114: There is nothing named 'IConvertible' accessible in this scope. Are you missing a reference?
 gtest-483.uno(40.27): E3131: Expression is a generic type definition but is used as a type.
-gtest-491.uno(10.38): E3114: There is nothing named 'IEqualityComparer<>' accessible in this scope. Are you missing a package reference?
+gtest-491.uno(10.38): E3114: There is nothing named 'IEqualityComparer<>' accessible in this scope. Are you missing a reference?
 gtest-514.uno(8.23): E3018: 'U' is not a class or interface
 gtest-514.uno(9.23): E3018: 'V' is not a class or interface
 gtest-520.uno(14.15): E3131: Expression is a generic type definition but is used as a type.
-gtest-523.uno(8.83): E3114: There is nothing named 'IEqualityComparer<>' accessible in this scope. Are you missing a package reference?
+gtest-523.uno(8.83): E3114: There is nothing named 'IEqualityComparer<>' accessible in this scope. Are you missing a reference?
 gtest-541.uno(9.40): E3018: 'S' is not a class or interface
 gtest-541.uno(11.47): E3018: 'T' is not a class or interface
 gtest-544.uno(15.27): E3135: <Nullable> cannot be used as a type
-gtest-544.uno(33.23): E3111: 'Uno' does not contain type or namespace 'ValueType'. Could you be missing a package reference?
-gtest-551.uno(10.42): E3114: There is nothing named 'ICloneable' accessible in this scope. Are you missing a package reference?
+gtest-544.uno(33.23): E3111: 'Uno' does not contain type or namespace 'ValueType'. Could you be missing a reference?
+gtest-551.uno(10.42): E3114: There is nothing named 'ICloneable' accessible in this scope. Are you missing a reference?
 gtest-551.uno(18.15): E3114: There is no identifier named 'ICloneable' accessible in this scope.
 gtest-564.uno(19.22): E3114: There is no identifier named 'ValueType' accessible in this scope.
 gtest-571.uno(12.19): E3018: 'U' is not a class or interface
@@ -1744,7 +1744,7 @@ test-324.uno(20.22): E3114: There is no identifier named 'MarshalByRefObject' ac
 test-418.uno(7.23): E3114: There is no identifier named 'M1' accessible in this scope.
 test-563.uno(25.33): E3131: Expression is a generic type definition but is used as a type.
 test-582.uno(5.37): E3015: Mono.test_582.TrueClass cannot inherit a base type because it is a static class
-test-645-lib.uno(20.28): E3112: Mono.test_645.C does not contain a member called 'N'. Could you be missing a package reference?
+test-645-lib.uno(20.28): E3112: Mono.test_645.C does not contain a member called 'N'. Could you be missing a reference?
 test-679-lib.uno(13.25): E3114: There is no identifier named 'LibA' accessible in this scope.
 test-734.uno(8.15): E3114: There is no identifier named 'C' accessible in this scope.
 test-760.uno(5.15): E3114: There is no identifier named 'D' accessible in this scope.
@@ -1879,7 +1879,7 @@ gtest-349.uno(29.24): E3131: Expression is a generic type definition but is used
 gtest-349.uno(29.36): E3131: Expression is a generic type definition but is used as a type.
 gtest-349.uno(30.24): E3131: Expression is a generic type definition but is used as a type.
 gtest-353.uno(7.49): E3018: 'D2' is not a class or interface
-gtest-356.uno(5.24): E3112: 'Mono.gtest_356.B<T>' does not contain a member called 'E'. Could you be missing a package reference?
+gtest-356.uno(5.24): E3112: 'Mono.gtest_356.B<T>' does not contain a member called 'E'. Could you be missing a reference?
 gtest-364.uno(34.24): E3135: <Nullable> cannot be used as a type
 gtest-364.uno(35.23): E3135: <Nullable> cannot be used as a type
 gtest-364.uno(34.24): E3135: <Nullable> cannot be used as a type
@@ -1892,12 +1892,12 @@ gtest-377.uno(6.19): E3135: <Nullable> cannot be used as a type
 gtest-378.uno(4.31): E3135: <Nullable> cannot be used as a type
 gtest-378.uno(9.33): E3135: <Nullable> cannot be used as a type
 gtest-379.uno(18.28): E3135: <Nullable> cannot be used as a type
-gtest-384.uno(18.58): E3111: No such type or namespace 'NonGeneric'. Could you be missing a package reference?
-gtest-384.uno(18.84): E3111: No such type or namespace 'NonGeneric'. Could you be missing a package reference?
-gtest-384.uno(18.24): E3111: No such type or namespace 'NonGeneric'. Could you be missing a package reference?
-gtest-384.uno(24.63): E3111: No such type or namespace 'Generic'. Could you be missing a package reference?
-gtest-384.uno(24.91): E3111: No such type or namespace 'Generic'. Could you be missing a package reference?
-gtest-384.uno(24.24): E3111: No such type or namespace 'Generic'. Could you be missing a package reference?
+gtest-384.uno(18.58): E3111: No such type or namespace 'NonGeneric'. Could you be missing a reference?
+gtest-384.uno(18.84): E3111: No such type or namespace 'NonGeneric'. Could you be missing a reference?
+gtest-384.uno(18.24): E3111: No such type or namespace 'NonGeneric'. Could you be missing a reference?
+gtest-384.uno(24.63): E3111: No such type or namespace 'Generic'. Could you be missing a reference?
+gtest-384.uno(24.91): E3111: No such type or namespace 'Generic'. Could you be missing a reference?
+gtest-384.uno(24.24): E3111: No such type or namespace 'Generic'. Could you be missing a reference?
 gtest-392.uno(7.19): E3135: <Nullable> cannot be used as a type
 gtest-392.uno(7.19): E3135: <Nullable> cannot be used as a type
 gtest-397.uno(14.42): E3135: <Nullable> cannot be used as a type
@@ -2074,7 +2074,7 @@ test-804.uno(22.18): E0000: 'new' is not valid for interface member
 test-810.uno(7.25): E3114: There is no identifier named 'IC' accessible in this scope.
 test-810.uno(7.16): E3114: There is no identifier named 'IA' accessible in this scope.
 test-816.uno(24.86): E3114: There is no identifier named 'ResolveEventArgs' accessible in this scope.
-test-816.uno(24.35): E3111: Uno.Reflection does not contain type or namespace 'Assembly'. Could you be missing a package reference?
+test-816.uno(24.35): E3111: Uno.Reflection does not contain type or namespace 'Assembly'. Could you be missing a reference?
 test-921-lib.uno(13.20): E0000: 'new' is not valid for interface member
 test-932.uno(13.46): E3114: There is no identifier named 'ConsoleColor' accessible in this scope.
 test-932.uno(13.91): E3114: There is no identifier named 'ConsoleColor' accessible in this scope.
@@ -2093,7 +2093,7 @@ test-anon-125.uno(15.29): E3114: There is no identifier named 'IEqualityComparer
 test-anon-126.uno(10.27): E3114: There is no identifier named 'Converter<,>' accessible in this scope.
 test-anon-126.uno(15.27): E3114: There is no identifier named 'Converter<,>' accessible in this scope.
 test-anon-139.uno(26.33): E3135: <Nullable> cannot be used as a type
-test-anon-167.uno(5.40): E3111: Uno.Threading does not contain type or namespace 'ThreadStart'. Could you be missing a package reference?
+test-anon-167.uno(5.40): E3111: Uno.Threading does not contain type or namespace 'ThreadStart'. Could you be missing a reference?
 test-anon-50.uno(10.16): E3131: Expression is a generic type definition but is used as a type.
 test-anon-92.uno(10.27): E3131: Expression is a generic type definition but is used as a type.
 test-cls-11.uno(11.40): E3131: Expression is a generic type definition but is used as a type.
@@ -2134,8 +2134,8 @@ test-partial-12.uno(11.44): E3131: Expression is a generic type definition but i
 test-partial-15.uno(17.35): E3131: Expression is a generic type definition but is used as a type.
 test-partial-15.uno(23.35): E3131: Expression is a generic type definition but is used as a type.
 test-partial-15.uno(30.28): E3131: Expression is a generic type definition but is used as a type.
-test-xml-017.uno(21.69): E3111: Uno.Collections does not contain type or namespace 'ArrayList'. Could you be missing a package reference?
-test-xml-022.uno(108.69): E3111: Uno.Collections does not contain type or namespace 'ArrayList'. Could you be missing a package reference?
+test-xml-017.uno(21.69): E3111: Uno.Collections does not contain type or namespace 'ArrayList'. Could you be missing a reference?
+test-xml-022.uno(108.69): E3111: Uno.Collections does not contain type or namespace 'ArrayList'. Could you be missing a reference?
 test-xml-050.uno(32.15): E0000: 'new' is not valid for interface member
 test-xml-050.uno(37.15): E0000: 'new' is not valid for interface member
 test-xml-054.uno(85.20): E3114: There is no identifier named 'ICloneable' accessible in this scope.
@@ -2164,15 +2164,15 @@ gtest-444.uno(7.16): E0000: Attribute modifier 'assembly' is not supported
 gtest-444.uno(7.16): E3114: There is no identifier named 'AssemblyFlagsAttribute' accessible in this scope.
 gtest-476.uno(23.10): E3114: There is no identifier named 'ObsoleteAttribute' accessible in this scope.
 gtest-503.uno(14.16): E0000: Argument must be a constant value
-gtest-exmethod-35-lib.uno(9.94): E3107: Uno.AttributeTargets does not contain a member called 'Assembly'. Could you be missing a package reference?
+gtest-exmethod-35-lib.uno(9.94): E3107: Uno.AttributeTargets does not contain a member called 'Assembly'. Could you be missing a reference?
 (unknown): E0000: Argument must be a constant value
-gtest-partial-04-p2.uno(3.18): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
-support-389.uno(7.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-support-389.uno(8.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-support-389.uno(9.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-support-389.uno(19.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-support-389.uno(22.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-support-389.uno(34.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
+gtest-partial-04-p2.uno(3.18): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
+support-389.uno(7.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+support-389.uno(8.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+support-389.uno(9.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+support-389.uno(19.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+support-389.uno(22.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+support-389.uno(34.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
 test-158.uno(14.10): E3114: There is no identifier named 'MyAttribute' accessible in this scope.
 test-205.uno(12.6): E3114: There is no identifier named 'AAttribute' accessible in this scope.
 test-224.uno(18.49): E3102: There is no identifier named 'Inherited' accessible in this scope.
@@ -2187,31 +2187,31 @@ test-256.uno(6.5): E3102: There is no identifier named 'Inherited' accessible in
 test-256.uno(5.6): E2009: Call to 'Uno.AttributeUsageAttribute(Uno.AttributeTargets)' has some invalid arguments (Uno.AttributeTargets,<invalid>,<invalid>)
 FATAL ERROR: Max error count (500) reached -- stopping build
 
-test-921.uno(5.11): E3114: There is no identifier named 'Reference' accessible in this scope. Did you mean 'Reference' (as in Mono.gtest_327.Reference)? For example, try adding 'using Mono.gtest_327;' to the top of the code file. Could you be missing a package reference?
+test-921.uno(5.11): E3114: There is no identifier named 'Reference' accessible in this scope. Did you mean 'Reference' (as in Mono.gtest_327.Reference)? For example, try adding 'using Mono.gtest_327;' to the top of the code file. Could you be missing a reference?
 
-dtest-052.uno(9.29): E3114: There is nothing named 'DynamicReference' accessible in this scope. Are you missing a package reference?
+dtest-052.uno(9.29): E3114: There is nothing named 'DynamicReference' accessible in this scope. Are you missing a reference?
 test-273.uno(9.11): E3102: There is no identifier named 'Separator' accessible in this scope. Did you mean 'Separator' (as in Mono.test_273.FooAttribute.Separator)?
 test-273.uno(9.11): E3102: There is no identifier named 'Separator' accessible in this scope. Did you mean 'Separator' (as in Mono.test_273.FooAttribute.Separator)?
 test-273.uno(9.6): E2009: Call to 'Mono.test_273.FooAttribute()' has some invalid arguments (<invalid>)
-test-294.uno(7.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a package reference?
-test-294.uno(35.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a package reference?
-test-294.uno(58.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a package reference?
-test-297.uno(5.6): E3114: There is no identifier named 'MyAttribute' accessible in this scope. Did you mean 'MyAttribute' (as in Mono.test_569.MyAttribute)? For example, try adding 'using Mono.test_569;' to the top of the code file. Could you be missing a package reference?
-test-297.uno(6.6): E3114: There is no identifier named 'MyAttribute' accessible in this scope. Did you mean 'MyAttribute' (as in Mono.test_569.MyAttribute)? For example, try adding 'using Mono.test_569;' to the top of the code file. Could you be missing a package reference?
-test-297.uno(7.6): E3114: There is no identifier named 'MyAttribute' accessible in this scope. Did you mean 'MyAttribute' (as in Mono.test_569.MyAttribute)? For example, try adding 'using Mono.test_569;' to the top of the code file. Could you be missing a package reference?
-test-297.uno(45.42): E3102: There is nothing named 'AllowMultiple' accessible in this scope. Are you missing a package reference?
-test-297.uno(45.42): E3102: There is nothing named 'AllowMultiple' accessible in this scope. Are you missing a package reference?
+test-294.uno(7.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a reference?
+test-294.uno(35.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a reference?
+test-294.uno(58.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a reference?
+test-297.uno(5.6): E3114: There is no identifier named 'MyAttribute' accessible in this scope. Did you mean 'MyAttribute' (as in Mono.test_569.MyAttribute)? For example, try adding 'using Mono.test_569;' to the top of the code file. Could you be missing a reference?
+test-297.uno(6.6): E3114: There is no identifier named 'MyAttribute' accessible in this scope. Did you mean 'MyAttribute' (as in Mono.test_569.MyAttribute)? For example, try adding 'using Mono.test_569;' to the top of the code file. Could you be missing a reference?
+test-297.uno(7.6): E3114: There is no identifier named 'MyAttribute' accessible in this scope. Did you mean 'MyAttribute' (as in Mono.test_569.MyAttribute)? For example, try adding 'using Mono.test_569;' to the top of the code file. Could you be missing a reference?
+test-297.uno(45.42): E3102: There is nothing named 'AllowMultiple' accessible in this scope. Are you missing a reference?
+test-297.uno(45.42): E3102: There is nothing named 'AllowMultiple' accessible in this scope. Are you missing a reference?
 test-297.uno(45.6): E2009: Call to 'Uno.AttributeUsageAttribute(Uno.AttributeTargets)' has some invalid arguments (Uno.AttributeTargets,<invalid>)
-test-329.uno(5.6): E3114: There is no identifier named 'XAttribute' accessible in this scope. Did you mean 'XAttribute' (as in Mono.test_named_01.XAttribute)? For example, try adding 'using Mono.test_named_01;' to the top of the code file. Could you be missing a package reference?
-test-353.uno(7.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a package reference?
-test-354.uno(6.6): E3114: There is nothing named 'MYAttrAttribute' accessible in this scope. Are you missing a package reference?
-test-361.uno(5.6): E3114: There is no identifier named 'XAttribute' accessible in this scope. Did you mean 'XAttribute' (as in Mono.test_named_01.XAttribute)? For example, try adding 'using Mono.test_named_01;' to the top of the code file. Could you be missing a package reference?
-test-388.uno(8.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(9.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(10.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(20.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(23.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(35.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
+test-329.uno(5.6): E3114: There is no identifier named 'XAttribute' accessible in this scope. Did you mean 'XAttribute' (as in Mono.test_named_01.XAttribute)? For example, try adding 'using Mono.test_named_01;' to the top of the code file. Could you be missing a reference?
+test-353.uno(7.6): E3114: There is nothing named 'ObsoleteAttribute' accessible in this scope. Are you missing a reference?
+test-354.uno(6.6): E3114: There is nothing named 'MYAttrAttribute' accessible in this scope. Are you missing a reference?
+test-361.uno(5.6): E3114: There is no identifier named 'XAttribute' accessible in this scope. Did you mean 'XAttribute' (as in Mono.test_named_01.XAttribute)? For example, try adding 'using Mono.test_named_01;' to the top of the code file. Could you be missing a reference?
+test-388.uno(8.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(9.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(10.13): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(20.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(23.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(35.14): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
 test-39.uno(4.75): E3102: There is no identifier named 'AllowMultiple' accessible in this scope.
 test-39.uno(4.75): E3102: There is no identifier named 'AllowMultiple' accessible in this scope.
 test-39.uno(4.6): E2009: Call to 'Uno.AttributeUsageAttribute(Uno.AttributeTargets)' has some invalid arguments (Uno.AttributeTargets,<invalid>)
@@ -2262,7 +2262,7 @@ test-500.uno(6.6): E2009: Call to 'Uno.AttributeUsageAttribute(Uno.AttributeTarg
 test-522.uno(5.16): E0000: Attribute modifier 'assembly' is not supported
 test-522.uno(5.16): E3114: There is no identifier named 'AssemblyVersionAttribute' accessible in this scope.
 test-534.uno(6.31): E0000: Attribute modifier 'assembly' is not supported
-test-534.uno(6.31): E3111: Uno.Reflection does not contain type or namespace 'AssemblyCultureAttribute'. Could you be missing a package reference?
+test-534.uno(6.31): E3111: Uno.Reflection does not contain type or namespace 'AssemblyCultureAttribute'. Could you be missing a reference?
 test-569.uno(5.43): E3102: There is no identifier named 'AllowMultiple' accessible in this scope.
 test-569.uno(5.43): E3102: There is no identifier named 'AllowMultiple' accessible in this scope.
 test-569.uno(5.6): E2009: Call to 'Uno.AttributeUsageAttribute(Uno.AttributeTargets)' has some invalid arguments (Uno.AttributeTargets,<invalid>)
@@ -2317,7 +2317,7 @@ test-cls-03.uno(6.15): E0000: Attribute modifier 'assembly' is not supported
 test-cls-03.uno(6.15): E3114: There is no identifier named 'CLSCompliantAttribute' accessible in this scope.
 test-cls-05.uno(7.15): E0000: Attribute modifier 'assembly' is not supported
 test-cls-05.uno(7.15): E3114: There is no identifier named 'CLSCompliantAttribute' accessible in this scope.
-test-cls-05.uno(77.10): E3111: 'Uno' does not contain type or namespace 'CLSCompliantAttribute'. Could you be missing a package reference?
+test-cls-05.uno(77.10): E3111: 'Uno' does not contain type or namespace 'CLSCompliantAttribute'. Could you be missing a reference?
 test-cls-05.uno(88.6): E3114: There is no identifier named 'CLSCompliantAttribute' accessible in this scope.
 test-cls-10.uno(6.15): E0000: Attribute modifier 'assembly' is not supported
 test-cls-10.uno(6.15): E3114: There is no identifier named 'CLSCompliantAttribute' accessible in this scope.
@@ -2353,7 +2353,7 @@ gtest-336.uno(30.19): E0000: Argument must be a constant value
 gtest-336.uno(33.19): E0000: Argument must be a constant value
 gtest-336.uno(24.19): E2027: Expression of type <Type> cannot be used as left-hand side in an assignment
 (unknown): E0000: Argument must be a constant value
-gtest-partial-04.uno(7.22): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+gtest-partial-04.uno(7.22): E3111: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-177.uno(11.18): E0000: Attribute modifier 'return' is not supported
 test-238.uno(7.14): E3114: There is no identifier named 'ConditionalAttribute' accessible in this scope.
 test-239.uno(9.14): E3114: There is no identifier named 'ConditionalAttribute' accessible in this scope.
@@ -2378,15 +2378,15 @@ test-294.uno(78.10): E3114: There is no identifier named 'ObsoleteAttribute' acc
 test-297.uno(41.10): E3114: There is no identifier named 'MyAttribute' accessible in this scope.
 test-325.uno(13.10): E0000: Argument must be a constant value
 test-333.uno(9.10): E3114: There is no identifier named 'ObsoleteAttribute' accessible in this scope.
-test-388.uno(13.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(16.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(28.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(31.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(38.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(39.17): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(42.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-388.uno(43.17): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a package reference?
-test-477.uno(7.26): E3111: Uno.Diagnostics does not contain type or namespace 'ConditionalAttribute'. Could you be missing a package reference?
+test-388.uno(13.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(16.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(28.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(31.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(38.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(39.17): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(42.18): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-388.uno(43.17): E3111: 'Uno' does not contain type or namespace 'Xml'. Could you be missing a reference?
+test-477.uno(7.26): E3111: Uno.Diagnostics does not contain type or namespace 'ConditionalAttribute'. Could you be missing a reference?
 test-657.uno(12.14): E3114: There is no identifier named 'ConditionalAttribute' accessible in this scope.
 test-701.uno(12.10): E3114: There is no identifier named 'CLSCompliantAttribute' accessible in this scope.
 test-825.uno(11.10): E3114: There is no identifier named 'ConditionalAttribute' accessible in this scope.
@@ -2467,23 +2467,23 @@ gtest-451-lib.uno(7.18): I0000: Unable to parameterize 'Mono.gtest_451.A<Mono.gt
 gtest-542.uno(7.22): I0000: Unable to parameterize Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<T>.B>.B>.B>.B>.B>.B>.B>.B>.B>.B>.B
 gtest-542.uno(3.20): I0000: Unable to parameterize 'Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<Mono.gtest_542.A<T>.B>.B>.B>.B>.B>.B>.B>.B>.B>.B>'
 
-test-761.uno(7.10): E3114: There is no identifier named 'DerivedAttribute' accessible in this scope. Did you mean 'DerivedAttribute' (as in Mono.test_762.DerivedAttribute)? For example, try adding 'using Mono.test_762;' to the top of the code file. Could you be missing a package reference?
-test-761.uno(8.10): E3114: There is no identifier named 'DerivedAttribute' accessible in this scope. Did you mean 'DerivedAttribute' (as in Mono.test_762.DerivedAttribute)? For example, try adding 'using Mono.test_762;' to the top of the code file. Could you be missing a package reference?
+test-761.uno(7.10): E3114: There is no identifier named 'DerivedAttribute' accessible in this scope. Did you mean 'DerivedAttribute' (as in Mono.test_762.DerivedAttribute)? For example, try adding 'using Mono.test_762;' to the top of the code file. Could you be missing a reference?
+test-761.uno(8.10): E3114: There is no identifier named 'DerivedAttribute' accessible in this scope. Did you mean 'DerivedAttribute' (as in Mono.test_762.DerivedAttribute)? For example, try adding 'using Mono.test_762;' to the top of the code file. Could you be missing a reference?
 
-dtest-008.uno(26.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
-dtest-008.uno(27.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
+dtest-008.uno(26.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
+dtest-008.uno(27.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
 dtest-008.uno(28.31): E3102: There is no identifier named 'GetEnumerator' accessible in this scope. Did you mean 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.GetEnumerator()'), 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.KeyCollection.GetEnumerator()') or 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.ValueCollection.GetEnumerator()'), or one of 365 other similar candidates?
 dtest-008.uno(28.31): E3102: There is no identifier named 'MoveNext' accessible in this scope. Did you mean 'MoveNext' (as in 'Uno.Collections.Dictionary`2.Enumerator.MoveNext()'), 'MoveNext' (as in 'Uno.Collections.Dictionary`2.KeyCollection.Enumerator.MoveNext()') or 'MoveNext' (as in 'Uno.Collections.Dictionary`2.ValueCollection.Enumerator.MoveNext()'), or one of 143 other similar candidates?
-dtest-008.uno(37.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
+dtest-008.uno(37.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
 dtest-008.uno(39.31): E3102: There is no identifier named 'GetEnumerator' accessible in this scope. Did you mean 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.GetEnumerator()'), 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.KeyCollection.GetEnumerator()') or 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.ValueCollection.GetEnumerator()'), or one of 365 other similar candidates?
 dtest-008.uno(39.31): E3102: There is no identifier named 'MoveNext' accessible in this scope. Did you mean 'MoveNext' (as in 'Uno.Collections.Dictionary`2.Enumerator.MoveNext()'), 'MoveNext' (as in 'Uno.Collections.Dictionary`2.KeyCollection.Enumerator.MoveNext()') or 'MoveNext' (as in 'Uno.Collections.Dictionary`2.ValueCollection.Enumerator.MoveNext()'), or one of 143 other similar candidates?
-dtest-008.uno(49.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
-dtest-008.uno(49.31): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
-dtest-008.uno(62.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
+dtest-008.uno(49.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
+dtest-008.uno(49.31): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
+dtest-008.uno(62.13): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
 dtest-008.uno(64.24): E3102: There is no identifier named 'Dispose' accessible in this scope. Did you mean 'Dispose' (as in 'Uno.Collections.Dictionary`2.Enumerator.Dispose()'), 'Dispose' (as in 'Uno.Collections.Dictionary`2.KeyCollection.Enumerator.Dispose()') or 'Dispose' (as in 'Uno.Collections.Dictionary`2.ValueCollection.Enumerator.Dispose()'), or one of 206 other similar candidates?
-dtest-008.uno(73.24): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a package reference?
+dtest-008.uno(73.24): E3114: There is nothing named 'dynamic' accessible in this scope. Did you perhaps misspell 'Dynamic' (as in Uno.Graphics.BufferUsage.Dynamic)?  Could you be missing a reference?
 dtest-008.uno(73.32): E3102: There is no identifier named 'Dispose' accessible in this scope. Did you mean 'Dispose' (as in 'Uno.Collections.Dictionary`2.Enumerator.Dispose()'), 'Dispose' (as in 'Uno.Collections.Dictionary`2.KeyCollection.Enumerator.Dispose()') or 'Dispose' (as in 'Uno.Collections.Dictionary`2.ValueCollection.Enumerator.Dispose()'), or one of 206 other similar candidates?
-dtest-008.uno(81.20): E3114: There is nothing named 'dynamic' accessible in this scope.  Could you be missing a package reference?
+dtest-008.uno(81.20): E3114: There is nothing named 'dynamic' accessible in this scope.  Could you be missing a reference?
 dtest-008.uno(81.28): E3102: There is no identifier named 'Dispose' accessible in this scope.
 dtest-010.uno(21.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 dtest-010.uno(24.24): E3114: There is no identifier named 'dynamic' accessible in this scope.
@@ -2509,8 +2509,8 @@ dtest-034.uno(17.13): E3114: There is no identifier named 'dynamic' accessible i
 dtest-034.uno(18.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 dtest-036.uno(15.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 dtest-036.uno(15.33): E3114: There is no identifier named 'dynamic' accessible in this scope.
-dtest-036.uno(18.21): E3104: 'Uno.Func<int, int>' does not contain a member called 'GetInvocationList'. Could you be missing a package reference?
-dtest-036.uno(22.21): E3104: 'Uno.Func<int, int>' does not contain a member called 'GetInvocationList'. Could you be missing a package reference?
+dtest-036.uno(18.21): E3104: 'Uno.Func<int, int>' does not contain a member called 'GetInvocationList'. Could you be missing a reference?
+dtest-036.uno(22.21): E3104: 'Uno.Func<int, int>' does not contain a member called 'GetInvocationList'. Could you be missing a reference?
 dtest-043.uno(8.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 dtest-043.uno(24.16): E3135: <Nullable> cannot be used as a type
 dtest-043.uno(25.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
@@ -2535,7 +2535,7 @@ dtest-062.uno(19.13): E3128: Call to 'Mono.dtest_062.Program.Test`1(Mono.dtest_0
 dtest-friend-01.uno(10.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 dtest-friend-01.uno(10.29): E3114: There is no identifier named 'A' accessible in this scope.
 dtest-implicitarray-01.uno(12.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
-dtest-implicitarray-01.uno(14.18): E3104: 'object' does not contain a member called 'Method'. Could you be missing a package reference?
+dtest-implicitarray-01.uno(14.18): E3104: 'object' does not contain a member called 'Method'. Could you be missing a reference?
 dtest-named-01.uno(13.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 gtest-039.uno(30.13): E2047: No implicit cast from 'Mono.gtest_039.Zoo<T>.Monkey<T, U>' to 'Mono.gtest_039.IMonkey<U>'
 gtest-044.uno(28.14): E2063: Incremental operators can only be used on integers
@@ -2551,7 +2551,7 @@ gtest-054.uno(72.24): E2028: 'T[]' and Uno.Array are not compatible types
 gtest-061.uno(27.37): E2045: No methods matches the parameter list and return type of delegate type 'Mono.gtest_061.Test<double, int>'
 gtest-061.uno(32.44): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-062.uno(11.17): I3411: Unknown statement type <YieldReturnValue>
-gtest-063.uno(10.52): E3104: Uno.Array does not contain a member called 'Length'. Could you be missing a package reference?
+gtest-063.uno(10.52): E3104: Uno.Array does not contain a member called 'Length'. Could you be missing a reference?
 gtest-063.uno(32.31): E3129: No overloads of 'IndexOf' matches the argument list (string[],string[])
 gtest-078.uno(38.14): E3135: <Nullable> cannot be used as a type
 gtest-078.uno(39.24): E3102: There is no identifier named 'Dispose' accessible in this scope.
@@ -2559,7 +2559,7 @@ gtest-078.uno(54.21): E3135: <Nullable> cannot be used as a type
 gtest-078.uno(54.37): E3102: There is no identifier named 'Dispose' accessible in this scope.
 gtest-078.uno(54.23): E3102: There is no identifier named 'Dispose' accessible in this scope.
 gtest-108.uno(17.13): I3411: Unknown statement type <YieldReturnValue>
-gtest-109.uno(10.19): E3107: Uno.Array does not contain a member called 'Resize'. Could you be missing a package reference?
+gtest-109.uno(10.19): E3107: Uno.Array does not contain a member called 'Resize'. Could you be missing a reference?
 gtest-113.uno(19.47): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-113.uno(19.23): E0000: Delegate construction requires one method argument
 gtest-113.uno(19.47): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -2573,7 +2573,7 @@ gtest-116.uno(43.34): E2047: No implicit cast from Uno.Time.ZonedDateTime to Uno
 gtest-116.uno(49.32): E2047: No implicit cast from Uno.Time.ZonedDateTime to Uno.DateTime
 gtest-116.uno(50.32): E2016: Uno.DateTime has no operators '-' matching the argument list
 gtest-128.uno(23.17): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-128.uno(26.27): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a package reference?
+gtest-128.uno(26.27): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a reference?
 gtest-128.uno(26.27): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 gtest-128.uno(26.27): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 gtest-128.uno(25.25): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
@@ -2624,9 +2624,9 @@ gtest-151.uno(5.17): E0000: 'T' has no default constructor
 gtest-154.uno(9.20): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-154.uno(14.20): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-161.uno(10.48): I2042: Unhandled expression type in CompileExpression: Lambda
-gtest-161.uno(14.45): E3112: Mono.gtest_161.FP does not contain a member called 'identity'. Could you be missing a package reference?
+gtest-161.uno(14.45): E3112: Mono.gtest_161.FP does not contain a member called 'identity'. Could you be missing a reference?
 gtest-162.uno(17.13): E3114: There is no identifier named 'MemberInfo' accessible in this scope.
-gtest-162.uno(17.33): E3104: Uno.Type does not contain a member called 'FindMembers'. Could you be missing a package reference?
+gtest-162.uno(17.33): E3104: Uno.Type does not contain a member called 'FindMembers'. Could you be missing a reference?
 gtest-163.uno(21.13): I3411: Unknown statement type <YieldBreak>
 gtest-164.uno(21.13): I3411: Unknown statement type <YieldReturnValue>
 gtest-165.uno(11.17): E0109: Ambiguous match
@@ -2634,7 +2634,7 @@ gtest-177.uno(21.24): E3128: Call to 'Mono.gtest_177.X<int>.Z(Uno.Collections.IL
 gtest-177.uno(24.24): E3128: Call to 'Mono.gtest_177.X<int>.Z(Uno.Collections.IList<int>,int)' has some invalid arguments (int[],int)
 gtest-183.uno(14.17): I3411: Unknown statement type <YieldReturnValue>
 gtest-184.uno(7.22): E2075: Array initializers are not supported in this context
-gtest-184.uno(8.19): E3107: Uno.Array does not contain a member called 'FindAll'. Could you be missing a package reference?
+gtest-184.uno(8.19): E3107: Uno.Array does not contain a member called 'FindAll'. Could you be missing a reference?
 gtest-185.uno(6.12): E3128: Call to 'Mono.gtest_185.FP.appendArrays`1(T[][])' has some invalid arguments (int[],int[])
 gtest-188.uno(28.32): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-191.uno(12.17): I3411: Unknown statement type <YieldBreak>
@@ -2649,21 +2649,21 @@ gtest-193.uno(23.13): I3411: Unknown statement type <YieldBreak>
 gtest-194.uno(12.13): I3411: Unknown statement type <YieldBreak>
 gtest-194.uno(23.13): I3411: Unknown statement type <YieldBreak>
 gtest-205.uno(24.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-205.uno(24.31): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
-gtest-207.uno(13.19): E3107: Uno.Array does not contain a member called 'ForEach'. Could you be missing a package reference?
-gtest-209.uno(18.29): E3107: Uno.Guid does not contain a member called 'NewGuid'. Could you be missing a package reference?
+gtest-205.uno(24.31): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
+gtest-207.uno(13.19): E3107: Uno.Array does not contain a member called 'ForEach'. Could you be missing a reference?
+gtest-209.uno(18.29): E3107: Uno.Guid does not contain a member called 'NewGuid'. Could you be missing a reference?
 gtest-211.uno(12.16): E3135: <Nullable> cannot be used as a type
 gtest-211.uno(13.16): E3135: <Nullable> cannot be used as a type
 gtest-211.uno(14.16): E3135: <Nullable> cannot be used as a type
 gtest-211.uno(15.16): E3135: <Nullable> cannot be used as a type
 gtest-223.uno(18.21): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-223.uno(18.51): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+gtest-223.uno(18.51): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 gtest-223.uno(19.43): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 gtest-223.uno(19.43): E3102: There is no identifier named 'MoveNext' accessible in this scope.
-gtest-223.uno(20.24): E3104: Uno.Type does not contain a member called 'GenericParameterAttributes'. Could you be missing a package reference?
+gtest-223.uno(20.24): E3104: Uno.Type does not contain a member called 'GenericParameterAttributes'. Could you be missing a reference?
 gtest-223.uno(20.53): E3102: There is no identifier named 'GenericParameterAttributes' accessible in this scope.
 gtest-226.uno(36.13): E3114: There is no identifier named 'FieldInfo' accessible in this scope.
-gtest-226.uno(36.40): E3104: Uno.Type does not contain a member called 'GetField'. Could you be missing a package reference?
+gtest-226.uno(36.40): E3104: Uno.Type does not contain a member called 'GetField'. Could you be missing a reference?
 gtest-235.uno(11.13): E3114: There is no identifier named 'MyList<>' accessible in this scope.
 gtest-235.uno(11.40): E3114: There is no identifier named 'MyList<>' accessible in this scope.
 gtest-236.uno(29.21): E0109: Ambiguous match
@@ -2675,10 +2675,10 @@ gtest-239.uno(40.19): E0109: Ambiguous match
 gtest-239.uno(54.19): E0109: Ambiguous match
 gtest-239.uno(58.19): E0109: Ambiguous match
 gtest-243.uno(22.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-243.uno(22.44): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+gtest-243.uno(22.44): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 gtest-243.uno(27.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
 gtest-243.uno(33.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-243.uno(33.48): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+gtest-243.uno(33.48): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 gtest-256.uno(10.13): I3411: Unknown statement type <YieldReturnValue>
 gtest-256.uno(14.17): I3411: Unknown statement type <YieldBreak>
 gtest-256.uno(16.13): I3411: Unknown statement type <YieldReturnValue>
@@ -2697,7 +2697,7 @@ gtest-278-3-lib.uno(23.40): E3114: There is no identifier named 'C' accessible i
 gtest-278-3-lib.uno(24.40): E3114: There is no identifier named 'D' accessible in this scope.
 gtest-278-3-lib.uno(25.40): E3114: There is no identifier named 'G<>' accessible in this scope.
 gtest-278-3-lib.uno(26.40): E3114: There is no identifier named 'C' accessible in this scope.
-gtest-278-3-lib.uno(26.46): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a package reference?
+gtest-278-3-lib.uno(26.46): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a reference?
 gtest-280.uno(20.33): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-281.uno(18.15): E3128: Call to 'Mono.gtest_281.List.AddRange`1(Uno.Collections.ICollection<T>)' has some invalid arguments (object[])
 gtest-284.uno(44.22): E3128: Call to 'Mono.gtest_284.CollectionTester.Test<Mono.gtest_284.X>(Uno.Collections.IList<Mono.gtest_284.X>)' has some invalid arguments (Mono.gtest_284.X[])
@@ -2720,13 +2720,13 @@ gtest-284.uno(172.36): E3114: There is no identifier named 'Hashtable' accessibl
 gtest-284.uno(208.43): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 gtest-284.uno(208.43): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 gtest-285.uno(17.22): E2047: No implicit cast from 'Mono.gtest_285.B[]' to 'Uno.Collections.IList<Mono.gtest_285.A>'
-gtest-285.uno(19.50): E3104: Uno.Type does not contain a member called 'IsAssignableFrom'. Could you be missing a package reference?
+gtest-285.uno(19.50): E3104: Uno.Type does not contain a member called 'IsAssignableFrom'. Could you be missing a reference?
 gtest-287.uno(20.15): E3128: Call to 'Uno.Collections.List<object>.AddRange(Uno.Collections.IEnumerable<object>)' has some invalid arguments (Mono.gtest_287.I[])
 gtest-294.uno(10.22): E2047: No implicit cast from Mono.gtest_294.A to Mono.gtest_294.B
 gtest-308.uno(8.20): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-308.uno(14.20): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-312.uno(10.27): E2047: No implicit cast from 'string[]' to 'Uno.Collections.IList<string>'
-gtest-312.uno(14.31): E3111: 'Uno' does not contain type or namespace 'ApplicationException'. Could you be missing a package reference?
+gtest-312.uno(14.31): E3111: 'Uno' does not contain type or namespace 'ApplicationException'. Could you be missing a reference?
 gtest-321.uno(18.44): E3114: There is no identifier named 'ADelegate<>' accessible in this scope.
 gtest-321.uno(19.45): E3114: There is no identifier named 'ADelegate<>' accessible in this scope.
 gtest-324.uno(15.23): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -2739,14 +2739,14 @@ gtest-338.uno(18.40): E3131: Expression is a generic type definition but is used
 gtest-351.uno(22.22): E3135: <Nullable> cannot be used as a type
 gtest-351.uno(22.28): E3102: There is no identifier named 'DayOfWeek' accessible in this scope.
 gtest-352.uno(24.13): E3114: There is no identifier named 'ConstructorInfo' accessible in this scope.
-gtest-352.uno(24.44): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a package reference?
+gtest-352.uno(24.44): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a reference?
 gtest-352.uno(25.13): E3114: There is no identifier named 'MethodBody' accessible in this scope.
-gtest-352.uno(32.29): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a package reference?
+gtest-352.uno(32.29): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a reference?
 gtest-354.uno(39.16): E0109: Ambiguous match
-gtest-359.uno(57.28): E3112: Mono.gtest_359.Concrete_B does not contain a member called 'InnerDerived'. Could you be missing a package reference?
-gtest-359.uno(58.28): E3112: Mono.gtest_359.Concrete_A does not contain a member called 'InnerDerived'. Could you be missing a package reference?
-gtest-359.uno(59.28): E3112: Mono.gtest_359.Concrete_A does not contain a member called 'GenericInnerDerived'. Could you be missing a package reference?
-gtest-359.uno(60.28): E3112: 'Mono.gtest_359.Concrete_2' does not contain a member called 'InnerDerived'. Could you be missing a package reference?
+gtest-359.uno(57.28): E3112: Mono.gtest_359.Concrete_B does not contain a member called 'InnerDerived'. Could you be missing a reference?
+gtest-359.uno(58.28): E3112: Mono.gtest_359.Concrete_A does not contain a member called 'InnerDerived'. Could you be missing a reference?
+gtest-359.uno(59.28): E3112: Mono.gtest_359.Concrete_A does not contain a member called 'GenericInnerDerived'. Could you be missing a reference?
+gtest-359.uno(60.28): E3112: 'Mono.gtest_359.Concrete_2' does not contain a member called 'InnerDerived'. Could you be missing a reference?
 gtest-361.uno(14.21): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-361.uno(16.21): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-365.uno(12.20): E3135: <Nullable> cannot be used as a type
@@ -2789,20 +2789,20 @@ gtest-411.uno(32.55): I2042: Unhandled expression type in CompileExpression: Lam
 gtest-411.uno(32.38): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-411.uno(32.55): I2042: Unhandled expression type in CompileExpression: Lambda
 gtest-411.uno(32.24): E3128: Call to 'Mono.gtest_411.Extensions.Match`2(T,Uno.Func<T, Mono.gtest_411.Maybe<R>>[])' has some invalid arguments (string,<invalid>,<invalid>)
-gtest-412.uno(19.33): E3104: Uno.Type does not contain a member called 'GetGenericParameterConstraints'. Could you be missing a package reference?
-gtest-412.uno(21.22): E3104: Uno.Type does not contain a member called 'Name'. Could you be missing a package reference?
-gtest-412.uno(22.50): E3104: Uno.Type does not contain a member called 'Name'. Could you be missing a package reference?
-gtest-412.uno(25.22): E3104: Uno.Type does not contain a member called 'GenericParameterAttributes'. Could you be missing a package reference?
+gtest-412.uno(19.33): E3104: Uno.Type does not contain a member called 'GetGenericParameterConstraints'. Could you be missing a reference?
+gtest-412.uno(21.22): E3104: Uno.Type does not contain a member called 'Name'. Could you be missing a reference?
+gtest-412.uno(22.50): E3104: Uno.Type does not contain a member called 'Name'. Could you be missing a reference?
+gtest-412.uno(25.22): E3104: Uno.Type does not contain a member called 'GenericParameterAttributes'. Could you be missing a reference?
 gtest-412.uno(26.18): E3102: There is no identifier named 'GenericParameterAttributes' accessible in this scope.
 gtest-412.uno(26.76): E3102: There is no identifier named 'GenericParameterAttributes' accessible in this scope.
-gtest-412.uno(27.50): E3104: Uno.Type does not contain a member called 'GenericParameterAttributes'. Could you be missing a package reference?
+gtest-412.uno(27.50): E3104: Uno.Type does not contain a member called 'GenericParameterAttributes'. Could you be missing a reference?
 gtest-412.uno(34.37): E3114: There is no identifier named 'ValueType' accessible in this scope.
 gtest-413.uno(18.16): E3135: <Nullable> cannot be used as a type
-gtest-418.uno(30.65): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a package reference?
+gtest-418.uno(30.65): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a reference?
 gtest-418.uno(30.65): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 gtest-418.uno(30.65): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 gtest-418.uno(30.26): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-418.uno(36.63): E3104: Uno.Type does not contain a member called 'GetProperties'. Could you be missing a package reference?
+gtest-418.uno(36.63): E3104: Uno.Type does not contain a member called 'GetProperties'. Could you be missing a reference?
 gtest-418.uno(36.63): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 gtest-418.uno(36.63): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 gtest-418.uno(36.26): E3114: There is no identifier named 'PropertyInfo' accessible in this scope.
@@ -2813,9 +2813,9 @@ gtest-419.uno(11.27): E3135: <Nullable> cannot be used as a type
 gtest-419.uno(12.37): E3135: <Nullable> cannot be used as a type
 gtest-419.uno(19.55): E3135: <Nullable> cannot be used as a type
 gtest-421.uno(10.31): E2075: Array initializers are not supported in this context
-gtest-421.uno(22.32): E3104: 'T[]' does not contain a member called 'Clone'. Could you be missing a package reference?
-gtest-421.uno(26.51): E3104: Uno.Array does not contain a member called 'Clone'. Could you be missing a package reference?
-gtest-434.uno(20.27): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+gtest-421.uno(22.32): E3104: 'T[]' does not contain a member called 'Clone'. Could you be missing a reference?
+gtest-421.uno(26.51): E3104: Uno.Array does not contain a member called 'Clone'. Could you be missing a reference?
+gtest-434.uno(20.27): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 gtest-434.uno(23.38): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 gtest-434.uno(23.65): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 gtest-434.uno(23.92): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
@@ -2826,32 +2826,32 @@ gtest-436.uno(14.31): E2016: Mono.gtest_436.AnEnum has no operators '!=' matchin
 gtest-447.uno(12.17): E3102: There is no identifier named 'C' accessible in this scope.
 gtest-449.uno(13.13): E3114: There is no identifier named 'PortableExecutableKinds' accessible in this scope.
 gtest-449.uno(14.13): E3114: There is no identifier named 'ImageFileMachine' accessible in this scope.
-gtest-449.uno(16.30): E3104: Uno.Type does not contain a member called 'Module'. Could you be missing a package reference?
+gtest-449.uno(16.30): E3104: Uno.Type does not contain a member called 'Module'. Could you be missing a reference?
 gtest-449.uno(18.27): E3102: There is no identifier named 'PortableExecutableKinds' accessible in this scope.
 gtest-449.uno(21.27): E3102: There is no identifier named 'PortableExecutableKinds' accessible in this scope.
 gtest-449.uno(24.28): E3102: There is no identifier named 'ImageFileMachine' accessible in this scope.
 gtest-450.uno(13.13): E3114: There is no identifier named 'PortableExecutableKinds' accessible in this scope.
 gtest-450.uno(14.13): E3114: There is no identifier named 'ImageFileMachine' accessible in this scope.
-gtest-450.uno(16.30): E3104: Uno.Type does not contain a member called 'Module'. Could you be missing a package reference?
+gtest-450.uno(16.30): E3104: Uno.Type does not contain a member called 'Module'. Could you be missing a reference?
 gtest-450.uno(18.27): E3102: There is no identifier named 'PortableExecutableKinds' accessible in this scope.
 gtest-450.uno(21.27): E3102: There is no identifier named 'PortableExecutableKinds' accessible in this scope.
 gtest-450.uno(24.28): E3102: There is no identifier named 'ImageFileMachine' accessible in this scope.
 gtest-451.uno(10.25): E3114: There is no identifier named 'A<>' accessible in this scope.
 gtest-453.uno(35.21): E3135: <Nullable> cannot be used as a type
 gtest-453.uno(36.17): E3128: Call to 'Mono.gtest_453.Test.CompilerTest.DoSomething`1(string,T,T&)' has some invalid arguments (string,Mono.gtest_453.Test.Enum,ref <invalid>)
-gtest-461.uno(37.42): E3107: Uno.Guid does not contain a member called 'NewGuid'. Could you be missing a package reference?
+gtest-461.uno(37.42): E3107: Uno.Guid does not contain a member called 'NewGuid'. Could you be missing a reference?
 gtest-464.uno(10.23): E3102: There is no identifier named 'M' accessible in this scope.
 gtest-467.uno(10.14): E3135: <Nullable> cannot be used as a type
 gtest-471.uno(7.24): E0000: 'T' has no default constructor
 gtest-471.uno(7.35): E0000: 'T' has no default constructor
-gtest-493.uno(32.33): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+gtest-493.uno(32.33): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 gtest-500.uno(18.16): E3135: <Nullable> cannot be used as a type
 gtest-500.uno(19.16): E3135: <Nullable> cannot be used as a type
 gtest-500.uno(20.13): E3131: Expression is a generic type definition but is used as a type.
 gtest-500.uno(21.13): E3131: Expression is a generic type definition but is used as a type.
 gtest-500.uno(25.14): E3135: <Nullable> cannot be used as a type
 gtest-507.uno(8.17): E0109: Ambiguous match
-gtest-511.uno(33.32): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+gtest-511.uno(33.32): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 gtest-512.uno(10.38): E2016: 'bool' has no operators '!=' matching the argument list
 gtest-512.uno(11.27): E2016: '<null>' has no operators '!=' matching the argument list
 gtest-513.uno(38.24): E3135: <Nullable> cannot be used as a type
@@ -2859,10 +2859,10 @@ gtest-513.uno(38.24): E3135: <Nullable> cannot be used as a type
 gtest-513.uno(44.20): E0000: Only variable declarations, fields and/or local variables can occur inside 'using' initializer
 gtest-524.uno(13.22): E3114: There is no identifier named 'Nullable<>' accessible in this scope.
 gtest-525.uno(22.17): E3130: Instances of type 'int' cannot be called as a function
-gtest-526.uno(24.19): E3112: Mono.gtest_526.C does not contain a member called 'N'. Could you be missing a package reference?
-gtest-527.uno(9.46): E3105: 'Uno' does not contain type or namespace 'Activator'. Could you be missing a package reference?
+gtest-526.uno(24.19): E3112: Mono.gtest_526.C does not contain a member called 'N'. Could you be missing a reference?
+gtest-527.uno(9.46): E3105: 'Uno' does not contain type or namespace 'Activator'. Could you be missing a reference?
 gtest-533.uno(9.17): E2047: No implicit cast from 'Mono.gtest_533.List<X>.Flip<Y>' to 'Mono.gtest_533.List<Y>.Comp<X>'
-gtest-536.uno(22.24): E3107: 'Mono.gtest_536.Test.Expression`1' does not contain a member called 'Test'. Could you be missing a package reference?
+gtest-536.uno(22.24): E3107: 'Mono.gtest_536.Test.Expression`1' does not contain a member called 'Test'. Could you be missing a reference?
 gtest-540.uno(13.23): E2016: 'bool' has no operators '&' matching the argument list
 gtest-540.uno(17.24): E2016: 'bool' has no operators '&' matching the argument list
 gtest-540.uno(21.23): E2016: '<null>' has no operators '&' matching the argument list
@@ -2905,14 +2905,14 @@ gtest-548.uno(40.23): E2016: '<null>' has no operators '%' matching the argument
 gtest-548.uno(43.23): E2016: '<null>' has no operators '-' matching the argument list
 gtest-548.uno(46.23): E2016: '<null>' has no operators '>>' matching the argument list
 gtest-548.uno(49.23): E2016: '<null>' has no operators '<<' matching the argument list
-gtest-552.uno(25.19): E3112: Mono.gtest_552.B does not contain a member called 'N'. Could you be missing a package reference?
+gtest-552.uno(25.19): E3112: Mono.gtest_552.B does not contain a member called 'N'. Could you be missing a reference?
 gtest-554.uno(14.17): E3114: There is no identifier named 'InterfaceMapping' accessible in this scope.
-gtest-554.uno(14.42): E3104: Uno.Type does not contain a member called 'GetInterfaceMap'. Could you be missing a package reference?
+gtest-554.uno(14.42): E3104: Uno.Type does not contain a member called 'GetInterfaceMap'. Could you be missing a reference?
 gtest-554.uno(16.46): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 gtest-554.uno(16.46): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 gtest-554.uno(16.26): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
 gtest-554.uno(24.17): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-gtest-554.uno(24.42): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a package reference?
+gtest-554.uno(24.42): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a reference?
 gtest-555.uno(9.32): I2042: Unhandled expression type in CompileExpression: Nullable
 gtest-555.uno(18.20): E3135: <Nullable> cannot be used as a type
 gtest-568.uno(11.16): E3135: <Nullable> cannot be used as a type
@@ -2920,7 +2920,7 @@ gtest-570.uno(16.19): E3135: <Nullable> cannot be used as a type
 gtest-570.uno(16.22): E2047: No implicit cast from 'bool' to 'Mono.gtest_570.C<<invalid>>'
 gtest-570.uno(17.18): E3135: <Nullable> cannot be used as a type
 gtest-570.uno(17.30): E3135: <Nullable> cannot be used as a type
-gtest-582.uno(21.71): E3104: Uno.Type does not contain a member called 'GetGenericParameterConstraints'. Could you be missing a package reference?
+gtest-582.uno(21.71): E3104: Uno.Type does not contain a member called 'GetGenericParameterConstraints'. Could you be missing a reference?
 gtest-583.uno(10.17): E3114: There is no identifier named 'C<>' accessible in this scope.
 gtest-590.uno(15.17): E3135: <Nullable> cannot be used as a type
 gtest-593.uno(18.22): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -2978,7 +2978,7 @@ gtest-anontype-09.uno(12.31): E2004: No best type found for implicitly typed arr
 (unknown): E3356: Uno.Collections.Dictionary`2.Bucket could not be resolved
 gtest-anontype-09.uno(15.33): E3102: There is no identifier named 'Value' accessible in this scope. Did you mean 'Value' (as in Uno.Collections.Dictionary`2.Bucket.Value), 'Value' (as in 'Uno.Collections.Dictionary<TKey, TValue>.Bucket.Value') or 'Value' (as in 'Uno.Collections.Dictionary<object, object>.Bucket.Value'), or one of 133 other similar candidates?
 gtest-anontype-09.uno(15.33): E2004: No best type found for implicitly typed array
-gtest-anontype-10.uno(23.22): E3104: 'int[]' does not contain a member called 'X'. Could you be missing a package reference?
+gtest-anontype-10.uno(23.22): E3104: 'int[]' does not contain a member called 'X'. Could you be missing a reference?
 (unknown): E1108: Unexpected token '`'
 (unknown): E3356: 'Uno.Collections.LinkedList`1' could not be resolved
 gtest-anontype-11.uno(42.27): E3102: There is no identifier named 'First' accessible in this scope. Did you mean 'First' (as in Uno.Collections.LinkedList`1.First), 'First' (as in Uno.Collections.LinkedList<T>.First) or 'First' (as in Uno.Collections.LinkedList<T>.First), or one of 15 other similar candidates?
@@ -2986,20 +2986,20 @@ gtest-anontype-11.uno(42.58): E3102: There is no identifier named 'Second' acces
 gtest-anontype-11.uno(42.58): E2004: No best type found for implicitly typed array
 gtest-anontype-12.uno(10.27): E2027: Expression of type <MethodGroup> cannot be used as left-hand side in an assignment
 gtest-anontype-12.uno(10.27): E2004: No best type found for implicitly typed array
-gtest-collectioninit-03.uno(12.22): E3114: There is nothing named 'Hashtable' accessible in this scope. Are you missing a package reference?
-gtest-collectioninit-03.uno(17.21): E3114: There is nothing named 'Hashtable' accessible in this scope. Are you missing a package reference?
-gtest-exmethod-01.uno(21.48): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a package reference?
-gtest-exmethod-01.uno(22.38): E3104: Uno.Type does not contain a member called 'IsDefined'. Could you be missing a package reference?
-gtest-exmethod-01.uno(25.38): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a package reference?
-gtest-exmethod-01.uno(28.38): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
-gtest-exmethod-03.uno(77.21): E3102: There is nothing named '3.Foo' accessible in this scope. Are you missing a package reference?
-gtest-exmethod-03.uno(83.21): E3102: There is nothing named '4.Foo' accessible in this scope. Are you missing a package reference?
-gtest-exmethod-03.uno(62.29): E3102: There is nothing named '2.Foo' accessible in this scope. Are you missing a package reference?
+gtest-collectioninit-03.uno(12.22): E3114: There is nothing named 'Hashtable' accessible in this scope. Are you missing a reference?
+gtest-collectioninit-03.uno(17.21): E3114: There is nothing named 'Hashtable' accessible in this scope. Are you missing a reference?
+gtest-exmethod-01.uno(21.48): E3111: Uno.Runtime does not contain type or namespace 'CompilerServices'. Could you be missing a reference?
+gtest-exmethod-01.uno(22.38): E3104: Uno.Type does not contain a member called 'IsDefined'. Could you be missing a reference?
+gtest-exmethod-01.uno(25.38): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a reference?
+gtest-exmethod-01.uno(28.38): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
+gtest-exmethod-03.uno(77.21): E3102: There is nothing named '3.Foo' accessible in this scope. Are you missing a reference?
+gtest-exmethod-03.uno(83.21): E3102: There is nothing named '4.Foo' accessible in this scope. Are you missing a reference?
+gtest-exmethod-03.uno(62.29): E3102: There is nothing named '2.Foo' accessible in this scope. Are you missing a reference?
 gtest-exmethod-13.uno(16.35): E2075: Array initializers are not supported in this context
 gtest-exmethod-18.uno(25.34): E3130: Instances of type 'bool' cannot be called as a function
-gtest-exmethod-19.uno(31.27): E3104: Mono.gtest_exmethod_19.Test.D does not contain a member called 'Target'. Could you be missing a package reference?
-gtest-exmethod-19.uno(34.28): E3104: 'Uno.Func<int>' does not contain a member called 'Target'. Could you be missing a package reference?
-gtest-exmethod-22.uno(12.13): E3102: There is nothing named '1.Foo' accessible in this scope. Are you missing a package reference?
+gtest-exmethod-19.uno(31.27): E3104: Mono.gtest_exmethod_19.Test.D does not contain a member called 'Target'. Could you be missing a reference?
+gtest-exmethod-19.uno(34.28): E3104: 'Uno.Func<int>' does not contain a member called 'Target'. Could you be missing a reference?
+gtest-exmethod-22.uno(12.13): E3102: There is nothing named '1.Foo' accessible in this scope. Are you missing a reference?
 gtest-exmethod-26.uno(27.34): E0109: Ambiguous match
 Candidates are: Mono.gtest_exmethod_26.Test2.Extensions.IsNullable(Uno.Type)
                 Mono.gtest_exmethod_26.test.TypeExtensions.IsNullable(Uno.Type)
@@ -3010,8 +3010,8 @@ gtest-exmethod-36.uno(34.23): E3130: Instances of type 'string' cannot be called
 gtest-exmethod-36.uno(38.25): E3130: Instances of type 'bool' cannot be called as a function
 gtest-exmethod-38.uno(34.37): E3117: Mono.gtest_exmethod_38.Repro2.Color.Transparent is static -- qualify with the type name
 gtest-exmethod-41.uno(14.25): I2042: Unhandled expression type in CompileExpression: Lambda
-gtest-exmethod-42.uno(22.13): E3102: There is nothing named '1.Foo' accessible in this scope. Are you missing a package reference?
-gtest-exmethod-45.uno(11.15): E3104: 'string' does not contain a member called 'TestExt'. Could you be missing a package reference?
+gtest-exmethod-42.uno(22.13): E3102: There is nothing named '1.Foo' accessible in this scope. Are you missing a reference?
+gtest-exmethod-45.uno(11.15): E3104: 'string' does not contain a member called 'TestExt'. Could you be missing a reference?
 gtest-exmethod-47.uno(11.15): E2045: No methods matches the parameter list and return type of delegate type Mono.gtest_exmethod_47.D
 gtest-friend-01.uno(11.13): E3114: There is no identifier named 'FriendClass' accessible in this scope.
 gtest-friend-01.uno(11.34): E3114: There is no identifier named 'FriendClass' accessible in this scope.
@@ -3064,8 +3064,8 @@ gtest-iter-07.uno(21.23): E2009: 'Uno.Collections.List<string>' has no construct
 gtest-iter-07.uno(40.21): I3411: Unknown statement type <YieldReturnValue>
 gtest-iter-10.uno(10.32): I3411: Unknown statement type <YieldReturnValue>
 gtest-iter-12.uno(15.13): I3411: Unknown statement type <YieldReturnValue>
-gtest-iter-13.uno(11.29): E3104: 'T[]' does not contain a member called 'GetEnumerator'. Could you be missing a package reference?
-gtest-iter-13.uno(16.24): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+gtest-iter-13.uno(11.29): E3104: 'T[]' does not contain a member called 'GetEnumerator'. Could you be missing a reference?
+gtest-iter-13.uno(16.24): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 gtest-iter-13.uno(18.21): I3411: Unknown statement type <YieldReturnValue>
 gtest-iter-14.uno(32.13): I3411: Unknown statement type <YieldReturnValue>
 gtest-iter-14.uno(47.13): I3411: Unknown statement type <YieldReturnValue>
@@ -3209,7 +3209,7 @@ gtest-optional-09.uno(113.17): E0109: Ambiguous match
 gtest-optional-09.uno(116.17): E0109: Ambiguous match
 gtest-optional-12.uno(15.17): E3128: Call to 'Mono.gtest_optional_12.C.M([string],[int],int[])' has some invalid arguments (int[])
 gtest-optional-13.uno(65.19): E3128: Call to 'Mono.gtest_optional_13.B.Foo2(int)' has some invalid arguments ()
-gtest-optional-15.uno(19.38): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+gtest-optional-15.uno(19.38): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 gtest-optional-15.uno(24.34): E3102: There is no identifier named 'ParameterAttributes' accessible in this scope.
 gtest-optional-15.uno(24.65): E3102: There is no identifier named 'ParameterAttributes' accessible in this scope.
 gtest-optional-19.uno(10.21): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -3236,21 +3236,21 @@ support-353.uno(9.33): E3114: There is no identifier named 'One' accessible in t
 support-388.uno(21.64): E3102: There is no identifier named 'id' accessible in this scope.
 support-388.uno(30.74): E3102: There is no identifier named 'id' accessible in this scope.
 support-388.uno(39.65): E3102: There is no identifier named 'id' accessible in this scope.
-test-104.uno(13.35): E3105: Uno.Threading does not contain type or namespace 'Interlocked'. Could you be missing a package reference?
+test-104.uno(13.35): E3105: Uno.Threading does not contain type or namespace 'Interlocked'. Could you be missing a reference?
 test-113.uno(16.47): E2009: Uno.IntPtr has no constructors matching the argument list (int)
 test-113.uno(26.47): E2009: Uno.IntPtr has no constructors matching the argument list (int)
 test-115.uno(34.31): E2028: Mono.test_115.Y and Mono.test_115.A are not compatible types
 test-119.uno(31.30): E2028: Mono.test_119.Derived and Mono.test_119.Value are not compatible types
 test-119.uno(47.39): E2028: Mono.test_119.Derived and Mono.test_119.Value are not compatible types
 test-12.uno(34.29): E2075: Array initializers are not supported in this context
-test-127.uno(21.23): E3107: Mono.test_127.Test does not contain a member called 'IsDefined'. Could you be missing a package reference?
+test-127.uno(21.23): E3107: Mono.test_127.Test does not contain a member called 'IsDefined'. Could you be missing a reference?
 test-132.uno(9.13): E3114: There is no identifier named 'FieldInfo' accessible in this scope.
-test-132.uno(9.37): E3104: Uno.Type does not contain a member called 'GetField'. Could you be missing a package reference?
+test-132.uno(9.37): E3104: Uno.Type does not contain a member called 'GetField'. Could you be missing a reference?
 test-132.uno(12.13): E3114: There is no identifier named 'FieldAttributes' accessible in this scope.
 test-132.uno(13.26): E3102: There is no identifier named 'FieldAttributes' accessible in this scope.
 test-132.uno(13.62): E3102: There is no identifier named 'FieldAttributes' accessible in this scope.
 test-135.uno(26.13): E3114: There is no identifier named 'PropertyInfo' accessible in this scope.
-test-135.uno(26.43): E3104: Uno.Type does not contain a member called 'GetProperties'. Could you be missing a package reference?
+test-135.uno(26.43): E3104: Uno.Type does not contain a member called 'GetProperties'. Could you be missing a reference?
 test-138.uno(9.17): E2047: No implicit cast from 'long' to 'int'
 test-141.uno(23.17): I3411: Unknown statement type <Checked>
 test-141.uno(39.17): I3411: Unknown statement type <Checked>
@@ -3263,8 +3263,8 @@ test-169.uno(34.34): E2057: The property Mono.test_169.Derived.Thingy has no get
 test-175.uno(29.17): E2047: No implicit cast from 'int' to Mono.test_175.RVA
 test-175.uno(30.17): E2047: No implicit cast from 'int' to Mono.test_175.RVA
 test-183.uno(27.13): E3114: There is no identifier named 'IAsyncResult' accessible in this scope.
-test-183.uno(27.35): E3104: Mono.test_183.Test.D does not contain a member called 'BeginInvoke'. Could you be missing a package reference?
-test-183.uno(28.21): E3104: Mono.test_183.Test.D does not contain a member called 'EndInvoke'. Could you be missing a package reference?
+test-183.uno(27.35): E3104: Mono.test_183.Test.D does not contain a member called 'BeginInvoke'. Could you be missing a reference?
+test-183.uno(28.21): E3104: Mono.test_183.Test.D does not contain a member called 'EndInvoke'. Could you be missing a reference?
 test-196.uno(10.25): E2016: 'uint' has no operators '&' matching the argument list
 test-196.uno(18.26): E2016: 'uint' has no operators '&' matching the argument list
 test-200.uno(31.23): E2047: No implicit cast from 'int' to 'short'
@@ -3274,12 +3274,12 @@ test-221.uno(71.17): E0109: Ambiguous match
 test-221.uno(72.17): E0109: Ambiguous match
 test-221.uno(73.13): E0109: Ambiguous match
 test-223.uno(14.22): E2047: No implicit cast from Mono.test_223.Foo to Uno.Enum
-test-223.uno(15.17): E3111: 'Uno' does not contain type or namespace 'ValueType'. Could you be missing a package reference?
+test-223.uno(15.17): E3111: 'Uno' does not contain type or namespace 'ValueType'. Could you be missing a reference?
 test-223.uno(17.24): E2029: Uno.Enum has no defined cast to type Mono.test_223.Foo
-test-223.uno(30.17): E3111: 'Uno' does not contain type or namespace 'ValueType'. Could you be missing a package reference?
-test-236.uno(22.31): E3107: Uno.Attribute does not contain a member called 'GetCustomAttribute'. Could you be missing a package reference?
+test-223.uno(30.17): E3111: 'Uno' does not contain type or namespace 'ValueType'. Could you be missing a reference?
+test-236.uno(22.31): E3107: Uno.Attribute does not contain a member called 'GetCustomAttribute'. Could you be missing a reference?
 test-253.uno(21.13): E3114: There is no identifier named 'FieldInfo' accessible in this scope.
-test-253.uno(21.51): E3104: Uno.Type does not contain a member called 'GetField'. Could you be missing a package reference?
+test-253.uno(21.51): E3104: Uno.Type does not contain a member called 'GetField'. Could you be missing a reference?
 test-26.uno(20.34): E0000: Delegate construction requires one method argument
 test-266.uno(10.18): E2047: No implicit cast from Mono.test_266.Foo to Uno.Enum
 test-266.uno(11.13): E3114: There is no identifier named 'IConvertible' accessible in this scope.
@@ -3296,9 +3296,9 @@ test-282.uno(22.20): E3102: There is no identifier named 'Convert' accessible in
 test-285.uno(8.21): E3415: A switch expression must be of enum or integral type
 test-285.uno(12.18): E3102: There is no identifier named 'x' accessible in this scope.
 test-285.uno(23.21): E3415: A switch expression must be of enum or integral type
-test-287.uno(25.23): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a package reference?
-test-287.uno(25.43): E3104: Uno.Type does not contain a member called 'IsSealed'. Could you be missing a package reference?
-test-287.uno(30.22): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a package reference?
+test-287.uno(25.23): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a reference?
+test-287.uno(25.43): E3104: Uno.Type does not contain a member called 'IsSealed'. Could you be missing a reference?
+test-287.uno(30.22): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a reference?
 test-298.uno(42.25): E0109: Ambiguous match
 test-300.uno(58.17): E3114: There is no identifier named 'ArrayList' accessible in this scope.
 test-300.uno(58.35): E3114: There is no identifier named 'ArrayList' accessible in this scope.
@@ -3306,25 +3306,25 @@ test-300.uno(62.37): E3102: There is no identifier named 'GetEnumerator' accessi
 test-300.uno(62.37): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 test-310.uno(38.36): E3128: Call to 'object.GetType()' has some invalid arguments (int)
 test-313.uno(22.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-test-313.uno(22.43): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a package reference?
+test-313.uno(22.43): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a reference?
 test-313.uno(23.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
 test-313.uno(25.22): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
 test-326.uno(14.49): I2042: Unhandled expression type in CompileExpression: Lambda
 test-326.uno(14.37): E0000: Delegate construction requires one method argument
-test-330.uno(7.17): E3111: 'Uno' does not contain type or namespace 'IFormattable'. Could you be missing a package reference?
+test-330.uno(7.17): E3111: 'Uno' does not contain type or namespace 'IFormattable'. Could you be missing a reference?
 test-34.uno(88.13): E0109: Ambiguous match
 test-344.uno(21.18): I2042: Unhandled expression type in CompileExpression: Lambda
 test-347.uno(25.24): E3109: 'Project' is ambiguous
 test-358.uno(11.38): E3128: Call to 'double.ToString()' has some invalid arguments (string)
-test-36.uno(16.26): E3104: 'int[]' does not contain a member called 'GetEnumerator'. Could you be missing a package reference?
-test-36.uno(29.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
-test-36.uno(38.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
-test-36.uno(49.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+test-36.uno(16.26): E3104: 'int[]' does not contain a member called 'GetEnumerator'. Could you be missing a reference?
+test-36.uno(29.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
+test-36.uno(38.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
+test-36.uno(49.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 test-362.uno(19.23): E0000: Uno.ArgumentException has no default constructor
 test-364.uno(28.21): I2042: Unhandled expression type in CompileExpression: Lambda
 test-364.uno(37.21): I2042: Unhandled expression type in CompileExpression: Lambda
 test-364.uno(53.34): I2042: Unhandled expression type in CompileExpression: Lambda
-test-367.uno(17.35): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a package reference?
+test-367.uno(17.35): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a reference?
 test-370.uno(11.25): E3415: A switch expression must be of enum or integral type
 test-377.uno(11.13): E3132: Expression is <Namespace> but is used as a type.
 test-389.uno(22.64): E3102: There is no identifier named 'id' accessible in this scope.
@@ -3335,7 +3335,7 @@ test-419.uno(8.21): E3114: There is no identifier named 'Provider' accessible in
 test-419.uno(8.38): E3114: There is no identifier named 'Provider' accessible in this scope.
 test-420.uno(8.21): E3114: There is no identifier named 'Provider' accessible in this scope.
 test-420.uno(8.38): E3114: There is no identifier named 'Provider' accessible in this scope.
-test-427.uno(7.21): E3105: No such type or namespace 'Console'. Could you be missing a package reference?
+test-427.uno(7.21): E3105: No such type or namespace 'Console'. Could you be missing a reference?
 test-449.uno(22.13): E3102: There is no identifier named 'ThreadPool' accessible in this scope.
 test-450.uno(33.14): E2063: Incremental operators can only be used on integers
 test-451.uno(12.21): E3114: There is no identifier named 'ValueType' accessible in this scope.
@@ -3346,32 +3346,32 @@ test-451.uno(15.33): E2029: Mono.test_451.Foo has no defined cast to type Uno.En
 test-461.uno(24.17): E2047: No implicit cast from Mono.test_461.ArrowType to Uno.Enum
 test-461.uno(33.42): E2029: Uno.Enum has no defined cast to type Mono.test_461.ArrowType
 test-461.uno(35.38): E2028: Uno.Enum and 'object' are not compatible types
-test-464.uno(12.37): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a package reference?
-test-464.uno(16.28): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a package reference?
-test-465.uno(12.37): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a package reference?
-test-465.uno(16.28): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a package reference?
+test-464.uno(12.37): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a reference?
+test-464.uno(16.28): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a reference?
+test-465.uno(12.37): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a reference?
+test-465.uno(16.28): E3104: Uno.Type does not contain a member called 'Assembly'. Could you be missing a reference?
 test-467.uno(25.21): E2045: No methods matches the parameter list and return type of delegate type Mono.test_467.B.D
 test-469.uno(24.17): I2042: Unhandled expression type in CompileExpression: Lambda
 test-469.uno(25.17): I2042: Unhandled expression type in CompileExpression: Lambda
 test-472.uno(18.21): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-test-472.uno(18.51): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-472.uno(18.51): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-474.uno(19.19): I2042: Unhandled expression type in CompileExpression: Lambda
 test-474.uno(31.19): I2042: Unhandled expression type in CompileExpression: Lambda
 test-480.uno(57.24): I2042: Unhandled expression type in CompileExpression: Lambda
 test-481.uno(9.49): I2042: Unhandled expression type in CompileExpression: Lambda
-test-483.uno(13.23): E3104: 'Bar' does not contain a member called 'clone'. Could you be missing a package reference?
+test-483.uno(13.23): E3104: 'Bar' does not contain a member called 'clone'. Could you be missing a reference?
 test-486.uno(10.30): E2075: Array initializers are not supported in this context
 test-497.uno(19.31): E0000: Delegate construction requires one method argument
 test-501.uno(18.31): I2042: Unhandled expression type in CompileExpression: Lambda
 test-507.uno(35.17): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-test-507.uno(35.35): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-507.uno(35.35): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-507.uno(36.39): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(36.71): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(36.97): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(36.122): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(36.149): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(36.178): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
-test-507.uno(39.24): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-507.uno(39.24): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-507.uno(40.39): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(40.71): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-507.uno(40.97): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
@@ -3396,7 +3396,7 @@ test-536.uno(16.30): I2042: Unhandled expression type in CompileExpression: Lamb
 test-538.uno(19.28): E2045: No methods matches the parameter list and return type of delegate type Mono.test_538.testDelegate
 test-541.uno(18.19): I2042: Unhandled expression type in CompileExpression: Lambda
 test-543.uno(46.13): E0109: Ambiguous match
-test-558.uno(11.15): E3104: Mono.test_558.TestClass.OneDelegate does not contain a member called 'Invoke'. Could you be missing a package reference?
+test-558.uno(11.15): E3104: Mono.test_558.TestClass.OneDelegate does not contain a member called 'Invoke'. Could you be missing a reference?
 test-560.uno(46.24): E2047: No implicit cast from 'int' to Mono.test_560.Bugs.Bug2.MyByte
 test-560.uno(47.19): E2047: No implicit cast from 'int' to Mono.test_560.Bugs.Bug2.MyByte
 test-578.uno(69.32): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -3409,7 +3409,7 @@ test-600.uno(16.17): E3114: There is no identifier named 'UIntPtr' accessible in
 test-600.uno(16.33): E3114: There is no identifier named 'UIntPtr' accessible in this scope.
 test-600.uno(17.41): E2029: Uno.IntPtr has no defined cast to type Mono.test_600.Test.Key_byte
 test-600.uno(26.45): E2029: Uno.IntPtr has no defined cast to type Mono.test_600.Test.Key_ulong
-test-604.uno(28.73): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a package reference?
+test-604.uno(28.73): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a reference?
 test-604.uno(29.22): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
 test-608.uno(19.30): E2029: Mono.test_608.X.Foo has no defined cast to type Uno.Enum
 test-608.uno(20.34): E2029: Mono.test_608.X.Foo has no defined cast to type Uno.Enum
@@ -3429,8 +3429,8 @@ test-614.uno(29.61): E2016: 'bool' has no operators '|' matching the argument li
 test-615.uno(8.41): E2016: 'int' has no operators '==' matching the argument list
 test-616.uno(79.25): E2047: No implicit cast from 'int' to Mono.test_616.System.Decimal
 test-617.uno(33.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-test-617.uno(33.39): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
-test-617.uno(38.28): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-617.uno(33.39): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
+test-617.uno(38.28): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-618.uno(27.15): E2047: No implicit cast from 'int' to 'byte'
 test-618.uno(28.15): E2047: No implicit cast from 'int' to 'byte'
 test-618.uno(29.15): E2047: No implicit cast from 'int' to 'byte'
@@ -3477,43 +3477,43 @@ test-692.uno(31.28): E2009: Call to 'Uno.DateTime()' has some invalid arguments 
 test-696.uno(10.39): E3128: Call to 'Mono.test_696.S.f(Mono.test_696.S)' has some invalid arguments (<null>)
 test-708.uno(9.49): E2047: No implicit cast from Mono.test_708.A.ADelegate to '<method_group>'
 test-708.uno(9.13): E2047: No implicit cast from '<method_group>' to Mono.test_708.A.ADelegate
-test-716.uno(50.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a package reference?
-test-716.uno(50.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a package reference?
-test-716.uno(54.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a package reference?
-test-716.uno(54.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a package reference?
-test-716.uno(58.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a package reference?
-test-716.uno(58.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a package reference?
-test-716.uno(62.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a package reference?
-test-716.uno(62.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a package reference?
-test-716.uno(66.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a package reference?
-test-716.uno(66.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a package reference?
-test-716.uno(70.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a package reference?
-test-716.uno(70.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a package reference?
+test-716.uno(50.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a reference?
+test-716.uno(50.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a reference?
+test-716.uno(54.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a reference?
+test-716.uno(54.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a reference?
+test-716.uno(58.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a reference?
+test-716.uno(58.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a reference?
+test-716.uno(62.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a reference?
+test-716.uno(62.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a reference?
+test-716.uno(66.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a reference?
+test-716.uno(66.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a reference?
+test-716.uno(70.20): E3104: Uno.Type does not contain a member called 'Attributes'. Could you be missing a reference?
+test-716.uno(70.33): E3102: There is nothing named 'TypeAttributes' accessible in this scope. Are you missing a reference?
 test-728.uno(17.19): E2016: Mono.test_728.Tests.MyEnumUlong has no operators '+' matching the argument list
 test-728.uno(18.15): E2016: Mono.test_728.Tests.MyEnumUlong has no operators '+' matching the argument list
 test-729.uno(13.34): E2047: No implicit cast from 'ulong' to 'int'
 test-729.uno(16.21): E2047: No implicit cast from 'ulong' to 'int'
 test-729.uno(20.25): E2047: No implicit cast from 'ulong' to 'int'
 test-729.uno(23.25): E2047: No implicit cast from 'ulong' to 'int'
-test-739.uno(22.42): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a package reference?
+test-739.uno(22.42): E3104: Uno.Type does not contain a member called 'GetMethods'. Could you be missing a reference?
 test-739.uno(22.42): E3102: There is no identifier named 'GetEnumerator' accessible in this scope. Did you mean 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.GetEnumerator()'), 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.KeyCollection.GetEnumerator()') or 'GetEnumerator' (as in 'Uno.Collections.Dictionary`2.ValueCollection.GetEnumerator()'), or one of 316 other similar candidates?
 test-739.uno(22.42): E3102: There is no identifier named 'MoveNext' accessible in this scope. Did you mean 'MoveNext' (as in 'Uno.Collections.Dictionary`2.Enumerator.MoveNext()'), 'MoveNext' (as in 'Uno.Collections.Dictionary`2.KeyCollection.Enumerator.MoveNext()') or 'MoveNext' (as in 'Uno.Collections.Dictionary`2.ValueCollection.Enumerator.MoveNext()'), or one of 148 other similar candidates?
-test-739.uno(25.38): E3102: There is nothing named 'MethodAttributes' accessible in this scope. Are you missing a package reference?
-test-739.uno(25.65): E3102: There is nothing named 'MethodAttributes' accessible in this scope. Are you missing a package reference?
-test-739.uno(25.91): E3102: There is nothing named 'MethodAttributes' accessible in this scope. Are you missing a package reference?
+test-739.uno(25.38): E3102: There is nothing named 'MethodAttributes' accessible in this scope. Are you missing a reference?
+test-739.uno(25.65): E3102: There is nothing named 'MethodAttributes' accessible in this scope. Are you missing a reference?
+test-739.uno(25.91): E3102: There is nothing named 'MethodAttributes' accessible in this scope. Are you missing a reference?
 test-741.uno(11.15): E0000: 'Mono.test_741.IFoo.NestedProp' is ambiguous. This can be resolved using an explicit cast to a more specific interface type
-test-745.uno(17.13): E3114: There is nothing named 'IConvertible' accessible in this scope. Are you missing a package reference?
-test-745.uno(17.36): E3114: There is nothing named 'IConvertible' accessible in this scope. Are you missing a package reference?
+test-745.uno(17.13): E3114: There is nothing named 'IConvertible' accessible in this scope. Are you missing a reference?
+test-745.uno(17.36): E3114: There is nothing named 'IConvertible' accessible in this scope. Are you missing a reference?
 test-746.uno(30.15): E0000: 'Mono.test_746.IListCounter.Count' is ambiguous. This can be resolved using an explicit cast to a more specific interface type
 test-749.uno(13.15): E2070: The property Mono.test_749.B.Prop has no setter accessor
 test-757.uno(7.32): E2047: No implicit cast from 'long' to 'int'
 test-757.uno(8.23): E2047: No implicit cast from 'ulong' to 'int'
 test-757.uno(9.23): E2047: No implicit cast from 'uint' to 'int'
 test-759.uno(12.32): E3102: There is no identifier named 'E' accessible in this scope. Did you mean 'E' (as in Uno.Platform.Key.E), 'E' (as in Uno.Math.E) or 'E`2' (as in 'Mono.gtest_042.A.E`2'), or one of 36 other similar candidates?
-test-769.uno(19.33): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-769.uno(19.33): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-769.uno(21.35): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-769.uno(21.61): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
-test-769.uno(24.33): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-769.uno(24.33): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-769.uno(26.35): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-769.uno(26.62): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-769.uno(26.91): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
@@ -3535,31 +3535,31 @@ test-801.uno(36.15): E2047: No implicit cast from 'int' to Mono.test_801.C.E
 test-801.uno(40.19): E2047: No implicit cast from 'int' to Mono.test_801.C.E
 test-801.uno(49.20): E2047: No implicit cast from 'int' to Mono.test_801.C.E
 test-805.uno(10.25): E3114: There is no identifier named 'A' accessible in this scope.
-test-819.uno(32.33): E3104: Uno.Type does not contain a member called 'GetCustomAttributes'. Could you be missing a package reference?
+test-819.uno(32.33): E3104: Uno.Type does not contain a member called 'GetCustomAttributes'. Could you be missing a reference?
 test-822.uno(14.23): E2057: The property Mono.test_822.B.Prop has no getter accessor
 test-823.uno(10.25): E3114: There is no identifier named 'A' accessible in this scope.
 test-824.uno(25.21): E0109: Ambiguous match
-test-826.uno(51.32): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-826.uno(51.32): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-826.uno(53.34): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-826.uno(53.60): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
-test-830.uno(29.38): E3104: 'long' does not contain a member called 'CompareTo'. Could you be missing a package reference?
-test-830.uno(30.24): E3104: 'long' does not contain a member called 'CompareTo'. Could you be missing a package reference?
-test-833.uno(27.28): E3107: Uno.Guid does not contain a member called 'NewGuid'. Could you be missing a package reference?
+test-830.uno(29.38): E3104: 'long' does not contain a member called 'CompareTo'. Could you be missing a reference?
+test-830.uno(30.24): E3104: 'long' does not contain a member called 'CompareTo'. Could you be missing a reference?
+test-833.uno(27.28): E3107: Uno.Guid does not contain a member called 'NewGuid'. Could you be missing a reference?
 test-836.uno(11.23): E0000: Uno.ArgumentException has no default constructor
 test-840.uno(34.24): E0109: Ambiguous match
 test-846.uno(10.17): E3114: There is no identifier named 'B' accessible in this scope.
-test-847.uno(20.36): E3104: Uno.Type does not contain a member called 'GetCustomAttributes'. Could you be missing a package reference?
+test-847.uno(20.36): E3104: Uno.Type does not contain a member called 'GetCustomAttributes'. Could you be missing a reference?
 test-848.uno(19.43): I2042: Unhandled expression type in CompileExpression: Lambda
 test-848.uno(19.43): I2042: Unhandled expression type in CompileExpression: Lambda
 test-848.uno(19.13): E3128: Call to 'Mono.test_848.Program.Foo`2(Mono.test_848.A<TEventHandler>,Uno.Action<object, TEventArgs>)' has some invalid arguments (Mono.test_848.A<string>,<invalid>)
 test-849.uno(17.50): E2047: No implicit cast from 'uint' to 'int'
 test-849.uno(19.50): E2047: No implicit cast from 'uint' to 'int'
-test-858.uno(13.21): E3104: 'Bar' does not contain a member called 'Message'. Could you be missing a package reference?
+test-858.uno(13.21): E3104: 'Bar' does not contain a member called 'Message'. Could you be missing a reference?
 test-858.uno(16.13): E3132: Expression is <Namespace> but is used as a type.
 test-858.uno(16.27): E3132: Expression is <Namespace> but is used as a type.
 test-858.uno(20.13): E3114: There is no identifier named 'C' accessible in this scope.
 test-858.uno(20.23): E3114: There is no identifier named 'C' accessible in this scope.
-test-863.uno(9.17): E3111: 'Uno' does not contain type or namespace 'TypedReference'. Could you be missing a package reference?
+test-863.uno(9.17): E3111: 'Uno' does not contain type or namespace 'TypedReference'. Could you be missing a reference?
 test-863.uno(9.36): E3102: There is no identifier named '__makeref' accessible in this scope.
 test-863.uno(10.26): E3102: There is no identifier named '__reftype' accessible in this scope.
 test-863.uno(11.21): E3102: There is no identifier named '__refvalue' accessible in this scope.
@@ -3570,7 +3570,7 @@ test-880.uno(41.23): E0000: Uno.ArgumentException has no default constructor
 test-882.uno(45.14): E2063: Incremental operators can only be used on integers
 test-882.uno(51.13): E2063: Incremental operators can only be used on integers
 test-89.uno(26.22): E2075: Array initializers are not supported in this context
-test-890.uno(23.37): E3104: Uno.Type does not contain a member called 'GetMembers'. Could you be missing a package reference?
+test-890.uno(23.37): E3104: Uno.Type does not contain a member called 'GetMembers'. Could you be missing a reference?
 test-893.uno(15.48): E2016: 'bool' has no operators '&' matching the argument list
 test-899.uno(11.21): E0000: Only variables can occur inside 'lock' initializer
 test-900.uno(18.23): E2029: '<method_group>' has no defined cast to type Mono.test_900.D
@@ -3584,21 +3584,21 @@ test-91.uno(29.53): E3102: There is no identifier named 'BindingFlags' accessibl
 test-91.uno(29.78): E3102: There is no identifier named 'BindingFlags' accessible in this scope.
 test-91.uno(30.13): E3114: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-91.uno(31.13): E3114: There is no identifier named 'MethodInfo' accessible in this scope.
-test-91.uno(36.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-91.uno(36.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-91.uno(37.37): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-91.uno(38.25): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
-test-91.uno(44.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-91.uno(44.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-91.uno(45.37): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-91.uno(46.25): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
-test-91.uno(52.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-91.uno(52.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-91.uno(53.37): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-91.uno(54.25): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
-test-91.uno(60.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a package reference?
+test-91.uno(60.26): E3104: Uno.Type does not contain a member called 'GetMethod'. Could you be missing a reference?
 test-91.uno(61.37): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-91.uno(62.25): E3102: There is no identifier named 'MethodAttributes' accessible in this scope.
 test-91.uno(68.13): E3114: There is no identifier named 'ConstructorInfo' accessible in this scope.
-test-91.uno(68.52): E3104: Uno.Type does not contain a member called 'GetConstructor'. Could you be missing a package reference?
-test-91.uno(75.33): E3104: Uno.Type does not contain a member called 'GetConstructor'. Could you be missing a package reference?
+test-91.uno(68.52): E3104: Uno.Type does not contain a member called 'GetConstructor'. Could you be missing a reference?
+test-91.uno(75.33): E3104: Uno.Type does not contain a member called 'GetConstructor'. Could you be missing a reference?
 test-93.uno(40.21): E3131: Expression is a generic type definition but is used as a type.
 test-93.uno(40.38): E3114: There is no identifier named 'ArrayList' accessible in this scope.
 test-99.uno(37.39): E2016: Mono.test_99.X.Test has no operators '+' matching the argument list
@@ -3667,9 +3667,9 @@ test-anon-134.uno(24.19): I2042: Unhandled expression type in CompileExpression:
 test-anon-135.uno(11.32): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-135.uno(21.35): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-135.uno(31.32): I2042: Unhandled expression type in CompileExpression: Lambda
-test-anon-135.uno(42.19): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a package reference?
-test-anon-135.uno(46.19): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a package reference?
-test-anon-135.uno(50.19): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a package reference?
+test-anon-135.uno(42.19): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a reference?
+test-anon-135.uno(46.19): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a reference?
+test-anon-135.uno(50.19): E3104: Uno.Type does not contain a member called 'GetFields'. Could you be missing a reference?
 test-anon-136.uno(23.51): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-137.uno(15.27): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-140.uno(27.31): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -3681,8 +3681,8 @@ test-anon-146.uno(9.34): I2042: Unhandled expression type in CompileExpression: 
 test-anon-147.uno(9.27): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-147.uno(18.52): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-148.uno(25.20): I2042: Unhandled expression type in CompileExpression: Lambda
-test-anon-149.uno(22.33): E3104: 'Uno.Collections.List<object>' does not contain a member called 'FindAll'. Could you be missing a package reference?
-test-anon-149.uno(29.29): E3104: 'Uno.Collections.List<object>' does not contain a member called 'FindAll'. Could you be missing a package reference?
+test-anon-149.uno(22.33): E3104: 'Uno.Collections.List<object>' does not contain a member called 'FindAll'. Could you be missing a reference?
+test-anon-149.uno(29.29): E3104: 'Uno.Collections.List<object>' does not contain a member called 'FindAll'. Could you be missing a reference?
 test-anon-15.uno(8.24): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-150.uno(25.21): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-151.uno(25.24): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -3759,7 +3759,7 @@ test-anon-44.uno(25.23): I2042: Unhandled expression type in CompileExpression: 
 test-anon-46.uno(16.23): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-47.uno(19.27): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-48.uno(17.35): I2042: Unhandled expression type in CompileExpression: Lambda
-test-anon-49.uno(11.37): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+test-anon-49.uno(11.37): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 test-anon-49.uno(17.43): E3114: There is no identifier named 'ArrayList' accessible in this scope.
 test-anon-49.uno(17.39): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 test-anon-49.uno(17.39): E3102: There is no identifier named 'MoveNext' accessible in this scope.
@@ -3787,7 +3787,7 @@ test-anon-68.uno(20.16): I2042: Unhandled expression type in CompileExpression: 
 test-anon-69.uno(18.34): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-72.uno(20.26): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-73.uno(14.23): I2042: Unhandled expression type in CompileExpression: Lambda
-test-anon-73.uno(25.27): E3105: Uno.Threading does not contain type or namespace 'ThreadPool'. Could you be missing a package reference?
+test-anon-73.uno(25.27): E3105: Uno.Threading does not contain type or namespace 'ThreadPool'. Could you be missing a reference?
 test-anon-75.uno(31.28): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-75.uno(34.31): I2042: Unhandled expression type in CompileExpression: Lambda
 test-anon-76.uno(20.28): I2042: Unhandled expression type in CompileExpression: Lambda
@@ -3834,7 +3834,7 @@ test-debug-14.uno(15.20): I2042: Unhandled expression type in CompileExpression:
 test-debug-14.uno(22.20): I2042: Unhandled expression type in CompileExpression: Lambda
 test-debug-14.uno(30.24): I2042: Unhandled expression type in CompileExpression: Lambda
 test-debug-14.uno(39.20): I2042: Unhandled expression type in CompileExpression: Lambda
-test-debug-15.uno(9.26): E3107: Uno.IO.StreamWriter does not contain a member called 'Null'. Could you be missing a package reference?
+test-debug-15.uno(9.26): E3107: Uno.IO.StreamWriter does not contain a member called 'Null'. Could you be missing a reference?
 test-debug-18.uno(21.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 test-debug-18.uno(28.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
 test-debug-18.uno(34.13): E3114: There is no identifier named 'dynamic' accessible in this scope.
@@ -3848,22 +3848,22 @@ test-debug-23.uno(26.34): I2042: Unhandled expression type in CompileExpression:
 test-iter-02.uno(14.13): I3411: Unknown statement type <YieldReturnValue>
 test-iter-02.uno(16.17): I3411: Unknown statement type <YieldReturnValue>
 test-iter-02.uno(17.13): I3411: Unknown statement type <YieldReturnValue>
-test-iter-02.uno(30.49): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
-test-iter-02.uno(31.34): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+test-iter-02.uno(30.49): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
+test-iter-02.uno(31.34): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 test-iter-11.uno(16.13): I3411: Unknown statement type <YieldReturnValue>
 test-iter-15.uno(10.13): I3411: Unknown statement type <YieldReturnValue>
 test-iter-15.uno(14.17): I3411: Unknown statement type <YieldBreak>
 test-iter-15.uno(16.13): I3411: Unknown statement type <YieldReturnValue>
-test-iter-15.uno(30.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
-test-iter-15.uno(37.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
-test-iter-19.uno(11.37): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+test-iter-15.uno(30.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
+test-iter-15.uno(37.29): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
+test-iter-19.uno(11.37): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 test-iter-19.uno(18.13): I3411: Unknown statement type <YieldReturnValue>
-test-iter-22.uno(11.37): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a package reference?
+test-iter-22.uno(11.37): E3104: Uno.Collections.IEnumerator does not contain a member called 'Current'. Could you be missing a reference?
 test-iter-22.uno(17.43): E3114: There is no identifier named 'ArrayList' accessible in this scope.
 test-iter-22.uno(17.39): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 test-iter-22.uno(17.39): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 test-iter-22.uno(18.29): I3411: Unknown statement type <YieldReturnValue>
-test-iter-25.uno(21.15): E3104: Uno.Action does not contain a member called 'Invoke'. Could you be missing a package reference?
+test-iter-25.uno(21.15): E3104: Uno.Action does not contain a member called 'Invoke'. Could you be missing a reference?
 test-iter-25.uno(29.29): I2042: Unhandled expression type in CompileExpression: Lambda
 test-iter-25.uno(35.13): I3411: Unknown statement type <YieldBreak>
 test-named-04.uno(25.13): E3128: Call to 'Mono.test_named_04.Program.Foo`1(T,T&)' has some invalid arguments (ref T,T)
@@ -3939,12 +3939,12 @@ test-null-operator-20.uno(14.41): I2042: Unhandled expression type in CompileExp
 test-null-operator-21.uno(18.30): I2042: Unhandled expression type in CompileExpression: Nullable
 test-null-operator-22.uno(33.28): I2042: Unhandled expression type in CompileExpression: Nullable
 test-null-operator-23.uno(15.48): I2042: Unhandled expression type in CompileExpression: Nullable
-test-partial-08.uno(19.30): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a package reference?
-test-partial-08.uno(19.58): E3104: Uno.Type does not contain a member called 'IsSealed'. Could you be missing a package reference?
-test-partial-09.uno(24.45): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a package reference?
-test-partial-11.uno(23.23): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a package reference?
-test-partial-11.uno(23.43): E3104: Uno.Type does not contain a member called 'IsSealed'. Could you be missing a package reference?
-test-partial-11.uno(28.22): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a package reference?
+test-partial-08.uno(19.30): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a reference?
+test-partial-08.uno(19.58): E3104: Uno.Type does not contain a member called 'IsSealed'. Could you be missing a reference?
+test-partial-09.uno(24.45): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a reference?
+test-partial-11.uno(23.23): E3104: Uno.Type does not contain a member called 'IsAbstract'. Could you be missing a reference?
+test-partial-11.uno(23.43): E3104: Uno.Type does not contain a member called 'IsSealed'. Could you be missing a reference?
+test-partial-11.uno(28.22): E3104: Uno.Type does not contain a member called 'GetConstructors'. Could you be missing a reference?
 test-partial-21.uno(19.45): I2042: Unhandled expression type in CompileExpression: Lambda
 test-static-using-03.uno(39.21): E0109: Ambiguous match
 test-static-using-07.uno(19.26): E3129: No overloads of 'Concat' matches the argument list (string,string,string)
@@ -3955,7 +3955,7 @@ test-static-using-10.uno(23.33): E3114: There is no identifier named 'N' accessi
 test-static-using-10.uno(24.29): E3114: There is no identifier named 'N' accessible in this scope.
 test-static-using-11.uno(35.17): E3114: There is no identifier named 'TestMe1' accessible in this scope.
 test-xml-037.uno(15.43): E3114: There is no identifier named 'AppDomain' accessible in this scope.
-test-xml-037.uno(15.54): E3104: Uno.Type does not contain a member called 'FindMembers'. Could you be missing a package reference?
+test-xml-037.uno(15.54): E3104: Uno.Type does not contain a member called 'FindMembers'. Could you be missing a reference?
 test-xml-037.uno(15.54): E3102: There is no identifier named 'GetEnumerator' accessible in this scope.
 test-xml-037.uno(15.54): E3102: There is no identifier named 'MoveNext' accessible in this scope.
 test-xml-037.uno(15.18): E3114: There is no identifier named 'MemberInfo' accessible in this scope.
@@ -4164,7 +4164,7 @@ test-53.uno(34.18): E4511: Potential use of 'copy_b' before it is initialized
 test-827.uno(13.13): E4511: Potential use of 's' before it is initialized
 test-829.uno(20.13): E4513: Out-parameter 's' must be initialized before returning (in all code paths)
 test-907.uno(20.17): E4511: Potential use of 'obj' before it is initialized
-gtest-606.uno(9.13): E3114: There is nothing named 'SD<,>' accessible in this scope. Did you perhaps misspell 'D' (as in Uno.Platform.Key.D), 'S' (as in Uno.Platform.Key.S) or 'ID' (as in Uno.Platform.SystemUIWillResizeEventArgs.ID), or one of 85 other similar candidates?  Could you be missing a package reference?
+gtest-606.uno(9.13): E3114: There is nothing named 'SD<,>' accessible in this scope. Did you perhaps misspell 'D' (as in Uno.Platform.Key.D), 'S' (as in Uno.Platform.Key.S) or 'ID' (as in Uno.Platform.SystemUIWillResizeEventArgs.ID), or one of 85 other similar candidates?  Could you be missing a reference?
 test-508.uno(19.13): E4513: Out-parameter 'a' must be initialized before returning (in all code paths)
 test-904.uno(26.22): E4511: Potential use of 'a3' before it is initialized
 test-904.uno(30.22): E4511: Potential use of 'a4' before it is initialized
@@ -4221,7 +4221,7 @@ test-async-89.uno(52.9): E0000: Expected statement or '}' following ';' -- found
 test-interpolation-10.uno(16.26): E0000: Expected expression following '(' -- found '$"Case {3}"' (DollarString) test-async-86.uno(58.20): E0000: Expected ',' or ';' following 'Task' -- found 'TestProperty' (Identifier)
 test-async-86.uno(58.20): E0000: Expected ',' or ';' following 'Task' -- found 'TestProperty' (Identifier)
 test-async-87.uno(43.26): E0000: Unexpected '<'
-test-939-ref.uno(5.22): E3114: There is no identifier named 'Common' accessible in this scope. Did you mean 'Common' (as in Mono.test_939_common.Common)? For example, try adding 'using Mono.test_939_common;' to the top of the code file. Could you be missing a package reference?
+test-939-ref.uno(5.22): E3114: There is no identifier named 'Common' accessible in this scope. Did you mean 'Common' (as in Mono.test_939_common.Common)? For example, try adding 'using Mono.test_939_common;' to the top of the code file. Could you be missing a reference?
 gtest-637.uno(15.42): E3135: <Nullable> cannot be used as a type
 gtest-637.uno(19.43): E3135: <Nullable> cannot be used as a type
 gtest-lambda-37.uno(7.43): E3135: <Nullable> cannot be used as a type
@@ -4231,11 +4231,11 @@ gtest-lambda-37.uno(12.19): E3135: <Nullable> cannot be used as a type
 gtest-lambda-37.uno(17.50): E3135: <Nullable> cannot be used as a type
 gtest-lambda-37.uno(17.22): E3135: <Nullable> cannot be used as a type
 test-939-common.uno(3.30): E0000: Attribute modifier 'assembly' is not supported
-test-939-common.uno(3.30): E3111: Uno.Reflection does not contain type or namespace 'AssemblyVersionAttribute'. Could you be missing a package reference?
+test-939-common.uno(3.30): E3111: Uno.Reflection does not contain type or namespace 'AssemblyVersionAttribute'. Could you be missing a reference?
 test-939-ref.uno(3.30): E0000: Attribute modifier 'assembly' is not supported
-test-939-ref.uno(3.30): E3111: Uno.Reflection does not contain type or namespace 'AssemblyVersionAttribute'. Could you be missing a package reference?
-test-936.uno(10.13): E3114: There is nothing named 'TypeWithIndexer' accessible in this scope. Are you missing a package reference?
-test-936.uno(10.37): E3114: There is nothing named 'TypeWithIndexer' accessible in this scope. Are you missing a package reference?
-test-937.uno(11.25): E3105: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a package reference?
+test-939-ref.uno(3.30): E3111: Uno.Reflection does not contain type or namespace 'AssemblyVersionAttribute'. Could you be missing a reference?
+test-936.uno(10.13): E3114: There is nothing named 'TypeWithIndexer' accessible in this scope. Are you missing a reference?
+test-936.uno(10.37): E3114: There is nothing named 'TypeWithIndexer' accessible in this scope. Are you missing a reference?
+test-937.uno(11.25): E3105: Uno.Runtime does not contain type or namespace 'InteropServices'. Could you be missing a reference?
 test-939.uno(14.13): E3102: There is no identifier named 'A' accessible in this scope. Did you mean 'A' (as in Uno.Platform.Key.A), 'A' (as in UnoTest.General.Base.A) or 'A' (as in UnoTest.General.Enums.Foo.A), or one of 183 other similar candidates?
 test-939.uno(15.17): E3114: There is no identifier named 'B' accessible in this scope. Did you mean 'B' (as in Uno.Platform.Key.B), 'B' (as in UnoTest.General.Base.B) or 'B' (as in UnoTest.General.Enums.Foo.B), or one of 122 other similar candidates?

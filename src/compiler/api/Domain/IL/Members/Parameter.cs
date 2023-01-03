@@ -66,7 +66,7 @@ namespace Uno.Compiler.API.Domain.IL.Members
         bool IEntity.IsExtern => false;
         bool IEntity.IsImplicitCast => false;
         bool IEntity.IsExplicitCast => false;
-        bool IEntity.IsAccessibleFrom(Source src) => Source.Package.IsAccessibleFrom(src.Package);
-        SourcePackage IEntity.Package => Source.Package;
+        bool IEntity.IsAccessibleFrom(Source src) => Source.Bundle.IsAccessibleFrom(src.Bundle);
+        SourceBundle IEntity.Bundle => Source.Bundle;
     }
 }

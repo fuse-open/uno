@@ -10,22 +10,22 @@ using Uno.IO;
 using Uno.Logging;
 using Uno.ProjectFormat;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
-    public class PackageCache : DiskObject, IDisposable
+    public class BundleCache : DiskObject, IDisposable
     {
         // For use by UXNinja & tests in Fuse Studio
-        public static SourcePackage GetPackage(Log log, Project project)
+        public static SourceBundle GetBundle(Log log, Project project)
         {
             // Passing false to disable FuseJS transpiler.
-            using (var cache = new PackageCache(log, project.Config, false))
-                return cache.GetPackage(project);
+            using (var cache = new BundleCache(log, project.Config, false))
+                return cache.GetBundle(project);
         }
 
-        readonly PackageSearchPaths _sourcePaths = new PackageSearchPaths();
-        readonly PackageSearchPaths _searchPaths = new PackageSearchPaths();
+        readonly SearchPaths _sourcePaths = new SearchPaths();
+        readonly SearchPaths _searchPaths = new SearchPaths();
         readonly Dictionary<string, string> _locks = new Dictionary<string, string>();
-        readonly Dictionary<string, SourcePackage> _cache = new Dictionary<string, SourcePackage>();
+        readonly Dictionary<string, SourceBundle> _cache = new Dictionary<string, SourceBundle>();
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
         readonly UnoConfig _config;
         readonly bool _enableTranspiler;
@@ -33,12 +33,12 @@ namespace Uno.Build.Packages
 
         public IEnumerable<string> SearchPaths => _sourcePaths.Concat(_searchPaths).Where(Directory.Exists);
 
-        public PackageCache()
+        public BundleCache()
             : this(null, null, false)
         {
         }
 
-        public PackageCache(Log log, UnoConfig config, bool enableTranspiler = true)
+        public BundleCache(Log log, UnoConfig config, bool enableTranspiler = true)
             : base(log ?? Log.Null)
         {
             if (config == null)
@@ -64,35 +64,35 @@ namespace Uno.Build.Packages
             _transpiler = null;
         }
 
-        public SourcePackage GetPackage(string name, string version = null)
+        public SourceBundle GetBundle(string name, string version = null)
         {
-            return GetPackage(new PackageReference(Source.Unknown, name, version));
+            return GetBundle(new LibraryReference(Source.Unknown, name, version));
         }
 
-        public SourcePackage GetPackage(Project project)
+        public SourceBundle GetBundle(Project project)
         {
-            return GetPackage(project.Source, project, true);
+            return GetBundle(project.Source, project, true);
         }
 
-        public List<DirectoryInfo> GetVersionDirectories(string package)
+        public List<DirectoryInfo> GetVersionDirectories(string library)
         {
             List<DirectoryInfo> result;
-            if (!_library.TryGetValue(package, out result))
+            if (!_library.TryGetValue(library, out result))
             {
                 result = new List<DirectoryInfo>();
-                _library.Add(package, result);
+                _library.Add(library, result);
 
                 foreach (var feed in SearchPaths)
                 {
                     DirectoryInfo dir;
-                    if (!GetPackageDirectories(feed).TryGetValue(package, out dir))
+                    if (!GetLibraryDirectories(feed).TryGetValue(library, out dir))
                         continue;
 
                     var versions = dir.GetDirectories();
                     Array.Sort(versions, (left, right) => VersionRange.Compare(right.Name, left.Name));
 
                     foreach (var version in versions)
-                        if (PackageFile.Exists(version.FullName))
+                        if (ManifestFile.Exists(version.FullName))
                             result.Add(version);
                 }
             }
@@ -100,20 +100,20 @@ namespace Uno.Build.Packages
             return result;
         }
 
-        public Dictionary<string, DirectoryInfo> GetPackageDirectories(string directory)
+        public Dictionary<string, DirectoryInfo> GetLibraryDirectories(string directory)
         {
             var result = new Dictionary<string, DirectoryInfo>();
 
-            foreach (var package in new DirectoryInfo(directory).GetDirectories())
-                result[package.Name] = package;
+            foreach (var library in new DirectoryInfo(directory).GetDirectories())
+                result[library.Name] = library;
 
             return result;
         }
 
-        public IEnumerable<DirectoryInfo> EnumeratePackages(string name)
+        public IEnumerable<DirectoryInfo> EnumerateLibraries(string name)
         {
-            return _sourcePaths.EnumeratePackageDirectories(name).Concat(
-                   _searchPaths.EnumeratePackageDirectories(name));
+            return _sourcePaths.EnumerateLibraryDirectories(name).Concat(
+                   _searchPaths.EnumerateLibraryDirectories(name));
         }
 
         public IEnumerable<DirectoryInfo> EnumerateVersions(string name, string version = null)
@@ -122,37 +122,37 @@ namespace Uno.Build.Packages
                    _searchPaths.EnumerateVersionDirectories(name, version));
         }
 
-        SourcePackage GetPackage(Source src, Project project, bool startup = false)
+        SourceBundle GetBundle(Source src, Project project, bool startup = false)
         {
-            SourcePackage result;
+            SourceBundle result;
             if (_cache.TryGetValue(project.Name, out result))
             {
                 if (result == null)
                 {
                     Log.Error(src, null, "Circular reference to " + project.Name.Quote());
-                    return new SourcePackage(project.Name);
+                    return new SourceBundle(project.Name);
                 }
 
                 if (result.Source.FullPath != project.FullPath || startup)
                 {
-                    Log.Error(src, null, "Multiple projects or packages with the name " + project.Name.Quote());
-                    return new SourcePackage(project.Name);
+                    Log.Error(src, null, "Multiple projects or libraries with the name " + project.Name.Quote());
+                    return new SourceBundle(project.Name);
                 }
 
-                result.Flags &= ~SourcePackageFlags.Startup;
+                result.Flags &= ~SourceBundleFlags.Startup;
                 return result;
             }
 
-            result = project.CreateSourcePackage(startup);
+            result = project.CreateBundle(startup);
             _cache[project.Name] = null;
 
             if (project.UnoCoreReference)
-                result.References.Add(GetPackage(new PackageReference(project.Source, "UnoCore")));
+                result.References.Add(GetBundle(new LibraryReference(project.Source, "UnoCore")));
 
             foreach (var r in project.PackageReferences)
-                result.References.Add(GetPackage(r));
+                result.References.Add(GetBundle(r));
             foreach (var r in project.ProjectReferences)
-                result.References.Add(GetPackage(r.Source, 
+                result.References.Add(GetBundle(r.Source, 
                     LoadProject(r.Source, r.GetFullPath(project.RootDirectory))));
 
             // Transpile FuseJS files
@@ -211,43 +211,43 @@ namespace Uno.Build.Packages
             return Project.Load(filename);
         }
 
-        SourcePackage GetPackage(PackageReference reference)
+        SourceBundle GetBundle(LibraryReference reference)
         {
-            SourcePackage result;
-            if (_cache.TryGetValue(reference.PackageName, out result))
+            SourceBundle result;
+            if (_cache.TryGetValue(reference.LibraryName, out result))
             {
                 if (result == null)
                 {
                     Log.Error(reference.Source, null, "Circular reference to " + reference.Quote());
-                    return new SourcePackage(reference.PackageName, reference.PackageVersion);
+                    return new SourceBundle(reference.LibraryName, reference.LibraryVersion);
                 }
 
-                result.Flags |= SourcePackageFlags.Cached;
-                result.Flags &= ~SourcePackageFlags.Startup;
+                result.Flags |= SourceBundleFlags.Cached;
+                result.Flags &= ~SourceBundleFlags.Startup;
                 return result;
             }
 
-            var package = GetFile(reference);
-            if (package == null)
+            var manifest = GetFile(reference);
+            if (manifest == null)
             {
-                Log.Error(reference.Source, ErrorCode.E0100, "Package " + reference.Quote() + " was not found");
-                return new SourcePackage(reference.PackageName, reference.PackageVersion);
+                Log.Error(reference.Source, ErrorCode.E0100, "Library " + reference.Quote() + " was not found");
+                return new SourceBundle(reference.LibraryName, reference.LibraryVersion);
             }
 
-            result = package.CreateSourcePackage();
-            _cache[reference.PackageName] = null;
+            result = manifest.CreateBundle();
+            _cache[reference.LibraryName] = null;
 
-            foreach (var r in package.References)
-                result.References.Add(GetPackage(r));
+            foreach (var r in manifest.References)
+                result.References.Add(GetBundle(r));
 
-            _cache[reference.PackageName] = result;
+            _cache[reference.LibraryName] = result;
             return result;
         }
 
-        PackageFile GetFile(PackageReference reference)
+        ManifestFile GetFile(LibraryReference reference)
         {
-            var name = reference.PackageName;
-            var versionRange = VersionRange.Parse(reference.PackageVersion);
+            var name = reference.LibraryName;
+            var versionRange = VersionRange.Parse(reference.LibraryVersion);
 
             if (_sourcePaths.Count > 0)
             {
@@ -255,21 +255,21 @@ namespace Uno.Build.Packages
 
                 foreach (var dir in dirs)
                     if (versionRange.IsCompatible(dir.Name))
-                        return PackageFile.Load(dir.FullName);
+                        return ManifestFile.Load(dir.FullName);
 
                 // Fallback to "best" version.
                 if (dirs.Length > 0)
-                    return PackageFile.Load(dirs[0].FullName);
+                    return ManifestFile.Load(dirs[0].FullName);
             }
 
             string version;
             if (_locks.TryGetValue(name, out version))
             {
-                foreach (var dir in _searchPaths.EnumeratePackageDirectories(name))
+                foreach (var dir in _searchPaths.EnumerateLibraryDirectories(name))
                 {
                     var versionDir = Path.Combine(dir.FullName, version);
-                    if (PackageFile.Exists(versionDir))
-                        return PackageFile.Load(versionDir);
+                    if (ManifestFile.Exists(versionDir))
+                        return ManifestFile.Load(versionDir);
                 }
             }
             else
@@ -278,11 +278,11 @@ namespace Uno.Build.Packages
 
                 foreach (var dir in dirs)
                     if (versionRange.IsCompatible(dir.Name))
-                        return PackageFile.Load(dir.FullName);
+                        return ManifestFile.Load(dir.FullName);
 
                 // Fallback to "best" version.
                 if (dirs.Length > 0)
-                    return PackageFile.Load(dirs[0].FullName);
+                    return ManifestFile.Load(dirs[0].FullName);
             }
 
             return null;

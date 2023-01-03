@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using Uno.Build.Packages;
+using Uno.Build.Libraries;
 using Uno.Compiler.API.Backends;
 using Uno.IO;
 using Uno.Logging;

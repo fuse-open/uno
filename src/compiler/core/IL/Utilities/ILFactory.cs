@@ -37,11 +37,11 @@ namespace Uno.Compiler.Core.IL.Utilities
             _compiler = compiler;
         }
 
-        public SourcePackage TryGetPackage(string packageName)
+        public SourceBundle TryGetBundle(string name)
         {
-            foreach (var package in _compiler.Input.Packages)
-                if (package.Name == packageName)
-                    return package;
+            foreach (var bundle in _compiler.Input.Bundles)
+                if (bundle.Name == name)
+                    return bundle;
 
             return null;
         }

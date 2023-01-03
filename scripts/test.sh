@@ -31,7 +31,7 @@ if [[ "$TARGET" == dotnet ]]; then
     dotnet src/test/compiler-test/bin/$CONFIGURATION/net6.0/compiler-test.dll
 fi
 
-# Check that all packages build without errors
+# Check that all libraries build without errors
 uno build $TARGET --no-strip tests/pkgtest
 
 # Run tests from dotnet solutions

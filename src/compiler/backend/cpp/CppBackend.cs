@@ -125,7 +125,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     joinedTypes.Add(GetKey(ns), dt);
                     break;
                 default:
-                    if (dt.Source.Package.IsCached)
+                    if (dt.Source.Bundle.IsCached)
                         joinedTypes.Add(GetKey(ns), dt);
                     else if (dt.IsNestedType || dt.NestedTypes.Count > 0)
                         joinedTypes.Add(GetKey(dt), dt);

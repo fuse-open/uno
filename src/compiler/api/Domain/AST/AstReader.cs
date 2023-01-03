@@ -9,15 +9,15 @@ namespace Uno.Compiler.API.Domain.AST
 {
     public sealed class AstReader : CacheReader
     {
-        public static AstReader Open(SourcePackage upk, string filename)
+        public static AstReader Open(SourceBundle bundle, string filename)
         {
-            var r = new AstReader(upk, filename);
+            var r = new AstReader(bundle, filename);
             r.VerifyMagic(AstSerialization.Magic);
             return r;
         }
 
-        public AstReader(SourcePackage upk, string filename)
-            : base(upk, filename)
+        public AstReader(SourceBundle bundle, string filename)
+            : base(bundle, filename)
         {
         }
 

@@ -2,28 +2,28 @@
 using System.IO;
 using Mono.Options;
 using Uno.Build;
-using Uno.Build.Packages;
+using Uno.Build.Libraries;
 using Uno.Build.Targets;
 
-namespace Uno.CLI.Packages
+namespace Uno.CLI.Building
 {
     class Doctor : Command
     {
         public override string Name => "doctor";
-        public override string Description => "Repair/rebuild packages found in search paths.";
+        public override string Description => "Repair/rebuild libraries found in search paths.";
 
         public override void Help()
         {
             WriteUsage("[options] [project-file|directory ...]",
-                       "[options] --force [package-name ...]");
+                       "[options] --force [library-name ...]");
 
             WriteHead("Available options", 27);
             WriteRow("-a, --all",                  "Build all projects regardless of modification time");
-            WriteRow("-f, --force",                "Update package caches regardless of modification time");
-            WriteRow("-e, --express",              "Express mode. Don't rebuild packages depending on a modified package");
+            WriteRow("-f, --force",                "Update library caches regardless of modification time");
+            WriteRow("-e, --express",              "Express mode. Don't rebuild libraries depending on a modified library");
             WriteRow("-z, --clean",                "Clean projects before building them");
             WriteRow("-c, --configuration=NAME",   "Set build configuration (debug|release)", true);
-            WriteRow("-n, --version=X.Y.Z-SUFFIX", "Override version number for all packages built", true);
+            WriteRow("-n, --version=X.Y.Z-SUFFIX", "Override version number for all libraries built", true);
             WriteRow("-C, --no-cache",             "Disable in-memory AST & IL caches");
             WriteRow("-s, --silent",               "Very quiet build log");
         }
@@ -53,9 +53,9 @@ namespace Uno.CLI.Packages
                     lib.RebuildList[0].IndexOf('/') != -1 ||
                     lib.RebuildList[0].IndexOf('\\') != -1))
                 lib.RebuiltListIsSourcePaths = true;
-            // Repair package caches
+            // Repair library caches
             else
-                new PackageDoctor(Log)
+                new LibraryDoctor(Log)
                     .Repair(lib.RebuildList, force);
 
             lib.Build();

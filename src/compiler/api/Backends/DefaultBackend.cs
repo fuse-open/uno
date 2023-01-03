@@ -13,7 +13,7 @@ namespace Uno.Compiler.API.Backends
 
         public override bool CanLink(Function f)
         {
-            return f.IsExtern || !f.Source.Package.IsStartup;
+            return f.IsExtern || !f.Source.Bundle.IsStartup;
         }
     }
 }

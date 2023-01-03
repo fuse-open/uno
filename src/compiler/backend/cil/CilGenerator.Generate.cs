@@ -36,7 +36,7 @@ namespace Uno.Compiler.Backends.CIL
                         _linker.GetType(_essentials.String)});
 
             foreach (var alias in _linker.TypeMap)
-                if (alias.Key.Package == _package &&
+                if (alias.Key.Bundle == _bundle &&
                         !alias.Key.IsArray &&
                         !alias.Key.IsGenericParameter &&
                         !alias.Key.IsGenericParameterization &&
@@ -55,7 +55,7 @@ namespace Uno.Compiler.Backends.CIL
             for (int i = 0, l = root.Types.Count; i < l; i++)
             {
                 var dt = root.Types[i];
-                if (dt.Package != _package)
+                if (dt.Bundle != _bundle)
                     continue;
 
                 var dotNetName = dt.HasAttribute(_essentials.DotNetTypeAttribute)
@@ -77,7 +77,7 @@ namespace Uno.Compiler.Backends.CIL
 
         void LinkType(DataType dt, Type prebuiltType)
         {
-            if (!dt.Package.CanLink)
+            if (!dt.Bundle.CanLink)
                 _linkedTypes.Add(dt);
 
             _linker.AddType(dt, prebuiltType);

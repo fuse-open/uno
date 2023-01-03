@@ -11,19 +11,19 @@ namespace Uno.Compiler.Frontend
         {
         }
 
-        public override bool Parse(SourcePackage upk, string filename, List<UxlDocument> result)
+        public override bool Parse(SourceBundle bundle, string filename, List<UxlDocument> result)
         {
-            return UxlParser.Parse(Log, upk, filename, result);
+            return UxlParser.Parse(Log, bundle, filename, result);
         }
 
-        public override void Deserialize(SourcePackage upk, string filename, List<UxlDocument> resultAsync)
+        public override void Deserialize(SourceBundle bundle, string filename, List<UxlDocument> resultAsync)
         {
-            UxlDocumentList.Deserialize(upk, filename, resultAsync);
+            UxlDocumentList.Deserialize(bundle, filename, resultAsync);
         }
 
-        public override void Serialize(SourcePackage upk, string filename, IEnumerable<UxlDocument> value)
+        public override void Serialize(SourceBundle bundle, string filename, IEnumerable<UxlDocument> value)
         {
-            value.Serialize(upk, filename);
+            value.Serialize(bundle, filename);
         }
     }
 }

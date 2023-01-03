@@ -97,7 +97,7 @@ namespace Uno.Disasm.ILView
                         this is FolderBase || this is ResourceCollection 
                             ? " file" : 
                         this is ReferenceCollection 
-                            ? " package" 
+                            ? " bundle" 
                             : " item"
                     ) + (
                         childCount != 1 
@@ -124,7 +124,7 @@ namespace Uno.Disasm.ILView
                         block == null && this is BlockItem ||
                         this is DefinitionCollection) ||
                     flags.HasFlag(VisibilityFlags.ProjectOnly) &&
-                        this is PackageItem && !((PackageItem) this).Package.Flags.HasFlag(SourcePackageFlags.Startup) ||
+                        this is PackageItem && !((PackageItem) this).Bundle.Flags.HasFlag(SourceBundleFlags.Startup) ||
                     Children.Count == 0 && (
                         this is ReferenceCollection ||
                         this is ResourceCollection ||

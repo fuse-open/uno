@@ -10,7 +10,7 @@ namespace Uno.Compiler.API.Domain.Serialization
     {
         public bool OptimizeSources;
 
-        readonly SourcePackage _upk;
+        readonly SourceBundle _bundle;
         readonly List<string> _strings = new List<string>();
         readonly Dictionary<string, int> _stringIndices = new Dictionary<string, int>();
 
@@ -19,10 +19,10 @@ namespace Uno.Compiler.API.Domain.Serialization
         int _lastColumn;
         int _lastLength;
 
-        public CacheWriter(SourcePackage upk, string filename)
+        public CacheWriter(SourceBundle bundle, string filename)
             : base(File.Open(filename, FileMode.Create), new UTF8Encoding())
         {
-            _upk = upk;
+            _bundle = bundle;
         }
 
         public void WriteGlobals(IReadOnlyList<string> l)
@@ -159,7 +159,7 @@ namespace Uno.Compiler.API.Domain.Serialization
 
             if (flags.HasFlag(SourceFlags.Path))
             {
-                WriteGlobal(s.FullPath.ToRelativePath(_upk.SourceDirectory).NativeToUnix());
+                WriteGlobal(s.FullPath.ToRelativePath(_bundle.SourceDirectory).NativeToUnix());
                 _lastLine = 0;
             }
             if (flags.HasFlag(SourceFlags.Line))

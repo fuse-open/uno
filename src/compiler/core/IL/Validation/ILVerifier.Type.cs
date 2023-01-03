@@ -12,7 +12,7 @@ namespace Uno.Compiler.Core.IL.Validation
     {
         public override bool Begin(DataType dt)
         {
-            if (dt.CanLink || dt.Package.IsVerified)
+            if (dt.CanLink || dt.Bundle.IsVerified)
                 return false;
 
             var validModifiers = (

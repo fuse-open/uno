@@ -21,7 +21,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 
         static bool IsExportable(IEntity entity)
         {
-            var result = ExportConstants.AllowedPackagePrefixes.Any(prefix => prefix == entity.Source.Package.Name || entity.Source.Package.Name.StartsWith(prefix + "."));
+            var result = ExportConstants.AllowedPackagePrefixes.Any(prefix => prefix == entity.Source.Bundle.Name || entity.Source.Bundle.Name.StartsWith(prefix + "."));
             return result;
         }
 

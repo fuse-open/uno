@@ -16,19 +16,19 @@ Global options
 
 Available commands
   create         Create a new project file
-  update         Update packages and project(s)
+  update         Update libraries and project(s)
   build          Build a project for given target
   clean          Delete generated build and cache directories in project(s)
   test           Run test project(s)
-  doctor         Repair/rebuild packages found in search paths
+  doctor         Repair/rebuild libraries found in search paths
   config         Print information about your Uno configuration
   ls             Print project items found to STDOUT
 
-Experimental commands
+Additional commands
   no-build       Invoke generated build steps without triggering a build
   lint           Parses uno source files and output syntax errors
   adb            Use Android Debug Bridge (adb)
-  launch-apk     Deploy and start APK on a connected device
+  launch-apk     Deploy and start APK on a connected device or emulator
   open           Open file(s) in external application
 
 Environment variables
@@ -48,7 +48,7 @@ Available options
   -c, --class=NAME      Initialize project with an empty class with this name [optional]
   -n, --name=NAME       Specify project file name [optional]
   -d, --defaults        Add default settings
-  -e, --empty           Create empty project without packages or items
+  -e, --empty           Create an empty project (no references)
   -f, --force           Overwrite any existing project without warning
       --flatten         Flatten items to explicit list of files
 ```
@@ -58,13 +58,13 @@ Available options
 ```
 Usage: uno update [options] [project-path ...]
 
-Update packages and project(s).
+Update libraries and project(s).
 
 Example
   uno update -pr --files    Update projects recursively, adding new files
 
 Common options
-      (default)           Install/update packages
+      (default)           Update library bundles
   -p, --project           Update project file(s)
   -r, --recursive         Look for project files recursively
 
@@ -108,7 +108,7 @@ Additional options
   -b, --build-only            Build only; don't run or open debugger
   -g, --gen-only              Generate only; don't compile generated code
   -f, --force                 Build even if output is up-to-date
-  -l, --libs                  Rebuild package library if necessary
+  -l, --libs                  Rebuild library sources if necessary
   -p, --print-internals       Print a list of build system properties
   -N, --no-native             Disable native build step (faster)
   -P, --no-parallel           Disable multi-threading (slower)
@@ -174,8 +174,10 @@ Available options
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * android-emu        C++/JNI/GLES2 code and APK. Runs on emulator (x86_64).
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * ios-sim            (Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
@@ -216,8 +218,10 @@ Available options
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * android-emu        C++/JNI/GLES2 code and APK. Runs on emulator (x86_64).
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * ios-sim            (Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
@@ -225,17 +229,17 @@ Available build targets
 
 ```
 Usage: uno doctor [options] [project-file|directory ...]
-  or   uno doctor [options] --force [package-name ...]
+  or   uno doctor [options] --force [library-name ...]
 
-Repair/rebuild packages found in search paths.
+Repair/rebuild libraries found in search paths.
 
 Available options
   -a, --all                    Build all projects regardless of modification time
-  -f, --force                  Update package caches regardless of modification time
-  -e, --express                Express mode. Don't rebuild packages depending on a modified package
+  -f, --force                  Update library caches regardless of modification time
+  -e, --express                Express mode. Don't rebuild libraries depending on a modified library
   -z, --clean                  Clean projects before building them
   -c, --configuration=NAME     Set build configuration (debug|release) [optional]
-  -n, --version=X.Y.Z-SUFFIX   Override version number for all packages built [optional]
+  -n, --version=X.Y.Z-SUFFIX   Override version number for all libraries built [optional]
   -C, --no-cache               Disable in-memory AST & IL caches
   -s, --silent                 Very quiet build log
 ```
@@ -294,7 +298,7 @@ Type 'uno adb' to see what's available.
 ```
 Usage: uno launch-apk [options] <filename>
 
-Deploy and start APK on a connected device.
+Deploy and start APK on a connected device or emulator.
 
 Available options
   -a, --activity=NAME   Android activity name

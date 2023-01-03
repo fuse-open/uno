@@ -37,7 +37,7 @@ namespace Uno.Compiler.Core
 
         internal BuildEnvironment(
             Backend backend,
-            SourcePackage project,
+            SourceBundle project,
             CompilerOptions options,
             ExtensionRoot extensions,
             ILFactory ilf,
@@ -64,13 +64,13 @@ namespace Uno.Compiler.Core
             Set("OutputDirectory", OutputDirectory = ExpandSingleLine(options.OutputDirectory).UnixToNative());
         }
 
-        public bool IsUpToDate(SourcePackage upk, string filename)
+        public bool IsUpToDate(SourceBundle bundle, string filename)
         {
-            if (!upk.IsCached)
+            if (!bundle.IsCached)
                 return false;
 
             var file = Path.Combine(OutputDirectory, filename);
-            var lib = Path.Combine(upk.CacheDirectory, "lib." + Compiler.Input.AstCache.MagicString);
+            var lib = Path.Combine(bundle.CacheDirectory, "lib." + Compiler.Input.AstCache.MagicString);
             return File.Exists(file) && File.Exists(lib) && 
                    File.GetLastWriteTime(file) > File.GetLastWriteTime(lib);
         }

@@ -14,7 +14,7 @@ namespace Uno.Disasm.ILView
 {
     public class ILItemBuilder
     {
-        readonly Dictionary<SourcePackage, PackageItem> _packageMap = new Dictionary<SourcePackage, PackageItem>();
+        readonly Dictionary<SourceBundle, PackageItem> _packageMap = new Dictionary<SourceBundle, PackageItem>();
         readonly BuildItem _buildItem;
 
         public ILItemBuilder(BuildItem buildItem)
@@ -69,9 +69,9 @@ namespace Uno.Disasm.ILView
             foreach (var ns in root.Namespaces)
                 Build(ns);
             foreach (var block in root.Blocks)
-                Build(GetPackage(block.Source.Package).GetNamespace(root), block);
+                Build(GetPackage(block.Source.Bundle).GetNamespace(root), block);
             foreach (var dt in root.Types)
-                Build(GetPackage(dt.Source.Package).GetNamespace(root), dt);
+                Build(GetPackage(dt.Source.Bundle).GetNamespace(root), dt);
         }
 
         void Build(ILItem parent, DataType dt)
@@ -135,13 +135,13 @@ namespace Uno.Disasm.ILView
             return item;
         }
 
-        PackageItem GetPackage(SourcePackage upk)
+        PackageItem GetPackage(SourceBundle bundle)
         {
             PackageItem result;
-            if (!_packageMap.TryGetValue(upk, out result))
+            if (!_packageMap.TryGetValue(bundle, out result))
             {
-                result = new PackageItem(upk);
-                _packageMap.Add(upk, result);
+                result = new PackageItem(bundle);
+                _packageMap.Add(bundle, result);
                 _buildItem.Packages.Add(result);
             }
 

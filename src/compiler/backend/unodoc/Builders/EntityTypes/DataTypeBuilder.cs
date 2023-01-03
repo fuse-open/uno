@@ -129,7 +129,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             var titles = BuildDataTypeTitles(dataType);
             var syntax = new SyntaxViewModel(Syntax.BuildUnoSyntax(dataType), Syntax.BuildUxSyntax(dataType));
             var baseType = BuildBaseType(dataType);
-            var location = new LocationViewModel(ns.FullName, ns.GetUri(), dataType.Source.Package.Name, dataType.Source.Package.Version);
+            var location = new LocationViewModel(ns.FullName, ns.GetUri(), dataType.Source.Bundle.Name, dataType.Source.Bundle.Version);
             var uxProperties = BuildUxProperties(dataType);
             var inheritance = GetInheritance(dataType);
             var parameters = GetParameters(dataType);

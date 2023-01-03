@@ -109,9 +109,9 @@ namespace Uno.ProjectFormat
             }
         }
 
-        public static void Add(this List<PackageReference> list, string package)
+        public static void Add(this List<LibraryReference> list, string library)
         {
-            list.Add(new PackageReference(Source.Unknown, package));
+            list.Add(new LibraryReference(Source.Unknown, library));
         }
 
         public static void Add(this List<IncludeItem> list, string pattern)

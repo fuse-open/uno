@@ -2,19 +2,19 @@
 {
     public struct BundleFile
     {
-        public readonly SourcePackage Package;
+        public readonly SourceBundle Bundle;
         public readonly string BundleName;
         public readonly string TargetName;
         public readonly string SourcePath;
 
-        public BundleFile(SourcePackage package, string bundleName, string sourcePath)
-            : this(package, bundleName, bundleName, sourcePath)
+        public BundleFile(SourceBundle bundle, string bundleName, string sourcePath)
+            : this(bundle, bundleName, bundleName, sourcePath)
         {
         }
 
-        public BundleFile(SourcePackage package, string bundleName, string targetName, string sourcePath)
+        public BundleFile(SourceBundle bundle, string bundleName, string targetName, string sourcePath)
         {
-            Package = package;
+            Bundle = bundle;
             BundleName = bundleName;
             TargetName = targetName;
             SourcePath = sourcePath;

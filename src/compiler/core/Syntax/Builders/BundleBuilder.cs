@@ -21,8 +21,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
 {
     public class BundleBuilder : LogObject, IBundle
     {
-        readonly Dictionary<SourcePackage, ClassType> _bundles = new Dictionary<SourcePackage, ClassType>();
-        readonly ListDictionary<SourcePackage, BundleFile> _files = new ListDictionary<SourcePackage, BundleFile>();
+        readonly Dictionary<SourceBundle, ClassType> _bundles = new Dictionary<SourceBundle, ClassType>();
+        readonly ListDictionary<SourceBundle, BundleFile> _files = new ListDictionary<SourceBundle, BundleFile>();
         readonly Dictionary<string, Expression> _cache = new Dictionary<string, Expression>();
         readonly Dictionary<Field, Expression> _fields = new Dictionary<Field, Expression>();
         readonly HashSet<Field> _emittedFields = new HashSet<Field>();
@@ -50,13 +50,13 @@ namespace Uno.Compiler.Core.Syntax.Builders
             if (_backend.IsDefault)
                 return;
 
-            foreach (var upk in _compiler.Input.Packages)
+            foreach (var bundle in _compiler.Input.Bundles)
             {
-                foreach (var f in upk.BundleFiles)
+                foreach (var file in bundle.BundleFiles)
                 {
-                    var filename = f.UnixPath;
-                    if (_compiler.Disk.GetFullPath(upk.Source, upk.SourceDirectory, ref filename))
-                        CreateFile(upk.Source, filename);
+                    var filename = file.UnixPath;
+                    if (_compiler.Disk.GetFullPath(bundle.Source, bundle.SourceDirectory, ref filename))
+                        CreateFile(bundle.Source, filename);
                 }
             }
 
@@ -83,30 +83,30 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(e.Key, e.Key.Name + ".bundle", bundleFile));
             }
 
-            var bundles = new List<string>();
-            var packages = _compiler.Input.Packages.ToArray();
-            Array.Sort(packages, (a, b) => a.Name.CompareTo(b.Name));
+            var bundleList = new List<string>();
+            var bundles = _compiler.Input.Bundles.ToArray();
+            Array.Sort(bundles, (a, b) => a.Name.CompareTo(b.Name));
 
-            foreach (var e in packages)
+            foreach (var e in bundles)
             {
                 var bundleFile = Path.Combine(_env.CacheDirectory, e.Name + ".bundle");
                 var files = _files.GetList(e);
                 files.Sort((a, b) => a.BundleName.CompareTo(b.BundleName));
 
                 if (File.Exists(bundleFile))
-                    bundles.Add(e.Name);
+                    bundleList.Add(e.Name);
             }
 
             var bundlesFile = Path.Combine(_env.CacheDirectory, "bundles");
             using (var f = _compiler.Disk.CreateBufferedText(bundlesFile))
-                f.Write(string.Join("\n", bundles));
-            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundles", bundlesFile));
+                f.Write(string.Join("\n", bundleList));
+            _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Bundle, "bundles", bundlesFile));
 
             // Deprecated: The 'bundle' file is no longer used, but may be used directly by 3rdparty code.
             {
                 var index = new List<string>();
 
-                foreach (var e in packages)
+                foreach (var e in bundles)
                 {
                     var line = new List<string> {e.Name};
                     var files = _files.GetList(e);
@@ -124,7 +124,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 var bundleFile = Path.Combine(_env.CacheDirectory, "bundle");
                 using (var f = _compiler.Disk.CreateBufferedText(bundleFile))
                     f.Write(string.Join("\n", index));
-                _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Package, "bundle", bundleFile));
+                _compiler.Data.Extensions.BundleFiles.Add(new BundleFile(_compiler.Input.Bundle, "bundle", bundleFile));
             }
         }
 
@@ -168,7 +168,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 _ilf.CallMethod(src,
                     _ilf.Essentials.Bundle,
                     "Get",
-                    new Constant(src, _ilf.Essentials.String, src.Package.Name)),
+                    new Constant(src, _ilf.Essentials.String, src.Bundle.Name)),
                 "GetFile",
                 new Constant(src, _ilf.Essentials.String, file));
         }
@@ -191,7 +191,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             if (!_cache.TryGetValue(key, out result))
             {
                 var value = factory();
-                var bundle = GetBundle(value.Source.Package);
+                var bundle = GetClass(value.Source.Bundle);
                 var field = new Field(value.Source, bundle, key, 
                     null, Modifiers.Public | Modifiers.Static,
                     FieldModifiers.ReadOnly, value.ReturnType);
@@ -204,18 +204,18 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return result;
         }
 
-        ClassType GetBundle(SourcePackage upk)
+        ClassType GetClass(SourceBundle bundle)
         {
-            if (upk.IsUnknown)
-                upk = _compiler.Input.Package;
+            if (bundle.IsUnknown)
+                bundle = _compiler.Input.Bundle;
 
             ClassType result;
-            if (!_bundles.TryGetValue(upk, out result))
+            if (!_bundles.TryGetValue(bundle, out result))
             {
-                result = new ClassType(upk.Source, _compiler.Data.IL, null, Modifiers.Generated | Modifiers.Public | Modifiers.Static, upk.Name.ToIdentifier() + "_bundle");
-                result.Initializer = new Constructor(upk.Source, result, null, Modifiers.Static, ParameterList.Empty, new Scope(upk.Source));
+                result = new ClassType(bundle.Source, _compiler.Data.IL, null, Modifiers.Generated | Modifiers.Public | Modifiers.Static, bundle.Name.ToIdentifier() + "_bundle");
+                result.Initializer = new Constructor(bundle.Source, result, null, Modifiers.Static, ParameterList.Empty, new Scope(bundle.Source));
                 _compiler.Data.IL.Types.Add(result);
-                _bundles.Add(upk, result);
+                _bundles.Add(bundle, result);
             }
 
             return result;
@@ -223,15 +223,15 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
         BundleFile CreateFile(Source src, string filename, string targetName = null)
         {
-            var bundleName = filename.ToRelativePath(src.Package.SourceDirectory).NativeToUnix();
+            var bundleName = filename.ToRelativePath(src.Bundle.SourceDirectory).NativeToUnix();
 
             // Bundle transpiled FuseJS files as their original name.
             // This makes them easier to require() in the resulting app.
             if (bundleName.StartsWith(FuseJSPrefix))
                 bundleName = bundleName.Substring(FuseJSPrefix.Length);
 
-            var result = new BundleFile(src.Package, bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
-            _files.Add(src.Package, result);
+            var result = new BundleFile(src.Bundle, bundleName, targetName ?? bundleName.GetNormalizedFilename(), filename);
+            _files.Add(src.Bundle, result);
             _compiler.Data.Extensions.BundleFiles.Add(result);
             return result;
         }

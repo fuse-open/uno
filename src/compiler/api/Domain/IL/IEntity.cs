@@ -38,6 +38,6 @@ namespace Uno.Compiler.API.Domain.IL
         bool IsExplicitCast { get; }
 
         bool IsAccessibleFrom(Source src);
-        SourcePackage Package { get; }
+        SourceBundle Bundle { get; }
     }
 }

@@ -13,13 +13,13 @@ namespace Uno.CLI
     {
         readonly Command[] _commands =
         {
-            new Projects.Create(),
-            new Projects.Update(),
-            new Projects.BuildCommand(),
-            new Projects.NoBuild(),
-            new Projects.Clean(),
-            new Projects.Test(),
-            new Packages.Doctor(),
+            new Building.Create(),
+            new Building.Update(),
+            new Building.BuildCommand(),
+            new Building.NoBuild(),
+            new Building.Clean(),
+            new Building.Test(),
+            new Building.Doctor(),
             new Diagnostics.Config(),
             new Diagnostics.Ls(),
             new Diagnostics.Lint(),

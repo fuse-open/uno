@@ -27,19 +27,19 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
                     // Auto-generate main-class when building a library.
                     if (Environment.IsDefined("LIBRARY"))
                     {
-                        var type = new ClassType(Package.Source, Data.IL, null, Modifiers.Generated | Modifiers.Public, Package.Name.ToIdentifier() + "_app");
+                        var type = new ClassType(Bundle.Source, Data.IL, null, Modifiers.Generated | Modifiers.Public, Bundle.Name.ToIdentifier() + "_app");
                         type.SetBase(Essentials.Application);
-                        type.Constructors.Add(new Constructor(Package.Source, type, null, Modifiers.Generated | Modifiers.Public, new Parameter[0], new Scope()));
+                        type.Constructors.Add(new Constructor(Bundle.Source, type, null, Modifiers.Generated | Modifiers.Public, new Parameter[0], new Scope()));
                         Data.IL.Types.Add(type);
                         Data.SetMainClass(type);
                         break;
                     }
 
-                    var extraMsg = Package.Name.EndsWith("Test") ? ". If this is a test project, it cannot be started directly, but must be run with a test runner." : "";
-                    Log.Error(Package.Source, ErrorCode.E3503, "No non-abstract application classes found in project" + extraMsg);
+                    var extraMsg = Bundle.Name.EndsWith("Test") ? ". If this is a test project, it cannot be started directly, but must be run with a test runner." : "";
+                    Log.Error(Bundle.Source, ErrorCode.E3503, "No non-abstract application classes found in project" + extraMsg);
                     break;
                 default:
-                    var mainClass = BestMainClassSelector.GetBestMainClass(FoundMainClasses, Log, Package, Essentials.MainClassAttribute);
+                    var mainClass = BestMainClassSelector.GetBestMainClass(FoundMainClasses, Log, Bundle, Essentials.MainClassAttribute);
                     if (mainClass != null)
                         Data.SetMainClass(mainClass);
                     break;

@@ -140,8 +140,8 @@ namespace Uno.Logging
 
         public void Warning1(Source src, object code, string msg)
         {
-            // Silence warnings from cached packages (unless -W3 was passed)
-            if (src.Package.IsCached && WarningLevel < 3 || src.Package.IsVerified ||
+            // Silence warnings from cached libraries (unless -W3 was passed)
+            if (src.Bundle.IsCached && WarningLevel < 3 || src.Bundle.IsVerified ||
                 MaxErrorCount > 0 && WarningCount >= MaxErrorCount ||
                 WarningLevel == 0)
                 return;

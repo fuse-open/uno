@@ -6,15 +6,15 @@ namespace Uno.Compiler.Core.IL.Validation
     {
         public VisibilityLevel Level;
         public DataType Type;
-        public SourcePackage Package => Type.Source.Package;
+        public SourceBundle Bundle => Type.Source.Bundle;
 
-        public bool IsVisibleInPackage(SourcePackage package)
+        public bool IsVisibleInBundle(SourceBundle bundle)
         {
             return
                 Level == VisibilityLevel.Global ||
-                (Level == VisibilityLevel.Package && Package.Equals(package)) ||
-                (Level == VisibilityLevel.SameTypeOrSubclassOfOrPackage && Package.Equals(package)) ||
-                Package.InternalsVisibleTo.Contains(package.Name);
+                (Level == VisibilityLevel.Bundle && Bundle.Equals(bundle)) ||
+                (Level == VisibilityLevel.SameTypeOrSubclassOfOrPackage && Bundle.Equals(bundle)) ||
+                Bundle.InternalsVisibleTo.Contains(bundle.Name);
         }
 
         public Visibility(VisibilityLevel level, DataType dt)
@@ -29,10 +29,10 @@ namespace Uno.Compiler.Core.IL.Validation
             {
                 case VisibilityLevel.Global:
                     return dt.IsVisibleGlobally();
-                case VisibilityLevel.Package:
-                    return dt.IsVisibleInPackage(Package);
+                case VisibilityLevel.Bundle:
+                    return dt.IsVisibleInPackage(Bundle);
                 case VisibilityLevel.SameTypeOrSubclassOfOrPackage:
-                    return dt.IsVisibleInPackage(Package) &&
+                    return dt.IsVisibleInPackage(Bundle) &&
                            dt.IsVisibleInType(Type) &&
                            dt.IsVisibleInSubclassesOf(Type);
                 case VisibilityLevel.SameTypeOrSubclass:
@@ -47,7 +47,7 @@ namespace Uno.Compiler.Core.IL.Validation
 
         public override string ToString()
         {
-            return Level + " (Type: " + Type + ", Package: " + Package + ")";
+            return Level + " (Type: " + Type + ", Package: " + Bundle + ")";
         }
     }
 }

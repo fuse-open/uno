@@ -10,7 +10,7 @@ namespace Uno.Compiler.Core.IL
     public class CompilerPass : Pass
     {
         protected readonly Backend Backend;
-        protected readonly SourcePackage Package;
+        protected readonly SourceBundle Bundle;
         protected readonly TypeBuilder TypeBuilder;
         protected new readonly BuildData Data;
         protected new readonly BuildEnvironment Environment;
@@ -24,13 +24,13 @@ namespace Uno.Compiler.Core.IL
             BuildEnvironment environment,
             ILFactory ilf,
             Backend backend,
-            SourcePackage package,
+            SourceBundle bundle,
             TypeBuilder typeBuilder,
             NameResolver resolver)
             : base(disk, data, environment, ilf)
         {
             Backend = backend;
-            Package = package;
+            Bundle = bundle;
             TypeBuilder = typeBuilder;
             Data = data;
             Environment = environment;
@@ -43,7 +43,7 @@ namespace Uno.Compiler.Core.IL
             : base(parent)
         {
             Backend = parent.Backend;
-            Package = parent.Package;
+            Bundle = parent.Bundle;
             TypeBuilder = parent.TypeBuilder;
             Data = parent.Data;
             Environment = parent.Environment;

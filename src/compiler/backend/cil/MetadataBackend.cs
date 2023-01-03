@@ -19,14 +19,14 @@ namespace Uno.Compiler.Backends.CIL
             _linker = new CilLinker(Log, Essentials, Environment.OutputDirectory, true);
         }
 
-        public override bool CanLink(SourcePackage upk)
+        public override bool CanLink(SourceBundle bundle)
         {
-            return Environment.IsUpToDate(upk, upk.Name + ".dll");
+            return Environment.IsUpToDate(bundle, bundle.Name + ".dll");
         }
 
         public override bool CanLink(DataType dt)
         {
-            return dt.Package.CanLink;
+            return dt.Bundle.CanLink;
         }
 
         public override bool CanLink(Function function)
@@ -34,7 +34,7 @@ namespace Uno.Compiler.Backends.CIL
             return true;
         }
 
-        public override BackendResult Build(SourcePackage package)
+        public override BackendResult Build(SourceBundle package)
         {
             if (package.CanLink)
             {

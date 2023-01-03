@@ -47,7 +47,7 @@ namespace Uno.ProjectFormat
         public Source Source => new Source(_fullPath);
         public UnoConfig Config => UnoConfig.GetUpToDate(_config) ?? (_config = UnoConfig.Get(_fullPath));
 
-        public IReadOnlyList<PackageReference> PackageReferences => (IReadOnlyList<PackageReference>)_doc.OptionalPackages ?? new PackageReference[0];
+        public IReadOnlyList<LibraryReference> PackageReferences => (IReadOnlyList<LibraryReference>)_doc.OptionalPackages ?? new LibraryReference[0];
         public IReadOnlyList<ProjectReference> ProjectReferences => GetFlattenedProjects();
         public IReadOnlyList<SourceValue> InternalsVisibleTo => (IReadOnlyList<SourceValue>)_doc.OptionalInternalsVisibleTo ?? new SourceValue[0];
         public IReadOnlyList<IncludeItem> IncludeItems => (IReadOnlyList<IncludeItem>)_doc.Includes ?? new IncludeItem[0];
@@ -64,7 +64,7 @@ namespace Uno.ProjectFormat
         public IEnumerable<FileItem> FuseJSFiles => GetFlattenedItems().Where(x => x.Type == IncludeItemType.FuseJS).Select(x => new FileItem(x.Value, x.Condition));
 
         public Dictionary<string, SourceValue> MutableProperties => _doc.Properties;
-        public List<PackageReference> MutablePackageReferences => _doc.OptionalPackages ?? (_doc.OptionalPackages = new List<PackageReference>());
+        public List<LibraryReference> MutablePackageReferences => _doc.OptionalPackages ?? (_doc.OptionalPackages = new List<LibraryReference>());
         public List<SourceValue> MutableInternalsVisibleTo => _doc.OptionalInternalsVisibleTo ?? (_doc.OptionalInternalsVisibleTo = new List<SourceValue>());
 
         public List<ProjectReference> MutableProjectReferences
@@ -216,7 +216,7 @@ namespace Uno.ProjectFormat
         public void AddDefaults()
         {
             if (_doc.OptionalPackages == null)
-                _doc.OptionalPackages = new List<PackageReference>();
+                _doc.OptionalPackages = new List<LibraryReference>();
 
             if (_doc.OptionalProjects == null)
                 _doc.OptionalProjects = new List<ProjectReference>();
@@ -366,35 +366,35 @@ namespace Uno.ProjectFormat
             return Source;
         }
 
-        public SourcePackage CreateSourcePackage(bool isStartup = false)
+        public SourceBundle CreateBundle(bool isStartup = false)
         {
-            var upk = new SourcePackage(
+            var bundle = new SourceBundle(
                 Name,
                 Version,
                 FullPath,
                 RootDirectory,
                 CacheDirectory,
-                SourcePackageFlags.Project | (
+                SourceBundleFlags.Project | (
                     IsTransitive
-                        ? SourcePackageFlags.Transitive
+                        ? SourceBundleFlags.Transitive
                         : 0) | (
                     isStartup
-                        ? SourcePackageFlags.Startup
+                        ? SourceBundleFlags.Startup
                         : 0),
                 BuildCondition);
 
-            upk.AdditionalFiles.AddRange(AdditionalFiles);
-            upk.BundleFiles.AddRange(BundleFiles);
-            upk.SourceFiles.AddRange(SourceFiles);
-            upk.ExtensionsFiles.AddRange(ExtensionsFiles);
-            upk.ForeignSourceFiles.AddRange(ForeignSourceFiles);
-            upk.StuffFiles.AddRange(StuffFiles);
-            upk.UXFiles.AddRange(UXFiles);
+            bundle.AdditionalFiles.AddRange(AdditionalFiles);
+            bundle.BundleFiles.AddRange(BundleFiles);
+            bundle.SourceFiles.AddRange(SourceFiles);
+            bundle.ExtensionsFiles.AddRange(ExtensionsFiles);
+            bundle.ForeignSourceFiles.AddRange(ForeignSourceFiles);
+            bundle.StuffFiles.AddRange(StuffFiles);
+            bundle.UXFiles.AddRange(UXFiles);
 
             foreach (var p in InternalsVisibleTo)
-                upk.InternalsVisibleTo.Add(p.String);
+                bundle.InternalsVisibleTo.Add(p.String);
 
-            return upk;
+            return bundle;
         }
 
         public override string ToString()

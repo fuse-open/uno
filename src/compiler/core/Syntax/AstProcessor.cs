@@ -45,7 +45,7 @@ namespace Uno.Compiler.Core.Syntax
             if (parent.UnoName != ns.Name.Symbol)
                 throw new FatalException(ns.Name.Source, ErrorCode.I3331, "Invalid namespace name");
 
-            parent.Packages.Add(ns.Name.Source.Package);
+            parent.Bundles.Add(ns.Name.Source.Bundle);
             _astMap.Add(parent, ns);
 
             var result = new AstILNode(parent, ns);
@@ -72,7 +72,7 @@ namespace Uno.Compiler.Core.Syntax
                 var items = new List<AstBlockBase>();
 
                 foreach (var e in ast)
-                    if (_env.Test(e.Name.Source.Package.Source, e.Name.Source.Package.BuildCondition))
+                    if (_env.Test(e.Name.Source.Bundle.Source, e.Name.Source.Bundle.BuildCondition))
                         items.AddRange(e.Blocks);
 
                 foreach (var e in items)

@@ -142,10 +142,10 @@ namespace Uno.Compiler.API.Domain.IL
 
         public bool IsAccessibleFrom(Source src)
         {
-            return Source.Package.IsAccessibleFrom(src.Package) && (
+            return Source.Bundle.IsAccessibleFrom(src.Bundle) && (
                     IsProtected || !IsInternal ||
-                    Source.Package == src.Package ||
-                    Source.Package.InternalsVisibleTo.Contains(src.Package.Name) ||
+                    Source.Bundle == src.Bundle ||
+                    Source.Bundle.InternalsVisibleTo.Contains(src.Bundle.Name) ||
                     src.IsUnknown);
         }
 
@@ -530,7 +530,7 @@ namespace Uno.Compiler.API.Domain.IL
         IEntity IEntity.MasterDefinition => MasterDefinition;
         DataType IEntity.DeclaringType => ParentType;
         MemberType IEntity.MemberType => MemberType.Other;
-        public SourcePackage Package => Source.Package;
+        public SourceBundle Bundle => Source.Bundle;
         public bool IsPublic => Modifiers.HasFlag(Modifiers.Public);
         public bool IsProtected => Modifiers.HasFlag(Modifiers.Protected);
         public bool IsPrivate => Modifiers.HasFlag(Modifiers.Private);
