@@ -27,10 +27,14 @@ namespace Uno.Build.Packages
         public IEnumerable<DirectoryInfo> EnumerateVersionDirectories(string name = "*", string version = null)
         {
             version = version ?? "*";
-            foreach (var package in EnumeratePackageDirectories(name))
-                foreach (var dir in package.EnumerateDirectories(version))
-                    if (PackageFile.Exists(dir.FullName))
-                        yield return dir;
+            foreach (var package in EnumeratePackageDirectories(name)) {
+                if (PackageFile.Exists(package.FullName))
+                    yield return package;
+                else
+                    foreach (var dir in package.EnumerateDirectories(version))
+                        if (PackageFile.Exists(dir.FullName))
+                            yield return dir;
+            }
         }
 
         public DirectoryInfo[] GetOrderedVersionDirectories(string name = "*", string version = null)

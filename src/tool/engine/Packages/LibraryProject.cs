@@ -10,7 +10,6 @@ namespace Uno.Build.Packages
     {
         public readonly Project Project;
         public readonly string PackageDirectory;
-        public readonly string VersionDirectory;
         public readonly string CacheDirectory;
         public readonly string ConfigFile;
         public readonly string PackageFile;
@@ -22,18 +21,16 @@ namespace Uno.Build.Packages
         {
             Project = project;
             PackageDirectory = Path.Combine(sourceDir, "build", project.Name);
-            VersionDirectory = Path.Combine(PackageDirectory, project.Version);
-            CacheDirectory = Path.Combine(VersionDirectory, ".uno");
+            CacheDirectory = Path.Combine(PackageDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
             PackageFile = Path.Combine(CacheDirectory, "package");
         }
 
-        LibraryProject(LibraryProject lib, string versionDir)
+        LibraryProject(LibraryProject lib)
         {
             Project = lib.Project;
             PackageDirectory = lib.PackageDirectory;
-            VersionDirectory = versionDir;
-            CacheDirectory = Path.Combine(VersionDirectory, ".uno");
+            CacheDirectory = Path.Combine(PackageDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
             PackageFile = Path.Combine(CacheDirectory, "package");
         }
@@ -44,11 +41,7 @@ namespace Uno.Build.Packages
             if (!Directory.Exists(PackageDirectory))
                 return false;
 
-            var versions = Directory.EnumerateDirectories(PackageDirectory).ToArray();
-            if (versions.Length != 1)
-                return false;
-
-            existing = new LibraryProject(this, versions[0]);
+            existing = new LibraryProject(this);
             return true;
         }
 
