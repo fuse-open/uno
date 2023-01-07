@@ -1,12 +1,12 @@
 // Core config
-AppLoader.Mac: bin/mac/net6.0
+AppLoader.Generic: bin/generic/net6.0
+AppLoader.Mac: bin/mac/net6.0-macos
 AppLoader.Windows: bin/win/net6.0-windows
 
 if WIN32 {
     AppLoader.Assembly: bin/win/net6.0-windows/uno-app.dll
     Uno.Command: bin/net6.0/uno.exe
 } else if MAC {
-    // FIXME: Xamarin.Mac doesn't work on .NET 6.0:
     AppLoader.Assembly: bin/generic/net6.0/uno-app.dll
     Uno.Command: bin/net6.0/uno
 } else {

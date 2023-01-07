@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.Versioning;
 using AppKit;
 using CoreGraphics;
 using Uno.Platform;
@@ -7,12 +8,11 @@ using Uno.Platform.Internal;
 
 namespace Uno.AppLoader.MonoMac
 {
-    // Be sure what you do when changing the implementation. MonoMacGameView getters and setters is very expensive, 
-    // since they communicate with the OS
+    [SupportedOSPlatform("macOS10.14")]
     class MonoMacPlatformWindow : WindowBackend
     {
         UnoGLView _view;
-        Uno.Int2 _clientSize;
+        Int2 _clientSize;
         float _dpi;
 
         public MonoMacPlatformWindow(UnoGLView view)
@@ -89,39 +89,39 @@ namespace Uno.AppLoader.MonoMac
                 _view.Window.ToggleFullScreen(_view);
         }
 
-        public override bool GetKeyState(Uno.Platform.Key key)
+        public override bool GetKeyState(Key key)
         {
             switch (key)
             {
-                case Uno.Platform.Key.ControlKey:
+                case Key.ControlKey:
                     return (_view.ModifierFlags & NSEventModifierMask.ControlKeyMask) != 0;
-                case Uno.Platform.Key.ShiftKey:
+                case Key.ShiftKey:
                     return (_view.ModifierFlags & NSEventModifierMask.ShiftKeyMask) != 0;
-                case Uno.Platform.Key.AltKey:
+                case Key.AltKey:
                     return (_view.ModifierFlags & NSEventModifierMask.AlternateKeyMask) != 0;
-                case Uno.Platform.Key.OSKey:
-                case Uno.Platform.Key.MetaKey:
+                case Key.OSKey:
+                case Key.MetaKey:
                     return (_view.ModifierFlags & NSEventModifierMask.CommandKeyMask) != 0;
                 default:
                     return false;
             }
         }
 
-        public override void SetPointerCursor(Uno.Platform.PointerCursor p)
+        public override void SetPointerCursor(PointerCursor p)
         {
         }
 
-        public override Uno.Platform.PointerCursor GetPointerCursor()
+        public override PointerCursor GetPointerCursor()
         {
-            return Uno.Platform.PointerCursor.Default;
+            return PointerCursor.Default;
         }
 
-        public override bool GetMouseButtonState(Uno.Platform.MouseButton button)
+        public override bool GetMouseButtonState(MouseButton button)
         {
             return (_view.PressedMouseButtons & (1 << (int)button)) != 0;
         }
 
-        public override void BeginTextInput(Uno.Platform.TextInputHint hint)
+        public override void BeginTextInput(TextInputHint hint)
         {
             _view.EnableText = true;
         }

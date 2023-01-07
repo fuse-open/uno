@@ -4,10 +4,12 @@ using System.Linq;
 using CoreGraphics;
 using Uno.AppLoader.MonoMac;
 using Uno.Platform.Internal;
+using System.Runtime.Versioning;
 
 namespace Uno.AppLoader
 {
     [Register("UnoAppDelegate")]
+    [SupportedOSPlatform("macOS10.14")]
     public class AppDelegate : NSApplicationDelegate
     {
         NSWindow _window;

@@ -1,20 +1,21 @@
-﻿using System;
+﻿using System.Runtime.Versioning;
 using AppKit;
 using Uno.Platform;
 
 namespace Uno.AppLoader.MonoMac
 {
+    [SupportedOSPlatform("macOS10.14")]
     public static class MonoMacEnums
     {
-        public static NSAlertStyle GetAlertStyle(Uno.Diagnostics.LogLevel level)
+        public static NSAlertStyle GetAlertStyle(Diagnostics.LogLevel level)
         {
             switch (level)
             {
-                case Uno.Diagnostics.LogLevel.Error:
+                case Diagnostics.LogLevel.Error:
                     return NSAlertStyle.Critical;
-                case Uno.Diagnostics.LogLevel.Warning:
+                case Diagnostics.LogLevel.Warning:
                     return NSAlertStyle.Warning;
-                case Uno.Diagnostics.LogLevel.Information:
+                case Diagnostics.LogLevel.Information:
                     return NSAlertStyle.Informational;
                 default:
                     return 0;

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Security;
 using OpenGL;
 using OpenTK.Graphics.OpenGL;
 using MacGL = OpenTK.Graphics.OpenGL.GL;
 
-#pragma warning disable 3019
-#pragma warning disable 1591
-#pragma warning disable 1572
-#pragma warning disable 1573
-
 namespace Uno.AppLoader.MonoMac
 {
+    [SupportedOSPlatform("macOS10.14")]
     public class MonoMacGL : IGL
     {
         internal const string Library = "/System/Library/Frameworks/OpenGL.framework/OpenGL";
