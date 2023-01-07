@@ -1,4 +1,4 @@
-namespace ShippedPackagesCompile
+namespace ShippedLibrariesCompile
 {
     public class Main : Uno.Application
     {

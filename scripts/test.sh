@@ -32,7 +32,7 @@ if [[ "$TARGET" == dotnet ]]; then
 fi
 
 # Check that all libraries build without errors
-uno build $TARGET --no-strip tests/pkgtest
+uno build $TARGET --no-strip tests/libtest
 
 # Run tests from dotnet solutions
 if [[ "$TARGET" == dotnet ]]; then

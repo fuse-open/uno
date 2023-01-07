@@ -1,5 +1,5 @@
 {
-    "RootNamespace": "ShippedPackagesCompile",
+    "RootNamespace": "ShippedLibrariesCompile",
     "Packages": [
         "Uno.Collections",
         "Uno.Data.Json",
