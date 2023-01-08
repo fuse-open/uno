@@ -83,8 +83,10 @@ h1 "Optimizing package"
 
 # OpenTK and Xamarin.Mac will be added back by restore.js
 rm-identical bin/net6.0 node_modules/@fuse-open/xamarin-mac *.dll *.dylib
-rm-identical bin/mac/net6.0 node_modules/@fuse-open/xamarin-mac *.dll *.dylib
 rm-identical bin/win/net6.0-windows node_modules/@fuse-open/opentk *.dll
 
-# Drop superfluous build artifacts
+# Remove needless build artifacts
 rm-all bin *.config *.pdb *.xml
+
+# Remove native macOS binaries (too big)
+rm -rf bin/mac/net6.0-macos/osx-*
