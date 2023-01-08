@@ -11,38 +11,38 @@ namespace Uno.Compiler.Foreign
 {
     public class ForeignFilePass : Pass
     {
-        readonly SourcePackage Package;
+        readonly SourceBundle Bundle;
         readonly ExtensionRoot Extensions;
         readonly CppBackend Backend;
 
         public ForeignFilePass(
             ExtensionRoot extensions,
-            SourcePackage package,
+            SourceBundle bundle,
             CppBackend backend)
             : base(backend)
         {
             Extensions = extensions;
-            Package = package;
+            Bundle = bundle;
             Backend = backend;
         }
 
         public override void Run()
         {
-            var seen = new List<SourcePackage>();
-            var toProcess = new List<SourcePackage> {Package};
+            var seen = new List<SourceBundle>();
+            var toProcess = new List<SourceBundle> {Bundle};
 
             while (toProcess.Count > 0)
             {
-                var package = toProcess[0];
+                var bundle = toProcess[0];
                 toProcess.RemoveAt(0);
-                seen.Add(package);
+                seen.Add(bundle);
 
-                foreach (var f in package.ForeignSourceFiles)
+                foreach (var f in bundle.ForeignSourceFiles)
                 {
                     if (f.SourceKind != ForeignItem.Kind.Unknown &&
-                        Environment.Test(package.Source, f.Condition))
+                        Environment.Test(bundle.Source, f.Condition))
                     {
-                        var originalSource = new Source(package, package.SourceDirectory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
+                        var originalSource = new Source(bundle, bundle.SourceDirectory.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar);
                         var copyFileType = f.GetCopyFileType();
                         Extensions.CopyFiles.Add(new CopyFile(
                             new SourceValue(originalSource, f.UnixPath),
@@ -56,7 +56,7 @@ namespace Uno.Compiler.Foreign
                     }
                 }
 
-                foreach (var p in package.References)
+                foreach (var p in bundle.References)
                     if (!seen.Contains(p))
                         toProcess.Add(p);
             }
@@ -80,7 +80,7 @@ namespace Uno.Compiler.Foreign
 				return null;
 
             var fullJavaSourcePath = fsource.UnixPath.UnixToNative()
-                    .ToFullPath(projectSource.Package.SourceDirectory);
+                    .ToFullPath(projectSource.Bundle.SourceDirectory);
             var packageName = GetJavaPackageName(fullJavaSourcePath);
             return new SourceValue(projectSource, Environment.GetString("Java.SourceDirectory") + "/" + packageName.Replace('.', '/') + Path.GetFileName(fsource.UnixPath));
         }

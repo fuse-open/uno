@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Uno.Build.Packages;
+using Uno.Build.Libraries;
 using Uno.Build.Stuff;
 using Uno.Compiler;
 using Uno.Compiler.API;
@@ -33,7 +33,7 @@ namespace Uno.Build
         readonly Project _project;
         readonly UnoConfig _config;
         readonly BuildFile _file;
-        readonly PackageCache _cache;
+        readonly BundleCache _cache;
         IDisposable _anim;
 
         public bool IsUpToDate => !_options.Force && _file.Exists &&
@@ -82,7 +82,7 @@ namespace Uno.Build
                 Debug = _options.Configuration != BuildConfiguration.Release,
                 Parallel = _options.Parallel,
                 Strip = _options.Strip ?? _target.DefaultStrip,
-                CanCacheIL = _options.PackageCache != null
+                CanCacheIL = _options.BundleCache != null
             };
 
             if (_options.Test)
@@ -93,13 +93,13 @@ namespace Uno.Build
                 };
             }
 
-            _cache = _options.PackageCache ?? new PackageCache(Log, _config);
+            _cache = _options.BundleCache ?? new BundleCache(Log, _config);
             PrintRow("Search paths", _cache.SearchPaths);
 
             _compiler = new Compiler(
                 Log,
                 _target.CreateBackend(config),
-                GetPackage(),
+                GetBundle(),
                 _compilerOptions);
             _env = _compiler.Environment;
             _backend = _compiler.Backend;
@@ -111,16 +111,16 @@ namespace Uno.Build
             _file = new BuildFile(_env.OutputDirectory);
         }
 
-        SourcePackage GetPackage()
+        SourceBundle GetBundle()
         {
             using (Log.StartProfiler(_cache))
-                return _cache.GetPackage(_project);
+                return _cache.GetBundle(_project);
         }
 
         public void Dispose()
         {
             // Dispose PackageCache if it was created by us
-            if (_options.PackageCache == null)
+            if (_options.BundleCache == null)
                 _cache.Dispose();
         }
 
@@ -135,7 +135,7 @@ namespace Uno.Build
             if (Log.HasErrors)
                 return null;
 
-            PrintRow("Packages", _input.Packages);
+            PrintRow("Packages", _input.Bundles);
             PrintRow("Output dir", _env.OutputDirectory);
 
             _file.Delete();
@@ -184,7 +184,7 @@ namespace Uno.Build
                 return null;
 
             using (Log.StartProfiler(typeof(UXProcessor)))
-                UXProcessor.Build(_compiler.Disk, _input.Packages);
+                UXProcessor.Build(_compiler.Disk, _input.Bundles);
 
             if (Log.HasErrors)
                 return null;
@@ -202,7 +202,7 @@ namespace Uno.Build
                 return null;
 
             var defines = _compiler.Data.Extensions.Defines;
-            var stuff = GetDirtyStuff(_env, defines, _input.Packages);
+            var stuff = GetDirtyStuff(_env, defines, _input.Bundles);
 
             if (stuff.Count > 0)
             {
@@ -231,8 +231,8 @@ namespace Uno.Build
             }
             finally
             {
-                // Add flag to avoid repeating warnings when this package is reused in following builds (uno doctor).
-                _compiler.Input.Package.Flags |= SourcePackageFlags.Verified;
+                // Add flag to avoid repeating warnings when this bundle is reused in following builds (uno doctor).
+                _compiler.Input.Bundle.Flags |= SourceBundleFlags.Verified;
 
                 _file.Product = _env.GetString("Product");
                 _file.BuildCommand = _env.GetString("Commands.Build");
@@ -301,9 +301,9 @@ namespace Uno.Build
         {
             var hash = 13 * _options.GetHashCode() + _target.Identifier.GetHashCode();
 
-            foreach (var upk in _compiler.Input.Packages)
-                if (upk.IsCached && upk.Version != null)
-                    hash = hash * 13 + upk.Version.GetHashCode();
+            foreach (var bundle in _compiler.Input.Bundles)
+                if (bundle.IsCached && bundle.Version != null)
+                    hash = hash * 13 + bundle.Version.GetHashCode();
 
             return hash * 13 + UnoVersion.InformationalVersion.GetHashCode();
         }
@@ -314,14 +314,14 @@ namespace Uno.Build
         List<string> GetDirtyStuff(
             IEnvironment env,
             IEnumerable<string> defines,
-            IEnumerable<SourcePackage> packages)
+            IEnumerable<SourceBundle> bundles)
         {
             var stuff = new List<string>();
-            foreach (var p in packages)
-                foreach (var f in p.StuffFiles)
-                    if (env.Test(p.Source, f.Condition) &&
-                            !Installer.IsUpToDate(Log, Path.Combine(p.SourceDirectory, f.NativePath), 0, defines))
-                        stuff.Add(Path.Combine(p.SourceDirectory, f.NativePath));
+            foreach (var bundle in bundles)
+                foreach (var file in bundle.StuffFiles)
+                    if (env.Test(bundle.Source, file.Condition) &&
+                            !Installer.IsUpToDate(Log, Path.Combine(bundle.SourceDirectory, file.NativePath), 0, defines))
+                        stuff.Add(Path.Combine(bundle.SourceDirectory, file.NativePath));
             return stuff;
         }
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
-    class PackageSearchPaths : List<string>
+    class SearchPaths : List<string>
     {
         public void AddOnce(string path)
         {
@@ -13,26 +13,26 @@ namespace Uno.Build.Packages
                 Add(path);
         }
 
-        public IEnumerable<DirectoryInfo> EnumeratePackageDirectories(string name = "*")
+        public IEnumerable<DirectoryInfo> EnumerateLibraryDirectories(string name = "*")
         {
             foreach (var path in this)
             {
                 var dir = new DirectoryInfo(path);
                 if (dir.Exists)
-                    foreach (var packageDir in dir.EnumerateDirectories(name))
-                        yield return packageDir;
+                    foreach (var libDir in dir.EnumerateDirectories(name))
+                        yield return libDir;
             }
         }
 
         public IEnumerable<DirectoryInfo> EnumerateVersionDirectories(string name = "*", string version = null)
         {
             version = version ?? "*";
-            foreach (var package in EnumeratePackageDirectories(name)) {
-                if (PackageFile.Exists(package.FullName))
-                    yield return package;
+            foreach (var lib in EnumerateLibraryDirectories(name)) {
+                if (ManifestFile.Exists(lib.FullName))
+                    yield return lib;
                 else
-                    foreach (var dir in package.EnumerateDirectories(version))
-                        if (PackageFile.Exists(dir.FullName))
+                    foreach (var dir in lib.EnumerateDirectories(version))
+                        if (ManifestFile.Exists(dir.FullName))
                             yield return dir;
             }
         }

@@ -79,8 +79,8 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
         string ExpandMacros(Source src, string text, bool escape, object context)
         {
-            // HACK: Disable package reference checking on Android, because they need to reference
-            // members from higher-level packages.
+            // HACK: Disable reference checking on Android, because they need to reference
+            // members from higher-level libraries.
             if (_env.IsDefined("ANDROID") && (
                     text.Contains(" JNICALL ") ||
                     text.EndsWith(":Include}")))
@@ -479,11 +479,11 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             case "LINE":
                                 return new SourceValue(src, src.Line.ToString());
                             case "PACKAGE":
-                                return new SourceValue(src, src.Package.Name);
+                                return new SourceValue(src, src.Bundle.Name);
                             case "PACKAGE_VERSION":
-                                return new SourceValue(src, src.Package.Version);
+                                return new SourceValue(src, src.Bundle.Version);
                             case "PACKAGE_DIR":
-                                return new SourceValue(src, src.Package.SourceDirectory);
+                                return new SourceValue(src, src.Bundle.SourceDirectory);
                             case "EXE_DIR":
                                 return new SourceValue(src, Path.GetDirectoryName(typeof(MacroExpander).Assembly.Location));
                             case "MSG_ORIGIN":

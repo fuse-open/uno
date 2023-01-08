@@ -163,9 +163,9 @@ namespace Uno.Compiler.Backends.CIL
 
         void AddExternalSourceFiles(List<string> sourceFiles, List<string> headerFiles)
         {
-            foreach (var package in Data.IL.Packages)
+            foreach (var bundle in Data.IL.Bundles)
             {
-                foreach (var f in package.ForeignSourceFiles)
+                foreach (var f in bundle.ForeignSourceFiles)
                 {
                     if (Environment.Test(Source.Unknown, f.Condition))
                     {
@@ -175,14 +175,14 @@ namespace Uno.Compiler.Backends.CIL
                             case ForeignItem.Kind.CSource:
                             {
                                 var sourcePath = Path.Combine(SourceDirectory, path);
-                                Disk.CopyFile(Path.Combine(package.SourceDirectory, path), sourcePath);
+                                Disk.CopyFile(Path.Combine(bundle.SourceDirectory, path), sourcePath);
                                 sourceFiles.Add(f.UnixPath);
                                 break;
                             }
                             case ForeignItem.Kind.CHeader:
                             {
                                 var sourcePath = Path.Combine(HeaderDirectory, path);
-                                Disk.CopyFile(Path.Combine(package.SourceDirectory, path), sourcePath);
+                                Disk.CopyFile(Path.Combine(bundle.SourceDirectory, path), sourcePath);
                                 headerFiles.Add(f.UnixPath);
                                 break;
                             }
@@ -268,7 +268,7 @@ namespace Uno.Compiler.Backends.CIL
 
             var mb = builder.DefinePInvokeMethod(
                 m.Name,
-                m.Source.Package.Name + "-PInvoke.dll",
+                m.Source.Bundle.Name + "-PInvoke.dll",
                 PInvokeBackend.CName(m),
                 methodAttributes | MethodAttributes.PinvokeImpl,
                 CallingConventions.Standard,

@@ -75,7 +75,7 @@ namespace Uno.Compiler.Core
         IUtilities ICompiler.Utilities => Utilities;
         IScheduler ICompiler.Scheduler => this;
 
-        public Compiler(Log log, Backend backend, SourcePackage package, CompilerOptions options)
+        public Compiler(Log log, Backend backend, SourceBundle bundle, CompilerOptions options)
             : base(log)
         {
             // This is a block of dependency injection to initialize the Compiler
@@ -88,14 +88,14 @@ namespace Uno.Compiler.Core
             var resolver = NameResolver = new NameResolver(this);
             var ilf = ILFactory = new ILFactory(backend, il, essentials, resolver, this);
             var data = Data = new BuildData(il, extensions, ilf);
-            var environment = Environment = new BuildEnvironment(backend, package, options, extensions, ilf, this);
-            var input = Input = new SourceReader(log, package, environment);
+            var environment = Environment = new BuildEnvironment(backend, bundle, options, extensions, ilf, this);
+            var input = Input = new SourceReader(log, bundle, environment);
             var blockBuilder = BlockBuilder = new BlockBuilder(backend, il, ilf, resolver, this);
             var typeBuilder = TypeBuilder = new TypeBuilder(environment, ilf, resolver, this);
             BundleBuilder = new BundleBuilder(backend, environment, ilf, this);
             AstProcessor = new AstProcessor(il, blockBuilder, typeBuilder, resolver, environment);
             UxlProcessor = new UxlProcessor(disk, backend.Name, il, extensions, environment, ilf);
-            var pass = Pass = new CompilerPass(disk, data, environment, ilf, backend, input.Package, typeBuilder, resolver);
+            var pass = Pass = new CompilerPass(disk, data, environment, ilf, backend, input.Bundle, typeBuilder, resolver);
             Utilities = new Utilities(il, pass);
             ILVerifier = new ILVerifier(pass);
             ConstantFolder = new ConstantFolder(pass);
@@ -127,9 +127,9 @@ namespace Uno.Compiler.Core
             Progress(BuildStep.Compiling);
             Backend.Begin(this);
 
-            foreach (var upk in Input.Packages)
-                if (Backend.CanLink(upk))
-                    upk.Flags |= SourcePackageFlags.CanLink;
+            foreach (var bundle in Input.Bundles)
+                if (Backend.CanLink(bundle))
+                    bundle.Flags |= SourceBundleFlags.CanLink;
 
             using (Log.StartProfiler(TypeBuilder))
                 TypeBuilder.Build();
@@ -236,10 +236,10 @@ namespace Uno.Compiler.Core
             AstProcessor.AddRange(Input.ReadSourceFiles());
         }
 
-        public void ParseSourceCode(SourcePackage upk, string filename, string text)
+        public void ParseSourceCode(SourceBundle bundle, string filename, string text)
         {
             var ast = new List<AstDocument>();
-            new Parser(Log, upk, filename, text).Parse(ast);
+            new Parser(Log, bundle, filename, text).Parse(ast);
             AstProcessor.AddRange(ast);
         }
 
@@ -319,8 +319,8 @@ namespace Uno.Compiler.Core
                 return;
 
             // Store IL cache for faster `uno doctor`
-            foreach (var upk in Input.Packages)
-                upk.Cache[SourcePackage.ILKey] = Data.IL;
+            foreach (var bundle in Input.Bundles)
+                bundle.Cache[SourceBundle.ILKey] = Data.IL;
         }
 
         void LoadCache()
@@ -328,31 +328,31 @@ namespace Uno.Compiler.Core
             if (!Environment.CanCacheIL)
                 return;
 
-            foreach (var upk in Input.Packages)
+            foreach (var bundle in Input.Bundles)
             {
                 Namespace il;
-                if (!upk.TryGetCache(SourcePackage.ILKey, out il))
+                if (!bundle.TryGetCache(SourceBundle.ILKey, out il))
                     continue;
 
                 // Load IL cached in memory for faster `uno doctor`
-                LoadNamespace(upk, il, Data.IL);
+                LoadNamespace(bundle, il, Data.IL);
             }
 
             // Clean NameResolver cache because we've introduced new stuff
             NameResolver.ClearCache();
         }
 
-        void LoadNamespace(SourcePackage upk, Namespace cache, Namespace parent)
+        void LoadNamespace(SourceBundle bundle, Namespace cache, Namespace parent)
         {
-            if (!cache.Packages.Contains(upk))
+            if (!cache.Bundles.Contains(bundle))
                 return;
 
             parent = GetNamespace(cache, parent);
-            parent.Packages.Add(upk);
+            parent.Bundles.Add(bundle);
 
             foreach (var block in cache.Blocks)
             {
-                if (block.Source.Package != upk)
+                if (block.Source.Bundle != bundle)
                     continue;
 
                 block.SetParent(parent);
@@ -361,7 +361,7 @@ namespace Uno.Compiler.Core
 
             foreach (var dt in cache.Types)
             {
-                if (dt.Source.Package != upk)
+                if (dt.Source.Bundle != bundle)
                     continue;
 
                 dt.SetParent(parent);
@@ -369,7 +369,7 @@ namespace Uno.Compiler.Core
             }
 
             foreach (var ns in cache.Namespaces)
-                LoadNamespace(upk, ns, parent);
+                LoadNamespace(bundle, ns, parent);
         }
 
         Namespace GetNamespace(Namespace cache, Namespace parent)

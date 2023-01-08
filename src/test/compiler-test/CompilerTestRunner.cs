@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Uno.Build;
-using Uno.Build.Packages;
+using Uno.Build.Libraries;
 using Uno.Logging;
 using Uno.ProjectFormat;
 using Uno.TestRunner.BasicTypes;
@@ -41,7 +41,7 @@ namespace Uno.CompilerTestRunner
         private void RunTestSuite(ITestResultLogger logger, string directoryName)
         {
             var project = new Project(Path.Combine(directoryName, Path.GetFileName(directoryName) + ".unoproj"));
-            project.MutablePackageReferences.Add(new PackageReference(project.Source, "Uno.Testing"));
+            project.MutablePackageReferences.Add(new LibraryReference(project.Source, "Uno.Testing"));
             project.MutableProjectReferences.Add(new ProjectReference(project.Source, "../_Outracks.UnoTest.InternalHelpers/_Outracks.UnoTest.InternalHelpers.unoproj"));
 
             logger.ProjectStarting(project.Name, BuildTargets.Default.Identifier);
@@ -102,7 +102,7 @@ namespace Uno.CompilerTestRunner
                         new BuildOptions
                         {
                             Test = true,
-                            PackageCache = new PackageCache(),
+                            BundleCache = new BundleCache(),
                             Force = true
                         })
                     .Build(project);

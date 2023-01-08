@@ -9,44 +9,44 @@ using Uno.IO;
 using Uno.Logging;
 using Log = Uno.Logging.Log;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
-    public class PackageDoctor : LogObject, IFrontendEnvironment
+    public class LibraryDoctor : LogObject, IFrontendEnvironment
     {
-        public PackageDoctor(Log log)
+        public LibraryDoctor(Log log)
             : base(log)
         {
         }
 
-        public void Repair(List<string> optionalPackages = null, bool force = false)
+        public void Repair(List<string> optionalLibraries = null, bool force = false)
         {
-            // Implicit --force when packages are specified explicitly
-            force = force || optionalPackages?.Count > 0;
+            // Implicit --force when libraries are specified explicitly
+            force = force || optionalLibraries?.Count > 0;
 
-            foreach (var dir in EnumerateDirectories(optionalPackages))
+            foreach (var dir in EnumerateDirectories(optionalLibraries))
             {
                 var path = dir.FullName;
 
                 try
                 {
-                    // Skip locally built packages (taken care of by LibraryBuilder)
-                    if (PackageFile.Exists(path) &&
+                    // Skip locally built libraries (taken care of by LibraryBuilder)
+                    if (ManifestFile.Exists(path) &&
                             !File.Exists(Path.Combine(path, ".unobuild")) &&
-                            Repair(PackageFile.Load(path), force))
+                            Repair(ManifestFile.Load(path), force))
                         Log.Message("Updated " + path.ToRelativePath().Quote());
                 }
                 catch (Exception e)
                 {
                     Log.Trace(e);
-                    Log.Error("Failed to load package " + path.ToRelativePath().Quote() + ": " + e.Message);
+                    Log.Error("Failed to load library " + path.ToRelativePath().Quote() + ": " + e.Message);
                 }
             }
         }
 
-        public bool Repair(PackageFile file, bool force = false)
+        public bool Repair(ManifestFile file, bool force = false)
         {
-            var upk = file.CreateSourcePackage();
-            var reader = new SourceReader(Log, upk, this);
+            var bundle = file.CreateBundle();
+            var reader = new SourceReader(Log, bundle, this);
 
             if (force || !reader.CacheExists ||
                 reader.HasAnythingChangedSince(reader.CacheTime, false))
@@ -62,7 +62,7 @@ namespace Uno.Build.Packages
 
         public IEnumerable<DirectoryInfo> EnumerateDirectories(List<string> optionalPackages = null)
         {
-            var cache = new PackageCache();
+            var cache = new BundleCache();
 
             if (optionalPackages == null || optionalPackages.Count == 0)
                 foreach (var dir in cache.EnumerateVersions("*"))

@@ -283,7 +283,7 @@ namespace Uno.Compiler.Backends.CIL
 
             if (result == null)
             {
-                var asm = dt.Package.Tag as Assembly;
+                var asm = dt.Bundle.Tag as Assembly;
 
                 if (dt.HasAttribute(_essentials.DotNetTypeAttribute) && !_isReferenceAssembly)
                     result = TryGetType(dt.TryGetAttributeString(_essentials.DotNetTypeAttribute) ?? dt.CilTypeName());

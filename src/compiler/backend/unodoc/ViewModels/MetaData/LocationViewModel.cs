@@ -4,15 +4,15 @@
     {
         public string NamespaceTitle { get; private set; }
         public string NamespaceUri { get; private set; }
-        public string PackageName { get; private set; }
-        public string PackageVersion { get; private set; }
+        public string LibraryName { get; private set; }
+        public string LibraryVersion { get; private set; }
 
-        public LocationViewModel(string namespaceTitle, string namespaceUri, string packageName, string packageVersion)
+        public LocationViewModel(string namespaceTitle, string namespaceUri, string libraryName, string libraryVersion)
         {
             NamespaceTitle = namespaceTitle;
             NamespaceUri = namespaceUri;
-            PackageName = packageName;
-            PackageVersion = packageVersion;
+            LibraryName = libraryName;
+            LibraryVersion = libraryVersion;
         }
     }
 }

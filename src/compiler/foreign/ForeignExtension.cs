@@ -16,7 +16,7 @@ namespace Uno.Compiler.Foreign
 
         protected override void Begin()
         {
-            AddTransform(new ForeignFilePass(Data.Extensions, Input.Package, _backend));
+            AddTransform(new ForeignFilePass(Data.Extensions, Input.Bundle, _backend));
 
             if (IsDefined("ANDROID"))
                 AddTransform(new ForeignJavaPass(_backend));

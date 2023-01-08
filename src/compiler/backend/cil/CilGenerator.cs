@@ -16,7 +16,7 @@ namespace Uno.Compiler.Backends.CIL
 {
     partial class CilGenerator : DiskObject
     {
-        readonly SourcePackage _package;
+        readonly SourceBundle _bundle;
         readonly IBuildData _data;
         readonly IEssentials _essentials;
         readonly CilLinker _linker;
@@ -32,23 +32,23 @@ namespace Uno.Compiler.Backends.CIL
         public Assembly Assembly => _assembly;
 
         public CilGenerator(Disk disk, IBuildData data, IEssentials essentials,
-                            CilBackend backend, CilLinker linker, SourcePackage package,
+                            CilBackend backend, CilLinker linker, SourceBundle bundle,
                             string outputDir)
             : base(disk)
         {
             _data = data;
             _essentials = essentials;
             _backend = backend;
-            _package = package;
+            _bundle = bundle;
             _linker = linker;
             _outputDir = outputDir;
             _assembly = _linker.Universe.DefineDynamicAssembly(
-                new AssemblyName(package.Name) {Version = package.ParseVersion(Log)},
+                new AssemblyName(bundle.Name) {Version = bundle.ParseVersion(Log)},
                 AssemblyBuilderAccess.Save,
                 outputDir);
             _module = _assembly.DefineDynamicModule(
-                package.Name, 
-                package.Name + ".dll", 
+                bundle.Name, 
+                bundle.Name + ".dll", 
                 true);
             _types = new CilTypeFactory(backend, essentials, linker, _module);
         }
@@ -61,7 +61,7 @@ namespace Uno.Compiler.Backends.CIL
                         _linker.System_Diagnostics_DebuggableAttribute_ctor, 
                         new object[] {DebuggableAttribute.DebuggingModes.DisableOptimizations | DebuggableAttribute.DebuggingModes.Default}));
 
-            foreach (var name in _package.InternalsVisibleTo)
+            foreach (var name in _bundle.InternalsVisibleTo)
                 _assembly.SetCustomAttribute(
                     new CustomAttributeBuilder(
                         _linker.System_Runtime_CompilerServices_InternalsVisibleToAttribute_ctor,
@@ -77,7 +77,7 @@ namespace Uno.Compiler.Backends.CIL
                 // Embed resources (bundle files)
                 foreach (var file in _data.Extensions.BundleFiles)
                 {
-                    if (file.Package != _package)
+                    if (file.Bundle != _bundle)
                         continue;
 
                     var stream = File.OpenRead(file.SourcePath);
@@ -99,7 +99,7 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             // Copy referenced assemblies
-            if (_package.IsStartup)
+            if (_bundle.IsStartup)
             {
                 foreach (var asm in _linker.CopyAssemblies)
                 {

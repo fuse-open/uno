@@ -4,8 +4,8 @@ namespace Uno.Disasm.ILView.Packages
 {
     public class PackageFolderItem : FolderBase
     {
-        public PackageFolderItem(SourcePackage upk, string name)
-            : base(upk.SourceDirectory, name)
+        public PackageFolderItem(SourceBundle bundle, string name)
+            : base(bundle.SourceDirectory, name)
         {
         }
 

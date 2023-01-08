@@ -49,7 +49,7 @@ namespace Uno.Compiler.Core.Syntax
         {
             foreach (var doc in uxl)
                 if (doc.Backend == _backendType &&
-                        _env.Test(doc.Package.Source, doc.Package.BuildCondition))
+                        _env.Test(doc.Bundle.Source, doc.Bundle.BuildCondition))
                     _documents.Add(doc);
         }
 
@@ -142,7 +142,7 @@ namespace Uno.Compiler.Core.Syntax
                     CompileTemplate(e, usings);
 
                 foreach (var e in doc.Types)
-                    CompileType(e, doc.Package, usings);
+                    CompileType(e, doc.Bundle, usings);
 
                 foreach (var e in doc.Elements)
                 {
@@ -237,7 +237,7 @@ namespace Uno.Compiler.Core.Syntax
             CompileFiles(template, uxl);
         }
 
-        void CompileType(UxlType uxl, SourcePackage upk, Namescope[] usings)
+        void CompileType(UxlType uxl, SourceBundle bundle, Namescope[] usings)
         {
             if (!Test(uxl.Condition))
                 return;
@@ -258,8 +258,8 @@ namespace Uno.Compiler.Core.Syntax
                 !dt.HasAttribute(_ilf.Essentials.TargetSpecificTypeAttribute))
                 Log.Error(uxl.Name.Source, ErrorCode.E0000, dt.Quote() + " cannot be extended because it does not specify " + _ilf.Essentials.TargetSpecificImplementationAttribute.AttributeString);
 
-            if (upk != dt.Source.Package)
-                Log.Error(uxl.Name.Source, ErrorCode.E0000, dt.Quote() + " cannot be extended from outside its package " + dt.Source.Package.Quote());
+            if (bundle != dt.Source.Bundle)
+                Log.Error(uxl.Name.Source, ErrorCode.E0000, dt.Quote() + " cannot be extended from outside its bundle " + dt.Source.Bundle.Quote());
 
             if (!Test(uxl.Condition))
                 return;
@@ -429,7 +429,7 @@ namespace Uno.Compiler.Core.Syntax
             if (!map.TryGetValue(key, out old))
                 map.Add(key, value);
             else if (old.Disambiguation != Disambiguation.Override && (
-                        value.Source.Package != old.Source.Package ||
+                        value.Source.Bundle != old.Source.Bundle ||
                         value.Disambiguation == Disambiguation.Override ||
                         old.Disambiguation == Disambiguation.Default && value.Disambiguation != Disambiguation.Default ||
                         old.Disambiguation != Disambiguation.Condition && value.Disambiguation == Disambiguation.Condition)
@@ -608,7 +608,7 @@ namespace Uno.Compiler.Core.Syntax
 
             if (f.Flags.HasFlag(CopyFileFlags.ProcessFile))
                 using (var w = _disk.CreateBufferedText(dst))
-                    w.Write(_env.Expand(new Source(f.SourceName.Source.Package, src, 1, 1), f.Preprocess(File.ReadAllText(src).Replace("\r\n", "\n"))));
+                    w.Write(_env.Expand(new Source(f.SourceName.Source.Bundle, src, 1, 1), f.Preprocess(File.ReadAllText(src).Replace("\r\n", "\n"))));
             else if (f.Flags.HasFlag(CopyFileFlags.IsDirectory))
                 _disk.CopyDirectory(src, dst);
             else

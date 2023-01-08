@@ -5,7 +5,7 @@ using Mono.Options;
 using Uno.IO;
 using Uno.ProjectFormat;
 
-namespace Uno.CLI.Projects
+namespace Uno.CLI.Building
 {
     class Create : Command
     {
@@ -20,7 +20,7 @@ namespace Uno.CLI.Projects
             WriteRow("-c, --class=NAME",    "Initialize project with an empty class with this name", true);
             WriteRow("-n, --name=NAME",     "Specify project file name", true);
             WriteRow("-d, --defaults",      "Add default settings");
-            WriteRow("-e, --empty",         "Create empty project without packages or items");
+            WriteRow("-e, --empty",         "Create an empty project (no references)");
             WriteRow("-f, --force",         "Overwrite any existing project without warning");
             WriteRow("    --flatten",       "Flatten items to explicit list of files");
         }

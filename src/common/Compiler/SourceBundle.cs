@@ -2,10 +2,10 @@
 
 namespace Uno.Compiler
 {
-    public class SourcePackage
+    public class SourceBundle
     {
-        static SourcePackage _unknown;
-        public static SourcePackage Unknown => _unknown ?? (_unknown = new SourcePackage("(unknown)"));
+        static SourceBundle _unknown;
+        public static SourceBundle Unknown => _unknown ?? (_unknown = new SourceBundle("(unknown)"));
 
         // Cache key
         public static readonly object ILKey = new object();
@@ -16,22 +16,22 @@ namespace Uno.Compiler
         public string SourceDirectory { get; private set; }
         public string CacheDirectory { get; private set; }
         public string BuildCondition { get; private set; }
-        public SourcePackageFlags Flags;
+        public SourceBundleFlags Flags;
         public object Tag;
 
-        public bool CanLink => Flags.HasFlag(SourcePackageFlags.CanLink);
-        public bool IsCached => Flags.HasFlag(SourcePackageFlags.Cached);
-        public bool IsStartup => Flags.HasFlag(SourcePackageFlags.Startup);
-        public bool IsTransitive => Flags.HasFlag(SourcePackageFlags.Transitive);
-        public bool IsVerified => Flags.HasFlag(SourcePackageFlags.Verified);
-        public bool IsProject => Flags.HasFlag(SourcePackageFlags.Project);
+        public bool CanLink => Flags.HasFlag(SourceBundleFlags.CanLink);
+        public bool IsCached => Flags.HasFlag(SourceBundleFlags.Cached);
+        public bool IsStartup => Flags.HasFlag(SourceBundleFlags.Startup);
+        public bool IsTransitive => Flags.HasFlag(SourceBundleFlags.Transitive);
+        public bool IsVerified => Flags.HasFlag(SourceBundleFlags.Verified);
+        public bool IsProject => Flags.HasFlag(SourceBundleFlags.Project);
         public bool IsUnknown => ReferenceEquals(this, _unknown);
 
         public readonly Dictionary<object, object> Cache = new Dictionary<object, object>();
         public readonly HashSet<string> CachedNamespaces = new HashSet<string>();
         public readonly HashSet<string> CachedExtensionsBackends = new HashSet<string>();
         public readonly HashSet<string> InternalsVisibleTo = new HashSet<string>();
-        public readonly HashSet<SourcePackage> References = new HashSet<SourcePackage>();
+        public readonly HashSet<SourceBundle> References = new HashSet<SourceBundle>();
         public readonly List<FileItem> ExtensionsFiles = new List<FileItem>();
         public readonly List<ForeignItem> ForeignSourceFiles = new List<ForeignItem>();
         public readonly List<FileItem> SourceFiles = new List<FileItem>();
@@ -72,13 +72,13 @@ namespace Uno.Compiler
             }
         }
 
-        public SourcePackage(
+        public SourceBundle(
             string name,
             string version = null,
             string path = null,
             string sourceDir = null,
             string cacheDir = null,
-            SourcePackageFlags flags = 0,
+            SourceBundleFlags flags = 0,
             string buildCondition = null)
         {
             Name = name;
@@ -131,7 +131,7 @@ namespace Uno.Compiler
             if (!HasTransitiveReferences)
                 return;
 
-            var refs = new List<SourcePackage>(References);
+            var refs = new List<SourceBundle>(References);
             for (int i = 0; i < refs.Count; i++)
             {
                 if (refs[i].IsTransitive)
@@ -148,7 +148,7 @@ namespace Uno.Compiler
             }
         }
 
-        public bool IsAccessibleFrom(SourcePackage other)
+        public bool IsAccessibleFrom(SourceBundle other)
         {
             return ReferenceEquals(other, this) ||
                    other.IsUnknown || IsUnknown ||

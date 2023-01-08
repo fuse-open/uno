@@ -8,7 +8,7 @@ namespace Uno
         public static Source Unknown => _unknown ?? (_unknown = new Source(SourceFile.Unknown));
 
         public readonly SourceFile File;
-        public SourcePackage Package => File.Package;
+        public SourceBundle Bundle => File.Bundle;
         
         public readonly int Line;
         public readonly int Column;
@@ -38,8 +38,8 @@ namespace Uno
         {
         }
 
-        public Source(SourcePackage upk, string fullPath, int line = 0, int column = 0, int length = 0)
-            : this(new SourceFile(upk, fullPath), line, column, length)
+        public Source(SourceBundle bundle, string fullPath, int line = 0, int column = 0, int length = 0)
+            : this(new SourceFile(bundle, fullPath), line, column, length)
         {
         }
 

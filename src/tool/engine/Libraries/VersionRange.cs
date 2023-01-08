@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
     public class VersionRange
     {

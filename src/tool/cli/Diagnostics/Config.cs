@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Mono.Options;
-using Uno.Build.Packages;
+using Uno.Build.Libraries;
 using Uno.Configuration;
 using Uno.IO;
 
@@ -119,19 +119,19 @@ namespace Uno.CLI.Diagnostics
 
         static IReadOnlyList<Library> GetUnoLibraries()
         {
-            var cache = new PackageCache();
+            var cache = new BundleCache();
             var list = new List<Library>();
             var set = new HashSet<string>();
 
             foreach (var directory in cache.SearchPaths)
             {
-                foreach (var package in cache.GetPackageDirectories(directory).Keys)
+                foreach (var library in cache.GetLibraryDirectories(directory).Keys)
                 {
-                    foreach (var versionDir in cache.GetVersionDirectories(package))
+                    foreach (var versionDir in cache.GetVersionDirectories(library))
                     {
-                        if (PackageFile.Exists(versionDir.FullName) && !set.Contains(versionDir.FullName))
+                        if (ManifestFile.Exists(versionDir.FullName) && !set.Contains(versionDir.FullName))
                         {
-                            list.Add(new Library(package, versionDir.FullName));
+                            list.Add(new Library(library, versionDir.FullName));
                             set.Add(versionDir.FullName);
                         }
                     }

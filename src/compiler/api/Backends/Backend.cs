@@ -82,17 +82,17 @@ namespace Uno.Compiler.API.Backends
         public virtual BackendResult Build()
         {
             BackendResult result = null;
-            foreach (var package in Input.Packages)
+            foreach (var package in Input.Bundles)
                 result = Build(package);
             return result;
         }
 
-        public virtual BackendResult Build(SourcePackage package)
+        public virtual BackendResult Build(SourceBundle bundle)
         {
             return null;
         }
 
-        public virtual bool CanLink(SourcePackage upk)
+        public virtual bool CanLink(SourceBundle bundle)
         {
             return false;
         }

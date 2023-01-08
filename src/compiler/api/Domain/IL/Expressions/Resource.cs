@@ -2,7 +2,7 @@
 {
     public class Resource
     {
-        public SourcePackage Package;
+        public SourceBundle Bundle;
         public string Identifier;
         public DataType DataType;
     }

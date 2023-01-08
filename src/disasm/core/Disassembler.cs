@@ -93,18 +93,18 @@ namespace Uno.Disasm
             EndHeader();
         }
 
-        public void AppendHeader(SourcePackage upk)
+        public void AppendHeader(SourceBundle bundle)
         {
-            BeginHeader(upk);
-            AppendLine("/// Source:             " + upk.Source);
-            AppendLine("/// CacheDirectory:     " + upk.CacheDirectory);
-            AppendLine("/// SourceDirectory:    " + upk.SourceDirectory);
-            if (!string.IsNullOrEmpty(upk.BuildCondition))
-                AppendLine("/// BuildCondition:     " + upk.BuildCondition);
-            if (upk.InternalsVisibleTo.Count > 0)
-                AppendLine("/// InternalsVisibleTo: " + string.Join(", ", upk.InternalsVisibleTo));
-            if (upk.Flags != 0)
-                AppendLine("/// Flags:              " + upk.Flags);
+            BeginHeader(bundle);
+            AppendLine("/// Source:             " + bundle.Source);
+            AppendLine("/// CacheDirectory:     " + bundle.CacheDirectory);
+            AppendLine("/// SourceDirectory:    " + bundle.SourceDirectory);
+            if (!string.IsNullOrEmpty(bundle.BuildCondition))
+                AppendLine("/// BuildCondition:     " + bundle.BuildCondition);
+            if (bundle.InternalsVisibleTo.Count > 0)
+                AppendLine("/// InternalsVisibleTo: " + string.Join(", ", bundle.InternalsVisibleTo));
+            if (bundle.Flags != 0)
+                AppendLine("/// Flags:              " + bundle.Flags);
             EndHeader();
         }
 

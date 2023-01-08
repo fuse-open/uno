@@ -8,7 +8,7 @@ using Uno.IO;
 using Uno.Logging;
 using Uno.ProjectFormat;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
     public class LibraryBuilder : DiskObject
     {
@@ -81,8 +81,8 @@ namespace Uno.Build.Packages
 
             var allProjects = LoadProjects(sourceDirectories);
             var buildProjects = GetBuildList(allProjects);
-            var packageCache = CanCache
-                                    ? new PackageCache(Log, config)
+            var bundleCache = CanCache
+                                    ? new BundleCache(Log, config)
                                     : null;
 
             try
@@ -94,7 +94,7 @@ namespace Uno.Build.Packages
                 {
                     Log.DisableSkip();
                     using (Log.StartAnimation("Building " + (i + 1) + "/" + buildProjects.Count + ": " + buildProjects[i].Project.Name, ConsoleColor.Cyan))
-                        Build(buildProjects[i], packageCache, failed);
+                        Build(buildProjects[i], bundleCache, failed);
                 }
 
                 if (failed.Count == 1)
@@ -105,20 +105,20 @@ namespace Uno.Build.Packages
             finally
             {
                 Log.Message($"Completed in {Log.Time - startTime:0.00} seconds");
-                packageCache?.Dispose();
+                bundleCache?.Dispose();
             }
         }
 
-        void Build(LibraryProject lib, PackageCache packageCache, List<LibraryProject> failed)
+        void Build(LibraryProject lib, BundleCache bundleCache, List<LibraryProject> failed)
         {
             var buildLog = Log.GetQuieterLog(SilentBuild);
 
             if (Clean)
             {
                 new ProjectCleaner(buildLog).Clean(lib.Project);
-                Disk.DeleteDirectory(lib.PackageDirectory);
+                Disk.DeleteDirectory(lib.RootDirectory);
             }
-            else if (Directory.Exists(lib.PackageDirectory))
+            else if (Directory.Exists(lib.RootDirectory))
             {
                 Disk.DeleteDirectory(lib.CacheDirectory);
             }
@@ -133,12 +133,12 @@ namespace Uno.Build.Packages
 
             var result = new ProjectBuilder(
                     buildLog,
-                    BuildTargets.Package,
+                    BuildTargets.Library,
                     new BuildOptions
                     {
                         Configuration = GetConfiguration(lib),
-                        OutputDirectory = lib.PackageDirectory,
-                        PackageCache = packageCache,
+                        OutputDirectory = lib.RootDirectory,
+                        BundleCache = bundleCache,
                         Force = true
                     })
                 .Build(lib.Project);
@@ -255,7 +255,7 @@ namespace Uno.Build.Packages
 
             added.Add(lib);
 
-            // Only build dirty packages to avoid doing too much work
+            // Only build dirty libraries to avoid doing too much work
             if (!dirty.Contains(lib))
                 return;
 
@@ -314,13 +314,13 @@ namespace Uno.Build.Packages
                     // Test the existing build and maybe we don't need to built it again.
                     lib = existing;
 
-                if (!File.Exists(lib.PackageFile))
+                if (!File.Exists(lib.ManifestFile))
                 {
-                    Log.Event(IOEvent.Build, lib.Project.Name, "package not found");
+                    Log.Event(IOEvent.Build, lib.Project.Name, "manifest not found");
                     return true;
                 }
 
-                if (Directory.EnumerateDirectories(lib.PackageDirectory).Count() > 1)
+                if (Directory.EnumerateDirectories(lib.RootDirectory).Count() > 1)
                 {
                     Log.Event(IOEvent.Build, lib.Project.Name, "old version(s) found");
                     return true;

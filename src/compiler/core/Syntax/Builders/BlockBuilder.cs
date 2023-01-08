@@ -56,7 +56,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             FlattenTypes();
 
             for (int i = 0; i < _enqueuedBlocks.Count; i++)
-                if (!_enqueuedBlocks[i].Source.Package.CanLink)
+                if (!_enqueuedBlocks[i].Source.Bundle.CanLink)
                     _enqueuedBlocks[i].Populate();
 
             _enqueuedBlocks.Clear();

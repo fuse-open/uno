@@ -87,7 +87,7 @@ namespace Uno.Compiler.Core.Syntax
                         dt.EnumerateMembers().Select(x => x.UnoName).Concat(
                         dt.NestedTypes.Select(x => x.FullName)).ToArray(),
                         id.Symbol))
-                        + "Could you be missing a package reference?";
+                        + "Could you be missing a reference?";
         }
 
         public static string GetNamespaceMemberNotFoundError(this Compiler compiler, AstIdentifier id, Namespace ns)
@@ -103,7 +103,7 @@ namespace Uno.Compiler.Core.Syntax
                         ns.Types.Select(x => x.UnoName).Concat(
                         ns.Namespaces.Select(x => x.FullName)).ToArray(),
                         id.Symbol))
-                        + "Could you be missing a package reference?";
+                        + "Could you be missing a reference?";
         }
 
         public static string GetUnresolvedIdentifierError(this FunctionCompiler fc, AstIdentifier id, int? typeParamCount)
@@ -143,7 +143,7 @@ namespace Uno.Compiler.Core.Syntax
                         var le = compiler.ILFactory.GetEntity(ns);
 
                         if (le is Namespace)
-                            return msg + "For example, try adding 'using " + ns + ";' to the top of the code file. Could you be missing a package reference?";
+                            return msg + "For example, try adding 'using " + ns + ";' to the top of the code file. Could you be missing a reference?";
                     }
                 }
 
@@ -215,10 +215,10 @@ namespace Uno.Compiler.Core.Syntax
             if (similars.Any())
             {
                 msg += SuggestDidYouMisspell(compiler, id.Symbol, similars);
-                return msg + " Could you be missing a package reference?";
+                return msg + " Could you be missing a reference?";
             }
             else
-                msg += "Are you missing a package reference?";
+                msg += "Are you missing a reference?";
 
             return msg;
         }

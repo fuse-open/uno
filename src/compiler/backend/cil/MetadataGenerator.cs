@@ -8,7 +8,7 @@ namespace Uno.Compiler.Backends.CIL
 {
     class MetadataGenerator : DiskObject
     {
-        readonly SourcePackage _package;
+        readonly SourceBundle _bundle;
         readonly IBuildData _data;
         readonly IEssentials _essentials;
         readonly CilLinker _linker;
@@ -18,30 +18,30 @@ namespace Uno.Compiler.Backends.CIL
         readonly string _outputDir;
 
         public MetadataGenerator(Disk disk, IBuildData data, IEssentials essentials,
-                                 MetadataBackend backend, CilLinker linker, SourcePackage package,
+                                 MetadataBackend backend, CilLinker linker, SourceBundle bundle,
                                  string outputDir)
             : base(disk)
         {
             _data = data;
             _essentials = essentials;
             _backend = backend;
-            _package = package;
+            _bundle = bundle;
             _linker = linker;
             _outputDir = outputDir;
             _assembly = _linker.Universe.DefineDynamicAssembly(
-                new AssemblyName(package.Name) {Version = package.ParseVersion(Log)},
+                new AssemblyName(bundle.Name) {Version = bundle.ParseVersion(Log)},
                 AssemblyBuilderAccess.Save,
                 outputDir);
             var module = _assembly.DefineDynamicModule(
-                package.Name, 
-                package.Name + ".dll", 
+                bundle.Name, 
+                bundle.Name + ".dll", 
                 true);
             _types = new CilTypeFactory(backend, essentials, linker, module);
         }
 
         public void Configure()
         {
-            foreach (var name in _package.InternalsVisibleTo)
+            foreach (var name in _bundle.InternalsVisibleTo)
                 _assembly.SetCustomAttribute(
                     new CustomAttributeBuilder(
                         _linker.System_Runtime_CompilerServices_InternalsVisibleToAttribute_ctor,
@@ -69,7 +69,7 @@ namespace Uno.Compiler.Backends.CIL
         void Process(Namespace root)
         {
             foreach (var dt in root.Types)
-                if (dt.Source.Package == _package)
+                if (dt.Source.Bundle == _bundle)
                     _types.DefineType(dt);
 
             foreach (var ns in root.Namespaces)

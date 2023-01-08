@@ -4,7 +4,7 @@ using Uno.Build;
 using Uno.Build.Targets;
 using Uno.ProjectFormat;
 
-namespace Uno.CLI.Projects
+namespace Uno.CLI.Building
 {
     class Clean : Command
     {

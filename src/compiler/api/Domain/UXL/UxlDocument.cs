@@ -10,7 +10,7 @@ namespace Uno.Compiler.API.Domain.UXL
     {
         public const uint Magic = 0x044C5855;
 
-        public readonly SourcePackage Package;
+        public readonly SourceBundle Bundle;
         public readonly UxlBackendType Backend;
         public readonly SourceValue? Condition;
 
@@ -21,26 +21,26 @@ namespace Uno.Compiler.API.Domain.UXL
         public readonly List<UxlTemplate> Templates = new List<UxlTemplate>();
         public readonly List<UxlType> Types = new List<UxlType>();
 
-        public UxlDocument(SourcePackage upk, UxlBackendType backend, SourceValue? cond)
+        public UxlDocument(SourceBundle bundle, UxlBackendType backend, SourceValue? cond)
         {
-            Package = upk;
+            Bundle = bundle;
             Backend = backend;
             Condition = cond;
         }
 
-        internal static CacheWriter CreateWriter(SourcePackage upk, string filename)
+        internal static CacheWriter CreateWriter(SourceBundle bundle, string filename)
         {
-            if (upk.IsUnknown)
-                throw new InvalidOperationException("UxlDocument: Unknown source package");
+            if (bundle.IsUnknown)
+                throw new InvalidOperationException("UxlDocument: Unknown source bundle");
 
-            var w = new CacheWriter(upk, filename);
+            var w = new CacheWriter(bundle, filename);
             w.Write(Magic);
             return w;
         }
 
-        internal static CacheReader CreateReader(SourcePackage upk, string filename)
+        internal static CacheReader CreateReader(SourceBundle bundle, string filename)
         {
-            var r = new CacheReader(upk, filename);
+            var r = new CacheReader(bundle, filename);
             r.VerifyMagic(Magic);
             return r;
         }
@@ -85,7 +85,7 @@ namespace Uno.Compiler.API.Domain.UXL
             WriteEntity(f, entityFlags);
         }
 
-        public static UxlDocument Read(CacheReader f, SourcePackage upk)
+        public static UxlDocument Read(CacheReader f, SourceBundle bundle)
         {
             var backend = (UxlBackendType) f.ReadByte();
             var flags = (UxlDocumentFlags)f.ReadByte();
@@ -94,7 +94,7 @@ namespace Uno.Compiler.API.Domain.UXL
             if (flags.HasFlag(UxlDocumentFlags.HasCondition))
                 cond = f.ReadGlobalValue();
 
-            var doc = new UxlDocument(upk, backend, cond);
+            var doc = new UxlDocument(bundle, backend, cond);
 
             if (flags.HasFlag(UxlDocumentFlags.Defines))
                 f.ReadList(doc.Defines, UxlDefine.Read);

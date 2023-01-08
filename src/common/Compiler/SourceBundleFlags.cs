@@ -3,7 +3,7 @@
 namespace Uno.Compiler
 {
     [Flags]
-    public enum SourcePackageFlags
+    public enum SourceBundleFlags
     {
         Startup = 1 << 0,
         Cached = 1 << 1,

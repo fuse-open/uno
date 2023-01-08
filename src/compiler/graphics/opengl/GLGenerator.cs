@@ -105,7 +105,7 @@ namespace Uno.Compiler.Graphics.OpenGL
             var key = vsSource + ":" + fsSource;
 
             foreach (var e in _programs.GetList(key))
-                if (e.Source.Package.IsAccessibleFrom(draw.Source.Package))
+                if (e.Source.Bundle.IsAccessibleFrom(draw.Source.Bundle))
                     return e;
 
             int constCount = draw.State.RuntimeConstants.Count;

@@ -86,7 +86,7 @@ namespace Uno.Compiler.API.Domain.IL.Members
         DataType IEntity.DeclaringType => DeclaringType;
         DataType IEntity.ReturnType => ReturnType;
         NamescopeType IEntity.NamescopeType => NamescopeType.Other;
-        SourcePackage IEntity.Package => Source.Package;
+        SourceBundle IEntity.Bundle => Source.Bundle;
         public bool IsPublic => MasterDefinition.Modifiers.HasFlag(Modifiers.Public);
         public bool IsProtected => MasterDefinition.Modifiers.HasFlag(Modifiers.Protected);
         public bool IsPrivate => MasterDefinition.Modifiers.HasFlag(Modifiers.Private);

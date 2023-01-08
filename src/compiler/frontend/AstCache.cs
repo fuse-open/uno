@@ -13,21 +13,21 @@ namespace Uno.Compiler.Frontend
         {
         }
 
-        public override bool Parse(SourcePackage upk, string filename, List<AstDocument> result)
+        public override bool Parse(SourceBundle bundle, string filename, List<AstDocument> result)
         {
-            var p = new Parser(Log, upk, filename, File.ReadAllText(filename));
+            var p = new Parser(Log, bundle, filename, File.ReadAllText(filename));
             p.Parse(result);
             return !p.HasErrors;
         }
 
-        public override void Deserialize(SourcePackage upk, string filename, List<AstDocument> resultAsync)
+        public override void Deserialize(SourceBundle bundle, string filename, List<AstDocument> resultAsync)
         {
-            AstSerialization.Deserialize(upk, filename, resultAsync);
+            AstSerialization.Deserialize(bundle, filename, resultAsync);
         }
 
-        public override void Serialize(SourcePackage upk, string filename, IEnumerable<AstDocument> value)
+        public override void Serialize(SourceBundle bundle, string filename, IEnumerable<AstDocument> value)
         {
-            value.Serialize(upk, filename, 0);
+            value.Serialize(bundle, filename, 0);
         }
     }
 }

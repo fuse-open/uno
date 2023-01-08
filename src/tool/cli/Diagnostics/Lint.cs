@@ -22,7 +22,7 @@ namespace Uno.CLI.Diagnostics
             foreach (var arg in args)
             {
                 var path = Path.GetFullPath(arg);
-                var parser = new Parser(Log, SourcePackage.Unknown, path, File.ReadAllText(path));
+                var parser = new Parser(Log, SourceBundle.Unknown, path, File.ReadAllText(path));
                 var astDocs = new List<AstDocument>();
                 parser.Parse(astDocs);
             }

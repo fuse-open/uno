@@ -50,15 +50,15 @@ namespace Uno.Compiler.Frontend.Analysis
         int _errorIndex;
 
         public Parser(Log log, Source src, string text)
-            : this(log, src.Package, src.FullPath, text, src.Line, src.Column)
+            : this(log, src.Bundle, src.FullPath, text, src.Line, src.Column)
         {
         }
 
-        public Parser(Log log, SourcePackage upk, string filename, string text, int line = 1, int column = 1)
+        public Parser(Log log, SourceBundle bundle, string filename, string text, int line = 1, int column = 1)
             : base(log)
         {
             _text = text;
-            _file = new SourceFile(upk, filename, text, line, column);
+            _file = new SourceFile(bundle, filename, text, line, column);
             var tokens = Lexer.Tokenize(_file, text);
             var comments = new List<Token>();
 

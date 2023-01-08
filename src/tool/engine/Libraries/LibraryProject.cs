@@ -4,41 +4,41 @@ using System.Linq;
 using Uno.IO;
 using Uno.ProjectFormat;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
     public class LibraryProject
     {
         public readonly Project Project;
-        public readonly string PackageDirectory;
+        public readonly string RootDirectory;
         public readonly string CacheDirectory;
         public readonly string ConfigFile;
-        public readonly string PackageFile;
+        public readonly string ManifestFile;
 
-        public bool Exists => File.Exists(PackageFile) && File.Exists(ConfigFile);
+        public bool Exists => File.Exists(ManifestFile) && File.Exists(ConfigFile);
         public BuildConfiguration Configuration => (BuildConfiguration) Enum.Parse(typeof(BuildConfiguration), File.ReadAllText(ConfigFile).Trim());
 
         public LibraryProject(Project project, string sourceDir)
         {
             Project = project;
-            PackageDirectory = Path.Combine(sourceDir, "build", project.Name);
-            CacheDirectory = Path.Combine(PackageDirectory, ".uno");
+            RootDirectory = Path.Combine(sourceDir, "build", project.Name);
+            CacheDirectory = Path.Combine(RootDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
-            PackageFile = Path.Combine(CacheDirectory, "package");
+            ManifestFile = Path.Combine(CacheDirectory, "package");
         }
 
         LibraryProject(LibraryProject lib)
         {
             Project = lib.Project;
-            PackageDirectory = lib.PackageDirectory;
-            CacheDirectory = Path.Combine(PackageDirectory, ".uno");
+            RootDirectory = lib.RootDirectory;
+            CacheDirectory = Path.Combine(RootDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
-            PackageFile = Path.Combine(CacheDirectory, "package");
+            ManifestFile = Path.Combine(CacheDirectory, "package");
         }
 
         public bool TryGetExistingBuild(out LibraryProject existing)
         {
             existing = null;
-            if (!Directory.Exists(PackageDirectory))
+            if (!Directory.Exists(RootDirectory))
                 return false;
 
             existing = new LibraryProject(this);
@@ -65,7 +65,7 @@ namespace Uno.Build.Packages
             get
             {
                 return _refs ?? (_refs =
-                           Project.PackageReferences.Select(x => x.PackageName.ToUpperInvariant()).Concat(
+                           Project.PackageReferences.Select(x => x.LibraryName.ToUpperInvariant()).Concat(
                            Project.ProjectReferences.Select(x => x.ProjectName.ToUpperInvariant()).Concat(
                            Project.UnoCoreReference ? new[] { "UnoCore".ToUpperInvariant() } : new string[0])
                        ).ToArray());
@@ -74,8 +74,8 @@ namespace Uno.Build.Packages
 
         DateTime? _buildTime;
         public DateTime LastBuildTime => _buildTime ?? (_buildTime =
-            File.Exists(PackageFile)
-                ? File.GetLastWriteTime(PackageFile)
+            File.Exists(ManifestFile)
+                ? File.GetLastWriteTime(ManifestFile)
                 : new DateTime(2000, 1, 1)
             ).Value;
 

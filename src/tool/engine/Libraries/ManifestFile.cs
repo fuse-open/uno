@@ -4,9 +4,9 @@ using Uno.Configuration.Format;
 using Uno.Compiler;
 using Uno.ProjectFormat;
 
-namespace Uno.Build.Packages
+namespace Uno.Build.Libraries
 {
-    public class PackageFile
+    public class ManifestFile
     {
         internal static string GetName(string dir)
         {
@@ -18,15 +18,15 @@ namespace Uno.Build.Packages
             return File.Exists(GetName(dir));
         }
 
-        public static PackageFile Load(string dir)
+        public static ManifestFile Load(string dir)
         {
-            return new PackageFile(StuffObject.Load(GetName(dir)), dir);
+            return new ManifestFile(StuffObject.Load(GetName(dir)), dir);
         }
 
         public string BuildCondition;
         public string SourceDirectory;
         public bool IsTransitive, IsPlaceholder;
-        public readonly List<PackageReference> References = new List<PackageReference>();
+        public readonly List<LibraryReference> References = new List<LibraryReference>();
         public readonly List<string> InternalsVisibleTo = new List<string>();
         public readonly List<FileItem> SourceFiles = new List<FileItem>();
         public readonly List<FileItem> ExtensionsFiles = new List<FileItem>();
@@ -46,12 +46,12 @@ namespace Uno.Build.Packages
         readonly string _name;
         readonly string _version;
 
-        PackageFile(string dir)
+        ManifestFile(string dir)
         {
             RootDirectory = dir;
         }
 
-        PackageFile(StuffObject stuff, string dir)
+        ManifestFile(StuffObject stuff, string dir)
             : this(dir)
         {
             stuff.TryGetValue(nameof(Name), out _name);
@@ -59,7 +59,7 @@ namespace Uno.Build.Packages
             stuff.TryGetValue(nameof(BuildCondition), out BuildCondition);
             stuff.TryGetValue(nameof(SourceDirectory), out SourceDirectory);
             stuff.TryGetValue(nameof(IsTransitive), out IsTransitive);
-            References.AddRange(stuff.GetArray(nameof(References), PackageReference.FromString));
+            References.AddRange(stuff.GetArray(nameof(References), LibraryReference.FromString));
             InternalsVisibleTo.AddRange(stuff.GetArray(nameof(InternalsVisibleTo)));
             SourceFiles.AddRange(stuff.GetArray(nameof(SourceFiles), FileItem.FromString));
             ExtensionsFiles.AddRange(stuff.GetArray(nameof(ExtensionsFiles), FileItem.FromString));
@@ -70,30 +70,30 @@ namespace Uno.Build.Packages
             Namespaces.AddRange(stuff.GetArray(nameof(Namespaces)));
         }
 
-        public PackageFile(string installDir, string name, string version)
+        public ManifestFile(string installDir, string name, string version)
             : this(Path.Combine(installDir, name, version))
         {
             IsPlaceholder = true;
         }
 
-        public PackageFile(SourcePackage upk, string dir)
+        public ManifestFile(SourceBundle bundle, string dir)
             : this(dir)
         {
-            _name = upk.Name;
-            _version = upk.Version;
-            BuildCondition = upk.BuildCondition;
-            IsTransitive = upk.IsTransitive;
+            _name = bundle.Name;
+            _version = bundle.Version;
+            BuildCondition = bundle.BuildCondition;
+            IsTransitive = bundle.IsTransitive;
 
-            foreach (var reference in upk.References)
-                References.Add(new PackageReference(upk.Source, reference.Name, reference.Version));
+            foreach (var reference in bundle.References)
+                References.Add(new LibraryReference(bundle.Source, reference.Name, reference.Version));
 
-            InternalsVisibleTo.AddRange(upk.InternalsVisibleTo);
-            SourceFiles.AddRange(upk.SourceFiles);
-            ExtensionsFiles.AddRange(upk.ExtensionsFiles);
-            BundleFiles.AddRange(upk.BundleFiles);
-            StuffFiles.AddRange(upk.StuffFiles);
-            UXFiles.AddRange(upk.UXFiles);
-            ForeignSourceFiles.AddRange(upk.ForeignSourceFiles);
+            InternalsVisibleTo.AddRange(bundle.InternalsVisibleTo);
+            SourceFiles.AddRange(bundle.SourceFiles);
+            ExtensionsFiles.AddRange(bundle.ExtensionsFiles);
+            BundleFiles.AddRange(bundle.BundleFiles);
+            StuffFiles.AddRange(bundle.StuffFiles);
+            UXFiles.AddRange(bundle.UXFiles);
+            ForeignSourceFiles.AddRange(bundle.ForeignSourceFiles);
 
             References.Sort();
             InternalsVisibleTo.Sort();
@@ -119,34 +119,34 @@ namespace Uno.Build.Packages
             }.Save(Filename, true);
         }
 
-        public SourcePackage CreateSourcePackage()
+        public SourceBundle CreateBundle()
         {
-            var upk = new SourcePackage(
+            var bundle = new SourceBundle(
                 Name,
                 Version,
                 Filename,
                 SourceDirectory ?? RootDirectory,
                 CacheDirectory,
-                SourcePackageFlags.Cached | (
+                SourceBundleFlags.Cached | (
                     IsTransitive 
-                        ? SourcePackageFlags.Transitive 
+                        ? SourceBundleFlags.Transitive 
                         : 0),
                 BuildCondition);
 
-            upk.SourceFiles.AddRange(SourceFiles);
-            upk.ExtensionsFiles.AddRange(ExtensionsFiles);
-            upk.ForeignSourceFiles.AddRange(ForeignSourceFiles);
-            upk.BundleFiles.AddRange(BundleFiles);
-            upk.StuffFiles.AddRange(StuffFiles);
+            bundle.SourceFiles.AddRange(SourceFiles);
+            bundle.ExtensionsFiles.AddRange(ExtensionsFiles);
+            bundle.ForeignSourceFiles.AddRange(ForeignSourceFiles);
+            bundle.BundleFiles.AddRange(BundleFiles);
+            bundle.StuffFiles.AddRange(StuffFiles);
 
             foreach (var p in InternalsVisibleTo)
-                upk.InternalsVisibleTo.Add(p);
+                bundle.InternalsVisibleTo.Add(p);
             foreach (var b in ExtensionsBackends)
-                upk.CachedExtensionsBackends.Add(b);
+                bundle.CachedExtensionsBackends.Add(b);
             foreach (var b in Namespaces)
-                upk.CachedNamespaces.Add(b);
+                bundle.CachedNamespaces.Add(b);
 
-            return upk;
+            return bundle;
         }
 
         public override string ToString()

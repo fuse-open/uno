@@ -18,41 +18,41 @@ namespace Uno.Compiler.Frontend
         static readonly object AstKey = new object();
         static readonly object SourceFileCountKey = new object();
 
-        readonly SourcePackage _upk;
+        readonly SourceBundle _bundle;
         readonly IFrontendEnvironment _env;
-        readonly List<SourcePackage> _packages = new List<SourcePackage>();
+        readonly List<SourceBundle> _bundles = new List<SourceBundle>();
         readonly HashSet<string> _filenames = new HashSet<string>();
 
         public readonly AstCache AstCache;
         public readonly UxlCache UxlCache;
 
-        public IReadOnlyList<SourcePackage> Packages => _packages;
-        public SourcePackage Package => _upk;
-        public string CacheFile => Path.Combine(_upk.CacheDirectory, "lib." + AstCache.MagicString);
+        public IReadOnlyList<SourceBundle> Bundles => _bundles;
+        public SourceBundle Bundle => _bundle;
+        public string CacheFile => Path.Combine(_bundle.CacheDirectory, "lib." + AstCache.MagicString);
         public bool CacheExists => File.Exists(CacheFile);
 
-        public SourceReader(Log log, SourcePackage upk, IFrontendEnvironment env)
+        public SourceReader(Log log, SourceBundle bundle, IFrontendEnvironment env)
             : base(log)
         {
-            _upk = upk;
+            _bundle = bundle;
             _env = env;
             AstCache = new AstCache(log, _filenames);
             UxlCache = new UxlCache(log, _filenames);
-            ResolvePackageOrder(upk, new HashSet<SourcePackage>());
+            ResolvePackageOrder(bundle, new HashSet<SourceBundle>());
         }
 
-        void ResolvePackageOrder(SourcePackage upk, HashSet<SourcePackage> visited)
+        void ResolvePackageOrder(SourceBundle bundle, HashSet<SourceBundle> visited)
         {
-            if (visited.Contains(upk))
+            if (visited.Contains(bundle))
                 return;
 
-            visited.Add(upk);
+            visited.Add(bundle);
 
-            // Add non-top-level packages first
-            foreach (var p in upk.References)
+            // Add non-top-level bundles first
+            foreach (var p in bundle.References)
                 ResolvePackageOrder(p, visited);
 
-            _packages.Add(upk);
+            _bundles.Add(bundle);
         }
 
         public DateTime CacheTime
@@ -66,7 +66,7 @@ namespace Uno.Compiler.Frontend
                 catch (Exception e)
                 {
                     Log.Trace(e);
-                    Log.Warning("Failed to get cache time for " + _upk.Quote() + ": " + e.Message);
+                    Log.Warning("Failed to get cache time for " + _bundle.Quote() + ": " + e.Message);
                     // Return something old
                     return new DateTime(2000, 1, 1);
                 }
@@ -77,17 +77,17 @@ namespace Uno.Compiler.Frontend
         {
             try
             {
-                foreach (var upk in _packages)
+                foreach (var bundle in _bundles)
                 {
-                    if (!_env.Test(upk.Source, upk.BuildCondition))
+                    if (!_env.Test(bundle.Source, bundle.BuildCondition))
                         continue;
 
-                    if (upk.IsCached && canCache)
+                    if (bundle.IsCached && canCache)
                     {
                         // AST cache
                         if (File.GetLastWriteTime(
                                 Path.Combine(
-                                    upk.CacheDirectory,
+                                    bundle.CacheDirectory,
                                     "lib." + AstCache.MagicString)
                                 ) >= time)
                             return true;
@@ -95,11 +95,11 @@ namespace Uno.Compiler.Frontend
                     else
                     {
                         // Project file
-                        if (File.GetLastWriteTime(upk.Source.FullPath) >= time)
+                        if (File.GetLastWriteTime(bundle.Source.FullPath) >= time)
                             return true;
                         // Included files
-                        foreach (var file in upk.AllFiles)
-                            if (File.GetLastWriteTime(Path.Combine(upk.SourceDirectory, file.UnixPath)) >= time)
+                        foreach (var file in bundle.AllFiles)
+                            if (File.GetLastWriteTime(Path.Combine(bundle.SourceDirectory, file.UnixPath)) >= time)
                                 return true;
                     }
                 }
@@ -124,13 +124,13 @@ namespace Uno.Compiler.Frontend
             return ReadFilesParallel<UxlDocument>(backendName, AddExtensionsFiles);
         }
 
-        List<T> ReadFilesParallel<T>(string arg, Action<SourcePackage, string, List<Task>, List<IEnumerable<T>>> addFiles)
+        List<T> ReadFilesParallel<T>(string arg, Action<SourceBundle, string, List<Task>, List<IEnumerable<T>>> addFiles)
         {
             var tasks = new List<Task>();
             var files = new List<IEnumerable<T>>();
 
-            foreach (var upk in _packages)
-                addFiles(upk, arg, tasks, files);
+            foreach (var bundle in _bundles)
+                addFiles(bundle, arg, tasks, files);
 
             try
             {
@@ -147,30 +147,30 @@ namespace Uno.Compiler.Frontend
             return result;
         }
 
-        void AddSourceFiles(SourcePackage upk, string arg, List<Task> tasks, List<IEnumerable<AstDocument>> files)
+        void AddSourceFiles(SourceBundle bundle, string arg, List<Task> tasks, List<IEnumerable<AstDocument>> files)
         {
-            // 1) See if SourcePackage already has IL cached in memory, and skip the AST.
+            // 1) See if SourceBundle already has IL cached in memory, and skip the AST.
             //    This is normally used to speed up `uno doctor`.
 
-            if (_env.CanCacheIL && upk.Cache.ContainsKey(SourcePackage.ILKey))
+            if (_env.CanCacheIL && bundle.Cache.ContainsKey(SourceBundle.ILKey))
             {
-                Log.UltraVerbose("Using IL from memory cache in " + upk);
+                Log.UltraVerbose("Using IL from memory cache in " + bundle);
                 return;
             }
 
-            // 2) See if SourcePackage already has AST cached in memory,
+            // 2) See if SourceBundle already has AST cached in memory,
             //    without any new source files added by UX compiler
 
-            var upkSourceFileCount = !upk.IsCached || _env.Test(upk.Source, upk.BuildCondition)
-                ? upk.SourceFiles.Count
+            var bundleSourceFileCount = !bundle.IsCached || _env.Test(bundle.Source, bundle.BuildCondition)
+                ? bundle.SourceFiles.Count
                 : 0;
             int cachedSourceFileCount;
             List<AstDocument> result;
-            if (upk.TryGetCache(AstKey, out result) &&
-                upk.TryGetCache(SourceFileCountKey, out cachedSourceFileCount) &&
-                cachedSourceFileCount == upkSourceFileCount)
+            if (bundle.TryGetCache(AstKey, out result) &&
+                bundle.TryGetCache(SourceFileCountKey, out cachedSourceFileCount) &&
+                cachedSourceFileCount == bundleSourceFileCount)
             {
-                Log.UltraVerbose("Using AST from memory cache in " + upk);
+                Log.UltraVerbose("Using AST from memory cache in " + bundle);
                 files.Add(result);
                 return;
             }
@@ -178,33 +178,33 @@ namespace Uno.Compiler.Frontend
             // 3) If no cache was available we must load from disk
 
             result = new List<AstDocument>();
-            upk.Cache[AstKey] = result;
+            bundle.Cache[AstKey] = result;
             files.Add(result);
 
-            if (upk.IsCached)
+            if (bundle.IsCached)
             {
-                if (!_env.Test(upk.Source, upk.BuildCondition))
+                if (!_env.Test(bundle.Source, bundle.BuildCondition))
                 {
-                    // Add empty namespaces when skipping a package.
-                    // This is needed for not breaking any 'using <skipped-package>;' directives.
+                    // Add empty namespaces when skipping a bundle.
+                    // This is needed for not breaking any 'using <skipped-bundle>;' directives.
 
-                    var root = new AstDocument(upk.Source);
+                    var root = new AstDocument(bundle.Source);
 
                     lock (result)
                         result.Add(root);
 
-                    foreach (var ns in upk.CachedNamespaces)
+                    foreach (var ns in bundle.CachedNamespaces)
                     {
                         var parent = (AstNamespace) root;
                         foreach (var p in ns.Split('.'))
                         {
-                            var ast = new AstNamespace(new AstIdentifier(upk.Source, p));
+                            var ast = new AstNamespace(new AstIdentifier(bundle.Source, p));
                             parent.Namespaces.Add(ast);
                             parent = ast;
                         }
                     }
 
-                    upk.Cache[SourceFileCountKey] = 0;
+                    bundle.Cache[SourceFileCountKey] = 0;
                     return;
                 }
 
@@ -213,32 +213,32 @@ namespace Uno.Compiler.Frontend
                     {
                         try
                         {
-                            AstCache.Deserialize(upk, Path.Combine(upk.CacheDirectory, "lib." + AstCache.MagicString), result);
+                            AstCache.Deserialize(bundle, Path.Combine(bundle.CacheDirectory, "lib." + AstCache.MagicString), result);
                         }
                         catch (Exception e)
                         {
-                            Log.Error(upk.Source, ErrorCode.E0000, "Failed to load AST cache: " + e.Message);
+                            Log.Error(bundle.Source, ErrorCode.E0000, "Failed to load AST cache: " + e.Message);
                         }
                     });
             }
             else
             {
-                foreach (var rf in upk.SourceFiles)
-                    if (_env.Test(_upk.Source, rf.Condition))
-                        BeginTask(tasks, () => AstCache.Load(upk, rf.UnixPath, result));
+                foreach (var rf in bundle.SourceFiles)
+                    if (_env.Test(_bundle.Source, rf.Condition))
+                        BeginTask(tasks, () => AstCache.Load(bundle, rf.UnixPath, result));
             }
 
-            upk.Cache[SourceFileCountKey] = upk.SourceFiles.Count;
+            bundle.Cache[SourceFileCountKey] = bundle.SourceFiles.Count;
         }
 
-        void AddExtensionsFiles(SourcePackage upk, string backendName, List<Task> tasks, List<IEnumerable<UxlDocument>> files)
+        void AddExtensionsFiles(SourceBundle bundle, string backendName, List<Task> tasks, List<IEnumerable<UxlDocument>> files)
         {
-            // 1) See if SourcePackage already has UXL cached in memory
+            // 1) See if SourceBundle already has UXL cached in memory
 
             List<UxlDocument> result;
-            if (upk.TryGetCache(backendName, out result))
+            if (bundle.TryGetCache(backendName, out result))
             {
-                Log.UltraVerbose("Using UXL from memory cache in " + upk);
+                Log.UltraVerbose("Using UXL from memory cache in " + bundle);
                 files.Add(result);
                 return;
             }
@@ -246,14 +246,14 @@ namespace Uno.Compiler.Frontend
             // 2) If no cache was available we must load from disk
 
             result = new List<UxlDocument>();
-            upk.Cache[backendName] = result;
+            bundle.Cache[backendName] = result;
             files.Add(result);
 
-            if (upk.IsCached)
+            if (bundle.IsCached)
             {
                 if (backendName == null ||
-                    !_env.Test(upk.Source, upk.BuildCondition) ||
-                    !upk.CachedExtensionsBackends.Contains(backendName))
+                    !_env.Test(bundle.Source, bundle.BuildCondition) ||
+                    !bundle.CachedExtensionsBackends.Contains(backendName))
                     return;
 
                 BeginTask(tasks,
@@ -261,19 +261,19 @@ namespace Uno.Compiler.Frontend
                     {
                         try
                         {
-                            UxlCache.Deserialize(upk, Path.Combine(upk.CacheDirectory, backendName + "." + UxlCache.MagicString), result);
+                            UxlCache.Deserialize(bundle, Path.Combine(bundle.CacheDirectory, backendName + "." + UxlCache.MagicString), result);
                         }
                         catch (Exception e)
                         {
-                            Log.Error(upk.Source, ErrorCode.E0000, "Failed to load UXL cache: " + e.Message);
+                            Log.Error(bundle.Source, ErrorCode.E0000, "Failed to load UXL cache: " + e.Message);
                         }
                     });
             }
             else
             {
-                foreach (var rf in upk.ExtensionsFiles)
-                    if (_env.Test(_upk.Source, rf.Condition))
-                        BeginTask(tasks, () => UxlCache.Load(upk, rf.UnixPath, result));
+                foreach (var rf in bundle.ExtensionsFiles)
+                    if (_env.Test(_bundle.Source, rf.Condition))
+                        BeginTask(tasks, () => UxlCache.Load(bundle, rf.UnixPath, result));
             }
         }
 
@@ -296,13 +296,13 @@ namespace Uno.Compiler.Frontend
             var uxl = new List<UxlDocument>();
             var uxlMap = new ListDictionary<UxlBackendType, UxlDocument>();
 
-            foreach (var rf in _upk.SourceFiles)
-                if (_env.Test(_upk.Source, rf.Condition))
-                    AstCache.Load(_upk, rf.UnixPath, ast);
+            foreach (var rf in _bundle.SourceFiles)
+                if (_env.Test(_bundle.Source, rf.Condition))
+                    AstCache.Load(_bundle, rf.UnixPath, ast);
 
-            foreach (var rf in _upk.ExtensionsFiles)
-                if (_env.Test(_upk.Source, rf.Condition))
-                    UxlCache.Load(_upk, rf.UnixPath, uxl);
+            foreach (var rf in _bundle.ExtensionsFiles)
+                if (_env.Test(_bundle.Source, rf.Condition))
+                    UxlCache.Load(_bundle, rf.UnixPath, uxl);
 
             foreach (var e in uxl)
             {
@@ -334,7 +334,7 @@ namespace Uno.Compiler.Frontend
             Disk.CreateDirectory(outputDir);
             var filename = Path.Combine(outputDir, basename + "." + AstCache.MagicString);
             Log.Event(IOEvent.Write, filename);
-            ast.Serialize(_upk, filename, flags);
+            ast.Serialize(_bundle, filename, flags);
         }
 
         void WriteUxl(IEnumerable<UxlDocument> uxl, string outputDir, string basename)
@@ -342,7 +342,7 @@ namespace Uno.Compiler.Frontend
             Disk.CreateDirectory(outputDir);
             var filename = Path.Combine(outputDir, basename + "." + UxlCache.MagicString);
             Log.Event(IOEvent.Write, filename);
-            uxl.Serialize(_upk, filename);
+            uxl.Serialize(_bundle, filename);
         }
     }
 }

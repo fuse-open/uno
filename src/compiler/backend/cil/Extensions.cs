@@ -184,9 +184,9 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
-        public static Version ParseVersion(this SourcePackage package, Log log)
+        public static Version ParseVersion(this SourceBundle bundle, Log log)
         {
-            var str = package.Version;
+            var str = bundle.Version;
 
             if (string.IsNullOrEmpty(str))
                 return new Version();
@@ -211,7 +211,7 @@ namespace Uno.Compiler.Backends.CIL
             }
             catch
             {
-                log.Warning(package.Source, null, "Failed to parse version string " + str.Quote());
+                log.Warning(bundle.Source, null, "Failed to parse version string " + str.Quote());
                 return new Version();
             }
         }

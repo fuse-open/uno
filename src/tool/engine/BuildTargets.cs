@@ -10,7 +10,7 @@ namespace Uno.Build
     public static class BuildTargets
     {
         public static readonly BuildTarget Default = new DotNetBuild();
-        public static readonly BuildTarget Package = new PackageBuild();
+        public static readonly BuildTarget Library = new LibraryBuild();
 
         public static readonly BuildTarget[] All =
         {
@@ -23,7 +23,7 @@ namespace Uno.Build
             new DocsBuild(),
             new MetadataBuild(),
             new PInvokeBuild(),
-            Package,
+            Library,
         };
 
         public static IEnumerable<BuildTarget> Enumerate(bool experimental = true, bool obsolete = false)

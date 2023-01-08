@@ -11,7 +11,7 @@ namespace Uno.Compiler.API.Domain.IL
         public readonly List<Block> Blocks = new List<Block>();
         public readonly List<DataType> Types = new List<DataType>();
         public readonly List<Namespace> Namespaces = new List<Namespace>();
-        public readonly HashSet<SourcePackage> Packages = new HashSet<SourcePackage>();
+        public readonly HashSet<SourceBundle> Bundles = new HashSet<SourceBundle>();
 
         // Optimizing
         public readonly List<DataType> StrippedTypes = new List<DataType>();
@@ -49,15 +49,15 @@ namespace Uno.Compiler.API.Domain.IL
 
         public bool IsAccessibleFrom(Source src)
         {
-            foreach (var p in Packages)
-                if (p.IsAccessibleFrom(src.Package))
+            foreach (var p in Bundles)
+                if (p.IsAccessibleFrom(src.Bundle))
                     return true;
 
             return false;
         }
 
         Source IEntity.Source => Source;
-        SourcePackage IEntity.Package => SourcePackage.Unknown;
+        SourceBundle IEntity.Bundle => SourceBundle.Unknown;
         IEntity IEntity.MasterDefinition => this;
         DataType IEntity.DeclaringType { get { throw new InvalidOperationException(); } }
         DataType IEntity.ReturnType { get { throw new InvalidOperationException(); } }

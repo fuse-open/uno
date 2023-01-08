@@ -72,7 +72,7 @@ namespace Uno.Compiler.Core.IL.Validation
 
         public override bool Begin(DataType dt)
         {
-            if (dt.IsEnum || dt.CanLink || dt.Package.IsVerified)
+            if (dt.IsEnum || dt.CanLink || dt.Bundle.IsVerified)
                 return false;
 
             if (dt.IsAbstract)

@@ -1,7 +1,7 @@
 using Uno.Build;
 using Uno.Logging;
 
-namespace Uno.CLI.Projects
+namespace Uno.CLI.Building
 {
     public struct BuildArguments
     {

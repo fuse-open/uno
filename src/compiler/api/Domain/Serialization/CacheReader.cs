@@ -8,7 +8,7 @@ namespace Uno.Compiler.API.Domain.Serialization
 {
     public class CacheReader : BinaryReader
     {
-        readonly SourcePackage _upk;
+        readonly SourceBundle _bundle;
         readonly List<string> _strings = new List<string>();
 
         Source _lastSource = Source.Unknown;
@@ -17,10 +17,10 @@ namespace Uno.Compiler.API.Domain.Serialization
         int _lastColumn;
         int _lastLength;
 
-        public CacheReader(SourcePackage upk, string filename)
+        public CacheReader(SourceBundle bundle, string filename)
             : base(File.OpenRead(filename), new UTF8Encoding())
         {
-            _upk = upk;
+            _bundle = bundle;
         }
 
         public void VerifyMagic(uint magic)
@@ -140,8 +140,8 @@ namespace Uno.Compiler.API.Domain.Serialization
                     {
                         var path = ReadGlobalString();
                         if (!string.IsNullOrEmpty(path) && path[0] != '<')
-                            path = path.UnixToNative().ToFullPath(_upk.SourceDirectory);
-                        _lastFile = new SourceFile(_upk, path);
+                            path = path.UnixToNative().ToFullPath(_bundle.SourceDirectory);
+                        _lastFile = new SourceFile(_bundle, path);
                         _lastLine = 0;
                     }
 

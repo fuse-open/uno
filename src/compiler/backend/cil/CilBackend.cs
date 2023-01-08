@@ -41,15 +41,15 @@ namespace Uno.Compiler.Backends.CIL
                                 : DataType.Invalid;
         }
 
-        public override bool CanLink(SourcePackage upk)
+        public override bool CanLink(SourceBundle bundle)
         {
-            return Environment.IsUpToDate(upk, upk.Name + ".dll");
+            return Environment.IsUpToDate(bundle, bundle.Name + ".dll");
         }
 
         public override bool CanLink(DataType dt)
         {
             // Can't check DotNetTypeAttribute because we don't know if any members with DotNetOverrideAttriute exist.
-            return dt.Package.CanLink;
+            return dt.Bundle.CanLink;
         }
 
         public override bool CanLink(Function f)
@@ -109,11 +109,11 @@ namespace Uno.Compiler.Backends.CIL
                     loader.SetX86();
 
                 Log.Verbose("Entrypoint: " + executable.ToRelativePath() + " (" + loader.Architecture + ")");
-                loader.SetAssemblyInfo(Input.Package.Name + "-loader",
-                    Input.Package.ParseVersion(Log),
+                loader.SetAssemblyInfo(Input.Bundle.Name + "-loader",
+                    Input.Bundle.ParseVersion(Log),
                     Environment.GetString);
                 loader.SetMainClass(Data.MainClass.CilTypeName(),
-                    Path.Combine(_outputDir, Input.Package.Name + ".dll"),
+                    Path.Combine(_outputDir, Input.Bundle.Name + ".dll"),
                     Environment.GetString("AppLoader.Class"),
                     Environment.GetString("AppLoader.Method"));
                 loader.ClearPublicKey();
@@ -121,16 +121,16 @@ namespace Uno.Compiler.Backends.CIL
             }
         }
 
-        public override BackendResult Build(SourcePackage package)
+        public override BackendResult Build(SourceBundle bundle)
         {
-            if (package.CanLink)
+            if (bundle.CanLink)
             {
-                package.Tag = _linker.AddAssemblyFile(Path.Combine(_outputDir, package.Name + ".dll"));
+                bundle.Tag = _linker.AddAssemblyFile(Path.Combine(_outputDir, bundle.Name + ".dll"));
                 return null;
             }
 
             var g = new CilGenerator(Disk, Data, Essentials,
-                                     this, _linker, package, _outputDir);
+                                     this, _linker, bundle, _outputDir);
             g.Configure(Environment.Debug);
 
             using (Log.StartProfiler(g.GetType().FullName + ".Generate"))

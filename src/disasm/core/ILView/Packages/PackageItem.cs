@@ -18,40 +18,40 @@ namespace Uno.Disasm.ILView.Packages
         public readonly PackageFolderItem ForeignSourceFiles;
         public readonly PackageFolderItem AdditionalFiles;
         public readonly PackageFolderItem StuffFiles;
-        public readonly SourcePackage Package;
+        public readonly SourceBundle Bundle;
 
-        public override string DisplayName => Package.Name;
+        public override string DisplayName => Bundle.Name;
         public override ILIcon Icon => ILIcon.Project;
         public override Syntax Syntax => Syntax.Stuff;
-        public override string FullName => Package.Source.FullPath;
+        public override string FullName => Bundle.Source.FullPath;
 
-        public PackageItem(SourcePackage upk)
+        public PackageItem(SourceBundle bundle)
         {
-            Package = upk;
-            SourceFiles = new PackageFolderItem(upk, "Source Files");
-            ExtensionsFiles = new PackageFolderItem(upk, "Extensions Files");
-            BundleFiles = new PackageFolderItem(upk, "Bundle Files");
-            ForeignSourceFiles = new PackageFolderItem(upk, "Foreign Source Files");
-            AdditionalFiles = new PackageFolderItem(upk, "Additional Files");
-            StuffFiles = new PackageFolderItem(upk, "Stuff Files");
+            Bundle = bundle;
+            SourceFiles = new PackageFolderItem(bundle, "Source Files");
+            ExtensionsFiles = new PackageFolderItem(bundle, "Extensions Files");
+            BundleFiles = new PackageFolderItem(bundle, "Bundle Files");
+            ForeignSourceFiles = new PackageFolderItem(bundle, "Foreign Source Files");
+            AdditionalFiles = new PackageFolderItem(bundle, "Additional Files");
+            StuffFiles = new PackageFolderItem(bundle, "Stuff Files");
 
-            if (upk.Version != null)
-                Suffix = "(" + upk.Version + ")";
+            if (bundle.Version != null)
+                Suffix = "(" + bundle.Version + ")";
 
-            foreach (var reference in upk.References)
+            foreach (var reference in bundle.References)
                 References.AddChild(new ReferenceItem(reference));
-            foreach (var f in upk.SourceFiles)
-                SourceFiles.AddFile(upk.SourceDirectory, f.UnixPath);
-            foreach (var f in upk.ExtensionsFiles)
-                ExtensionsFiles.AddFile(upk.SourceDirectory, f.UnixPath);
-            foreach (var f in upk.BundleFiles)
-                BundleFiles.AddFile(upk.SourceDirectory, f.UnixPath);
-            foreach (var f in upk.ForeignSourceFiles)
-                ForeignSourceFiles.AddFile(upk.SourceDirectory, f.UnixPath);
-            foreach (var f in upk.AdditionalFiles)
-                AdditionalFiles.AddFile(upk.SourceDirectory, f.UnixPath);
-            foreach (var f in upk.StuffFiles)
-                StuffFiles.AddFile(upk.SourceDirectory, f.UnixPath);
+            foreach (var f in bundle.SourceFiles)
+                SourceFiles.AddFile(bundle.SourceDirectory, f.UnixPath);
+            foreach (var f in bundle.ExtensionsFiles)
+                ExtensionsFiles.AddFile(bundle.SourceDirectory, f.UnixPath);
+            foreach (var f in bundle.BundleFiles)
+                BundleFiles.AddFile(bundle.SourceDirectory, f.UnixPath);
+            foreach (var f in bundle.ForeignSourceFiles)
+                ForeignSourceFiles.AddFile(bundle.SourceDirectory, f.UnixPath);
+            foreach (var f in bundle.AdditionalFiles)
+                AdditionalFiles.AddFile(bundle.SourceDirectory, f.UnixPath);
+            foreach (var f in bundle.StuffFiles)
+                StuffFiles.AddFile(bundle.SourceDirectory, f.UnixPath);
 
             SourceFiles.Collapse();
             ExtensionsFiles.Collapse();
@@ -87,7 +87,7 @@ namespace Uno.Disasm.ILView.Packages
 
         protected override void Disassemble(Disassembler disasm)
         {
-            disasm.AppendHeader(Package);
+            disasm.AppendHeader(Bundle);
             disasm.Append(Contents);
         }
 

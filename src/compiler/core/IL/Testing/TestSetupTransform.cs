@@ -45,7 +45,7 @@ namespace Uno.Compiler.Core.IL.Testing
 
             _appClass = Essentials.Application;
 
-            _source = Package.Source;
+            _source = Bundle.Source;
             _testRegistryType = ILFactory.GetType("Uno.Testing.Registry");
             _mainClass = new ClassType(_source, Data.IL, null, Modifiers.Generated | Modifiers.Public, "MainClass");
             _mainClass.SetBase(_appClass);
@@ -229,7 +229,7 @@ namespace Uno.Compiler.Core.IL.Testing
 
                 for (var bt = pt.Base; bt != null; bt = bt.Base)
                 {
-                    if (!bt.Package.IsStartup)
+                    if (!bt.Bundle.IsStartup)
                         break;
                     if (bt.IsPublic)
                         continue;

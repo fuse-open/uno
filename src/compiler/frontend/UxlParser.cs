@@ -10,26 +10,26 @@ namespace Uno.Compiler.Frontend
 {
     class UxlParser : XmlParserBase
     {
-        public static bool Parse(Log log, SourcePackage upk, string filename, List<UxlDocument> result)
+        public static bool Parse(Log log, SourceBundle bundle, string filename, List<UxlDocument> result)
         {
             try
             {
-                return new UxlParser(log, upk, filename).Parse(result);
+                return new UxlParser(log, bundle, filename).Parse(result);
             }
             catch (XmlException e)
             {
-                log.Error(new Source(upk, filename, e.LineNumber, e.LinePosition), ErrorCode.E0000, "UXL: " + e.Message);
+                log.Error(new Source(bundle, filename, e.LineNumber, e.LinePosition), ErrorCode.E0000, "UXL: " + e.Message);
                 return false;
             }
             catch (Exception e)
             {
-                log.Error(new Source(upk, filename), ErrorCode.E3332, "UXL: " + e.Message);
+                log.Error(new Source(bundle, filename), ErrorCode.E3332, "UXL: " + e.Message);
                 return false;
             }
         }
 
-        UxlParser(Log log, SourcePackage upk, string filename)
-            : base(log, upk, filename)
+        UxlParser(Log log, SourceBundle bundle, string filename)
+            : base(log, bundle, filename)
         {
         }
 
@@ -91,7 +91,7 @@ namespace Uno.Compiler.Frontend
             else if (!Enum.TryParse(backend.Value.String, out backendType) || backendType == UxlBackendType.Unknown)
                 Log.Error(backend.Value.Source, ErrorCode.E0000, "Unknown backend " + backend.Value.String.Quote());
 
-            var result = new UxlDocument(File.Package, backendType, cond);
+            var result = new UxlDocument(File.Bundle, backendType, cond);
 
             ParseElements(
                 name =>

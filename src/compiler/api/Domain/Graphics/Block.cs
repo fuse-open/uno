@@ -39,7 +39,7 @@ namespace Uno.Compiler.API.Domain.Graphics
 
         public bool IsAccessibleFrom(Source src)
         {
-            return Source.Package.IsAccessibleFrom(src.Package);
+            return Source.Bundle.IsAccessibleFrom(src.Bundle);
         }
 
         Source IEntity.Source => Source;
@@ -47,7 +47,7 @@ namespace Uno.Compiler.API.Domain.Graphics
         DataType IEntity.DeclaringType { get { throw new InvalidOperationException(); } }
         DataType IEntity.ReturnType { get { throw new InvalidOperationException(); } }
         MemberType IEntity.MemberType => MemberType.Other;
-        public SourcePackage Package => Source.Package;
+        public SourceBundle Bundle => Source.Bundle;
         NewObject[] IEntity.Attributes => Attributes;
         string IEntity.DocComment => DocComment;
         bool IEntity.HasRefCount => false;

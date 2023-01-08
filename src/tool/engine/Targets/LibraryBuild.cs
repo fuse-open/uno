@@ -4,12 +4,12 @@ using Uno.Compiler.API.Backends;
 
 namespace Uno.Build.Targets
 {
-    public class PackageBuild : BuildTarget
+    public class LibraryBuild : BuildTarget
     {
-        public override string Identifier => "package";
-        public override string FormerName => "unopackage";
-        public override string ProjectGroup => "Package";
-        public override string Description => "Uno package files.";
+        public override string Identifier => "library";
+        public override string FormerName => "package";
+        public override string ProjectGroup => "Library";
+        public override string Description => "Uno library bundle.";
         public override bool IsExperimental => true;
         public override bool DefaultStrip => false;
 
@@ -20,9 +20,9 @@ namespace Uno.Build.Targets
 
         public override void Configure(ICompiler compiler)
         {
-            new PackageGenerator(
+            new BundleGenerator(
                     compiler.Environment,
-                    compiler.Input.Package,
+                    compiler.Input.Bundle,
                     compiler.Log,
                     compiler.Disk)
                 .Generate();

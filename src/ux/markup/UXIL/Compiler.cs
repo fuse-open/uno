@@ -1215,7 +1215,7 @@ namespace Uno.UX.Markup.UXIL
                 var testBootstrapper = dt.UXTestBootstrapper;
                 if (testBootstrapper == null)
                 {
-                    ReportError(e.Source, "The type '" + dt.FullName + "' cannot be used with ux:Test because no test bootstrapper for the type was found. Could you be missing a package reference?");
+                    ReportError(e.Source, "The type '" + dt.FullName + "' cannot be used with ux:Test because no test bootstrapper for the type was found. Could you be missing a reference?");
                     return null;
                 }
 

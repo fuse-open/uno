@@ -5,28 +5,28 @@ namespace Uno.Disasm.ILView.Packages
 {
     public class ReferenceItem : ILItem
     {
-        public readonly SourcePackage Package;
+        public readonly SourceBundle Bundle;
 
-        public override object Object => Package;
-        public override string DisplayName => Package.Name;
-        public override ILIcon Icon => Path.GetExtension(Package.Source.FullPath).ToUpperInvariant() == ".UNOPROJ"
+        public override object Object => Bundle;
+        public override string DisplayName => Bundle.Name;
+        public override ILIcon Icon => Path.GetExtension(Bundle.Source.FullPath).ToUpperInvariant() == ".UNOPROJ"
             ? ILIcon.ProjectProjectReference
             : ILIcon.ProjectPackageReference;
 
-        public ReferenceItem(SourcePackage upk)
+        public ReferenceItem(SourceBundle bundle)
         {
-            Package = upk;
+            Bundle = bundle;
 
-            if (Package.Version != null)
-                Suffix = "(" + Package.Version + ")";
+            if (Bundle.Version != null)
+                Suffix = "(" + Bundle.Version + ")";
 
-            foreach (var reference in upk.References)
+            foreach (var reference in bundle.References)
                 AddChild(new ReferenceItem(reference));
         }
 
         protected override void Disassemble(Disassembler disasm)
         {
-            disasm.AppendHeader(Package);
+            disasm.AppendHeader(Bundle);
 
             foreach (var c in Children)
                 disasm.AppendLine(c.ToString());
