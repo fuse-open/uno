@@ -24,11 +24,11 @@ Available commands
   config         Print information about your Uno configuration
   ls             Print project items found to STDOUT
 
-Experimental commands
+Additional commands
   no-build       Invoke generated build steps without triggering a build
   lint           Parses uno source files and output syntax errors
   adb            Use Android Debug Bridge (adb)
-  launch-apk     Deploy and start APK on a connected device
+  launch-apk     Deploy and start APK on a connected device or emulator
   open           Open file(s) in external application
 
 Environment variables
@@ -174,8 +174,10 @@ Available options
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * android-emu        C++/JNI/GLES2 code and APK. Runs on emulator (x86_64).
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * ios-sim            (Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
@@ -216,8 +218,10 @@ Available options
 
 Available build targets
   * android            C++/JNI/GLES2 code and APK. Runs on device.
+  * android-emu        C++/JNI/GLES2 code and APK. Runs on emulator (x86_64).
   * native             C++/GL code, CMake project and native executable.
   * ios                (Objective-)C++/GLES2 code and Xcode project. (macOS only)
+  * ios-sim            (Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)
   * dotnet             .NET/GL bytecode and executable. (default)
 ```
 
@@ -294,7 +298,7 @@ Type 'uno adb' to see what's available.
 ```
 Usage: uno launch-apk [options] <filename>
 
-Deploy and start APK on a connected device.
+Deploy and start APK on a connected device or emulator.
 
 Available options
   -a, --activity=NAME   Android activity name
