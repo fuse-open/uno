@@ -70,7 +70,7 @@ namespace Uno.Compiler.Core.IL.Utilities
         public DataType CallerFilePathAttribute { get; private set; }
         public DataType CallerLineNumberAttribute { get; private set; }
         public DataType CallerMemberNameAttribute { get; private set; }
-        public DataType CallerPackageNameAttribute { get; private set; }
+        public DataType CallerBundleNameAttribute { get; private set; }
         public DataType WeakReferenceAttribute { get; private set; }
         public DataType OptionalAttribute { get; private set; }
         public DataType ObsoleteAttribute { get; private set; }
@@ -159,7 +159,7 @@ namespace Uno.Compiler.Core.IL.Utilities
             CallerFilePathAttribute = ilf.GetType("Uno.Compiler.CallerFilePathAttribute");
             CallerLineNumberAttribute = ilf.GetType("Uno.Compiler.CallerLineNumberAttribute");
             CallerMemberNameAttribute = ilf.GetType("Uno.Compiler.CallerMemberNameAttribute");
-            CallerPackageNameAttribute = ilf.GetType("Uno.Compiler.CallerPackageNameAttribute");
+            CallerBundleNameAttribute = ilf.GetType("Uno.Compiler.CallerBundleNameAttribute");
             WeakReferenceAttribute = ilf.GetType("Uno.WeakReferenceAttribute");
             OptionalAttribute = ilf.GetType("Uno.Compiler.ExportTargetInterop.OptionalAttribute");
             ObsoleteAttribute = ilf.GetType("Uno.ObsoleteAttribute");

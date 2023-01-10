@@ -9,6 +9,12 @@ namespace Uno.Compiler
     }
 
     [AttributeUsage(AttributeTargets.Parameter)]
+    public sealed class CallerBundleNameAttribute : Attribute
+    {
+    }
+
+    [Obsolete("Please use 'CallerBundleNameAttribute' instead.")]
+    [AttributeUsage(AttributeTargets.Parameter)]
     public sealed class CallerPackageNameAttribute : Attribute
     {
     }
