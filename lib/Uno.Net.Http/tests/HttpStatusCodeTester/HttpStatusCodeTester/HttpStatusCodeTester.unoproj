@@ -1,5 +1,5 @@
 {
-  "Packages": [
+  "References": [
     "Fuse.Animations",
     "Fuse.BasicTheme",
     "Fuse.Controls",

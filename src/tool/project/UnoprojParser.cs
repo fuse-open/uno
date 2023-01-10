@@ -101,32 +101,33 @@ namespace Uno.ProjectFormat
 
                             break;
                         }
-                        case "Packages":
+                        case "Packages":    // 1.x and 2.x
+                        case "References":  // 3.x
                         {
-                            _document.OptionalPackages = new List<LibraryReference>();
+                            _document.OptionalLibraryReferences = new List<LibraryReference>();
 
                             foreach (var e in ReadArray())
                             {
                                 try
                                 {
-                                    _document.OptionalPackages.Add(LibraryReference.FromString(GetSource(), e));
+                                    _document.OptionalLibraryReferences.Add(LibraryReference.FromString(GetSource(), e));
                                 }
                                 catch (Exception x)
                                 {
-                                    _log.Error(GetSource(), null, "Invalid 'Packages' element (" + e + "): " + x.Message);
+                                    _log.Error(GetSource(), null, "Invalid 'References' element (" + e + "): " + x.Message);
                                 }
                             }
                             break;
                         }
                         case "Projects":
                         {
-                            _document.OptionalProjects = new List<ProjectReference>();
+                            _document.OptionalProjectReferences = new List<ProjectReference>();
 
                             foreach (var e in ReadArray())
                             {
                                 try
                                 {
-                                    _document.OptionalProjects.Add(ProjectReference.FromString(GetSource(), e));
+                                    _document.OptionalProjectReferences.Add(ProjectReference.FromString(GetSource(), e));
                                 }
                                 catch (Exception x)
                                 {

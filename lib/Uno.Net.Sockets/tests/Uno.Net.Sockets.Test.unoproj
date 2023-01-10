@@ -1,6 +1,5 @@
 {
-  "Copyright": "Copyright (C) 2015",
-  "Packages": [
+  "References": [
     "Uno.Net.Sockets",
     "Uno.Testing"
   ],

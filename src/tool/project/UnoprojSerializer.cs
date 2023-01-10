@@ -58,21 +58,21 @@ namespace Uno.ProjectFormat
                 json["InternalsVisibleTo"] = internals;
             }
 
-            if (project.OptionalPackages != null)
+            if (project.OptionalLibraryReferences != null)
             {
-                var packages = new List<string>();
+                var references = new List<string>();
 
-                foreach (var e in project.OptionalPackages)
-                    packages.Add(e.ToString());
+                foreach (var e in project.OptionalLibraryReferences)
+                    references.Add(e.ToString());
 
-                json["Packages"] = packages;
+                json["References"] = references;
             }
 
-            if (project.OptionalProjects != null)
+            if (project.OptionalProjectReferences != null)
             {
                 var projects = new List<string>();
 
-                foreach (var e in project.OptionalProjects)
+                foreach (var e in project.OptionalProjectReferences)
                     projects.Add(e.ToString());
 
                 json["Projects"] = projects;

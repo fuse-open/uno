@@ -135,7 +135,7 @@ namespace Uno.Build
             if (Log.HasErrors)
                 return null;
 
-            PrintRow("Packages", _input.Bundles);
+            PrintRow("References", _input.Bundles);
             PrintRow("Output dir", _env.OutputDirectory);
 
             _file.Delete();
