@@ -178,7 +178,6 @@
     "src/Uno/AttributeTargets.uno:Source",
     "src/Uno/AttributeUsageAttribute.uno:Source",
     "src/Uno/Bool.uno:Source",
-    "src/Uno/Buffer.uno:Source",
     "src/Uno/Byte.uno:Source",
     "src/Uno/Byte2.uno:Source",
     "src/Uno/Byte4.uno:Source",
