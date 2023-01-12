@@ -422,7 +422,7 @@ namespace Uno.Compiler.Core.Syntax
             return true;
         }
 
-        void Apply<TKey, TValue>(string elmType, TKey key, TValue value, Dictionary<TKey, TValue> map)
+        void Apply<TKey, TValue>(string elmType, TKey key, TValue value, IDictionary<TKey, TValue> map)
             where TValue : IDisambiguable
         {
             TValue old;

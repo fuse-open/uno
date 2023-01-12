@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Collections;
 using Uno.Compiler;
 using Uno.Configuration;
 using Uno.IO;
@@ -25,7 +26,7 @@ namespace Uno.ProjectFormat
             get
             {
                 SourceValue property;
-                if (_doc.Properties.TryGetValue("Name", out property))
+                if (_doc.Properties.TryGetValue("name", out property))
                     return property.String;
 
                 var name = Path.GetFileNameWithoutExtension(_fullPath);
@@ -63,7 +64,7 @@ namespace Uno.ProjectFormat
         public IEnumerable<FileItem> Folders => GetFlattenedItems().Where(x => x.Type == IncludeItemType.Folder).Select(x => new FileItem(x.Value, x.Condition));
         public IEnumerable<FileItem> FuseJSFiles => GetFlattenedItems().Where(x => x.Type == IncludeItemType.FuseJS).Select(x => new FileItem(x.Value, x.Condition));
 
-        public Dictionary<string, SourceValue> MutableProperties => _doc.Properties;
+        public LowerCamelDictionary<SourceValue> MutableProperties => _doc.Properties;
         public List<LibraryReference> MutableLibraryReferences => _doc.OptionalLibraryReferences ?? (_doc.OptionalLibraryReferences = new List<LibraryReference>());
         public List<SourceValue> MutableInternalsVisibleTo => _doc.OptionalInternalsVisibleTo ?? (_doc.OptionalInternalsVisibleTo = new List<SourceValue>());
 
@@ -82,15 +83,15 @@ namespace Uno.ProjectFormat
             get { _flattenedItemsDirty = true; return _doc.OptionalExcludes ?? (_doc.OptionalExcludes = new List<SourceValue>()); }
         }
 
-        public string BuildDirectory => Path.Combine(RootDirectory, GetString("BuildDirectory"));
-        public string CacheDirectory => Path.Combine(RootDirectory, GetString("CacheDirectory"));
+        public string BuildDirectory => Path.Combine(RootDirectory, GetString("buildDirectory"));
+        public string CacheDirectory => Path.Combine(RootDirectory, GetString("cacheDirectory"));
 
         public string OutputDirectory
         {
             get
             {
                 // Avoid Path.Combine() and backslash because property may contain macros
-                var outputDir = GetString("OutputDirectory");
+                var outputDir = GetString("outputDirectory");
                 return Path.IsPathRooted(outputDir)
                     ? outputDir
                     : RootDirectory + "/" + outputDir;
@@ -100,6 +101,10 @@ namespace Uno.ProjectFormat
         public string GetOutputDirectory(object configuration, object target)
         {
             return OutputDirectory
+                .Replace("@(configuration:toLower)", configuration.ToString().ToLowerInvariant())
+                .Replace("@(configuration)", configuration.ToString())
+                .Replace("@(target)", target.ToString())
+                // 1.x and 2.x style (deprecated):
                 .Replace("@(Configuration:ToLower)", configuration.ToString().ToLowerInvariant())
                 .Replace("@(Configuration)", configuration.ToString())
                 .Replace("@(Target)", target.ToString())
@@ -108,13 +113,13 @@ namespace Uno.ProjectFormat
 
         public string Version
         {
-            get { return GetString("Version") ?? "0.0.0"; }
-            set { MutableProperties["Version"] = value; }
+            get { return GetString("version") ?? "0.0.0"; }
+            set { MutableProperties["version"] = value; }
         }
 
-        public string BuildCondition => GetString("BuildCondition");
-        public bool UnoCoreReference => GetBool("UnoCoreReference");
-        public bool IsTransitive => GetBool("IsTransitive");
+        public string BuildCondition => GetString("buildCondition");
+        public bool UnoCoreReference => GetBool("unoCoreReference");
+        public bool IsTransitive => GetBool("isTransitive");
 
         public static Project Load(string filename)
         {
@@ -261,10 +266,10 @@ namespace Uno.ProjectFormat
         {
             var result = new Dictionary<string, SourceValue>
             {
-                { "Name", new SourceValue(Source, Name) },
-                { "Identifier", TryGetProperty("Identifier") },
-                { "QIdentifier", TryGetProperty("QIdentifier") },
-                { "ProjectDirectory", TryGetProperty("ProjectDirectory") },
+                { "name", new SourceValue(Source, Name) },
+                { "identifier", TryGetProperty("identifier") },
+                { "qidentifier", TryGetProperty("qidentifier") },
+                { "projectDirectory", TryGetProperty("projectDirectory") },
             };
 
             foreach (var e in _doc.Properties)
@@ -342,15 +347,15 @@ namespace Uno.ProjectFormat
             if (PropertyDefinitions.Items.TryGetValue(name, out def))
                 return def.Item2;
 
-            switch (name)
+            switch (name.ToLowerCamelCase())
             {
-                case "Name":
+                case "name":
                     return Name;
-                case "Identifier":
-                    return TryGetProperty("Name").ToIdentifier();
-                case "QIdentifier":
-                    return TryGetProperty("Name").ToIdentifier(true);
-                case "ProjectDirectory":
+                case "identifier":
+                    return TryGetProperty("name").ToIdentifier();
+                case "qidentifier":
+                    return TryGetProperty("name").ToIdentifier(true);
+                case "projectDirectory":
                     return RootDirectory.NativeToUnix();
             }
 

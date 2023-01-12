@@ -32,7 +32,7 @@ namespace Uno.Compiler.Backends.CIL
         public override void Configure()
         {
             _outputDir = Environment.Combine(
-                Environment.ExpandSingleLine("@(AssemblyDirectory || '.')")).TrimPath();
+                Environment.ExpandSingleLine("@(assemblyDirectory || '.')")).TrimPath();
             _linker = new CilLinker(Log, Essentials, _outputDir);
             Scheduler.AddTransform(new CilTransform(this));
             EnableReflection = Environment.IsDefined("REFLECTION");

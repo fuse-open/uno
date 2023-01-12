@@ -90,9 +90,9 @@ namespace Uno.ProjectFormat
                 }
                 case JsonToken.StartArray:
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "InternalsVisibleTo":
+                        case "internalsVisibleTo":
                         {
                             _document.OptionalInternalsVisibleTo = new List<SourceValue>();
 
@@ -101,8 +101,8 @@ namespace Uno.ProjectFormat
 
                             break;
                         }
-                        case "Packages":    // 1.x and 2.x
-                        case "References":  // 3.x
+                        case "packages":    // 1.x and 2.x (deprecated)
+                        case "references":  // 3.x
                         {
                             _document.OptionalLibraryReferences = new List<LibraryReference>();
 
@@ -114,12 +114,12 @@ namespace Uno.ProjectFormat
                                 }
                                 catch (Exception x)
                                 {
-                                    _log.Error(GetSource(), null, "Invalid 'References' element (" + e + "): " + x.Message);
+                                    _log.Error(GetSource(), null, "Invalid 'references' element (" + e + "): " + x.Message);
                                 }
                             }
                             break;
                         }
-                        case "Projects":
+                        case "projects":
                         {
                             _document.OptionalProjectReferences = new List<ProjectReference>();
 
@@ -131,12 +131,12 @@ namespace Uno.ProjectFormat
                                 }
                                 catch (Exception x)
                                 {
-                                    _log.Error(GetSource(), null, "Invalid 'Projects' element (" + e + "): " + x.Message);
+                                    _log.Error(GetSource(), null, "Invalid 'projects' element (" + e + "): " + x.Message);
                                 }
                             }
                             break;
                         }
-                        case "Includes":
+                        case "includes":
                         {
                             foreach (var e in ReadArray())
                             {
@@ -146,12 +146,12 @@ namespace Uno.ProjectFormat
                                 }
                                 catch (Exception x)
                                 {
-                                    _log.Error(GetSource(), null, "Invalid 'Includes' element (" + e + "): " + x.Message);
+                                    _log.Error(GetSource(), null, "Invalid 'includes' element (" + e + "): " + x.Message);
                                 }
                             }
                             break;
                         }
-                        case "Excludes":
+                        case "excludes":
                         {
                             _document.OptionalExcludes = new List<SourceValue>();
 

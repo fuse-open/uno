@@ -17,9 +17,9 @@ namespace Uno.Build.Targets.Generators
         public void Configure()
         {
             foreach (var f in _env.GetSet("HeaderFile", true))
-                Add("Header Files", "@(HeaderDirectory)", f);
+                Add("Header Files", "@(headerDirectory)", f);
             foreach (var f in _env.GetSet("SourceFile", true))
-                Add("Source Files", "@(SourceDirectory)", f);
+                Add("Source Files", "@(sourceDirectory)", f);
 
             var lines = new List<string>();
 

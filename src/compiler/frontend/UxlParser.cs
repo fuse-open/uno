@@ -531,11 +531,11 @@ namespace Uno.Compiler.Frontend
                     ParseRequire(elmName, parent.Elements);
                     return true;
                 case "LinkLibrary":
-                    Log.Warning(GetSource(), ErrorCode.W0000, "<LinkLibrary> is deprecated, replace with <Require Template=\"$(Name)\">");
+                    Log.Warning(GetSource(), ErrorCode.W0000, "<LinkLibrary> is deprecated, replace with <Require Template=\"$(name)\">");
                     ParseLinkLibrary(elmName, parent.Elements);
                     return true;
                 case "UnoReference":
-                    Log.Warning(GetSource(), ErrorCode.W0000, "<UnoReference> is deprecated, replace with <Require Entity=\"$(Entity)\">");
+                    Log.Warning(GetSource(), ErrorCode.W0000, "<UnoReference> is deprecated, replace with <Require Entity=\"$(entity)\">");
                     ParseUnoReference(parent.Elements);
                     return true;
                 default:

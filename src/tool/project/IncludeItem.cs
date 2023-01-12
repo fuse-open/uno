@@ -44,7 +44,7 @@ namespace Uno.ProjectFormat
                 case 3:
                 {
                     IncludeItemType type;
-                    if (!Enum.TryParse(parts[1], out type))
+                    if (!Enum.TryParse(parts[1], true, out type))
                         throw new ArgumentException("Invalid file type (" + parts[1] + ")");
                     return new IncludeItem(src, type, parts[0], parts.Length == 3 ? parts[2] : null);
                 }
@@ -57,7 +57,7 @@ namespace Uno.ProjectFormat
         {
             return Value.NativeToUnix() + (
                     Type != IncludeItemType.Glob
-                        ? ":" + Type
+                        ? ":" + Type.ToString().ToLowerInvariant()
                         : null
                 ) + (
                     !string.IsNullOrEmpty(Condition)

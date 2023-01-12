@@ -23,7 +23,7 @@ namespace Uno.Build.Targets.Generators
                 var headers = env.GetSet("HeaderFile", true)
                     .Distinct()
                     .Select(f => new XcodeFile(
-                        "@(HeaderDirectory)/" + f,
+                        "@(headerDirectory)/" + f,
                         "Headers",
                         "<group>",
                         publicHeaders.Contains(f) ? "{ATTRIBUTES = (Public, ); }" : null))
@@ -31,7 +31,7 @@ namespace Uno.Build.Targets.Generators
 
                 var sources = env.GetSet("SourceFile", true)
                     .Distinct()
-                    .Select(f => new XcodeFile("@(SourceDirectory)/" + f, "Sources", "<group>"))
+                    .Select(f => new XcodeFile("@(sourceDirectory)/" + f, "Sources", "<group>"))
                     .ToList();
 
                 var frameworks = env.GetSet("Xcode.Framework", true)
@@ -166,7 +166,7 @@ namespace Uno.Build.Targets.Generators
             {
                 // Include dirs
                 var includeDirs = new StringBuilder();
-                includeDirs.AppendLine(Indent(5) + "@(HeaderDirectory),");
+                includeDirs.AppendLine(Indent(5) + "@(headerDirectory),");
                 foreach (var e in env.GetSet("IncludeDirectory", true))
                     includeDirs.AppendLine(Indent(5) + e.QuoteSpace().QuoteSpace() + ",");
                 env.Set("Pbxproj.IncludeDirectories", includeDirs.ToString().Trim());
