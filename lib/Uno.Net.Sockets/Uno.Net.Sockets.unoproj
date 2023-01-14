@@ -1,14 +1,14 @@
 {
-  "Copyright": "Copyright (c) Fuse Open",
-  "Description": "Native socket abstraction",
-  "Publisher": "Fuse Open",
-  "Includes": [
-    "Dns.uno:Source",
-    "IPAddress.uno:Source",
-    "NetworkHelpers.uno:Source",
-    "NetworkStream.uno:Source",
-    "Socket.uno:Source",
-    "System.Net.Sockets.uxl:Extensions",
-    "TcpListener.uno:Source"
+  "copyright": "Copyright (c) Fuse Open",
+  "description": "Native socket abstraction",
+  "publisher": "Fuse Open",
+  "includes": [
+    "Dns.uno:source",
+    "IPAddress.uno:source",
+    "NetworkHelpers.uno:source",
+    "NetworkStream.uno:source",
+    "Socket.uno:source",
+    "System.Net.Sockets.uxl:extensions",
+    "TcpListener.uno:source"
   ]
 }

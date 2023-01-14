@@ -1,16 +1,16 @@
 {
-  "Copyright": "Copyright (c) Fuse Open",
-  "Description": "JSON parser",
-  "Publisher": "Fuse Open",
-  "Projects": [
+  "copyright": "Copyright (c) Fuse Open",
+  "description": "JSON parser",
+  "publisher": "Fuse Open",
+  "projects": [
     "../Uno.Collections/Uno.Collections.unoproj"
   ],
-  "Includes": [
-    "JsonDataType.uno:Source",
-    "JsonException.uno:Source",
-    "JsonReader.uno:Source",
-    "JsonValue.uno:Source",
-    "JsonWriter.uno:Source",
-    "Parser.uno:Source",
+  "includes": [
+    "JsonDataType.uno:source",
+    "JsonException.uno:source",
+    "JsonReader.uno:source",
+    "JsonValue.uno:source",
+    "JsonWriter.uno:source",
+    "Parser.uno:source"
   ]
 }
