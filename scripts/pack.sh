@@ -87,6 +87,3 @@ rm-identical bin/win/net6.0-windows node_modules/@fuse-open/opentk *.dll
 
 # Remove needless build artifacts
 rm-all bin *.config *.pdb *.xml
-
-# Remove native macOS binaries (too big)
-rm -rf bin/mac/net6.0-macos/osx-*

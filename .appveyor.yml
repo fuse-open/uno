@@ -14,7 +14,6 @@ environment:
   #   SKIP_LIB_TESTS: 1
 
 install:
-  - dotnet workload install macos
   - ps: Install-Product node $env:nodejs_version
   - ps: |
       if ($env:TARGET -eq "android") {
