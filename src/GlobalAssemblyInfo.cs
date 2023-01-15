@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fuse Open")]
 [assembly: AssemblyProduct("uno")]
-[assembly: AssemblyCopyright("Copyright © 2018-2022 Fuse Open")]
+[assembly: AssemblyCopyright("Copyright © 2018-2023 Fuse Open")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
