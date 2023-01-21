@@ -25,7 +25,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     if (it.MasterDefinition == dt.MasterDefinition)
                         return Parameterize(it);
 
-                throw new FatalException(dt.Source, ErrorCode.I3044, "Unable to find parameterized version of " + dt.Quote());
+                var pr = CreateParameterizableInnerType(dt, pp);
+                pr.SetMasterDefinition(dt.MasterDefinition);
+                pp.NestedTypes.Add(pr);
+                return pr;
             }
 
             var pt = Parameterize(dt.Source, dt, dt.GenericParameters);
