@@ -26,6 +26,12 @@ namespace Uno.Diagnostics
         }
 
         /** Writes a debug message to the log. */
+        public static void Debug(object message)
+        {
+            WriteLine(LogLevel.Debug, message);
+        }
+
+        /** Writes a debug message to the log. */
         public static void Debug(string message)
         {
             WriteLine(LogLevel.Debug, message);
@@ -35,6 +41,12 @@ namespace Uno.Diagnostics
         public static void Debug(string format, params object[] args)
         {
             WriteLine(LogLevel.Debug, format, args);
+        }
+
+        /** Writes an informational message to the log. */
+        public static void Information(object message)
+        {
+            WriteLine(LogLevel.Information, message);
         }
 
         /** Writes an informational message to the log. */
@@ -50,6 +62,12 @@ namespace Uno.Diagnostics
         }
 
         /** Writes a warning message to the log. */
+        public static void Warning(object message)
+        {
+            WriteLine(LogLevel.Warning, message);
+        }
+
+        /** Writes a warning message to the log. */
         public static void Warning(string message)
         {
             WriteLine(LogLevel.Warning, message);
@@ -62,6 +80,12 @@ namespace Uno.Diagnostics
         }
 
         /** Writes an error message to the log. */
+        public static void Error(object message)
+        {
+            WriteLine(LogLevel.Error, message);
+        }
+
+        /** Writes an error message to the log. */
         public static void Error(string message)
         {
             WriteLine(LogLevel.Error, message);
@@ -71,6 +95,12 @@ namespace Uno.Diagnostics
         public static void Error(string format, params object[] args)
         {
             WriteLine(LogLevel.Error, format, args);
+        }
+
+        /** Writes a fatal error message to the log. */
+        public static void Fatal(object message)
+        {
+            WriteLine(LogLevel.Fatal, message);
         }
 
         /** Writes a fatal error message to the log. */
@@ -89,6 +119,12 @@ namespace Uno.Diagnostics
         public static void WriteLine(LogLevel level, string format, params object[] args)
         {
             WriteLine(level, string.Format(format, args));
+        }
+
+        /** Writes a message to the log. */
+        public static void WriteLine(LogLevel level, object message)
+        {
+            WriteLine(level, message != null ? message.ToString() : string.Empty);
         }
 
         /** Writes a message to the log. */
