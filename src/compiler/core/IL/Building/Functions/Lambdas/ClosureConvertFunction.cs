@@ -60,30 +60,41 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
             if (parent != null && locals.Count == 0)
                 return parent;
 
-            var type = new ClassType(
+            DataType masterType = new ClassType(
                 Source.Unknown,
                 Function.DeclaringType,
                 Function.Name + " lambda closure",
                 Modifiers.Private | Modifiers.Generated,
                 Function.DeclaringType.GetUniqueIdentifier(Function.Name + "_$closure"));
 
-            type.SetBase(Essentials.Object);
+            masterType.SetBase(Essentials.Object);
 
             var constrBody = new Scope(
                 Source.Unknown,
                 new CallConstructor(Source.Unknown, Essentials.Object.TryGetConstructor()));
 
-            type.Constructors.Add(
+            masterType.Constructors.Add(
                 new Constructor(
                     Source.Unknown,
-                    type,
+                    masterType,
                     "",
                     Modifiers.Public | Modifiers.Generated,
                     ParameterList.Empty,
                     constrBody));
 
-            Function.DeclaringType.NestedTypes.Add(type);
-            _generatedTypes.Add(type);
+            Function.DeclaringType.NestedTypes.Add(masterType);
+            _generatedTypes.Add(masterType);
+
+            var type = TypeBuilder.Parameterize(masterType);
+            var isGenericType = !type.IsMasterDefinition;
+
+            if (isGenericType)
+            {
+                var ctor = masterType.Constructors[0];
+                var parameterizedCtor = new Constructor(ctor.Source, type, ctor.DocComment, ctor.Modifiers, ctor.Parameters, ctor.Body);
+                parameterizedCtor.SetMasterDefinition(ctor);
+                type.Constructors.Add(parameterizedCtor);
+            }
 
             var decl = new VariableDeclaration(
                 Source.Unknown,
@@ -103,44 +114,59 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
             {
                 if (_closureVars.This)
                 {
+                    var thisType = TypeBuilder.Parameterize(Function.DeclaringType);
                     var field = new Field(
                         Source.Unknown,
-                        type,
-                        type.GetUniqueIdentifier("self"),
+                        masterType,
+                        masterType.GetUniqueIdentifier("self"),
                         "",
                         Modifiers.Public | Modifiers.Generated,
                         0,
-                        Function.DeclaringType);
+                        thisType);
 
-                    type.Fields.Add(field);
-
-                    statements.Add(result.StoreThis(new This(Function.DeclaringType)));
+                    masterType.Fields.Add(field);
+                    statements.Add(result.StoreThis(new This(thisType)));
                 }
 
                 foreach (var p in _closureVars.Params)
                 {
                     var field = new Field(
                         p.Source,
-                        type,
-                        type.GetUniqueIdentifier(p.Name),
+                        masterType,
+                        masterType.GetUniqueIdentifier(p.Name),
                         "",
                         Modifiers.Public | Modifiers.Generated,
                         0,
                         p.Type);
 
-                    type.Fields.Add(field);
-                    result.ParameterFields[p] = field;
+                    var parameterizedField = field;
+
+                    if (isGenericType)
+                    {
+                        parameterizedField = new Field(
+                            field.Source, type,
+                            field.Name,
+                            field.DocComment,
+                            field.Modifiers,
+                            field.FieldModifiers,
+                            field.ReturnType);
+                        parameterizedField.SetMasterDefinition(field);
+                        type.Fields.Add(parameterizedField);
+                    }
+
+                    masterType.Fields.Add(field);
+                    result.ParameterFields[p] = parameterizedField;
                     statements.Add(result.Store(p, new LoadArgument(Source.Unknown, Function, ParamIndex(p))));
                 }
             }
             // Non-root closures get a parent field for the parent closure
             else
             {
-                type.Fields.Add(
+                masterType.Fields.Add(
                     new Field(
                         Source.Unknown,
-                        type,
-                        type.GetUniqueIdentifier("parent"),
+                        masterType,
+                        masterType.GetUniqueIdentifier("parent"),
                         "",
                         Modifiers.Public | Modifiers.Generated,
                         0,
@@ -152,15 +178,30 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
             {
                 var field = new Field(
                     v.Source,
-                    type,
-                    type.GetUniqueIdentifier(v.Name),
+                    masterType,
+                    masterType.GetUniqueIdentifier(v.Name),
                     "",
                     Modifiers.Public | Modifiers.Generated,
                     0,
                     v.ValueType);
 
-                type.Fields.Add(field);
-                result.VariableFields[v] = field;
+                var parameterizedField = field;
+
+                if (isGenericType)
+                {
+                    parameterizedField = new Field(
+                        field.Source, type,
+                        field.Name,
+                        field.DocComment,
+                        field.Modifiers,
+                        field.FieldModifiers,
+                        field.ReturnType);
+                    parameterizedField.SetMasterDefinition(field);
+                    type.Fields.Add(parameterizedField);
+                }
+
+                masterType.Fields.Add(field);
+                result.VariableFields[v] = parameterizedField;
             }
 
             return result;
@@ -247,7 +288,7 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
 
                     _lambdaMethod = new Method(
                         e.Source,
-                        _closureStack.Peek().Type,
+                        closureType,
                         "Lambda method",
                         Modifiers.Public | Modifiers.Generated,
                         closureType.GetUniqueIdentifier("generated_lambda"),
@@ -256,6 +297,21 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
                         _lambda.Body as Scope ?? new Scope(_lambda.Source, _lambda.Body));
 
                     closureType.Methods.Add(_lambdaMethod);
+
+                    if (!closureType.IsMasterDefinition)
+                    {
+                        var masterMethod = new Method(
+                            _lambdaMethod.Source,
+                            closureType.MasterDefinition,
+                            _lambdaMethod.DocComment,
+                            _lambdaMethod.Modifiers,
+                            _lambdaMethod.Name,
+                            _lambdaMethod.ReturnType,
+                            _lambdaMethod.Parameters,
+                            _lambdaMethod.Body);
+                        _lambdaMethod.SetMasterDefinition(masterMethod);
+                        closureType.MasterDefinition.Methods.Add(masterMethod);
+                    }
 
                     break;
                 }
