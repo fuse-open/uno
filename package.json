@@ -1,6 +1,6 @@
 {
   "name": "@fuse-open/uno",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.",
   "dependencies": {
     "@fuse-open/opentk": "^3.2.0",
