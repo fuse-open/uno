@@ -4,6 +4,20 @@ Uno Changelog
 Unreleased
 ----------
 
+2.7
+---
+
+### Compiler
+- Support lamdas in generic classes (#446)
+
+### UnoCore
+- Add method overloads accepting `object` in `Uno.Diagnostics.Log` (#447)
+
+### iOS
+- Silence warning in plist file (#445)
+
+[`v2.6.0...v2.7.0`](https://github.com/fuse-open/uno/compare/v2.6.0...v2.7.0)
+
 2.6
 ---
 
