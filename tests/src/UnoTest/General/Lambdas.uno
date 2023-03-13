@@ -445,6 +445,28 @@ namespace UnoTest.General
 
             Assert.AreEqual("Yo!", f().Message);
         }
+
+        [Test]
+        public void GenericContext()
+        {
+            var test = new GenericContextHelper<int>(10);
+            Assert.AreEqual(10, test.Run());
+        }
+
+        class GenericContextHelper<T>
+        {
+            Func<T> f;
+
+            public GenericContextHelper(T arg)
+            {
+                f = () => arg;
+            }
+
+            public T Run()
+            {
+                return f();
+            }
+        }
     }
 
     public class LambdasClashClass
