@@ -106,7 +106,6 @@ namespace Android.Base
 
         public static ujclass LoadClass(JNIEnvPtr jni, ConstCharPtr name, bool systemClass)
         {
-            assert _inited;
             ujclass result;
             extern "jstring jname = $0->NewStringUTF($1)";
             if (systemClass) {
@@ -293,7 +292,6 @@ namespace Android.Base
 
         public static extern long GetUnoRef(ujobject obj)
         {
-            assert _inited;
             if (obj != ujobject.Null)
                 return extern<long>(obj, _helperCls, _getUnoRefMid, Android.Base.JNI.GetEnvPtr())
                     "(@{long})$3->CallStaticLongMethod($1, $2, $0)";

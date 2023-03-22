@@ -22,7 +22,7 @@ public extern(android) class Actions
 
     void ActionInt0(int x)
     {
-        assert(x==1);
+        Assert.IsTrue(x==1);
     }
 
     [Foreign(Language.Java)]
@@ -43,7 +43,7 @@ public extern(android) class Actions
 
     static void ActionIntInt0(int a, int b)
     {
-        assert(a==1 && b==2);
+        Assert.IsTrue(a==1 && b==2);
     }
 
     [Foreign(Language.Java)]
