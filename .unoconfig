@@ -18,4 +18,4 @@ Packages.SourcePaths += lib
 
 // Tooling
 Android.Emulator.Architecture: x86_64
-iOS.Simulator.Device: iPhone-13
+iOS.Simulator.Device: iPhone-14
