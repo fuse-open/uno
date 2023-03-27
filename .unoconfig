@@ -6,7 +6,7 @@ if WIN32 {
     AppLoader.Assembly: bin/win/net6.0-windows/uno-app.dll
     Uno.Command: bin/net6.0/uno.exe
 } else if MAC {
-    AppLoader.Assembly: bin/generic/net6.0/uno-app.dll
+    // AppLoader.Assembly is not used to create macOS apps
     Uno.Command: bin/net6.0/uno
 } else {
     AppLoader.Assembly: bin/generic/net6.0/uno-app.dll
