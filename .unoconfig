@@ -13,7 +13,7 @@ if WIN32 {
     Uno.Command: bin/net6.0/uno
 }
 
-// Package config
+// Standard library
 SearchPaths.Sources += lib
 
 // Tooling
