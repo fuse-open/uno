@@ -27,5 +27,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UATitle</key>
+	<string>@(Project.Title)</string>
+	<key>UAAssembly</key>
+	<string>@(Project.Name).dll</string>
+	<key>UAMainClass</key>
+	<string>@(MainClass)</string>
 </dict>
 </plist>

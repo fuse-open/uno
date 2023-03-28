@@ -13,7 +13,5 @@ done
 echo "ERROR: @(Product) is a library and cannot be run directly." >&2
 exit 1
 #else
-SOURCE=`dirname "$SOURCE"`
-SOURCE=`dirname "$SOURCE"`
-exec dotnet "$SOURCE/net6.0/@(Project.Name).app.dll" "$@"
+exec dotnet "@(Product)" "$@"
 #endif

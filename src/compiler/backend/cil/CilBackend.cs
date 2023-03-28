@@ -81,6 +81,9 @@ namespace Uno.Compiler.Backends.CIL
 
         public override void EndBuild()
         {
+            if (Data.MainClass != null)
+                Environment.Set("MainClass", Data.MainClass.CilTypeName());
+
             if (Environment.IsDefined("X64"))
                 foreach (var e in Environment.Enumerate("UnmanagedLibrary.x64"))
                     Environment.Require("UnmanagedLibrary", e);
