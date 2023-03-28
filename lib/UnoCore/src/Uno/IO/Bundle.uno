@@ -208,27 +208,27 @@ namespace Uno.IO
 
             lock (_bundles)
             {
-                foreach (var package in new BundleFile(
+                foreach (var name in new BundleFile(
                             new Bundle(),
                             null,
                             "bundles")
                         .ReadAllText()
                         .Split('\n'))
-                    _bundles[package] = new Bundle(package, true);
+                    _bundles[name] = new Bundle(name, true);
             }
         }
 
-        public static Bundle Get([CallerPackageName] string package = null)
+        public static Bundle Get([CallerPackageName] string name = null)
         {
             Load();
 
             lock (_bundles)
             {
                 Bundle bundle;
-                if (!_bundles.TryGetValue(package, out bundle))
+                if (!_bundles.TryGetValue(name, out bundle))
                 {
-                    bundle = new Bundle(package);
-                    _bundles.Add(package, bundle);
+                    bundle = new Bundle(name);
+                    _bundles.Add(name, bundle);
                 }
 
                 return bundle;
@@ -250,7 +250,13 @@ namespace Uno.IO
         extern(DOTNET) internal readonly Assembly Assembly;
         readonly List<BundleFile> _files = new List<BundleFile>();
 
+        [Obsolete("Please use 'Name' instead.")]
         public string PackageName
+        {
+            get { return Name; }
+        }
+
+        public string Name
         {
             get;
             private set;
@@ -261,12 +267,12 @@ namespace Uno.IO
             get { return _files; }
         }
 
-        Bundle(string packageName = null, bool load = false)
+        Bundle(string name = null, bool load = false)
         {
-            PackageName = packageName;
+            Name = name;
 
             if defined(DOTNET)
-                Assembly = GetAssembly(packageName);
+                Assembly = GetAssembly(name);
 
             if (!load)
                 return;
@@ -274,7 +280,7 @@ namespace Uno.IO
             foreach (var line in new BundleFile(
                         this,
                         null,
-                        packageName + ".bundle")
+                        name + ".bundle")
                     .ReadAllText()
                     .Split('\n'))
             {
@@ -291,12 +297,12 @@ namespace Uno.IO
                 if (f.SourcePath == filename || f.BundlePath == filename)
                     return f;
 
-            throw new FileNotFoundException("The file '" + filename + "' was not found in bundle '" + PackageName + "'", filename);
+            throw new FileNotFoundException("The file '" + filename + "' was not found in bundle '" + Name + "'", filename);
         }
 
         public override string ToString()
         {
-            return PackageName;
+            return Name;
         }
 
         extern(DOTNET)

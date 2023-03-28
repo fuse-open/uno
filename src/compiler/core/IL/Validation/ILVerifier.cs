@@ -308,7 +308,7 @@ namespace Uno.Compiler.Core.IL.Validation
                 {
                     DataType type = attr.ReturnType;
 
-                    if (type == Essentials.CallerPackageNameAttribute && p.Type != Essentials.String)
+                    if (type == Essentials.CallerBundleNameAttribute && p.Type != Essentials.String)
                         Log.Error(attr.Source, ErrorCode.E0000, type.Quote() + " can only be used on string parameters");
                     if (type == Essentials.CallerFilePathAttribute && p.Type != Essentials.String)
                         Log.Error(attr.Source, ErrorCode.E0000, type.Quote() + " can only be used on string parameters");

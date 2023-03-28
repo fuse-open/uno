@@ -164,7 +164,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                             return new Constant(src, Essentials.String, src.FullPath);
                         if (parameter.HasAttribute(Essentials.CallerMemberNameAttribute))
                             return new Constant(src, Essentials.String, Function.Name);
-                        if (parameter.HasAttribute(Essentials.CallerPackageNameAttribute))
+                        if (parameter.HasAttribute(Essentials.CallerBundleNameAttribute))
                             return new Constant(src, Essentials.String, src.Bundle.Name);
                         break;
                 }
