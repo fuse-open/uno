@@ -2,7 +2,6 @@
 
     <!-- Backend config -->
 
-    <Define GRADLE />
     <Define MOBILE />
     <Define UNIX />
 
