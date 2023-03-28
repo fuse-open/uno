@@ -1,10 +1,8 @@
 {
-  "InternalsVisibleTo": [],
-  "Packages": [
+  "References": [
     "Uno.Testing",
     "Uno.Threading"
   ],
-  "Projects": [],
   "Includes": [
     "AutoResetEventTest.uno",
     "ConcurrentDictionary.Test.uno:Source",

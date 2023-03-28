@@ -47,7 +47,7 @@ namespace Uno.ProjectFormat
         public Source Source => new Source(_fullPath);
         public UnoConfig Config => UnoConfig.GetUpToDate(_config) ?? (_config = UnoConfig.Get(_fullPath));
 
-        public IReadOnlyList<LibraryReference> PackageReferences => (IReadOnlyList<LibraryReference>)_doc.OptionalPackages ?? new LibraryReference[0];
+        public IReadOnlyList<LibraryReference> PackageReferences => (IReadOnlyList<LibraryReference>)_doc.OptionalLibraryReferences ?? new LibraryReference[0];
         public IReadOnlyList<ProjectReference> ProjectReferences => GetFlattenedProjects();
         public IReadOnlyList<SourceValue> InternalsVisibleTo => (IReadOnlyList<SourceValue>)_doc.OptionalInternalsVisibleTo ?? new SourceValue[0];
         public IReadOnlyList<IncludeItem> IncludeItems => (IReadOnlyList<IncludeItem>)_doc.Includes ?? new IncludeItem[0];
@@ -64,12 +64,12 @@ namespace Uno.ProjectFormat
         public IEnumerable<FileItem> FuseJSFiles => GetFlattenedItems().Where(x => x.Type == IncludeItemType.FuseJS).Select(x => new FileItem(x.Value, x.Condition));
 
         public Dictionary<string, SourceValue> MutableProperties => _doc.Properties;
-        public List<LibraryReference> MutablePackageReferences => _doc.OptionalPackages ?? (_doc.OptionalPackages = new List<LibraryReference>());
+        public List<LibraryReference> MutablePackageReferences => _doc.OptionalLibraryReferences ?? (_doc.OptionalLibraryReferences = new List<LibraryReference>());
         public List<SourceValue> MutableInternalsVisibleTo => _doc.OptionalInternalsVisibleTo ?? (_doc.OptionalInternalsVisibleTo = new List<SourceValue>());
 
         public List<ProjectReference> MutableProjectReferences
         {
-            get { _flattenedProjectsDirty = true; return _doc.OptionalProjects ?? (_doc.OptionalProjects = new List<ProjectReference>()); }
+            get { _flattenedProjectsDirty = true; return _doc.OptionalProjectReferences ?? (_doc.OptionalProjectReferences = new List<ProjectReference>()); }
         }
 
         public List<IncludeItem> MutableIncludeItems
@@ -193,8 +193,8 @@ namespace Uno.ProjectFormat
             if (_flattenedProjectsDirty || force)
             {
                 _flattenedProjects.Clear();
-                if (_doc.OptionalProjects != null)
-                    ProjectGlobber.FindItems(this, _doc.OptionalProjects, ExcludeItems, _flattenedProjects, log, !force);
+                if (_doc.OptionalProjectReferences != null)
+                    ProjectGlobber.FindItems(this, _doc.OptionalProjectReferences, ExcludeItems, _flattenedProjects, log, !force);
                 _flattenedProjectsDirty = false;
             }
 
@@ -215,11 +215,11 @@ namespace Uno.ProjectFormat
 
         public void AddDefaults()
         {
-            if (_doc.OptionalPackages == null)
-                _doc.OptionalPackages = new List<LibraryReference>();
+            if (_doc.OptionalLibraryReferences == null)
+                _doc.OptionalLibraryReferences = new List<LibraryReference>();
 
-            if (_doc.OptionalProjects == null)
-                _doc.OptionalProjects = new List<ProjectReference>();
+            if (_doc.OptionalProjectReferences == null)
+                _doc.OptionalProjectReferences = new List<ProjectReference>();
 
             if (_doc.OptionalInternalsVisibleTo == null)
                 _doc.OptionalInternalsVisibleTo = new List<SourceValue>();
@@ -234,13 +234,13 @@ namespace Uno.ProjectFormat
 
         public void RemoveDefaults()
         {
-            if (_doc.OptionalPackages != null &&
-                _doc.OptionalPackages.Count == 0)
-                _doc.OptionalPackages = null;
+            if (_doc.OptionalLibraryReferences != null &&
+                _doc.OptionalLibraryReferences.Count == 0)
+                _doc.OptionalLibraryReferences = null;
 
-            if (_doc.OptionalProjects != null &&
-                _doc.OptionalProjects.Count == 0)
-                _doc.OptionalProjects = null;
+            if (_doc.OptionalProjectReferences != null &&
+                _doc.OptionalProjectReferences.Count == 0)
+                _doc.OptionalProjectReferences = null;
 
             if (_doc.OptionalInternalsVisibleTo != null &&
                 _doc.OptionalInternalsVisibleTo.Count == 0)

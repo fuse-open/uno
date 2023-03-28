@@ -1,6 +1,6 @@
 {
   "RootNamespace":"",
-  "Packages": [
+  "References": [
     "Uno.Threading",
     "Uno.Testing",
     "UnoCore"
