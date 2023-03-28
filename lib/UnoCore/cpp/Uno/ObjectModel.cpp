@@ -1181,11 +1181,6 @@ char* uAllocCStr(const uString* string, size_t* length)
     return dst;
 }
 
-void uFreeCStr(const char* cstr)
-{
-    free((void*)cstr);
-}
-
 uEnumType* uEnumType::New(const char* name, uType* base, size_t literalCount)
 {
     U_ASSERT(base);
