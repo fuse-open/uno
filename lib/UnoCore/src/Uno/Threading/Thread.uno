@@ -34,7 +34,7 @@ namespace Uno.Threading
     [DotNetType("System.Threading.Thread")]
     [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):Call((@{Thread}) arg)}; return nullptr; }")]
     [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):Call((@{Thread}) lpParam)}; return 0; }")]
-    [extern(WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
+    [extern(WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
     public sealed class Thread
     {
         extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";

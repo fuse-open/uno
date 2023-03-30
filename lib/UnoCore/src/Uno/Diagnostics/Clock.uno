@@ -11,7 +11,7 @@ namespace Uno.Diagnostics
 
         [extern(CPLUSPLUS && APPLE) Require("Source.Include", "mach/mach.h")]
         [extern(CPLUSPLUS && APPLE) Require("Source.Include", "mach/mach_time.h")]
-        [extern(CPLUSPLUS && WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
+        [extern(CPLUSPLUS && WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
         public static double GetSeconds()
         {
             if defined(CPLUSPLUS && WIN32)

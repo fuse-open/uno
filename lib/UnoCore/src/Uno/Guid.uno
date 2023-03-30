@@ -147,7 +147,7 @@ namespace Uno
         public static Guid NewGuid();
 
         [Require("LinkLibrary", "Rpcrt4")]
-        [Require("Source.Include", "Uno/WinAPIHelper.h")]
+        [Require("Source.Include", "uPlatform/WinAPIHelper.h")]
         extern(MSVC)
         public static Guid NewGuid()
         @{

@@ -24,7 +24,7 @@ namespace Uno.IO
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "fcntl.h")]
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/stat.h")]
     [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/types.h")]
-    [extern(CPLUSPLUS && WIN32) Require("Source.Include", "Uno/WinAPIHelper.h")]
+    [extern(CPLUSPLUS && WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
     [extern(CPLUSPLUS && APPLE) Require("Source.FileExtension", "mm")]
     public static class Directory
     {
