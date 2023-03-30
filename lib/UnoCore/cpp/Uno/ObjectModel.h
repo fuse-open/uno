@@ -570,8 +570,6 @@ struct uString : uObject
 
 // Leak warning: The returned string must be deleted using free()
 char* uAllocCStr(const uString* string, size_t* length = nullptr);
-// Deprecated: Use free() instead - the parameter type shouldn't be const
-void DEPRECATED("Use free() instead") uFreeCStr(const char* cstr);
 
 struct uCString
 {
