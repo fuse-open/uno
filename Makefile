@@ -12,6 +12,8 @@ disasm:
 	@dotnet build disasm.sln -v m
 runtime:
 	@dotnet build runtime.sln -v m
+nupkg:
+	@bash scripts/nupkg.sh
 release:
 	@bash scripts/pack.sh
 check:
