@@ -1,6 +1,6 @@
 #include <UIKit/UIKit.h>
 
-#include <Uno/Uno.h>
+#include <uno.h>
 #include <Uno-iOS/AppDelegate.h>
 #include <Uno-iOS/Uno-iOS.h>
 

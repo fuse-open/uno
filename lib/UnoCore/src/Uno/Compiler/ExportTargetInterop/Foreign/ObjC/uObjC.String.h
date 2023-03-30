@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Uno/Uno.h>
+#include <uno.h>
 
 #if __OBJC__
 @class NSString;
