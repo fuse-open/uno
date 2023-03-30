@@ -1,5 +1,5 @@
-#include <Uno/Graphics/GLHelper.h>
-#include <Uno/JNIHelper.h>
+#include <uDroid/GLHelper.h>
+#include <uDroid/JNIHelper.h>
 #include <uBase/Console.h>
 #include <jni.h>
 @{Uno.Exception:IncludeDirective}

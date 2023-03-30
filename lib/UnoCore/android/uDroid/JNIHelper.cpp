@@ -1,5 +1,5 @@
 #include <stdarg.h>
-#include <Uno/JNIHelper.h>
+#include <uDroid/JNIHelper.h>
 #include <XliPlatform/PlatformSpecific/Android.h>
 
 JavaVM* JniHelper::VM;
