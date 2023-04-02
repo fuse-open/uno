@@ -1,7 +1,6 @@
 # Uno/UX compiler
 
 [![AppVeyor build status](https://img.shields.io/appveyor/ci/fusetools/uno/master.svg?logo=appveyor&logoColor=silver&style=flat-square)](https://ci.appveyor.com/project/fusetools/uno/branch/master)
-[![Travis CI build status](https://img.shields.io/travis/fuse-open/uno/master.svg?style=flat-square)](https://travis-ci.org/fuse-open/uno)
 [![NPM package](https://img.shields.io/npm/v/@fuse-open/uno.svg?style=flat-square)](https://www.npmjs.com/package/@fuse-open/uno)
 [![NPM beta](https://img.shields.io/npm/v/@fuse-open/uno/beta.svg?style=flat-square)](https://www.npmjs.com/package/@fuse-open/uno)
 [![License: MIT](https://img.shields.io/github/license/fuse-open/uno.svg?style=flat-square)](LICENSE.txt)

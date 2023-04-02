@@ -14,7 +14,7 @@
 #endif
 
 #ifdef __cplusplus
-#include <Uno/Uno.h>
+#include <uno.h>
 #endif
 
 @(Xcode.PrefixHeader.Declaration:Join())

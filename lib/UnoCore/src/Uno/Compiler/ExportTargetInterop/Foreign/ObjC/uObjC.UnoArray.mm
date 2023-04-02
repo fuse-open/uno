@@ -1,4 +1,4 @@
-#include <Uno/Uno.h>
+#include <uno.h>
 #include <uObjC.Foreign.h>
 #include <uObjC.UnoArray.h>
 
