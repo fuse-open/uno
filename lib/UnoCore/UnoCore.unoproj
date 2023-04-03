@@ -95,6 +95,7 @@
     "cpp/Uno/_config.h:File",
     "cpp/Uno/_internal.h:File",
     "cpp/Uno/_invoke.cpp:File",
+    "cpp/Uno/Graphics/GLHelper.h:File",
     "cpp/Uno/Memory.cpp:File",
     "cpp/Uno/Memory.h:File",
     "cpp/Uno/NativeStackTrace.cpp:File",
