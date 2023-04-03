@@ -31,7 +31,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 includes.Add(_backend.GetIncludeFilename(t));
 
             var result = includes.ToArray();
-            Array.Sort(result);
+            Array.Sort(result, DeclarationComparer.Singleton);
             return result;
         }
 
@@ -141,9 +141,9 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 Inline = inlineDeclarations,
             };
 
-            Array.Sort(result.Header);
-            Array.Sort(result.Source);
-            Array.Sort(result.Inline);
+            Array.Sort(result.Header, DeclarationComparer.Singleton);
+            Array.Sort(result.Source, DeclarationComparer.Singleton);
+            Array.Sort(result.Inline, DeclarationComparer.Singleton);
             return result;
         }
 
