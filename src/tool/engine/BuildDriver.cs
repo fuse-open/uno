@@ -87,6 +87,7 @@ namespace Uno.Build
 
             if (_options.Test)
             {
+                _options.Defines.Add("TEST");
                 _compilerOptions.TestOptions = new TestOptions {
                     Filter = _options.TestFilter
                 };
