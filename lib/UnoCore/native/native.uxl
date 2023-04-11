@@ -35,8 +35,8 @@
     <Set Commands.Build="@(WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
     <Set Commands.Run="@(WIN32:Defined:Test('run.bat', 'bash run.sh'))" />
 
-    <ProcessFile Name="build.sh" Condition="UNIX" IsExecutable=true />
-    <ProcessFile Name="run.sh" Condition="UNIX" IsExecutable=true />
+    <ProcessFile Name="build.sh" Condition="UNIX" IsExecutable="true" />
+    <ProcessFile Name="run.sh" Condition="UNIX" IsExecutable="true" />
     <ProcessFile Name="build.bat" Condition="WIN32" />
     <ProcessFile Name="run.bat" Condition="WIN32" />
     <ProcessFile Name="CMakeLists.txt" />

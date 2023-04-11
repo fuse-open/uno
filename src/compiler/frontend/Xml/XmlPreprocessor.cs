@@ -36,7 +36,6 @@ namespace Uno.Compiler.Frontend.Xml
             get { return true; }
         }
 
-
         public string Process()
         {
             while (Scan('<'))
@@ -75,8 +74,8 @@ namespace Uno.Compiler.Frontend.Xml
 
                     if (c != '=')
                     {
-                        // Insert ATTRIBUTE="ATTRIBUTE" when a value was missing, if this looks like sane XML
-                        if (LooksLikeValidAttribute(attr, c))
+                        // Insert ATTRIBUTE="ATTRIBUTE" when a value was missing
+                        if (IsAttribute(attr, c))
                             _sb.Append("=\"" + attr + "\"");
 
                         ConsumeTo(start);
@@ -124,15 +123,6 @@ namespace Uno.Compiler.Frontend.Xml
 
                         if (next == _source.Length)
                             continue;
-
-                        // Insert missing quotes, if XML looks sane
-                        if (LooksLikeValidAttribute(attr, _source[next]))
-                        {
-                            _sb.Append('"');
-                            _sb.Append(_source, _index, end - _index);
-                            _sb.Append('"');
-                            _index = start = end;
-                        }
                     }
                 }
 
@@ -178,7 +168,7 @@ namespace Uno.Compiler.Frontend.Xml
             return _sb.ToString();
         }
 
-        bool LooksLikeValidAttribute(string name, char next)
+        bool IsAttribute(string name, char next)
         {
             return !string.IsNullOrEmpty(name) &&
                    (name[0] == '_' || char.IsLetter(name[0])) &&

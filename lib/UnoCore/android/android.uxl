@@ -89,10 +89,10 @@
 
     <!-- Run-time properties -->
 
-    <Set Runtime.CatchCppExceptions=2 />
+    <Set Runtime.CatchCppExceptions="2" />
     <Set Runtime.CppMainLoop="Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN" />
-    <Set Runtime.DebugPauseMilliseconds=0 />
-    <Set Runtime.KillActivityOnDestroy=true />
+    <Set Runtime.DebugPauseMilliseconds="0" />
+    <Set Runtime.KillActivityOnDestroy="true" />
     <Set Runtime.SeperateUnoThread="AppRuntimeSettings.CppMainLoop" />
 
     <!-- Output files -->
@@ -189,14 +189,14 @@
     <CopyFile Name="gradle/wrapper/gradle-wrapper.jar" />
     <ProcessFile Name="gradle/wrapper/gradle-wrapper.properties" />
     <ProcessFile Name="gradlew.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="gradlew" Condition="HOST_UNIX" IsExecutable=true />
+    <ProcessFile Name="gradlew" Condition="HOST_UNIX" IsExecutable="true" />
     <ProcessFile Name="settings.gradle" />
 
     <ProcessFile Name="build.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable=true />
+    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable="true" />
 
     <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable=true />
+    <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable="true" />
     <ProcessFile Name="gradle.properties" />
     <ProcessFile Name="local.properties" />
     <ProcessFile Name="gradlew.bat" />
@@ -205,14 +205,14 @@
 
     <!-- Android Studio project -->
 
-    <ProcessFile Name=".idea/copyright/profiles_settings.xml" Overwrite=false />
-    <ProcessFile Name=".idea/.name" Overwrite=false />
-    <ProcessFile Name=".idea/compiler.xml" Overwrite=false />
-    <ProcessFile Name=".idea/gradle.xml" Overwrite=false />
-    <ProcessFile Name=".idea/misc.xml" Overwrite=false />
-    <ProcessFile Name=".idea/modules.xml" Overwrite=false />
-    <ProcessFile Name=".idea/runConfigurations.xml" Overwrite=false />
-    <ProcessFile Name=".idea/vcs.xml" Overwrite=false />
+    <ProcessFile Name=".idea/copyright/profiles_settings.xml" Overwrite="false" />
+    <ProcessFile Name=".idea/.name" Overwrite="false" />
+    <ProcessFile Name=".idea/compiler.xml" Overwrite="false" />
+    <ProcessFile Name=".idea/gradle.xml" Overwrite="false" />
+    <ProcessFile Name=".idea/misc.xml" Overwrite="false" />
+    <ProcessFile Name=".idea/modules.xml" Overwrite="false" />
+    <ProcessFile Name=".idea/runConfigurations.xml" Overwrite="false" />
+    <ProcessFile Name=".idea/vcs.xml" Overwrite="false" />
 
     <!-- Git ignore -->
 

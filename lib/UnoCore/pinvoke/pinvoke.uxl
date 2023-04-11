@@ -27,7 +27,7 @@
     <Declare Element="Xcode.Framework" />
     <Declare Element="Xcode.FrameworkDirectory" />
 
-    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable=true />
+    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable="true" />
     <ProcessFile Name="build.bat" Condition="HOST_WIN32" />
     <ProcessFile Name="CMakeLists.txt" />
 

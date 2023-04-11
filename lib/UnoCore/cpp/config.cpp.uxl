@@ -4,10 +4,10 @@
     <Define DEBUG_NATIVE="O0" />
 
     <!-- Output configuration -->
-    <Set BundleDirectory="data" IsDefault=true />
-    <Set HeaderDirectory="include" IsDefault=true />
-    <Set SourceDirectory="src" IsDefault=true />
-    <Set BinaryDirectory="." IsDefault=true />
+    <Set BundleDirectory="data" IsDefault="true" />
+    <Set HeaderDirectory="include" IsDefault="true" />
+    <Set SourceDirectory="src" IsDefault="true" />
+    <Set BinaryDirectory="." IsDefault="true" />
 
     <!-- Codegen extensions -->
     <Declare TypeElement="Header.Declaration" />
