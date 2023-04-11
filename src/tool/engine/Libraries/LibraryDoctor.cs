@@ -60,16 +60,16 @@ namespace Uno.Build.Libraries
             return false;
         }
 
-        public IEnumerable<DirectoryInfo> EnumerateDirectories(List<string> optionalPackages = null)
+        public IEnumerable<DirectoryInfo> EnumerateDirectories(List<string> optionalLibraries = null)
         {
             var cache = new BundleCache();
 
-            if (optionalPackages == null || optionalPackages.Count == 0)
+            if (optionalLibraries == null || optionalLibraries.Count == 0)
                 foreach (var dir in cache.EnumerateVersions("*"))
                     yield return dir;
             else
             {
-                foreach (var p in optionalPackages)
+                foreach (var p in optionalLibraries)
                 {
                     var result = cache.EnumerateVersions(p).ToArray();
                     if (result.Length == 0)

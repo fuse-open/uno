@@ -168,6 +168,13 @@ namespace Uno.Configuration
             return GetStrings(key).Select(x => x.Value).ToArray();
         }
 
+        public string[] GetStringArray(string key1, string key2)
+        {
+            return GetStrings(key1).Select(x => x.Value)
+                .Concat(GetStrings(key2).Select(x => x.Value))
+                .ToArray();
+        }
+
         public string GetString(string key)
         {
             var strings = GetStrings(key);
