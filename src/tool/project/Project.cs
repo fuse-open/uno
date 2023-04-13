@@ -64,7 +64,7 @@ namespace Uno.ProjectFormat
         public IEnumerable<FileItem> FuseJSFiles => GetFlattenedItems().Where(x => x.Type == IncludeItemType.FuseJS).Select(x => new FileItem(x.Value, x.Condition));
 
         public Dictionary<string, SourceValue> MutableProperties => _doc.Properties;
-        public List<LibraryReference> MutablePackageReferences => _doc.OptionalLibraryReferences ?? (_doc.OptionalLibraryReferences = new List<LibraryReference>());
+        public List<LibraryReference> MutableLibraryReferences => _doc.OptionalLibraryReferences ?? (_doc.OptionalLibraryReferences = new List<LibraryReference>());
         public List<SourceValue> MutableInternalsVisibleTo => _doc.OptionalInternalsVisibleTo ?? (_doc.OptionalInternalsVisibleTo = new List<SourceValue>());
 
         public List<ProjectReference> MutableProjectReferences

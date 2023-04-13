@@ -14,20 +14,37 @@ C:\> git clone https://github.com/fuse-open/fuselibs.git
 ```
 
 ```javascript
-if (DEV) {
-    Packages.SourcePaths += `C:\fuselibs\Source`
-}
+SearchPaths.Sources += `C:\fuselibs\Source`
 ```
 
 (Replace `C:\fuselibs\Source` with your own location.)
+
+Run `uno doctor` to build your standard library.
+
+### Additional libraries
+
+Use the following `.unoconfig` properties to add additional Uno libraries (or projects) to your search paths.
+
+```javascript
+SearchPaths += find/my/packages/here
+SearchPaths.Sources += build/these/projects
+```
+
+### Conditional inclusion
+
+```javascript
+if (DEV) {
+    SearchPaths.Sources += `C:\fuselibs\Source`
+}
+```
 
 The `if (DEV)` test makes sure we only use those packages when running `uno` built from source.
 If omitted, the packages are also made available to any installed versions of Fuse Studio and Uno,
 which might have unintended side-effects.
 
-Run `uno doctor` to build your standard library.
+## Dependencies
 
-## Android
+### Android
 
 To support building Android apps, we need to know where your [Android SDKs](https://developer.android.com/studio/index.html)
 are installed. Running `npm install -g android-build-tools@1.x` will set this up automatically, or you can
@@ -48,7 +65,7 @@ Android.NDK: ~/Library/Android/sdk/ndk-bundle
 Android.SDK: ~/Library/Android/sdk
 ```
 
-## iOS
+### iOS
 
 To support building iOS apps, we need macOS and Xcode.
 
@@ -60,20 +77,9 @@ This is usually automatically detected, but configuring a signing identity can b
 iOS.DeveloperTeam: ABCD012345
 ```
 
-## Native
+### Native
 
 To support building native apps, we need [CMake](https://cmake.org/) and C++ compilers.
 
 - **macOS:** Xcode with command line tools
 - **Windows:** Visual Studio 2019
-
-## Node.js
-
-We need [Node.js](https://nodejs.org/en/download/) to support transpiling FuseJS files to ES5.
-
-## Package manager
-
-```javascript
-Packages.SearchPaths += find/my/packages/here
-Packages.SourcePaths += build/these/projects
-```

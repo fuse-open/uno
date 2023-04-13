@@ -83,7 +83,7 @@ namespace Uno.CLI.Building
                     if (project.InternalsVisibleTo.Count > 0)
                         project.MutableInternalsVisibleTo.Sort();
                     if (project.PackageReferences.Count > 0)
-                        project.MutablePackageReferences.Sort();
+                        project.MutableLibraryReferences.Sort();
                     if (project.ProjectReferences.Count > 0)
                         project.MutableProjectReferences.Sort();
 

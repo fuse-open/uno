@@ -5,7 +5,7 @@ source scripts/common.sh
 
 # Clean stdlib
 IFS=$'\n'
-for dir in `uno config Packages.SourcePaths`; do
+for dir in `uno config SearchPaths.Sources`; do
     if [ -d "$dir" ]; then
         rm -rf "$dir/build"
         uno clean --recursive "$dir"
@@ -22,4 +22,6 @@ dotnet clean --configuration Debug uno.sln 1> /dev/null
 dotnet clean --configuration Release uno.sln 1> /dev/null
 
 # Clean other artifacts
-rm -rf bin packages
+rm -rf bin \
+    FuseOpen.UnoCore.*.nupkg \
+    fuse-open-uno-*.tgz

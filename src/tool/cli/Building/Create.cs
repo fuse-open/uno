@@ -79,8 +79,8 @@ namespace Uno.CLI.Building
             {
                 project.MutableIncludeItems.Add("*");
 
-                foreach (var e in project.Config.GetStringArray("Packages.Default") ?? new string[0])
-                    project.MutablePackageReferences.Add(e);
+                foreach (var e in project.Config.GetStringArray("References.Default", "Packages.Default") ?? new string[0])
+                    project.MutableLibraryReferences.Add(e);
             }
 
             if (className != null)

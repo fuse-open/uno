@@ -41,11 +41,11 @@ namespace Uno.Build.Libraries
                 return sourceDirectories;
             }
 
-            var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("Packages.SourcePaths", "PackageSourcePaths");
+            var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("SearchPaths.Sources", "Packages.SourcePaths");
 
             if (configSourcePaths.Length == 0)
             {
-                Log.VeryVerbose("'Packages.SourcePaths' was not found in .unoconfig");
+                Log.VeryVerbose("'SearchPaths.Sources' was not found in .unoconfig");
                 return sourceDirectories;
             }
 
