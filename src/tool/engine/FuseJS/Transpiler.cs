@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -15,6 +15,11 @@ namespace Uno.Build.FuseJS
 {
     public class Transpiler : LogObject, IDisposable
     {
+        static readonly HttpClient _httpClient = new()
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
+
         readonly Task<int> _task;
         readonly StringBuilder _output = new StringBuilder();
         readonly Regex _portFinder = new Regex("port:([0-9]+)");
@@ -143,26 +148,18 @@ namespace Uno.Build.FuseJS
 
                 try
                 {
-                    var httpWebRequest = (HttpWebRequest) WebRequest.Create(_url);
-                    httpWebRequest.Timeout = (int) TimeSpan.FromSeconds(30).TotalMilliseconds;
-                    httpWebRequest.Method = "POST";
+                    var postTask = _httpClient.PostAsync(_url, new StringContent(JsonConvert.SerializeObject(json)));
+                    postTask.Wait();
 
-                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                    {
-                        streamWriter.Write(JsonConvert.SerializeObject(json));
-                        streamWriter.Flush();
-                        streamWriter.Close();
-                    }
+                    var contentTask = postTask.Result.Content.ReadAsStringAsync();
+                    contentTask.Wait();
 
-                    using (var streamReader = new StreamReader(httpWebRequest.GetResponse().GetResponseStream()))
-                    {
-                        var response = streamReader.ReadToEnd();
-                        return !string.IsNullOrEmpty(response)
+                    var response = contentTask.Result;
+                    return !string.IsNullOrEmpty(response)
                             ? JsonConvert.DeserializeObject<Dictionary<string, string>>(response)
                             : new Dictionary<string, string>();
-                    }
                 }
-                catch (WebException e)
+                catch (HttpRequestException e)
                 {
                     if (i == 9)
                         throw;
