@@ -41,9 +41,9 @@ namespace Uno.Diagnostics
                 if (OperatingSystem.IsWindows())
                     return WindowsVersion + " " + (
                             arch == Architecture.Arm
-                                ? "ARM" :
+                                ? "arm32" :
                             arch == Architecture.Arm64
-                                ? "ARM64" :
+                                ? "arm64" :
                             IntPtr.Size == 8
                                 ? "x64"
                                 : "x86"
@@ -51,9 +51,9 @@ namespace Uno.Diagnostics
                 if (OperatingSystem.IsMacOS())
                     return "macOS " + MacVersion + " " + (
                             arch == Architecture.Arm
-                                ? "ARM" :
+                                ? "arm32" :
                             arch == Architecture.Arm64
-                                ? "ARM64" :
+                                ? "arm64" :
                             IntPtr.Size == 8
                                 ? "x86_64"
                                 : "i386"
@@ -61,9 +61,9 @@ namespace Uno.Diagnostics
                 if (OperatingSystem.IsLinux())
                     return "Linux " + Environment.OSVersion.Version.ToString(2) + " " + (
                             arch == Architecture.Arm
-                                ? "ARM" :
+                                ? "arm32" :
                             arch == Architecture.Arm64
-                                ? "ARM64" :
+                                ? "arm64" :
                             IntPtr.Size == 8
                                 ? "x86_64"
                                 : "x86_32"
