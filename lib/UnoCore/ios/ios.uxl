@@ -49,8 +49,8 @@
     <ProcessFile Name="@(Project.Name)/@(Project.Name)-Prefix.pch" />
     <ProcessFile Name="@(Project.Name)/@(Project.Name).entitlements" />
     <ProcessFile Name="@(Project.Name)/LaunchScreen.storyboard" />
-    <ProcessFile Name="build.sh" IsExecutable=true />
-    <ProcessFile Name="run.sh" IsExecutable=true />
+    <ProcessFile Name="build.sh" IsExecutable="true" />
+    <ProcessFile Name="run.sh" IsExecutable="true" />
     <ProcessFile Name="Podfile" Condition="COCOAPODS" />
 
     <!-- Icons -->
@@ -108,7 +108,7 @@
     <!-- Create schemes for Release build in Xcode -->
 
     <Set Schemes="@(Project.Name).xcodeproj/xcuserdata/@(LOGNAME:Env).xcuserdatad/xcschemes" />
-    <ProcessFile Name="@(Schemes)/@(Project.Name).xcscheme" Overwrite=false />
-    <ProcessFile Name="@(Schemes)/xcschememanagement.plist" Overwrite=false />
+    <ProcessFile Name="@(Schemes)/@(Project.Name).xcscheme" Overwrite="false" />
+    <ProcessFile Name="@(Schemes)/xcschememanagement.plist" Overwrite="false" />
 
 </Extensions>
