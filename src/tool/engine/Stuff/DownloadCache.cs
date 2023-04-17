@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Uno.Logging;
@@ -13,6 +13,7 @@ namespace Uno.Build.Stuff
     {
         // Use '%TEMP%/.stuff' for download cache
         public static readonly string StuffDirectory = Environment.GetEnvironmentVariable("STUFF_CACHE").Or(Path.Combine(Path.GetTempPath(), ".stuff"));
+        static readonly UnoHttpClient _httpClient = new();
         static bool _hasCollected;
 
         public static void AutoCollect(Log log)
@@ -97,14 +98,13 @@ namespace Uno.Build.Stuff
 
                     try
                     {
-                        using (var client = new StuffWebClient())
-                            client.DownloadFile(url, dst);
+                        _httpClient.DownloadFile(url, dst);
                         return dst;
                     }
                     catch (Exception e)
                     {
-                        // Fail the 10th time, or unless WebException
-                        if (tries >= 10 || !(e is WebException))
+                        // Fail the 10th time, unless HttpRequestException
+                        if (tries >= 10 || !(e is HttpRequestException))
                         {
                             // Print previous errors, before rethrowing
                             foreach (var s in errors)
