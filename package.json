@@ -27,6 +27,8 @@
   "files": [
     ".unoconfig",
     "bin/*",
+    "index.d.ts",
+    "index.js",
     "lib/build/*",
     "scripts/restore.js"
   ],
