@@ -4,7 +4,7 @@
   "description": "Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.",
   "dependencies": {
     "@fuse-open/opentk": "^3.2.0",
-    "@fuse-open/transpiler": "^1.17.4",
+    "@fuse-open/transpiler": "^1.18.0",
     "@fuse-open/xamarin-mac": "^8.12.0",
     "dotnet-run": "^1.5.0"
   },
