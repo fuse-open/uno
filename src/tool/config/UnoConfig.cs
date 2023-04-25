@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Uno.Collections;
 using Uno.Configuration.Format;
 using Uno.Diagnostics;
 using Uno.IO;
@@ -30,7 +31,7 @@ namespace Uno.Configuration
         readonly List<UnoConfigFile> _files = new List<UnoConfigFile>();
         readonly Dictionary<string, UnoConfig> _configCache = new Dictionary<string, UnoConfig>();
         readonly Dictionary<string, UnoConfigFile> _fileCache = new Dictionary<string, UnoConfigFile>();
-        readonly Dictionary<string, List<UnoConfigString>> _stringCache = new Dictionary<string, List<UnoConfigString>>();
+        readonly LowerCamelDictionary<List<UnoConfigString>> _stringCache = new LowerCamelDictionary<List<UnoConfigString>>();
         readonly Dictionary<string, string> _modules = new Dictionary<string, string>();
         readonly HashSet<string> _visitedDirectories = new HashSet<string>();
         readonly DateTime _timestamp = DateTime.Now;
@@ -93,9 +94,9 @@ namespace Uno.Configuration
             return new UnoConfig(this);
         }
 
-        public Dictionary<string, StuffItem> Flatten()
+        public LowerCamelDictionary<StuffItem> Flatten()
         {
-            var result = new Dictionary<string, StuffItem>();
+            var result = new LowerCamelDictionary<StuffItem>();
 
             foreach (var f in Files)
                 foreach (var e in f.GetData())
@@ -203,7 +204,7 @@ namespace Uno.Configuration
                 foreach (var file in _files)
                 {
                     StuffItem item;
-                    if (!file.GetData().TryGetValue(key, out item))
+                    if (!file.GetDataLowerCamelCase().TryGetValue(key, out item))
                         continue;
 
                     for (; item != null; item = item.Next)
@@ -366,7 +367,7 @@ namespace Uno.Configuration
             var keySet = new HashSet<string>();
 
             foreach (var file in Files)
-                foreach (var key in file.GetData().Keys)
+                foreach (var key in file.GetDataLowerCamelCase().Keys)
                     keySet.Add(key);
 
             var keys = keySet.ToArray();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Collections;
 using Uno.Configuration.Format;
 using Uno.Diagnostics;
 using Uno.IO;
@@ -24,6 +25,7 @@ namespace Uno.Configuration
         public readonly StuffFile Stuff;
         public readonly DateTime Timestamp;
         StuffMap _data;
+        LowerCamelDictionary<StuffItem> _dataLowerCamelCase;
 
         internal UnoConfigFile(string filename)
         {
@@ -73,6 +75,19 @@ namespace Uno.Configuration
             }
 
             return _data ?? (_data = new StuffMap());
+        }
+
+        public LowerCamelDictionary<StuffItem> GetDataLowerCamelCase()
+        {
+            if (_dataLowerCamelCase != null)
+                return _dataLowerCamelCase;
+
+            _dataLowerCamelCase = new LowerCamelDictionary<StuffItem>();
+
+            foreach (var data in GetData())
+                _dataLowerCamelCase[data.Key] = data.Value;
+
+            return _dataLowerCamelCase;
         }
 
         void Update(ref StuffItem item)

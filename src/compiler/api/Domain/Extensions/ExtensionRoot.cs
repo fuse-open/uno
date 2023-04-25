@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Uno.Collections;
 using Uno.Compiler.API.Domain.IL;
 
 namespace Uno.Compiler.API.Domain.Extensions
 {
     public class ExtensionRoot : ExtensionEntity
     {
-        public readonly Dictionary<string, Element> Properties = new Dictionary<string, Element>();
+        public readonly LowerCamelDictionary<Element> Properties = new LowerCamelDictionary<Element>();
         public readonly Dictionary<string, ExtensionEntity> Templates = new Dictionary<string, ExtensionEntity>();
         public readonly Dictionary<DataType, TypeExtension> TypeExtensions = new Dictionary<DataType, TypeExtension>();
         public readonly HashSet<string> ElementDefinitions = new HashSet<string> { "Entity", "Template" };

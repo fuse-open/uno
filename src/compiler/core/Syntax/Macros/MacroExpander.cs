@@ -83,7 +83,8 @@ namespace Uno.Compiler.Core.Syntax.Macros
             // members from higher-level libraries.
             if (_env.IsDefined("ANDROID") && (
                     text.Contains(" JNICALL ") ||
-                    text.EndsWith(":Include}")))
+                    text.EndsWith(":Include}") ||   // 2.x (deprecated)
+                    text.EndsWith(":include}")))
                 src = Source.Unknown;
 
             text = MacroParser.Expand(src, text, escape, context, ExpandConfigMacro, "@(", ')');
@@ -103,28 +104,28 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
             if (index == 0)
             {
-                switch (call.Method)
+                switch (call.Method.ToLowerCamelCase())
                 {
                     case null:
                     {
                         return ExpandConfigRoot(src, calls, index, context);
                     }
-                    case "IsRequired":
+                    case "isRequired":
                     {
                         return Bool(src, _extensions.Requirements.ContainsKey(call.Root));
                     }
-                    case "IsSet":
+                    case "isSet":
                     {
                         SourceValue root;
                         return Bool(src, _env.TryGetValue(call.Root, out root, true) && !string.IsNullOrEmpty(root.String));
                     }
-                    case "Defined":
+                    case "defined":
                     {
                         return call.Arguments == null
                             ? Bool(src, _env.IsDefined(calls[0].Root))
                             : InvalidArgumentsError(src, call, "DEFINE", null);
                     }
-                    case "Env":
+                    case "env":
                     {
                         return call.Arguments == null
                             ? Environment.ExpandEnvironmentVariables(Environment.GetEnvironmentVariable(calls[0].Root) ?? "")
@@ -133,9 +134,9 @@ namespace Uno.Compiler.Core.Syntax.Macros
                 }
             }
 
-            switch (call.Method)
+            switch (call.Method.ToLowerCamelCase())
             {
-                case "Or":
+                case "or":
                 {
                     if (call.Arguments != null && call.Arguments.Count == 1)
                     {
@@ -147,7 +148,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", "defaultValue");
                 }
-                case "SplitAndJoin":
+                case "splitAndJoin":
                 {
                     if (call.Arguments != null && call.Arguments.Count <= 4)
                     {
@@ -167,7 +168,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "SET", "[separator]", "[prefix]", "[suffix]");
                 }
-                case "Join":
+                case "join":
                 {
                     if (call.Arguments != null && call.Arguments.Count <= 3)
                     {
@@ -185,7 +186,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "SET", "[separator]", "[prefix]", "[suffix]");
                 }
-                case "JoinSorted":
+                case "joinSorted":
                 {
                     if (call.Arguments != null && call.Arguments.Count <= 3)
                     {
@@ -204,7 +205,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "SET", "[separator]", "[prefix]", "[suffix]");
                 }
-                case "StringArray":
+                case "stringArray":
                 {
                     if (call.Arguments == null)
                     {
@@ -218,7 +219,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "SET", null);
                 }
-                case "Equals":
+                case "equals":
                 {
                     if (call.Arguments != null && call.Arguments.Count == 1)
                     {
@@ -228,7 +229,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", "otherValue");
                 }
-                case "Replace":
+                case "replace":
                 {
                     if (call.Arguments != null && call.Arguments.Count == 2)
                     {
@@ -240,7 +241,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", "oldValue", "newValue");
                 }
-                case "Indent":
+                case "indent":
                 {
                     if (call.Arguments != null && call.Arguments.Count == 2)
                     {
@@ -257,7 +258,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", "space", "count");
                 }
-                case "Trim":
+                case "trim":
                 {
                     if (call.Arguments != null && call.Arguments.Count == 0)
                     {
@@ -267,7 +268,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE");
                 }
-                case "Path":
+                case "path":
                 {
                     if (call.Arguments == null)
                     {
@@ -280,7 +281,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "PATH", null);
                 }
-                case "NativePath":
+                case "nativePath":
                 {
                     if (call.Arguments == null)
                     {
@@ -293,7 +294,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "PATH", null);
                 }
-                case "Base":
+                case "base":
                 {
                     if (call.Arguments == null)
                     {
@@ -303,7 +304,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "PATH", null);
                 }
-                case "EscapeCommand":
+                case "escapeCommand":
                 {
                     if (call.Arguments == null)
                     {
@@ -313,7 +314,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "COMMAND", null);
                 }
-                case "EscapeSpace":
+                case "escapeSpace":
                 {
                     if (call.Arguments == null)
                     {
@@ -323,7 +324,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "PATH", null);
                 }
-                case "EscapeXml":
+                case "escapeXml":
                 {
                     if (call.Arguments == null)
                     {
@@ -333,7 +334,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "QuoteSpace":
+                case "quoteSpace":
                 {
                     if (call.Arguments == null)
                     {
@@ -343,7 +344,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "PATH", null);
                 }
-                case "Identifier":
+                case "identifier":
                 {
                     if (call.Arguments == null)
                     {
@@ -353,7 +354,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "QIdentifier":
+                case "qidentifier":
                 {
                     if (call.Arguments == null)
                     {
@@ -363,7 +364,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "ToLower":
+                case "toLower":
                 {
                     if (call.Arguments == null)
                     {
@@ -373,7 +374,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "ToUpper":
+                case "toUpper":
                 {
                     if (call.Arguments == null)
                     {
@@ -383,7 +384,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "Bool":
+                case "bool":
                 {
                     if (call.Arguments == null)
                     {
@@ -393,7 +394,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "Test":
+                case "test":
                 {
                     if (call.Arguments != null && call.Arguments.Count == 2)
                     {
@@ -405,7 +406,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", "whenTrue", "whenFalse");
                 }
-                case "Int":
+                case "int":
                 {
                     if (call.Arguments == null)
                     {
@@ -421,7 +422,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "Number":
+                case "number":
                 {
                     if (call.Arguments == null)
                     {
@@ -437,7 +438,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
                     return InvalidArgumentsError(src, call, "VALUE", null);
                 }
-                case "String":
+                case "string":
                 {
                     if (call.Arguments == null)
                     {
@@ -707,51 +708,51 @@ namespace Uno.Compiler.Core.Syntax.Macros
 
         string ExpandEntityMacro(Source src, MacroCall macroCall, MacroContext context, IEntity entity)
         {
-            switch (macroCall.Method)
+            switch (macroCall.Method.ToLowerCamelCase())
             {
-                case "IsSealed":
+                case "isSealed":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsSealed).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "IsVirtual":
+                case "isVirtual":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsVirtual).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "IsVirtualBase":
+                case "isVirtualBase":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsVirtualBase).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "IsVirtualOverride":
+                case "isVirtualOverride":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsVirtualOverride).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "IsAbstract":
+                case "isAbstract":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsAbstract).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "IsStatic":
+                case "isStatic":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsStatic).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "IsStripped":
+                case "isStripped":
                 {
                     return macroCall.Arguments == null
                         ? Bool(src, entity.IsStripped).String
                         : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "Include":
+                case "include":
                 {
                     return macroCall.Arguments == null && entity is DataType
                         ? Have(src, macroCall, entity)
@@ -759,7 +760,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             : Invalid
                         : InvalidArgumentsError(src, macroCall, "TYPE", null).String;
                 }
-                case "IncludeDirective":
+                case "includeDirective":
                 {
                     return macroCall.Arguments == null && entity is DataType
                         ? entity.IsStripped
@@ -767,7 +768,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             : "#include <" + Decompiler.GetInclude(src, entity as DataType) + ">"
                         : InvalidArgumentsError(src, macroCall, "TYPE", null).String;
                 }
-                case "ForwardDeclaration":
+                case "forwardDeclaration":
                 {
                     return macroCall.Arguments == null && entity is DataType
                         ? entity.IsStripped
@@ -775,7 +776,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             : Decompiler.GetForwardDeclaration(src, entity as DataType)
                         : InvalidArgumentsError(src, macroCall, "TYPE", null).String;
                 }
-                case "Function":
+                case "function":
                 {
                     return macroCall.Arguments == null && entity is Function
                         ? Have(src, macroCall, entity)
@@ -798,7 +799,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
             if (!Have(src, macroCall, entity) || entity is InvalidType)
                 return Invalid;
 
-            switch (macroCall.Method)
+            switch (macroCall.Method.ToLowerCamelCase())
             {
                 case null:
                 {
@@ -806,27 +807,27 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             ? ExpandEntityImplicitGet(src, macroCall, context, entity, out dt)
                             : InvalidArgumentsError(src, macroCall, "ENTITY", null).String;
                 }
-                case "Of":
+                case "of":
                 {
                     dt = entity as DataType;
                     return macroCall.Arguments != null && macroCall.Arguments.Count == 1 && dt != null
                             ? macroCall.Arguments[0]
                             : InvalidArgumentsError(src, macroCall, "TYPE").String;
                 }
-                case "TypeOf":
+                case "typeOf":
                 {
                     dt = _ilf.Essentials.Type;
                     return macroCall.Arguments == null && entity is DataType
                             ? Decompiler.GetTypeOf(src, context.Function, entity as DataType)
                             : InvalidArgumentsError(src, macroCall, "TYPE", null).String;
                 }
-                case "Array":
+                case "array":
                 {
                     return entity is DataType
                             ? ExpandEntityArray(src, macroCall, context, entity as DataType, out dt)
                             : InvalidArgumentsError(src, macroCall, "ELEMENT_TYPE", "[elements]").String;
                 }
-                case "New":
+                case "new":
                 {
                     return entity is ArrayType
                             ? ExpandEntityNew(src, macroCall, context, entity as ArrayType, out dt) :
@@ -836,7 +837,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             ? ExpandEntityCall(src, macroCall, context, entity as Method, out dt)
                             : InvalidArgumentsError(src, macroCall, "CONSTRUCTOR|ARRAY_TYPE", "[args]").String;
                 }
-                case "Call":
+                case "call":
                 {
                     if ((entity as Event)?.ImplicitField != null)
                         entity = (entity as Event).ImplicitField;
@@ -860,7 +861,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                         ? ExpandEntityCall(src, macroCall, context, entity as DelegateType, out dt)
                             : InvalidArgumentsError(src, macroCall, "FUNCTION|DELEGATE", "[args]").String;
                 }
-                case "Get":
+                case "get":
                 {
                     return entity is Property
                             ? ExpandEntityGet(src, macroCall, context, entity as Property, out dt) :
@@ -872,7 +873,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             ? ExpandEntityGet(src, macroCall, context, entity as ArrayType, out dt)
                             : InvalidArgumentsError(src, macroCall, "FIELD|PROPERTY", "[args]").String;
                 }
-                case "Set":
+                case "set":
                 {
                     return entity is Property
                             ? ExpandEntitySet(src, macroCall, context, entity as Property, out dt) :
@@ -1149,7 +1150,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                     args.Add(p.Name);
             if (root is ArrayType)
                 args.Add("index");
-            if (macroCall.Method == "Set")
+            if (macroCall.Method.ToLowerCamelCase() == "set")
                 args.Add("value");
 
             InvalidArgumentsError(src, macroCall, root.FullName, args.ToArray());

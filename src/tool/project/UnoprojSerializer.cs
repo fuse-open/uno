@@ -55,7 +55,7 @@ namespace Uno.ProjectFormat
                 foreach (var e in project.OptionalInternalsVisibleTo)
                     internals.Add(e.String);
 
-                json["InternalsVisibleTo"] = internals;
+                json["internalsVisibleTo"] = internals;
             }
 
             if (project.OptionalLibraryReferences != null)
@@ -65,7 +65,7 @@ namespace Uno.ProjectFormat
                 foreach (var e in project.OptionalLibraryReferences)
                     references.Add(e.ToString());
 
-                json["References"] = references;
+                json["references"] = references;
             }
 
             if (project.OptionalProjectReferences != null)
@@ -75,7 +75,7 @@ namespace Uno.ProjectFormat
                 foreach (var e in project.OptionalProjectReferences)
                     projects.Add(e.ToString());
 
-                json["Projects"] = projects;
+                json["projects"] = projects;
             }
 
             if (project.Includes != null)
@@ -85,7 +85,7 @@ namespace Uno.ProjectFormat
                 foreach (var e in project.Includes)
                     includes.Add(e.ToString());
 
-                json["Includes"] = includes;
+                json["includes"] = includes;
             }
 
             if (project.OptionalExcludes != null)
@@ -95,7 +95,7 @@ namespace Uno.ProjectFormat
                 foreach (var e in project.OptionalExcludes)
                     excludes.Add(e.String.NativeToUnix());
 
-                json["Excludes"] = excludes;
+                json["excludes"] = excludes;
             }
 
             var w = new StreamWriter(stream);

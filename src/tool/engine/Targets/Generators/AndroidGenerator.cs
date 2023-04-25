@@ -19,7 +19,7 @@ namespace Uno.Build.Targets.Generators
 
         public void Configure()
         {
-            // List of string literals given to @(Activity).java for dlload()-ing
+            // List of string literals given to @(activity).java for dlload()-ing
             var jniLibs = GetLibraries("LoadLibrary");
             jniLibs.AddRange(GetLibraries("SharedLibrary"));
 

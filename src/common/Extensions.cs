@@ -595,5 +595,57 @@ namespace Uno
         {
             return self?.GetHashCode() ?? -1;
         }
+
+        /**
+         * Converts "CamelCase" to "camelCase", "ABC" to "abc", and "iPad" to "ipad".
+         */
+        public static string ToLowerCamelCase(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            if (str.Contains('.'))
+            {
+                var parts = str.Split('.');
+
+                for (int i = 0; i < parts.Length; i++)
+                    parts[i] = parts[i].ToLowerCamelCase();
+
+                return string.Join('.', parts);
+            }
+
+            if (char.IsUpper(str[0]))
+            {
+                var allIsUpper = true;
+
+                for (int i = 1; i < str.Length; i++)
+                {
+                    if (!char.IsUpper(str[i]))
+                    {
+                        allIsUpper = false;
+                        break;
+                    }
+                }
+
+                // Convert all-upper-case to all-lower-case
+                if (allIsUpper)
+                    return str.ToLowerInvariant();
+
+                // Make first character lower-case
+                str = char.ToLowerInvariant(str[0]) + str.Substring(1);
+            }
+
+            // Convert some identifers to all-lower-case
+            switch (str)
+            {
+                case "iPad":
+                case "iPhone":
+                case "iOS":
+                case "qIdentifier":
+                    return str.ToLowerInvariant();
+            }
+
+            return str;
+        }
     }
 }

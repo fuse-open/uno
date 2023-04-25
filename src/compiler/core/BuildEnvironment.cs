@@ -59,9 +59,9 @@ namespace Uno.Compiler.Core
             MacroExpander = new MacroExpander(backend, this, extensions, ilf, compiler);
             Compiler = compiler;
 
-            Set("Target", options.BuildTarget);
-            Set("Configuration", options.Configuration);
-            Set("OutputDirectory", OutputDirectory = ExpandSingleLine(options.OutputDirectory).UnixToNative());
+            Set("target", options.BuildTarget);
+            Set("configuration", options.Configuration);
+            Set("outputDirectory", OutputDirectory = ExpandSingleLine(options.OutputDirectory).UnixToNative());
         }
 
         public bool IsUpToDate(SourceBundle bundle, string filename)

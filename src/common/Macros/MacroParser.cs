@@ -162,7 +162,7 @@ namespace Uno.Macros
                 i = ri + 1;
 
                 // Syntax sugar:
-                // A || B || C  =>  A:Or(@(B:Or(@(C)))
+                // A || B || C  =>  A:or(@(B:or(@(C)))
                 var pi = name.MacroIndexOf('|');
                 if (pi != -1 && pi + 1 < name.Length && name[pi + 1] == '|')
                 {
@@ -179,7 +179,7 @@ namespace Uno.Macros
                     var nameb = new StringBuilder(parts[0]);
                     for (int j = 1; j < parts.Count; j++)
                     {
-                        nameb.Append(":Or(" + begin);
+                        nameb.Append(":or(" + begin);
                         nameb.Append(parts[j]);
                     }
                     for (int j = 1; j < parts.Count; j++)
