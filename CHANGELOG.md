@@ -4,6 +4,25 @@ Uno Changelog
 Unreleased
 ----------
 
+2.8
+---
+
+### iOS
+- Detect Simulator device based on availability (#472)
+- Use iPhone-14 as default simulator (#448)
+- Update include paths (#458)
+- Silence warnings (#473)
+
+### Uno.Data.Xml
+- Upgrade pugixml -> 1.13 (#471)
+
+### Other changes
+- Upgrade transpiler -> 1.18 (8c9670e)
+- Upgrade xamarin-mac -> 9.10 (f6fa289)
+- Upgrade nodejs -> 16 (#449)
+
+[`v2.7.0...v2.8.0`](https://github.com/fuse-open/uno/compare/v2.7.0...v2.8.0)
+
 2.7
 ---
 
