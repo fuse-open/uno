@@ -14,7 +14,7 @@
             <Require Source.Include="@{Uno.Data.Xml.XmlException:Include}" />
             <Body>
                 pugi::xml_document doc;
-                pugi::xml_parse_result parseResult = doc.load(uCString($0).Ptr, pugi::parse_full);
+                pugi::xml_parse_result parseResult = doc.load_string(uCString($0).Ptr, pugi::parse_full);
 
                 if (parseResult.status == 0)
                 {
