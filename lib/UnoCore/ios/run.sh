@@ -26,11 +26,26 @@ if ! which ios-sim > /dev/null 2>&1; then
     exit 1
 fi
 
+if [ ! -f sim-devices.txt ]; then
+    ios-sim showdevicetypes > sim-devices.txt
+fi
+
+DEVICE="@(Config.iOS.Simulator.Device || 'undefined')"
+
+if ! cat sim-devices.txt | grep "$DEVICE" > /dev/null; then
+    echo "WARNING: Simulator '$DEVICE' not found; using first iPhone" >&2
+    DEVICE="iPhone-"
+fi
+
+DEVICE=`cat sim-devices.txt | grep $DEVICE | head -n 1`
+
+echo "Simulator: $DEVICE"
+
 #if @(COCOAPODS:Defined)
 pod install
-ios-sim launch -d"@(Config.iOS.Simulator.Device || 'iPhone-12')" "build/Build/Products/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
+ios-sim launch -d"$DEVICE" "build/Build/Products/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
 #else
-ios-sim launch -d"@(Config.iOS.Simulator.Device || 'iPhone-12')" "build/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
+ios-sim launch -d"$DEVICE" "build/@(Pbxproj.Configuration)-iphonesimulator/@(Project.Name).app" "$@"
 #endif
 
 #else // @(IOS_SIMULATOR:Defined)
