@@ -1,20 +1,20 @@
 {
-  "Copyright": "Copyright (c) Fuse Open",
-  "Description": "Uno Testing Framwork",
-  "Publisher": "Fuse Open",
-  "InternalsVisibleTo": [
+  "copyright": "Copyright (c) Fuse Open",
+  "description": "Uno Testing Framwork",
+  "publisher": "Fuse Open",
+  "internalsVisibleTo": [
     "Uno.Testing.Test"
   ],
-  "Includes": [
-    "attributes/IgnoreAttribute.uno:Source",
-    "attributes/TestAttribute.uno:Source",
-    "exceptions/AssertionFailedException.uno:Source",
-    "exceptions/IgnoreException.uno:Source",
-    "AbstractRunner.uno:Source",
-    "Assert.uno:Source",
-    "NamedTestMethod.uno:Source",
-    "Registry.uno:Source",
-    "RemoteRunner.uno:Source",
-    "TestSetup.uno:Source"
+  "includes": [
+    "AbstractRunner.uno:source",
+    "Assert.uno:source",
+    "attributes/IgnoreAttribute.uno:source",
+    "attributes/TestAttribute.uno:source",
+    "exceptions/AssertionFailedException.uno:source",
+    "exceptions/IgnoreException.uno:source",
+    "NamedTestMethod.uno:source",
+    "Registry.uno:source",
+    "RemoteRunner.uno:source",
+    "TestSetup.uno:source"
   ]
 }

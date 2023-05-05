@@ -1,16 +1,16 @@
 {
-  "Copyright": "Copyright (c) Fuse Open",
-  "Description": "Collection extras",
-  "Publisher": "Fuse Open",
-  "Includes": [
-    "extensions/EmptyEnumerable.uno:Source",
-    "extensions/Enumerableextensions.uno:Source",
-    "extensions/IListextensions.uno:Source",
-    "extensions/OfType.uno:Source",
-    "extensions/OrderBy.uno:Source",
-    "extensions/Select.uno:Source",
-    "extensions/Union.uno:Source",
-    "extensions/Where.uno:Source",
-    "ObservableList.uno:Source"
+  "copyright": "Copyright (c) Fuse Open",
+  "description": "Collection extras",
+  "publisher": "Fuse Open",
+  "includes": [
+    "extensions/EmptyEnumerable.uno:source",
+    "extensions/Enumerableextensions.uno:source",
+    "extensions/IListextensions.uno:source",
+    "extensions/OfType.uno:source",
+    "extensions/OrderBy.uno:source",
+    "extensions/Select.uno:source",
+    "extensions/Union.uno:source",
+    "extensions/Where.uno:source",
+    "ObservableList.uno:source"
   ]
 }

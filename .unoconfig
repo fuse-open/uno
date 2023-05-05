@@ -1,21 +1,21 @@
 // Core config
-AppLoader.Generic: bin/generic/net6.0
-AppLoader.Windows: bin/win/net6.0-windows
+appLoader.generic: bin/generic/net6.0
+appLoader.windows: bin/win/net6.0-windows
 
 if WIN32 {
-    AppLoader.Assembly: bin/win/net6.0-windows/uno-app.dll
-    Uno.Command: bin/net6.0/uno.exe
+    appLoader.assembly: bin/win/net6.0-windows/uno-app.dll
+    uno.command: bin/net6.0/uno.exe
 } else if MAC {
-    // AppLoader.Assembly is not used to create macOS apps
-    Uno.Command: bin/net6.0/uno
+    // appLoader.assembly is not used to create macOS apps
+    uno.command: bin/net6.0/uno
 } else {
-    AppLoader.Assembly: bin/generic/net6.0/uno-app.dll
-    Uno.Command: bin/net6.0/uno
+    appLoader.assembly: bin/generic/net6.0/uno-app.dll
+    uno.command: bin/net6.0/uno
 }
 
 // Standard library
-SearchPaths.Sources += lib
+searchPaths.sources += lib
 
 // Tooling
-Android.Emulator.Architecture: x86_64
-iOS.Simulator.Device: iPhone-14
+android.emulator.architecture: x86_64
+ios.simulator.device: iPhone-14
