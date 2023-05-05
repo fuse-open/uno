@@ -98,16 +98,23 @@ namespace UnoTest.General
             while (false);
         }
 
-        // Please uncomment method when #289 is fixed.
-        //void method5()
-        //{
-        //    try
-        //    {
-        //    }
-        //    catch (Exception)
-        //    {
-        //    }
-        //}
+        void method5()
+        {
+            try
+            {
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        void method6()
+        {
+            // Check that assert-statements compile to valid code
+            assert true;
+            assert !false;
+            assert 1 == 1;
+        }
 
         [Test]
         public void Run()

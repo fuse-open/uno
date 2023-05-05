@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Uno.Compiler.API.Domain.AST.Expressions;
 using Uno.Compiler.API.Domain.AST.Statements;
@@ -501,54 +500,15 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                     if (!Environment.Debug)
                         return new NoOp(e.Source, "Stripped assert");
 
-                    var s = e as AstValueStatement;
+                    // Return "if-test and throw":
+                    //     if (!value) throw new Uno.InvalidOperationException("Assertion failed: {value}");
+
+                    var s = (AstValueStatement)e;
                     var value = CompileExpression(s.Value);
-                    var args = new List<Expression>
-                    {
-                        value,
-                        new Constant(s.Source, Essentials.String, value.ToString()),
-                        new Constant(s.Source, Essentials.String, s.Source.File.ToString().Replace('\\', '/')),
-                        new Constant(s.Source, Essentials.Int, s.Source.Line),
-                    };
-                    var locals = new List<StoreLocal>();
-
-                    switch (value.ExpressionType)
-                    {
-                        case ExpressionType.CallUnOp:
-                        {
-                            var o = value as CallUnOp;
-                            args.Add(CreateAssertIndirection(ref o.Operand, locals, Namescope));
-                            break;
-                        }
-                        case ExpressionType.CallBinOp:
-                        {
-                            var o = value as CallBinOp;
-                            args.Add(CreateAssertIndirection(ref o.Left, locals, Namescope));
-                            args.Add(CreateAssertIndirection(ref o.Right, locals, Namescope));
-                            break;
-                        }
-                        case ExpressionType.BranchOp:
-                        {
-                            var o = value as BranchOp;
-                            args.Add(CreateAssertIndirection(ref o.Left, locals, Namescope));
-                            args.Add(CreateAssertIndirection(ref o.Right, locals, Namescope));
-                            break;
-                        }
-                        case ExpressionType.CallMethod:
-                        {
-                            var o = value as CallMethod;
-                            for (int i = 0; i < o.Arguments.Length; i++)
-                                args.Add(CreateAssertIndirection(ref o.Arguments[i], locals, Namescope));
-                            break;
-                        }
-                    }
-
-                    var result = ILFactory.CallMethod(s.Source, "Uno.Diagnostics.Debug", "Assert", args.ToArray());
-
-                    while (locals.Count > 0)
-                        result = new SequenceOp(locals.RemoveLast(), result);
-
-                    return result;
+                    var cond = ILFactory.CallOperator(value.ReturnType, "!", value);
+                    var exception = ILFactory.NewObject("Uno.InvalidOperationException",
+                                new Constant(Essentials.String, $"Assertion failed: {value}"));
+                    return new IfElse(s.Source, cond, new Throw(s.Source, exception));
                 }
                 case AstStatementType.DebugLog:
                 {
