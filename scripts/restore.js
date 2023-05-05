@@ -40,10 +40,6 @@ function restoreFiles(src, dst) {
     }
 }
 
-// Restore Xamarin.Mac binaries.
-const xamarin = findNodeModule("@fuse-open/xamarin-mac")
-restoreFiles(xamarin, path.join(__dirname, "..", "bin", "net6.0"))
-
 // Restore OpenTK and ANGLE (Windows only).
 const opentk = findNodeModule("@fuse-open/opentk")
 restoreFiles(opentk, path.join(__dirname, "..", "bin", "win", "net6.0-windows"))

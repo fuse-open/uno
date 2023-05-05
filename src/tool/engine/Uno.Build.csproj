@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\GlobalAssemblyInfo.props" />
-  <Import Project="..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props" Condition="Exists('..\..\..\node_modules\@fuse-open\xamarin-mac\FuseOpen.Xamarin.Mac.props')" />
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -23,10 +22,5 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Xamarin.Mac">
-      <HintPath>..\..\..\node_modules\@fuse-open\xamarin-mac\Xamarin.Mac.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
