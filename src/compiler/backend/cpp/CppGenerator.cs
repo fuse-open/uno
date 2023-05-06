@@ -165,7 +165,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 }
 
                 var declarations = declSet.ToArray();
-                Array.Sort(declarations);
+                Array.Sort(declarations, DeclarationComparer.Singleton);
 
                 var cppFilename = key + "." + ext.Key;
                 _env.Require("SourceFile", cppFilename);
