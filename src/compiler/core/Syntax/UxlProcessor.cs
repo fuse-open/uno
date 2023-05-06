@@ -680,23 +680,19 @@ namespace Uno.Compiler.Core.Syntax
                     else if (OperatingSystem.IsMacOS())
                     {
                         // Use the 'sips' command on macOS:
-                        var result = new Shell(Log).Run("sips",
+                        new Shell(Log).GetOutput("sips",
                             "--resampleHeightWidth " + height + " " + width + " " +
-                            src.QuoteSpace() + " --out " + dst.QuoteSpace());
-
-                        if (result != 0)
-                            throw new InvalidOperationException("'sips' exited with code: " + result);
+                            src.QuoteSpace() + " --out " + dst.QuoteSpace(),
+                            RunFlags.NoOutput);
                     }
                     else
                     {
                         // Use the 'convert' command as fallback:
-                        var result = new Shell(Log).Run("convert",
+                        new Shell(Log).GetOutput("convert",
                             src.QuoteSpace() +
                             " -resize " + width + "x" + height + "! " +
-                            dst.QuoteSpace());
-
-                        if (result != 0)
-                            throw new InvalidOperationException("'convert' exited with code: " + result);
+                            dst.QuoteSpace(),
+                            RunFlags.NoOutput);
                     }
                 }
             }
