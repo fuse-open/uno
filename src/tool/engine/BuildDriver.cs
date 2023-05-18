@@ -86,6 +86,14 @@ namespace Uno.Build
                 CanCacheIL = _options.BundleCache != null
             };
 
+            if (_options.Defines.Contains("LAZY"))
+            {
+                if (!target.SupportsLazy)
+                    Log.Warning("The build target " + target.Quote() + " does not support lazy compilation.");
+                else
+                    _compilerOptions.Lazy = true;
+            }
+
             if (_options.Test)
             {
                 _options.Defines.Add("TEST");

@@ -11,6 +11,7 @@ namespace Uno.Build.Targets
         public override string FormerName => "dotnetexe";
         public override string Description => ".NET/GL bytecode and executable. (default)";
         public override bool DefaultStrip => false;
+        public override bool SupportsLazy => true;
 
         public override Backend CreateBackend()
         {
