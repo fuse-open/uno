@@ -12,14 +12,13 @@ using Uno.ProjectFormat;
 
 namespace Uno.Build.Libraries
 {
-    public class BundleCache : DiskObject, IDisposable
+    public class BundleCache : DiskObject
     {
         // For use by UXNinja & tests in Fuse Studio
         public static SourceBundle GetBundle(Log log, Project project)
         {
-            // Passing false to disable FuseJS transpiler.
-            using (var cache = new BundleCache(log, project.Config, false))
-                return cache.GetBundle(project);
+            // Passing null to disable FuseJS transpiler.
+            return new BundleCache(log, null, null).GetBundle(project);
         }
 
         readonly SearchPaths _sourcePaths = new SearchPaths();
@@ -27,25 +26,22 @@ namespace Uno.Build.Libraries
         readonly Dictionary<string, string> _locks = new Dictionary<string, string>();
         readonly Dictionary<string, SourceBundle> _cache = new Dictionary<string, SourceBundle>();
         readonly ListDictionary<string, DirectoryInfo> _library = new ListDictionary<string, DirectoryInfo>();
-        readonly UnoConfig _config;
-        readonly bool _enableTranspiler;
-        Transpiler _transpiler;
+        readonly LazyTranspiler _transpiler;
 
         public IEnumerable<string> SearchPaths => _sourcePaths.Concat(_searchPaths).Where(Directory.Exists);
 
         public BundleCache()
-            : this(null, null, false)
+            : this(null, null, null)
         {
         }
 
-        public BundleCache(Log log, UnoConfig config, bool enableTranspiler = true)
+        public BundleCache(Log log, UnoConfig config, LazyTranspiler transpiler)
             : base(log ?? Log.Null)
         {
+            _transpiler = transpiler;
+
             if (config == null)
                 config = UnoConfig.Current;
-
-            _config = config;
-            _enableTranspiler = enableTranspiler;
 
             foreach (var src in config.GetFullPathArray("SearchPaths.Sources", "Packages.SourcePaths"))
                 _sourcePaths.AddOnce(Path.Combine(
@@ -56,12 +52,6 @@ namespace Uno.Build.Libraries
 
             foreach (var src in config.GetFullPathArray("SearchPaths", "Packages.SearchPaths"))
                 _searchPaths.AddOnce(src);
-        }
-
-        public void Dispose()
-        {
-            _transpiler?.Dispose();
-            _transpiler = null;
         }
 
         public SourceBundle GetBundle(string name, string version = null)
@@ -159,7 +149,7 @@ namespace Uno.Build.Libraries
             foreach (var f in project.FuseJSFiles)
             {
                 // We don't need to spend time on this in UXNinja, tests, etc.
-                if (!_enableTranspiler)
+                if (_transpiler == null)
                     continue;
 
                 var name = f.NativePath;
@@ -179,10 +169,6 @@ namespace Uno.Build.Libraries
                 if (File.Exists(outputFile) &&
                     File.GetLastWriteTime(outputFile) >= File.GetLastWriteTime(inputFile))
                     continue;
-
-                // Ensure Transpiler is initialized before starting a task
-                if (_transpiler == null)
-                    _transpiler = new Transpiler(Log, _config);
 
                 name = inputFile.ToRelativePath();
                 Log.Verbose("Transpiling " + name);

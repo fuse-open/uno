@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Uno.Compiler.API;
 using Uno.Configuration;
 using Uno.Diagnostics;
 using Uno.Logging;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Uno.Build.FuseJS
 {
-    public class Transpiler : LogObject, IDisposable
+    public class TranspilerServer : LogObject, ITranspiler
     {
         static readonly HttpClient _httpClient = new()
         {
@@ -27,7 +28,7 @@ namespace Uno.Build.FuseJS
         bool _disposed;
         bool _isFaulted;
 
-        public Transpiler(Log log, UnoConfig config)
+        public TranspilerServer(Log log, UnoConfig config)
             : base(log)
         {
             var script = Path.Combine(
