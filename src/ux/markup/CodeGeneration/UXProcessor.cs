@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Uno.Compiler;
+using Uno.Compiler.API;
 using Uno.IO;
+using Uno.UX.Markup.Reflection;
+using Uno.UX.Markup.UXIL;
 
 namespace Uno.UX.Markup.CodeGeneration
 {
@@ -13,12 +16,12 @@ namespace Uno.UX.Markup.CodeGeneration
         // for proper cache invalidation!
         public const int Version = 15;
 
-        public static void Build(Disk disk, IReadOnlyList<SourceBundle> bundles)
+        public static void Build(Disk disk, IReadOnlyList<SourceBundle> bundles, ITranspiler transpiler)
         {
             var p = new UXProcessor(disk);
             foreach (var bundle in bundles)
                 if (bundle.IsProject && bundle.UXFiles.Count > 0)
-                    p.Build(bundle);
+                    p.Build(bundle, transpiler);
         }
 
         UXProcessor(Disk disk)
@@ -26,7 +29,7 @@ namespace Uno.UX.Markup.CodeGeneration
         {
         }
 
-        void Build(SourceBundle bundle)
+        void Build(SourceBundle bundle, ITranspiler transpiler)
         {
             // Avoid multiple visits
             bundle.Flags &= ~SourceBundleFlags.Project;
@@ -50,7 +53,8 @@ namespace Uno.UX.Markup.CodeGeneration
                 var markupLog = new CompilerReflection.MarkupErrorLog(Log, bundle);
                 var sourceFilePath = generatedPath.ToRelativePath(bundle.SourceDirectory).NativeToUnix();
                 var uxSrc = bundle.UXFiles.Select(x => new UXIL.Compiler.UXSource(Path.Combine(bundle.SourceDirectory, x.NativePath)));
-                var doc = UXIL.Compiler.Compile(new Reflection.CompilerDataTypeProvider(compiler), uxSrc, bundle.SourceDirectory, bundle.Name, generatedPath, markupLog);
+                var doc = UXIL.Compiler.Compile(new CompilerDataTypeProvider(compiler), uxSrc, bundle.SourceDirectory, bundle.Name, generatedPath, markupLog);
+                TranspileScripts(doc, transpiler);
 
                 if (Log.HasErrors)
                     return;
@@ -92,7 +96,7 @@ namespace Uno.UX.Markup.CodeGeneration
             }
         }
 
-        bool IsDirty(SourceBundle bundle, string listFile)
+        static bool IsDirty(SourceBundle bundle, string listFile)
         {
             if (!File.Exists(listFile))
                 return true;
@@ -105,6 +109,65 @@ namespace Uno.UX.Markup.CodeGeneration
                     return true;
 
             return false;
+        }
+
+        void TranspileScripts(Project project, ITranspiler transpiler)
+        {
+            foreach (var doc in project.Documents.Values)
+            {
+                foreach (var node in doc.NodesInDocumentOrder)
+                {
+                    if (node is not NewObjectNode tag)
+                        continue;
+
+                    var isJavaScript = tag.DataType.QualifiedName == "Fuse.Reactive.JavaScript";
+                    var isTypeScript = tag.DataType.QualifiedName == "Fuse.Reactive.TypeScript";
+
+                    if (!isJavaScript && !isTypeScript)
+                        continue;
+
+                    var transpile = isTypeScript || GetPropertyBool(tag, "Transpile") == true;
+
+                    if (!transpile)
+                        continue;
+
+                    var codeProp = GetProperty(tag, "Code");
+
+                    if (codeProp?.Value is not String code)
+                        continue;
+
+                    var filename = code.Source.FileName.ToRelativePath() +
+                        "@" + code.Source.LineNumber + (
+                            isTypeScript
+                                ? ".ts"
+                                : ".js"
+                        );
+
+                    Log.Verbose("Transpiling " + filename);
+
+                    if (transpiler.TryTranspile(filename, code.Value, out string output))
+                        codeProp.Value = new String(output, code.Source);
+                }
+            }
+        }
+
+        static bool? GetPropertyBool(Node node, string name)
+        {
+            var prop = GetProperty(node, name);
+
+            if (prop?.Value is Bool value)
+                return value.Value;
+
+            return null;
+        }
+
+        static AtomicProperty GetProperty(Node node, string name)
+        {
+            foreach (var prop in node.AtomicProperties)
+                if (prop.Facet.Name == name)
+                    return prop;
+
+            return null;
         }
     }
 }

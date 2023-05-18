@@ -185,7 +185,7 @@ namespace Uno.Build
                 return null;
 
             using (Log.StartProfiler(typeof(UXProcessor)))
-                UXProcessor.Build(_compiler.Disk, _input.Bundles);
+                UXProcessor.Build(_compiler.Disk, _input.Bundles, _transpiler);
 
             if (Log.HasErrors)
                 return null;
