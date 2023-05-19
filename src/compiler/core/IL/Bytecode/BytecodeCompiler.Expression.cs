@@ -289,7 +289,7 @@ namespace Uno.Compiler.Core.IL.Bytecode
                     {
                         var s = e as StoreLocal;
 
-                        // TODO: This is a workaround for bug in sub ctor calls, remove this later
+                        // This is a workaround for bug in sub ctor calls
                         if (!Locals.Contains(s.Variable))
                             Locals.Add(s.Variable);
 
