@@ -9,30 +9,23 @@ namespace Uno.UX.Markup.CodeGeneration
 {
     class CodeGenerator
     {
-
-        public static void GenerateCode(UXIL.Project doc, TextFormatter tw, Common.IMarkupErrorLog log, Func<string, TextFormatter> textFormatterFactory)
+        public static void GenerateCode(Project doc, TextFormatter tw, Common.IMarkupErrorLog log, Func<string, TextFormatter> textFormatterFactory)
         {
             var cg = new CodeGenerator(doc, tw, log, textFormatterFactory);
             cg.GenerateCode();
         }
 
-        readonly UXIL.Project _doc;
+        readonly Project _doc;
         TextFormatter _tw;
         readonly Common.IMarkupErrorLog _log;
         readonly Func<string, TextFormatter> _textFormatterFactory;
 
-        void ReportError(UXIL.Node node, string message)
+        void ReportError(Node node, string message)
         {
             _log.ReportError(node.Source.FileName, node.Source.LineNumber, message);
         }
 
-        void ReportWarning(UXIL.Node node, string message)
-        {
-            _log.ReportWarning(node.Source.FileName, node.Source.LineNumber, message);
-        }
-
-
-        CodeGenerator(UXIL.Project doc, TextFormatter tw, Common.IMarkupErrorLog log, Func<string, TextFormatter> textFormatterFactory)
+        CodeGenerator(Project doc, TextFormatter tw, Common.IMarkupErrorLog log, Func<string, TextFormatter> textFormatterFactory)
         {
             _doc = doc;
             _tw = tw;
@@ -65,7 +58,7 @@ namespace Uno.UX.Markup.CodeGeneration
             EmitInnerClasses(scope);
 
             FindAndRegisterUXPropertySources(scope);
-			EmitUXPropertyFields(scope);
+            EmitUXPropertyFields(scope);
 
             EmitFields(scope);
 
@@ -136,15 +129,15 @@ namespace Uno.UX.Markup.CodeGeneration
                 PopScope();
             }
 
-			foreach (var c in cl.DeclaredDependencies)
-			{
-				Emit("readonly " + c.ResultingType.FullName + " " + c.Name + ";");
-			}
-		}
+            foreach (var c in cl.DeclaredDependencies)
+            {
+                Emit("readonly " + c.ResultingType.FullName + " " + c.Name + ";");
+            }
+        }
 
         void EmitInnerFactories(Scope scope)
         {
-            foreach (var n in scope.DocumentScope.NodesExcludingRoot.OfType<UXIL.TemplateNode>())
+            foreach (var n in scope.DocumentScope.NodesExcludingRoot.OfType<TemplateNode>())
             {
                 if (n.GeneratedClassName.FullName == null)
                 {
@@ -157,15 +150,14 @@ namespace Uno.UX.Markup.CodeGeneration
 
         void EmitInnerClasses(Scope scope)
         {
-            foreach (var n in scope.DocumentScope.NodesExcludingRoot.OfType<UXIL.ClassNode>().Where(x => x.IsInnerClass))
+            foreach (var n in scope.DocumentScope.NodesExcludingRoot.OfType<ClassNode>().Where(x => x.IsInnerClass))
             {
                 GenerateCode(new Scope(n, scope));
             }
         }
 
-
         void BeginNamespace(Scope scope)
-		{
+        {
             if (!string.IsNullOrEmpty(scope.DocumentScope.GeneratedClassName.Namespace))
             {
                 Emit("namespace " + scope.DocumentScope.GeneratedClassName.Namespace);
@@ -183,16 +175,16 @@ namespace Uno.UX.Markup.CodeGeneration
 
         void BeginClass(Scope scope)
         {
-            if (scope.DocumentScope is UXIL.ClassNode)
+            if (scope.DocumentScope is ClassNode)
             {
-                var t = scope.DocumentScope as UXIL.ClassNode;
+                var t = scope.DocumentScope as ClassNode;
                 Emit("[Uno.Compiler.UxGenerated]");
                 Emit("public partial class " + t.GeneratedClassName.Surname + ": " + t.BaseType.FullName);
                 PushScope();
             }
-            else if (scope.DocumentScope is UXIL.TemplateNode)
+            else if (scope.DocumentScope is TemplateNode)
             {
-                var t = scope.DocumentScope as UXIL.TemplateNode;
+                var t = scope.DocumentScope as TemplateNode;
                 Emit("[Uno.Compiler.UxGenerated]");
                 Emit("public partial class " + t.GeneratedClassName.Surname + ": Uno.UX.Template");
                 PushScope();
@@ -204,28 +196,28 @@ namespace Uno.UX.Markup.CodeGeneration
             }
         }
 
-		string GetDependenciesArgString(Reflection.IDataType cn, bool prefixes)
-		{
-			var deps = cn.Properties.Where(x => x.IsConstructorArgument && x.DeclaringType == cn).ToArray();
+        string GetDependenciesArgString(Reflection.IDataType cn, bool prefixes)
+        {
+            var deps = cn.Properties.Where(x => x.IsConstructorArgument && x.DeclaringType == cn).ToArray();
 
-			var s = "";
-			for (int i = 0; i < deps.Length; i++)
-			{
-				if (i > 0) s += ", ";
+            var s = "";
+            for (int i = 0; i < deps.Length; i++)
+            {
+                if (i > 0) s += ", ";
                 if (prefixes) s += "\n\t\t[global::Uno.UX.UXParameter(\"" + deps[i].Name + "\")] " + deps[i].DataType.FullName + " ";
                 s += deps[i].Name;
-			}
-			return s;
-		}
+            }
+            return s;
+        }
 
         private void EmitParentScopeClosureConstructor(Scope scope, bool initUX = false)
         {
             if (scope.ParentScope != null)
             {
                 var parentType = scope.ParentScope.DocumentScope.GeneratedClassName;
-                
+
                 Emit("[Uno.WeakReference] internal readonly " + parentType + " __parent;");
-				
+
                 var fn = scope.DocumentScope as TemplateNode;
                 if (fn != null)
                 {
@@ -237,7 +229,7 @@ namespace Uno.UX.Markup.CodeGeneration
                 {
                     Emit("public " + scope.DocumentScope.GeneratedClassName.Surname + "(" + parentType + " parent)");
                 }
-                
+
                 PushScope();
                 Emit("__parent = parent;");
                 if (fn != null) Emit("__parentInstance = parentInstance;");
@@ -256,7 +248,7 @@ namespace Uno.UX.Markup.CodeGeneration
             PopScope();
         }
 
-        string UniqueName(UXIL.UXPropertyClass p)
+        string UniqueName(UXPropertyClass p)
         {
             var t = p.Property.Facet.DeclaringType;
             var iap = p.Property.Facet as Reflection.IAttachedProperty;
@@ -267,7 +259,7 @@ namespace Uno.UX.Markup.CodeGeneration
 
         string PropClassName(UXPropertySource p)
         {
-            return "global::Uno.UX.Property<" + p.Property.Property.Facet.DataType.FullName + ">"; 
+            return "global::Uno.UX.Property<" + p.Property.Property.Facet.DataType.FullName + ">";
         }
 
         void EmitUXPropertyFields(Scope scope)
@@ -278,7 +270,6 @@ namespace Uno.UX.Markup.CodeGeneration
                 Emit(PropClassName(p) + " " + fieldName + ";");
             }
         }
-
 
         void EmitUXPropertyClasses()
         {
@@ -367,11 +358,11 @@ namespace Uno.UX.Markup.CodeGeneration
 
                 var facet = p.Property.Facet as Markup.Reflection.IMutableProperty;
 
-				if (facet == null)
-				{
-					ReportError(_doc.RootClasses.First(), "Animated properties must be mutable. '" + p.Property.Facet.Name + "' is a constructor argument");
-					continue;
-				}
+                if (facet == null)
+                {
+                    ReportError(_doc.RootClasses.First(), "Animated properties must be mutable. '" + p.Property.Facet.Name + "' is a constructor argument");
+                    continue;
+                }
 
                 processedClasses.Add(name);
 
@@ -392,7 +383,7 @@ namespace Uno.UX.Markup.CodeGeneration
                 Emit("public " + name + "(" + ownerDtName + " obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }");
 
                 Emit("public override global::Uno.UX.PropertyObject Object { get { return _obj; } }");
-                
+
                 if (facet.CanGet)
                 {
                     if (iap != null)
@@ -417,11 +408,11 @@ namespace Uno.UX.Markup.CodeGeneration
                             Emit("public override void Set(global::Uno.UX.PropertyObject obj, " + propDt + " v, global::Uno.UX.IPropertyListener origin) { ((" + ownerDtName + ")obj)." + facet.OriginSetterName + "(v, origin); }");
                             Emit("public override bool SupportsOriginSetter { get { return true; } }");
                         }
-                        
+
                     }
                     else
                     {
-                        
+
                         if (iap != null)
                         {
                             Emit("public override void Set(global::Uno.UX.PropertyObject obj, " + propDt + " v, global::Uno.UX.IPropertyListener origin) { global::" + iap.DeclaringType.FullName + "." + iap.SetMethodName + "((" + ownerDtName + ")obj, v); }");
@@ -431,7 +422,7 @@ namespace Uno.UX.Markup.CodeGeneration
                             Emit("public override void Set(global::Uno.UX.PropertyObject obj, " + propDt + " v, global::Uno.UX.IPropertyListener origin) { ((" + ownerDtName + ")obj)." + p.Property.Facet.Name + " = v; }");
                         }
                     }
-                    
+
                 }
 
                 PopScope();
@@ -444,7 +435,7 @@ namespace Uno.UX.Markup.CodeGeneration
             {
                 if (n == scope.DocumentScope) continue;
 
-                if (n is UXIL.NameTableNode)
+                if (n is NameTableNode)
                 {
                     EmitStaticNameTable(n as NameTableNode);
                     continue;
@@ -458,7 +449,7 @@ namespace Uno.UX.Markup.CodeGeneration
                         Emit(prefix + "public static readonly " + n.ResultingType.QualifiedName + " " + name + ";");
                     }
                 }
-                else if (n is UXIL.ObjectNode)
+                else if (n is ObjectNode)
                 {
                     if (!string.IsNullOrEmpty(n.Name))
                         Emit("internal global::" + n.ResultingType.QualifiedName + " " + scope.GetUniqueIdentifier(n) + ";");
@@ -475,9 +466,9 @@ namespace Uno.UX.Markup.CodeGeneration
                 return false;
             }
 
-            if (!(n is UXIL.TemplateNode))
+            if (!(n is TemplateNode))
             {
-                if (((s.DocumentScope is UXIL.ClassNode) || (n is UXIL.ObjectNode)) && n.Name != null)
+                if (((s.DocumentScope is ClassNode) || (n is ObjectNode)) && n.Name != null)
                     return false; // No, it's a field.
             }
 
@@ -511,9 +502,9 @@ namespace Uno.UX.Markup.CodeGeneration
 
                     if (p.Node != scope.DocumentScope && it != instanceType) continue;
 
-					var propClassName = UniqueName(p.Property);
-					var fieldName = scope.PropertySourceIdentifier(p);
-					var arg = scope.GetUniqueIdentifier(p.Node, scope.DocumentScope);
+                    var propClassName = UniqueName(p.Property);
+                    var fieldName = scope.PropertySourceIdentifier(p);
+                    var arg = scope.GetUniqueIdentifier(p.Node, scope.DocumentScope);
 
                     var s = new Selector(p.Property.Property.Facet.Name, p.Node.Source);
                     scope.Register(s);
@@ -522,40 +513,38 @@ namespace Uno.UX.Markup.CodeGeneration
                 }
                 else if (rs is NodeSource)
                 {
-                    
-
                     if (rs.Node.InstanceType != instanceType) continue;
 
                     if (rs.Node == scope.DocumentScope) continue;
                     var n = rs.Node;
 
-                    if (n is UXIL.BoxedValueNode)
+                    if (n is BoxedValueNode)
                     {
-                        var on = (UXIL.BoxedValueNode)n;
+                        var on = (BoxedValueNode)n;
                         Emit((IsTempVariable(scope, n) ? "var " : "") + scope.GetUniqueIdentifier(n) + " = " + Instantiation(scope, on) + ";");
                     }
-                    else if (n is UXIL.NewObjectNode)
+                    else if (n is NewObjectNode)
                     {
-                        var on = (UXIL.NewObjectNode)n;
+                        var on = (NewObjectNode)n;
                         Emit((IsTempVariable(scope, n) ? "var " : "") + scope.GetUniqueIdentifier(n) + " = " + Instantiation(scope, on) + ";");
                     }
-                    else if (n is UXIL.DependencyNode)
+                    else if (n is DependencyNode)
                     {
                         // already declared as a field
                     }
-                    else if (n is UXIL.TemplateNode)
+                    else if (n is TemplateNode)
                     {
-                        var tn = (UXIL.TemplateNode)n;
+                        var tn = (TemplateNode)n;
 
                         Emit((IsTempVariable(scope, n) ? "var " : "") + scope.GetUniqueIdentifier(n) + " = new " + tn.GeneratedClassName + "(this, " + scope.Self + ");");
                     }
-                    else if (n is UXIL.NameTableNode)
+                    else if (n is NameTableNode)
                     {
-                        var nt = (UXIL.NameTableNode)n;
+                        var nt = (NameTableNode)n;
                         var pt = (nt.ParentTable != null ? "__parent.__g_nametable" : "null");
                         Emit(n.Name + " = new global::Uno.UX.NameTable(" + pt + ", __g_static_nametable);");
                     }
-                    else if (n is UXIL.ResourceRefNode)
+                    else if (n is ResourceRefNode)
                     {
                         // Silent ignore, staticRefId can be used directly
                     }
@@ -573,7 +562,7 @@ namespace Uno.UX.Markup.CodeGeneration
             }
         }
 
-        void EmitStaticNameTable(UXIL.NameTableNode n)
+        void EmitStaticNameTable(NameTableNode n)
         {
             Emit("global::Uno.UX.NameTable __g_nametable;");
 
@@ -588,10 +577,9 @@ namespace Uno.UX.Markup.CodeGeneration
             _tw.Unindent("};");
         }
 
-
         string EventHandlerToString(Scope scope, UXIL.EventHandler eh)
         {
-            if (eh is UXIL.EventMethod)
+            if (eh is EventMethod)
             {
                 var em = (EventMethod)eh;
                 return em.Name;
@@ -602,9 +590,8 @@ namespace Uno.UX.Markup.CodeGeneration
                 return scope.GetUniqueIdentifier(eb.Binding) + ".OnEvent";
             }
         }
-     
 
-        void EmitEventHandlers(Scope scope, UXIL.Node node)
+        void EmitEventHandlers(Scope scope, Node node)
         {
             foreach (var e in node.EventsWithHandler)
             {
@@ -626,13 +613,11 @@ namespace Uno.UX.Markup.CodeGeneration
             foreach (var n in scope.DocumentScope.NodesIncludingRoot)
             {
                 if (n != scope.DocumentScope && n.InstanceType != InstanceType.Local) continue;
-                if (n is UXIL.DocumentScope && n != scope.DocumentScope) continue;
+                if (n is DocumentScope && n != scope.DocumentScope) continue;
 
                 EmitProperties(scope, n);
             }
         }
-
-
 
         void FindAndRegisterUXPropertySources(Scope scope)
         {
@@ -641,29 +626,27 @@ namespace Uno.UX.Markup.CodeGeneration
                 foreach (var rp in n.ReferencePropertiesWithValues.Select(x => x.Source)
                     .Union(n.ListPropertiesWithValues.SelectMany(x => x.Sources)))
                 {
-                    if (rp is UXIL.UXPropertySource)
+                    if (rp is UXPropertySource)
                     {
-                        var uxps = (UXIL.UXPropertySource)rp;
+                        var uxps = (UXPropertySource)rp;
                         scope.Register(uxps);
                     }
                 }
             }
         }
 
-        void EmitProperties(Scope scope, UXIL.Node n)
+        void EmitProperties(Scope scope, Node n)
         {
-            if (n is UXIL.BoxedValueNode || n is UXIL.NewObjectNode)
-            { 
+            if (n is BoxedValueNode || n is NewObjectNode)
+            {
                 EmitAtomicPropertyValues(scope, n);
                 EmitEventHandlers(scope, n);
             }
-
 
             foreach (var dp in n.DelegatePropertiesWithValues)
             {
                 EmitAssign(scope, n, (Reflection.IMutableProperty)dp.Facet, dp.Method);
             }
-
 
             foreach (var rp in n.MutableReferencePropertiesWithValues)
             {
@@ -677,32 +660,32 @@ namespace Uno.UX.Markup.CodeGeneration
 
             foreach (var lp in n.ListPropertiesWithValues)
             {
-                foreach (var s in lp.Sources.OfType<ReferenceSource>()) 
+                foreach (var s in lp.Sources.OfType<ReferenceSource>())
                 {
                     EmitAddToList(scope, n, lp, ReferenceSourceToString(scope, s));
                 }
             }
         }
 
-        void EmitAddToList(Scope scope, UXIL.Node parent, UXIL.ListProperty prop, string value)
+        void EmitAddToList(Scope scope, Node parent, ListProperty prop, string value)
         {
             var facet = prop.Facet as Markup.Reflection.IMutableProperty;
-			Emit(scope.GetUniqueIdentifier(parent) + "." + prop.Facet.Name + ".Add(" + value + ");");
+            Emit(scope.GetUniqueIdentifier(parent) + "." + prop.Facet.Name + ".Add(" + value + ");");
         }
 
-        string ReferenceSourceToString(Scope scope, UXIL.ReferenceSource rs)
+        string ReferenceSourceToString(Scope scope, ReferenceSource rs)
         {
-            if (rs is UXIL.UXPropertySource)
+            if (rs is UXPropertySource)
             {
-                return scope.PropertySourceIdentifier((UXIL.UXPropertySource)rs);
+                return scope.PropertySourceIdentifier((UXPropertySource)rs);
             }
-            else if (rs is UXIL.UXPropertyAccessorSource)
+            else if (rs is UXPropertyAccessorSource)
             {
-                return _doc.ProjectName.ToIdentifier() + "_accessor_" + ((UXIL.UXPropertyAccessorSource)rs).Singleton;
+                return _doc.ProjectName.ToIdentifier() + "_accessor_" + ((UXPropertyAccessorSource)rs).Singleton;
             }
-            else if (rs is UXIL.NodeSource)
+            else if (rs is NodeSource)
             {
-                var ns = (UXIL.NodeSource)rs;
+                var ns = (NodeSource)rs;
 
                 if (ns.Source.InstanceType == InstanceType.Global && ns.Source.Name != null)
                 {
@@ -713,15 +696,15 @@ namespace Uno.UX.Markup.CodeGeneration
                     return scope.GetUniqueIdentifier(ns.Source, scope.DocumentScope);
                 }
             }
-            else if (rs is UXIL.BundleFileSource)
+            else if (rs is BundleFileSource)
             {
-                var bfs = (UXIL.BundleFileSource)rs;
+                var bfs = (BundleFileSource)rs;
                 return "new global::Uno.UX.BundleFileSource(import(" + bfs.Path.ToRelativePath(Path.GetDirectoryName(_doc.GeneratedPath)).NativeToUnix().ToLiteral() + "))";
             }
             else throw new Exception();
         }
 
-        void EmitAtomicPropertyValues(Scope scope, UXIL.Node on)
+        void EmitAtomicPropertyValues(Scope scope, Node on)
         {
             foreach (var p in on.MutableAtomicPropertiesWithValues)
             {
@@ -744,9 +727,9 @@ namespace Uno.UX.Markup.CodeGeneration
             }
         }
 
-        void EmitAssign(Scope scope, UXIL.Node on, Reflection.IMutableProperty p, string value)
+        void EmitAssign(Scope scope, Node on, Reflection.IMutableProperty p, string value)
         {
-			if (p is Reflection.IAttachedProperty)
+            if (p is Reflection.IAttachedProperty)
             {
                 var iap = (Reflection.IAttachedProperty)p;
 
@@ -765,15 +748,15 @@ namespace Uno.UX.Markup.CodeGeneration
             }
         }
 
-        string Instantiation(Scope scope, UXIL.ObjectNode on)
+        string Instantiation(Scope scope, ObjectNode on)
         {
             if (on.Path != null)
             {
                 return on.DataType.QualifiedName + ".Load(import(" + on.Path.ToRelativePath(Path.GetDirectoryName(_doc.GeneratedPath)).NativeToUnix().ToLiteral() + "))";
             }
-            else if (on is UXIL.BoxedValueNode)
+            else if (on is BoxedValueNode)
             {
-                var bvn = (UXIL.BoxedValueNode)on;
+                var bvn = (BoxedValueNode)on;
                 return bvn.Value.ToLiteral();
             }
 
@@ -782,9 +765,9 @@ namespace Uno.UX.Markup.CodeGeneration
 
         string Instantiation(Scope scope, Node src, Reflection.IDataType dataType, IEnumerable<Property> properties)
         {
-			var args = dataType.Properties.Where(x => x.IsConstructorArgument);
+            var args = dataType.Properties.Where(x => x.IsConstructorArgument);
 
-			if (args.Any())
+            if (args.Any())
             {
                 var mp = new List<string>();
                 foreach (var arg in args)
@@ -826,7 +809,7 @@ namespace Uno.UX.Markup.CodeGeneration
                 {
                     return "new global::" + dataType.QualifiedName + "()";
                 }
-                        
+
             }
         }
 
@@ -846,9 +829,9 @@ namespace Uno.UX.Markup.CodeGeneration
 
         void BeginInitMethod(Scope scope)
         {
-            if (scope.DocumentScope is UXIL.ClassNode)
+            if (scope.DocumentScope is ClassNode)
             {
-                var cs = (UXIL.ClassNode)scope.DocumentScope;
+                var cs = (ClassNode)scope.DocumentScope;
 
                 if (cs.IsInnerClass)
                 {
@@ -856,15 +839,15 @@ namespace Uno.UX.Markup.CodeGeneration
                 }
                 else if (cs.AutoCtor)
                 {
-					Emit("[global::Uno.UX.UXConstructor]");
-					Emit("public " + cs.GeneratedClassName.Surname + "("+ GetDependenciesArgString(cs, true) + ")" +
+                    Emit("[global::Uno.UX.UXConstructor]");
+                    Emit("public " + cs.GeneratedClassName.Surname + "("+ GetDependenciesArgString(cs, true) + ")" +
                         (cs.BaseType.Properties.Any(x => x.IsConstructorArgument) ? ": base(" + GetDependenciesArgString(cs.BaseType, false) + ")" : ""));
                     PushScope();
 
-					foreach (var dep in cs.DeclaredDependencies)
-					{
-						Emit("this." + dep.Name + " = " + dep.Name + ";");
-					}
+                    foreach (var dep in cs.DeclaredDependencies)
+                    {
+                        Emit("this." + dep.Name + " = " + dep.Name + ";");
+                    }
 
                     Emit("InitializeUX();");
                     PopScope();
@@ -873,9 +856,9 @@ namespace Uno.UX.Markup.CodeGeneration
                 Emit("void InitializeUX()");
                 PushScope();
             }
-            else if (scope.DocumentScope is UXIL.TemplateNode)
+            else if (scope.DocumentScope is TemplateNode)
             {
-                var t = (UXIL.TemplateNode)scope.DocumentScope;
+                var t = (TemplateNode)scope.DocumentScope;
 
                 Emit("public override object New()");
                 PushScope();
@@ -885,7 +868,7 @@ namespace Uno.UX.Markup.CodeGeneration
                     var path = FindParentScopePath((ClassNode)t.ProducedType, scope);
                     Emit("var __self = new " + t.ProducedType.FullName + "(" + path +");");
                 }
-                else 
+                else
                 {
                     Emit("var __self = " + Instantiation(scope, t, t.ProducedType, t.Properties) + ";");
                 }
@@ -895,8 +878,6 @@ namespace Uno.UX.Markup.CodeGeneration
                 ReportError(scope.DocumentScope, "Document scope not supported: " + scope.DocumentScope.GetType().FullName);
             }
         }
-
-        
 
         void EndInitMethod(Scope scope)
         {

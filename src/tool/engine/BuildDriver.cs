@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Build.FuseJS;
 using Uno.Build.Libraries;
 using Uno.Build.Stuff;
 using Uno.Compiler;
@@ -34,6 +35,7 @@ namespace Uno.Build
         readonly UnoConfig _config;
         readonly BuildFile _file;
         readonly BundleCache _cache;
+        readonly LazyTranspiler _transpiler;
         IDisposable _anim;
 
         public bool IsUpToDate => !_options.Force && _file.Exists &&
@@ -93,7 +95,8 @@ namespace Uno.Build
                 };
             }
 
-            _cache = _options.BundleCache ?? new BundleCache(Log, _config);
+            _transpiler = new LazyTranspiler(Log, _config);
+            _cache = _options.BundleCache ?? new BundleCache(Log, _config, _transpiler);
             PrintRow("Search paths", _cache.SearchPaths);
 
             _compiler = new Compiler(
@@ -119,9 +122,7 @@ namespace Uno.Build
 
         public void Dispose()
         {
-            // Dispose PackageCache if it was created by us
-            if (_options.BundleCache == null)
-                _cache.Dispose();
+            _transpiler.Dispose();
         }
 
         public void Clean()
@@ -184,7 +185,7 @@ namespace Uno.Build
                 return null;
 
             using (Log.StartProfiler(typeof(UXProcessor)))
-                UXProcessor.Build(_compiler.Disk, _input.Bundles);
+                UXProcessor.Build(_compiler.Disk, _input.Bundles, _transpiler);
 
             if (Log.HasErrors)
                 return null;

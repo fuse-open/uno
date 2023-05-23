@@ -76,7 +76,7 @@ namespace Uno.UX.Markup.UXIL
 
     public partial class Compiler
     {
-        readonly Dictionary<object, UXIL.Node> _nodes = new Dictionary<object, UXIL.Node>();
+        readonly Dictionary<object, Node> _nodes = new Dictionary<object, Node>();
 
         internal void AddNode(object handle, Node n)
         {

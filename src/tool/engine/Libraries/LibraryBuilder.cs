@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Build.FuseJS;
 using Uno.Collections;
 using Uno.Configuration;
 using Uno.IO;
@@ -81,8 +82,9 @@ namespace Uno.Build.Libraries
 
             var allProjects = LoadProjects(sourceDirectories);
             var buildProjects = GetBuildList(allProjects);
+            var transpiler = new LazyTranspiler(Log, config);
             var bundleCache = CanCache
-                                    ? new BundleCache(Log, config)
+                                    ? new BundleCache(Log, config, transpiler)
                                     : null;
 
             try
@@ -105,7 +107,7 @@ namespace Uno.Build.Libraries
             finally
             {
                 Log.Message($"Completed in {Log.Time - startTime:0.00} seconds");
-                bundleCache?.Dispose();
+                transpiler.Dispose();
             }
         }
 

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Uno.Collections;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Statements;
 
