@@ -12,7 +12,6 @@ namespace Uno.Build.Targets
         public override string Identifier => "native";
         public override string FormerName => "cmake";
         public override string[] FormerNames => new[] {"cmake", "msvc"};
-        public override string ProjectGroup => "Native";
         public override string Description => "C++/GL code, CMake project and native executable.";
 
         public override Backend CreateBackend()
