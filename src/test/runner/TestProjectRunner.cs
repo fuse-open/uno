@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Uno.Build;
@@ -15,35 +14,35 @@ namespace Uno.TestRunner
 {
     public class TestProjectRunner
     {
-        private readonly string _unoProj;
+        private readonly Project _project;
         private readonly TestOptions _options;
         private readonly ITestResultLogger _logger;
         private TestRun _testRun;
 
-        public TestProjectRunner(string unoProj, TestOptions options, ITestResultLogger logger)
+        public TestProjectRunner(Project unoProj, TestOptions options, ITestResultLogger logger)
         {
-            _unoProj = unoProj;
+            _project = unoProj;
             _options = options;
             _logger = logger;
         }
 
         public List<Test> RunTests()
         {
-            var project = Path.GetFileNameWithoutExtension(_unoProj);
-            _logger.ProjectStarting(project, _options.Target.ToString());
-            List<Test> tests = new List<Test>();
+            _logger.ProjectStarting(_project.Name, _options.Target.ToString());
+            List<Test> tests = new();
+
             try
             {
                 _testRun = new TestRun(_logger);
 
                 var cts = new CancellationTokenSource();
                 bool runFinished = false;
+
                 try
                 {
                     var log = Log.Default;
                     var target = _options.Target;
-                    var proj = Project.Load(_unoProj);
-                    var outputDirectory = _options.OutputDirectory ?? proj.GetOutputDirectory("Test", target);
+                    var outputDirectory = _options.OutputDirectory ?? _project.GetOutputDirectory("test", target);
 
                     var options = new BuildOptions {
                         Test = true,
@@ -64,7 +63,7 @@ namespace Uno.TestRunner
                         options.NativeBuild = false;
 
                     var builder = new ProjectBuilder(log, target, options);
-                    var result = builder.Build(proj);
+                    var result = builder.Build(_project);
 
                     if (result.ErrorCount != 0)
                         throw new Exception("Build failed.");
@@ -114,6 +113,7 @@ namespace Uno.TestRunner
                     _testRun = null;
                 }
             }
+
             return tests;
         }
     }

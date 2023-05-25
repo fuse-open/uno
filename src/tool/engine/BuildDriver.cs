@@ -92,6 +92,10 @@ namespace Uno.Build
                     Filter = _options.TestFilter
                 };
             }
+            else if (project.OutputType == OutputType.Test)
+            {
+                Log.Warning(project.Source, ErrorCode.W0000, "Test projects should be built & run using \"uno test\"");
+            }
 
             _cache = _options.BundleCache ?? new BundleCache(Log, _config);
             PrintRow("Search paths", _cache.SearchPaths);
@@ -147,6 +151,8 @@ namespace Uno.Build
                 _env.Define(_options.Configuration.ToString());
             if (_options.Configuration == BuildConfiguration.Preview)
                 _env.Define("REFLECTION", "SIMULATOR", "STACKTRACE");
+            if (_project.OutputType != OutputType.Undefined)
+                _env.Define(_project.OutputType.ToString());
 
             foreach (var def in StuffFile.DefaultDefines)
                 _env.Define("HOST_" + def);
