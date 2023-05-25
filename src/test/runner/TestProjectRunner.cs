@@ -57,8 +57,8 @@ namespace Uno.TestRunner
                     options.Defines.AddRange(_options.Defines);
                     options.Undefines.AddRange(_options.Undefines);
 
-                    if (_options.Target is iOSBuild && !proj.MutableProperties.ContainsKey("iOS.BundleIdentifier"))
-                        proj.MutableProperties["iOS.BundleIdentifier"] = "dev.testprojects." + proj.Name.ToIdentifier(true).ToLower();
+                    if (_options.Target is iOSBuild && !_project.MutableProperties.ContainsKey("ios.bundleIdentifier"))
+                        _project.MutableProperties["ios.bundleIdentifier"] = "dev.testprojects." + _project.Name.ToIdentifier(true).ToLower();
 
                     if (_options.OnlyGenerate)
                         options.NativeBuild = false;

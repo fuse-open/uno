@@ -41,11 +41,11 @@ namespace Uno.Build.Libraries
                 return sourceDirectories;
             }
 
-            var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("SearchPaths.Sources", "Packages.SourcePaths");
+            var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("searchPaths.sources", "packages.sourcePaths");
 
             if (configSourcePaths.Length == 0)
             {
-                Log.VeryVerbose("'SearchPaths.Sources' was not found in .unoconfig");
+                Log.VeryVerbose("'searchPaths.sources' was not found in .unoconfig");
                 return sourceDirectories;
             }
 
@@ -243,7 +243,7 @@ namespace Uno.Build.Libraries
             if (RebuildList != null && !RebuiltListIsSourcePaths)
                 foreach (var p in RebuildList)
                     if (!_libMap.ContainsKey(p.ToUpperInvariant()))
-                        Log.Warning("Package " + p.Quote() + " was not found");
+                        Log.Warning("Library " + p.Quote() + " was not found");
 
             return list;
         }
