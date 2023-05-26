@@ -5,7 +5,7 @@ default:
 lib:
 	@bin/net6.0/uno doctor -e lib
 unocore:
-	@bin/net6.0/uno build lib/UnoCore -DLIBRARY
+	@bin/net6.0/uno build lib/UnoCore
 uno:
 	@dotnet build uno.sln -v m
 disasm:

@@ -2,6 +2,7 @@
   "copyright": "Copyright (c) Fuse Open",
   "publisher": "Fuse Open",
   "description": "Threading extras",
+  "outputType": "library",
   "includes": [
     "AutoResetEvent.uno:source",
     "ConcurrentDictionary.uno:source",

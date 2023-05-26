@@ -2,6 +2,7 @@
   "copyright": "Copyright (c) Fuse Open",
   "description": "Collection extras",
   "publisher": "Fuse Open",
+  "outputType": "library",
   "includes": [
     "extensions/EmptyEnumerable.uno:source",
     "extensions/Enumerableextensions.uno:source",

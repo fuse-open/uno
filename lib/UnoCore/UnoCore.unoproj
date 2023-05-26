@@ -2,6 +2,7 @@
   "copyright": "Copyright (c) Fuse Open",
   "description": "Uno Standard Library Core Features",
   "publisher": "Fuse Open",
+  "outputType": "library",
   "unoCoreReference": false,
   "internalsVisibleTo": [
     "Fuse.Nodes",

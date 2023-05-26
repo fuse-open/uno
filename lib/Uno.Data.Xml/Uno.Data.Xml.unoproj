@@ -2,6 +2,7 @@
   "copyright": "Copyright (c) Fuse Open",
   "description": "XML parser",
   "publisher": "Fuse Open",
+  "outputType": "library",
   "projects": [
     "../Uno.Collections/Uno.Collections.unoproj"
   ],
