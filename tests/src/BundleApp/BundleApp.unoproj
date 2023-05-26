@@ -1,12 +1,12 @@
 {
-  "References": [
+  "references": [
     "BundleLib"
   ],
-  "Projects": [
+  "projects": [
     "SubProject/SubProject.unoproj"
   ],
-  "Includes": [
-    "BundleFile.pdf:Bundle",
-    "Main.uno:Source"
+  "includes": [
+    "BundleFile.pdf:bundle",
+    "Main.uno:source"
   ]
 }

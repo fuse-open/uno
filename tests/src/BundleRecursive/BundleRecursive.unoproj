@@ -1,9 +1,9 @@
 {
-  "References": [
+  "references": [
     "Uno.Testing"
   ],
-  "Includes": [
-    "Assets/**:Bundle",
+  "includes": [
+    "Assets/**:bundle",
     "App.uno"
   ]
 }

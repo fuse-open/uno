@@ -1,9 +1,9 @@
 {
-  "References": [
+  "references": [
     "Uno.Testing",
     "UnoCore"
   ],
-  "Includes": [
+  "includes": [
     "*"
   ]
 }

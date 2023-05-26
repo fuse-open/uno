@@ -1,9 +1,9 @@
 {
-  "References": [
+  "references": [
     "Uno.Data.Xml",
     "Uno.Testing"
   ],
-  "Includes": [
-    "XmlDocumentTests.uno:Source"
+  "includes": [
+    "XmlDocumentTests.uno:source"
   ]
 }

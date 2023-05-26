@@ -1,11 +1,11 @@
 {
-  "References": [
-    "Uno.Testing",
+  "references": [
+    "Uno.Testing"
   ],
-  "Includes": [
-    "csource.cpp:CSource",
-    "cheader.h:CHeader",
+  "includes": [
+    "csource.cpp:csource",
+    "cheader.h:cheader",
     "*",
-    "CIL.uxl:Extensions", // To test for .NET, run `uno build pinvoke -DENABLE_CIL_TESTS -crelease && uno test -tdotnet -DENABLE_CIL_TESTS`
+    "CIL.uxl:extensions" // To test for .NET, run `uno build pinvoke -DENABLE_CIL_TESTS -crelease && uno test -tdotnet -DENABLE_CIL_TESTS`
   ]
 }

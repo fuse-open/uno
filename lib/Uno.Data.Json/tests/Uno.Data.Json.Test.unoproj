@@ -1,13 +1,13 @@
 {
-  "References": [
+  "references": [
     "Uno.Data.Json",
     "Uno.Testing"
   ],
-  "Includes": [
-    "JsonTests.uno:Source",
-    "TestData/test1.json:File",
-    "TestData/test2.json:File",
-    "TestData/test3.json:File",
-    "TestData/test4.json:File"
+  "includes": [
+    "JsonTests.uno:source",
+    "TestData/test1.json:file",
+    "TestData/test2.json:file",
+    "TestData/test3.json:file",
+    "TestData/test4.json:file"
   ]
 }

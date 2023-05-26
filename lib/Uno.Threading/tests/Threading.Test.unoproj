@@ -1,23 +1,23 @@
 {
-  "References": [
+  "references": [
     "Uno.Testing",
     "Uno.Threading"
   ],
-  "Includes": [
-    "AutoResetEventTest.uno",
-    "ConcurrentDictionary.Test.uno:Source",
-    "DummyException.uno:Source",
-    "DummyObject.uno:Source",
-    "Helpers.uno:Source",
-    "MutexTests.uno:Source",
-    "PromiseTests_2_1_2.uno:Source",
-    "PromiseTests_2_1_3.uno:Source",
-    "PromiseTests_2_2_2.uno:Source",
-    "PromiseTests_2_2_3.uno:Source",
-    "PromiseTests_2_2_4.uno:Source",
-    "PromiseTests_2_2_6.uno:Source",
-    "PromiseTests_2_3_2.uno:Source",
-    "PromiseTests_2_3_4.uno:Source",
-    "SemaphoreTests.uno:Source",
+  "includes": [
+    "AutoResetEventTest.uno:source",
+    "ConcurrentDictionary.Test.uno:source",
+    "DummyException.uno:source",
+    "DummyObject.uno:source",
+    "Helpers.uno:source",
+    "MutexTests.uno:source",
+    "PromiseTests_2_1_2.uno:source",
+    "PromiseTests_2_1_3.uno:source",
+    "PromiseTests_2_2_2.uno:source",
+    "PromiseTests_2_2_3.uno:source",
+    "PromiseTests_2_2_4.uno:source",
+    "PromiseTests_2_2_6.uno:source",
+    "PromiseTests_2_3_2.uno:source",
+    "PromiseTests_2_3_4.uno:source",
+    "SemaphoreTests.uno:source"
   ]
 }
