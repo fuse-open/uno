@@ -1,6 +1,6 @@
 namespace Uno.Compiler.ExportTargetInterop
 {
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ForeignIncludeAttribute : Attribute
     {
         public readonly Language Language;

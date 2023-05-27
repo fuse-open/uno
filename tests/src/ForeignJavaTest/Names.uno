@@ -4,7 +4,6 @@ using Uno.Graphics;
 using Uno.Collections;
 using Uno.Compiler.ExportTargetInterop;
 
-[ForeignInclude(Language.Java, "java.lang.Runnable", "android.app.Activity")]
 public extern(android) class Names
 {
     [Test]

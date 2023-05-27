@@ -4,7 +4,6 @@ using Uno.Graphics;
 using Uno.Collections;
 using Uno.Compiler.ExportTargetInterop;
 
-[ForeignInclude(Language.Java, "java.util.ArrayList")]
 public extern(android) class Fields
 {
     [Test]
@@ -76,6 +75,7 @@ public extern(android) class Fields
     @}
 
     [Foreign(Language.Java)]
+    [ForeignInclude(Language.Java, "java.util.ArrayList")]
     public extern(android) bool Test7()
     @{
         @{_staticJavaObj:Set(new ArrayList<String>())};

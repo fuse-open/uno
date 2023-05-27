@@ -12,7 +12,6 @@ namespace Uno.Net
     [extern(UNIX) Require("Source.Include", "netinet/in.h")]
     [extern(MSVC) Require("Source.Include", "ws2tcpip.h")]
     [Require("Source.Include", "vector")]
-    [ForeignInclude(Language.Java, "java.util.*", "java.net.*")]
     public class Dns
     {
         extern(APPLE || LINUX) static IPAddress[] GetLocalAddresses()
@@ -47,6 +46,7 @@ namespace Uno.Net
         @}
 
         [Foreign(Language.Java)]
+        [ForeignInclude(Language.Java, "java.util.*", "java.net.*")]
         extern(ANDROID) static bool JavaGetLocalAddresses(List<string> addresses)
         @{
             try

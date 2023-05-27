@@ -8,7 +8,6 @@ public extern(android) class TestClass0
 {
 }
 
-[ForeignInclude(Language.Java, "java.lang.Runnable", "android.app.Activity")]
 public extern(android) class Args
 {
     [Test]
@@ -63,6 +62,7 @@ public extern(android) class Args
     //------------------------------------------------------------
 
     [Foreign(Language.Java)]
+    [ForeignInclude(Language.Java, "java.lang.Runnable")]
     public bool CallUnoWithRunable0()
     @{
         java.lang.Runnable rrr = new Runnable() {
