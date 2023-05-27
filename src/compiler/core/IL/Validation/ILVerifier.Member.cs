@@ -120,7 +120,6 @@ namespace Uno.Compiler.Core.IL.Validation
                 Log.Error(dt.Source, ErrorCode.E0000, "Events are only allowed in classes, structs and interfaces");
         }
 
-        // TODO: Clean up later
         void OnFunction(Function f, DataType dt)
         {
             if (f.CanLink)

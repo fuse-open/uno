@@ -246,9 +246,9 @@ namespace Uno.Compiler.Backends.CIL
                 if (p.OptionalDefault is Constant)
                     pb.SetConstant(p.OptionalDefault.ConstantValue);
             }
-            catch
+            catch (Exception e)
             {
-                // TODO
+                Log.VeryVerbose("PopulateParameter: " + e);
             }
 
             if (p.Modifier == ParameterModifier.Params)
