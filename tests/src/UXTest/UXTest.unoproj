@@ -1,10 +1,11 @@
 {
-  "References": [
+  "outputType": "test",
+  "references": [
     "Uno.Testing",
     "UnoCore"
   ],
-  "Includes": [
-    "BasicApp.ux:UX",
-    "BasicApp.ux.uno:Source"
+  "includes": [
+    "BasicApp.ux:ux",
+    "BasicApp.ux.uno:source"
   ]
 }

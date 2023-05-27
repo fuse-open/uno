@@ -7,5 +7,5 @@ source scripts/common.sh
 VERSION=`bash scripts/get-version.sh`
 
 # Build and pack
-uno build lib/UnoCore -DLIBRARY --release
+uno build lib/UnoCore --release
 nuget pack lib/UnoCore -Version $VERSION

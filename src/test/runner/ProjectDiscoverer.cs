@@ -1,29 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.IO;
+using Uno.ProjectFormat;
 using Uno.TestRunner.Loggers;
 
 namespace Uno.TestRunner
 {
     public static class ProjectDiscoverer
     {
-        public static string[] Discover(List<string> searchPaths, ITestResultLogger logger)
+        public static Project[] Discover(List<string> searchPaths, ITestResultLogger logger)
         {
             if (searchPaths.Count == 0)
             {
                 searchPaths.Add(Directory.GetCurrentDirectory());
             }
+
             var searchDirectories = searchPaths.Where(p => !p.EndsWith(".unoproj")).ToArray();
             var explicitProjects = searchPaths.Where(p => p.EndsWith(".unoproj")).ToArray();
-            var tests = explicitProjects.ToList();
+            var tests = new List<Project>();
 
-            var notFoundProjects = explicitProjects.Where(p => !File.Exists(p)).ToList();
-            if (notFoundProjects.Any())
+            foreach (var file in explicitProjects)
             {
-                var errorMessage = string.Format("Project{0} not found", notFoundProjects.Count() > 1 ? "s" : "");
-                logger.Log(errorMessage + ": " + string.Join(", ", notFoundProjects));
-                throw new Exception(errorMessage);
+                try
+                {
+                    tests.Add(Project.Load(file));
+                }
+                catch
+                {
+                    logger.Log("Failed to load " + file.ToRelativePath());
+                }
             }
 
             if (tests.Any())
@@ -34,13 +40,52 @@ namespace Uno.TestRunner
             if (searchDirectories.Length > 0)
             {
                 logger.Log("Searching for tests in:\n " + string.Join("\n ", searchDirectories));
+
                 foreach (var searchDirectory in searchDirectories)
                 {
-                    tests.AddRange(Directory.GetFiles(searchDirectory, "*Test.unoproj", SearchOption.AllDirectories).Select(Path.GetFullPath));
+                    foreach (var file in Directory
+                                            .GetFiles(searchDirectory, "*.unoproj", SearchOption.AllDirectories)
+                                            .Select(Path.GetFullPath))
+                    {
+                        try
+                        {
+                            var project = Project.Load(file);
+
+                            if (IsTestProject(project, logger))
+                                tests.Add(project);
+                        }
+                        catch
+                        {
+                            logger.Log("Failed to load " + file.ToRelativePath());
+                        }
+                    }
                 }
             }
 
             return tests.ToArray();
+        }
+
+        public static bool IsTestProject(Project project, ITestResultLogger logger)
+        {
+            var outputType = project.OutputType;
+
+            switch (outputType)
+            {
+                case OutputType.Test:
+                    return true;
+
+                case OutputType.Undefined:
+                    if (project.Name.EndsWith("Test", "test"))
+                    {
+                        logger.Log(project.Name + ": Missing \"outputType\" property in project file (assuming \"test\")");
+                        return true;
+                    }
+
+                    return false;
+
+                default:
+                    return false;
+            }
         }
     }
 }

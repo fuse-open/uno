@@ -1,8 +1,8 @@
 {
-  "References": [
+  "references": [
     "Uno.Testing"
   ],
-  "Includes": [
+  "includes": [
     "*"
   ]
 }

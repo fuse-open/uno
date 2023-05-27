@@ -7,7 +7,6 @@ namespace Uno.Build.Targets
     public class MetadataBuild : BuildTarget
     {
         public override string Identifier => "metadata";
-        public override string ProjectGroup => "Metadata";
         public override string Description => "Metadata for code completion.";
         public override bool IsExperimental => true;
         public override bool DefaultStrip => false;

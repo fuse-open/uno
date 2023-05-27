@@ -1,8 +1,8 @@
 {
-  "References": [
+  "references": [
     "Transitive.A"
   ],
-  "Includes": [
+  "includes": [
     "TransitiveApp.uno"
   ]
 }

@@ -1,9 +1,9 @@
 {
-  "References": [
+  "references": [
     "Fuse",
     "FuseJS"
   ],
-  "Includes": [
+  "includes": [
     "*",
     "C:/Program Files/*.fjøs",
     "../UnoTest/Parser/Comment.uno"

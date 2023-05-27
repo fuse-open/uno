@@ -1,12 +1,12 @@
 {
-  "RootNamespace":"",
-  "References": [
-    "Uno.Threading",
+  "rootNamespace": "",
+  "references": [
     "Uno.Testing",
+    "Uno.Threading",
     "UnoCore"
   ],
-  "Includes": [
+  "includes": [
     "*.uno",
-    "TestJava.java:Java:android",
+    "TestJava.java:java:android"
   ]
 }

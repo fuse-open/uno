@@ -1,5 +1,5 @@
 {
-  "References": [
+  "references": [
     "Fuse.Animations",
     "Fuse.BasicTheme",
     "Fuse.Controls",
@@ -18,19 +18,19 @@
     "Uno.Geometry",
     "Uno.Net.Http"
   ],
-  "Includes": [
-    "Cell.ux:UX",
-    "Cell.ux.uno:Source",
-    "framework/DataGrid.ux:UX",
-    "framework/DataGrid.ux.uno:Source",
-    "framework/GridData.uno:Source",
-    "framework/TabControl.ux:UX",
-    "framework/TabControl.ux.layouts:File",
-    "HeadersTester.uno:Source",
-    "HttpMessage.ux:UX",
-    "HttpMessage.ux.uno:Source",
-    "HttpWrapper.uno:Source",
-    "MyApp.ux:UX",
-    "StatusCodeTester.uno:Source"
+  "includes": [
+    "Cell.ux:ux",
+    "Cell.ux.uno:source",
+    "framework/DataGrid.ux:ux",
+    "framework/DataGrid.ux.uno:source",
+    "framework/GridData.uno:source",
+    "framework/TabControl.ux:ux",
+    "framework/TabControl.ux.layouts:file",
+    "HeadersTester.uno:source",
+    "HttpMessage.ux:ux",
+    "HttpMessage.ux.uno:source",
+    "HttpWrapper.uno:source",
+    "MyApp.ux:ux",
+    "StatusCodeTester.uno:source"
   ]
 }

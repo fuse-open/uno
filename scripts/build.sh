@@ -40,7 +40,7 @@ h1 "Building uno"
 dotnet build --configuration $CONFIGURATION --verbosity $VERBOSITY uno.sln
 
 h1 "Building runtime"
-uno build lib/UnoCore -DLIBRARY --trace
+uno build lib/UnoCore
 dotnet build --configuration $CONFIGURATION --verbosity $VERBOSITY runtime.sln
 
 h1 "Building lib"

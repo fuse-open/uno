@@ -5,8 +5,9 @@ namespace Uno.ProjectFormat
 {
     public class PropertyDefinitions : Dictionary<string, Tuple<PropertyType, string>>
     {
-        public static readonly PropertyDefinitions Items = new PropertyDefinitions
+        public static readonly PropertyDefinitions Items = new()
         {
+            {"outputType", PropertyType.String},
             {"buildCondition", PropertyType.String},
             {"buildDirectory", PropertyType.Path, "build"},
             {"cacheDirectory", PropertyType.Path, ".uno"},
@@ -92,7 +93,7 @@ namespace Uno.ProjectFormat
             {"windows.icon", PropertyType.Path},
         };
 
-        public static readonly Dictionary<string, string> RenamedItems = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> RenamedItems = new()
         {
             {"defaultNamespace", "rootNamespace"},
             {"buildDir", "buildDirectory"},

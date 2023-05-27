@@ -1,10 +1,10 @@
 {
-  "References": [
-    "Uno.Testing",
+  "references": [
+    "Uno.Testing"
   ],
-  "Includes": [
-    "example.h:CHeader",
-    "example.cpp:CSource",
+  "includes": [
+    "example.h:cheader",
+    "example.cpp:csource",
     "*"
   ]
 }

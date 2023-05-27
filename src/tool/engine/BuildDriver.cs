@@ -94,6 +94,10 @@ namespace Uno.Build
                     Filter = _options.TestFilter
                 };
             }
+            else if (project.OutputType == OutputType.Test)
+            {
+                Log.Warning(project.Source, ErrorCode.W0000, "Test projects should be built & run using \"uno test\"");
+            }
 
             _transpiler = new LazyTranspiler(Log, _config);
             _cache = _options.BundleCache ?? new BundleCache(Log, _config, _transpiler);
@@ -148,12 +152,14 @@ namespace Uno.Build
                 _env.Define(_options.Configuration.ToString());
             if (_options.Configuration == BuildConfiguration.Preview)
                 _env.Define("REFLECTION", "SIMULATOR", "STACKTRACE");
+            if (_project.OutputType != OutputType.Undefined)
+                _env.Define(_project.OutputType.ToString());
 
             foreach (var def in StuffFile.DefaultDefines)
                 _env.Define("HOST_" + def);
             foreach (var def in _options.Defines)
                 _env.Define(def);
-            foreach (var def in (_project.GetString(_target.ProjectGroup + ".Defines") ?? "").Split('\n'))
+            foreach (var def in (_project.GetString(_target.ProjectGroup + ".defines") ?? "").Split('\n'))
                 if (!string.IsNullOrEmpty(def))
                     _env.Define(def);
 
@@ -166,20 +172,20 @@ namespace Uno.Build
             {
                 if (Log.IsVerbose)
                     Log.Skip();
-                Log.WriteLine("BuildCondition in project file is not satisfied -- stopping build");
+                Log.WriteLine("\"buildCondition\" in project file is not satisfied -- stopping build");
                 Log.DisableSkip();
                 StopAnim();
                 return null;
             }
 
             foreach (var p in _project.GetProperties(Log))
-                _env.Set("Project." + p.Key, p.Value);
+                _env.Set("project." + p.Key, p.Value);
             foreach (var p in _config.Flatten())
-                _env.Set("Config." + p.Key, GetConfigValue(p.Key, p.Value));
+                _env.Set("config." + p.Key, GetConfigValue(p.Key, p.Value));
             foreach (var e in _options.Settings)
                 _env.Set(e.Key, GetCommandLineValue(e.Value), Disambiguation.Override);
 
-            _env.Set("uno", _config.GetFullPath("Uno.Command").QuoteSpace());
+            _env.Set("uno", _config.GetFullPath("uno.command").QuoteSpace());
 
             if (Log.HasErrors)
                 return null;
@@ -235,9 +241,9 @@ namespace Uno.Build
                 // Add flag to avoid repeating warnings when this bundle is reused in following builds (uno doctor).
                 _compiler.Input.Bundle.Flags |= SourceBundleFlags.Verified;
 
-                _file.Product = _env.GetString("Product");
-                _file.BuildCommand = _env.GetString("Commands.Build");
-                _file.RunCommand = _env.GetString("Commands.Run");
+                _file.Product = _env.GetString("product");
+                _file.BuildCommand = _env.GetString("commands.build");
+                _file.RunCommand = _env.GetString("commands.run");
                 _file.UnoVersion = UnoVersion.InformationalVersion;
 
                 if (!Log.HasErrors)

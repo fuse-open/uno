@@ -1,12 +1,13 @@
 {
-  "References": [
+  "outputType": "test",
+  "references": [
     "Uno.Net.Sockets",
     "Uno.Testing"
   ],
-  "Includes": [
-    "Dns.Test.uno:Source",
-    "IPAddress.Test.uno:Source",
-    "Socket.Test.uno:Source",
-    "TcpListener.Test.uno:Source"
+  "includes": [
+    "Dns.Test.uno:source",
+    "IPAddress.Test.uno:source",
+    "Socket.Test.uno:source",
+    "TcpListener.Test.uno:source"
   ]
 }

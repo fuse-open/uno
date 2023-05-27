@@ -111,6 +111,18 @@ namespace Uno.ProjectFormat
                 .UnixToNative();
         }
 
+        public OutputType OutputType
+        {
+            get
+            {
+                var outputType = TryGetProperty("outputType");
+                if (outputType != null && Enum.TryParse(outputType, true, out OutputType result))
+                    return result;
+
+                return OutputType.Undefined;
+            }
+        }
+
         public string Version
         {
             get { return GetString("version") ?? "0.0.0"; }

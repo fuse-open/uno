@@ -11,7 +11,7 @@ namespace Uno.Build.Targets
     public class iOSSimulatorBuild : BuildTarget
     {
         public override string Identifier => "ios-sim";
-        public override string ProjectGroup => "iOS";
+        public override string ProjectGroup => "ios";
         public override string Description => "(Objective-)C++/GLES2 code and Xcode project. Runs in Simulator. (macOS only)";
 
         public override Backend CreateBackend()

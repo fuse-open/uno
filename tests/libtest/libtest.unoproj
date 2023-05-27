@@ -1,17 +1,17 @@
 {
-    "RootNamespace": "ShippedLibrariesCompile",
-    "References": [
-        "Uno.Collections",
-        "Uno.Data.Json",
-        "Uno.Data.Xml",
-        "Uno.Graphics.Utils",
-        "Uno.Net.Http",
-        "Uno.Net.Sockets",
-        "Uno.Testing",
-        "Uno.Threading",
-        "UnoCore"
-    ],
-    "Includes": [
-        "MainClass.uno:SourceFile"
-    ]
+  "rootNamespace": "ShippedLibrariesCompile",
+  "references": [
+    "Uno.Collections",
+    "Uno.Data.Json",
+    "Uno.Data.Xml",
+    "Uno.Graphics.Utils",
+    "Uno.Net.Http",
+    "Uno.Net.Sockets",
+    "Uno.Testing",
+    "Uno.Threading",
+    "UnoCore"
+  ],
+  "includes": [
+    "MainClass.uno:source"
+  ]
 }

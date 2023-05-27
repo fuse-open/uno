@@ -1,9 +1,10 @@
 {
-  "References": [
+  "outputType": "test",
+  "references": [
     "Uno.Net.Http",
     "Uno.Testing"
   ],
-  "Includes": [
-    "UriTests.uno:Source"
+  "includes": [
+    "UriTests.uno:source"
   ]
 }

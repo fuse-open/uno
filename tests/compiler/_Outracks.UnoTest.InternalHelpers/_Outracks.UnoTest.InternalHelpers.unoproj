@@ -1,5 +1,5 @@
 {
-  "Includes": [
-    "InternalHelpers.uno:Source"
+  "includes": [
+    "InternalHelpers.uno:source"
   ]
 }

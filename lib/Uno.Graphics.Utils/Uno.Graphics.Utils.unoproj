@@ -2,6 +2,7 @@
   "copyright": "Copyright (c) Fuse Open",
   "description": "Font and texture loading",
   "publisher": "Fuse Open",
+  "outputType": "library",
   "includes": [
     "Bitmap.uno:source",
     "cpp/CppFontFace.uno:source",

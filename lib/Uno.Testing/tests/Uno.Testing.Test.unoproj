@@ -1,8 +1,9 @@
 {
-  "References": [
+  "outputType": "test",
+  "references": [
     "Uno.Testing"
   ],
-  "Includes": [
-    "App.uno:Source"
+  "includes": [
+    "App.uno:source"
   ]
 }

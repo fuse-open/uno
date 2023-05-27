@@ -23,8 +23,8 @@ namespace Uno.Build.Libraries
         public BuildConfiguration? Configuration;
         public List<string> RebuildList;
 
-        readonly ListDictionary<string, LibraryProject> _libMap = new ListDictionary<string, LibraryProject>();
-        readonly HashSet<string> _dirty = new HashSet<string>();
+        readonly ListDictionary<string, LibraryProject> _libMap = new();
+        readonly HashSet<string> _dirty = new();
 
         public LibraryBuilder(Log log)
             : base(log)
@@ -42,11 +42,11 @@ namespace Uno.Build.Libraries
                 return sourceDirectories;
             }
 
-            var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("SearchPaths.Sources", "Packages.SourcePaths");
+            var configSourcePaths = (config ?? UnoConfig.Current).GetFullPathArray("searchPaths.sources", "packages.sourcePaths");
 
             if (configSourcePaths.Length == 0)
             {
-                Log.VeryVerbose("'SearchPaths.Sources' was not found in .unoconfig");
+                Log.VeryVerbose("'searchPaths.sources' was not found in .unoconfig");
                 return sourceDirectories;
             }
 
@@ -217,6 +217,21 @@ namespace Uno.Build.Libraries
             try
             {
                 var project = Project.Load(file);
+                var outputType = project.OutputType;
+
+                switch (outputType)
+                {
+                    case OutputType.Undefined:
+                        Log.Warning(project.Source, ErrorCode.W0000, "Missing \"outputType\" property in project file (assuming \"library\")");
+                        break;
+
+                    case OutputType.Library:
+                        break;
+
+                    default:
+                        Log.Verbose("Skipping " + file.ToRelativePath() + " (" + outputType.ToString().ToLowerCamelCase() + ")");
+                        return;
+                }
 
                 if (!string.IsNullOrEmpty(Version))
                     project.Version = Version;
@@ -245,7 +260,7 @@ namespace Uno.Build.Libraries
             if (RebuildList != null && !RebuiltListIsSourcePaths)
                 foreach (var p in RebuildList)
                     if (!_libMap.ContainsKey(p.ToUpperInvariant()))
-                        Log.Warning("Package " + p.Quote() + " was not found");
+                        Log.Warning("Library " + p.Quote() + " was not found");
 
             return list;
         }
@@ -311,8 +326,7 @@ namespace Uno.Build.Libraries
 
                 // Check if a build with a different version number exists, possibly
                 // the project is already built using 'uno doctor --version=X.Y.Z'.
-                LibraryProject existing;
-                if (string.IsNullOrEmpty(Version) && lib.TryGetExistingBuild(out existing))
+                if (string.IsNullOrEmpty(Version) && lib.TryGetExistingBuild(out LibraryProject existing))
                     // Test the existing build and maybe we don't need to built it again.
                     lib = existing;
 

@@ -8,7 +8,6 @@ namespace Uno.Build.Targets
     {
         public override string Identifier => "docs";
         public override string FormerName => "unodoc";
-        public override string ProjectGroup => "UnoDoc";
         public override string Description => "Uno documentation files.";
         public override bool IsExperimental => true;
         public override bool DefaultStrip => false;

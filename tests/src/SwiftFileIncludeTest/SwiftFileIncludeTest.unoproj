@@ -1,12 +1,12 @@
 {
-  "References": [
-    "Uno.Testing",
-  ],
-  "iOS": {
-    "SwiftVersion": 3.0,
+  "ios": {
+    "swiftVersion": 3
   },
-  "Includes": [
-    "Hello.swift:Swift:iOS",
+  "references": [
+    "Uno.Testing"
+  ],
+  "includes": [
+    "Hello.swift:swift:iOS",
     "*"
   ]
 }

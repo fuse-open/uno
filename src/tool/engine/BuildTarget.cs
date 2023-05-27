@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Uno.CLI;
@@ -8,13 +7,14 @@ using Uno.Compiler.API.Backends;
 using Uno.Configuration;
 using Uno.Diagnostics;
 using Uno.IO;
+using Uno.ProjectFormat;
 
 namespace Uno.Build
 {
     public abstract class BuildTarget
     {
         public abstract string Identifier { get; }
-        public abstract string ProjectGroup { get; }
+        public virtual string ProjectGroup => Identifier;
         public virtual string FormerName => "";
         public virtual string[] FormerNames => new[] {FormerName};
         public virtual string Description => "";

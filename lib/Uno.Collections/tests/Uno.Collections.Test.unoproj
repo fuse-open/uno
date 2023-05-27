@@ -1,15 +1,16 @@
 {
-  "References": [
+  "outputType": "test",
+  "references": [
     "Uno.Collections",
     "Uno.Testing"
   ],
-  "Includes": [
-    "ObservableList.Test.uno:Source",
-    "extensions/IListExtensions.Test.uno:Source",
-    "extensions/EnumerableExtensions.Test.uno:Source",
-    "extensions/EmptyEnumerable.Test.uno:Source",
-    "extensions/OfType.Test.uno:Source",
-    "extensions/DummyItem.uno:Source",
-    "extensions/Helpers.uno:Source"
+  "includes": [
+    "extensions/DummyItem.uno:source",
+    "extensions/EmptyEnumerable.Test.uno:source",
+    "extensions/EnumerableExtensions.Test.uno:source",
+    "extensions/Helpers.uno:source",
+    "extensions/IListExtensions.Test.uno:source",
+    "extensions/OfType.Test.uno:source",
+    "ObservableList.Test.uno:source"
   ]
 }
