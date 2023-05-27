@@ -4,58 +4,58 @@ namespace Mono.test_51
     // This test is used to test the `base' implementation
     //
     using Uno;
-    
+
     class Base {
         public int b_int_field;
         public string b_string_field;
-    
+
         public const  int b_const_three = 3;
-        
+
         public int    b_int_property {
             get {
                 return b_int_field;
             }
-    
+
             set {
                 b_int_field = value;
             }
         }
-    
+
         public string b_get_id ()
         {
             return "Base";
         }
-    
+
         public Base ()
         {
             b_int_field = 1;
             b_string_field = "base";
         }
     }
-    
+
     class Derived : Base {
         new int b_int_field;
         new string b_string_field;
         new const int b_const_three = 4;
-    
+
         new int b_int_property {
                 get {
                     return b_int_field;
                 }
-    
-    
+
+
                 set {
                     b_int_field = value;
                 }
-    
+
             }
-        
+
         public Derived ()
         {
             b_int_field = 10;
             b_string_field = "derived";
         }
-        
+
         public int Test ()
         {
             if (b_int_field != 10)
@@ -81,7 +81,7 @@ namespace Mono.test_51
             return 0;
         }
     }
-    
+
     class boot {
         [Uno.Testing.Test] public static void test_51() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()

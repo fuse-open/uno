@@ -1,7 +1,7 @@
 namespace Mono.test_680
 {
     using Uno;
-    
+
     namespace AsStringProblem
     {
         class MainClass

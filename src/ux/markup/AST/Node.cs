@@ -155,5 +155,5 @@ namespace Uno.UX.Markup.AST
         }
     }
 
-   
+
 }

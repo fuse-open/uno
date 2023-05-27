@@ -121,7 +121,7 @@ namespace Uno.Compiler.Foreign.Java
         // All the c++ entrypoints are put in one uno class, the ExternBlockHost. This also is responsible for
         // registering the same entrypoints with the java native methods
         public void WriteCpp(ForeignHelpers helpers)
-        {            
+        {
             helpers.SourceInclude(_externBlockIncludes, UnoType);
             helpers.SourceDeclaration(_cppEntrypoints, UnoType);
             helpers.Require(_externBlockRequiredMembers, UnoType);

@@ -1,7 +1,7 @@
 namespace Mono.test_xml_024
 {
     // Compiler options: -doc:xml-024.xml
-    
+
     namespace Testing
     {
        /// <include/>
@@ -13,13 +13,13 @@ namespace Mono.test_xml_024
         public static void Main()
         {
         }
-    
+
         // warning
         /// <include path='/foo/bar' />
         public void Bar (int x)
         {
         }
-    
+
         // warning
         /// <include file='there-is-no-such-file' path='/foo/bar' />
         public void Baz (int x)

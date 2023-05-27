@@ -10,7 +10,7 @@ namespace Uno.UX.Markup.UXIL.Expressions
     abstract class Expression
     {
         /// <summary>
-        /// Returns true if this expression is a "classic" UX trivial expression that 
+        /// Returns true if this expression is a "classic" UX trivial expression that
         /// can be parsed by the legacy parser. Such expressions do not generate a binding.
         /// </summary>
         public virtual bool IsTrivial { get { return false; } }
@@ -128,7 +128,7 @@ namespace Uno.UX.Markup.UXIL.Expressions
             return Expression.ValueEquals(other.Expression) && Mode == other.Mode;
         }
     }
-    
+
     class RawExpression : Expression
     {
         public readonly Expression Expression;
@@ -751,7 +751,7 @@ namespace Uno.UX.Markup.UXIL.Expressions
             FuncName = funcName;
             Args = args;
         }
-        
+
         public override string ToString()
         {
             var q = FuncName + "(";

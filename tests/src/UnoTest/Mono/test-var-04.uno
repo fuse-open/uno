@@ -11,7 +11,7 @@ namespace Mono.test_var_04
                 return 0;
             }
         }
-    
+
         namespace var
         {
         }

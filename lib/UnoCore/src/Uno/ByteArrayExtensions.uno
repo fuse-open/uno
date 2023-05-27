@@ -364,7 +364,7 @@ namespace Uno
                 throw new ArgumentOutOfRangeException(nameof(offset));
 
             return sbyte2(
-                (sbyte) bytes[offset    ], 
+                (sbyte) bytes[offset    ],
                 (sbyte) bytes[offset + 1]);
         }
 
@@ -383,9 +383,9 @@ namespace Uno
                 throw new ArgumentOutOfRangeException(nameof(offset));
 
             return sbyte4(
-                (sbyte) bytes[offset    ], 
-                (sbyte) bytes[offset + 1], 
-                (sbyte) bytes[offset + 2], 
+                (sbyte) bytes[offset    ],
+                (sbyte) bytes[offset + 1],
+                (sbyte) bytes[offset + 2],
                 (sbyte) bytes[offset + 3]);
         }
 
@@ -450,9 +450,9 @@ namespace Uno
         public static short4 GetShort4(this byte[] bytes, int offset, bool littleEndian = true)
         {
             return short4(
-                bytes.GetShort(offset    , littleEndian), 
-                bytes.GetShort(offset + 2, littleEndian), 
-                bytes.GetShort(offset + 4, littleEndian), 
+                bytes.GetShort(offset    , littleEndian),
+                bytes.GetShort(offset + 2, littleEndian),
+                bytes.GetShort(offset + 4, littleEndian),
                 bytes.GetShort(offset + 6, littleEndian));
         }
 
@@ -478,9 +478,9 @@ namespace Uno
         public static ushort4 GetUShort4(this byte[] bytes, int offset, bool littleEndian = true)
         {
             return ushort4(
-                bytes.GetUShort(offset    , littleEndian), 
-                bytes.GetUShort(offset + 2, littleEndian), 
-                bytes.GetUShort(offset + 4, littleEndian), 
+                bytes.GetUShort(offset    , littleEndian),
+                bytes.GetUShort(offset + 2, littleEndian),
+                bytes.GetUShort(offset + 4, littleEndian),
                 bytes.GetUShort(offset + 6, littleEndian));
         }
 
@@ -506,8 +506,8 @@ namespace Uno
         public static int3 GetInt3(this byte[] bytes, int offset, bool littleEndian = true)
         {
             return int3(
-                bytes.GetInt(offset    , littleEndian), 
-                bytes.GetInt(offset + 4, littleEndian), 
+                bytes.GetInt(offset    , littleEndian),
+                bytes.GetInt(offset + 4, littleEndian),
                 bytes.GetInt(offset + 8, littleEndian));
         }
 
@@ -521,9 +521,9 @@ namespace Uno
         public static int4 GetInt4(this byte[] bytes, int offset, bool littleEndian = true)
         {
             return int4(
-                bytes.GetInt(offset     , littleEndian), 
-                bytes.GetInt(offset +  4, littleEndian), 
-                bytes.GetInt(offset +  8, littleEndian), 
+                bytes.GetInt(offset     , littleEndian),
+                bytes.GetInt(offset +  4, littleEndian),
+                bytes.GetInt(offset +  8, littleEndian),
                 bytes.GetInt(offset + 12, littleEndian));
         }
 
@@ -549,8 +549,8 @@ namespace Uno
         public static float3 GetFloat3(this byte[] bytes, int offset, bool littleEndian = true)
         {
             return float3(
-                bytes.GetFloat(offset    , littleEndian), 
-                bytes.GetFloat(offset + 4, littleEndian), 
+                bytes.GetFloat(offset    , littleEndian),
+                bytes.GetFloat(offset + 4, littleEndian),
                 bytes.GetFloat(offset + 8, littleEndian));
         }
 
@@ -564,9 +564,9 @@ namespace Uno
         public static float4 GetFloat4(this byte[] bytes, int offset, bool littleEndian = true)
         {
             return float4(
-                bytes.GetFloat(offset     , littleEndian), 
-                bytes.GetFloat(offset +  4, littleEndian), 
-                bytes.GetFloat(offset +  8, littleEndian), 
+                bytes.GetFloat(offset     , littleEndian),
+                bytes.GetFloat(offset +  4, littleEndian),
+                bytes.GetFloat(offset +  8, littleEndian),
                 bytes.GetFloat(offset + 12, littleEndian));
         }
 

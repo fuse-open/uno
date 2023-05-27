@@ -29,8 +29,8 @@ namespace Uno.Diagnostics
                 catch (InvalidOperationException e)
                 {
                     Log.Default.Warning(
-                        "Exception in FindIndexedProcessName(): " + e.Message + "\n\n" + 
-                        "This may be resolved when resetting performance counters in Windows.\n" + 
+                        "Exception in FindIndexedProcessName(): " + e.Message + "\n\n" +
+                        "This may be resolved when resetting performance counters in Windows.\n" +
                         "To do this type the following in cmd.exe:\n" +
                         "    lodctr /R\n" +
                         "    lodctr \"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.20506\\corperfmonsymbols.ini\"\n" +

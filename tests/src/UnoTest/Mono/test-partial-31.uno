@@ -1,7 +1,7 @@
 namespace Mono.test_partial_31
 {
     using Uno;
-    
+
     namespace TestPartialOverride.BaseNamespace
     {
         public abstract class Base
@@ -12,7 +12,7 @@ namespace Mono.test_partial_31
             }
         }
     }
-    
+
     namespace TestPartialOverride.Outer.Nested.Namespace
     {
         internal partial class Inherits
@@ -23,7 +23,7 @@ namespace Mono.test_partial_31
             }
         }
     }
-    
+
     namespace TestPartialOverride.Outer
     {
         namespace Nested.Namespace
@@ -36,7 +36,7 @@ namespace Mono.test_partial_31
                 }
             }
         }
-    
+
         public class C
         {
             [Uno.Testing.Ignore, Uno.Testing.Test] public static void test_partial_31() { Main(); }

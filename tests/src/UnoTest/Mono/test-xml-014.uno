@@ -2,7 +2,7 @@ namespace Mono.test_xml_014
 {
     // Compiler options: -doc:xml-014.xml
     using Uno;
-    
+
     namespace Testing
     {
         public class Test
@@ -11,7 +11,7 @@ namespace Mono.test_xml_014
         public static void Main()
             {
             }
-    
+
             /// <summary>
             /// comment for private property
             /// </summary>

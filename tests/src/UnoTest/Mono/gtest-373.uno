@@ -1,7 +1,7 @@
 namespace Mono.gtest_373
 {
     using Uno;
-    
+
     namespace MonoBug
     {
         class MainClass
@@ -14,16 +14,16 @@ namespace Mono.gtest_373
                     Console.WriteLine ("true");
             }
         }
-    
+
         public class GenericType<T>
         {
             private T value;
-    
+
             public GenericType (T value)
             {
                 this.value = value;
             }
-    
+
             public static implicit operator T (GenericType<T> o)
             {
                 return o.value;

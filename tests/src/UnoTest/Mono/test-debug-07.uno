@@ -7,12 +7,12 @@ namespace Mono.test_debug_07
         {
             return;
         }
-        
+
         int Foo2 ()
         {
             return 7;
         }
-        
+
         int Foo3 ()
         {
             {

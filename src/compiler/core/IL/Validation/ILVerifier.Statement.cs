@@ -41,7 +41,7 @@ namespace Uno.Compiler.Core.IL.Validation
                             if (var.OptionalValue == null)
                                 Log.Error(s.Source, ErrorCode.E0000, "A const variable requires a value to be provided");
                             else if (var.OptionalValue.ExpressionType != ExpressionType.Constant)
-                                Log.Error(var.Source, ErrorCode.E0000, "The expression assigned to " + var.Name.Quote() + " must be constant");                            
+                                Log.Error(var.Source, ErrorCode.E0000, "The expression assigned to " + var.Name.Quote() + " must be constant");
                         }
                     }
 

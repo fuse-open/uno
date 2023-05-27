@@ -93,7 +93,7 @@ namespace Uno.Compiler.Foreign.Java
                         var callLine = jcls.FullName + "." + javaMethodName + "(" + _argsNoTypes + ");";
 
                         // the reason for the cast here is that in the case of UnoObjects we allow
-                        // the callLine to return an Object rather than an UnoObject. 
+                        // the callLine to return an Object rather than an UnoObject.
                         // We do this for cases like this:
                         //
                         // [Foreign(Language.Java)]

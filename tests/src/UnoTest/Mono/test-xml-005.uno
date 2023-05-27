@@ -2,7 +2,7 @@ namespace Mono.test_xml_005
 {
     // Compiler options: -doc:xml-005.xml
     using Uno;
-    
+
     namespace Testing
     {
         /// <summary>
@@ -11,14 +11,14 @@ namespace Mono.test_xml_005
         public interface InterfaceTest
         {
         }
-    
+
         /// <summary>
         /// incorrect markup comment for interface
         /// </incorrect>
         public interface InterfaceTest2
         {
         }
-    
+
         /**
             <summary>
             Java style comment for interface
@@ -27,7 +27,7 @@ namespace Mono.test_xml_005
         public interface InterfaceTest3
         {
         }
-    
+
         public class Test
         {
             [Uno.Testing.Test] public static void test_xml_005() { Main(); }

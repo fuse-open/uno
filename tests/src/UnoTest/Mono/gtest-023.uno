@@ -4,13 +4,13 @@ namespace Mono.gtest_023
     {
         public void Hello ()
         { }
-    
+
         public void World (T t)
         {
             Hello ();
         }
     }
-    
+
     //
     // This is some kind of a `recursive' declaration:
     //
@@ -20,7 +20,7 @@ namespace Mono.gtest_023
     // Is is important to run the resulting executable since this is
     // both a test for the compiler and the runtime.
     //
-    
+
     class Bar : Foo<Bar>
     {
         public void Test ()
@@ -29,7 +29,7 @@ namespace Mono.gtest_023
             World (this);
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_023() { Main(); }

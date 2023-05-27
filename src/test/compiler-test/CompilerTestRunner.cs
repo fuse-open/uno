@@ -97,8 +97,8 @@ namespace Uno.CompilerTestRunner
             var output = new StringBuilder();
             using (var w = new StringWriter(output))
                 new ProjectBuilder(
-                        new Log(w), 
-                        BuildTargets.Default, 
+                        new Log(w),
+                        BuildTargets.Default,
                         new BuildOptions
                         {
                             Test = true,

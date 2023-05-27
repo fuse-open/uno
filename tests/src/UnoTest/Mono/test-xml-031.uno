@@ -5,7 +5,7 @@ namespace Mono.test_xml_031
     ////how about this line?
     using Uno;
     using Uno.IO;
-    
+
     class Test
     {
         [Uno.Testing.Test] public static void test_xml_031() { Main(); }

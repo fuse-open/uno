@@ -565,7 +565,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
             {
                 var calls = new List<MacroCall>();
                 MacroParser.GetCalls(src, macro, calls);
-                
+
                 var context = (MacroContext)context_;
                 var scopes = new Namescope[context.Usings.Length + 2];
                 scopes[0] = DataType.Invalid;

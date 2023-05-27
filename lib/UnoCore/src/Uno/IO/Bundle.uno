@@ -127,7 +127,7 @@ namespace Uno.IO
 
             // Strip Byte Order Mark for UTF-8.
             // This is consistent with File.ReadAllText().
-            if (count > 2 && 
+            if (count > 2 &&
                 bytes[0] == 0xEF &&
                 bytes[1] == 0xBB &&
                 bytes[2] == 0xBF)
@@ -384,7 +384,7 @@ namespace Uno.IO
             return com.fuse.Activity.getRootActivity().getAssets();
         @}
     }
-    
+
     extern(ANDROID) class AAssetStream : Stream
     {
         AAssetPtr _fp;

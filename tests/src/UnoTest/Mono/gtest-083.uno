@@ -7,15 +7,15 @@ namespace Mono.gtest_083
             return null;
         }
     }
-    
+
     public class CollectionBase<T>: CollectionValueBase<T>
     {
     }
-    
+
     public class SequencedBase<T>: CollectionBase<T>
     {
     }
-    
+
     public class ArrayBase<T>: SequencedBase<T>
     {
         public override T[] ToArray()
@@ -23,7 +23,7 @@ namespace Mono.gtest_083
             return null;
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_083() { Main(); }

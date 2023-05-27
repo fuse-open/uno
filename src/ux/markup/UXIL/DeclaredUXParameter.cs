@@ -2,7 +2,7 @@
 
 namespace Uno.UX.Markup.UXIL
 {
-    abstract class DeclaredUXParameter 
+    abstract class DeclaredUXParameter
     {
         readonly ParameterNode _decl;
         readonly ClassNode _owner;
@@ -52,7 +52,7 @@ namespace Uno.UX.Markup.UXIL
         public AutoBindingType AutoBindingType => AutoBindingType.None;
 
         public abstract bool IsConstructorArgument { get; }
-        
+
         public string OriginSetterName => "Set" + Name;
 
         public string ValueChangedEvent => Name + "Changed";

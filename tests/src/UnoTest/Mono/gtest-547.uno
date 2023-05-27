@@ -1,7 +1,7 @@
 namespace Mono.gtest_547
 {
     using Uno;
-    
+
     public class Foo
     {
         static void GenericLock<T> (T t) where T : class
@@ -10,7 +10,7 @@ namespace Mono.gtest_547
             {
             }
         }
-        
+
         [Uno.Testing.Test] public static void gtest_547() { Main(); }
         public static void Main()
         {

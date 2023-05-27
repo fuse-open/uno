@@ -358,12 +358,12 @@ namespace Uno.Compiler.Backends.CPlusPlus
         public string GetTypeOf(DataType dt, Namescope parent, string type = null, Function func = null, TypeCache? cache = null)
         {
             var r = GetTypeOf_internal(dt, parent, type, func, cache);
-            
+
             if (!dt.IsGenericMethodType &&
                 ((func as Method)?.IsGenericDefinition ?? false) &&
                 r == "__type")
                 return r + "->Base";
-            
+
             return r;
         }
 
@@ -541,7 +541,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
         public bool IsStackFrame(Function f)
         {
-            return EnableStackTrace && 
+            return EnableStackTrace &&
                 f.Stats.HasFlag(EntityStats.ThrowsException) && !(
                     !f.HasBody ||
                     f.Body.Statements.Count == 0 || (

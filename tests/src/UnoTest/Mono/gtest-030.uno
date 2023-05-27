@@ -2,25 +2,25 @@ namespace Mono.gtest_030
 {
     // Note how the order of type parameters is different
     // in the base class.
-    
+
     class Foo<T>
     {
         public Foo ()
         { }
-    
+
         public void Hello (T t)
         { }
     }
-    
+
     class Bar<T,U> : Foo<U>
     {
         public Bar ()
         { }
-    
+
         public void Test (T t, U u)
         { }
     }
-    
+
     class X
     {
         static void Test (Bar<int,string> bar)
@@ -28,7 +28,7 @@ namespace Mono.gtest_030
             bar.Hello ("Test");
             bar.Test (7, "Hello");
         }
-    
+
         [Uno.Testing.Test] public static void gtest_030() { Main(); }
         public static void Main()
         {

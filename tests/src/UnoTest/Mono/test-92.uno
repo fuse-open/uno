@@ -11,10 +11,10 @@ namespace Mono.test_92
         class Inner : InnerBase {
         }
     }
-    
+
     abstract class InnerBase {
     }
-    
+
     class MainClass {
         [Uno.Testing.Test] public static void test_92() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main() {

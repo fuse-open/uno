@@ -7,7 +7,7 @@ namespace Mono.test_446
             {
                     Foo (0x0L);
             }
-    
+
             static void Foo (ulong l1)
             {
             }

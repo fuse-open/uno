@@ -1,7 +1,7 @@
 namespace Mono.test_xml_061
 {
     // Compiler options: -doc:xml-061.xml /warnaserror /warn:4
-    
+
     class Test
     {
         [Uno.Testing.Test] public static void test_xml_061() { Main(); }
@@ -9,7 +9,7 @@ namespace Mono.test_xml_061
         {
         }
     }
-    
+
     ///<summary>summary</summary>
     public interface Interface
     {

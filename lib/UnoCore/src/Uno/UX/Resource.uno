@@ -2,17 +2,17 @@ using Uno.Collections;
 
 namespace Uno.UX
 {
-    /** Resources are objects that are identified by a string key, either globally for your app or 
+    /** Resources are objects that are identified by a string key, either globally for your app or
         for certain pages/subtrees.
 
         @topic Resources
-        
+
         ## Types of resources
 
         Resources can be of any type, but it is most commonly used for fonts, colors, constant values,
         strings etc.
 
-        Classes that inherit from @Node can only be rooted with one parent at a time, and is therefore 
+        Classes that inherit from @Node can only be rooted with one parent at a time, and is therefore
         rarely useful as global resources. Consider creating a @ux:Class instead and instantiate multiple
         objects whenever needed.
 
@@ -33,7 +33,7 @@ namespace Uno.UX
 
         ## Dynamic resource bindings
 
-        When you want resources to resolve at runtime and respect tree-local resources, you can also use the 
+        When you want resources to resolve at runtime and respect tree-local resources, you can also use the
         dynamic resource binding syntax:
 
             <Text Font="{Resource MyDefaultFont}" />
@@ -41,7 +41,7 @@ namespace Uno.UX
         ## Local resources (`ux:Key`)
 
         The `ux:Key` attribute is used to convert a node to a tree-local resource.
-        
+
         This allows you to do local overrides in the tree, using the `ux:Key` attribute:
 
             <Panel>
@@ -58,7 +58,7 @@ namespace Uno.UX
         Global resource keys must be unique for the given *type* of the resource. Multiple resources can have
         the same name as long as they are unrelated types.
 
-        For example, Fuse defines multiple resources with the key `Blue`, and the right resource is determined 
+        For example, Fuse defines multiple resources with the key `Blue`, and the right resource is determined
         based on the expected type where it used. It can either be a `float4` color value or a `SolidColor` brush.
 
             <float4 ux:Global="Red" ux:Value="#f00" />
@@ -105,12 +105,12 @@ namespace Uno.UX
 
         [UXAttachedPropertySetter("Resource.GlobalKey")]
         /** The `ux:Global` attribute creates a global resource that is accessible everywhere in UX markup.
-        
+
             See @Resources for more information.
 
-            The `ux:Global` attribute on an UX element creates a single object (singleton) that is globally available. 
-            Using this attribute will prevent the object from being inserted by default the object at its defined location 
-            in the UX tree. 
+            The `ux:Global` attribute on an UX element creates a single object (singleton) that is globally available.
+            Using this attribute will prevent the object from being inserted by default the object at its defined location
+            in the UX tree.
         */
         public static void SetGlobalKey(object obj, string key)
         {

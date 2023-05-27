@@ -214,7 +214,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                         Compiler.ConstantFolder.TryMakeConstant(ref initValue);
                 }
 
-                var var = new Variable(v.Name.Source, Function, v.Name.Symbol, dt, 
+                var var = new Variable(v.Name.Source, Function, v.Name.Symbol, dt,
                     (VariableType) e.Modifier,
                     initValue);
                 CurrentVariableScope.Variables[v.Name.Symbol] = var;
@@ -230,7 +230,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         {
             var s = e.Type;
             var size = s.OptionalSize != null
-                ? CompileImplicitCast(s.OptionalSize.Source, Essentials.Int, 
+                ? CompileImplicitCast(s.OptionalSize.Source, Essentials.Int,
                     CompileExpression(s.OptionalSize))
                 : null;
             var elementType = NameResolver.GetType(Namescope, s.ElementType);
@@ -242,7 +242,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             if (fixedInit != null)
                 return CompileFixedArrayDeclaration(e.Source, dt, e.Name.Symbol, fixedInit);
 
-            var var = new Variable(e.Source, Function, e.Name.Symbol, dt, 0, 
+            var var = new Variable(e.Source, Function, e.Name.Symbol, dt, 0,
                 e.OptionalValue != null
                 ? CompileImplicitCast(e.Source, dt, CompileExpression(e.OptionalValue))
                 : null);

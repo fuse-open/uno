@@ -4,7 +4,7 @@ using Uno.Compiler.API.Domain.IL;
 namespace Uno.Compiler.Foreign.Java.Converters
 {
     internal partial class Converter
-    {        
+    {
         public readonly TypeConverter Type;
         public readonly NameConverter Name;
         public readonly ParamConverter Param;

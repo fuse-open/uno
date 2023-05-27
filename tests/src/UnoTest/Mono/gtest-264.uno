@@ -5,11 +5,11 @@ namespace Mono.gtest_264
             // without this field instantiation everything works fine.
             object obj = new object ();
     }
-    
+
     public class XXX : BaseList<object>
     {
     }
-    
+
     public class Crash
     {
             [Uno.Testing.Test] public static void gtest_264() { Main(); }
@@ -19,7 +19,7 @@ namespace Mono.gtest_264
                     XXX [] arr = new XXX [0];
                     // this array creation is OK
                     // BaseList<object> [] arr = new BaseList<object> [0];
-    
+
                     new BaseList<object> (); // even this causes SISSEGV
             }
     }

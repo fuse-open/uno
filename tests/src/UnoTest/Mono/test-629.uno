@@ -9,17 +9,17 @@ namespace Mono.test_629
                     // bar should be referring to Foo.Nested.bar here
                     return bar.value;
                 }
-            } 
-    
+            }
+
             static class bar {
                 // The desired
                 public const int value = 3;
             }
         }
-    
+
         // The undesired
-        int bar; 
-    
+        int bar;
+
         [Uno.Testing.Test] public static void test_629() { Main(); }
         public static void Main()
         {

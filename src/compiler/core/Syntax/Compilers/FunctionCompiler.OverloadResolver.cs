@@ -314,7 +314,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         {
             if (!IsArgumentListCompatibleUsingImplicitCasts(list, args))
                 return false;
-            
+
             ApplyImplicitCastsOnArgumentList(list, args);
             return true;
         }
@@ -449,11 +449,11 @@ namespace Uno.Compiler.Core.Syntax.Compilers
 
                         if (m1 != null && m2 != null)
                         {
-                            var c1 = m1.IsGenericMethod 
-                                ? CountGenericArgumentsRecursive(m1.GenericType) 
+                            var c1 = m1.IsGenericMethod
+                                ? CountGenericArgumentsRecursive(m1.GenericType)
                                 : 0;
                             var c2 = m2.IsGenericMethod
-                                ? CountGenericArgumentsRecursive(m2.GenericType) 
+                                ? CountGenericArgumentsRecursive(m2.GenericType)
                                 : 0;
 
                             if (c1 == c2)
@@ -539,7 +539,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                             if (typeArgs[i] == null)
                                 goto CONTINUE;
                         }
-                        
+
                         m = TypeBuilder.Parameterize(mg.Source, c, typeArgs);
                     }
                     else
@@ -558,7 +558,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                     if (at != null) return at;
                 }
             CONTINUE:
-                ; 
+                ;
             }
 
             return null;

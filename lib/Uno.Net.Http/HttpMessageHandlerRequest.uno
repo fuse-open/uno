@@ -203,7 +203,7 @@ namespace Uno.Net.Http
             {
                 if(_request.IsComplete())
                     return;
-                    
+
                 _request.State = _state;
                 _action(_request, _current, _total, _hasTotal);
             }

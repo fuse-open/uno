@@ -10,7 +10,7 @@ namespace Mono.test_172
     //
     //   The == and != operators handle the Null compares specially
     using Uno;
-    
+
     class X {
         static int one = 1;
         static int two = 2;
@@ -18,22 +18,22 @@ namespace Mono.test_172
         static int four = 4;
         static bool t = true;
         static bool f = false;
-    
+
         static int fcalls = 0;
         static int tcalls = 0;
-        
+
         static bool ff ()
         {
             fcalls++;
             return false;
         }
-    
+
         static bool tt ()
         {
             tcalls++;
             return true;
         }
-        
+
         static int test_if ()
         {
             //
@@ -45,23 +45,23 @@ namespace Mono.test_172
                 return 2;
             if (f && t)
                 return 3;
-            
+
             if (one < two && f)
                 return 4;
             if (one > two && t)
                 return 5;
             if (one < two && t)
                 Console.WriteLine ("");
-    
+
             if (ff () && ff ())
                 return 6;
             if (fcalls != 1)
                 return 10;
-            
+
             if (tt () && tt ()){
                 if (tcalls != 2)
                     return 11;
-                
+
                 if (tt () && ff ())
                     return 8;
                 if (tcalls != 3)
@@ -76,28 +76,28 @@ namespace Mono.test_172
                     return 15;
             } else
                 return 7;
-    
+
             if (one < two && four > three){
                 if (one == one && two != three){
-                    
-                } else 
+
+                } else
                     return 20;
             } else
                 return 21;
-    
+
             if (one == two || two != two)
                 return 22;
-    
+
             object o = null;
-    
+
             if (o == null || false){
                 o = 1;
-    
+
                 if (o != null || false)
                     o = null;
                 else
                     return 23;
-    
+
                 if (true || o == null){
                     if (o != null || o == null){
                         if (o == null && o != null)
@@ -117,22 +117,22 @@ namespace Mono.test_172
             }
             return 27;
         }
-    
+
         //
         // This tests emitbranchable with an `onTrue' set to tru
         //
         static int test_while ()
         {
             int count = 0;
-            
+
             while (t && t){
                 count++;
                 break;
             }
-    
+
             if (count != 1)
                 return 1;
-    
+
             while (f || t){
                 count++; break;
             }
@@ -143,87 +143,87 @@ namespace Mono.test_172
             }
             if (count != 2)
                 return 3;
-    
+
             while (one < two && two > one){
                 count++;
                 break;
             }
             if (count != 3)
                 return 4;
-    
+
             while (one < one || two > one){
                 count++;
                 break;
             }
             if (count != 4)
                 return 5;
-    
+
             while (one < one || two > two){
                 count++;
                 break;
             }
             if (count != 4)
                 return 6;
-            
+
             while (one < two && t){
                 count++;
                 break;
             }
             if (count != 5)
                 return 7;
-    
+
             while (one < one || t){
                 count++;
                 break;
             }
             if (count != 6)
                 return 8;
-    
+
             while (one < one || f){
                 count++;
                 break;
             }
-    
+
             if (count != 6)
                 return 9;
-            
+
             return 0;
         }
-        
+
         static int test_inline ()
         {
             bool lt = t || f;
-    
+
             if (!lt)
                 return 1;
-    
+
             return 0;
         }
-        
+
         [Uno.Testing.Test] public static void test_172() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {
             int v;
             object o = null;
-    
+
             if (o == null || false)
                 o = 1;
             else
                 o = 2;
-    
+
             Console.WriteLine ("V: "+ o);
-            
+
             v = test_if ();
             if (v != 0)
                 return v;
             v = test_inline ();
             if (v != 0)
                 return 30 + v;
-            
+
             v = test_while ();
             if (v != 0)
                 return 90 + v;
-            
+
             Console.WriteLine ("test ok");
             return 0;
         }

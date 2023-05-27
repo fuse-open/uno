@@ -6,7 +6,7 @@ namespace Mono.test_575
     //
     using Uno;
     using Uno.IO;
-    
+
     class Program
     {
         [Uno.Testing.Test] public static void test_575() { Main(new string[0]); }

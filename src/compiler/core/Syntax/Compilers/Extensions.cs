@@ -64,8 +64,8 @@ namespace Uno.Compiler.Core.Syntax.Compilers
 
         static AstIdentifier GetSuffixedTypeIdentifier(AstIdentifier id, string suffix)
         {
-            return id.Symbol.EndsWith(suffix) 
-                ? id 
+            return id.Symbol.EndsWith(suffix)
+                ? id
                 : new AstIdentifier(id.Source, id.Symbol + suffix);
         }
 

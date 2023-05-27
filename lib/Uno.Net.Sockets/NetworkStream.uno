@@ -65,7 +65,7 @@ namespace Uno.Net.Sockets
         }
 
         public override void Flush() { }
-        
+
         public virtual bool DataAvailable
         {
             get { return _socket.Available > 0; }

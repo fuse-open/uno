@@ -7,7 +7,7 @@ namespace Mono.gtest_566
             public delegate void D (T instance);
             public delegate void D2<V> ();
         }
-    
+
         public class Constructor
         {
             public class Nested
@@ -17,24 +17,24 @@ namespace Mono.gtest_566
                     var c = new Constructor ();
                     c.Before (d);
                 }
-    
+
                 public static void Test<U, V> (Context<U>.D2<V> d)
                 {
                     var c = new Constructor ();
                     c.Before (d);
                 }
             }
-    
+
             public void Before<U> (Context<U>.D d)
             {
             }
-    
+
             public void Before<U, V> (Context<U>.D2<V> d)
             {
             }
         }
     }
-    
+
     class C
     {
         [Uno.Testing.Test] public static void gtest_566() { Uno.Testing.Assert.AreEqual(0, Main()); }
@@ -42,10 +42,10 @@ namespace Mono.gtest_566
         {
             A<int>.Context<bool>.D d = null;
             A<int>.Constructor.Nested.Test (d);
-    
+
             A<int>.Context<bool>.D2<string> d2 = null;
             A<int>.Constructor.Nested.Test (d2);
-    
+
             return 0;
         }
     }

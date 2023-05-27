@@ -15,12 +15,12 @@ namespace Uno.Compiler.API.Domain.AST
 
         public AstClass(
             string comment,
-            IReadOnlyList<AstAttribute> attrs, 
-            Modifiers modifiers, 
-            string cond, 
-            AstClassType type, 
-            AstIdentifier name, 
-            IReadOnlyList<AstExpression> bases, 
+            IReadOnlyList<AstAttribute> attrs,
+            Modifiers modifiers,
+            string cond,
+            AstClassType type,
+            AstIdentifier name,
+            IReadOnlyList<AstExpression> bases,
             AstGenericSignature optionalGenericSig,
             IReadOnlyList<AstBlockMember> members,
             IReadOnlyList<AstExpression> swizzlers)

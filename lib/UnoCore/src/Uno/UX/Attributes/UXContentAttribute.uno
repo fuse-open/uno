@@ -6,8 +6,8 @@ namespace Uno.UX
 
     public sealed class UXVerbatimAttribute: Attribute {}
 
-    /** When used to decorate a property of UX expression type, the expression is in data scope. 
-    
+    /** When used to decorate a property of UX expression type, the expression is in data scope.
+
         This is intended for parsing of `Key`-paths, of the form <DataBinding Key="userName" Target="..."`
     */
     public sealed class UXDataScopeAttribute: Attribute {}

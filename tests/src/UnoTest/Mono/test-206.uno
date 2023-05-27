@@ -1,22 +1,22 @@
 namespace Mono.test_206
 {
     using Uno;
-    
+
     interface I
     {
         // int this [int i] { get; }
         int[] this [params int[] ii] { get; }
     }
-    
+
     class X : I {
         public int this [int i] {
             get { return i; }
         }
-    
+
         public int[] this [params int[] ii] {
             get { return new int[] { this[1], this[2], this[ii.Length] }; }
         }
-    
+
         [Uno.Testing.Test] public static void test_206() { Main(); }
         public static void Main()
         {

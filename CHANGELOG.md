@@ -287,7 +287,7 @@ If you run into trouble, make sure you have installed [JDK 11](https://adoptium.
 
 ### Compiler
 - Fixed bug with `abstract extern` members (#273).
-- Dropped legacy importer system (#272). 
+- Dropped legacy importer system (#272).
 - Auto-detect main-class when building a library.
 
 ### Standard library
@@ -1103,7 +1103,7 @@ This series of changes are seen as steps to enable where we want to go, we under
             @}
         }
 
-    On foreign Java methods you can also provide annotations. 
+    On foreign Java methods you can also provide annotations.
 
         [ForeignAnnotation(Language.Java, "TargetApi(19)")]
         public void Foo()

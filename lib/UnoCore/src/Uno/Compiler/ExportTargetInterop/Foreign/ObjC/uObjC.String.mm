@@ -16,12 +16,12 @@ namespace uObjC
         {
             return nullptr;
         }
-        
+
         NSUInteger bytes = [string
             lengthOfBytesUsingEncoding: NativeUTF16Encoding];
-        
+
         uString* result = uString::New(bytes / sizeof(char16_t));
-        
+
         NSUInteger usedBytes = 0;
         if ([string
             getBytes: result->_ptr
@@ -39,17 +39,17 @@ namespace uObjC
             }
             return result;
         }
-    
+
         return nullptr;
     }
-    
+
     NSString* NativeString(uString* string)
     {
         if (!string)
         {
             return nullptr;
         }
-    
+
         return [[NSString alloc]
                 initWithBytes: string->Ptr()
                 length: string->Length() * sizeof(char16_t)

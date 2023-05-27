@@ -35,7 +35,7 @@ namespace Uno.Text
 
                 @{
                     uString* res = uString::New(value->_length);
-                    
+
                     for (size_t i = 0; i < value->_length; i++)
                         res->_ptr[i] = value->Unsafe<uint8_t>(i) < 128 ? value->Unsafe<uint8_t>(i) : '?';
 
@@ -59,7 +59,7 @@ namespace Uno.Text
 
                 @{
                     uString* res = uString::New(count);
-                    
+
                     for (size_t i = 0; i < count; i++)
                         res->_ptr[i] = value->Unsafe<uint8_t>(i + index) < 128 ? value->Unsafe<uint8_t>(i + index) : '?';
 

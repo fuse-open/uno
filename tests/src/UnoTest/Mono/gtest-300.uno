@@ -1,10 +1,10 @@
 namespace Mono.gtest_300
 {
     // Compiler options: -warnaserror -warn:4
-    
+
     using Uno;
     using Uno.Collections;
-    
+
     public class Test
     {
             [Uno.Testing.Test] public static void gtest_300() { Main(); }

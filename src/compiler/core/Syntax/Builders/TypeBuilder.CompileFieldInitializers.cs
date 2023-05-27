@@ -54,7 +54,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                         constValue.Equals(0.0) ||
                         constValue.Equals(0.0f) ||
                         constValue.Equals(false) ||
-                        constValue is EnumType && 
+                        constValue is EnumType &&
                             constValue.Equals(Enum.ToObject(constValue.GetType(), 0))))
                     continue;
 

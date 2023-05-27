@@ -7,7 +7,7 @@ using Uno.Compiler.Backends.CPlusPlus;
 namespace Uno.Compiler.Foreign.Java
 {
     partial class ForeignJavaPass : ForeignPass
-    {        
+    {
         bool _initialized;
         readonly Dictionary<DataType, JavaClass> TopLevelJavaClasses = new Dictionary<DataType, JavaClass>();
         internal static DataType BoxedJavaObject;

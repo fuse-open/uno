@@ -17,7 +17,7 @@ namespace Mono.test_612
     public class   Abcdefghijklmnopqrstuvwxyz {
         static public int Zyxwvutsrqp = 1;
     }
-    
+
     public class OO {
         bool b;
         void D ()
@@ -275,13 +275,13 @@ namespace Mono.test_612
             b = Abcdefghijklmnopqrstuvwxyz.Zyxwvutsrqp != Zyxwvutsrqp.Abcdefghijklmnopqrstuvwxyz;
             b = Abcdefghijklmnopqrstuvwxyz.Zyxwvutsrqp != Zyxwvutsrqp.Abcdefghijklmnopqrstuvwxyz;
         }
-        
+
     }
-    
+
     public class Zyxwvutsrqp {
         static public int Abcdefghijklmnopqrstuvwxyz = 2;
     }
-    
+
     public class XXX
     {
             public bool IsAltered()
@@ -344,15 +344,15 @@ namespace Mono.test_612
             Abcdefghijklmnopqrstuvwxyz.Zyxwvutsrqp != Zyxwvutsrqp.Abcdefghijklmnopqrstuvwxyz ||
             Abcdefghijklmnopqrstuvwxyz.Zyxwvutsrqp != Zyxwvutsrqp.Abcdefghijklmnopqrstuvwxyz ||
             Abcdefghijklmnopqrstuvwxyz.Zyxwvutsrqp != Zyxwvutsrqp.Abcdefghijklmnopqrstuvwxyz)
-            
+
                     return true;
             return false;
         }
-    
+
         [Uno.Testing.Test] public static void test_612() { Main(); }
         public static void Main()
         {
         }
-        
+
     }
 }

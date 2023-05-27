@@ -407,7 +407,7 @@ namespace Uno.Compiler.Core.IL.Validation
                         Log.Error(s.Source, ErrorCode.E4116, "'as' is not valid because " + s.Operand.ReturnType.Quote() + " is not a reference type");
                     else if (!s.ReturnType.IsReferenceType)
                         Log.Error(s.Source, ErrorCode.E4117, "'as' is not valid because " + s.ReturnType.Quote() + " is not a reference type");
-                    else if (!s.ReturnType.IsRelatedTo(s.Operand.ReturnType) && 
+                    else if (!s.ReturnType.IsRelatedTo(s.Operand.ReturnType) &&
                              !s.ReturnType.IsInterface && !s.Operand.ReturnType.IsInterface &&
                              !s.ReturnType.IsGenericType)
                         Log.Error(s.Source, ErrorCode.E4118, s.Operand.ReturnType.Quote() + " cannot be converted to " + s.ReturnType.Quote() + " because the types are not related");

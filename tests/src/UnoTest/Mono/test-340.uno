@@ -11,29 +11,29 @@ namespace Mono.test_340
         {
             void Add(bool v1, bool v2, uint v3, bool v4);
         }
-        
+
         public class A
         {
             public static bool ok;
-    
+
             public void Add(bool v1, bool v2, uint v3, bool v4)
             {
                 ok = v4;
             }
         }
-    
+
         public class B : A, IB
         {
         }
-    
+
         public class Test
         {
             [Uno.Testing.Test] public static void test_340() { Uno.Testing.Assert.AreEqual(0, Main(new string[0])); }
         public static int Main(string[] args)
             {
                 IB aux = new B();
-                
-                aux.Add(false, false, 0, true);    
+
+                aux.Add(false, false, 0, true);
                 return A.ok ? 0 : 1;
             }
         }

@@ -2,7 +2,7 @@ namespace Mono.test_xml_006
 {
     // Compiler options: -doc:xml-006.xml
     using Uno;
-    
+
     namespace Testing
     {
         /// <summary>
@@ -13,7 +13,7 @@ namespace Mono.test_xml_006
             Foo,
             Bar,
         }
-    
+
         /// <summary>
         /// comment for enum type
         /// </incorrect>
@@ -22,7 +22,7 @@ namespace Mono.test_xml_006
             Foo,
             Bar,
         }
-    
+
         /**
         <summary>
         Java style comment for enum type
@@ -33,7 +33,7 @@ namespace Mono.test_xml_006
             Foo,
             Bar,
         }
-    
+
         public class Test
         {
             [Uno.Testing.Test] public static void test_xml_006() { Main(); }

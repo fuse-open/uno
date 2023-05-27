@@ -7,17 +7,17 @@ namespace Mono.test_debug_10
         {
             Prop = 3;
         }
-        
+
         static int Prop
         {
             get {
                 return 4;
             }
-            
+
             set {
             }
         }
-        
+
         static int PropAuto
         {
             get;

@@ -156,7 +156,7 @@ namespace Uno.Compiler.Frontend.Analysis
             for (int j = Nul; j < Max; j++)
                 if (DecimalChars[j])
                     root[j] = ScanDecimalPeriod;
-                else if (IdentifierChars[j] && 
+                else if (IdentifierChars[j] &&
                         root[j] == EmitDouble)
                     root[j] = Invalid;
         }

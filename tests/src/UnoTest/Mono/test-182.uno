@@ -16,7 +16,7 @@ namespace Mono.test_182
             get {return t.Ticks;}
         }
     }
-    
+
     class T {
         [Uno.Testing.Test] public static void test_182() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main() {

@@ -25,7 +25,7 @@ namespace Uno.Build.Targets.Generators
 
             foreach (var g in _groups)
                 lines.Add("source_group(" + g.Key.QuoteSpace() + " FILES \"" + string.Join("\" \"", g.Value) + "\")");
-            
+
             _env.Set("CMake.SourceGroups", string.Join("\n", lines));
         }
 

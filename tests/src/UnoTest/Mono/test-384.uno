@@ -1,11 +1,11 @@
 namespace Mono.test_384
 {
     using Uno;
-    
+
     class X
     {
         static int Foo = 10;
-    
+
         static void Test ()
         {
             while (true) {
@@ -14,10 +14,10 @@ namespace Mono.test_384
                 else
                     break;
             }
-    
+
             Foo = 20;
         }
-    
+
         [Uno.Testing.Test] public static void test_384() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

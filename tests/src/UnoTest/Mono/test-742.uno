@@ -1,18 +1,18 @@
 namespace Mono.test_742
 {
     using Uno;
-    
+
     public struct Test
     {
         public int Foo;
-    
+
         public static Test Set (C c)
         {
             c.Value.Foo = 21;
             return c.Value;
         }
     }
-    
+
     public class C
     {
         public Test Value;

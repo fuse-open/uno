@@ -40,7 +40,7 @@ namespace Uno.Compiler.Foreign.Java
             }
 
             public void AddForeignMethod(ForeignMethod fm, ExpandInterceptor expandInterceptor)
-            {                
+            {
                 var jmtd = new JavaMethod(fm, _helpers, _convert, expandInterceptor, _environment);
                 _methods.Add(jmtd);
                 _blockHost.NativeJavaMethods.Add(jmtd.GenJavaEntrypointMethod(this));
@@ -124,7 +124,7 @@ namespace Uno.Compiler.Foreign.Java
             {
                 if (_nested)
                     throw new Exception("ForeignCode: Attempted to write dedicated javae file for nested class.");
-                
+
                 var filePath = FullName.Replace(".", "/") + ".java";
                 var path = _environment.Combine(_environment.GetString("Java.SourceDirectory"), filePath);
                 disk.WriteAllText(path, GenJavaClassCode());

@@ -12,7 +12,7 @@ namespace Uno.Compiler.API.Domain.AST
 
         public override AstMemberType MemberType => AstMemberType.Delegate;
 
-        public AstDelegate(string comment, IReadOnlyList<AstAttribute> attrs, Modifiers modifiers, string cond, 
+        public AstDelegate(string comment, IReadOnlyList<AstAttribute> attrs, Modifiers modifiers, string cond,
             AstExpression retType, AstIdentifier name, IReadOnlyList<AstParameter> parameters, AstGenericSignature optionalGenericSig)
             : base(comment, attrs, modifiers, cond, name, null)
         {

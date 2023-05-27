@@ -178,8 +178,8 @@ namespace Uno.Compiler.Backends.CIL
                 case ParameterModifier.Out:
                     return ParameterAttributes.Out;
                 default:
-                    return p.OptionalDefault is Constant 
-                        ? ParameterAttributes.Optional 
+                    return p.OptionalDefault is Constant
+                        ? ParameterAttributes.Optional
                         : 0;
             }
         }

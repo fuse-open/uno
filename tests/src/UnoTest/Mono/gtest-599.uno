@@ -1,12 +1,12 @@
 namespace Mono.gtest_599
 {
     using Uno;
-    
+
     public abstract class A<X>
     {
         public abstract T Test<T> (T t, X x);
     }
-    
+
     public class B : A<char>
     {
         public override T Test<T> (T t, char x)
@@ -15,7 +15,7 @@ namespace Mono.gtest_599
             return default (T);
         }
     }
-    
+
     public class C : B
     {
         public override T Test<T> (T t, char c)
@@ -24,7 +24,7 @@ namespace Mono.gtest_599
             return default (T);
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_599() { Main(); }

@@ -61,7 +61,7 @@ namespace Uno.Compiler.API.Domain.Serialization
                 case StringFlags.LeftSeparated:
                 case StringFlags.RightSeparated:
                 case StringFlags.SlashSeparated:
-                case StringFlags.SpaceSeparated:                    
+                case StringFlags.SpaceSeparated:
                 case StringFlags.SingleQuoteSeparated:
                 case StringFlags.DoubleQuoteSeparated:
                 case StringFlags.AssignSeparated:

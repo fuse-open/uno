@@ -10,19 +10,19 @@ namespace Mono.gtest_partial_07
             }
         }
     }
-    
+
     partial class A<T> : X<T>
     {
-    
+
     }
-    
+
     class X<U>
     {
         public void Foo (U arg)
         {
         }
     }
-    
+
     class M
     {
         [Uno.Testing.Test] public static void gtest_partial_07() { Main(); }

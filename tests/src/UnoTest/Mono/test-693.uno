@@ -1,7 +1,7 @@
 namespace Mono.test_693
 {
     using Uno;
-    
+
     public class ConstTest
     {
         [Uno.Testing.Test] public static void test_693() { Uno.Testing.Assert.AreEqual(0, Main()); }

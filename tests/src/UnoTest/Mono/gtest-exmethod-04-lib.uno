@@ -1,9 +1,9 @@
 namespace Mono.gtest_exmethod_04
 {
     // Compiler options: -t:library
-    
+
     using Uno;
-    
+
     namespace A
     {
         public static class A

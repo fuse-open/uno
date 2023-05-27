@@ -89,7 +89,7 @@ public class App {
 
         // call c++ for setup
         ActivityNativeEntryPoints.cppOnCreate(RootActivity);
-        
+
         // reset window background for app switcher to be able to take a screenshot of app content
 #if @(Project.Android.Splash.Enabled:Test(1, 0))
         RootActivity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -225,12 +225,12 @@ public class App {
 #endif
 
 #if @(Project.Android.AssociatedDomains:IsSet)
-        String[] associatedDomains = new String[]{@(Project.Android.AssociatedDomains:SplitAndJoin(',','"','"'))}; 
+        String[] associatedDomains = new String[]{@(Project.Android.AssociatedDomains:SplitAndJoin(',','"','"'))};
 
         for (int i = 0; i < associatedDomains.length; i++) {
 
-            if (intent!=null && intent.getScheme()!=null && intent.getScheme().contains("http") 
-                && intent.getDataString().toLowerCase().contains(new String(associatedDomains[i]).toLowerCase())) { 
+            if (intent!=null && intent.getScheme()!=null && intent.getScheme().contains("http")
+                && intent.getDataString().toLowerCase().contains(new String(associatedDomains[i]).toLowerCase())) {
                 pendingURI = intent.getDataString();
                 break;
             }

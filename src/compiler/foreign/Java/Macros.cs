@@ -26,8 +26,8 @@ namespace Uno.Compiler.Foreign.Java
             if (context is Property)
                 return InterceptProperty(macroText, expansionResult, (Property)context, callArgs);
             if (context is DataType && callArgs == null && call.Method == null)
-                return InterceptType((DataType)context);                
-            // we dont manipulate it 
+                return InterceptType((DataType)context);
+            // we dont manipulate it
             return expansionResult;
         }
 
@@ -41,7 +41,7 @@ namespace Uno.Compiler.Foreign.Java
 
             if (dt is API.Domain.IL.Types.DelegateType)
                 GenDelegatePlumbing((API.Domain.IL.Types.DelegateType)dt);
-            
+
             return Convert.Type.UnoToJavaType(dt, false);
         }
 
@@ -111,7 +111,7 @@ namespace Uno.Compiler.Foreign.Java
 
         string InterceptCallToForeign(Function func, object callArgs)
         {
-            // In this case we dont want to call via uno, just work out the 
+            // In this case we dont want to call via uno, just work out the
             // java method name and call it directly
             var javaMethodName = Convert.Name.JavaMethodName(func);
             var jcls = GetJavaClass(func.DeclaringType, Environment);

@@ -159,7 +159,7 @@ namespace Uno.Compiler.Core.Syntax.Generators
 
                             if (field == null)
                             {
-                                field = new Field(src, dt, CreateFieldName(mp, loc, s.Value), 
+                                field = new Field(src, dt, CreateFieldName(mp, loc, s.Value),
                                     null, Modifiers.Private | Modifiers.Generated, 0, s.Value.ReturnType);
                                 dt.Fields.Add(field);
                                 InitScope.Statements.Add(new StoreField(src, obj, field, s.Value));

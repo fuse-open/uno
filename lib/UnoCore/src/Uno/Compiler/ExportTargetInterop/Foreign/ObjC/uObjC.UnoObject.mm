@@ -21,13 +21,13 @@
 - (id)initWithUnoObject:(uObject *)object
 {
     self = [super init];
-    
+
     if (self)
     {
         uRetain(object);
         _unoObject = object;
     }
-    
+
     return self;
 }
 

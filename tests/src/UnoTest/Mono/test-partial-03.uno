@@ -1,27 +1,27 @@
 namespace Mono.test_partial_03
 {
     // Compiler options: -langversion:default
-    
+
     public partial class Test
     {
         public readonly Foo TheFoo;
-    
+
         public Test ()
         {
             this.TheFoo = new Foo ();
         }
-    
+
         public partial interface IFoo
         {
             int Hello (Test foo);
         }
-    
+
         public int TestFoo ()
         {
             return TheFoo.Hello (this);
         }
     }
-    
+
     public partial class Test
     {
         public partial class Foo : IFoo
@@ -30,19 +30,19 @@ namespace Mono.test_partial_03
             {
                 return 2;
             }
-    
+
             public int Hello (Test test)
             {
                 return 1;
             }
         }
-    
+
         public int TestIFoo (IFoo foo)
         {
             return foo.Hello (this);
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void test_partial_03() { Uno.Testing.Assert.AreEqual(0, Main()); }

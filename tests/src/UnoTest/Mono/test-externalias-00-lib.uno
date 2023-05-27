@@ -2,25 +2,25 @@ namespace Mono.test_externalias_00
 {
     // Compiler options: -t:library
     using Uno;
-    
+
     public class GlobalClass
     {
         public int InstanceMethod ()
         {
             return 1;
         }
-        
+
         public static int StaticMethod ()
         {
             return 1;
         }
-    
+
         public static void JustForFirst ()
         {
         }
     }
-    
-    namespace Namespace1 
+
+    namespace Namespace1
     {
         public class MyClass1
         {
@@ -28,30 +28,30 @@ namespace Mono.test_externalias_00
             {
                 return 1;
             }
-            
+
             public static int StaticMethod ()
             {
                 return 1;
             }
-            
+
             public class MyNestedClass1
             {
                 public int InstanceMethod ()
                 {
                     return 1;
                 }
-    
+
                 public static int StaticMethod ()
                 {
                     return 1;
                 }
             }
-    
+
             public static void JustForFirst ()
             {
             }
         }
-    
+
         namespace Namespace2
         {
             public class MyClass2
@@ -62,28 +62,28 @@ namespace Mono.test_externalias_00
                     {
                         return 1;
                     }
-    
+
                     public static int StaticMethod ()
                     {
                         return 1;
                     }
                 }
-                
+
                 public int InstanceMethod ()
                 {
                     return 1;
                 }
-                
+
                 public static int StaticMethod ()
                 {
                     return 1;
                 }
-                
+
                 public static void JustForFirst ()
                 {
                 }
             }
-    
+
         }
     }
 }

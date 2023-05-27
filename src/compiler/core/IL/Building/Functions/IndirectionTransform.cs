@@ -56,7 +56,7 @@ namespace Uno.Compiler.Core.IL.Building.Functions
                                 var.OptionalValue = v.Right;
                                 scope.Statements.Insert(i, v.Left);
                                 i--;
-                            }                            
+                            }
                         }
                         break;
                     }

@@ -38,9 +38,9 @@ namespace Uno.Compiler.Core.IL.Validation.ControlFlow
                 if (def.Value is Scope)
                     new ControlFlowValidator(
                         new Method(mp.Source,
-                            mp.Parent.TryFindTypeParent() ?? Essentials.Object, 
+                            mp.Parent.TryFindTypeParent() ?? Essentials.Object,
                             null, Modifiers.Static,
-                            ".meta_property", mp.ReturnType, 
+                            ".meta_property", mp.ReturnType,
                             new Parameter[0], (Scope) def.Value))
                         .Validate(Log);
             return false;

@@ -1,9 +1,9 @@
 namespace Mono.test_234
 {
     using Uno;
-    
+
     class T {
-    
+
         enum E {
             e0 = 1 << 0,
             e1 = 1 << 1,

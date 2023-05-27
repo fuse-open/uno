@@ -1,7 +1,7 @@
 namespace Mono.test_xml_055
 {
     // Compiler options: -doc:xml-055.xml -warnaserror
-    
+
     namespace NAnt.Core.Filters
     {
         /// <summary>
@@ -22,7 +22,7 @@ namespace Mono.test_xml_055
             }
         }
     }
-    
+
     namespace NAnt.Core.Tasks
     {
         /// <summary>

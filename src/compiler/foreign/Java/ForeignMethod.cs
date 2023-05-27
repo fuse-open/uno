@@ -56,7 +56,7 @@ namespace Uno.Compiler.Foreign.Java
                 throw new Exception("Foreign Code Limitation: Method '" + f.FullName + "' has a return type of byte. Java does not support byte. It does however support sbyte.");
         }
 
-                
+
         public string GetCallFromUno()
         {
             return new UnoCallToForeignMethod(this, Convert, JavaName).ToSource();

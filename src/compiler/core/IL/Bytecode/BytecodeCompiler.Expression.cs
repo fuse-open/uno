@@ -212,7 +212,7 @@ namespace Uno.Compiler.Core.IL.Bytecode
                         var s = e as LoadLocal;
                         if (pop) break;
 
-                        Emit(addressMode 
+                        Emit(addressMode
                                 ? Opcodes.LoadLocalAddress
                                 : Opcodes.LoadLocal,
                             s.Variable);
@@ -238,9 +238,9 @@ namespace Uno.Compiler.Core.IL.Bytecode
                         else
                         {
                             if (!pop)
-                                Emit(addressMode 
-                                        ? Opcodes.LoadStaticFieldAddress 
-                                        : Opcodes.LoadStaticfield, 
+                                Emit(addressMode
+                                        ? Opcodes.LoadStaticFieldAddress
+                                        : Opcodes.LoadStaticfield,
                                     s.Field);
                         }
                     }
@@ -254,8 +254,8 @@ namespace Uno.Compiler.Core.IL.Bytecode
 
                         if (pop) return;
 
-                        Emit(addressMode 
-                                ? Opcodes.LoadArrayElementAddress 
+                        Emit(addressMode
+                                ? Opcodes.LoadArrayElementAddress
                                 : Opcodes.LoadArrayElement,
                             s.Array.ReturnType.ElementType);
                     }
@@ -278,9 +278,9 @@ namespace Uno.Compiler.Core.IL.Bytecode
                             }
                         }
                         else
-                            Emit(addressMode 
-                                    ? Opcodes.LoadArgAddress 
-                                    : Opcodes.LoadArg, 
+                            Emit(addressMode
+                                    ? Opcodes.LoadArgAddress
+                                    : Opcodes.LoadArg,
                                 s.Index);
                     }
                     break;
@@ -472,8 +472,8 @@ namespace Uno.Compiler.Core.IL.Bytecode
                             return;
                         }
 
-                        Emit(s.EqualityType == EqualityType.NotEqual 
-                                ? Opcodes.Neq 
+                        Emit(s.EqualityType == EqualityType.NotEqual
+                                ? Opcodes.Neq
                                 : Opcodes.Eq);
 
                         if (pop)
@@ -926,7 +926,7 @@ namespace Uno.Compiler.Core.IL.Bytecode
 
             CompileExpression(e);
 
-            if (e.ReturnType.IsGenericParameter && 
+            if (e.ReturnType.IsGenericParameter &&
                 member.DeclaringType.IsReferenceType && (
                     member.DeclaringType.BuiltinType != BuiltinType.Object ||
                     !member.IsVirtual))

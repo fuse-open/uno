@@ -79,13 +79,13 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 case AstStatementType.ExternScope:
                 {
                     var s = (AstExternScope) e;
-                    return new ExternScope(s.Source, 
+                    return new ExternScope(s.Source,
                         Compiler.CompileAttributes(Namescope, s.Attributes),
-                        s.Body.String, 
-                        ExtensionTransform.CreateObject(s.Source, Function, TypeBuilder.Parameterize(Function.DeclaringType)), 
+                        s.Body.String,
+                        ExtensionTransform.CreateObject(s.Source, Function, TypeBuilder.Parameterize(Function.DeclaringType)),
                         s.OptionalArguments != null
                             ? CompileArgumentList(s.OptionalArguments)
-                            : ExtensionTransform.CreateArgumentList(s.Source, Function), 
+                            : ExtensionTransform.CreateArgumentList(s.Source, Function),
                         GetUsings(s.Source));
                 }
                 case AstStatementType.While:
@@ -208,8 +208,8 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                             new LoadLocal(s.Collection.Source, indexVar));
 
                         var elementType = s.ElementType.ExpressionType == AstExpressionType.Var
-                            ? collection.ReturnType.IsArray 
-                                    ? collection.ReturnType.ElementType 
+                            ? collection.ReturnType.IsArray
+                                    ? collection.ReturnType.ElementType
                                     : Essentials.Char
                             : NameResolver.GetType(Namescope, s.ElementType);
 
@@ -243,10 +243,10 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                             new AstIdentifier(s.ElementName.Source, enumeratorVar.Name),
                             new AstIdentifier(s.ElementName.Source, "Current")));
 
-                        var elementType = s.ElementType.ExpressionType == AstExpressionType.Var 
-                                ? elementInitializer.ReturnType 
+                        var elementType = s.ElementType.ExpressionType == AstExpressionType.Var
+                                ? elementInitializer.ReturnType
                                 : NameResolver.GetType(Namescope, s.ElementType);
-                        var elementVar = new Variable(s.Source, Function, s.ElementName.Symbol, elementType, VariableType.Iterator, 
+                        var elementVar = new Variable(s.Source, Function, s.ElementName.Symbol, elementType, VariableType.Iterator,
                             CompileImplicitCast(s.ElementName.Source, elementType, elementInitializer));
 
                         var hasDispose = false;
@@ -567,7 +567,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 return Error(src, ErrorCode.E0000, type.Quote() + " can only be used in methods");
 
             var message = value != null
-                    ? Compiler.CompileConstant(value, Namescope, Essentials.String).Value as string ?? 
+                    ? Compiler.CompileConstant(value, Namescope, Essentials.String).Value as string ??
                         "<invalid>"
                     : Function.Quote() + " does not support this build target";
 

@@ -1,11 +1,11 @@
 namespace Mono.test_264
 {
     using Uno;
-    
+
     public class Proef
     {
         private EventHandler _OnDoSomething = null;
-    
+
         public event EventHandler OnDoSomething
         {
             add
@@ -17,11 +17,11 @@ namespace Mono.test_264
                 _OnDoSomething -= value;
             }
         }
-    
+
         static void Temp(object s, EventArgs e)
         {
         }
-    
+
         [Uno.Testing.Test] public static void test_264() { Main(); }
         public static void Main()
         {

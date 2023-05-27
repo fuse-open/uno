@@ -75,9 +75,9 @@ namespace Uno.CLI.Building
         public override void Execute(IEnumerable<string> args)
         {
             var buildResult = Build(Parse(args));
-             
+
             // Fix exit code in case of internal or unexpected compiler error.
-            ExitCode = Log.ErrorCount == 0 
+            ExitCode = Log.ErrorCount == 0
                 ? buildResult.ErrorCount
                 : Log.ErrorCount;
         }

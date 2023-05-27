@@ -4,7 +4,7 @@ namespace Mono.gtest_174
     public class B<T> {
         public static B<T> _N_constant_object = new B<T> ();
     }
-    
+
     class M {
         [Uno.Testing.Test] public static void gtest_174() { Main(); }
         public static void Main() {

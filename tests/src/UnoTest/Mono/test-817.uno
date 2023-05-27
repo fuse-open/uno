@@ -6,7 +6,7 @@ namespace Mono.test_817
         {
             public int Value;
         }
-    
+
         class Program
         {
             [Uno.Testing.Test] public static void test_817() { Main(); }

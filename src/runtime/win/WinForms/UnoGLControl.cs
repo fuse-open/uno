@@ -22,7 +22,7 @@ namespace Uno.AppLoader.WinForms
         public IUnoWindow Window;
         public readonly WinFormsPlatformWindow CoreWindow;
         public readonly WinFormsGraphicsContext CoreGC;
-        
+
         public IntPtr WindowHandle => _glWindow.Handle;
         public event Action PreUpdate;
         public event Action PostDraw;
@@ -44,7 +44,7 @@ namespace Uno.AppLoader.WinForms
 
         bool _hasDown;
         int _lastX, _lastY;
-        MouseButton _lastbutton; 
+        MouseButton _lastbutton;
 
         public void RaiseMouseUp()
         {
@@ -114,7 +114,7 @@ namespace Uno.AppLoader.WinForms
                 Bootstrapper.OnMouseUp(CoreWindow, e.X, e.Y, button);
                 _hasDown = false;
             };
-            
+
             MouseLeave += (sender, e) => Bootstrapper.OnMouseOut(CoreWindow);
             MouseMove += (sender, e) => Bootstrapper.OnMouseMove(CoreWindow, e.X, e.Y);
 

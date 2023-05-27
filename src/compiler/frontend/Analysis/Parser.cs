@@ -83,7 +83,7 @@ namespace Uno.Compiler.Frontend.Analysis
                             _file.AddPart(token.Line);
                             _stack[++_index] = new Token(_file, _text, TokenType.EndOfFile, token.Line, token.Column, token.Offset, token.Offset);
                         }
-                        else if (!token.StartsWith("#region") && 
+                        else if (!token.StartsWith("#region") &&
                                  !token.StartsWith("#endregion"))
                             Log.Warning(token, null, "Unrecognized preprocessor directive " + token.Value.Printable());
 
@@ -231,7 +231,7 @@ namespace Uno.Compiler.Frontend.Analysis
                     case TokenType.Using:
                     {
                         if (!HasErrors && (
-                                parent.Namespaces.Count > 0 || 
+                                parent.Namespaces.Count > 0 ||
                                 parent.Blocks.Count > 0))
                             Error(token, ErrorCode.E1106, "Using directives must occur before any namespace members");
 
@@ -763,7 +763,7 @@ namespace Uno.Compiler.Frontend.Analysis
                             name = Identifier();
 
                             if (isFixed)
-                                type = new AstFixedArray(token, ((AstFixedArray) type).ElementType, 
+                                type = new AstFixedArray(token, ((AstFixedArray) type).ElementType,
                                     ArraySize());
                             continue;
                         }
@@ -833,7 +833,7 @@ namespace Uno.Compiler.Frontend.Analysis
                             literals.Add(new AstLiteral(
                                 lcomment,
                                 lattrs,
-                                Identifier(), 
+                                Identifier(),
                                 Optional(TokenType.Assign)
                                     ? Expression()
                                     : null));
@@ -858,7 +858,7 @@ namespace Uno.Compiler.Frontend.Analysis
                     return new AstClass(comment, attrs, modifiers, cond, token.ClassType, name,
                         BaseTypeList(),
                         OptionalGenericSignature(typeParamList),
-                        Members(name, swizzlers), 
+                        Members(name, swizzlers),
                         swizzlers);
                 }
                 case TokenType.Identifier:
@@ -1106,14 +1106,14 @@ namespace Uno.Compiler.Frontend.Analysis
                 for (Scan(TokenType.LeftParen);;)
                 {
                     result.Add(new AstReqStatement(
-                        _stack[_index], 
+                        _stack[_index],
                         OptionalContextual(Tokens.Prev)
                             ? PrevOffset()
                             : 0,
-                        Identifier(), 
+                        Identifier(),
                         Optional(TokenType.As)
                             ? Type()
-                            : null, 
+                            : null,
                         OptionalContextual(Tokens.Tag)
                             ? StringValue().String
                             : null));
@@ -1148,7 +1148,7 @@ namespace Uno.Compiler.Frontend.Analysis
                     {
                         --_index;
                         defs.Add(new AstMetaPropertyDefinition(
-                            InnerScope(token, ParseContext.MetaProperty), 
+                            InnerScope(token, ParseContext.MetaProperty),
                             tags, reqs));
                         break;
                     }
@@ -1286,7 +1286,7 @@ namespace Uno.Compiler.Frontend.Analysis
             return retval;
         }
 
-        AstStatement ExternStatement(ParseContext context, Token token, 
+        AstStatement ExternStatement(ParseContext context, Token token,
             IReadOnlyList<AstAttribute> attributes = null, AstExpression type = null, IReadOnlyList<AstArgument> args = null)
         {
             switch (_stack[_index].Type)
@@ -1297,14 +1297,14 @@ namespace Uno.Compiler.Frontend.Analysis
                         :                ExternScope(_stack[_index--], token, attributes ?? AstAttribute.Empty, args);
                 case TokenType.StringLiteral:
                 case TokenType.AlphaString:
-                    return new AstExtern(token, 
+                    return new AstExtern(token,
                         attributes ?? AstAttribute.Empty,
                         type, args,
                         StringValue(TokenType.Semicolon));
                 default:
                     return attributes != null || type != null || args != null
                         ? Expected("extern statement")
-                        : InnerVariable(context, 
+                        : InnerVariable(context,
                             AstVariableModifier.Extern,
                             OptionalContextual("var")
                                 ? new AstSymbol(_stack[_index + 1], AstSymbolType.Var)
@@ -1508,8 +1508,8 @@ namespace Uno.Compiler.Frontend.Analysis
                 {
                     --_index;
                     Scan(TokenType.LeftParen);
-                    return new AstUsing(token, 
-                        InitializerStatement(context, TokenType.RightParen), 
+                    return new AstUsing(token,
+                        InitializerStatement(context, TokenType.RightParen),
                         EmbeddedStatement(context));
                 }
                 case TokenType.Switch:
@@ -1578,7 +1578,7 @@ namespace Uno.Compiler.Frontend.Analysis
                     --_index;
                     var p = Optional(TokenType.LeftParen);
                     var e = Expression(context, 0, "value");
-                    
+
                     // Expand multiple arguments to 'string.Join(" ", ...ARGS)'
                     if (Optional(TokenType.Comma))
                     {
@@ -1604,9 +1604,9 @@ namespace Uno.Compiler.Frontend.Analysis
                 case TokenType.Const:
                 {
                     --_index;
-                    return InnerVariable(context, 
-                        AstVariableModifier.Const, 
-                        Type(), 
+                    return InnerVariable(context,
+                        AstVariableModifier.Const,
+                        Type(),
                         TokenType.Semicolon);
                 }
                 case TokenType.Fixed:
@@ -1627,7 +1627,7 @@ namespace Uno.Compiler.Frontend.Analysis
                                                 InnerArrayInitializer(context))
                                         : Expression(context))
                                 : null);
-                
+
                     Scan(TokenType.Semicolon, "';'");
                     return result;
                 }
@@ -1720,8 +1720,8 @@ namespace Uno.Compiler.Frontend.Analysis
                                 {
                                     if (_stack[_index - 1].Type == TokenType.Identifier &&
                                             OptionalContextual(Tokens.Var))
-                                        return InnerVariable(context, 0, 
-                                            new AstSymbol(token, AstSymbolType.Var), 
+                                        return InnerVariable(context, 0,
+                                            new AstSymbol(token, AstSymbolType.Var),
                                             TokenType.Semicolon);
                                     break;
                                 }
@@ -1757,7 +1757,7 @@ namespace Uno.Compiler.Frontend.Analysis
             var retval = Expression(context, 0, expected);
             return Optional(TokenType.Semicolon)
                  ? retval
-                 : InnerVariable(context, 0, retval, 
+                 : InnerVariable(context, 0, retval,
                     TokenType.Semicolon);
         }
 
@@ -1797,8 +1797,8 @@ namespace Uno.Compiler.Frontend.Analysis
                 case 'v':
                     if (_stack[_index - 1].Type == TokenType.Identifier &&
                             OptionalContextual(Tokens.Var))
-                        return InnerVariable(context, 0, 
-                            new AstSymbol(token, AstSymbolType.Var), 
+                        return InnerVariable(context, 0,
+                            new AstSymbol(token, AstSymbolType.Var),
                             following);
                     break;
             }
@@ -1823,7 +1823,7 @@ namespace Uno.Compiler.Frontend.Analysis
                     }
                 }
                 case TokenType.Identifier:
-                    return InnerVariable(context, 0, type, 
+                    return InnerVariable(context, 0, type,
                         following);
                 default:
                     Scan(following);
@@ -2282,7 +2282,7 @@ namespace Uno.Compiler.Frontend.Analysis
                     {
                         Log.Warning(token, null, "'immutable' is deprecated -- replace with 'readonly'");
                         return new AstUnary(token, AstUnaryType.ReadOnly,
-                            Expression(ParseContext.MetaProperty, Precedence.Primary));                        
+                            Expression(ParseContext.MetaProperty, Precedence.Primary));
                     }
                     if (OptionalContextual(Tokens.Interpolate))
                         Error(token, ErrorCode.E0000, "Unexpected 'interpolate'");
@@ -2315,7 +2315,7 @@ namespace Uno.Compiler.Frontend.Analysis
                 case 'r':
                     if (Optional(TokenType.ReadOnly))
                         return new AstUnary(token, AstUnaryType.ReadOnly,
-                            Expression(ParseContext.MetaProperty, Precedence.Primary));                        
+                            Expression(ParseContext.MetaProperty, Precedence.Primary));
                     break;
                 case 'v':
                     if (Optional(TokenType.Volatile))
@@ -2682,7 +2682,7 @@ namespace Uno.Compiler.Frontend.Analysis
 
                         root = Value(token, value, flags);
                     }
-                    
+
                     goto NEXT_EXPR;
                 }
                 case TokenType.FloatLiteral:
@@ -3148,7 +3148,7 @@ namespace Uno.Compiler.Frontend.Analysis
                 token = _stack[_index];
             }
 
-            while (_stack[_index].Type == TokenType.LeftSquareBrace && 
+            while (_stack[_index].Type == TokenType.LeftSquareBrace &&
                    _stack[_index - 1].Type == TokenType.RightSquareBrace)
             {
                 _index -= 2;
@@ -3274,11 +3274,11 @@ namespace Uno.Compiler.Frontend.Analysis
                 case TokenType.Identifier:
                     --_index;
 
-                    if (_stack[_index].Type == TokenType.DoubleColon && 
+                    if (_stack[_index].Type == TokenType.DoubleColon &&
                         token.IsValue(Tokens.Global))
                     {
                         --_index;
-                        return InnerType(new AstMember(new AstSymbol(token, AstSymbolType.Global), 
+                        return InnerType(new AstMember(new AstSymbol(token, AstSymbolType.Global),
                             Identifier()));
                     }
 
@@ -3323,9 +3323,9 @@ namespace Uno.Compiler.Frontend.Analysis
                     if (_stack[old].IsValue(Tokens.Global))
                     {
                         _index -= 2;
-                        return OptionalExplicitInterface_inner(old, null, 
+                        return OptionalExplicitInterface_inner(old, null,
                             new AstMember(
-                                new AstSymbol(_stack[old], AstSymbolType.Global), 
+                                new AstSymbol(_stack[old], AstSymbolType.Global),
                                 Identifier())) ?? Expected("type");
                     }
                     break;
@@ -3389,7 +3389,7 @@ namespace Uno.Compiler.Frontend.Analysis
         AstFloat Float(Token token, int suffixLength)
         {
             float value;
-            if (!float.TryParse(_text.Substring(token.Offset, token.Length - suffixLength), 
+            if (!float.TryParse(_text.Substring(token.Offset, token.Length - suffixLength),
                     NumberStyles.Float, CultureInfo.InvariantCulture, out value))
                 Error(token, ErrorCode.E1008, "Invalid float (" + token.Value + ")");
             return new AstFloat(token, value);
@@ -3448,7 +3448,7 @@ namespace Uno.Compiler.Frontend.Analysis
                 break;
             }
 
-            return Error(token, ErrorCode.E0000, 
+            return Error(token, ErrorCode.E0000,
                 "Expected " + what + " -- found " + (
                     token.Type == TokenType.EndOfFile
                         ? "<EOF>"

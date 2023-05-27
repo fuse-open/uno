@@ -5,7 +5,7 @@ namespace Mono.gtest_325
             new T();
         }
     }
-    
+
     class Foo {
         [Uno.Testing.Ignore, Uno.Testing.Test] public static void gtest_325() { Main(); }
         public static void Main()

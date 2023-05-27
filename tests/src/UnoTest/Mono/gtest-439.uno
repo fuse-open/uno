@@ -1,7 +1,7 @@
 namespace Mono.gtest_439
 {
     using Uno;
-    
+
     namespace MonoBug
     {
         public static class Stuff
@@ -11,19 +11,19 @@ namespace Mono.gtest_439
                 return new GenericStuff<T1, T2> (firstValue, secondValue);
             }
         }
-    
+
         public class GenericStuff<T1, T2>
         {
             public readonly T1 FirstValue;
             public readonly T2 SecondValue;
-    
+
             public GenericStuff (T1 firstValue, T2 secondValue)
             {
                 FirstValue = firstValue;
                 SecondValue = secondValue;
             }
         }
-    
+
         public static class Program
         {
             [Uno.Testing.Test] public static void gtest_439() { Main(); }

@@ -5,7 +5,7 @@ namespace Uno.UX.Markup.UXIL
 {
     public sealed partial class ClassNode: DocumentScope
     {
-        public bool IsInnerClass { get; } 
+        public bool IsInnerClass { get; }
 
         public IDataType BaseType { get; }
 

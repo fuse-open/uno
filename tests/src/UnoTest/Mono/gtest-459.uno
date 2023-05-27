@@ -1,7 +1,7 @@
 namespace Mono.gtest_459
 {
     using Uno;
-    
+
     namespace GenericTest
     {
         public class OuterGeneric<T>
@@ -14,7 +14,7 @@ namespace Mono.gtest_459
                 }
             }
         }
-    
+
         class Program
         {
             [Uno.Testing.Test] public static void gtest_459() { Uno.Testing.Assert.AreEqual(0, Main()); }

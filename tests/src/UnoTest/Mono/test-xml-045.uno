@@ -13,23 +13,23 @@ namespace Mono.test_xml_045
         [Uno.Testing.Test] public static void test_xml_045() { Main(); }
         public static void Main() {
         }
-    
+
         /// dummy comments
         protected void Create (bool test) {
             Define (true);
         }
-    
+
         private void Define (bool test) {
         }
-    
+
         /// dummy comments
         protected void Undefine (bool test) {
         }
-    
+
         /// dummy comments
         protected void Remove () {
         }
-    
+
         /// dummy comments
         public virtual void Destroy (bool test) {
         }

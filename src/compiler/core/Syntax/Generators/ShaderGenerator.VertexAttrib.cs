@@ -61,7 +61,7 @@ namespace Uno.Compiler.Core.Syntax.Generators
             var name = CreateFieldName(mp, loc);
             var owner = Path.DrawBlock.Method.DeclaringType;
 
-            var field = new Field(src, owner, name, 
+            var field = new Field(src, owner, name,
                 null, Modifiers.Private | Modifiers.Generated, 0, type);
             owner.Fields.Add(field);
 
@@ -185,8 +185,8 @@ namespace Uno.Compiler.Core.Syntax.Generators
 
             int attrIndex = DrawState.VertexAttributes.Count;
 
-            DetectVertexCount(indexBuffer.Value != null 
-                    ? indexBuffer 
+            DetectVertexCount(indexBuffer.Value != null
+                    ? indexBuffer
                     : vertexBuffer);
             ProcessIndexBuffer(s.Source, indexBuffer, indexType);
 

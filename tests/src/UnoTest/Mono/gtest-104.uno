@@ -7,11 +7,11 @@ namespace Mono.gtest_104
             public void Test ()
             { }
             }
-    
+
             class Der : Gen<int>
             {
             }
-    
+
             [Uno.Testing.Test] public static void gtest_104() { Main(); }
         public static void Main()
             {

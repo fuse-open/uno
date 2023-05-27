@@ -7,7 +7,7 @@ namespace Mono.gtest_implicitarray_02
             return "ggtt";
         }
     }
-    
+
     public class Test
     {
         [Uno.Testing.Test] public static void gtest_implicitarray_02() { Uno.Testing.Assert.AreEqual(0, Main()); }

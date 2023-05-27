@@ -2,7 +2,7 @@ namespace Mono.test_xml_009
 {
     // Compiler options: -doc:xml-009.xml
     using Uno;
-    
+
     namespace Testing
     {
         public class Test
@@ -13,12 +13,12 @@ namespace Mono.test_xml_009
                 /// inside method - not allowed.
             }
         }
-    
+
         public class Test2
         {
             /// no target
         }
-    
+
         public class Test3
         {
         }

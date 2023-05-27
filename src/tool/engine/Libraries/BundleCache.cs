@@ -142,7 +142,7 @@ namespace Uno.Build.Libraries
             foreach (var r in project.PackageReferences)
                 result.References.Add(GetBundle(r));
             foreach (var r in project.ProjectReferences)
-                result.References.Add(GetBundle(r.Source, 
+                result.References.Add(GetBundle(r.Source,
                     LoadProject(r.Source, r.GetFullPath(project.RootDirectory))));
 
             // Transpile FuseJS files
@@ -172,7 +172,7 @@ namespace Uno.Build.Libraries
 
                 name = inputFile.ToRelativePath();
                 Log.Verbose("Transpiling " + name);
-                
+
                 string output;
                 if (_transpiler.TryTranspile(name, File.ReadAllText(inputFile), out output))
                 {

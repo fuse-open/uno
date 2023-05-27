@@ -87,7 +87,7 @@ namespace Uno.IO
                 @{
                     uCString destinationFileU8($1);
                     int createFlags = O_WRONLY | O_CREAT;
-                    
+
                     if (!$2)
                         createFlags |= O_EXCL;
 

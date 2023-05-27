@@ -168,8 +168,8 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 default:
                 {
                     foreach (var f in dt.EnumerateFields())
-                        Add(f.IsStatic 
-                                ? hTypes 
+                        Add(f.IsStatic
+                                ? hTypes
                                 : fieldTypes,
                             f.ReturnType);
 

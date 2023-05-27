@@ -1,7 +1,7 @@
 namespace Mono.test_416_mod
 {
     // Compiler options: -t:module
-    
+
     namespace n1
     {
             public class Adder

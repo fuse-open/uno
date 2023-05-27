@@ -67,7 +67,7 @@ namespace Uno.Compiler.Graphics.OpenGL
                     draw.State.OptionalIndices.Buffer));
 
             return draw.State.Terminals.ContainsKey("CullDrawable")
-                ? (Statement)new IfElse(src, ILFactory.CallOperator(src, Essentials.Bool, "!", draw.State.Terminals["CullDrawable"]), scope) 
+                ? (Statement)new IfElse(src, ILFactory.CallOperator(src, Essentials.Bool, "!", draw.State.Terminals["CullDrawable"]), scope)
                 : scope;
         }
 
@@ -134,7 +134,7 @@ namespace Uno.Compiler.Graphics.OpenGL
 
             var result = _bundle.AddProgram(draw.State.Path.DrawBlock, prog);
             _programs.Add(key, result);
-                
+
             if (_dumpShaders)
             {
                 var prefix = Environment.Combine("shaders",

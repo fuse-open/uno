@@ -1,7 +1,7 @@
 namespace Mono.gtest_569
 {
     using Uno;
-    
+
     class C
     {
         [Uno.Testing.Test] public static void gtest_569() { Main(); }
@@ -10,7 +10,7 @@ namespace Mono.gtest_569
             new TreeMap<int> ();
         }
     }
-    
+
     public class TreeMap<T>
     {
         class Entry<U>

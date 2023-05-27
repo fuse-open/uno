@@ -10,11 +10,11 @@ namespace Mono.gtest_084
             }
         }
     }
-    
+
     public interface IHasher<T>
     {
     }
-    
+
     public class ArrayList<U>
     {
         public IHasher<U> GetHasher ()
@@ -22,7 +22,7 @@ namespace Mono.gtest_084
             return HasherBuilder.ByPrototype<U>.Examine();
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_084() { Main(); }

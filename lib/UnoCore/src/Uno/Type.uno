@@ -5,7 +5,7 @@ using Uno.IO;
 namespace System.Reflection
 {
     [DotNetType]
-    extern(DOTNET) 
+    extern(DOTNET)
     public abstract class Assembly
     {
         public virtual extern string Location { get; }
@@ -20,7 +20,7 @@ namespace System.Reflection
     }
 
     [DotNetType]
-    extern(DOTNET) 
+    extern(DOTNET)
     public sealed class AssemblyName
     {
         public virtual extern string Name { get; }

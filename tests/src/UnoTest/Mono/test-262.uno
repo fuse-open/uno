@@ -3,7 +3,7 @@ namespace Mono.test_262
     namespace n1 {
         class Attribute {}
     }
-    
+
     namespace n3 {
         using n1;
         using Uno;

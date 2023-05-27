@@ -91,8 +91,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 }
             }
 
-            if ((baseType != null || interfaces.Count > 0 || parameterizedType.Constructors.Count > 0) && 
-                    parameterizedType.IsGenericParameter && 
+            if ((baseType != null || interfaces.Count > 0 || parameterizedType.Constructors.Count > 0) &&
+                    parameterizedType.IsGenericParameter &&
                     (parameterizedType as GenericParameterType).ConstraintType == 0)
                 (parameterizedType as GenericParameterType).SetConstraintType(GenericConstraintType.Class);
 

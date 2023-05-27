@@ -1,7 +1,7 @@
 namespace Mono.test_350
 {
     using Uno;
-    
+
     public class A
     {
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]
@@ -9,8 +9,8 @@ namespace Mono.test_350
         {
         }
     }
-    
-    
+
+
     [A.B()]
     public class C
     {

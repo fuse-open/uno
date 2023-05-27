@@ -55,7 +55,7 @@ namespace Uno.Compiler.Backends.CIL
         public override bool CanLink(Function f)
         {
             return f.DeclaringType.CanLink ||
-                f.DeclaringType.HasAttribute(Essentials.DotNetTypeAttribute, true) && 
+                f.DeclaringType.HasAttribute(Essentials.DotNetTypeAttribute, true) &&
                     !f.HasAttribute(Essentials.DotNetOverrideAttribute);
         }
 

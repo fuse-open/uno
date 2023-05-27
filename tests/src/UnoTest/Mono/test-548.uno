@@ -1,7 +1,7 @@
 namespace Mono.test_548
 {
     using Uno;
-    
+
     namespace Bugs
     {
         class Bug0
@@ -22,7 +22,7 @@ namespace Mono.test_548
                     return b.value;
                 }
             }
-    
+
             [Uno.Testing.Test] public static void test_548() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
             {

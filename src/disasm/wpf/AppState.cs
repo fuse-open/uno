@@ -9,7 +9,7 @@ namespace Uno.Disasm
 {
     class AppState
     {
-        static readonly string Filename = 
+        static readonly string Filename =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                          "Uno", "disasm-window.json");
 
@@ -44,10 +44,10 @@ namespace Uno.Disasm
         public void UpdateSize()
         {
             _data.Window = new WindowData(
-                (int)_window.Left, 
-                (int)_window.Top, 
-                (int)_window.Width, 
-                (int)_window.Height, 
+                (int)_window.Left,
+                (int)_window.Top,
+                (int)_window.Width,
+                (int)_window.Height,
                 _window.WindowState);
         }
 

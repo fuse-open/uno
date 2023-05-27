@@ -8,10 +8,10 @@ namespace Mono.test_partial_17
                 if (name.StartsWith (partial))
                     return true;
             }
-    
+
             return false;
         }
-    
+
         [Uno.Testing.Test] public static void test_partial_17() { Main(); }
         public static void Main()
         {

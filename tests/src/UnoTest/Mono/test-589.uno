@@ -2,7 +2,7 @@ namespace Mono.test_589
 {
     using Uno;
     using TestNamespace;
-    
+
     namespace TestNamespace
     {
         public class TestClass
@@ -12,18 +12,18 @@ namespace Mono.test_589
             }
         }
     }
-    
+
     class SuperClass
     {
         TestClass tc = null;
-    
+
         public TestClass TestClass
         {
             private get { return tc; }
             set {}
         }
     }
-    
+
     class SubClass : SuperClass
     {
         public SubClass ()
@@ -31,7 +31,7 @@ namespace Mono.test_589
             TestClass.HelloWorld ();
         }
     }
-    
+
     class App
     {
         [Uno.Testing.Test] public static void test_589() { Main(); }

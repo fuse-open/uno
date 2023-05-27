@@ -5,13 +5,13 @@ namespace Mono.test_xml_046
     public interface IExecutable {
         /// <summary />
         void Execute ();
-    
+
         /// <summary />
         object Current {
-            get; 
+            get;
         }
     }
-    
+
     /// <summary>
     /// <see cref="Execute" />
     /// <see cref="Current" />
@@ -20,11 +20,11 @@ namespace Mono.test_xml_046
         [Uno.Testing.Test] public static void test_xml_046() { Main(); }
         public static void Main() {
         }
-    
+
         /// <summary />
         public void Execute () {
         }
-    
+
         /// <summary />
         public object Current {
             get { return null; }

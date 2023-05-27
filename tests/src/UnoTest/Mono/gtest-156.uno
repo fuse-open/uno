@@ -1,7 +1,7 @@
 namespace Mono.gtest_156
 {
     // Compiler options: -r:gtest-156-lib.dll
-    
+
     namespace FLMID.Bugs.Marshal15
     {
         public class D : C

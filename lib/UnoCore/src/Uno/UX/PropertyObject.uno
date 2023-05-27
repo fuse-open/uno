@@ -59,7 +59,7 @@ namespace Uno.UX
                 _simulatedProps = new Dictionary<string, object>();
 
             object oldValue;
-            if (_simulatedProps.TryGetValue(name, out oldValue)) 
+            if (_simulatedProps.TryGetValue(name, out oldValue))
             {
                 if (value == null && oldValue == null) return;
                 if (value != null && oldValue != null && (value == oldValue || value.Equals(oldValue))) return;

@@ -6,22 +6,22 @@ namespace Mono.gtest_121
         {
             return -1;
         }
-    
+
         public void AddRange (object o)
         {
             T obj = (T) o;
             Add (obj);
         }
     }
-    
+
     public interface IA
     {
     }
-    
+
     public class A : IA
     {
     }
-    
+
     public class Test
     {
         [Uno.Testing.Test] public static void gtest_121() { Main(); }
@@ -29,6 +29,6 @@ namespace Mono.gtest_121
         {
             B<IA> aux = new B<IA> ();
             aux.AddRange (new A ());
-        }        
+        }
     }
 }

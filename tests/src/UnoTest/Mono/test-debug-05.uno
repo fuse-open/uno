@@ -10,14 +10,14 @@ namespace Mono.test_debug_05
             int b = 2;
     #line default
         }
-        
+
         void Hidden ()
         {
     #line hidden
             int x = 9;
     #line default // comment testing
             const int o = 2;
-    
+
     #line hidden
             x = 9;
     #line hidden
@@ -25,7 +25,7 @@ namespace Mono.test_debug_05
     #line 55
             int h = 7;
         }
-        
+
         void HiddenRecurse ()
         {
             string s1 = "a";

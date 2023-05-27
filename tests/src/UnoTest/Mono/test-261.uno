@@ -1,12 +1,12 @@
 namespace Mono.test_261
 {
     using Uno;
-    
+
     class T {
             T Me { get { calls ++; return this; } }
         T GetMe () { foo ++; return this; }
             int blah = 0, calls = 0, foo = 0, bar = 0;
-    
+
         static int Test (T t)
         {
                     t.Me.Me.blah ++;
@@ -21,7 +21,7 @@ namespace Mono.test_261
                 return 4;
             return 0;
         }
-    
+
         [Uno.Testing.Test] public static void test_261() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

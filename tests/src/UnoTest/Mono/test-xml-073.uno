@@ -11,7 +11,7 @@ namespace Mono.test_xml_073
         [Uno.Testing.Test] public static void test_xml_073() { Main(); }
         public static void Main()
         {
-    
+
         }
     }
 }

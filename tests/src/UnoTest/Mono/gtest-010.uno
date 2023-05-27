@@ -2,14 +2,14 @@ namespace Mono.gtest_010
 {
     // Type parameters with constraints: check whether we can invoke
     // things on the constrained type.
-    
+
     using Uno;
-    
+
     interface I
     {
         void Hello ();
     }
-    
+
     class J
     {
         public void Foo ()
@@ -17,7 +17,7 @@ namespace Mono.gtest_010
             Console.WriteLine ("Foo!");
         }
     }
-    
+
     class Stack<T>
         where T : J, I
     {
@@ -27,11 +27,11 @@ namespace Mono.gtest_010
             t.Foo ();
         }
     }
-    
+
     class Test
     {
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_010() { Main(); }

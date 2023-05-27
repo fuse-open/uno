@@ -89,13 +89,13 @@ namespace Uno.Compiler.Frontend.Analysis
                             var first = _text[_tokenIndex - 1];
                             if ((char.IsLetter(c) || c == '\\') && (
                                     _tokenIndex == _index ||
-                                    LexerBuilder.IdentifierChars[first] && 
+                                    LexerBuilder.IdentifierChars[first] &&
                                         !LexerBuilder.DecimalChars[first]))
                             {
                                 // Keep scanning
                                 for (c = Read();
                                     (c & Mask) == 0 && LexerBuilder.IdentifierChars[c] ||
-                                        char.IsLetter(c) || 
+                                        char.IsLetter(c) ||
                                         c == '\\';)
                                     c = Read();
 
@@ -442,7 +442,7 @@ namespace Uno.Compiler.Frontend.Analysis
 
         void Done()
         {
-            _tokens.Add(new Token(_file, _text, TokenType.EndOfFile, 
+            _tokens.Add(new Token(_file, _text, TokenType.EndOfFile,
                 _lineNumber, _linePosition + 1, _length, _length));
         }
 

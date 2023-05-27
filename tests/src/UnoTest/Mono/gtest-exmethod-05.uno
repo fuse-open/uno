@@ -10,7 +10,7 @@ namespace Mono.gtest_exmethod_05
             }
         }
     }
-    
+
     namespace A
     {
         public static partial class Test_B
@@ -21,11 +21,11 @@ namespace Mono.gtest_exmethod_05
             }
         }
     }
-    
+
     namespace B
     {
         using A;
-        
+
         public class M
         {
             [Uno.Testing.Test] public static void gtest_exmethod_05() { Main(); }

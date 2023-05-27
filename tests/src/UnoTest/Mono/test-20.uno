@@ -4,42 +4,42 @@ namespace Mono.test_20
     // This generates a warning
     //
     using Uno;
-    
+
     class A {
         public int a;
-    
+
         public void X ()
         {
             a = 1;
         }
     }
-    
+
     class B : A {
         void X ()
         {
             a = 2;
         }
-    
+
         public void TestB ()
         {
             X ();
         }
     }
-    
+
     class Ax {
         public int a;
-    
+
         public virtual void A ()
         {
             a = 1;
         }
-    
+
         public virtual void B ()
         {
             a = 3;
         }
     }
-    
+
     class Bx : Ax {
         public override void A ()
         {
@@ -55,11 +55,11 @@ namespace Mono.test_20
         public static int Main()
         {
             B b = new B ();
-    
+
             b.TestB ();
             if (b.a != 2)
                 return 1;
-    
+
             Bx bx = new Bx ();
             bx.A ();
             if (b.a != 2)

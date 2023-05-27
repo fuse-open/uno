@@ -8,7 +8,7 @@ function uno {
 function h1 {
     str="$@"
     printf "\n\e[92m$str\n"
-    for ((i=1; i<=${#str}; i++)); do 
+    for ((i=1; i<=${#str}; i++)); do
         echo -n -
     done
     printf "\e[39m\n"

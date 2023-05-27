@@ -3,7 +3,7 @@ namespace Mono.gtest_initialize_01
     // Tests object initialization
     using Uno;
     using Uno.Collections;
-    
+
     public class MyClass
     {
         public string Foo = "Bar";
@@ -13,7 +13,7 @@ namespace Mono.gtest_initialize_01
             set { answer = value; }
         }
     }
-    
+
     public class Test
     {
         [Uno.Testing.Test] public static void gtest_initialize_01() { Uno.Testing.Assert.AreEqual(0, Main()); }
@@ -24,7 +24,7 @@ namespace Mono.gtest_initialize_01
                 return 1;
             if (mc.Answer != 42)
                 return 2;
-            
+
             return 0;
         }
     }

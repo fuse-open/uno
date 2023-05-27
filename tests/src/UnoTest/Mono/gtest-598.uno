@@ -1,7 +1,7 @@
 namespace Mono.gtest_598
 {
     using Uno;
-    
+
     public class A
     {
         public virtual T Test<T> (T t)
@@ -9,7 +9,7 @@ namespace Mono.gtest_598
             throw new ApplicationException ();
         }
     }
-    
+
     public class B : A
     {
         public override T Test<T> (T t)
@@ -18,7 +18,7 @@ namespace Mono.gtest_598
             return default (T);
         }
     }
-    
+
     public class C : B
     {
         public override T Test<T> (T t)
@@ -27,8 +27,8 @@ namespace Mono.gtest_598
             return default (T);
         }
     }
-    
-    
+
+
     public class AG<U>
     {
         public virtual T Test<T> (T t, U u)
@@ -36,7 +36,7 @@ namespace Mono.gtest_598
             throw new ApplicationException ();
         }
     }
-    
+
     public class B<UB> : AG<UB>
     {
         public override T Test<T> (T t, UB u)
@@ -45,7 +45,7 @@ namespace Mono.gtest_598
             return default (T);
         }
     }
-    
+
     public class C<UC> : B<UC>
     {
         public override T Test<T> (T t, UC u)
@@ -54,7 +54,7 @@ namespace Mono.gtest_598
             return default (T);
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_598() { Main(); }

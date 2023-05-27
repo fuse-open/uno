@@ -31,7 +31,7 @@ namespace Uno.Compiler.Core.IL.Building.Functions
         public override void End(Function f)
         {
             for (int i = Variables.Count - 1; i >= 0; i--)
-                f.Body.Statements.Insert(0, 
+                f.Body.Statements.Insert(0,
                     new VariableDeclaration(Variables[i]));
         }
 

@@ -105,7 +105,7 @@ namespace Uno.Compiler.Frontend.Preprocessor
                 {
                     throw new SourceException(text.CreateSource(src, 0, ppStart), "Syntax error in " + ppValue.Quote());
                 }
-                else if (ppValue.StartsWith("ifdef ", StringComparison.InvariantCulture) || 
+                else if (ppValue.StartsWith("ifdef ", StringComparison.InvariantCulture) ||
                          ppValue.StartsWith("ifndef ", StringComparison.InvariantCulture))
                 {
                     stack.Add(new TestPart(TestType.If, null, ppStart, ppEnd));

@@ -6,11 +6,11 @@ namespace Uno.Compiler.Backends.UnoDoc.ViewModels
     {
         public DocumentViewModel Entity { get; private set; }
         public TableOfContentsViewModel TableOfContents { get; private set; }
-        
+
         public PageViewModel(DocumentViewModel entity, TableOfContentsViewModel tableOfContents)
         {
             Entity = entity;
-            TableOfContents = tableOfContents;            
+            TableOfContents = tableOfContents;
         }
     }
 }

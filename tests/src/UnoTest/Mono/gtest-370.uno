@@ -11,12 +11,12 @@ namespace Mono.gtest_370
                     public class C<T>
                     {
                     }
-                
+
                     internal C<T> foo;
                 }
             }
         }
-        
+
         class C
         {
             [Uno.Testing.Test] public static void gtest_370() { Main(); }

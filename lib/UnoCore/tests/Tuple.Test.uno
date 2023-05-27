@@ -107,7 +107,7 @@ namespace Uno.Test
 
         [Test]
         public void Tuple4Equality()
-        { 
+        {
             var t1 = Tuple.Create(1, 1, 1, 1);
             Assert.AreEqual(t1, Tuple.Create(1, 1, 1, 1));
             Assert.AreNotEqual(t1, Tuple.Create(2, 1, 1, 1));

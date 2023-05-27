@@ -27,7 +27,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 case AstExpressionType.LookUp:
                     return ResolveLookUp(e as AstCall);
                 case AstExpressionType.BuiltinType:
-                    return new PartialType(e.Source, 
+                    return new PartialType(e.Source,
                         Essentials.BuiltinTypes[(int) ((AstBuiltinType) e).BuiltinType]);
 
                 case AstExpressionType.Parameterizer:

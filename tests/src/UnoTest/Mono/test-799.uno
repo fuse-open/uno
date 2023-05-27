@@ -1,13 +1,13 @@
 namespace Mono.test_799
 {
     using Uno;
-    
+
     public class Test2
     {
         protected internal class Foo
         {
         }
-    
+
         private class Bar
         {
             public Bar (Test2.Foo baseArg4)

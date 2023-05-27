@@ -2,7 +2,7 @@ namespace Mono.test_xml_019
 {
     // Compiler options: -doc:xml-019.xml
     using Uno;
-    
+
     namespace Testing
     {
         public class Test
@@ -11,7 +11,7 @@ namespace Mono.test_xml_019
         public static void Main()
             {
             }
-    
+
             /// <summary>
             /// comment for unary operator
             /// </summary>
@@ -19,7 +19,7 @@ namespace Mono.test_xml_019
             {
                 return false;
             }
-    
+
             /// <summary>
             /// comment for binary operator
             /// </summary>

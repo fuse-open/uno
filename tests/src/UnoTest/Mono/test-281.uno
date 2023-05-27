@@ -7,7 +7,7 @@ namespace Mono.test_281
             public static int World = 8;
         }
     }
-    
+
     namespace Bar
     {
         public class Hello
@@ -15,11 +15,11 @@ namespace Mono.test_281
             public static int World = 9;
         }
     }
-    
+
     namespace Test
     {
         using Foo;
-    
+
         public class Test1
         {
             public static int World ()
@@ -28,11 +28,11 @@ namespace Mono.test_281
             }
         }
     }
-    
+
     namespace Test
     {
         using Bar;
-    
+
         public class Test2
         {
             public static int World ()
@@ -41,7 +41,7 @@ namespace Mono.test_281
             }
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void test_281() { Uno.Testing.Assert.AreEqual(0, Main()); }

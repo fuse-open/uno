@@ -4,7 +4,7 @@ namespace Mono.gtest_604
     {
         public interface IB { }
     }
-    
+
     class E : A<int>.IB, A<string>.IB
     {
         [Uno.Testing.Test] public static void gtest_604() { Main(); }

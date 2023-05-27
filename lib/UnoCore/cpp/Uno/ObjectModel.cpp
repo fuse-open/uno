@@ -411,7 +411,7 @@ static std::string uTypeString(uType* type, bool includeAddress = true)
 
     if (includeAddress)
         sb << " 0x" << type;
-    
+
     return sb.str();
 }
 #endif
@@ -615,7 +615,7 @@ static void uVerifyBuild(uType* type)
     if (type->InterfaceCount)
     {
         struct {
-            bool operator ()(const uInterfaceInfo& a, const uInterfaceInfo& b) 
+            bool operator ()(const uInterfaceInfo& a, const uInterfaceInfo& b)
             {
                 return a.Type < b.Type;
             }
@@ -975,7 +975,7 @@ uString* uString::Utf8(const char* mutf8, size_t length)
 
     char* src = const_cast<char*>(mutf8);
     size_t null_count = 0;
-    
+
     // Check for modified UTF-8
     for (size_t i = 0; i < length - 1; i++)
     {

@@ -2,7 +2,7 @@ namespace Mono.gtest_189
 {
     interface IFoo {}
     class Bar : IFoo {}
-    
+
     class Cont<T> {
       T f;
       public Cont(T x) { f = x; }
@@ -11,7 +11,7 @@ namespace Mono.gtest_189
         return f.ToString ();
       }
     }
-    
+
     class M {
       [Uno.Testing.Test] public static void gtest_189() { Main(); }
         public static void Main()

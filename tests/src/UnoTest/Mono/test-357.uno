@@ -5,7 +5,7 @@ namespace Mono.test_357
             static public void F (bool b) { }
         }
     }
-    
+
     namespace Foo {
         using SD;
         partial class Bar {
@@ -13,7 +13,7 @@ namespace Mono.test_357
             f_t f = new f_t (Sd.F);
         }
     }
-    
+
     namespace Foo {
         partial class Bar
         {

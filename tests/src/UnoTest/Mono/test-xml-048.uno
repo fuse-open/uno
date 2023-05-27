@@ -6,17 +6,17 @@ namespace Mono.test_xml_048
         [Uno.Testing.Test] public static void test_xml_048() { Main(); }
         public static void Main() {
         }
-    
+
         /// <summary />
         public virtual string Level {
             get { return null; }
         }
-    
+
         /// <summary />
         public virtual void Test () {
         }
     }
-    
+
     /// <summary>
     /// <see cref="Level" />
     /// <see cref="Test" />
@@ -26,7 +26,7 @@ namespace Mono.test_xml_048
         public override string Level {
             get { return null; }
         }
-    
+
         /// <summary />
         public override void Test () {
         }

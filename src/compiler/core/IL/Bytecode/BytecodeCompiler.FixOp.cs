@@ -59,8 +59,8 @@ namespace Uno.Compiler.Core.IL.Bytecode
                 case FixOpType.DecreaseBefore:
                     {
                         LoadOne(fo.Operand.ReturnType); // obj value 1
-                        Emit(fo.Operator == FixOpType.IncreaseBefore 
-                                ? Opcodes.Add 
+                        Emit(fo.Operator == FixOpType.IncreaseBefore
+                                ? Opcodes.Add
                                 : Opcodes.Sub);
                         var temp = StoreTemp(fo.Operand.ReturnType, pop); // obj (value+-1)
                         store();

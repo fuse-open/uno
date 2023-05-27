@@ -1,7 +1,7 @@
 namespace Mono.test_852
 {
     // Compiler options: -warnaserror
-    
+
     public class Test
     {
     #pragma warning disable 1634

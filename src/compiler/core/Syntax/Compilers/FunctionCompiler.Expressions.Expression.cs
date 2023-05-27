@@ -157,13 +157,13 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 case AstExpressionType.Extern:
                 {
                     var s = (AstExtern) e;
-                    return new ExternOp(s.Value.Source, 
-                        Compiler.CompileAttributes(Namescope, s.Attributes), 
+                    return new ExternOp(s.Value.Source,
+                        Compiler.CompileAttributes(Namescope, s.Attributes),
                         s.OptionalType != null
                             ? NameResolver.GetType(Namescope, s.OptionalType)
-                            : DataType.Void, 
-                        s.Value.String, 
-                        ExtensionTransform.CreateObject(s.Source, Function, TypeBuilder.Parameterize(Function.DeclaringType)), 
+                            : DataType.Void,
+                        s.Value.String,
+                        ExtensionTransform.CreateObject(s.Source, Function, TypeBuilder.Parameterize(Function.DeclaringType)),
                         s.OptionalArguments != null
                             ? CompileArgumentList(s.OptionalArguments)
                             : ExtensionTransform.CreateArgumentList(s.Source, Function),

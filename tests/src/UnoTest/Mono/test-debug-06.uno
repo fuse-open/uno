@@ -1,14 +1,14 @@
 namespace Mono.test_debug_06
 {
     using Uno;
-    
+
     class Test
     {
         [Uno.Testing.Test] public static void test_debug_06() { Main(); }
         public static void Main()
         {
         }
-    
+
         void TryCatch_1 ()
         {
             try
@@ -18,7 +18,7 @@ namespace Mono.test_debug_06
             {
             }
         }
-        
+
         void TryCatch_2 ()
         {
             try
@@ -29,7 +29,7 @@ namespace Mono.test_debug_06
                 e = null;
             }
         }
-        
+
         void TryCatch_3 ()
         {
             try
@@ -44,7 +44,7 @@ namespace Mono.test_debug_06
                 return;
             }
         }
-        
+
         void TryFinally_1 ()
         {
             try
@@ -54,7 +54,7 @@ namespace Mono.test_debug_06
             {
             }
         }
-    
+
         void TryFinally_2 ()
         {
             try

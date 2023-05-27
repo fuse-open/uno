@@ -36,7 +36,7 @@ namespace Uno.UX.Markup.Reflection
             _c = c;
         }
 
-        
+
         public bool IsOfGenericArgumentType => UnoType.IsGenericParameter;
 
         public bool IsActualDataTypeAvailable => !IsOfGenericArgumentType;
@@ -148,7 +148,7 @@ namespace Uno.UX.Markup.Reflection
             get
             {
                 return
-                    _apf.SetMethod == null ? IdentifierScope.Globals : 
+                    _apf.SetMethod == null ? IdentifierScope.Globals :
                     _apf.SetMethod.Attributes.Any(x => x.Constructor.DeclaringType.GetCachedFullName() == "Uno.UX.UXNameScopeAttribute") ? IdentifierScope.Names :
                     _apf.SetMethod.Attributes.Any(x => x.Constructor.DeclaringType.GetCachedFullName() == "Uno.UX.UXDataScopeAttribute") ? IdentifierScope.Data :
                     IdentifierScope.Globals;
@@ -764,7 +764,7 @@ namespace Uno.UX.Markup.Reflection
 
         public IEnumerable<string> MetaData => null;
 
-        
+
     }
 
     public class CompilerDataTypeProvider : IDataTypeProvider
@@ -887,7 +887,7 @@ namespace Uno.UX.Markup.Reflection
                         }
                         _genericAliasToType.Add(uxType.AutoGenericInfo.Alias, uxType);
                     }
-                        
+
 
                     if (uxType.ValueBindingInfo != null)
                         _valueBindingAliasToType.Add(uxType.ValueBindingInfo.Alias, uxType);

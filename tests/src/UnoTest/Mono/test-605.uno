@@ -7,14 +7,14 @@ namespace Mono.test_605
             get { return null; }
         }
     }
-    
+
     class TestB : TestA
     {
         private string Method
         {
             get { return null; }
         }
-    
+
         [Uno.Testing.Test] public static void test_605() { Main(); }
         public static void Main()
         {

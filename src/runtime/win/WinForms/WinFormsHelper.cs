@@ -19,46 +19,46 @@ namespace Uno.AppLoader.WinForms
 
                 case PointerCursor.Crosshair:
                     return Cursors.Cross;
-                
+
                 case PointerCursor.Pointer:
                     return Cursors.Hand;
-                
+
                 case PointerCursor.Help:
                     return Cursors.Help;
-                
+
                 case PointerCursor.Move:
                     return Cursors.SizeAll;
-                
+
                 case PointerCursor.Wait:
                     return Cursors.WaitCursor;
-                
+
                 case PointerCursor.Progress:
                     return Cursors.AppStarting;
-                
+
                 case PointerCursor.ResizeNorth:
                     return Cursors.PanNorth;
-                
+
                 case PointerCursor.ResizeEast:
                     return Cursors.PanEast;
-                
+
                 case PointerCursor.ResizeSouth:
                     return Cursors.PanSouth;
-                
+
                 case PointerCursor.ResizeWest:
                     return Cursors.PanWest;
-                
+
                 case PointerCursor.ResizeNorthEast:
                     return Cursors.PanNE;
-                
+
                 case PointerCursor.ResizeNorthWest:
                     return Cursors.PanNW;
-                
+
                 case PointerCursor.ResizeSouthEast:
                     return Cursors.PanSE;
-                
+
                 case PointerCursor.ResizeSouthWest:
                     return Cursors.PanSW;
-                
+
                 case PointerCursor.IBeam:
                     return Cursors.IBeam;
             }
@@ -502,13 +502,13 @@ namespace Uno.AppLoader.WinForms
                 case Keys.RShiftKey:
                     result = Key.ShiftKey;
                     return true;
-                
+
                 case Keys.ControlKey:
                 case Keys.LControlKey:
                 case Keys.RControlKey:
                     result = Key.ControlKey;
                     return true;
-                
+
                 case Keys.Menu:
                 case Keys.LMenu:
                 case Keys.RMenu:

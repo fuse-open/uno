@@ -1,13 +1,13 @@
 namespace Mono.test_252
 {
     // testcase from #58290
-    
+
     delegate void Foo ();
     class A {
         public event Foo Bar;
-    
+
         public static void m1 () { }
-     
+
         [Uno.Testing.Test] public static void test_252() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

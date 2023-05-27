@@ -1,7 +1,7 @@
 namespace Mono.test_511
 {
     using Uno;
-    
+
     public class Foo {
         [Uno.Testing.Test] public static void test_511() { Main(new string[0]); }
         public static void Main(string[] args)
@@ -11,7 +11,7 @@ namespace Mono.test_511
             }
             catch {}
         }
-    
+
         static void f ()
         {
             throw new Exception ();

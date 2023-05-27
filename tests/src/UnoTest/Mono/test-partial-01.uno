@@ -1,7 +1,7 @@
 namespace Mono.test_partial_01
 {
     // Compiler options: -langversion:default
-    
+
     namespace Foo
     {
         public class Hello
@@ -9,7 +9,7 @@ namespace Mono.test_partial_01
             public static int World = 8;
         }
     }
-    
+
     namespace Bar
     {
         public class Hello
@@ -17,11 +17,11 @@ namespace Mono.test_partial_01
             public static int World = 9;
         }
     }
-    
+
     namespace X
     {
         using Foo;
-    
+
         public partial class Test
         {
             public static int FooWorld ()
@@ -30,11 +30,11 @@ namespace Mono.test_partial_01
             }
         }
     }
-    
+
     namespace X
     {
         using Bar;
-    
+
         public partial class Test
         {
             public static int BarWorld ()
@@ -43,7 +43,7 @@ namespace Mono.test_partial_01
             }
         }
     }
-    
+
     class Y
     {
         [Uno.Testing.Test] public static void test_partial_01() { Uno.Testing.Assert.AreEqual(0, Main()); }

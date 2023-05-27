@@ -5,7 +5,7 @@ namespace Mono.gtest_178
         T Test<T> ()
             where T : class;
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_178() { Main(); }

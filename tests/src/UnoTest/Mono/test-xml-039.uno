@@ -2,7 +2,7 @@ namespace Mono.test_xml_039
 {
     // Compiler options: -doc:xml-039.xml -warnaserror
     using Uno;
-    
+
     /// <summary>
     /// <see cref="ITest.Start" />
     /// <see cref="ITest.Foo" />
@@ -13,7 +13,7 @@ namespace Mono.test_xml_039
         /// <summary>hogehoge</summary>
         int Foo { get; }
     }
-    
+
     class Test
     {
         [Uno.Testing.Test] public static void test_xml_039() { Main(); }

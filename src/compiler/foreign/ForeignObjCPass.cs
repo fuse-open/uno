@@ -56,7 +56,7 @@ namespace Uno.Compiler.Foreign.ObjC
             Environment.Require(
                 f.DeclaringType,
                 "Source.Include",
-                f.Source, 
+                f.Source,
                 "uObjC.Foreign.h");
 
             _unique = 0;

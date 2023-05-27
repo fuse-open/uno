@@ -46,7 +46,7 @@ namespace Uno.UX.Markup.CodeGeneration
         {
             HashSet<string> _usedNames = new HashSet<string>();
             Dictionary<Node, string> _identifiers = new Dictionary<Node, string>();
-            
+
             public void Add(Node n, string identifier)
             {
                 _usedNames.Add(identifier);
@@ -116,7 +116,7 @@ namespace Uno.UX.Markup.CodeGeneration
 
         bool IsIdentifierUnused(string id)
         {
-            bool unusedLocally = 
+            bool unusedLocally =
                 _templateIdentifiers.Values.All(x => x != id) &&
                 !reservedWords.Contains(id) &&
                 (id != DocumentScope.GeneratedClassName.Surname);
@@ -187,7 +187,7 @@ namespace Uno.UX.Markup.CodeGeneration
                     ps = ps.ParentScope;
                     prefix = prefix + ".__parent";
                 }
-                
+
                 throw new Exception(id + " cannot be accessed from this scope");
             }
 
@@ -199,10 +199,10 @@ namespace Uno.UX.Markup.CodeGeneration
                     !reservedWords.Contains(id) &&
                     (id != DocumentScope.GeneratedClassName.Surname))
                 {
-                    
+
                     if (_identifiers.ContainsNode(n))
                         return _identifiers.Get(n);
-                       
+
                     _identifiers.Add(n, id);
 
                     return id;

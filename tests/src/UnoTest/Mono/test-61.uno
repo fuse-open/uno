@@ -17,22 +17,22 @@ namespace Mono.test_61
                 set = value;
             }
         }
-    
+
         int P2 {
             get { return 0; }
         }
-    
+
         int P3 {
             set {  }
         }
-    
+
         public delegate void MyEvent ();
-        
+
         public event MyEvent XX {
             add { int add = 1; }
             remove { int remove = 1; }
         }
-    
+
         [Uno.Testing.Test] public static void test_61() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

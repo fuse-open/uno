@@ -38,7 +38,7 @@ namespace Uno.Disasm
 
                 _bitmaps.Add(value, bitmap);
             }
-            
+
             return bitmap;
         }
 

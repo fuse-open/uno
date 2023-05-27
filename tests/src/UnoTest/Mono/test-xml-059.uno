@@ -1,9 +1,9 @@
 namespace Mono.test_xml_059
 {
     // Compiler options: -doc:xml-059.xml
-    
+
     using Uno.Collections;
-    
+
     // <see cref="int?" /> - this is invalid 1584/1658
     // <see cref="List" />
     /// <see cref="M:Uno.Web.Services.Protocols.SoapHttpClientProtocol.Invoke2 ( )" />
@@ -21,16 +21,16 @@ namespace Mono.test_xml_059
         public static void Main()
         {
         }
-    
+
         /// hogehoge
         public string Bar;
-    
+
         /// fugafuga
         public void ListBase (string s)
         {
         }
     }
-    
+
     // <see cref="Uno.Nullable&lt;Uno.Int&gt;" /> - cs1658/1574
     /// <see cref="T:Uno.Nullable&lt;Uno.Int&gt;" />
     /// <see cref="T:Uno.Nullable(Uno.Int)" />

@@ -52,7 +52,7 @@ namespace Uno.UX.Markup.UXIL
                     propsProp.Bind(self, pr);
                     propClasses.Add(new UXPropertyClass(pr, self));
                 }
-                    
+
             }
 
             var objs = TryFindBindableProperty(scope.ContainingClass, "Objects");

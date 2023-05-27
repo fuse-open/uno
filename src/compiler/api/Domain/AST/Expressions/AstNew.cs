@@ -17,7 +17,7 @@ namespace Uno.Compiler.API.Domain.AST.Expressions
             OptionalType = type;
             OptionalArguments = args;
         }
-        
+
         public AstNew(Source src, AstExpression type, params AstArgument[] args)
             : base(src)
         {

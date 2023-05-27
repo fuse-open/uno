@@ -434,7 +434,7 @@ namespace Uno.UX.Markup.UXIL
 
         public BindableProperty TryFindBindableProperty(ClassNode currentClass, string name)
         {
-            return BindableProperties.FirstOrDefault(x => x.Facet.Name == name && !(x.Facet is DeclaredUXDependency && x.Facet.DeclaringType == currentClass.BaseType)); 
+            return BindableProperties.FirstOrDefault(x => x.Facet.Name == name && !(x.Facet is DeclaredUXDependency && x.Facet.DeclaringType == currentClass.BaseType));
         }
 
         public FileSourceInfo Source { get; }
@@ -503,7 +503,7 @@ namespace Uno.UX.Markup.UXIL
                     return null;
 
                 var s = this.Parent;
-                
+
                 while (s != null)
                 {
                     if (s is DocumentScope) return (DocumentScope)s;
@@ -567,7 +567,7 @@ namespace Uno.UX.Markup.UXIL
         internal PropertyNode(FileSourceInfo source, string name, IDataType dataType, IEnumerable<RawProperty> rawProperties = null)
             : base(source, name, dataType, InstanceType.None, rawProperties)
         {
-            
+
         }
     }
 

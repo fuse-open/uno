@@ -128,8 +128,8 @@ namespace Uno.Build.Libraries
                 SourceDirectory ?? RootDirectory,
                 CacheDirectory,
                 SourceBundleFlags.Cached | (
-                    IsTransitive 
-                        ? SourceBundleFlags.Transitive 
+                    IsTransitive
+                        ? SourceBundleFlags.Transitive
                         : 0),
                 BuildCondition);
 

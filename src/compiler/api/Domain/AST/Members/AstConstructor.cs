@@ -14,7 +14,7 @@ namespace Uno.Compiler.API.Domain.AST.Members
 
         public override AstMemberType MemberType => AstMemberType.Constructor;
 
-        public AstConstructor(Source src, string comment, IReadOnlyList<AstAttribute> attributes, Modifiers modifiers, string cond, IReadOnlyList<AstParameter> paramList, 
+        public AstConstructor(Source src, string comment, IReadOnlyList<AstAttribute> attributes, Modifiers modifiers, string cond, IReadOnlyList<AstParameter> paramList,
                 AstConstructorCallType callType = 0, IReadOnlyList<AstArgument> callArgs = null, AstScope body = null)
             : base(comment, attributes, modifiers, cond)
         {

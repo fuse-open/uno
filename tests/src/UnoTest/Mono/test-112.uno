@@ -11,7 +11,7 @@ namespace Mono.test_112
             x [1] = 10;
             return x;
         }
-    
+
         [Uno.Testing.Test] public static void test_112() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

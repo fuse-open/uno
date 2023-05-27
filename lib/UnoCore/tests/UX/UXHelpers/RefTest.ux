@@ -11,7 +11,7 @@
 
     <UXHelpers.RefPanel ux:Name="refPanel" depPanel="p1" />
 
-    <!-- Testing specific regression reported as https://github.com/Duckers/Fuse.MaterialDesign/issues/11 
+    <!-- Testing specific regression reported as https://github.com/Duckers/Fuse.MaterialDesign/issues/11
          The introduction of ux:Test accidentially broke ux:Ref, testing that they both work at the same time.
 
          This node shoudl not be added to the parent node.

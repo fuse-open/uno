@@ -8,7 +8,7 @@ namespace Mono.test_916
             {
                 return 0;
             }
-            
+
             [Uno.Testing.Test] public static void test_916() { Main(); }
         public static void Main()
             {
@@ -16,7 +16,7 @@ namespace Mono.test_916
                 {
                     bool bar = false;
                 }
-            } 
+            }
         }
     }
 }

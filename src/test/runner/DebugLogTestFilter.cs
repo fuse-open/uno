@@ -37,7 +37,7 @@ namespace Uno.TestRunner
 
         private void TestLineTerminated()
         {
-            
+
             var line = _currentTestLine.ToString();
             var match = TestChunkRegex.Match(line.Replace("(lldb) ", ""));
             int verifyUriLen;
@@ -45,7 +45,7 @@ namespace Uno.TestRunner
             // The format of each test line from debug log is |<chunk length>|<chunk>|<endchar>
             // Uri got (made up) scheme `unotests://`, and the length is prepended to
             // verify that no characters have been inserted in the middle of the uri,
-            // which unfortunately sometimes happen when using ios-deploy. 
+            // which unfortunately sometimes happen when using ios-deploy.
             if (match.Success &&
                 int.TryParse(match.Groups["len"].Value, out verifyUriLen) &&
                 match.Groups["chunk"].Value.Length == verifyUriLen)

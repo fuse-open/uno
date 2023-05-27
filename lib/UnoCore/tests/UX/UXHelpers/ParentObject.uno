@@ -11,7 +11,7 @@ namespace UXHelpers
         public ParentObject Child { get; set; }
 
         public bool TestWasRun = false;
-        public void RunTest() 
+        public void RunTest()
         {
             TestWasRun = true;
         }

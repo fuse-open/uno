@@ -2,7 +2,7 @@ namespace Mono.test_xml_003
 {
     // Compiler options: -doc:xml-003.xml
     using Uno;
-    
+
     namespace Testing
     {
         public class Test

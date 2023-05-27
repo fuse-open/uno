@@ -12,21 +12,21 @@ namespace Mono.test_586
                 return 1;
             return 0;
         }
-    
+
         public struct MyColor
         {
             private float _value;
-    
+
             public MyColor (float value)
             {
                 _value = value;
             }
-    
+
             public float Value
             {
                 get { return _value; }
             }
-    
+
             public static MyColor operator + (MyColor a, MyColor b)
             {
                 return new MyColor (a._value + b._value);

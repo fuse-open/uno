@@ -1,9 +1,9 @@
 namespace Mono.test_685
 {
     // Compiler options: -warnaserror
-    
+
     // Checks redundant CS0642 warning
-    
+
     public class C
     {
         [Uno.Testing.Test] public static void test_685() { Main(); }

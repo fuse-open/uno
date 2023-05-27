@@ -57,9 +57,9 @@ namespace Uno.UX.Markup.UXIL
 
         public IEnumerable<KeyValuePair<string, List<Node>>> GlobalResources { get; private set; }
 
-        internal Project(string projectName, string generatedPath, 
+        internal Project(string projectName, string generatedPath,
             Dictionary<string, Document> documents,
-            List<ClassNode> rootClasses, 
+            List<ClassNode> rootClasses,
             IEnumerable<UXPropertyAccessorSource> uxPropertyAccessors,
             IEnumerable<UXPropertyClass> uxProperties,
             IEnumerable<KeyValuePair<string, List<Node>>> globalResources)
@@ -323,8 +323,8 @@ namespace Uno.UX.Markup.UXIL
                 if (n is DependencyNode) continue;
                 if (n is PropertyNode) continue;
 
-                foreach (var p in n.Properties.Where(x => 
-                    x.Facet.IsConstructorArgument 
+                foreach (var p in n.Properties.Where(x =>
+                    x.Facet.IsConstructorArgument
                     && x.Facet.DeclaringType == n.DeclaredType
                     && !x.HasValue
                     && !(n is ClassNode && x.Facet is DeclaredUXDependency && ((ClassNode)n).DeclaredDependencies.Any(y => y.Name == x.Facet.Name))))
@@ -407,7 +407,7 @@ namespace Uno.UX.Markup.UXIL
                     stack.Pop();
                     v = grv.ResolvedValue;
                 }
-                 
+
                 p.ResolvedValue = v;
             }
         }
@@ -623,7 +623,7 @@ namespace Uno.UX.Markup.UXIL
                 var atomicAndReferencePropertiesWithValues = Enumerable.Concat<Property>(
                     n.AtomicPropertiesWithValues,
                     n.ReferencePropertiesWithValues);
-                
+
                 foreach (var p in atomicAndReferencePropertiesWithValues.Where(x => x.Facet.UXAuxNameTable != null))
                 {
                     var aux = n.Properties.OfType<ReferenceProperty>().First(x => x.Facet.Name == p.Facet.UXAuxNameTable);
@@ -649,7 +649,7 @@ namespace Uno.UX.Markup.UXIL
                 if (p.Namespace == Configuration.DependencyNamespace)
                 {
                     var depProp = n.TryFindPropertyOrEvent(p.Source, this, "Dependencies") as ListProperty;
-                    
+
                     if (depProp == null)
                     {
                         ReportError(p.Source, "'dep:' namespace only supported on classes that have a 'Dependencies' list property");
@@ -718,7 +718,7 @@ namespace Uno.UX.Markup.UXIL
                     var exp = TransformExpression(eventExp, keyProp, p.Source, n, IdentifierScope.Globals);
 
                     keyProp.Bind(exp);
-                        
+
                     ev.Handler = new EventBinding(binding);
                     continue;
                 }
@@ -940,7 +940,7 @@ namespace Uno.UX.Markup.UXIL
                         }
                     break;
 
-                
+
 
                 default:
                     foreach (var p in parent.BindableProperties.Where(x => x.Facet.AutoBindingType == type))
@@ -954,7 +954,7 @@ namespace Uno.UX.Markup.UXIL
                     break;
             }
 
-            
+
 
             if (child is BoxedValueNode)
             {

@@ -1,12 +1,12 @@
 namespace Mono.gtest_060
 {
     using Uno;
-    
+
     interface IFoo
     {
         MyList<U> Map<U> ();
     }
-    
+
     class MyList<T>
     {
         public void Hello (T t)
@@ -14,7 +14,7 @@ namespace Mono.gtest_060
             Console.WriteLine (t);
         }
     }
-    
+
     class Foo : IFoo
     {
         public MyList<T> Map<T> ()
@@ -22,7 +22,7 @@ namespace Mono.gtest_060
             return new MyList<T> ();
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_060() { Main(); }

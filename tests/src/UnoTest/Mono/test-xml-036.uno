@@ -10,7 +10,7 @@ namespace Mono.test_xml_036
         /// <summary>Maybe</summary>
         Whatever
     }
-    
+
     /// <summary><see cref="Foo.@true" /></summary>
     public abstract class Foo {
         /// <summary>Foo</summary>

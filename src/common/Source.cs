@@ -9,7 +9,7 @@ namespace Uno
 
         public readonly SourceFile File;
         public SourceBundle Bundle => File.Bundle;
-        
+
         public readonly int Line;
         public readonly int Column;
         public readonly int Length;
@@ -21,7 +21,7 @@ namespace Uno
         public int EndOffset => Offset + Length;
         public int EndLine => Line + File.GetNewlineCount(Line, Column, Length);
         public int Part => File.GetPart(Line);
-        
+
         public int EndColumn
         {
             get
@@ -56,7 +56,7 @@ namespace Uno
             return Line > 0 && Column > 0
                     ? File + "(" + Line + "." + Column + ")" :
                 Line > 0
-                    ? File + "(" + Line + ")" 
+                    ? File + "(" + Line + ")"
                     : File.ToString();
         }
     }

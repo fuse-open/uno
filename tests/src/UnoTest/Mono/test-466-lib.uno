@@ -1,7 +1,7 @@
 namespace Mono.test_466
 {
     // Compiler options: -t:library
-    
+
     namespace A
     {
         public class C
@@ -11,7 +11,7 @@ namespace Mono.test_466
             }
         }
     }
-    
+
     namespace A.B
     {
         class C

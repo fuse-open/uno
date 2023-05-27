@@ -56,12 +56,12 @@ namespace Uno.Compiler.Foreign.Java
             SetUp = setup;
 
             Recieve = convert.Type.IsVoid(fm.UnoReturnType)
-                             ? call + ";" 
+                             ? call + ";"
                              : convert.Type.UnoToJniType(fm.UnoReturnType) + " __jresult = " + call + ";";
 
 
             Convert = fm.UnoReturnType.IsVoid
-                        ? "" : "@{" + fm.UnoReturnType.FullName + "} __result = " + convert.Type.CastJniToUno(fm.UnoReturnType, "__jresult", false) + ";"; 
+                        ? "" : "@{" + fm.UnoReturnType.FullName + "} __result = " + convert.Type.CastJniToUno(fm.UnoReturnType, "__jresult", false) + ";";
 
             TearDown = tearDown;
 

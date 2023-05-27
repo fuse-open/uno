@@ -25,11 +25,11 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstBlock(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadIdentifier(), 
-                ReadExpressions(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadIdentifier(),
+                ReadExpressions(),
                 ReadBlockMembers());
         }
 
@@ -37,14 +37,14 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstClass(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                (AstClassType) ReadByte(), 
-                ReadIdentifier(), 
-                ReadExpressions(), 
-                ReadGenericSignature(), 
-                ReadBlockMembers(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                (AstClassType) ReadByte(),
+                ReadIdentifier(),
+                ReadExpressions(),
+                ReadGenericSignature(),
+                ReadBlockMembers(),
                 ReadExpressions());
         }
 
@@ -55,9 +55,9 @@ namespace Uno.Compiler.API.Domain.AST
 
             for (int i = 0; i < len; i++)
                 result[i] = new AstConstraint(
-                    ReadIdentifier(), 
-                    (AstConstraintType) ReadByte(), 
-                    ReadExpressions(), 
+                    ReadIdentifier(),
+                    (AstConstraintType) ReadByte(),
+                    ReadExpressions(),
                     ReadSource());
 
             return result;
@@ -67,12 +67,12 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstDelegate(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
                 ReadExpression(),
                 ReadIdentifier(),
-                ReadParameters(), 
+                ReadParameters(),
                 ReadGenericSignature());
         }
 
@@ -80,11 +80,11 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstEnum(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadIdentifier(), 
-                ReadExpression(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadIdentifier(),
+                ReadExpression(),
                 ReadLiterals());
         }
 
@@ -94,9 +94,9 @@ namespace Uno.Compiler.API.Domain.AST
             var literals = new AstLiteral[len];
             for (var i = 0; i < len; i++)
                 literals[i] = new AstLiteral(
-                    ReadGlobalString(), 
-                    ReadAttributes(), 
-                    ReadIdentifier(), 
+                    ReadGlobalString(),
+                    ReadAttributes(),
+                    ReadIdentifier(),
                     ReadExpression());
             return literals;
         }
@@ -106,7 +106,7 @@ namespace Uno.Compiler.API.Domain.AST
             var parameters = ReadIdentifiers();
             return parameters == null
                 ? null
-                : new AstGenericSignature(parameters, 
+                : new AstGenericSignature(parameters,
                     ReadConstraints());
         }
 
@@ -145,16 +145,16 @@ namespace Uno.Compiler.API.Domain.AST
         public AstUsingDirective ReadUsingDirective()
         {
             return new AstUsingDirective(
-                ReadExpression(), 
-                (AstIdentifier) ReadExpression(), 
+                ReadExpression(),
+                (AstIdentifier) ReadExpression(),
                 ReadBoolean());
         }
 
         public AstNode ReadNode()
         {
             return new AstNode(
-                (AstNodeType) ReadByte(), 
-                ReadIdentifier(), 
+                (AstNodeType) ReadByte(),
+                ReadIdentifier(),
                 ReadBlockMembers());
         }
 
@@ -173,15 +173,15 @@ namespace Uno.Compiler.API.Domain.AST
             var src = ReadSource();
             return src == null
                 ? null
-                : new AstAccessor(src, 
-                    ReadModifiers(out cond), cond, 
+                : new AstAccessor(src,
+                    ReadModifiers(out cond), cond,
                     (AstScope) ReadStatement());
         }
 
         public AstApply ReadApply()
         {
             return new AstApply(
-                (ApplyModifier) ReadByte(), 
+                (ApplyModifier) ReadByte(),
                 ReadExpression());
         }
 
@@ -196,8 +196,8 @@ namespace Uno.Compiler.API.Domain.AST
             }
 
             return new AstAttribute(
-                cond, modifier, 
-                ReadExpression(), 
+                cond, modifier,
+                ReadExpression(),
                 ReadArguments());
         }
 
@@ -268,13 +268,13 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstConstructor(
-                ReadSource(), 
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadParameters(), 
-                (AstConstructorCallType) ReadByte(), 
-                ReadArguments(), 
+                ReadSource(),
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadParameters(),
+                (AstConstructorCallType) ReadByte(),
+                ReadArguments(),
                 (AstScope) ReadStatement());
         }
 
@@ -282,11 +282,11 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstConverter(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadExpression(), 
-                ReadParameters(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadExpression(),
+                ReadParameters(),
                 (AstScope) ReadStatement());
         }
 
@@ -294,13 +294,13 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstEvent(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadExpression(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
-                ReadAccessor(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadExpression(),
+                ReadExpression(),
+                ReadIdentifier(),
+                ReadAccessor(),
                 ReadAccessor());
         }
 
@@ -308,12 +308,12 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstField(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                (FieldModifiers) ReadByte(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                (FieldModifiers) ReadByte(),
+                ReadExpression(),
+                ReadIdentifier(),
                 ReadExpression());
         }
 
@@ -321,11 +321,11 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstFinalizer(
-                ReadSource(), 
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadParameters(), 
+                ReadSource(),
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadParameters(),
                 (AstScope) ReadStatement());
         }
 
@@ -333,23 +333,23 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstIndexer(
-                ReadSource(), 
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadExpression(), 
-                ReadExpression(), 
-                ReadParameters(), 
-                ReadAccessor(), 
+                ReadSource(),
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadExpression(),
+                ReadExpression(),
+                ReadParameters(),
+                ReadAccessor(),
                 ReadAccessor());
         }
 
         public AstMetaProperty ReadMetaProperty()
         {
             return new AstMetaProperty(
-                (MetaVisibility) ReadByte(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
+                (MetaVisibility) ReadByte(),
+                ReadExpression(),
+                ReadIdentifier(),
                 ReadMetaPropertyDefinitions());
         }
 
@@ -359,8 +359,8 @@ namespace Uno.Compiler.API.Domain.AST
             var result = new AstMetaPropertyDefinition[len];
             for (var i = 0; i < len; i++)
                 result[i] = new AstMetaPropertyDefinition(
-                    ReadStatement(), 
-                    ReadGlobalStrings(), 
+                    ReadStatement(),
+                    ReadGlobalStrings(),
                     ReadReqStatements());
             return result;
         }
@@ -369,14 +369,14 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstMethod(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadExpression(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
-                ReadParameters(), 
-                ReadGenericSignature(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadExpression(),
+                ReadExpression(),
+                ReadIdentifier(),
+                ReadParameters(),
+                ReadGenericSignature(),
                 (AstScope) ReadStatement());
         }
 
@@ -384,13 +384,13 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstOperator(
-                ReadSource(), 
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadExpression(), 
-                (OperatorType) ReadByte(), 
-                ReadParameters(), 
+                ReadSource(),
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadExpression(),
+                (OperatorType) ReadByte(),
+                ReadParameters(),
                 (AstScope) ReadStatement());
         }
 
@@ -398,9 +398,9 @@ namespace Uno.Compiler.API.Domain.AST
         {
             return new AstParameter(
                 ReadAttributes(),
-                (ParameterModifier) ReadByte(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
+                (ParameterModifier) ReadByte(),
+                ReadExpression(),
+                ReadIdentifier(),
                 ReadExpression());
         }
 
@@ -419,13 +419,13 @@ namespace Uno.Compiler.API.Domain.AST
         {
             string cond;
             return new AstProperty(
-                ReadGlobalString(), 
-                ReadAttributes(), 
-                ReadModifiers(out cond), cond, 
-                ReadExpression(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
-                ReadAccessor(), 
+                ReadGlobalString(),
+                ReadAttributes(),
+                ReadModifiers(out cond), cond,
+                ReadExpression(),
+                ReadExpression(),
+                ReadIdentifier(),
+                ReadAccessor(),
                 ReadAccessor());
         }
 
@@ -435,10 +435,10 @@ namespace Uno.Compiler.API.Domain.AST
             var result = new AstReqStatement[len];
             for (int i = 0; i < len; i++)
                 result[i] = new AstReqStatement(
-                    ReadSource(), 
-                    (uint) Read7BitEncodedInt(), 
-                    ReadIdentifier(), 
-                    ReadExpression(), 
+                    ReadSource(),
+                    (uint) Read7BitEncodedInt(),
+                    ReadIdentifier(),
+                    ReadExpression(),
                     ReadGlobalString());
             return result;
         }
@@ -462,7 +462,7 @@ namespace Uno.Compiler.API.Domain.AST
                     return ReadModifiedStatement(type);
                 case AstStatementType.While:
                 case AstStatementType.DoWhile:
-                    return ReadLoop(type);    
+                    return ReadLoop(type);
                 case AstStatementType.Break:
                 case AstStatementType.BuildError:
                 case AstStatementType.BuildWarning:
@@ -484,8 +484,8 @@ namespace Uno.Compiler.API.Domain.AST
                     return ReadVariableDeclaration();
                 case AstStatementType.FixedArrayDeclaration:
                     return new AstFixedArrayDeclaration(
-                        (AstFixedArray) ReadExpression(), 
-                        ReadIdentifier(), 
+                        (AstFixedArray) ReadExpression(),
+                        ReadIdentifier(),
                         ReadExpression());
                 case AstStatementType.Scope:
                     return ReadScope();
@@ -651,15 +651,15 @@ namespace Uno.Compiler.API.Domain.AST
         public AstCatch ReadCatch()
         {
             return new AstCatch(
-                ReadExpression(), 
-                ReadIdentifier(), 
+                ReadExpression(),
+                ReadIdentifier(),
                 ReadScope());
         }
 
         public AstDraw ReadDraw()
         {
             return new AstDraw(
-                ReadSource(), 
+                ReadSource(),
                 ReadBlockMembers());
         }
 
@@ -681,60 +681,60 @@ namespace Uno.Compiler.API.Domain.AST
         public AstFor ReadFor()
         {
             return new AstFor(
-                ReadSource(), 
+                ReadSource(),
                 ReadStatement(),
-                ReadExpression(), 
-                ReadExpression(), 
+                ReadExpression(),
+                ReadExpression(),
                 ReadStatement());
         }
 
         public AstForeach ReadForeach()
         {
             return new AstForeach(
-                ReadSource(), 
-                ReadExpression(), 
-                ReadIdentifier(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
+                ReadIdentifier(),
+                ReadExpression(),
                 ReadStatement());
         }
 
         public AstIfElse ReadIfElse()
         {
             return new AstIfElse(
-                ReadSource(), 
-                ReadExpression(), 
-                ReadStatement(), 
+                ReadSource(),
+                ReadExpression(),
+                ReadStatement(),
                 ReadStatement());
         }
 
         public AstLock ReadLock()
         {
             return new AstLock(
-                ReadSource(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
                 ReadStatement());
         }
 
         public AstLoop ReadLoop(AstStatementType type)
         {
             return new AstLoop(
-                ReadSource(), 
-                (AstLoopType) type, 
-                ReadExpression(), 
+                ReadSource(),
+                (AstLoopType) type,
+                ReadExpression(),
                 ReadStatement());
         }
 
         public AstModifiedStatement ReadModifiedStatement(AstStatementType type)
         {
             return new AstModifiedStatement(
-                ReadSource(), (AstStatementModifier) type, 
+                ReadSource(), (AstStatementModifier) type,
                 ReadStatement());
         }
 
         public AstScope ReadScope()
         {
             return new AstScope(
-                ReadSource(), 
+                ReadSource(),
                 ReadStatements());
         }
 
@@ -752,8 +752,8 @@ namespace Uno.Compiler.API.Domain.AST
         public AstSwitch ReadSwitch()
         {
             return new AstSwitch(
-                ReadSource(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
                 ReadSwitchCases());
         }
 
@@ -779,9 +779,9 @@ namespace Uno.Compiler.API.Domain.AST
         public AstTryCatchFinally ReadTryCatchFinally()
         {
             return new AstTryCatchFinally(
-                ReadSource(), 
-                ReadScope(), 
-                (AstScope) ReadStatement(), 
+                ReadSource(),
+                ReadScope(),
+                (AstScope) ReadStatement(),
                 ReadCatchBlocks());
         }
 
@@ -797,7 +797,7 @@ namespace Uno.Compiler.API.Domain.AST
         public AstUsing ReadUsing()
         {
             return new AstUsing(
-                ReadSource(), 
+                ReadSource(),
                 ReadStatement(),
                 ReadStatement());
         }
@@ -805,8 +805,8 @@ namespace Uno.Compiler.API.Domain.AST
         public AstValueStatement ReadValueStatement(AstStatementType type)
         {
             return new AstValueStatement(
-                ReadSource(), 
-                (AstValueStatementType) type, 
+                ReadSource(),
+                (AstValueStatementType) type,
                 ReadExpression());
         }
 
@@ -820,7 +820,7 @@ namespace Uno.Compiler.API.Domain.AST
                     ReadIdentifier(),
                     ReadExpression());
             return new AstVariableDeclaration(
-                (AstVariableModifier) flags & AstVariableModifier.Mask, 
+                (AstVariableModifier) flags & AstVariableModifier.Mask,
                 type, vars);
         }
 
@@ -833,8 +833,8 @@ namespace Uno.Compiler.API.Domain.AST
             var result = new AstArgument[len];
             for (int i = 0; i < len; i++)
                 result[i] = new AstArgument(
-                    (AstIdentifier) ReadExpression(), 
-                    (ParameterModifier) ReadByte(), 
+                    (AstIdentifier) ReadExpression(),
+                    (ParameterModifier) ReadByte(),
                     ReadExpression());
             return result;
         }
@@ -842,7 +842,7 @@ namespace Uno.Compiler.API.Domain.AST
         public AstArrayInitializer ReadArrayInitializer()
         {
             return new AstArrayInitializer(
-                ReadSource(), 
+                ReadSource(),
                 ReadExpressions());
         }
 
@@ -856,7 +856,7 @@ namespace Uno.Compiler.API.Domain.AST
 
         public AstCall ReadCall(AstCallType type)
         {
-            return new AstCall(type, 
+            return new AstCall(type,
                 ReadExpression(),
                 ReadArguments());
         }
@@ -864,14 +864,14 @@ namespace Uno.Compiler.API.Domain.AST
         public AstCast ReadCast()
         {
             return new AstCast(
-                ReadExpression(), 
+                ReadExpression(),
                 ReadExpression());
         }
 
         public AstDefined ReadDefined()
         {
             return new AstDefined(
-                ReadSource(), 
+                ReadSource(),
                 ReadGlobalString());
         }
 
@@ -890,9 +890,9 @@ namespace Uno.Compiler.API.Domain.AST
         public AstExtern ReadExtern()
         {
             return new AstExtern(
-                ReadSource(), 
+                ReadSource(),
                 ReadAttributes(),
-                ReadExpression(), 
+                ReadExpression(),
                 ReadArguments(),
                 ReadGlobalValue());
         }
@@ -900,31 +900,31 @@ namespace Uno.Compiler.API.Domain.AST
         public AstFixedArray ReadFixedArray()
         {
             return new AstFixedArray(
-                ReadSource(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
                 ReadExpression());
         }
 
         public AstFixedArrayInitializer ReadFixedArrayInitializer()
         {
             return new AstFixedArrayInitializer(
-                ReadSource(), 
-                ReadExpression(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
+                ReadExpression(),
                 ReadExpressions());
         }
 
         public AstGeneric ReadGeneric()
         {
             return new AstGeneric(
-                ReadExpression(), 
+                ReadExpression(),
                 Read7BitEncodedInt());
         }
 
         public AstIdentifier ReadIdentifier()
         {
             return new AstIdentifier(
-                ReadSource(), 
+                ReadSource(),
                 ReadGlobalString());
         }
 
@@ -942,8 +942,8 @@ namespace Uno.Compiler.API.Domain.AST
         public AstImport ReadImport()
         {
             return new AstImport(
-                ReadSource(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
                 ReadArguments());
         }
 
@@ -964,54 +964,54 @@ namespace Uno.Compiler.API.Domain.AST
         public AstMacro ReadMacro()
         {
             return new AstMacro(
-                ReadSource(), 
+                ReadSource(),
                 ReadGlobalString());
         }
 
         public AstMember ReadMember()
         {
             return new AstMember(
-                ReadExpression(), 
+                ReadExpression(),
                 ReadIdentifier());
         }
 
         public AstNew ReadNew()
         {
             return new AstNew(
-                ReadSource(), 
-                ReadExpression(), 
-                ReadExpression(), 
-                ReadArguments(), 
+                ReadSource(),
+                ReadExpression(),
+                ReadExpression(),
+                ReadArguments(),
                 ReadExpressions());
         }
 
         public AstParameterizer ReadParameterizer()
         {
             return new AstParameterizer(
-                ReadExpression(), 
+                ReadExpression(),
                 ReadExpressions());
         }
 
         public AstParameterList ReadParameterList()
         {
             return new AstParameterList(
-                ReadSource(), 
+                ReadSource(),
                 ReadParameters());
         }
 
         public AstPixelSampler ReadPixelSampler()
         {
             return new AstPixelSampler(
-                ReadSource(), 
-                ReadExpression(), 
+                ReadSource(),
+                ReadExpression(),
                 ReadExpression());
         }
 
         public AstPrev ReadPrev()
         {
             return new AstPrev(
-                ReadSource(), 
-                (uint) Read7BitEncodedInt(), 
+                ReadSource(),
+                (uint) Read7BitEncodedInt(),
                 (AstIdentifier) ReadExpression());
         }
 
@@ -1026,21 +1026,21 @@ namespace Uno.Compiler.API.Domain.AST
             return new AstTernary(
                 ReadExpression(),
                 ReadSource(),
-                ReadExpression(), 
+                ReadExpression(),
                 ReadExpression());
         }
 
         public AstBuiltinType ReadBuiltinType()
         {
             return new AstBuiltinType(
-                ReadSource(), 
+                ReadSource(),
                 (BuiltinType) ReadByte());
         }
 
         public AstUnary ReadUnary(AstUnaryType type)
         {
             return new AstUnary(
-                ReadSource(), type, 
+                ReadSource(), type,
                 ReadExpression());
         }
 
@@ -1057,8 +1057,8 @@ namespace Uno.Compiler.API.Domain.AST
             bool flag;
             return new AstVertexAttribImplicit(
                 ReadSource(out flag),
-                ReadExpression(), 
-                ReadExpression(), 
+                ReadExpression(),
+                ReadExpression(),
                 flag);
         }
     }

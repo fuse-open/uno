@@ -5,9 +5,9 @@ namespace Mono.test_274
             {
             }
     }
-    
+
     public class ChildClass : MyClass {}
-        
+
     public class M
     {
         [Uno.Testing.Test] public static void test_274() { Main(); }

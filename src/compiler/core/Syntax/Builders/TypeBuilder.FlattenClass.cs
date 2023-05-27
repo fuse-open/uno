@@ -94,10 +94,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
             }
 
             result = new AstClass(
-                comment, attributes, modifiers, null, 
+                comment, attributes, modifiers, null,
                 astClass.Type, astClass.Name, baseTypes,
-                astClass.OptionalGeneric != null 
-                    ? new AstGenericSignature(genericParameters, genericConstraints) 
+                astClass.OptionalGeneric != null
+                    ? new AstGenericSignature(genericParameters, genericConstraints)
                     : null,
                 items, swizzlerTypes);
 

@@ -14,7 +14,7 @@ namespace Mono.gtest_partial_08
                     }
                 }
             }
-    
+
             public partial class D2<U>
             {
                 public class C2 : D2<int>
@@ -26,31 +26,31 @@ namespace Mono.gtest_partial_08
                 }
             }
         }
-    
+
         public partial class A<T1, T2>
         {
             public partial class D : X
             {
             }
-    
+
             public partial class D2<U> : X2<U>
             {
             }
         }
-    
+
         public class X2<W>
         {
             public void Foo (W arg)
             {
             }
         }
-    
+
         public class X
         {
             public void Foo ()
             {
             }
-    
+
             [Uno.Testing.Test] public static void gtest_partial_08() { Main(); }
         public static void Main()
             {

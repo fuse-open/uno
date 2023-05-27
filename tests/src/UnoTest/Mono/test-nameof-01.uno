@@ -9,7 +9,7 @@ namespace Mono.test_nameof_01
             Console.WriteLine (s);
             if (s != "X")
                 return 1;
-    
+
             return 0;
         }
     }

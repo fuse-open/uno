@@ -1,7 +1,7 @@
 namespace Mono.gtest_423
 {
     using Uno;
-    
+
     namespace MonoTest
     {
         public class A<TA>
@@ -11,7 +11,7 @@ namespace Mono.gtest_423
                 static void foo ()
                 {
                 }
-    
+
                 class C
                 {
                     static void bar ()
@@ -23,7 +23,7 @@ namespace Mono.gtest_423
                 }
             }
         }
-    
+
         class Program
         {
             [Uno.Testing.Test] public static void gtest_423() { Main(); }

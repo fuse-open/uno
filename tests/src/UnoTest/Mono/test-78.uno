@@ -6,42 +6,42 @@ namespace Mono.test_78
     // hence implicit and explicit casts were not working when
     // they were going from a type to an enum
     //
-    
+
     namespace N1
-    {    
+    {
         public enum A
         {
             A_1, A_2, A_3
         }
-    
+
         public class B
         {
             static bool ShortCasting ()
             {
                 short i = 0;
                 N1.A a = N1.A.A_1;
-    
+
                 i = (short) a;    //<- crash
                 a = (N1.A)i;//<- used to fail, can't convert
-    
+
                 if (a != N1.A.A_1)
                     return false;
                 return true;
             }
-    
+
             static bool IntCasting ()
             {
                 int i = 0;
                 N1.A a = N1.A.A_1;
-    
+
                 i = (int) a;//<- works fine
                 a = (N1.A)i;//<- used to fail, can't convert
-    
+
                 if (a != N1.A.A_1)
                     return false;
                 return true;
             }
-        
+
             [Uno.Testing.Test] public static void test_78() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
             {
@@ -51,7 +51,7 @@ namespace Mono.test_78
                     return 2;
                 return 0;
             }
-    
+
         }
     }
 }

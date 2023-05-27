@@ -4,7 +4,7 @@ namespace Mono.test_452
     {
             static public Foo x;
     }
-    
+
     class Test
     {
             [Uno.Testing.Test] public static void test_452() { Main(); }

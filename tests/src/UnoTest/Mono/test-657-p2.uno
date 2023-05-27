@@ -1,9 +1,9 @@
 namespace Mono.test_657_p2
 {
     #define DEBUG
-    
+
     using Uno;
-    
+
     namespace TestDebug
     {
         class C

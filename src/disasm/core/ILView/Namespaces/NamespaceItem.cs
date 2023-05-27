@@ -22,7 +22,7 @@ namespace Uno.Disasm.ILView.Namespaces
             {
                 var typeItem = child as TypeItem;
                 if (typeItem != null && (
-                        !publicOnly || 
+                        !publicOnly ||
                         typeItem.Type.IsPublic && !typeItem.Type.IsGenerated
                     ))
                     disasm.AppendType(typeItem.Type, true);

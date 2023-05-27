@@ -23,7 +23,7 @@ namespace Uno.CLI.Building
             Log.Skip();
             WriteLine("When a directory is given, uno test searches recursively in that directory");
             WriteLine("for projects named '*Test.unoproj'");
-            
+
             WriteHead("Examples");
             WriteLine("  uno test");
             WriteLine("  uno test path/projects");

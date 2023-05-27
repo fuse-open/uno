@@ -31,7 +31,7 @@ namespace Uno.Compiler.API.Domain.IL.Members
 
         public Method CreateGetMethod(Source src, Modifiers modifiers, Scope optionalBody = null)
         {
-            return GetMethod = new Method(src, this, DocComment, modifiers, 
+            return GetMethod = new Method(src, this, DocComment, modifiers,
                 "get_" + UnoName, ReturnType, Parameters, optionalBody);
         }
 

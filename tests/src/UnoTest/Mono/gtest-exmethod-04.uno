@@ -1,7 +1,7 @@
 namespace Mono.gtest_exmethod_04
 {
     // Compiler options: -r:gtest-exmethod-04-lib.dll
-    
+
     namespace A
     {
         public static class Test
@@ -12,11 +12,11 @@ namespace Mono.gtest_exmethod_04
             }
         }
     }
-    
+
     namespace B
     {
         using A;
-        
+
         public class M
         {
             [Uno.Testing.Test] public static void gtest_exmethod_04() { Main(); }

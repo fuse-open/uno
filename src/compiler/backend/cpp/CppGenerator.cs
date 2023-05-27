@@ -622,7 +622,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     var obj = f.GenericType != null
                             ? "type->MethodTypes[" + _backend.GetType(f.GenericType).MethodIndex + "]"
                             : "type";
-                
+
                     _cpp.EndLine(",");
                     _cpp.BeginLine("new uFunction(" + f.Prototype.NameAndSuffix.ToLiteral() +
                                    ", " + (
@@ -940,7 +940,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
             var master = decl.MasterDefinition;
 
-            if (!impl.DeclaringType.IsStruct || 
+            if (!impl.DeclaringType.IsStruct ||
                 !master.CompareParameters(impl) ||
                 master.ReturnType != impl.ReturnType)
             {
@@ -961,7 +961,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             _cpp.EndLine(
                 _backend.GetFunctionPointer(impl, parent,
                     impl.DeclaringType.IsStruct
-                        ? "_ex" 
+                        ? "_ex"
                         : "_fn"
                     ) + ";");
         }
