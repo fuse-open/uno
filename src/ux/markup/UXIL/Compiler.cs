@@ -645,31 +645,31 @@ namespace Uno.UX.Markup.UXIL
         {
             foreach (var p in e.Properties)
             {
-				// Deal with properties in `dep:` xmlns
-				if (p.Namespace == Configuration.DependencyNamespace)
-				{
-					var depProp = n.TryFindPropertyOrEvent(p.Source, this, "Dependencies") as ListProperty;
-					
-					if (depProp == null)
-					{
-						ReportError(p.Source, "'dep:' namespace only supported on classes that have a 'Dependencies' list property");
-						continue;
-					}
+                // Deal with properties in `dep:` xmlns
+                if (p.Namespace == Configuration.DependencyNamespace)
+                {
+                    var depProp = n.TryFindPropertyOrEvent(p.Source, this, "Dependencies") as ListProperty;
+                    
+                    if (depProp == null)
+                    {
+                        ReportError(p.Source, "'dep:' namespace only supported on classes that have a 'Dependencies' list property");
+                        continue;
+                    }
 
-					var exp = p.Value;
-					var ex = Expressions.Parser.Parse(new Uno.Compiler.SourceFile(n.Source.FileName, exp, n.Source.LineNumber), exp, false);
-					var eo = TransformExpression(ex, depProp, n.Source, n, IdentifierScope.Globals, false);
+                    var exp = p.Value;
+                    var ex = Expressions.Parser.Parse(new Uno.Compiler.SourceFile(n.Source.FileName, exp, n.Source.LineNumber), exp, false);
+                    var eo = TransformExpression(ex, depProp, n.Source, n, IdentifierScope.Globals, false);
 
-					var namedExp = new NewObjectNode(n.Source, null, depProp.BindableType, InstanceType.Local);
-					namedExp.CreateMembers();
-					n.AddChild(namedExp);
+                    var namedExp = new NewObjectNode(n.Source, null, depProp.BindableType, InstanceType.Local);
+                    namedExp.CreateMembers();
+                    n.AddChild(namedExp);
 
-					namedExp.AtomicProperties.First(x => x.Facet.Name == "Name").Value = new String(p.Name, n.Source);
-					namedExp.Properties.OfType<ReferenceProperty>().First(x => x.Facet.Name == "Expression").Bind(eo);
+                    namedExp.AtomicProperties.First(x => x.Facet.Name == "Name").Value = new String(p.Name, n.Source);
+                    namedExp.Properties.OfType<ReferenceProperty>().First(x => x.Facet.Name == "Expression").Bind(eo);
 
-					depProp.Bind(namedExp);
-					continue;
-				}
+                    depProp.Bind(namedExp);
+                    continue;
+                }
 
                 var prop = n.TryFindPropertyOrEvent(p.Source, this, p.Name);
 
@@ -1059,15 +1059,15 @@ namespace Uno.UX.Markup.UXIL
                     node = new PropertyNode(e.Source, e.UXName, ResolveType(e), rawProperties);
                     parent.ContainingClass.RegisterUXProperty((PropertyNode)node);
                 }
-				else if (e.ElementType == AST.ElementType.Dependency)
-				{
-					node = new DependencyNode(e.Source, e.UXName, ResolveType(e), rawProperties);
+                else if (e.ElementType == AST.ElementType.Dependency)
+                {
+                    node = new DependencyNode(e.Source, e.UXName, ResolveType(e), rawProperties);
 
                     if (!(parent is ClassNode))
                         ReportError(e.Source, "ux:Dependency can only be used in nodes marked ux:Class");
 
-					parent.ContainingClass.RegisterDependency((DependencyNode)node);
-				}
+                    parent.ContainingClass.RegisterDependency((DependencyNode)node);
+                }
                 else if (_innerClasses.ContainsKey(e))
                 {
                     node = _innerClasses[e];
@@ -1177,7 +1177,7 @@ namespace Uno.UX.Markup.UXIL
                     name = ((AST.GlobalInstanceGenerator)ig).Name ?? name;
                 }
 
-				if (generator is AST.TemplateGenerator)
+                if (generator is AST.TemplateGenerator)
                 {
                     var fg = (AST.TemplateGenerator)generator;
                     return new UXIL.TemplateNode(e.Source, name, fg.Case, fg.IsDefaultCase, dt, TemplateType, new TypeNameHelper(fg.ClassName), clearColor, instanceType, rawProperties);

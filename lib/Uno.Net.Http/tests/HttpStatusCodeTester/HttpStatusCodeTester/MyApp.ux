@@ -1,8 +1,8 @@
 <App ux:Class="MyApp">
-	<DockPanel>
-		<TopFrameBackground DockPanel.Dock="Top" />
-		<DataGrid DockPanel.Dock="Fill">
-			<HttpStatusCodeTester.StatusCodeTester />
-		</DataGrid>
-	</DockPanel>
+    <DockPanel>
+        <TopFrameBackground DockPanel.Dock="Top" />
+        <DataGrid DockPanel.Dock="Fill">
+            <HttpStatusCodeTester.StatusCodeTester />
+        </DataGrid>
+    </DockPanel>
 </App>

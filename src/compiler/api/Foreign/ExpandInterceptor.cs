@@ -8,7 +8,7 @@ namespace Uno.Compiler.API
         readonly Func<string, object, string> _interceptParam;
         readonly Func<string, object, string> _interceptReturn;
 
-		public ExpandInterceptor(Func<string,string,object,Macros.MacroCall,string> interceptEntity = null,
+        public ExpandInterceptor(Func<string,string,object,Macros.MacroCall,string> interceptEntity = null,
             Func<string, object, string> interceptParam = null,
             Func<string, object, string> interceptReturn = null)
         {
@@ -17,7 +17,7 @@ namespace Uno.Compiler.API
             _interceptReturn = interceptReturn;
         }
 
-		public string InterceptEntity(string macroText, string expansionResult, object context, Macros.MacroCall macroCall)
+        public string InterceptEntity(string macroText, string expansionResult, object context, Macros.MacroCall macroCall)
         {
             if (_interceptEntity != null)
                 return _interceptEntity(macroText, expansionResult, context, macroCall);

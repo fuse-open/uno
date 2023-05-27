@@ -23,7 +23,7 @@ namespace Uno.UX
 
     public abstract class Property: PropertyAccessor
     {
-		/** This may be backed by a WeakPointer or otherwise freed during cleanup. */
+        /** This may be backed by a WeakPointer or otherwise freed during cleanup. */
         public abstract PropertyObject Object { get; }
 
         readonly Selector _name;
@@ -41,10 +41,10 @@ namespace Uno.UX
 
         public void RemoveListener(IPropertyListener listener)
         {
-			var obj = Object;
-			//assume cleanup thus it's fine if the object isn't there (we assume it will have freed its own listeners)
-			if (obj != null)
-				obj.RemovePropertyListener(listener);
+            var obj = Object;
+            //assume cleanup thus it's fine if the object isn't there (we assume it will have freed its own listeners)
+            if (obj != null)
+                obj.RemovePropertyListener(listener);
         }
 
         public override bool Equals(object obj)

@@ -41,11 +41,11 @@ namespace Uno.UX.Markup.UXIL
         }
         public IEnumerable<PropertyNode> DeclaredUXProperties => _propNodes;
 
-		readonly List<DependencyNode> _dependencyNodes = new List<DependencyNode>();
-		public void RegisterDependency(DependencyNode dn)
-		{
-			_dependencyNodes.Add(dn);
-		}
-		public IEnumerable<DependencyNode> DeclaredDependencies => _dependencyNodes;
+        readonly List<DependencyNode> _dependencyNodes = new List<DependencyNode>();
+        public void RegisterDependency(DependencyNode dn)
+        {
+            _dependencyNodes.Add(dn);
+        }
+        public IEnumerable<DependencyNode> DeclaredDependencies => _dependencyNodes;
     }
 }

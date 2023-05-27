@@ -52,7 +52,7 @@ namespace Uno.UX.Markup.UXIL
         public AutoBindingType AutoBindingType => AutoBindingType.None;
 
         public abstract bool IsConstructorArgument { get; }
-		
+        
         public string OriginSetterName => "Set" + Name;
 
         public string ValueChangedEvent => Name + "Changed";
@@ -68,21 +68,21 @@ namespace Uno.UX.Markup.UXIL
         public string UXAuxNameTable => null;
     }
 
-	sealed class DeclaredUXProperty: DeclaredUXParameter, IMutableProperty
-	{
-		public DeclaredUXProperty(PropertyNode decl, ClassNode owner): base(decl, owner) { }
-		public override bool IsConstructorArgument => false;
-	}
+    sealed class DeclaredUXProperty: DeclaredUXParameter, IMutableProperty
+    {
+        public DeclaredUXProperty(PropertyNode decl, ClassNode owner): base(decl, owner) { }
+        public override bool IsConstructorArgument => false;
+    }
 
-	sealed class DeclaredUXDependency : DeclaredUXParameter, IConstructorArgument
-	{
-		public DeclaredUXDependency(DependencyNode decl, ClassNode owner) : base(decl, owner) { }
-		public override bool IsConstructorArgument => true;
+    sealed class DeclaredUXDependency : DeclaredUXParameter, IConstructorArgument
+    {
+        public DeclaredUXDependency(DependencyNode decl, ClassNode owner) : base(decl, owner) { }
+        public override bool IsConstructorArgument => true;
 
         public string DefaultValue
         {
             get { return null;  /* TODO, introduce UX feature for this */ }
         }
 
-	}
+    }
 }

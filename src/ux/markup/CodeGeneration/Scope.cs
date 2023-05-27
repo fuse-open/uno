@@ -170,7 +170,7 @@ namespace Uno.UX.Markup.CodeGeneration
 
             if ((n.InstanceType == InstanceType.Local || n.InstanceType == InstanceType.None) && !DocumentScope.ContainsNode(n) && (pathOrigin != null))
             {
-	            var ps = pathOrigin.ParentScope;
+                var ps = pathOrigin.ParentScope;
 
                 if (n == ps && ps is TemplateNode)
                     return "__parentInstance";
@@ -181,8 +181,8 @@ namespace Uno.UX.Markup.CodeGeneration
                 {
                     if (n == ps) return prefix;
 
-		            if (ps.ContainsNode(n))
-					   return prefix + "." + id;
+                    if (ps.ContainsNode(n))
+                       return prefix + "." + id;
 
                     ps = ps.ParentScope;
                     prefix = prefix + ".__parent";

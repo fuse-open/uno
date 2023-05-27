@@ -140,7 +140,7 @@ public final class PRNGFixes {
      * all requests to the Linux PRNG.
      */
     @SuppressWarnings("serial")
-	private static class LinuxPRNGSecureRandomProvider extends Provider {
+    private static class LinuxPRNGSecureRandomProvider extends Provider {
 
         public LinuxPRNGSecureRandomProvider() {
             super("LinuxPRNG",
@@ -161,7 +161,7 @@ public final class PRNGFixes {
      * ({@code /dev/urandom}).
      */
     @SuppressWarnings("serial")
-	public static class LinuxPRNGSecureRandom extends SecureRandomSpi {
+    public static class LinuxPRNGSecureRandom extends SecureRandomSpi {
 
         /*
          * IMPLEMENTATION NOTE: Requests to generate bytes and to mix in a seed

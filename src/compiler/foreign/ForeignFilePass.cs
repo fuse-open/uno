@@ -74,10 +74,10 @@ namespace Uno.Compiler.Foreign
             }
         }
 
-		SourceValue? GetRequiredDestination(ForeignItem fsource, Source projectSource)
-		{
-			if (fsource.SourceKind != ForeignItem.Kind.Java)
-				return null;
+        SourceValue? GetRequiredDestination(ForeignItem fsource, Source projectSource)
+        {
+            if (fsource.SourceKind != ForeignItem.Kind.Java)
+                return null;
 
             var fullJavaSourcePath = fsource.UnixPath.UnixToNative()
                     .ToFullPath(projectSource.Bundle.SourceDirectory);

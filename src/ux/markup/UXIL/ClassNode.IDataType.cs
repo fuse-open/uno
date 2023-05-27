@@ -71,10 +71,10 @@ namespace Uno.UX.Markup.UXIL
                     {
                         _declaredProps.Add(new DeclaredUXProperty(c, this));
                     }
-					foreach (var c in DeclaredDependencies)
-					{
-						_declaredProps.Add(new DeclaredUXDependency(c, this));
-					}
+                    foreach (var c in DeclaredDependencies)
+                    {
+                        _declaredProps.Add(new DeclaredUXDependency(c, this));
+                    }
                 }
                 return _declaredProps;
             }

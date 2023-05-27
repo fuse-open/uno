@@ -754,15 +754,15 @@ namespace Uno.UX.Markup.UXIL.Expressions
         
         public override string ToString()
         {
-			var q = FuncName + "(";
-			for (int i=0; i < Args.Length; ++i)
-			{
-				if (i > 0)
-					q += ", ";
-				q += Args[i].ToString();
-			}
-			q += ")";
-			return q;
+            var q = FuncName + "(";
+            for (int i=0; i < Args.Length; ++i)
+            {
+                if (i > 0)
+                    q += ", ";
+                q += Args[i].ToString();
+            }
+            q += ")";
+            return q;
         }
 
         public override bool ValueEquals(Expression other)

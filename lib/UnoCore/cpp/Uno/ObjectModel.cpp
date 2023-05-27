@@ -970,7 +970,7 @@ uString* uString::Ansi(const char* cstr)
 
 uString* uString::Utf8(const char* mutf8, size_t length)
 {
-	if (!length)
+    if (!length)
         return New(0);
 
     char* src = const_cast<char*>(mutf8);

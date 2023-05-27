@@ -4,7 +4,7 @@ namespace Uno.Compiler.API
 {
     public interface IEssentials
     {
-		DataType Void { get; }
+        DataType Void { get; }
         DataType Bool { get; }
         DataType Char { get; }
         DataType Byte { get; }
@@ -49,7 +49,7 @@ namespace Uno.Compiler.API
         DataType ForeignAttribute { get; }
         DataType ForeignTypeNameAttribute { get; }
         DataType ForeignIncludeAttribute { get; }
-		DataType ForeignAnnotationAttribute { get; }
+        DataType ForeignAnnotationAttribute { get; }
         DataType Language { get; }
     }
 }

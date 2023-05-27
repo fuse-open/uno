@@ -4,7 +4,7 @@ namespace Uno.UX
 {
     public sealed class NameTable
     {
-    	public static readonly NameTable Empty = new NameTable(null, new string[0]);
+        public static readonly NameTable Empty = new NameTable(null, new string[0]);
 
         public readonly string[] Entries;
 
@@ -14,8 +14,8 @@ namespace Uno.UX
         IList<Property> _properties = new List<Property>();
         public IList<Property> Properties 
         {
-        	get { return _properties ?? ParentTable.Properties; }
-        	set { _properties = value; }
+            get { return _properties ?? ParentTable.Properties; }
+            set { _properties = value; }
         }
 
         public object this[string key]

@@ -5,8 +5,8 @@ using Uno.UX;
 
 namespace UXHelpers
 {
-	public class RefObject
-	{
-		public object Object { get; set; }
-	}
+    public class RefObject
+    {
+        public object Object { get; set; }
+    }
 }
