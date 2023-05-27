@@ -1,0 +1,20 @@
+<Extensions Backend="CIL" Condition="!LIBRARY && TEST">
+
+    <Set AppLoader.Assembly="@(Config.AppLoader.Console:Path)/uno-app.dll" />
+    <Set AppLoader.Class="Uno.AppLoader.Program" />
+    <Set AppLoader.Method="UnoGenerated" />
+
+    <CopyFile Name="@(Config.AppLoader.Console:Path)/uno-app.runtimeconfig.json"
+        TargetName="@(Project.Name).exe.runtimeconfig.json" />
+
+    <Set Product="@(Project.Name).exe.dll" />
+
+    <!-- Windows -->
+    <Set Commands.Run="run.bat" Condition="HOST_WIN32" />
+    <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
+
+    <!-- UNIX -->
+    <Set Commands.Run="run.sh" Condition="HOST_UNIX" />
+    <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable="true" />
+
+</Extensions>

@@ -1,4 +1,4 @@
-<Extensions Backend="CIL" Condition="!LIBRARY">
+<Extensions Backend="CIL" Condition="!LIBRARY && !TEST">
 
     <Set AppDirectory="@(Project.Name).app" Condition="HOST_MAC" />
     <Set AssemblyDirectory="@(HOST_MAC:Defined:Test('@(AppDirectory)/Contents/MonoBundle', '.'))" />
@@ -23,7 +23,7 @@
     <Set Commands.Run="run.sh" Condition="HOST_LINUX" />
     <ProcessFile Name="run.sh" Condition="HOST_LINUX" IsExecutable="true" />
 
-    <CopyFile Name="@(Config.AppLoader.Generic:Path)/uno-app.runtimeconfig.json" TargetName="@(AssemblyDirectory)/@(Project.Name).exe.runtimeconfig.json" Condition="HOST_LINUX" />
+    <CopyFile Name="@(Config.AppLoader.Console:Path)/uno-app.runtimeconfig.json" TargetName="@(AssemblyDirectory)/@(Project.Name).exe.runtimeconfig.json" Condition="HOST_LINUX" />
 
     <!-- macOS -->
     <Set Commands.Run="@('@(Product)':QuoteSpace)" Condition="HOST_MAC" />

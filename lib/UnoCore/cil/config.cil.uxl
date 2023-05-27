@@ -1,7 +1,9 @@
 <Extensions Backend="CIL">
 
-    <!-- Avoid warning when conflicting with the build target "DotNet" -->
+    <!-- Avoid warning when conflicting with the build target "dotnet" -->
     <Define DOTNET="!DOTNET" />
+
+    <!-- Dependency support -->
     <Declare Element="Assembly" />
     <Declare Element="UnmanagedLibrary" />
     <Declare Element="UnmanagedLibrary.x86" />

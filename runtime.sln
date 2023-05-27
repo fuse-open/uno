@@ -4,7 +4,7 @@ VisualStudioVersion = 25.0.1703.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-win", "src\runtime\win\app-win.csproj", "{21D956DB-8735-4EE6-BA7E-1D6CD77521F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-generic", "src\runtime\generic\app-generic.csproj", "{196B010D-AD36-4947-95AA-14FC4A27BD18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app-console", "src\runtime\console\app-console.csproj", "{196B010D-AD36-4947-95AA-14FC4A27BD18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
