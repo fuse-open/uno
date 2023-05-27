@@ -87,7 +87,14 @@ namespace Uno.Diagnostics
 
         public static void KillTree(this Process process)
         {
-            ProcessTreeKiller.KillTree(process.Id);
+            try
+            {
+                ProcessTreeKiller.KillTree(process.Id);
+            }
+            catch (InvalidOperationException)
+            {
+                // Ignore
+            }
         }
     }
 }
