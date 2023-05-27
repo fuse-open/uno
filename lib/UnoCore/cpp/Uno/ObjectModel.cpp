@@ -627,10 +627,7 @@ static void uVerifyBuild(uType* type)
             U_ASSERT(type->Interfaces[i].Type >= type->Interfaces[i - 1].Type);
 #endif
     }
-        
 
-// TODO: Gives false positives on empty interfaces
-/*
 #ifdef DEBUG_UNSAFE
     void* vtable = type->Type == uTypeTypeClass
             ? (uint8_t*)type + sizeof(uClassType) :
@@ -646,7 +643,6 @@ static void uVerifyBuild(uType* type)
             if (!*ptr)
                 type->Flags |= uTypeFlagsAbstract;
 #endif
-*/
 
     // Check that operators are set
     U_ASSERT(type->Operators);
