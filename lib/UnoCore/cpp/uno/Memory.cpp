@@ -3,7 +3,7 @@
 
 #include <uno/_internal.h>
 #include <uno/ObjectMonitor.h>
-#include <uno/Support.h>
+#include <uno/ThreadUtils.h>
 #include <string>
 #include <sstream>
 @{Uno.Type:IncludeDirective}

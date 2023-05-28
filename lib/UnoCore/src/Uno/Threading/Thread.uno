@@ -14,7 +14,7 @@ namespace Uno.Threading
     }
 
     [TargetSpecificType]
-    [Set("Include", "uno/Support.h")]
+    [Set("Include", "uno/ThreadUtils.h")]
     [Set("TypeName", "uThreadLocal*")]
     extern(CPLUSPLUS) struct ThreadLocal
     {
@@ -34,7 +34,7 @@ namespace Uno.Threading
     [DotNetType("System.Threading.Thread")]
     [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):Call((@{Thread}) arg)}; return nullptr; }")]
     [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):Call((@{Thread}) lpParam)}; return 0; }")]
-    [extern(WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
+    [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
     public sealed class Thread
     {
         extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";

@@ -18,7 +18,7 @@ namespace Uno.Platform
 
     public delegate void ApplicationStateTransitionHandler(ApplicationState newState);
 
-    [extern(CPlusPlus) Require("Source.Declaration","void uInitRtti();")]
+    [extern(CPlusPlus) Require("Source.Declaration","void uInitTypes();")]
     [extern(CPlusPlus) Require("Source.Declaration","void uStartApp();")]
     public abstract class CoreApp
     {
@@ -66,7 +66,7 @@ namespace Uno.Platform
                 break;
             }
 
-            if defined(CPlusPlus) extern "uInitRtti()";
+            if defined(CPlusPlus) extern "uInitTypes()";
 
             if (State != ApplicationState.Uninitialized)
                 throw new InvalidOperationException("CoreApp: Invalid state");

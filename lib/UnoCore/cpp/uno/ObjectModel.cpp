@@ -815,7 +815,7 @@ void uType::Init()
     State = uTypeStateInitialized;
 }
 
-void uInitRtti(uType*(*factories[])())
+void uInitTypes(uType*(*factories[])())
 {
     // 1. Fill _RuntimeTypes
 

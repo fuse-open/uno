@@ -4,7 +4,7 @@ namespace Uno.Threading
 {
     [extern(DOTNET) DotNetType("System.Threading.Monitor")]
     [extern(CPLUSPLUS) Require("Source.Include", "uno/ObjectMonitor.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uno/Support.h")]
+    [extern(CPLUSPLUS) Require("Source.Include", "uno/ThreadUtils.h")]
     public static class Monitor
     {
         public static void Enter(object obj)

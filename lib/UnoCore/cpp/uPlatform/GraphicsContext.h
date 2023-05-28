@@ -4,7 +4,7 @@
 #pragma once
 #include <XliPlatform/GLContext.h>
 #include <XliPlatform/GL.h>
-#include <uno/Support.h>
+#include <uno/ThreadUtils.h>
 
 extern ::Xli::GLContext *_XliGLContextPtr;
 

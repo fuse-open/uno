@@ -4,7 +4,7 @@
 #include <uno/ObjectModel.h>
 @(Main.IncludeDirective)
 @(TypeObjects.Declaration:JoinSorted())
-void uInitRtti(uType*(*factories[])());
+void uInitTypes(uType*(*factories[])());
 
 // See @{Uno.Environment.GetCommandLineArgs():Call()}
 int uArgc = 0;
@@ -23,6 +23,6 @@ int main(int argc, char* argv[])
         nullptr
     };
 
-    uInitRtti(factories);
+    uInitTypes(factories);
     return @(Main.Entrypoint);
 }

@@ -8,7 +8,7 @@ namespace Uno.IO
     extern(CPLUSPLUS)
     struct FILEPtr
     {
-        [extern(WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
+        [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
         public static FILEPtr OpenOrThrow(string filename, string mode)
         {
             if (filename == null)
