@@ -67,7 +67,7 @@ namespace Uno.Graphics.Utils
                         return DotNetTexture.Load2D("image.png", bytes);
                     else
                         throw new NotImplementedException();
-                } 
+                }
                 catch (Exception pngException)
                 {
                     // both threw, but since the user asked for JPEG, answer with the JPEG-error

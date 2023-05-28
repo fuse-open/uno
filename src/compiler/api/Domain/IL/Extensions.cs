@@ -53,7 +53,7 @@ namespace Uno.Compiler.API.Domain.IL
                     var a = testClass.GenericArguments[i];
                     var b = otherClass.GenericArguments[i];
                     if (a != b && (
-                            !b.IsGenericParameter || 
+                            !b.IsGenericParameter ||
                             a != pt.GenericArguments[b.GenericIndex]))
                         return false;
                 }

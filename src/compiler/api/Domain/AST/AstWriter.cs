@@ -414,7 +414,7 @@ namespace Uno.Compiler.API.Domain.AST
                 Write7BitEncodedInt((int) a.Offset);
                 WriteIdentifier(a.Name);
                 Write(a.Type);
-                WriteGlobal(a.Tag);                
+                WriteGlobal(a.Tag);
             }
         }
 

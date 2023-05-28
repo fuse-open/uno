@@ -8,7 +8,7 @@ namespace Mono.test_619
             while (true) {
                 if (true)
                     break;
-    
+
                 continue;
             }
         }

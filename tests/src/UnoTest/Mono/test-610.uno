@@ -8,13 +8,13 @@ namespace Mono.test_610
             {
             }
         }
-    
+
         [Uno.Testing.Test] public static void test_610() { Main(); }
         public static void Main()
         {
         }
     }
-    
+
     namespace N
     {
         public class B
@@ -25,7 +25,7 @@ namespace Mono.test_610
                 {
                 }
             }
-    
+
             protected internal class A : B
             {
                 protected class D : C.E

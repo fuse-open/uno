@@ -493,8 +493,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
             // Create default constructor in non-static classes
             if (result.IsClass && !result.IsStatic && result.Constructors.Count == 0)
             {
-                var ctor = new Constructor(parameterizedType.Source, parameterizedType, null, 
-                    (parameterizedType.IsAbstract ? Modifiers.Protected : Modifiers.Public) | Modifiers.Generated, 
+                var ctor = new Constructor(parameterizedType.Source, parameterizedType, null,
+                    (parameterizedType.IsAbstract ? Modifiers.Protected : Modifiers.Public) | Modifiers.Generated,
                     ParameterList.Empty, new Scope(parameterizedType.Source));
                 result.Constructors.Add(ctor);
                 _enqueuedActions.Add(() =>

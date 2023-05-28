@@ -182,7 +182,7 @@ namespace Uno.UX.Markup.UXIL
                     _nodes.Add(new object(), literal);
                     var valueProp = literal.BindableProperties.OfType<ReferenceProperty>().First(x => x.Facet.Name == "Value");
                     ParseTrivialExpression(id.Name, literal, valueProp, contextProp, owner.Source);
-                    
+
                     return literal;
                 }
             }
@@ -222,7 +222,7 @@ namespace Uno.UX.Markup.UXIL
                 if (nameExp is Expressions.Identifier) nameExp = new Expressions.StringLiteral(((Expressions.Identifier)nameExp).Name); // Interpret {foo: bar} as {'foo':bar}
                 var name = TransformExpression(nameExp, contextProp, src, owner, Reflection.IdentifierScope.Globals); // Left hand of : is in global context, to allow {foo: bar}
                 var obj = TransformExpression(me.Value, contextProp, src, owner, identifierScope);
-                
+
                 var op = new NewObjectNode(src, null, FindType("Fuse.Reactive.NameValuePair"), InstanceType.Local);
                 op.CreateMembers();
                 owner.AddChild(op);
@@ -324,13 +324,13 @@ namespace Uno.UX.Markup.UXIL
                         }
                     }
 
-                    
+
                 }
                 else
                 {
                     ParseAttribute(op, op.Properties.First(x => x.Facet.IsConstructorArgument), contextProp, ud.Argument, src, identifierScope);
                 }
-                
+
 
                 return op;
             }
@@ -403,7 +403,7 @@ namespace Uno.UX.Markup.UXIL
 
                 return vo;
             }
-            
+
 
             throw new Exception("Unsupported expression type: " + e.GetType());
         }
@@ -468,7 +468,7 @@ namespace Uno.UX.Markup.UXIL
             if (TryParseEnum(src, owner, p, contextProperty, value))
                 return;
 
-            var n = ResolveNode(src, owner, value, p.Facet.ListItemType, x => x.Implements(p.Facet.ListItemType), 
+            var n = ResolveNode(src, owner, value, p.Facet.ListItemType, x => x.Implements(p.Facet.ListItemType),
                 "The type must be compatible with '" + p.Facet.ListItemType.FullName + "'", x => x.Implements(contextProperty.Facet.ListItemType));
 
             if (n != null) p.Bind(n);

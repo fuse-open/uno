@@ -220,7 +220,7 @@ namespace Uno.Disasm.Disassemblers
                     {
                         var s = x as VariableDeclaration;
                         var var = s.Variable;
-                        Append(indent + 
+                        Append(indent +
                             var.VariableType.ToLiteral(true) +
                             var.ValueType + " " + var.Name);
 

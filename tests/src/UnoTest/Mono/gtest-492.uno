@@ -7,7 +7,7 @@ namespace Mono.gtest_492
         {
         }
     }
-    
+
     class M
     {
         [Uno.Testing.Test] public static void gtest_492() { Main(); }

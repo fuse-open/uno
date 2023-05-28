@@ -1,7 +1,7 @@
 namespace Mono.gtest_455
 {
     using Uno;
-    
+
     namespace ConsoleApplication1
     {
         class Program
@@ -13,7 +13,7 @@ namespace Mono.gtest_455
                 Inner<object>.Compare (o, o);
             }
         }
-    
+
         public class Inner<T> where T : class
         {
             public static void Compare (object obj, T value)

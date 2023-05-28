@@ -12,7 +12,7 @@ namespace Mono.gtest_266
                     }
             }
     }
-    
+
     class Test { [Uno.Testing.Test] public static void gtest_266() { Main(); }
         public static void Main() { } }
 }

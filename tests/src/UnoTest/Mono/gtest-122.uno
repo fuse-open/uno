@@ -16,10 +16,10 @@ namespace Mono.gtest_122
         class A<T>
         {
             public delegate void B(T t);
-    
+
             protected B _b;
             protected T _value;
-    
+
             public A(B b, T value)
             {
               _b = b;

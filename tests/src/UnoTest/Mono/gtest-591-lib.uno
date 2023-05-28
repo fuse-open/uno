@@ -1,9 +1,9 @@
 namespace Mono.gtest_591
 {
     // Compiler options: -target:library
-    
+
     using Uno;
-    
+
     namespace A
     {
         public class B<T>

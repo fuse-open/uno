@@ -149,7 +149,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
             var id = parentDataType.GetUri() + "/" + uxAttributeName + "_" + underlyingMethod.GetUriSignature();
             var titles = new TitlesViewModel(Naming.GetPageTitle(underlyingMethod),
                                              uxAttribute.Arguments[0].ConstantString,
-                                             uxAttribute.Arguments[0].ConstantString, 
+                                             uxAttribute.Arguments[0].ConstantString,
                                              Naming.GetNavigationTitle(underlyingMethod),
                                              Naming.GetFullIndexTitle(underlyingMethod));
             var declaredIn = new DataTypeBuilder(Naming, Syntax, Exportable, AttachedMembers, _commentParser).BuildReference(underlyingMethod.DeclaringType);
@@ -254,7 +254,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.EntityTypes
 
             if (!Exportable.IsExportableAndVisible(dataType))
             {
-                throw new Exception($"Found return type for member {member.FullName} that have non-exportable return type: {dataType.FullName}"); 
+                throw new Exception($"Found return type for member {member.FullName} that have non-exportable return type: {dataType.FullName}");
             }
 
             return new ReturnsViewModel(GetDataTypeUri(dataType),

@@ -98,7 +98,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                         else
                             value = ++previousValue;
 
-                        var literal = new Literal(s.Name.Source, parameterizedType, s.Name.Symbol, 
+                        var literal = new Literal(s.Name.Source, parameterizedType, s.Name.Symbol,
                             s.DocComment, Modifiers.Public, parameterizedType, TypedEnumValue(parameterizedType.Base, value));
 
                         if (s.Attributes.Count > 0)

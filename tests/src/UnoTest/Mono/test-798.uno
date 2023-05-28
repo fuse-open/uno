@@ -1,7 +1,7 @@
 namespace Mono.test_798
 {
     using Uno;
-    
+
     class A
     {
         public void Foo (out int a)
@@ -9,7 +9,7 @@ namespace Mono.test_798
             a = 100;
         }
     }
-    
+
     class B : A
     {
         public void Foo (ref int a)
@@ -17,7 +17,7 @@ namespace Mono.test_798
             throw new ApplicationException ("should not be called");
         }
     }
-    
+
     class C
     {
         [Uno.Testing.Test] public static void test_798() { Uno.Testing.Assert.AreEqual(0, Main()); }
@@ -27,7 +27,7 @@ namespace Mono.test_798
             new B().Foo (out x);
             if (x != 100)
                 return 1;
-            
+
             return 0;
         }
     }

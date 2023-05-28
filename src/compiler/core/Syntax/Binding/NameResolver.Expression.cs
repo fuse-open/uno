@@ -17,7 +17,7 @@ namespace Uno.Compiler.Core.Syntax.Binding
                     return new PartialNamespace(e.Source, _compiler.Data.IL);
 
                 case AstExpressionType.BuiltinType:
-                    return new PartialType(e.Source, 
+                    return new PartialType(e.Source,
                         _compiler.Essentials.BuiltinTypes[(int) ((AstBuiltinType) e).BuiltinType]);
 
                 case AstExpressionType.Identifier:

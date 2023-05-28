@@ -33,7 +33,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         {
             var result = NameResolver.TryGetTypeMemberCached(dt, id.Symbol, typeParamCount);
 
-            if (result == null || 
+            if (result == null ||
                 dt.Methods.Count == 1 && dt.Methods[0].GenericType == dt)
                 return null;
 
@@ -131,7 +131,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             var innerBlock = result as Block;
             if (innerType != null || innerBlock != null)
                 return AllowStaticContext(qualifier, instance)
-                    ? (innerType != null 
+                    ? (innerType != null
                         ? (PartialExpression) new PartialType(id.Source, innerType)
                         :                     new PartialBlock(id.Source, innerBlock))
                     : PartialError(id.Source, ErrorCode.E0000, "Cannot reference block or type " + result.Quote() + " through an expression -- qualify with the type name");

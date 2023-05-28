@@ -3,22 +3,22 @@ namespace Mono.test_751
     using SomeOtherNS;
     using LocalNS;
     using OneMoreNS;
-    
+
     namespace SomeOtherNS.Compiler
     {
     }
-    
+
     namespace OneMoreNS.Compiler
     {
     }
-    
+
     namespace LocalNS
     {
         public class Compiler
         {
         }
     }
-    
+
     namespace System.Local
     {
         class M

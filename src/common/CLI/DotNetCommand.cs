@@ -26,10 +26,10 @@ namespace Uno.CLI
             foreach (var type in asm.GetTypes())
             {
                 var main = type.GetMethod(
-                        "Main", 
-                        BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public, 
-                        null, 
-                        new[] {typeof(string[])}, 
+                        "Main",
+                        BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public,
+                        null,
+                        new[] {typeof(string[])},
                         null);
                 if (main == null)
                     continue;

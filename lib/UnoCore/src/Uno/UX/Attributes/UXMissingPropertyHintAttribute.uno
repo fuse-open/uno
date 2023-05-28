@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.UX
 {
-    public sealed class UXMissingPropertyHintAttribute: Attribute 
+    public sealed class UXMissingPropertyHintAttribute: Attribute
     {
-    	public UXMissingPropertyHintAttribute(string propertyName, string hint) {}
+        public UXMissingPropertyHintAttribute(string propertyName, string hint) {}
     }
 }

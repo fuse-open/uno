@@ -14,7 +14,7 @@ namespace Uno.UX
 
         void OnChanged(BundleFile bf)
         {
-        	OnDataChanged();
+            OnDataChanged();
         }
 
         public override Stream OpenRead()

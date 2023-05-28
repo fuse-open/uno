@@ -32,7 +32,7 @@ namespace Uno.Compiler.API.Domain.IL.Statements
         public override Statement CopyStatement(CopyState state)
         {
             return new FixedArrayDeclaration(
-                Variable.Copy(state), 
+                Variable.Copy(state),
                 OptionalInitializer.Copy(state));
         }
     }

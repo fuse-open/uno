@@ -6,14 +6,14 @@ namespace Mono.gtest_exmethod_43
         {
         }
     }
-    
+
     public static class Extensions
     {
         public static void DoSomething (this AdapterType obj)
         {
         }
     }
-    
+
     public abstract class Dummy : AdapterType
     {
         public virtual bool Refresh ()
@@ -22,11 +22,11 @@ namespace Mono.gtest_exmethod_43
             someObj.DoSomething ();
             return true;
         }
-    
+
         [Uno.Testing.Test] public static void gtest_exmethod_43() { Main(); }
         public static void Main()
         {
-    
+
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Uno.Compiler.Backends.UnoDoc.ViewModels.MetaData
     {
         public string Uri { get; private set; }
         public string Title { get; private set; }
-        public List<InheritanceNodeViewModel> Children { get; } 
+        public List<InheritanceNodeViewModel> Children { get; }
         public bool IsAncestor { get; private set; }
         public bool IsDescendant { get; private set; }
         public bool IsCurrent { get; private set; }

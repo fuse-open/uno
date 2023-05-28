@@ -9,7 +9,7 @@ namespace Mono.test_debug_28
             foreach (var v in args)
                 ;
         }
-        
+
         [Uno.Testing.Test] public static void test_debug_28() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

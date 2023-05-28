@@ -15,8 +15,8 @@ namespace Uno.Build
 
         public bool Exists => File.Exists(FullName);
         public DateTime Timestamp => File.GetLastWriteTime(FullName);
-        public bool IsProductUpToDate => !string.IsNullOrEmpty(Product) && 
-                                         File.Exists(Path.Combine(RootDirectory, Product)) && 
+        public bool IsProductUpToDate => !string.IsNullOrEmpty(Product) &&
+                                         File.Exists(Path.Combine(RootDirectory, Product)) &&
                                          File.GetLastWriteTime(Path.Combine(RootDirectory, Product)) >= Timestamp &&
                                          UnoVersion == Diagnostics.UnoVersion.InformationalVersion;
 

@@ -18,7 +18,7 @@ namespace Uno.Compiler.API.Domain.AST.Expressions
         {
             return Base + "." + Name;
         }
-        
+
         public static AstExpression Create(Source src, params string[] qualifier)
         {
             AstExpression @base = new AstSymbol(src, AstSymbolType.Global);

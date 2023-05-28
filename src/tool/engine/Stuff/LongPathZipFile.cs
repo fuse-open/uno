@@ -22,7 +22,7 @@ namespace Uno.Build.Stuff
 
                 if (fullName.EndsWith(Path.DirectorySeparatorChar.ToString()))
                     continue; // Continue when entry is a directory
-                
+
                 using (MemoryStream ms = new MemoryStream())
                 {
                     entry.Open().CopyTo(ms);

@@ -2,7 +2,7 @@ namespace Mono.test_547
 {
     // Compiler options: -warn:4 -define:A1
     // This test should print only: #warning: `A1'
-    
+
     #if A1
     # warning A1
     #elif A2
@@ -16,7 +16,7 @@ namespace Mono.test_547
     #else
     # error else
     #endif
-    
+
     #if E1
         #error E1
     #elif E2

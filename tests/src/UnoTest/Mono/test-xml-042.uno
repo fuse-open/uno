@@ -1,7 +1,7 @@
 namespace Mono.test_xml_042
 {
     using Uno;
-    
+
     namespace TestNamespace
     {
         /// <summary>

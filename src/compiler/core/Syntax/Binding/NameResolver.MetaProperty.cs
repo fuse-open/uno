@@ -64,9 +64,9 @@ namespace Uno.Compiler.Core.Syntax.Binding
                 case BlockType.MetaBlock:
                 {
                     FindMetaPropertiesRecursive(
-                        block.IsNestedBlock 
-                            ? block.ParentBlock 
-                            : _compiler.BlockBuilder.TerminalProperties, 
+                        block.IsNestedBlock
+                            ? block.ParentBlock
+                            : _compiler.BlockBuilder.TerminalProperties,
                         name,
                         visited,
                         result);

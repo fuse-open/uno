@@ -42,7 +42,7 @@ but we also have a few additional guidelines:
    ```Uno
    class Foo
    {
-   	int _bar;
+       int _bar;
    }
    ```
 * *Do not* use Egyptian braces

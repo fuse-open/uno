@@ -100,7 +100,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
             var reqStatements = ReqStatements;
             var creq = s as ReqProperty;
             var oreq = s as ReqObject;
-            
+
             if (creq != null)
             {
                 for (int i = 0; i < reqStatements.Count; i++)

@@ -18,7 +18,7 @@ namespace Mono.test_280
                }
                return false;
            }
-    
+
            [Uno.Testing.Test] public static void test_280() { Main(); }
         public static void Main() {}
        }

@@ -24,7 +24,7 @@ namespace Uno.Disasm.ILView.Members
                     return Function.IsStatic ?
                         Function.IsPublic ? ILIcon.ConstructorStatic : ILIcon.ConstructorStaticNonPublic :
                         Function.IsPublic ? ILIcon.Constructor : ILIcon.ConstructorNonPublic;
-                
+
                 return Function.IsStatic ?
                     Function.IsPublic ? ILIcon.MethodStatic : ILIcon.MethodStaticNonPublic :
                     Function.IsPublic ? ILIcon.Method : ILIcon.MethodNonPublic;

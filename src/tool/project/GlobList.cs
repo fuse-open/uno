@@ -34,7 +34,7 @@ namespace Uno.ProjectFormat
                     type,
                     cond));
         }
-        
+
         // Insert typed files first for higher precedence
         void Insert(Tuple<Minimatcher, Source, IncludeItemType, string> item)
         {

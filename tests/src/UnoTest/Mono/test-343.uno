@@ -1,7 +1,7 @@
 namespace Mono.test_343
 {
     using Uno;
-    
+
     class X {
         static void Concat (string s1, string s2, string s3) { }
         static void Concat (params string[] ss) {

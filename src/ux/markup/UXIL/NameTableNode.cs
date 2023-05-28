@@ -38,7 +38,7 @@ namespace Uno.UX.Markup.UXIL
             ParentTable = parentTable;
             _scope = scope;
             _nameTableType = nameTableType;
-			Entries = _scope.NodesIncludingRoot.Where(x => x.Scope == scope && x.Name != null && x.InstanceType == InstanceType.Local).Select(x => new NameTableEntry(x.Name, x)).ToArray();
+            Entries = _scope.NodesIncludingRoot.Where(x => x.Scope == scope && x.Name != null && x.InstanceType == InstanceType.Local).Select(x => new NameTableEntry(x.Name, x)).ToArray();
 
             if (self != null)
             {
@@ -52,18 +52,18 @@ namespace Uno.UX.Markup.UXIL
                     propsProp.Bind(self, pr);
                     propClasses.Add(new UXPropertyClass(pr, self));
                 }
-                    
+
             }
 
             var objs = TryFindBindableProperty(scope.ContainingClass, "Objects");
-			BindEntries(objs);
+            BindEntries(objs);
         }
 
-		void BindEntries(BindableProperty objs)
-		{
-			foreach (var e in Entries)
-				objs.Bind(e.Node);
-		}
+        void BindEntries(BindableProperty objs)
+        {
+            foreach (var e in Entries)
+                objs.Bind(e.Node);
+        }
 
         public override Reflection.IDataType DeclaredType => _nameTableType;
     }

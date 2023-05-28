@@ -1,7 +1,7 @@
 namespace Mono.gtest_051
 {
     using Uno;
-    
+
     public class Foo<T>
         where T : A
     {
@@ -12,7 +12,7 @@ namespace Mono.gtest_051
             t.Hello ();
         }
     }
-    
+
     public class A
     {
         public void Hello ()
@@ -20,11 +20,11 @@ namespace Mono.gtest_051
             Console.WriteLine ("Hello World");
         }
     }
-    
+
     public class B : A
     {
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_051() { Main(); }

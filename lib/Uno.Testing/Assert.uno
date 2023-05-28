@@ -263,7 +263,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -277,7 +277,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -331,7 +331,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is not equal to `expected`
-            
+
             If `tolerance` is given, asserts that `actual` and `expected` differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -345,7 +345,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is not equal to `expected`
-            
+
             If `tolerance` is given, asserts that `actual` and `expected` differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -399,7 +399,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that each element of `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -413,7 +413,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that each element of `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -427,7 +427,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that each element of `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -441,7 +441,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that each element of `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)
@@ -457,7 +457,7 @@ namespace Uno.Testing
 
         /**
             Asserts that `actual` is equal to `expected`
-            
+
             If `tolerance` is given, asserts that each element of `actual` and `expected` do not differ by more than `tolerance`
 
             (Do not use the `filePath`, `lineNumber` and `memberName` arguments, as these are filled in automatically)

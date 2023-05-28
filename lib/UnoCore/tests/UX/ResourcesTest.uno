@@ -2,10 +2,10 @@ using Uno.Testing;
 
 namespace Uno.UX.Tests
 {
-	public class TestPanel
-	{
-		public float4 Margin { get; set; }
-	}
+    public class TestPanel
+    {
+        public float4 Margin { get; set; }
+    }
 
     public class ResourcesTest
     {

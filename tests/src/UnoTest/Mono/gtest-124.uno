@@ -1,14 +1,14 @@
 namespace Mono.gtest_124
 {
     using Uno;
-    
+
     interface IFoo <T>
     {
             T this [int index] {
                     get; set;
             }
     }
-    
+
     public class FooCollection <T> : IFoo <T>
     {
             T IFoo<T>.this [int index] {
@@ -19,7 +19,7 @@ namespace Mono.gtest_124
                     }
             }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_124() { Main(); }

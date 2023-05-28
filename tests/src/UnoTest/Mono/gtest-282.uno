@@ -4,7 +4,7 @@ namespace Mono.gtest_282
         public class Bar {}
     }
     class C<T> {}
-    
+
     class Test {
         static Foo f = new Foo ();
         [Uno.Testing.Test] public static void gtest_282() { Main(); }

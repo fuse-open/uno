@@ -103,7 +103,7 @@ namespace Uno.Compiler.Core.IL.Utilities
                             {
                                 var argPart = argParts[i].Trim();
 
-                                if (argPart.StartsWith("ref fixed ", StringComparison.InvariantCulture) && 
+                                if (argPart.StartsWith("ref fixed ", StringComparison.InvariantCulture) &&
                                     argPart.EndsWith(']'))
                                 {
                                     argPart = argPart.Substring(10);
@@ -475,7 +475,7 @@ namespace Uno.Compiler.Core.IL.Utilities
                     if (cns.UnoName == name)
                         return cns;
 
-                var it = TryResolveInnerType(src, ns.Types, name, parent) ?? 
+                var it = TryResolveInnerType(src, ns.Types, name, parent) ??
                     TryResolveInnerType(src, ns.StrippedTypes, name, parent);
                 if (it != null)
                     return it;
@@ -492,7 +492,7 @@ namespace Uno.Compiler.Core.IL.Utilities
                 if (name == ".cctor")
                     return dt.Initializer;
 
-                var it = TryResolveInnerType(src, dt.NestedTypes, name, parent) ?? 
+                var it = TryResolveInnerType(src, dt.NestedTypes, name, parent) ??
                     TryResolveInnerType(src, dt.StrippedTypes, name, parent);
                 if (it != null)
                     return it;

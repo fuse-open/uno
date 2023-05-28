@@ -2,69 +2,69 @@ using Uno.Collections;
 
 namespace Uno.UX
 {
-	/** Resources are objects that are identified by a string key, either globally for your app or 
-		for certain pages/subtrees.
+    /** Resources are objects that are identified by a string key, either globally for your app or
+        for certain pages/subtrees.
 
-		@topic Resources
-		
-		## Types of resources
+        @topic Resources
 
-		Resources can be of any type, but it is most commonly used for fonts, colors, constant values,
-		strings etc.
+        ## Types of resources
 
-		Classes that inherit from @Node can only be rooted with one parent at a time, and is therefore 
-		rarely useful as global resources. Consider creating a @ux:Class instead and instantiate multiple
-		objects whenever needed.
+        Resources can be of any type, but it is most commonly used for fonts, colors, constant values,
+        strings etc.
 
-		## Global resources (`ux:Global`)
+        Classes that inherit from @Node can only be rooted with one parent at a time, and is therefore
+        rarely useful as global resources. Consider creating a @ux:Class instead and instantiate multiple
+        objects whenever needed.
 
-		The @ux:Global attribute can be used on an UX node to convert it to a global resource.
+        ## Global resources (`ux:Global`)
 
-		For example, a global Font resource can be defined like this:
+        The @ux:Global attribute can be used on an UX node to convert it to a global resource.
 
-			<Font File="arial.ttf" ux:Global="MyDefaultFont" />
+        For example, a global Font resource can be defined like this:
 
-		And then used like this:
+            <Font File="arial.ttf" ux:Global="MyDefaultFont" />
 
-			<Text Font="MyDefaultFont" />
+        And then used like this:
 
-		When the global key is used directly (with no binding syntax), the resource is resolved statically
-		at build time, and you get an error message if no appropriate resource is found.
+            <Text Font="MyDefaultFont" />
 
-		## Dynamic resource bindings
+        When the global key is used directly (with no binding syntax), the resource is resolved statically
+        at build time, and you get an error message if no appropriate resource is found.
 
-		When you want resources to resolve at runtime and respect tree-local resources, you can also use the 
-		dynamic resource binding syntax:
+        ## Dynamic resource bindings
 
-			<Text Font="{Resource MyDefaultFont}" />
+        When you want resources to resolve at runtime and respect tree-local resources, you can also use the
+        dynamic resource binding syntax:
 
-		## Local resources (`ux:Key`)
+            <Text Font="{Resource MyDefaultFont}" />
 
-		The `ux:Key` attribute is used to convert a node to a tree-local resource.
-		
-		This allows you to do local overrides in the tree, using the `ux:Key` attribute:
+        ## Local resources (`ux:Key`)
 
-			<Panel>
-				<Font File="verdana.ttf" ux:Key="MyDefaultFont" />
-				<Panel>
-					<Text Font="{Resource MyDefaultFont}" />
-				</Panel>
-			</Panel>
+        The `ux:Key` attribute is used to convert a node to a tree-local resource.
 
-		You can think of `ux:Global` as a way to set global defaults for dynamic resource keys (`ux:Key`)
+        This allows you to do local overrides in the tree, using the `ux:Key` attribute:
 
-		## Resource key uniqueness
+            <Panel>
+                <Font File="verdana.ttf" ux:Key="MyDefaultFont" />
+                <Panel>
+                    <Text Font="{Resource MyDefaultFont}" />
+                </Panel>
+            </Panel>
 
-		Global resource keys must be unique for the given *type* of the resource. Multiple resources can have
-		the same name as long as they are unrelated types.
+        You can think of `ux:Global` as a way to set global defaults for dynamic resource keys (`ux:Key`)
 
-		For example, Fuse defines multiple resources with the key `Blue`, and the right resource is determined 
-		based on the expected type where it used. It can either be a `float4` color value or a `SolidColor` brush.
+        ## Resource key uniqueness
 
-			<float4 ux:Global="Red" ux:Value="#f00" />
-			<SolidColor ux:Global="Red" Color="Red" />
+        Global resource keys must be unique for the given *type* of the resource. Multiple resources can have
+        the same name as long as they are unrelated types.
 
-	*/
+        For example, Fuse defines multiple resources with the key `Blue`, and the right resource is determined
+        based on the expected type where it used. It can either be a `float4` color value or a `SolidColor` brush.
+
+            <float4 ux:Global="Red" ux:Value="#f00" />
+            <SolidColor ux:Global="Red" Color="Red" />
+
+    */
     public sealed class Resource
     {
         public string Key { get; private set; }
@@ -82,8 +82,8 @@ namespace Uno.UX
 
         /** Registers a static listener for a particular resource key.
 
-        	The listener will get a callback whenever a global resource with the given key is registered
-        	or removed.
+            The listener will get a callback whenever a global resource with the given key is registered
+            or removed.
         */
         public static void AddGlobalKeyListener(Action<string> listener)
         {
@@ -105,12 +105,12 @@ namespace Uno.UX
 
         [UXAttachedPropertySetter("Resource.GlobalKey")]
         /** The `ux:Global` attribute creates a global resource that is accessible everywhere in UX markup.
-        
-			See @Resources for more information.
 
-			The `ux:Global` attribute on an UX element creates a single object (singleton) that is globally available. 
-        	Using this attribute will prevent the object from being inserted by default the object at its defined location 
-        	in the UX tree. 
+            See @Resources for more information.
+
+            The `ux:Global` attribute on an UX element creates a single object (singleton) that is globally available.
+            Using this attribute will prevent the object from being inserted by default the object at its defined location
+            in the UX tree.
         */
         public static void SetGlobalKey(object obj, string key)
         {

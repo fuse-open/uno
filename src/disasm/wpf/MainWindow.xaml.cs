@@ -297,8 +297,8 @@ namespace Uno.Disasm
                             Height = 16
                         },
                         IsEnabled = command.CanExecute(ilItem),
-                        FontWeight = command.IsDefault(ilItem) 
-                                ? FontWeights.Bold 
+                        FontWeight = command.IsDefault(ilItem)
+                                ? FontWeights.Bold
                                 : FontWeights.Normal
                     };
 

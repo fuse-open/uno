@@ -2,7 +2,7 @@ namespace Mono.test_xml_051
 {
     // Compiler options: -doc:xml-051.xml -warnaserror
     using log4net.Repository.Hierarchy;
-    
+
     namespace log4net
     {
       /// <summary>
@@ -10,7 +10,7 @@ namespace Mono.test_xml_051
       /// </summary>
       public interface IFoo {}
     }
-    
+
     namespace log4net.Repository {
       /// <summary>
       /// <see cref="Hierarchy" />
@@ -19,7 +19,7 @@ namespace Mono.test_xml_051
       public interface ILog {
       }
     }
-    
+
     namespace log4net.Repository.Hierarchy {
       /// <summary />
       public class Hierarchy {

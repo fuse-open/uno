@@ -1,12 +1,12 @@
 namespace Mono.gtest_110
 {
     using Uno;
-    
+
     public interface IList<R>
     {
         int Map<S> (S item);
     }
-    
+
     public class List<T> : IList<T>
     {
         public int Map<U> (U item)
@@ -14,7 +14,7 @@ namespace Mono.gtest_110
             return 1;
         }
     }
-    
+
     public class SpecialList<V> : IList<V>
     {
         public int Map<W> (W item)
@@ -22,7 +22,7 @@ namespace Mono.gtest_110
             return 2;
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_110() { Uno.Testing.Assert.AreEqual(0, Main()); }
@@ -32,12 +32,12 @@ namespace Mono.gtest_110
             int result = list.Map ("Hello");
             if (result != 1)
                 return 1;
-    
+
             IList<int> list2 = new SpecialList<int> ();
             int result2 = list2.Map ("World");
             if (result2 != 2)
                 return 2;
-    
+
             return 0;
         }
     }

@@ -192,7 +192,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             {
                 var value = factory();
                 var bundle = GetClass(value.Source.Bundle);
-                var field = new Field(value.Source, bundle, key, 
+                var field = new Field(value.Source, bundle, key,
                     null, Modifiers.Public | Modifiers.Static,
                     FieldModifiers.ReadOnly, value.ReturnType);
                 result = new LoadField(value.Source, null, field);

@@ -4,7 +4,7 @@ namespace Mono.test_203
     {
         Public = 0x0001
     }
-    
+
     class Foo
     {
         internal Modifiers Modifiers {
@@ -13,7 +13,7 @@ namespace Mono.test_203
             }
         }
     }
-    
+
     class Bar
     {
         [Uno.Testing.Test] public static void test_203() { Uno.Testing.Assert.AreEqual(0, Main()); }

@@ -147,7 +147,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     RegisterType(((NewArray) e).ArrayType);
                     break;
                 case ExpressionType.CastOp:
-                    if (!e.ReturnType.IsInterface && 
+                    if (!e.ReturnType.IsInterface &&
                             ((CastOp) e).CastType == CastType.Down)
                         RegisterType(e.ReturnType);
                     break;

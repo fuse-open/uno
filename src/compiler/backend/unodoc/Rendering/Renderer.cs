@@ -20,7 +20,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
         protected HashSet<DocumentViewModel> ViewModels { get; }
         protected Dictionary<string, HashSet<DocumentViewModel>> ViewModelsByParent { get; private set; }
         protected Dictionary<string, DocumentViewModel> ViewModelsById { get; private set; }
-        
+
         protected Renderer(Log log, string outputPath, HashSet<DocumentViewModel> viewModels)
         {
             Log = log;

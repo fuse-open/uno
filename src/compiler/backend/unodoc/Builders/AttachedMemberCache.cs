@@ -54,7 +54,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
                 result.AddRange(props.Where(e => e.UnderlyingMethod.DeclaringType.GetUri() != currentDataType.GetUri()));
             }
             return result.ToList();
-        } 
+        }
 
         static Dictionary<DataType, List<AttachedUxProperty>> FindAttachedProperties(DataType dataType)
         {
@@ -81,7 +81,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
             }
 
             return result;
-        } 
+        }
 
         static Dictionary<DataType, List<AttachedUxEvent>> FindAttachedEvents(DataType dataType)
         {
@@ -108,6 +108,6 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders
 
             }
             return result;
-        } 
+        }
     }
 }

@@ -3,7 +3,7 @@ using Uno.Testing;
 
 namespace Uno.UX.Tests
 {
-    
+
 
     public class UXRefTests
     {

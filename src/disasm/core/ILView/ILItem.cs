@@ -81,10 +81,10 @@ namespace Uno.Disasm.ILView
             IsVisible = CanShow(flags);
 
             if (!IsVisible)
-                return;            
+                return;
             foreach (var c in Children)
                 c.UpdateVisibility(flags);
-            
+
             int childCount = GetVisibleChildCount();
 
             if (this is NamespaceItem ||
@@ -94,14 +94,14 @@ namespace Uno.Disasm.ILView
                 this is FolderBase)
             {
                 Suffix = "(" + childCount + (
-                        this is FolderBase || this is ResourceCollection 
-                            ? " file" : 
-                        this is ReferenceCollection 
-                            ? " bundle" 
+                        this is FolderBase || this is ResourceCollection
+                            ? " file" :
+                        this is ReferenceCollection
+                            ? " bundle"
                             : " item"
                     ) + (
-                        childCount != 1 
-                            ? "s" 
+                        childCount != 1
+                            ? "s"
                             : null
                     ) + ")";
                 OnPropertyChanged("HasSuffix");

@@ -1,7 +1,7 @@
 namespace Mono.gtest_607
 {
     using Uno;
-    
+
     public class C
     {
         public C (out string b)

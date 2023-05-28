@@ -37,7 +37,7 @@ namespace Uno.Compiler.Core.IL.Building.Types
 
                     if (f.DeclaringType.BuiltinType != BuiltinType.Object)
                     {
-                        init = new Method(src, dt, f.DocComment, 
+                        init = new Method(src, dt, f.DocComment,
                             (f.Modifiers & ~Modifiers.ProtectionModifiers) | Modifiers.Protected,
                             ".ctor", DataType.Void, f.Parameters, f.Body);
                         if (!f.IsMasterDefinition)
@@ -51,13 +51,13 @@ namespace Uno.Compiler.Core.IL.Building.Types
                         var pt = TypeBuilder.Parameterize(dt.MasterDefinition);
 
                         if (f.IsMasterDefinition)
-                            factory = new Method(src, dt, f.DocComment, 
+                            factory = new Method(src, dt, f.DocComment,
                                 (f.Modifiers & Modifiers.ProtectionModifiers) | Modifiers.Static | Modifiers.Generated,
                                 "New", pt, f.Parameters, new Scope(src));
                         else
                         {
                             var master = ((ConstructorPair) f.MasterDefinition.Tag).Factory;
-                            factory = new Method(src, dt, f.DocComment, 
+                            factory = new Method(src, dt, f.DocComment,
                                 (f.Modifiers & Modifiers.ProtectionModifiers) | Modifiers.Static | Modifiers.Generated,
                                 master.UnoName, dt, f.Parameters, master.Body);
                             factory.SetMasterDefinition(master);

@@ -1,7 +1,7 @@
 namespace Mono.test_878
 {
     using Uno;
-    
+
     public class Tests
     {
         [Uno.Testing.Test] public static void test_878() { Uno.Testing.Assert.AreEqual(0, Main()); }
@@ -9,7 +9,7 @@ namespace Mono.test_878
         {
             return 0;
         }
-    
+
         void Test1 ()
         {
             int a;
@@ -18,10 +18,10 @@ namespace Mono.test_878
             } else {
                 a = 1;
             }
-    
+
             Console.WriteLine (a);
         }
-    
+
         void Test2 ()
         {
             int a;
@@ -30,7 +30,7 @@ namespace Mono.test_878
             } else {
                 a = 1;
             }
-    
+
             Console.WriteLine (a);
         }
     }

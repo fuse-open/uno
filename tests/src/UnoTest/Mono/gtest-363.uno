@@ -5,7 +5,7 @@ namespace Mono.gtest_363
         public static void InsertAt<T> (T[] array, int index, params T[] items)
         {
         }
-        
+
         [Uno.Testing.Test] public static void gtest_363() { Main(); }
         public static void Main()
         {

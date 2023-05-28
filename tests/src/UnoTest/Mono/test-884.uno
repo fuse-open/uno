@@ -1,9 +1,9 @@
 namespace Mono.test_884
 {
     // Compiler options: -optimize
-    
+
     using Uno;
-    
+
     class C
     {
         [Uno.Testing.Test] public static void test_884() { Main(); }
@@ -11,17 +11,17 @@ namespace Mono.test_884
         {
             AddEH<string> ();
         }
-    
+
         static void AddEH<T>()
         {
             var e = new E<T> ();
             e.EEvent += EHandler;
         }
-    
+
         static void EHandler ()
         {
         }
-    
+
         class E<T>
         {
             public delegate void EMethod ();

@@ -35,7 +35,7 @@ namespace Uno.CLI.Diagnostics
             var libs = false;
             var node = false;
             var system = false;
-            
+
             var input = new OptionSet {
                     { "a|asm", value => asm = true },
                     { "e|env", value => system = true },

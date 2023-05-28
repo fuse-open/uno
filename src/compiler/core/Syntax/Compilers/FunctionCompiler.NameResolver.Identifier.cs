@@ -46,17 +46,17 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 if (db.CapturedLocals.TryGetValue(id.Symbol, out var))
                     return var.IsConstant && var.OptionalValue != null
                             ? new PartialValue(var.OptionalValue) :
-                        var.ValueType is FixedArrayType 
-                            ? new PartialValue(new AddressOf(new CapturedLocal(id.Source, em, var))) 
+                        var.ValueType is FixedArrayType
+                            ? new PartialValue(new AddressOf(new CapturedLocal(id.Source, em, var)))
                             : new PartialValue(new CapturedLocal(id.Source, em, var));
 
                 for (int i = 0; i < em.Parameters.Length; i++)
                     if (em.Parameters[i].Name == id.Symbol)
-                        return em.Parameters[i].Type is FixedArrayType 
-                            ? new PartialValue(new AddressOf(new CapturedArgument(id.Source, em, i), 
-                                em.Parameters[i].Modifier == ParameterModifier.Const 
-                                    ? AddressType.Const 
-                                    : 0)) 
+                        return em.Parameters[i].Type is FixedArrayType
+                            ? new PartialValue(new AddressOf(new CapturedArgument(id.Source, em, i),
+                                em.Parameters[i].Modifier == ParameterModifier.Const
+                                    ? AddressType.Const
+                                    : 0))
                             : new PartialValue(new CapturedArgument(id.Source, em, i));
             }
 

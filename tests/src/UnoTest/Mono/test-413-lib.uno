@@ -1,7 +1,7 @@
 namespace Mono.test_413
 {
     // Compiler options: -t:library
-    
+
     namespace Foo {
     namespace Bar {
             public class Baz {

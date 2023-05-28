@@ -4,7 +4,7 @@ namespace Mono.test_46
     // This test probes the various explicit unboxing casts
     //
     using Uno;
-    
+
     class X {
         static int cast_int (object o) { return (int) o; }
         static uint cast_uint (object o) { return (uint) o; }
@@ -18,7 +18,7 @@ namespace Mono.test_46
         static float cast_float (object o) { return (float) o; }
         static double cast_double (object o) { return (double) o; }
         static bool cast_bool (object o) { return (bool) o; }
-    
+
         [Uno.Testing.Test] public static void test_46() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {
@@ -32,7 +32,7 @@ namespace Mono.test_46
                 return 2;
             if (cast_int ((object) 0) != 0)
                 return 3;
-    
+
             if (cast_uint ((object) (uint)0) != 0)
                 return 4;
             if (cast_uint ((object) (uint) 1) != 1)
@@ -41,7 +41,7 @@ namespace Mono.test_46
                 return 6;
             if (cast_uint ((object) (uint) UInt.MinValue) != UInt.MinValue)
                 return 7;
-    
+
             if (cast_ushort ((object) (ushort) 1) != 1)
                 return 8;
             if (cast_ushort ((object) (ushort) UShort.MaxValue) != UShort.MaxValue)
@@ -50,7 +50,7 @@ namespace Mono.test_46
                 return 10;
             if (cast_ushort ((object) (ushort) 0) != 0)
                 return 11;
-    
+
             if (cast_short ((object) (short)-1) != -1)
                 return 12;
             if (cast_short ((object) (short) 1) != 1)
@@ -61,7 +61,7 @@ namespace Mono.test_46
                 return 15;
             if (cast_short ((object) (short) 0) != 0)
                 return 16;
-    
+
             if (cast_byte ((object) (byte)1) != 1)
                 return 17;
             if (cast_byte ((object) (byte) Byte.MaxValue) != Byte.MaxValue)
@@ -70,7 +70,7 @@ namespace Mono.test_46
                 return 19;
             if (cast_byte ((object) (byte) 0) != 0)
                 return 20;
-    
+
             if (cast_sbyte ((object) (sbyte) -1) != -1)
                 return 21;
             if (cast_sbyte ((object) (sbyte) 1) != 1)
@@ -81,8 +81,8 @@ namespace Mono.test_46
                 return 24;
             if (cast_sbyte ((object) (sbyte) 0) != 0)
                 return 25;
-            
-    
+
+
             if (cast_long ((object) (long) -1) != -1)
                 return 26;
             if (cast_long ((object) (long) 1) != 1)
@@ -93,7 +93,7 @@ namespace Mono.test_46
                 return 29;
             if (cast_long ((object) (long) 0) != 0)
                 return 30;
-    
+
             if (cast_ulong ((object) (ulong) 0) != 0)
                 return 31;
             if (cast_ulong ((object) (ulong) 1) != 1)
@@ -102,7 +102,7 @@ namespace Mono.test_46
                 return 33;
             if (cast_ulong ((object) (ulong) ULong.MinValue) != ULong.MinValue)
                 return 34;
-    
+
             if (cast_double ((object) (double) -1) != -1)
                 return 35;
             if (cast_double ((object) (double) 1) != 1)
@@ -113,7 +113,7 @@ namespace Mono.test_46
                 return 38;
             if (cast_double ((object) (double) 0) != 0)
                 return 39;
-    
+
             if (cast_float ((object) (float) -1) != -1)
                 return 40;
             if (cast_float ((object) (float) 1) != 1)
@@ -124,7 +124,7 @@ namespace Mono.test_46
                 return 43;
             if (cast_float ((object) (float) 0) != 0)
                 return 44;
-    
+
             return 0;
         }
     }

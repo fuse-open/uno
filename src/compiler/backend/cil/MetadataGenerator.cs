@@ -33,8 +33,8 @@ namespace Uno.Compiler.Backends.CIL
                 AssemblyBuilderAccess.Save,
                 outputDir);
             var module = _assembly.DefineDynamicModule(
-                bundle.Name, 
-                bundle.Name + ".dll", 
+                bundle.Name,
+                bundle.Name + ".dll",
                 true);
             _types = new CilTypeFactory(backend, essentials, linker, module);
         }

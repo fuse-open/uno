@@ -5,9 +5,9 @@ namespace Mono.test_54
     // from catch blocks
     //
     using Uno;
-    
+
     class X {
-    
+
         bool v ()
         {
             try {
@@ -17,11 +17,11 @@ namespace Mono.test_54
             }
             return true;
         }
-    
+
         [Uno.Testing.Test] public static void test_54() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {
             return 0;
-        }        
+        }
     }
 }

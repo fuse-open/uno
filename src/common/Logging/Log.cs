@@ -159,14 +159,14 @@ namespace Uno.Logging
                 Errors.AddWarning(src, str, msg);
             }
         }
-        
+
         // Warning level 2 is the default.
         public void Warning(Source src, object code, string msg)
         {
             if (WarningLevel >= 2)
                 Warning1(src, code, msg);
         }
-        
+
         public void Warning3(Source src, object code, string msg)
         {
             if (WarningLevel >= 3)

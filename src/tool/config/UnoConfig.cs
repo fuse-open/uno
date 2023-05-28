@@ -225,7 +225,7 @@ namespace Uno.Configuration
                         foreach (var line in item.Value.Split('\n'))
                             if (!string.IsNullOrEmpty(line))
                                 result.Insert(
-                                    index++, 
+                                    index++,
                                     new UnoConfigString
                                     {
                                         ParentDirectory = item.File.ParentDirectory,
@@ -346,7 +346,7 @@ namespace Uno.Configuration
                     return;
 
             _files.Add(file);
-            
+
             // Load parent configuration files
             if (scanParentDir)
                 LoadRecursive(Path.GetDirectoryName(dir));

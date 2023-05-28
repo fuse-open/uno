@@ -1,7 +1,7 @@
 namespace Mono.test_581
 {
     using Uno;
-    
+
     public class TestParams
     {
         object this [params string[] idx] {
@@ -14,14 +14,14 @@ namespace Mono.test_581
                     throw new ApplicationException (value.ToString ());
             }
         }
-        
+
         public void TestMethod ()
         {
             this ["A"] += "(" + this ["B"] + ")";
             this [new string[] {"A"}] += "(" + this ["B"] + ")";
         }
     }
-    
+
     public class TestNonParams
     {
         object this [string idx] {
@@ -34,13 +34,13 @@ namespace Mono.test_581
                     throw new ApplicationException (value.ToString ());
             }
         }
-        
+
         public void TestMethod ()
         {
             this ["A"] += "(" + this ["B"] + ")";
         }
     }
-    
+
     public class M
     {
         [Uno.Testing.Test] public static void test_581() { Uno.Testing.Assert.AreEqual(0, Main()); }

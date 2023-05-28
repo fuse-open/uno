@@ -1,9 +1,9 @@
 namespace Mono.test_static_using_01
 {
     // Compiler options: -langversion:6
-    
+
     using static A.B.X;
-    
+
     namespace A.B
     {
         static class X
@@ -14,7 +14,7 @@ namespace Mono.test_static_using_01
             }
         }
     }
-    
+
     namespace C
     {
         class M
@@ -24,7 +24,7 @@ namespace Mono.test_static_using_01
             {
                 if (Test () != 5)
                     return 1;
-    
+
                 return 0;
             }
         }

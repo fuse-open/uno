@@ -99,7 +99,7 @@ namespace Uno.IO
             parentDir = parentDir.TrimEnd(Path.DirectorySeparatorChar);
             if (parentDir.Length > 1 &&
                 filename.Length > parentDir.Length &&
-                filename.ToUpperInvariant().StartsWith((parentDir + Path.DirectorySeparatorChar).ToUpperInvariant(), 
+                filename.ToUpperInvariant().StartsWith((parentDir + Path.DirectorySeparatorChar).ToUpperInvariant(),
                     StringComparison.InvariantCulture))
                 return filename.Substring(parentDir.Length + 1);
 

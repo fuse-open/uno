@@ -5,11 +5,11 @@ namespace Mono.gtest_173
         Console.WriteLine ("{0} - {1}", typeof (t), x.GetType ());
       }
     }
-    
+
     class C {}
     class D {}
-    
-    
+
+
     class M {
       [Uno.Testing.Test] public static void gtest_173() { Main(); }
         public static void Main() {

@@ -42,8 +42,8 @@ namespace Uno.Compiler.API.Domain.IL.Statements
         public override string ToString()
         {
             return Variable.ValueType + " " + Variable.Name + (
-                Variable.OptionalValue != null 
-                    ? " = " + Variable.OptionalValue 
+                Variable.OptionalValue != null
+                    ? " = " + Variable.OptionalValue
                     : null
                 ) + ";";
         }

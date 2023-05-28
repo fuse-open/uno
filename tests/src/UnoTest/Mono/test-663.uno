@@ -6,13 +6,13 @@ namespace Mono.test_663
         {
             return 1;
         }
-        
+
         public static implicit operator bool (A a)
         {
             return false;
         }
     }
-    
+
     class C
     {
         [Uno.Testing.Test] public static void test_663() { Main(); }

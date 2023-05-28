@@ -43,9 +43,9 @@ namespace Uno.Compiler.Graphics.OpenGL
             Types.Add(Essentials.Float4x4, "mat4");
             Types.Add(Essentials.Sampler2D, "sampler2D");
             Types.Add(Essentials.SamplerCube, "samplerCube");
-            Types.Add(Essentials.VideoSampler, 
-                Environment.IsDefined("ANDROID") 
-                    ? "samplerExternalOES" 
+            Types.Add(Essentials.VideoSampler,
+                Environment.IsDefined("ANDROID")
+                    ? "samplerExternalOES"
                     : "sampler2D");
 
             // GLSL functions

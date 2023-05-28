@@ -4,16 +4,16 @@ namespace Mono.gtest_008
     {
         void Hello ();
     }
-    
+
     class Stack<T>
         where T : I, new ()
     {
     }
-    
+
     class Test
     {
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_008() { Main(); }

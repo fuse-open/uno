@@ -44,7 +44,7 @@ struct uMainLoop : Xli::WindowEventHandler
     uMainLoop()
     {
         Xli::PlatformLib::Init();
-        
+
         Xli::DisplaySettings settings;
         int maxFps = Xli::Display::GetCount() > 0 &&
                         Xli::Display::GetCurrentSettings(0, settings) &&
@@ -93,25 +93,25 @@ struct uMainLoop : Xli::WindowEventHandler
         while (!wnd->IsClosed())
         {
             double startTime = @{Uno.Diagnostics.Clock.GetSeconds():Call()};
-    
+
             Xli::Window::ProcessMessages();
             OnUpdate(wnd);
-    
+
             if (wnd->IsVisible())
                 OnDraw(wnd);
-    
+
             if (maxFps > 0)
             {
                 double targetTime = 1.0 / (double)maxFps;
                 double renderTime = @{Uno.Diagnostics.Clock.GetSeconds():Call()} - startTime;
                 int msTimeout = (int)((targetTime - renderTime) * 1000.0 + 0.5);
-    
+
                 if (msTimeout > 0)
                     std::this_thread::sleep_for(std::chrono::milliseconds(msTimeout));
             }
         }
     }
-    
+
     virtual void OnUpdate(Xli::Window* wnd)
     {
         uAutoReleasePool pool;

@@ -11,46 +11,46 @@ namespace Mono.test_217
             object val5  = compare_lte(1, 0);
             object val6  = compare_lte(0, 1);
             bool b;
-           
+
         b = (true == (bool) val1);
         if (b == false)
         {
            return 1;
         }
-            
+
         b = (true == (bool) val2);
         if (b == false)
         {
            return 2;
         }
-    
+
         b = (true == (bool) val3);
         if (b == true)
         {
            return 3;
         }
-    
+
         b = (true == (bool) val4);
         if (b == false)
         {
            return 4;
         }
-    
+
         b = (true == (bool) val5);
         if (b == true)
         {
            return 5;
         }
-    
+
         b = (true == (bool) val6);
         if (b == false)
         {
            return 6;
         }
-    
+
         return 0;
        }
-    
+
        static object compare_gte(int a, int b)
        {
            return a >= b;

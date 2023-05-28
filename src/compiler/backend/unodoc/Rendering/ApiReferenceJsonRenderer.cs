@@ -113,7 +113,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
         string GetRenderedIndexBody(DocumentViewModel viewModel)
         {
             var tocBuilder = new TableOfContentsBuilder(viewModel, ViewModelsByParent, ViewModelsById);
-            var toc = tocBuilder.Build();                       
+            var toc = tocBuilder.Build();
             var uxNamespaces = _uxNamespaces.Select(e =>
             {
                 var entries = _uxClassesByNamespace.ContainsKey(e.Uri.Href) ? _uxClassesByNamespace[e.Uri.IdUri] : new List<DataTypeViewModel>();

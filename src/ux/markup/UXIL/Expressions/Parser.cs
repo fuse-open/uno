@@ -449,7 +449,7 @@ namespace Uno.UX.Markup.UXIL.Expressions
                 ? new UserDefinedUnaryOperator(unary, Expect(ParseExpression(Precedence.Invalid, true)))
                 : null;
         }
-        
+
         Expression ParseLiteral()
         {
             var num = ParseNumericLiteral();
@@ -530,7 +530,7 @@ namespace Uno.UX.Markup.UXIL.Expressions
                 Consume(TokenType.RightCurlyBrace);
                 return new RawExpression(e);
             }
-            else 
+            else
             {
                 var e = Expect(ParseExpression(Precedence.Invalid, true));
 

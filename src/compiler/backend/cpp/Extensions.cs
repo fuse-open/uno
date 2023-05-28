@@ -8,7 +8,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
     {
         public static bool CanUsePointerDirectly(this Field f)
         {
-            return f.IsStatic && 
+            return f.IsStatic &&
                 !f.DeclaringType.HasInitializer &&
                 f.DeclaringType.MasterDefinition.IsClosed;
         }

@@ -71,7 +71,7 @@ namespace Uno.Compiler.Core
 
             var file = Path.Combine(OutputDirectory, filename);
             var lib = Path.Combine(bundle.CacheDirectory, "lib." + Compiler.Input.AstCache.MagicString);
-            return File.Exists(file) && File.Exists(lib) && 
+            return File.Exists(file) && File.Exists(lib) &&
                    File.GetLastWriteTime(file) > File.GetLastWriteTime(lib);
         }
 

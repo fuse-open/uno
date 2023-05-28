@@ -5,10 +5,10 @@ namespace Mono.test_257
         public static void Main()
             {
                     int a;
-    
+
                     call (out a);
             }
-    
+
             static void call (out int a)
             {
                     while (true){

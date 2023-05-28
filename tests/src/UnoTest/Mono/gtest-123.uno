@@ -5,7 +5,7 @@ namespace Mono.gtest_123
         public delegate void Foo ();
         public delegate void Bar<U> ();
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_123() { Main(); }

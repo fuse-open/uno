@@ -13,11 +13,11 @@ namespace Mono.test_309
                 public enum Token {
                     ONE
                 }
-    
+
                 public void HandleToken(Token tok)
-                {    
+                {
                 }
-    
+
             }
         }
     }

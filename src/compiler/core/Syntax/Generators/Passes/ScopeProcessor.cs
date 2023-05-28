@@ -41,8 +41,8 @@ namespace Uno.Compiler.Core.Syntax.Generators.Passes
             Location = g.LocationStack.Last();
             Property = g.GetProperty(Location);
             Method = new Method(Property.Source, g.Path.DrawBlock.Method.DeclaringType,
-                null, Modifiers.Private | Modifiers.Static | Modifiers.Generated, 
-                g.CreateFieldName(Property, Location), Property.ReturnType, 
+                null, Modifiers.Private | Modifiers.Static | Modifiers.Generated,
+                g.CreateFieldName(Property, Location), Property.ReturnType,
                 new Parameter[0]);
 
             Method.SetBody(scope.CopyNullable(new CopyState(Method)));

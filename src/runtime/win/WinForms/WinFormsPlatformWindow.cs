@@ -10,7 +10,7 @@ namespace Uno.AppLoader.WinForms
         PointerCursor _cursor = PointerCursor.Default;
         bool _isTextInputActive = false;
         float _density = 1.0f;
-        
+
         public WinFormsPlatformWindow(UnoGLControl control)
         {
             _control = control;

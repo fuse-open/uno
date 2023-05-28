@@ -1,7 +1,7 @@
 namespace Mono.gtest_454
 {
     using Uno;
-    
+
     namespace TestNS
     {
         public class TestCase
@@ -10,12 +10,12 @@ namespace Mono.gtest_454
             {
                 return 0;
             }
-    
+
             public static void DoSomething<T> (Func<T, T, int> fn)
             {
                 Console.WriteLine (fn (default (T), default (T)));
             }
-    
+
             [Uno.Testing.Test] public static void gtest_454() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
             {

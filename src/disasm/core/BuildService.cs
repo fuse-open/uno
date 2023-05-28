@@ -71,7 +71,7 @@ namespace Uno.Disasm
                 return;
 
             StartAsync(
-                "Clean Project", 
+                "Clean Project",
                 build => new ProjectCleaner(_log).Clean(_args.ProjectFile));
         }
 

@@ -6,7 +6,7 @@ namespace Mono.gtest_exmethod_09
         {
         }
     }
-    
+
     class C
     {
         [Uno.Testing.Test] public static void gtest_exmethod_09() { Main(); }

@@ -1,9 +1,9 @@
 namespace Mono.gtest_exmethod_17
 {
     // Compiler options: -t:library
-    
+
     using Uno;
-    
+
     namespace Testy
     {
         public static class TestExtensions

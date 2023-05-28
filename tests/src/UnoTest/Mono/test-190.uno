@@ -3,7 +3,7 @@ namespace Mono.test_190
     class A
     {
         private int foo = 0;
-    
+
         class B : A
         {
             void Test ()
@@ -11,7 +11,7 @@ namespace Mono.test_190
                 foo = 3;
             }
         }
-    
+
         class C
         {
             void Test (A a)
@@ -19,7 +19,7 @@ namespace Mono.test_190
                 a.foo = 4;
             }
         }
-    
+
         [Uno.Testing.Test] public static void test_190() { Main(); }
         public static void Main()
         { }

@@ -5,7 +5,7 @@ namespace Mono.gtest_036
     // TypeContainer.CurrentType correctly when compiling the
     // declaration of `Stack'.
     //
-    
+
     class Stack<T>
     {
         //
@@ -17,13 +17,13 @@ namespace Mono.gtest_036
         void Hello (Stack<T> stack)
         {
         }
-    
+
         void Test ()
         {
             Hello (this);
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_036() { Main(); }

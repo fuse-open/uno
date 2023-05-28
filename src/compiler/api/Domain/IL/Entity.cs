@@ -30,7 +30,7 @@ namespace Uno.Compiler.API.Domain.IL
         {
             var diff = string.Compare(GetName(this), GetName(other), StringComparison.InvariantCulture);
             return diff != 0
-                ? diff 
+                ? diff
                 : string.Compare(ToString(), other.ToString(), StringComparison.InvariantCulture);
         }
 

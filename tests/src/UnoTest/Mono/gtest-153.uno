@@ -4,12 +4,12 @@ namespace Mono.gtest_153
     {
         void DoSomeThing();
     }
-    
+
     public interface IExtended : IBase
     {
         void DoSomeThingElse();
     }
-    
+
     public class MyClass<T> where T: IExtended, new()
     {
         public MyClass()
@@ -18,7 +18,7 @@ namespace Mono.gtest_153
             instance.DoSomeThing();
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_153() { Main(); }

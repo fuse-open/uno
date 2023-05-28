@@ -25,13 +25,13 @@ namespace Uno.Compiler.API.Domain.IL.Members
 
         public Method CreateAddMethod(Source src, Modifiers modifiers, Scope optionalBody = null)
         {
-            return AddMethod = new Method(src, this, DocComment, modifiers, 
+            return AddMethod = new Method(src, this, DocComment, modifiers,
                 "add_" + UnoName, DataType.Void, new[] { new Parameter(Source, AttributeList.Empty, 0, ReturnType, "value", null) }, optionalBody);
         }
 
         public Method CreateRemoveMethod(Source src, Modifiers modifiers, Scope optionalBody = null)
         {
-            return RemoveMethod = new Method(src, this, DocComment, modifiers, 
+            return RemoveMethod = new Method(src, this, DocComment, modifiers,
                 "remove_" + UnoName, DataType.Void, new[] { new Parameter(Source, AttributeList.Empty, 0, ReturnType, "value", null) }, optionalBody);
         }
 

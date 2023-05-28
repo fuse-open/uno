@@ -8,14 +8,14 @@ namespace Mono.test_xml_043
         public static void Main()
       {
       }
-    
+
       private class A
       {
         public virtual void Decide(int a)
         {
         }
       }
-    
+
       /// <summary>
       /// <see cref="Decide (int)" />
       /// </summary>

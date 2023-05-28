@@ -48,8 +48,8 @@ namespace Uno.Compiler.Core.IL.Validation
         public void VerifyConstUsage(Source src, Member member, Function scope)
         {
             scope.AssignAttributes();
-            VerifyConstUsage(src, member, 
-                scope.DeclaringType, 
+            VerifyConstUsage(src, member,
+                scope.DeclaringType,
                 scope.HasAttribute(Essentials.ObsoleteAttribute) ||
                    IsObsolete(scope.DeclaringType));
         }

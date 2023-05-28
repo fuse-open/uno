@@ -26,10 +26,10 @@ namespace HttpStatusCodeTester
                 request.Aborted += Aborted;
                 request.Error += Error;
                 request.Timeout += Timeout;
-                
+
                 if(headerkey != null && headervalue != null)
                     request.SetHeader(headerkey, headervalue);
-                
+
                 request.SetResponseType(HttpResponseType.String);
                 request.SendAsync();
             }
@@ -82,7 +82,7 @@ namespace HttpStatusCodeTester
                 data.Type = eventType;
             if(msg != null)
                 data.Exception = exception;
-            
+
             try
             {
                 if(msg == null)
@@ -114,7 +114,7 @@ namespace HttpStatusCodeTester
         public string Content { get; set; }
 
         public string Type { get; set; }
-        
+
         public string Exception { get; set; }
     }
 }

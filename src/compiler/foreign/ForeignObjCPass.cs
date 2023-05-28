@@ -32,7 +32,7 @@ namespace Uno.Compiler.Foreign.ObjC
 
         void EnsureInitialized(Source source, Function f)
         {
-			Helpers.CacheContext(f, source);
+            Helpers.CacheContext(f, source);
             if (!_initialized)
             {
                 _initialized = true;
@@ -56,7 +56,7 @@ namespace Uno.Compiler.Foreign.ObjC
             Environment.Require(
                 f.DeclaringType,
                 "Source.Include",
-                f.Source, 
+                f.Source,
                 "uObjC.Foreign.h");
 
             _unique = 0;

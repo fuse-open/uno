@@ -1,28 +1,28 @@
 namespace Mono.gtest_112
 {
     using Uno;
-    
+
     public interface IComparer<T>
     {
         void Compare (T a);
     }
-    
+
     class IC : IComparer<Foo<int>>
     {
         public void Compare (Foo<int> a)
         { }
     }
-    
+
     public struct Foo<K>
     {
         public K Value;
-    
+
         public Foo (K value)
         {
             Value = value;
         }
     }
-    
+
     public class List<T>
     {
         public virtual void Sort (IComparer<T> c, T t)
@@ -30,25 +30,25 @@ namespace Mono.gtest_112
             Sorting.IntroSort<T> (c, t);
         }
     }
-    
+
     public class Sorting
     {
         public static void IntroSort<T> (IComparer<T> c, T t)
         {
             new Sorter<T> (c, 4, t).InsertionSort (0);
         }
-    
+
         class Sorter<T>
         {
             IComparer<T> c;
             T[] a;
-    
+
             public Sorter (IComparer<T> c, int size, T item)
             {
                 this.c = c;
                 a = new T [size];
             }
-    
+
             internal void InsertionSort (int i)
             {
                 T other;
@@ -56,7 +56,7 @@ namespace Mono.gtest_112
             }
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_112() { Main(); }

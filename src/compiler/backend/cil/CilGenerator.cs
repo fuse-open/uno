@@ -47,8 +47,8 @@ namespace Uno.Compiler.Backends.CIL
                 AssemblyBuilderAccess.Save,
                 outputDir);
             _module = _assembly.DefineDynamicModule(
-                bundle.Name, 
-                bundle.Name + ".dll", 
+                bundle.Name,
+                bundle.Name + ".dll",
                 true);
             _types = new CilTypeFactory(backend, essentials, linker, _module);
         }
@@ -58,7 +58,7 @@ namespace Uno.Compiler.Backends.CIL
             if (debug)
                 _assembly.SetCustomAttribute(
                     new CustomAttributeBuilder(
-                        _linker.System_Diagnostics_DebuggableAttribute_ctor, 
+                        _linker.System_Diagnostics_DebuggableAttribute_ctor,
                         new object[] {DebuggableAttribute.DebuggingModes.DisableOptimizations | DebuggableAttribute.DebuggingModes.Default}));
 
             foreach (var name in _bundle.InternalsVisibleTo)

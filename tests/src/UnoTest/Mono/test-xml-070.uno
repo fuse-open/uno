@@ -1,14 +1,14 @@
 namespace Mono.test_xml_070
 {
     // Compiler options: -doc:xml-070.xml
-    
+
     /// <summary>
-    /// Test base <see cref="ToString"/> 
+    /// Test base <see cref="ToString"/>
     /// </summary>
     interface I
     {
     }
-    
+
     class X
     {
         /// <returns>

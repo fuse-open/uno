@@ -16,7 +16,7 @@ namespace Uno.UX.Tests
         public UXTestFoo Foo { get; set; }
 
         public bool TestWasRun = false;
-        public void RunTest() 
+        public void RunTest()
         {
             TestWasRun = true;
         }
@@ -33,7 +33,7 @@ namespace Uno.UX.Tests
             Assert.IsTrue(e.Foo is UXTestFoo);
             Assert.IsTrue(e.innerObj is UXTestBar);
             Assert.IsTrue(((UXTestFoo)e.Foo).Bar is UXTestBar);
-            
+
             Assert.IsFalse(((UXTestBar)e).TestWasRun);
             e.Run();
             Assert.IsTrue(((UXTestBar)e).TestWasRun);

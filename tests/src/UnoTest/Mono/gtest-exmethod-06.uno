@@ -6,13 +6,13 @@ namespace Mono.gtest_exmethod_06
         {
             return default (T);
         }
-        
+
         public static string Test_1<T> (this string s)
         {
             return ":";
         }
     }
-    
+
     namespace B
     {
         public class M
@@ -23,7 +23,7 @@ namespace Mono.gtest_exmethod_06
                 "".Test_1();
                 4.Test_1();
                 new M().Test_1();
-                
+
                 //null.Test_1();
             }
         }

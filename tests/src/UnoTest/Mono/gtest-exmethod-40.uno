@@ -1,7 +1,7 @@
 namespace Mono.gtest_exmethod_40
 {
     // Compiler options: -r:gtest-exmethod-40-lib.dll
-    
+
     namespace N.Extensions
     {
         public static class s
@@ -11,12 +11,12 @@ namespace Mono.gtest_exmethod_40
             }
         }
     }
-    
-    
+
+
     namespace N.Main
     {
         using N.Extensions;
-    
+
         public class C
         {
             [Uno.Testing.Test] public static void gtest_exmethod_40() { Main(); }

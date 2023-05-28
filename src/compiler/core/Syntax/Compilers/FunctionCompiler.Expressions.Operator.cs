@@ -38,8 +38,8 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         {
             return bo.IsAssign
                 ? CompileAssign(bo)
-                : CompileBinOp(bo.Source, bo.Type, 
-                        CompileExpression(bo.Left), 
+                : CompileBinOp(bo.Source, bo.Type,
+                        CompileExpression(bo.Left),
                         CompileExpression(bo.Right));
         }
 
@@ -153,8 +153,8 @@ namespace Uno.Compiler.Core.Syntax.Compilers
 
             var args = new[] {left, right};
             var opOp = binOp.ToSymbol();
-            var op = TryResolveOperatorOverload(src, 
-                NameResolver.GetTypeOperators(left.ReturnType, right.ReturnType, opOp), 
+            var op = TryResolveOperatorOverload(src,
+                NameResolver.GetTypeOperators(left.ReturnType, right.ReturnType, opOp),
                 args);
 
             if (op != null)
@@ -168,10 +168,10 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                     left = CompileImplicitCast(src, Essentials.Bool, left);
                     right = CompileImplicitCast(src, Essentials.Bool, right);
                     return new BranchOp(
-                        src, Essentials.Bool, 
-                        binOp == AstBinaryType.LogAnd 
-                            ? BranchType.And 
-                            : BranchType.Or, 
+                        src, Essentials.Bool,
+                        binOp == AstBinaryType.LogAnd
+                            ? BranchType.And
+                            : BranchType.Or,
                         left, right);
                 }
                 case AstBinaryType.Null:

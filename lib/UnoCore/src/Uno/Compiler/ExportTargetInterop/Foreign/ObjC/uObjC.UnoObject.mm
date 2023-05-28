@@ -5,129 +5,129 @@
 
 @implementation StrongUnoObject
 {
-	@private
-	uObject* _unoObject;
+    @private
+    uObject* _unoObject;
 }
 
 + (instancetype)strongUnoObjectWithUnoObject:(uObject*)object
 {
-	if (object == nullptr)
-	{
-		return nil;
-	}
-	return [[StrongUnoObject alloc] initWithUnoObject: object];
+    if (object == nullptr)
+    {
+        return nil;
+    }
+    return [[StrongUnoObject alloc] initWithUnoObject: object];
 }
 
 - (id)initWithUnoObject:(uObject *)object
 {
-	self = [super init];
-	
-	if (self)
-	{
-		uRetain(object);
-		_unoObject = object;
-	}
-	
-	return self;
+    self = [super init];
+
+    if (self)
+    {
+        uRetain(object);
+        _unoObject = object;
+    }
+
+    return self;
 }
 
 - (id)init
 {
-	return [self initWithUnoObject: nullptr];
+    return [self initWithUnoObject: nullptr];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-	StrongUnoObject *newRef = [[[self class] allocWithZone:zone] init];
+    StrongUnoObject *newRef = [[[self class] allocWithZone:zone] init];
 
-	uRetain(_unoObject);
-	newRef->_unoObject = _unoObject;
-	return newRef;
+    uRetain(_unoObject);
+    newRef->_unoObject = _unoObject;
+    return newRef;
 }
 
 - (uObject *)unoObject
 {
-	// Auto-released
+    // Auto-released
 
-	uRetain(_unoObject);
-	uAutoRelease(_unoObject);
+    uRetain(_unoObject);
+    uAutoRelease(_unoObject);
 
-	return _unoObject;
+    return _unoObject;
 }
 
 - (void)setUnoObject:(uObject *)object
 {
-	uRetain(object);
-	uAutoRelease(_unoObject);
+    uRetain(object);
+    uAutoRelease(_unoObject);
 
-	_unoObject = object;
+    _unoObject = object;
 }
 
 - (void)dealloc
 {
-	uRelease(_unoObject);
-	_unoObject = nullptr;
+    uRelease(_unoObject);
+    _unoObject = nullptr;
 }
 @end
 
 
 @implementation WeakUnoObject
 {
-	@private
-	uWeakObject *_weakObject;
+    @private
+    uWeakObject *_weakObject;
 }
 
 + (instancetype)weakUnoObjectWithUnoObject:(uObject*)object
 {
-	if (object == nullptr)
-	{
-		return nil;
-	}
-	return [[WeakUnoObject alloc] initWithUnoObject: object];
+    if (object == nullptr)
+    {
+        return nil;
+    }
+    return [[WeakUnoObject alloc] initWithUnoObject: object];
 }
 
 - (id)initWithUnoObject:(uObject *)object
 {
-	self = [super init];
-	if (self)
-	{
-		_weakObject = nullptr;
-		uStoreWeak(&_weakObject, object);
-	}
-	return self;
+    self = [super init];
+    if (self)
+    {
+        _weakObject = nullptr;
+        uStoreWeak(&_weakObject, object);
+    }
+    return self;
 }
 
 - (id)init
 {
-	return [self initWithUnoObject: nullptr];
+    return [self initWithUnoObject: nullptr];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-	WeakUnoObject *newRef = [[[self class] allocWithZone:zone] init];
+    WeakUnoObject *newRef = [[[self class] allocWithZone:zone] init];
 
-	newRef->_weakObject = nullptr;
+    newRef->_weakObject = nullptr;
 
-	uObject *object = uLoadWeak(_weakObject);
-	uStoreWeak(&newRef->_weakObject, object);
+    uObject *object = uLoadWeak(_weakObject);
+    uStoreWeak(&newRef->_weakObject, object);
 
-	return newRef;
+    return newRef;
 }
 
 - (uObject *)unoObject
 {
-	// Auto-released
-	return uLoadWeak(_weakObject);
+    // Auto-released
+    return uLoadWeak(_weakObject);
 }
 
 - (void)setUnoObject:(uObject *)object
 {
-	uStoreWeak(&_weakObject, object);
+    uStoreWeak(&_weakObject, object);
 }
 
 - (void)dealloc
 {
-	uStoreWeak(&_weakObject, nullptr);
+    uStoreWeak(&_weakObject, nullptr);
 }
 @end
 
@@ -138,32 +138,32 @@
 
 + (instancetype)unsafeUnoObjectWithUnoObject:(uObject*)object
 {
-	if (object == nullptr)
-	{
-		return nil;
-	}
-	return [[UnsafeUnoObject alloc] initWithUnoObject: object];
+    if (object == nullptr)
+    {
+        return nil;
+    }
+    return [[UnsafeUnoObject alloc] initWithUnoObject: object];
 }
 
 - (id)initWithUnoObject:(uObject *)object
 {
-	self = [super init];
-	if (self)
-	{
-		_unoObject = object;
-	}
-	return self;
+    self = [super init];
+    if (self)
+    {
+        _unoObject = object;
+    }
+    return self;
 }
 
 - (id)init
 {
-	return [self initWithUnoObject: nullptr];
+    return [self initWithUnoObject: nullptr];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-	UnsafeUnoObject *newRef = [[[self class] allocWithZone:zone] init];
-	newRef->_unoObject = _unoObject;
-	return newRef;
+    UnsafeUnoObject *newRef = [[[self class] allocWithZone:zone] init];
+    newRef->_unoObject = _unoObject;
+    return newRef;
 }
 @end

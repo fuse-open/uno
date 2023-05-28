@@ -4,13 +4,13 @@ namespace Mono.gtest_037
     // Check whether we're correctly handling `this'.
     //
     //
-    
+
     public class Foo<T,U>
     {
         public void Hello (Foo<T,U> foo)
         {
         }
-    
+
         public virtual void Test ()
         {
             //
@@ -19,7 +19,7 @@ namespace Mono.gtest_037
             Hello (this);
         }
     }
-    
+
     public class Bar<T> : Foo<T,long>
     {
         public void Test (Foo<T,long> foo)
@@ -27,7 +27,7 @@ namespace Mono.gtest_037
             Hello (foo);
         }
     }
-    
+
     public class Baz<T> : Foo<T,string>
     {
         public override void Test ()
@@ -35,7 +35,7 @@ namespace Mono.gtest_037
             Hello (this);
         }
     }
-    
+
     class X
     {
         [Uno.Testing.Test] public static void gtest_037() { Main(); }

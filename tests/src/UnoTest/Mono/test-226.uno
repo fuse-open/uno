@@ -1,11 +1,11 @@
 namespace Mono.test_226
 {
     using Uno;
-    
+
     class Test226
     {
         static bool ok;
-    
+
         public static void Test ()
         {
             int n=0;
@@ -18,7 +18,7 @@ namespace Mono.test_226
             }
             ok = true;
         }
-    
+
         [Uno.Testing.Test] public static void test_226() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {

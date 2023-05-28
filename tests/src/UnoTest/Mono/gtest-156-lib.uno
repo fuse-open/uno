@@ -1,13 +1,13 @@
 namespace Mono.gtest_156
 {
     // Compiler options: -t:library
-    
+
     namespace FLMID.Bugs.Marshal15
     {
         public class A<T>
-    
+
         {
-    
+
         }
         public abstract class B
         {

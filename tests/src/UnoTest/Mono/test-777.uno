@@ -8,11 +8,11 @@ namespace Mono.test_777
             {
             }
         }
-    
+
         public interface MediaColumns
         {
         }
-    
+
         [Uno.Testing.Test] public static void test_777() { Main(); }
         public static void Main()
         {

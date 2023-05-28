@@ -106,7 +106,7 @@ namespace Uno.CLI.Android
                 timer.Elapsed += (s, e) => {
                     timer.Stop();
                     Shell.KillAll();
-                    
+
                     try
                     {
                         // -d: Dump log and exit

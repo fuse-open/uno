@@ -1,7 +1,7 @@
 namespace Mono.test_448
 {
     using Uno;
-    
+
     public class MonoDivideProblem
     {
         static uint dividend = 0x80000000;
@@ -11,6 +11,6 @@ namespace Mono.test_448
         {
             Console.WriteLine("Dividend/Divisor = {0}", dividend/divisor);
         }
-    
+
     }
 }

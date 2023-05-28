@@ -287,7 +287,7 @@ If you run into trouble, make sure you have installed [JDK 11](https://adoptium.
 
 ### Compiler
 - Fixed bug with `abstract extern` members (#273).
-- Dropped legacy importer system (#272). 
+- Dropped legacy importer system (#272).
 - Auto-detect main-class when building a library.
 
 ### Standard library
@@ -1009,7 +1009,7 @@ The native Android-theme used by an app has been made configurable, by adjusting
 To get the old behavior, add this snippet to your project file:
 
 "Android": {
-	"Theme" : "Holo"
+    "Theme" : "Holo"
 }
 
 0.44
@@ -1103,7 +1103,7 @@ This series of changes are seen as steps to enable where we want to go, we under
             @}
         }
 
-    On foreign Java methods you can also provide annotations. 
+    On foreign Java methods you can also provide annotations.
 
         [ForeignAnnotation(Language.Java, "TargetApi(19)")]
         public void Foo()
@@ -1776,24 +1776,24 @@ You can now create `ux:Global` objects of value types, such as `float4`. This is
 - Added support for `ux:InnerClass`, which is a class that has access to named UX objects in its scope.
   Specifically, the differences are:
 
-	ux:Class
+    ux:Class
 
-		Declares a global class that can be used anywhere.
-		Such classes have no access to ux:Names the scope in which they are declared.
+        Declares a global class that can be used anywhere.
+        Such classes have no access to ux:Names the scope in which they are declared.
 
-	ux:InnerClass
+    ux:InnerClass
 
-		Declares a class that can only be used in the scope where it is declared.
-		In return, it has full access to all ux:Names in the scope it is declared.
+        Declares a class that can only be used in the scope where it is declared.
+        In return, it has full access to all ux:Names in the scope it is declared.
 
-		Inner classes can be extracted into separate .ux files, and then included
-		using <ux:Include File="Foo.ux"> in the scope you want to use it.
+        Inner classes can be extracted into separate .ux files, and then included
+        using <ux:Include File="Foo.ux"> in the scope you want to use it.
 
-		Inner classes can not specify namespaces, they will implicitly be in the
-		name scope of their containing class.
+        Inner classes can not specify namespaces, they will implicitly be in the
+        name scope of their containing class.
 
-		If root nodes are marked ux:InnerClass, they are ignored by the UX compiler
-		unless ux:Included somewhere.
+        If root nodes are marked ux:InnerClass, they are ignored by the UX compiler
+        unless ux:Included somewhere.
 
 ### Foreign code
 

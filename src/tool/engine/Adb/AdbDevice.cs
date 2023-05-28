@@ -122,7 +122,7 @@ namespace Uno.Build.Adb
             _shell.Log.Verbose("PID: " + pid);
             _shell.Start(_adb, "-s " + _id + " logcat " + args,
                 (s, e) => { if (e.Data != null && e.Data.Contains(pid)) _shell.Log.WriteLine(e.Data); log.Add(e.Data); },
-                (s, e) => _shell.Log.WriteErrorLine(e.Data ?? string.Format ("Unknown Logcat Error: raised from 'adb -s {0} logcat {1}'", _id, args))).Wait(); 
+                (s, e) => _shell.Log.WriteErrorLine(e.Data ?? string.Format ("Unknown Logcat Error: raised from 'adb -s {0} logcat {1}'", _id, args))).Wait();
 
             return string.Join("\n", log);
         }

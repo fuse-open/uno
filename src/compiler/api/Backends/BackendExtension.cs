@@ -24,7 +24,7 @@ namespace Uno.Compiler.API.Backends
 
         protected virtual void Initialize()
         {
-        } 
+        }
 
         protected abstract void Begin();
 

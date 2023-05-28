@@ -1,7 +1,7 @@
 namespace Mono.gtest_556
 {
     // Compiler options: -t:library
-    
+
     public class A
     {
         public class N<T>

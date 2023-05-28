@@ -1,9 +1,9 @@
 namespace Mono.test_xml_069
 {
     // Compiler options: -doc:xml-069.xml
-    
+
     using Uno;
-    
+
     namespace XmlComments
     {
         /// <summary/>
@@ -15,7 +15,7 @@ namespace Mono.test_xml_069
                 /// <summary>The first entry</summary>
                 One,
             }
-    
+
             /// <summary>
             /// <see cref="MyEnum.One"/>
             /// <see cref="Program.MyEnum.One"/>

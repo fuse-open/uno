@@ -20,8 +20,8 @@ namespace Uno.Compiler
 
         // Lazy load text
         string _text;
-        public string Text => _text ?? (_text = !IsUnknown && File.Exists(FullPath) 
-                                            ? File.ReadAllText(FullPath) 
+        public string Text => _text ?? (_text = !IsUnknown && File.Exists(FullPath)
+                                            ? File.ReadAllText(FullPath)
                                             : "(unknown file)");
 
         public SourceFile(string fullPath, string text = null, int line = 1, int column = 1)
@@ -76,7 +76,7 @@ namespace Uno.Compiler
         {
             return GetOffset(line) + (
                 column > 0
-                    ? column - 1 
+                    ? column - 1
                     : 0);
         }
 
@@ -86,7 +86,7 @@ namespace Uno.Compiler
             var end = start + length;
             var text = Text;
             var count = 0;
-            
+
             for (var i = start; i < end; i++)
                 if (text[i] == '\n')
                     count++;

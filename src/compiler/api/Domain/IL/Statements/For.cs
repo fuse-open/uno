@@ -37,10 +37,10 @@ namespace Uno.Compiler.API.Domain.IL.Statements
 
         public override Statement CopyStatement(CopyState state)
         {
-            return new For(Source, 
-                OptionalInitializer.CopyNullable(state), 
-                OptionalCondition.CopyNullable(state), 
-                OptionalIncrement.CopyNullable(state), 
+            return new For(Source,
+                OptionalInitializer.CopyNullable(state),
+                OptionalCondition.CopyNullable(state),
+                OptionalIncrement.CopyNullable(state),
                 OptionalBody.CopyNullable(state));
         }
     };

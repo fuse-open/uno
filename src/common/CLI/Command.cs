@@ -101,7 +101,7 @@ namespace Uno.CLI
                 first = false;
             }
 
-            if (Description != null) 
+            if (Description != null)
                 WriteLine("\n" + Description.Trailing('.'));
         }
 

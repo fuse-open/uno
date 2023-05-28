@@ -4,16 +4,16 @@ namespace Mono.gtest_372
     {
         public bool Check (T x, T y) { return x == y; }
     }
-    
+
     public class C
     {
     }
-    
+
     public class TestClass2<T> where T : C
     {
         public bool Check (T x, T y) { return x == y; }
     }
-    
+
     public class X
     {
         [Uno.Testing.Test] public static void gtest_372() { Uno.Testing.Assert.AreEqual(0, Main()); }

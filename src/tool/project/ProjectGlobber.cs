@@ -210,7 +210,7 @@ namespace Uno.ProjectFormat
                 {
                 }
             }
-            
+
             // Skip dot directories unless explicit include pattern was specified
             return !Path.GetFileName(fullName).StartsWith('.');
         }

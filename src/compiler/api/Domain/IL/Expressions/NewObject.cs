@@ -22,7 +22,7 @@ namespace Uno.Compiler.API.Domain.IL.Expressions
             var result = new object[Arguments.Length];
 
             for (int i = 0; i < result.Length; i++)
-                result[i] = Arguments[i] is Constant 
+                result[i] = Arguments[i] is Constant
                     ? (Arguments[i] as Constant).Value
                     : null;
 

@@ -111,7 +111,7 @@ namespace Uno.Compiler.Core.IL.Testing
                                           ParameterList.Empty);
             var testVar = new Variable(_source, invokeMethod, "obj", method.DeclaringType,
                                        VariableType.Default, InstantiateTestFixture(method));
-            invokeMethod.SetBody(new Scope(_source, 
+            invokeMethod.SetBody(new Scope(_source,
                 new VariableDeclaration(testVar),
                 new CallMethod(_source, new LoadLocal(_source, testVar), method)));
 
@@ -187,7 +187,7 @@ namespace Uno.Compiler.Core.IL.Testing
                 var invokerInstance = InstantiateTestFixture(invokerMethod);
                 var testExpression = RegisterTest(testMethod,
                              new LoadLocal(_source, registryVariable),
-                             new NewDelegate(_source, _actionType, 
+                             new NewDelegate(_source, _actionType,
                                              invokerInstance, invokerMethod));
 
                 body.Statements.Add(testExpression);

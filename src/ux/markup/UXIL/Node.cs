@@ -434,7 +434,7 @@ namespace Uno.UX.Markup.UXIL
 
         public BindableProperty TryFindBindableProperty(ClassNode currentClass, string name)
         {
-            return BindableProperties.FirstOrDefault(x => x.Facet.Name == name && !(x.Facet is DeclaredUXDependency && x.Facet.DeclaringType == currentClass.BaseType)); 
+            return BindableProperties.FirstOrDefault(x => x.Facet.Name == name && !(x.Facet is DeclaredUXDependency && x.Facet.DeclaringType == currentClass.BaseType));
         }
 
         public FileSourceInfo Source { get; }
@@ -503,7 +503,7 @@ namespace Uno.UX.Markup.UXIL
                     return null;
 
                 var s = this.Parent;
-                
+
                 while (s != null)
                 {
                     if (s is DocumentScope) return (DocumentScope)s;
@@ -550,36 +550,36 @@ namespace Uno.UX.Markup.UXIL
         public override IDataType DeclaredType => ProducedType;
     }
 
-	public abstract class ParameterNode: Node
-	{
-		internal ParameterNode(FileSourceInfo source, string name, IDataType dataType, InstanceType instanceType, IEnumerable<RawProperty> rawProperties = null)
+    public abstract class ParameterNode: Node
+    {
+        internal ParameterNode(FileSourceInfo source, string name, IDataType dataType, InstanceType instanceType, IEnumerable<RawProperty> rawProperties = null)
             : base(source, name, dataType, instanceType, rawProperties)
         {
 
-		}
+        }
 
-		public override IDataType MemberSource => ResultingType;
-		public override IDataType DeclaredType => ResultingType;
-	}
+        public override IDataType MemberSource => ResultingType;
+        public override IDataType DeclaredType => ResultingType;
+    }
 
     public sealed class PropertyNode: ParameterNode
     {
         internal PropertyNode(FileSourceInfo source, string name, IDataType dataType, IEnumerable<RawProperty> rawProperties = null)
             : base(source, name, dataType, InstanceType.None, rawProperties)
         {
-            
+
         }
     }
 
-	public sealed class DependencyNode : ParameterNode
-	{
-		internal DependencyNode(FileSourceInfo source, string name, IDataType dataType, IEnumerable<RawProperty> rawProperties = null)
-			: base(source, name, dataType, InstanceType.Local, rawProperties)
-		{
-		}
-	}
+    public sealed class DependencyNode : ParameterNode
+    {
+        internal DependencyNode(FileSourceInfo source, string name, IDataType dataType, IEnumerable<RawProperty> rawProperties = null)
+            : base(source, name, dataType, InstanceType.Local, rawProperties)
+        {
+        }
+    }
 
-	public abstract class ObjectNode : Node
+    public abstract class ObjectNode : Node
     {
         public IDataType DataType { get; }
 

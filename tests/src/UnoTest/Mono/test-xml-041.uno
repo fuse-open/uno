@@ -8,7 +8,7 @@ namespace Mono.test_xml_041
         public static void Main()
       {
       }
-    
+
       /// <summary>
       /// <see cref="Decide(int)" />
       /// </summary>

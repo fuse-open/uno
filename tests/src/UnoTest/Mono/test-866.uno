@@ -6,13 +6,13 @@ namespace Mono.test_866
         {
             return false;
         }
-    
+
         public static bool operator + (C a, long b)
         {
             return false;
         }
     }
-    
+
     class B
     {
         public static bool operator + (B b, string s)
@@ -20,7 +20,7 @@ namespace Mono.test_866
             return false;
         }
     }
-    
+
     public class Test
     {
         [Uno.Testing.Test] public static void test_866() { Main(); }

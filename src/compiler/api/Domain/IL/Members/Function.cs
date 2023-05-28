@@ -8,7 +8,7 @@ namespace Uno.Compiler.API.Domain.IL
 {
     public abstract class Function : ParametersMember
     {
-        public static readonly Method Null = new Method(Source.Unknown, DataType.Void, null, 
+        public static readonly Method Null = new Method(Source.Unknown, DataType.Void, null,
                 Modifiers.Generated | Modifiers.Static, ".null", DataType.Void, ParameterList.Empty,
                 new Scope(Source.Unknown, new NoOp(Source.Unknown)));
 

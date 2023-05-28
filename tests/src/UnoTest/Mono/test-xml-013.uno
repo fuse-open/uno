@@ -2,7 +2,7 @@ namespace Mono.test_xml_013
 {
     // Compiler options: -doc:xml-013.xml
     using Uno;
-    
+
     namespace Testing
     {
         public class Test
@@ -11,7 +11,7 @@ namespace Mono.test_xml_013
         public static void Main()
             {
             }
-    
+
             /// <summary>
             /// comment for public property
             /// </summary>
@@ -25,14 +25,14 @@ namespace Mono.test_xml_013
                 /// </summary>
                 set { }
             }
-    
+
             /// <summary>
             /// incorrect comment for public property
             /// </incorrect>
             public string PublicProperty2 {
                 get { return null; }
             }
-    
+
             /**
             <summary>
             Javadoc comment for public property

@@ -40,7 +40,7 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 return impl;
 
             // Down cast
-            if (targetType.IsReferenceType && operand.ReturnType.IsReferenceType || 
+            if (targetType.IsReferenceType && operand.ReturnType.IsReferenceType ||
                     targetType.IsInterface || operand.ReturnType.IsInterface)
                 return operand.ReturnType.IsInterface ||
                         operand.ReturnType.IsSubclassOf(targetType) ||

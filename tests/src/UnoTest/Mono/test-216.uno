@@ -5,13 +5,13 @@ namespace Mono.test_216
     // Bug 48710
     //
     using Uno;
-    
+
     public delegate void OnWhateverDelegate( string s );
-    
+
     class cls
     {
         public event OnWhateverDelegate OnWhatever;
-    
+
         class nestedcls
         {
             internal void CallParentDel( cls c, string s )
@@ -24,11 +24,11 @@ namespace Mono.test_216
             (new nestedcls()).CallParentDel( this, s );
         }
     }
-    
-    class MonoEmbed 
+
+    class MonoEmbed
     {
         [Uno.Testing.Test] public static void test_216() { Main(); }
-        public static void Main() 
+        public static void Main()
         {
             cls c = new cls();
             c.OnWhatever += new OnWhateverDelegate( Whatever );

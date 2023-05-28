@@ -1,7 +1,7 @@
 namespace Mono.gtest_446
 {
     using Uno;
-    
+
     namespace BugTest
     {
         class Bug<T> where T : new ()
@@ -11,7 +11,7 @@ namespace Mono.gtest_446
                 param = new T ();
             }
         }
-    
+
         static class Program
         {
             [Uno.Testing.Ignore, Uno.Testing.Test] public static void gtest_446() { Uno.Testing.Assert.AreEqual(0, Main()); }

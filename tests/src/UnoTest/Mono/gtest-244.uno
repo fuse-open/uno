@@ -7,7 +7,7 @@ namespace Mono.gtest_244
             return default (T);
         }
     }
-    
+
     public class A : B
     {
         public override T Get<T>()
@@ -16,7 +16,7 @@ namespace Mono.gtest_244
             Console.WriteLine("T: " + resp);
             return resp;
         }
-    
+
         [Uno.Testing.Test] public static void gtest_244() { Main(); }
         public static void Main()
         {

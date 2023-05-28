@@ -2,12 +2,12 @@ namespace Mono.test_xml_030
 {
     // Compiler options: -doc:xml-030.xml -warn:4 -warnaserror
     using Uno;
-    
+
     class Test
     {
         [Uno.Testing.Test] public static void test_xml_030() { Main(); }
         public static void Main() {}
-    
+
         /// <summary>
         /// some summary
         /// </summary>
@@ -24,7 +24,7 @@ namespace Mono.test_xml_030
         //
         public void foo2() {
         }
-    
+
         /// <summary>
         /// <see cref="String.Format(string, object[])" />.
         /// <see cref="string.Format(string, object[])" />.

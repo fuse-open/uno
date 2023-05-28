@@ -1,7 +1,7 @@
 namespace Mono.test_930
 {
     using Uno;
-    
+
     class X
     {
         [Uno.Testing.Ignore, Uno.Testing.Test] public static void test_930() { Uno.Testing.Assert.AreEqual(0, Main()); }
@@ -12,22 +12,22 @@ namespace Mono.test_930
                 return 1;
             } catch (ApplicationException) {
             }
-    
+
             try {
                 Test2 ();
                 return 2;
             } catch (ApplicationException) {
             }
-    
+
             try {
                 Test3 ();
                 return 3;
             } catch (ApplicationException) {
             }
-    
+
             return 0;
         }
-    
+
         static void Test1 ()
         {
             try
@@ -38,7 +38,7 @@ namespace Mono.test_930
                 throw new ApplicationException ();
             }
         }
-    
+
         static void Test2 ()
         {
             try
@@ -52,7 +52,7 @@ namespace Mono.test_930
                 throw new ApplicationException ();
             }
         }
-    
+
         static void Test3 ()
         {
             try

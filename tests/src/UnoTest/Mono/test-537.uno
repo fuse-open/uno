@@ -9,7 +9,7 @@ namespace Mono.test_537
             }
         }
     }
-    
+
     // #1
     class X {
         class Derived : Base
@@ -23,7 +23,7 @@ namespace Mono.test_537
             }
         }
     }
-    
+
     // #2
     class Derived: Base
     {
@@ -35,8 +35,8 @@ namespace Mono.test_537
             }
         }
     }
-    
-    
+
+
     class Test
     {
         [Uno.Testing.Test] public static void test_537() { Main(); }

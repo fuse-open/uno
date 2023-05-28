@@ -3,7 +3,7 @@ namespace Mono.gtest_exmethod_31
     using Uno;
     using Uno.Collections;
     using N2;
-    
+
     namespace N
     {
         static class S
@@ -13,7 +13,7 @@ namespace Mono.gtest_exmethod_31
             }
         }
     }
-    
+
     namespace N2
     {
         static class S2
@@ -23,11 +23,11 @@ namespace Mono.gtest_exmethod_31
             }
         }
     }
-    
+
     namespace M
     {
         using N;
-        
+
         class C
         {
             [Uno.Testing.Test] public static void gtest_exmethod_31() { Main(); }

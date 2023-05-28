@@ -1,18 +1,18 @@
 <Extensions Backend="CPlusPlus">
-	<Define FOREIGN_OBJC_SUPPORTED="IOS || NATIVE && HOST_MAC" />
-	<ProcessFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Foreign.h" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Box.h" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Function.h" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.String.h" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.UnoArray.h" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.UnoObject.h" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" SourceFile="uObjC.String.mm" />
-	<ProcessFile Condition="FOREIGN_OBJC_SUPPORTED" SourceFile="uObjC.UnoArray.mm" />
-	<CopyFile Condition="FOREIGN_OBJC_SUPPORTED" SourceFile="uObjC.UnoObject.mm" />
-	<Require Condition="FOREIGN_OBJC_SUPPORTED" LinkLibrary="objc" />
-	<Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object" />
-	<Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object.Handle" />
-	<Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object(ObjC.ID)" />
-	<Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object.Create(ObjC.ID)" />
-	<Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object.GetHandle(ObjC.Object)" />
+    <Define FOREIGN_OBJC_SUPPORTED="IOS || NATIVE && HOST_MAC" />
+    <ProcessFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Foreign.h" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Box.h" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.Function.h" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.String.h" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.UnoArray.h" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" HeaderFile="uObjC.UnoObject.h" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" SourceFile="uObjC.String.mm" />
+    <ProcessFile Condition="FOREIGN_OBJC_SUPPORTED" SourceFile="uObjC.UnoArray.mm" />
+    <CopyFile Condition="FOREIGN_OBJC_SUPPORTED" SourceFile="uObjC.UnoObject.mm" />
+    <Require Condition="FOREIGN_OBJC_SUPPORTED" LinkLibrary="objc" />
+    <Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object" />
+    <Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object.Handle" />
+    <Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object(ObjC.ID)" />
+    <Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object.Create(ObjC.ID)" />
+    <Require Condition="FOREIGN_OBJC_SUPPORTED" Entity="ObjC.Object.GetHandle(ObjC.Object)" />
 </Extensions>

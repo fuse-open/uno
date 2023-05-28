@@ -27,8 +27,8 @@ public sealed class ClassOnlyAttribute : Uno.Attribute { }
 [ClassOnly]
 class Test3
 {
-	[ClassOnly] // $E0000 Attribute [ClassOnly] can only be used on 'class'
-	int foo;
+    [ClassOnly] // $E0000 Attribute [ClassOnly] can only be used on 'class'
+    int foo;
 }
 
 class Test4
@@ -47,7 +47,7 @@ class Test4
         var a = foo; // $W4139 Test4.foo is obsolete
         var b = foo2; // $W4139 Test4.foo2 is obsolete: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet'
         var c = foo3; // $E4140 Test4.foo3 is obsolete: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet'
-	return a && b && c;
+    return a && b && c;
     }
 
     void storeObsoleteFields()

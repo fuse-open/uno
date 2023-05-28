@@ -6,11 +6,11 @@ namespace Mono.test_partial_18
         {
         }
     }
-    
+
     namespace N
     {
         using Uno;
-    
+
         partial class Foo
         {
             public Foo ()

@@ -53,7 +53,7 @@ namespace Uno.Platform.Xli
         @{
             return (@{bool})@{$$._ptr}->IsFullscreen();
         @}
-        
+
         public override void SetFullscreen(bool fullscreen)
         @{
             @{$$._ptr}->SetFullscreen((bool)$0);
@@ -93,7 +93,7 @@ namespace Uno.Platform.Xli
         @{
             return @{$$._ptr}->IsTextInputActive();
         @}
-        
+
         public override bool HasOnscreenKeyboardSupport()
         @{
             return @{$$._ptr}->HasOnscreenKeyboardSupport();

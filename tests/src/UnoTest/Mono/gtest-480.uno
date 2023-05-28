@@ -2,11 +2,11 @@ namespace Mono.gtest_480
 {
     using Uno;
     using Uno.Collections;
-    
+
     interface I<T> : ICollection<T>, IEnumerable<T>
     {
     }
-    
+
     class C
     {
         void Foo ()
@@ -15,7 +15,7 @@ namespace Mono.gtest_480
             foreach (var v in o)
                 Console.WriteLine (v);
         }
-        
+
         [Uno.Testing.Test] public static void gtest_480() { Main(); }
         public static void Main()
         {

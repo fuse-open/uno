@@ -115,7 +115,7 @@ namespace Uno.Compiler.Core.IL.Validation
 
         private static bool HasEqualityOrInequalityOperator(DataType dt)
         {
-            return dt.Operators.Any(op => (op.Name == "op_Equality" || op.Name == "op_Inequality") && 
+            return dt.Operators.Any(op => (op.Name == "op_Equality" || op.Name == "op_Inequality") &&
                     op.Parameters.Length == 2 && op.Parameters[0].Type == dt && op.Parameters[1].Type == dt);
         }
 

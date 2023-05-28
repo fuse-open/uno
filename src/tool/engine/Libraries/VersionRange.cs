@@ -138,13 +138,13 @@ namespace Uno.Build.Libraries
 
             for (var i = min; i < a.Length; i++)
                 if (a[i].TrimStart('0').Length > 0)
-                    return char.IsLetter(a[i][0]) 
-                        ? -1 
+                    return char.IsLetter(a[i][0])
+                        ? -1
                         : 1;
             for (var i = min; i < b.Length; i++)
                 if (b[i].TrimStart('0').Length > 0)
-                    return char.IsLetter(b[i][0]) 
-                        ? 1 
+                    return char.IsLetter(b[i][0])
+                        ? 1
                         : -1;
             return 0;
         }

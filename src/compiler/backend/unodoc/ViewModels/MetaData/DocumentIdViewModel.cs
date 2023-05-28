@@ -7,7 +7,7 @@ namespace Uno.Compiler.Backends.UnoDoc.ViewModels.MetaData
         public string Id { get; private set; }
         public string ParentId { get; private set; }
         public string Type { get; private set; }
-        public List<string> Modifiers { get; private set; } 
+        public List<string> Modifiers { get; private set; }
 
         public DocumentIdViewModel(string id, string parentId, string type, List<string> modifiers)
         {

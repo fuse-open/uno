@@ -1,9 +1,9 @@
 namespace Mono.test_xml_047
 {
     // Compiler options: -doc:xml-047.xml -warnaserror -warn:4
-    
+
     using Uno;
-    
+
     /// <summary>
     /// <see cref="bool.GetHashCode" />
     /// </summary>

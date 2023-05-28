@@ -43,7 +43,7 @@ namespace Uno.Logging
                 Inner.Write(str);
             }
         }
-        
+
         public override void Write(object obj)
         {
             lock (_state)

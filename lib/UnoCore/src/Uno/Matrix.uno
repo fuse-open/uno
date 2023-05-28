@@ -439,7 +439,7 @@ namespace Uno
                 return float3x3.Identity;
             return result;
         }
-        
+
         /**
             Calculates the inverse of a matrix
 
@@ -472,7 +472,7 @@ namespace Uno
                 return float2x2.Identity;
             return result;
         }
-        
+
         /**
             Calculates the inverse of a matrix
 

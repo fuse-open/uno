@@ -1,10 +1,10 @@
 namespace Mono.test_312
 {
     using Uno;
-    
+
     struct PointF {
         public float fa, fb;
-        
+
         public PointF (float a, float b)
         {
             fa = a;
@@ -12,15 +12,15 @@ namespace Mono.test_312
             Console.WriteLine ("PointF created {0} and {1}", fa, fb);
         }
     }
-    
+
     struct Point {
         int ia, ib;
-        
+
         public static implicit operator PointF (Point pt)
         {
             return new PointF (pt.ia, pt.ib);
         }
-    
+
         public Point (int a, int b)
         {
             Console.WriteLine ("Initialized with {0} and {1}", a, b);
@@ -28,11 +28,11 @@ namespace Mono.test_312
             ib = b;
         }
     }
-    
+
     class X {
         static bool ok = false;
         PointF field;
-        
+
         static bool Method (PointF f)
         {
             Console.WriteLine ("Method with PointF arg: {0} {1}", f.fa, f.fb);
@@ -40,14 +40,14 @@ namespace Mono.test_312
                 return false;
             return true;
         }
-        
+
         static bool Call_constructor_and_implicit ()
         {
             ok = false;
             return Method (new Point (100, 200));
         }
-    
-    
+
+
         static bool Init_with_implicit_conv ()
         {
             PointF p = new Point (1, 100);
@@ -55,13 +55,13 @@ namespace Mono.test_312
                 return true;
             return false;
         }
-    
+
         static bool Init_ValueType ()
         {
             Point p = new Point (100, 200);
             return Method (p);
         }
-        
+
         static bool InstanceAssignTest ()
         {
             X x = new X ();
@@ -70,10 +70,10 @@ namespace Mono.test_312
                 return false;
             return true;
         }
-        
+
         static int T ()
         {
-            
+
             if (!Init_with_implicit_conv ())
                 return 100;
             if (!Call_constructor_and_implicit ())
@@ -84,7 +84,7 @@ namespace Mono.test_312
                 return 103;
             return 0;
         }
-    
+
         [Uno.Testing.Test] public static void test_312() { Uno.Testing.Assert.AreEqual(0, Main()); }
         public static int Main()
         {
@@ -94,6 +94,6 @@ namespace Mono.test_312
             Console.WriteLine ("Succeed");
             return t;
         }
-        
+
     }
 }

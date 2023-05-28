@@ -9,7 +9,7 @@ namespace Uno.Compiler.API.Domain.AST.Expressions
 
         public override AstExpressionType ExpressionType => AstExpressionType.VertexAttribExplicit;
 
-        public AstVertexAttribExplicit(Source src, 
+        public AstVertexAttribExplicit(Source src,
             AstExpression type,
             IReadOnlyList<AstArgument> args)
             : base(src)

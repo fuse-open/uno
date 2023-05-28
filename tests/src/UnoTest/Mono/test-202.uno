@@ -6,13 +6,13 @@ namespace Mono.test_202
         public class X
         { }
     }
-    
+
     namespace A.B.C
     {
         public class D
         { }
     }
-    
+
     class Test
     {
         [Uno.Testing.Test] public static void test_202() { Uno.Testing.Assert.AreEqual(0, Main()); }

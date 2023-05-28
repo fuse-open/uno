@@ -17,7 +17,7 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
     ///
     ///         local1 = foo;
     ///         local2 = bar;
-    ///         
+    ///
     ///         Action lam1 = () => ... local1 ...
     ///         Action lam2 = () => ... local2 ...
     ///     }
@@ -32,7 +32,7 @@ namespace Uno.Compiler.Core.IL.Building.Functions.Lambdas
     ///         void lam1() { ... local1 ... }
     ///         void lam2() { ... local2 ... }
     ///     }
-    /// 
+    ///
     ///     void func()
     ///     {
     ///         func_closure closure = new func_closure();

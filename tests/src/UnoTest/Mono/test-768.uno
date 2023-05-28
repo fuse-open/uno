@@ -6,7 +6,7 @@ namespace Mono.test_768
         {
         }
     }
-    
+
     namespace N
     {
         class C
@@ -14,11 +14,11 @@ namespace Mono.test_768
             public static string value;
         }
     }
-    
+
     namespace X
     {
         using A;
-        
+
         public class TestClass
         {
             [Uno.Testing.Test] public static void test_768() { Main(); }

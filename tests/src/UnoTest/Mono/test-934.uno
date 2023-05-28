@@ -9,17 +9,17 @@ namespace Mono.test_934
             var b = new byte[] { };
             if (a.Equals (b))
                 return 1;
-    
+
             if (ReferenceEquals (a, b))
                 return 2;
-    
+
             b = new byte[0];
             if (a.Equals (b))
                 return 3;
-    
+
             if (ReferenceEquals (a, b))
                 return 4;
-    
+
             return 0;
         }
     }

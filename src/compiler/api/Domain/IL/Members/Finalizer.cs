@@ -7,7 +7,7 @@ namespace Uno.Compiler.API.Domain.IL.Members
         public Finalizer(
             Source src,
             DataType owner,
-            string comment, 
+            string comment,
             Modifiers modifiers,
             Parameter[] parameters,
             Scope optionalBody = null)

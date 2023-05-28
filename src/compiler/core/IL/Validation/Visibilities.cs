@@ -25,22 +25,22 @@ namespace Uno.Compiler.Core.IL.Validation
                 case VisibilityLevel.Global:
                     return true;
                 case VisibilityLevel.Bundle:
-                    return otherType.Source.Bundle.Equals(dtv.Bundle) || 
+                    return otherType.Source.Bundle.Equals(dtv.Bundle) ||
                         dtv.Bundle.InternalsVisibleTo.Contains(otherType.Source.Bundle.Name);
                 case VisibilityLevel.SameType:
-                    return otherType.MasterDefinition == dt.MasterDefinition || 
+                    return otherType.MasterDefinition == dt.MasterDefinition ||
                         dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition);
                 case VisibilityLevel.SameTypeOrSubclass:
-                    return otherType.MasterDefinition == dt.MasterDefinition || 
-                        dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition) || 
+                    return otherType.MasterDefinition == dt.MasterDefinition ||
+                        dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition) ||
                         dt.IsSubclassOf(otherType) ||
                         dt.IsNestedType && dt.ParentType.IsVisibleInType(otherType);
                 case VisibilityLevel.SameTypeOrSubclassOfOrPackage:
-                    return otherType.MasterDefinition == dt.MasterDefinition || 
-                        dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition) || 
-                        dt.IsSubclassOf(otherType) || 
+                    return otherType.MasterDefinition == dt.MasterDefinition ||
+                        dt.MasterDefinition.IsChildClassOf(otherType.MasterDefinition) ||
+                        dt.IsSubclassOf(otherType) ||
                         dt.IsNestedType && dt.ParentType.IsVisibleInType(otherType) ||
-                        otherType.Source.Bundle.Equals(dtv.Bundle) || 
+                        otherType.Source.Bundle.Equals(dtv.Bundle) ||
                         dtv.Bundle.InternalsVisibleTo.Contains(otherType.Source.Bundle.Name);
                 default:
                     return false;
@@ -138,7 +138,7 @@ namespace Uno.Compiler.Core.IL.Validation
                 return new Visibility(
                     dt.IsPublic
                         ? VisibilityLevel.Global
-                        : VisibilityLevel.Bundle, 
+                        : VisibilityLevel.Bundle,
                     dt);
 
 

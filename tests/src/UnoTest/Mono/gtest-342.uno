@@ -7,7 +7,7 @@ namespace Mono.gtest_342
             return (T) t;
         }
     }
-    
+
     class TestMain {
         [Uno.Testing.Test] public static void gtest_342() { Main(new string[0]); }
         public static void Main(string[] args)

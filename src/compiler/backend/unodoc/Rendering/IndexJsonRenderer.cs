@@ -122,7 +122,7 @@ namespace Uno.Compiler.Backends.UnoDoc.Rendering
             var items = descendants.OrderBy(e => e.Titles.FullyQualifiedIndexTitle)
                                    .Select(e => new TableOfContentsEntryViewModel(e.Id,
                                                                                   e.Uri,
-                                                                                  new IndexTitlesViewModel(e.Titles.IndexTitle, e.Titles.FullyQualifiedIndexTitle), 
+                                                                                  new IndexTitlesViewModel(e.Titles.IndexTitle, e.Titles.FullyQualifiedIndexTitle),
                                                                                   e.Comment?.ToBasicComment(),
                                                                                   e.Returns,
                                                                                   e.Parameters,

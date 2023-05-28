@@ -2,7 +2,7 @@ namespace Mono.test_xml_020
 {
     // Compiler options: -doc:xml-020.xml
     using Uno;
-    
+
     namespace Testing
     {
         public class Test
@@ -11,12 +11,12 @@ namespace Mono.test_xml_020
         public static void Main()
             {
             }
-    
+
             /// comment for constructor
             public Test ()
             {
             }
-    
+
             /// comment for destructor
             ~Test ()
             {

@@ -60,7 +60,7 @@ namespace Uno.UX.Markup.AST
         {
             _log.ReportError(_filePath, 1, message);
         }
-        
+
         void ReportError(IXmlLineInfo xml, string message)
         {
             _log.ReportError(_filePath, xml.LineNumber, message);
@@ -104,8 +104,8 @@ namespace Uno.UX.Markup.AST
 
             return r;
         }
-        
-        
+
+
         Node Parse(XNode node)
         {
             var text = node as XText;
@@ -293,7 +293,7 @@ namespace Uno.UX.Markup.AST
         Generator ParseGenerator(XElement elm, ref bool explicitAutoBindFalse)
         {
             if (Attributes.HasUXAttrib(elm, UxAttribute.Case)) ReportError("ux:Case is deprecated, use ux:Template instead (means the same)");
-            if (Attributes.HasUXAttrib(elm, UxAttribute.DefaultCase)) ReportError("ux:DefaultCase is deprecated, use ux:DefaultTemplate instead (means the same)"); 
+            if (Attributes.HasUXAttrib(elm, UxAttribute.DefaultCase)) ReportError("ux:DefaultCase is deprecated, use ux:DefaultTemplate instead (means the same)");
 
             var templateAttrib = GetUXAttrib(elm, UxAttribute.Template, null);
             var defaultTemplateAttrib = bool.Parse(GetUXAttrib(elm, UxAttribute.DefaultTemplate, "false"));
@@ -325,11 +325,11 @@ namespace Uno.UX.Markup.AST
 
             bool isInnerClass = false;
             var className = GetUXAttrib(elm, UxAttribute.ClassName, null);
-            
+
             if (className != null)
             {
                 ReportWarning(elm, "'ux:ClassName' is deprecated. Please use 'ux:Class' to specify the class name, and optionally ux:AutoCtor=\"false\" to get equivalent behavior. By default ux:AutoCtor is true, which means you don't need a code behind with a default constructor. This warning will be an error in a future version.");
-                
+
                 autoCtor = false; // Compatibility with old scheme
             }
             else
@@ -370,7 +370,7 @@ namespace Uno.UX.Markup.AST
                     ReportError(elm, "'" + className + "' cannot be both class and template at the same time. Inline this template in the style where it's being used.");
                 }
             }
-            
+
             if (genModeAttrib != null)
             {
                 switch (genModeAttrib)
@@ -386,7 +386,7 @@ namespace Uno.UX.Markup.AST
                 }
             }
 
-            if (GetUXAttrib(elm, UxAttribute.StaticResource, null) != null) 
+            if (GetUXAttrib(elm, UxAttribute.StaticResource, null) != null)
             {
                 ReportError(elm, "ux:StaticResource is deprecated. Use ux:Global instead.");
             }

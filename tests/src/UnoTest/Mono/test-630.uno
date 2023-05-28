@@ -1,13 +1,13 @@
 namespace Mono.test_630
 {
     using Uno;
-    
+
     public class MyEx : Exception {
         public MyEx () {}
     }
-    
+
     public class Ex {
-    
+
         public static int test (int a) {
             int res;
             int fin = 0;
