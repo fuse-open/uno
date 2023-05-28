@@ -57,11 +57,11 @@ Uno is used on Linux, macOS and Windows, and makes native apps for the following
 ### Uno syntax
 
 ```uno
-class App : Uno.Application
+class Program
 {
-    public App()
+    static void Main()
     {
-        debug_log "Hello, world!";
+        debug_log "Hello, World!";
     }
 }
 ```

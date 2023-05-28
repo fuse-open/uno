@@ -35,7 +35,10 @@ namespace Uno.Compiler.Core.IL.Optimizing
             if (Environment.IsDefined("SIMULATOR"))
                 KeepSimulatorEntities();
 
-            VisitNullableScope(Data.StartupCode);
+            if (!Environment.IsConsole)
+                VisitNullableScope(Data.StartupCode);
+            else if (Data.Entrypoint != null)
+                VisitFunction(Data.Entrypoint);
         }
 
         public void Keep(Member root)

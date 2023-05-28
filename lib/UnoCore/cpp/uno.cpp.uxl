@@ -18,11 +18,15 @@
     <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
     <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
 
-    <ProcessFile SourceFile="uPlatform/_main.cpp" Condition="!MOBILE"/>
-    <ProcessFile SourceFile="uPlatform/_mainMobile.cpp" Condition="MOBILE" />
+    <!-- Platform headers -->
     <ProcessFile HeaderFile="uPlatform/GraphicsContext.h" Condition="!MOBILE" />
     <ProcessFile HeaderFile="uPlatform/GLHelper.h" Condition="OPENGL" />
     <ProcessFile HeaderFile="uPlatform/WinAPIHelper.h" Condition="WIN32" />
+
+    <!-- Entrypoint -->
+    <ProcessFile SourceFile="main-app.cpp" Condition="!MOBILE && !CONSOLE"/>
+    <ProcessFile SourceFile="main-console.cpp" Condition="!MOBILE && CONSOLE"/>
+    <ProcessFile SourceFile="main-mobile.cpp" Condition="MOBILE" />
 
     <!-- Deprecated headers -->
     <ProcessFile HeaderFile="Uno/Graphics/GLHelper.h" Condition="ANDROID" />

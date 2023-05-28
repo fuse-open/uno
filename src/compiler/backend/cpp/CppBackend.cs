@@ -4,7 +4,7 @@ using System.Text;
 using Uno.Collections;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
-using Uno.Compiler.API.Domain;
+using Uno.Compiler.API.Backends.Decompilers;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Expressions;
 using Uno.Compiler.API.Domain.IL.Members;
@@ -25,6 +25,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
         public bool EnableStackTrace { get; private set; }
         public string HeaderDirectory { get; private set; }
         public string SourceDirectory { get; private set; }
+
         readonly BackendExtension _extension;
         HashSet<string> _keywords;
 
@@ -86,10 +87,33 @@ namespace Uno.Compiler.Backends.CPlusPlus
             new CppPrecalc(this).Run();
             ExportNamespace(Data.IL);
 
-            foreach (var e in IncludeResolver.GetIncludes(Data.Entrypoint))
-                Environment.Require("Main.Include", e);
+            if (Environment.IsConsole)
+            {
+                if (Data.Entrypoint == null)
+                    return null;
 
-            Environment.Set("Main.Body", Decompiler.GetScope(Data.StartupCode, Data.Entrypoint));
+                var args = Data.Entrypoint.Parameters.Length > 0
+                            ? new[] { ILFactory.CallMethod("Uno.Environment", "GetCommandLineArgs") }
+                            : Array.Empty<Expression>();
+                var includes = "#include <" + GetIncludeFilename(Data.Entrypoint.DeclaringType) + ">";
+                var main = Decompiler.GetCallMethod(Source.Unknown, null, Data.Entrypoint, null, args);
+
+                if (args.Length > 0)
+                    includes += "\n#include <" + GetIncludeFilename(ILFactory.GetType("Uno.Environment")) + ">";
+                if (Data.Entrypoint.ReturnType.IsVoid)
+                    main = "(" + main + ", 0)";
+
+                Environment.Set("Main.IncludeDirective", includes);
+                Environment.Set("Main.Entrypoint", main);
+            }
+            else
+            {
+                foreach (var e in IncludeResolver.GetIncludes(Data.Entrypoint))
+                    Environment.Require("Main.Include", e);
+
+                Environment.Set("Main.Body", Decompiler.GetScope(Data.StartupCode, Data.Entrypoint));
+            }
+
             return null;
         }
 

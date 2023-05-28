@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain.IL;
 using Uno.IO;
@@ -14,6 +13,8 @@ namespace Uno.Compiler.Backends.CIL
 
         internal bool EnableReflection { get; private set; }
         internal DataType TypeAliasAttribute { get; private set; }
+
+        internal bool IsConsole => Environment.IsConsole;
 
         public override string Name => "CIL";
         public override string What => "assemblies";
@@ -96,7 +97,7 @@ namespace Uno.Compiler.Backends.CIL
                 Disk.CopyFile(e, _outputDir.UnixToNative());
 
             // Check if we need AppLoader
-            if (Environment.IsDefined("LIBRARY") ||
+            if (Environment.IsConsole || Environment.IsLibrary ||
                     string.IsNullOrEmpty(Environment.GetString("AppLoader.Assembly")))
                 return;
 

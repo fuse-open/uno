@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
@@ -9,7 +10,7 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
 {
     class MainClassFinder : CompilerPass
     {
-        readonly List<DataType> FoundMainClasses = new List<DataType>();
+        readonly List<DataType> FoundMainClasses = new();
 
         public MainClassFinder(CompilerPass parent)
             : base(parent)
@@ -25,17 +26,19 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
                     break;
                 case 0:
                     // Auto-generate main-class when building a library.
-                    if (Environment.IsDefined("LIBRARY"))
+                    if (Environment.IsLibrary)
                     {
                         var type = new ClassType(Bundle.Source, Data.IL, null, Modifiers.Generated | Modifiers.Public, Bundle.Name.ToIdentifier() + "_app");
                         type.SetBase(Essentials.Application);
-                        type.Constructors.Add(new Constructor(Bundle.Source, type, null, Modifiers.Generated | Modifiers.Public, new Parameter[0], new Scope()));
+                        type.Constructors.Add(new Constructor(Bundle.Source, type, null, Modifiers.Generated | Modifiers.Public, Array.Empty<Parameter>(), new Scope()));
                         Data.IL.Types.Add(type);
                         Data.SetMainClass(type);
                         break;
                     }
 
-                    var extraMsg = Bundle.Name.EndsWith("Test") ? ". If this is a test project, it cannot be started directly, but must be run with a test runner." : "";
+                    var extraMsg = Bundle.Name.EndsWith("Test") || Environment.IsTest
+                        ? ". If this is a test project, it cannot be started directly, but must be run with a test runner."
+                        : "";
                     Log.Error(Bundle.Source, ErrorCode.E3503, "No non-abstract application classes found in project" + extraMsg);
                     break;
                 default:

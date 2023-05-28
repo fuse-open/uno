@@ -4,7 +4,9 @@ namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Environment")]
     [extern(CPLUSPLUS) Require("Source.Include", "cstdlib")]
-    [extern(CPLUSPLUS) Require("Source.Declaration", "extern uSStrong<uArray*> _CommandLineArgs;")]
+    [extern(CPLUSPLUS && !WIN32) Require("Source.Declaration", "extern int uArgc;")]
+    [extern(CPLUSPLUS && !WIN32) Require("Source.Declaration", "extern char** uArgv;")]
+    [extern(WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
     public static class Environment
     {
         public static string NewLine
@@ -22,8 +24,33 @@ namespace Uno
 
         extern(!mobile) public static string[] GetCommandLineArgs()
         {
-            if defined(CPLUSPLUS)
-                return extern<string[]> "_CommandLineArgs" ?? new string[0];
+            if defined(WIN32)
+            @{
+                int numArgs;
+                LPWSTR* cmdArgs = CommandLineToArgvW(GetCommandLineW(), &numArgs);
+
+                if (numArgs < 2)
+                    return uArray::New(@{string[]:TypeOf}, 0);
+
+                @{string[]} args = uArray::New(@{string[]:TypeOf}, numArgs - 1);
+
+                for (int i = 1; i < numArgs; i++)
+                    args->Strong<uString*>(i - 1) = uString::Utf16((const char16_t*) cmdArgs[i]);
+
+                return args;
+            @}
+            else if defined(CPLUSPLUS)
+            @{
+                if (uArgc < 2)
+                    return uArray::New(@{string[]:TypeOf}, 0);
+
+                @{string[]} args = uArray::New(@{string[]:TypeOf}, uArgc - 1);
+
+                for (int i = 1; i < uArgc; i++)
+                    args->Strong<uString*>(i - 1) = uString::Utf8(uArgv[i]);
+
+                return args;
+            @}
             else
                 throw new NotSupportedException();
         }

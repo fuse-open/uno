@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Compiler.API.Domain.IL;
 
@@ -7,9 +6,15 @@ namespace Uno.Compiler.API
 {
     public interface IEnvironment : IFrontendEnvironment
     {
+        bool IsConsole { get; }
+        bool IsLibrary { get; }
+        bool IsTest { get; }
+
         bool IsGeneratingCode { get; }
+
         bool Debug { get; }
         bool Strip { get; }
+
         string OutputDirectory { get; }
         string CacheDirectory { get; }
         string BundleDirectory { get; }

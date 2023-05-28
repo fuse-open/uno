@@ -22,7 +22,6 @@
 
 #if WIN32
 #include <uPlatform/WinAPIHelper.h>
-#include <Shellapi.h>
 #elif LINUX || OSX
 #include <XliPlatform/PlatformSpecific/SDL2.h>
 #endif
@@ -31,13 +30,16 @@
 #include <stdio.h> // needed for sprintf
 #endif
 
+// See @{Uno.Environment.GetCommandLineArgs():Call()}
+int uArgc = 0;
+char** uArgv = nullptr;
+
 /**
     \addtogroup Main
     @{
 */
 Xli::Window* _XliWindowPtr;
 Xli::GLContext* _XliGLContextPtr;
-uSStrong<uArray*> _CommandLineArgs = 0;
 
 struct uMainLoop : Xli::WindowEventHandler
 {
@@ -316,24 +318,14 @@ static void uUnhandledException(const char* msg, const char* function = nullptr,
 
 int main(int argc, char** argv)
 {
+    uArgc = argc;
+    uArgv = argv;
+
     uRuntime uno;
     uAutoReleasePool pool;
 
     try
     {
-#if WIN32
-        int numArgs;
-        LPWSTR* cmdArgs = CommandLineToArgvW(GetCommandLineW(), &numArgs);
-        _CommandLineArgs = uArray::New(@{string[]:TypeOf}, numArgs);
-
-        for (int i = 0; i < numArgs; i++)
-            _CommandLineArgs->Strong<uString*>(i) = uString::Utf16((const char16_t*) cmdArgs[i]);
-#else
-        _CommandLineArgs = uArray::New(@{string[]:TypeOf}, argc);
-
-        for (int i = 0; i < argc; i++)
-            _CommandLineArgs->Strong<uString*>(i) = uString::Utf8(argv[i]);
-#endif
         uMainLoop();
     }
     catch (const uThrowable& t)

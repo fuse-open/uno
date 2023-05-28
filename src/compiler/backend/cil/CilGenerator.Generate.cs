@@ -21,9 +21,16 @@ namespace Uno.Compiler.Backends.CIL
             foreach (var e in _linkedTypes)
                 ValidateType(e);
 
-            // Emit TypeAlias attributes, used at run-time by Fuse Simulator.
+            // Emit TypeAlias attributes, used at run-time by Fuse Simulator
             if (_backend.EnableReflection)
                 EmitTypeAliasAttributes();
+
+            // Set entrypoint for console app
+            if (_backend.IsConsole &&
+                    _bundle == _data.Entrypoint?.DeclaringType?.Bundle)
+                _assembly.SetEntryPoint(
+                    _linker.GetMethod(_data.Entrypoint),
+                    PEFileKinds.ConsoleApplication);
 
             Log.Verbose("Generated " + _types.Count + " .NET type".Plural(_types) + " for " + _assembly.GetName().Name.Quote() + " assembly");
         }

@@ -75,6 +75,20 @@ namespace Uno.Compiler.Core.Syntax.Builders
                                     me.SetImplementedMethod(im);
                             }
                         }
+                        else if (me.IsStatic && !me.IsGenericDefinition && me.Name == "Main" &&
+                                 result.Bundle.IsStartup && !parameterizedType.IsFlattenedParameterization && (
+                                     me.Parameters.Length == 0 ||
+                                     me.Parameters.Length == 1 &&
+                                         !me.Parameters[0].IsReference &&
+                                         me.Parameters[0].Type == _ilf.GetType("string[]")))
+                        {
+                            if (!_env.IsConsole || _env.HasCustomEntrypoint)
+                                break;
+                            if (_compiler.Data.Entrypoint != null)
+                                Log.Warning(me.Source, ErrorCode.W0000, "Replacing existing entrypoint " + _compiler.Data.Entrypoint.Quote());
+
+                            _compiler.Data.SetEntrypoint(me);
+                        }
                         break;
                     }
                     case AstMemberType.Constructor:
