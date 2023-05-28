@@ -62,9 +62,9 @@ namespace Uno.Compiler.Foreign
                     if (attr.ReferencedType == Essentials.ForeignIncludeAttribute &&
                         Essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == language)
                     {
-                        foreach (var arg in attr.Arguments.Skip(1))
+                        foreach (var arg in (object[])attr.Arguments[1].ConstantValue)
                         {
-                            result.Add(Environment.Expand(dt.Source, (string)arg.ConstantValue));
+                            result.Add(Environment.Expand(dt.Source, (string)arg));
                         }
                     }
                 }
@@ -79,9 +79,9 @@ namespace Uno.Compiler.Foreign
                         if (attr.ReferencedType == Essentials.ForeignIncludeAttribute &&
                             Essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == language)
                         {
-                            foreach (var arg in attr.Arguments.Skip(1))
+                            foreach (var arg in (object[])attr.Arguments[1].ConstantValue)
                             {
-                                result.Add(Environment.Expand(f.Source, (string)arg.ConstantValue));
+                                result.Add(Environment.Expand(f.Source, (string)arg));
                             }
                         }
                     }
@@ -102,9 +102,9 @@ namespace Uno.Compiler.Foreign
                     if (attr.ReferencedType == Essentials.ForeignAnnotationAttribute &&
                         Essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == language)
                     {
-                        foreach (var arg in attr.Arguments.Skip(1))
+                        foreach (var arg in (object[])attr.Arguments[1].ConstantValue)
                         {
-                            result.Add((string)arg.ConstantValue);
+                            result.Add((string)arg);
                         }
                     }
                 }
