@@ -7,9 +7,9 @@
 #include <cstdlib>
 #include <exception>
 #if @(REFLECTION:Defined)
-#include <Uno/Reflection.h>
+#include <uno/Reflection.h>
 #else
-#include <Uno/Memory.h>
+#include <uno/Memory.h>
 #endif
 @{Uno.Exception:ForwardDeclaration}
 struct uObjectMonitor;

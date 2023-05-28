@@ -6,7 +6,7 @@ namespace Uno
     [extern(CPLUSPLUS) Require("Source.Include", "cstdlib")]
     [extern(CPLUSPLUS && !WIN32) Require("Source.Declaration", "extern int uArgc;")]
     [extern(CPLUSPLUS && !WIN32) Require("Source.Declaration", "extern char** uArgv;")]
-    [extern(WIN32) Require("Source.Include", "uPlatform/WinAPIHelper.h")]
+    [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
     public static class Environment
     {
         public static string NewLine

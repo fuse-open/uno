@@ -1,9 +1,9 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
 
-#include <Uno/_internal.h>
-#include <Uno/ObjectMonitor.h>
-#include <Uno/Support.h>
+#include <uno/_internal.h>
+#include <uno/ObjectMonitor.h>
+#include <uno/ThreadUtils.h>
 #include <string>
 #include <sstream>
 @{Uno.Type:IncludeDirective}

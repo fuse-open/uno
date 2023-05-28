@@ -1,16 +1,16 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
 
-#include <Uno/ObjectModel.h>
+#include <uno/ObjectModel.h>
 
 // See @{Uno.Environment.GetCommandLineArgs():Call()}
 int uArgc = 0;
 char** uArgv = nullptr;
 
 @(TypeObjects.Declaration:JoinSorted())
-void uInitRtti(uType*(*factories[])());
+void uInitTypes(uType*(*factories[])());
 
-void uInitRtti()
+void uInitTypes()
 {
     static uType*(*factories[])() =
     {
@@ -18,7 +18,7 @@ void uInitRtti()
         nullptr
     };
 
-    uInitRtti(factories);
+    uInitTypes(factories);
 }
 
 @(Main.Include:JoinSorted('\n', '#include <', '>'))

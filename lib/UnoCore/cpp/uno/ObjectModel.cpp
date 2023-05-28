@@ -1,7 +1,7 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
 
-#include <Uno/_internal.h>
+#include <uno/_internal.h>
 #include <ConvertUTF.h>
 #include <algorithm>
 #include <cstdio>
@@ -815,7 +815,7 @@ void uType::Init()
     State = uTypeStateInitialized;
 }
 
-void uInitRtti(uType*(*factories[])())
+void uInitTypes(uType*(*factories[])())
 {
     // 1. Fill _RuntimeTypes
 

@@ -21,7 +21,7 @@
 @{string:IncludeDirective}
 
 #if WIN32
-#include <uPlatform/WinAPIHelper.h>
+#include <uno/WinAPI.h>
 #elif LINUX || OSX
 #include <XliPlatform/PlatformSpecific/SDL2.h>
 #endif
@@ -363,9 +363,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 
 @(TypeObjects.Declaration:JoinSorted())
-void uInitRtti(uType*(*factories[])());
+void uInitTypes(uType*(*factories[])());
 
-void uInitRtti()
+void uInitTypes()
 {
     static uType*(*factories[])() =
     {
@@ -373,7 +373,7 @@ void uInitRtti()
         nullptr
     };
 
-    uInitRtti(factories);
+    uInitTypes(factories);
 }
 
 @(Main.Include:JoinSorted('\n', '#include <', '>'))

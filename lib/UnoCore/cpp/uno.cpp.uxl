@@ -2,34 +2,30 @@
 
     <Require Template="XliPlatform" />
 
+    <!-- Core source code -->
     <ProcessFile HeaderFile="uno.h" />
-    <ProcessFile HeaderFile="Uno/_config.h" />
-    <ProcessFile HeaderFile="Uno/_internal.h" />
-    <ProcessFile SourceFile="Uno/_invoke.cpp" />
-    <ProcessFile SourceFile="Uno/Memory.cpp" />
-    <ProcessFile HeaderFile="Uno/Memory.h" />
-    <ProcessFile SourceFile="Uno/NativeStackTrace.cpp" />
-    <ProcessFile SourceFile="Uno/ObjectModel.cpp" />
-    <ProcessFile HeaderFile="Uno/ObjectModel.h" />
-    <ProcessFile HeaderFile="Uno/ObjectMonitor.h" />
-    <ProcessFile SourceFile="Uno/Support.cpp" />
-    <ProcessFile HeaderFile="Uno/Support.h" />
-    <ProcessFile SourceFile="Uno/SupportApple.mm" Condition="APPLE" />
-    <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
-    <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
+    <ProcessFile HeaderFile="uno/_internal.h" />
+    <ProcessFile SourceFile="uno/_invoke.cpp" />
+    <ProcessFile HeaderFile="uno/Config.h" />
+    <ProcessFile SourceFile="uno/Memory.cpp" />
+    <ProcessFile HeaderFile="uno/Memory.h" />
+    <ProcessFile SourceFile="uno/ObjectModel.cpp" />
+    <ProcessFile HeaderFile="uno/ObjectModel.h" />
+    <ProcessFile HeaderFile="uno/ObjectMonitor.h" />
+    <ProcessFile SourceFile="uno/Reflection.cpp" Condition="REFLECTION" />
+    <ProcessFile HeaderFile="uno/Reflection.h" Condition="REFLECTION" />
+    <ProcessFile SourceFile="uno/Support.cpp" />
+    <ProcessFile SourceFile="uno/Support.mm" Condition="APPLE" />
+    <ProcessFile HeaderFile="uno/ThreadUtils.h" />
+    <ProcessFile HeaderFile="uno/WinAPI.h" Condition="WIN32" />
 
-    <!-- Platform headers -->
-    <ProcessFile HeaderFile="uPlatform/GraphicsContext.h" Condition="!MOBILE" />
+    <!-- Graphics headers -->
+    <ProcessFile HeaderFile="uPlatform/GraphicsContext.h" Condition="!MOBILE && OPENGL" />
     <ProcessFile HeaderFile="uPlatform/GLHelper.h" Condition="OPENGL" />
-    <ProcessFile HeaderFile="uPlatform/WinAPIHelper.h" Condition="WIN32" />
 
     <!-- Entrypoint -->
     <ProcessFile SourceFile="main-app.cpp" Condition="!MOBILE && !CONSOLE"/>
     <ProcessFile SourceFile="main-console.cpp" Condition="!MOBILE && CONSOLE"/>
     <ProcessFile SourceFile="main-mobile.cpp" Condition="MOBILE" />
-
-    <!-- Deprecated headers -->
-    <ProcessFile HeaderFile="Uno/Graphics/GLHelper.h" Condition="ANDROID" />
-    <ProcessFile HeaderFile="Uno/Uno.h" Condition="APPLE" />
 
 </Extensions>
