@@ -6,10 +6,7 @@ using System.IO;
 using IKVM.Reflection;
 using IKVM.Reflection.Emit;
 using Uno.Compiler.API;
-using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.IL;
-using Uno.Compiler.API.Domain.IL.Members;
-using Uno.Compiler.API.Domain.IL.Statements;
 using Uno.IO;
 
 namespace Uno.Compiler.Backends.CIL
@@ -24,11 +21,11 @@ namespace Uno.Compiler.Backends.CIL
         readonly ModuleBuilder _module;
         readonly AssemblyBuilder _assembly;
         readonly CilTypeFactory _types;
-        readonly List<DataType> _linkedTypes = new List<DataType>();
-        readonly Dictionary<string, ISymbolDocumentWriter> _documents = new Dictionary<string, ISymbolDocumentWriter>();
+        readonly List<DataType> _linkedTypes = new();
+        readonly Dictionary<string, ISymbolDocumentWriter> _documents = new();
         readonly string _outputDir;
 
-        public readonly SortedSet<Location> Locations = new SortedSet<Location>();
+        public readonly SortedSet<Location> Locations = new();
         public Assembly Assembly => _assembly;
 
         public CilGenerator(Disk disk, IBuildData data, IEssentials essentials,
@@ -125,8 +122,7 @@ namespace Uno.Compiler.Backends.CIL
 
         ISymbolDocumentWriter GetDocument(string path)
         {
-            ISymbolDocumentWriter result;
-            if (_documents.TryGetValue(path, out result))
+            if (_documents.TryGetValue(path, out ISymbolDocumentWriter result))
                 return result;
 
             result = _module.DefineDocument(path, Guid.Empty, Guid.Empty, Guid.Empty);

@@ -4,6 +4,7 @@
     {
         Undefined,
         App,
+        Console,
         Library,
         Test,
     }

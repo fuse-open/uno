@@ -71,5 +71,10 @@ namespace Uno.Compiler.Core
                 null, Modifiers.Public | Modifiers.Static | Modifiers.Generated,
                 ".main", DataType.Void, ParameterList.Empty, StartupCode);
         }
+
+        internal void SetEntrypoint(Method entrypoint)
+        {
+            Entrypoint = entrypoint;
+        }
     }
 }

@@ -1,0 +1,6 @@
+{
+  "outputType": "console",
+  "includes": [
+    "main.uno:source"
+  ]
+}

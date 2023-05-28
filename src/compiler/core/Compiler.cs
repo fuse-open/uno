@@ -7,6 +7,7 @@ using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain.AST;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Compiler.API.Domain.IL;
+using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Compiler.Core.IL;
 using Uno.Compiler.Core.IL.Building.Functions;
 using Uno.Compiler.Core.IL.Building.Functions.Lambdas;
@@ -158,12 +159,16 @@ namespace Uno.Compiler.Core
             Backend.Configure();
 
             if (Environment.Options.TestOptions.HasValue)
-            {
                 Run(new TestSetupTransform(Pass));
-            }
 
-            if (Backend.BuildType == BuildType.Executable)
+            if (!Environment.IsConsole && !Environment.IsLibrary)
                 Data.ResolveMainClass(Pass, Environment);
+
+            if (Environment.IsConsole && Environment.HasCustomEntrypoint)
+                Data.SetEntrypoint(ILFactory.GetEntity(Environment.Options.MainClass + ".Main") as Method);
+
+            if (Environment.IsConsole && Data.Entrypoint == null)
+                Log.Error(Input.Bundle.Source, null, "No suitable entrypoint was found");
 
             Run(new ExtensionTransform(Pass));
             Run(new FixedArrayTransform(Pass));
@@ -173,7 +178,10 @@ namespace Uno.Compiler.Core
 
             Run(_generators);
             BundleBuilder.Build();
-            Data.CreateEntrypoint();
+
+            if (!Environment.IsConsole && !Environment.IsLibrary)
+                Data.CreateEntrypoint();
+
             Run(ConstantFolder);
 
             Run(new ControlFlowVerifier(Pass));
@@ -184,6 +192,7 @@ namespace Uno.Compiler.Core
                 Run(new NameTransform(Pass));
             if (Backend.Has(FunctionOptions.MakeNativeCode))
                 Run(new NativeTransform(Pass));
+
             if (Backend.Has(FunctionOptions.Analyze))
             {
                 Run(new A1(Pass));

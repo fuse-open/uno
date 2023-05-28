@@ -25,8 +25,12 @@ namespace Uno.Compiler.Core
         public bool Debug => Options.Debug;
         public bool Parallel => Options.Parallel;
         public bool Strip => Options.Strip;
+        public bool IsConsole => IsDefined("CONSOLE");
+        public bool IsLibrary => IsDefined("LIBRARY");
+        public bool IsTest => IsDefined("TEST");
         public bool IsGeneratingCode => Step == BuildStep.Generating;
         public bool CanCacheIL => Options.CanCacheIL;
+        public bool HasCustomEntrypoint => Options.MainClass != null;
 
         public string CacheDirectory { get; }
         public string BundleDirectory { get; }
