@@ -1,7 +1,7 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
 
-#include <Uno/_internal.h>
+#include <uno/_internal.h>
 #include <ConvertUTF.h>
 #include <algorithm>
 #include <cstdio>

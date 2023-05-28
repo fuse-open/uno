@@ -3,20 +3,20 @@
     <Require Template="XliPlatform" />
 
     <ProcessFile HeaderFile="uno.h" />
-    <ProcessFile HeaderFile="Uno/_config.h" />
-    <ProcessFile HeaderFile="Uno/_internal.h" />
-    <ProcessFile SourceFile="Uno/_invoke.cpp" />
-    <ProcessFile SourceFile="Uno/Memory.cpp" />
-    <ProcessFile HeaderFile="Uno/Memory.h" />
-    <ProcessFile SourceFile="Uno/NativeStackTrace.cpp" />
-    <ProcessFile SourceFile="Uno/ObjectModel.cpp" />
-    <ProcessFile HeaderFile="Uno/ObjectModel.h" />
-    <ProcessFile HeaderFile="Uno/ObjectMonitor.h" />
-    <ProcessFile SourceFile="Uno/Support.cpp" />
-    <ProcessFile HeaderFile="Uno/Support.h" />
-    <ProcessFile SourceFile="Uno/SupportApple.mm" Condition="APPLE" />
-    <ProcessFile SourceFile="Uno/Reflection.cpp" Condition="REFLECTION" />
-    <ProcessFile HeaderFile="Uno/Reflection.h" Condition="REFLECTION" />
+    <ProcessFile HeaderFile="uno/_config.h" />
+    <ProcessFile HeaderFile="uno/_internal.h" />
+    <ProcessFile SourceFile="uno/_invoke.cpp" />
+    <ProcessFile SourceFile="uno/Memory.cpp" />
+    <ProcessFile HeaderFile="uno/Memory.h" />
+    <ProcessFile SourceFile="uno/NativeStackTrace.cpp" />
+    <ProcessFile SourceFile="uno/ObjectModel.cpp" />
+    <ProcessFile HeaderFile="uno/ObjectModel.h" />
+    <ProcessFile HeaderFile="uno/ObjectMonitor.h" />
+    <ProcessFile SourceFile="uno/Support.cpp" />
+    <ProcessFile HeaderFile="uno/Support.h" />
+    <ProcessFile SourceFile="uno/SupportApple.mm" Condition="APPLE" />
+    <ProcessFile SourceFile="uno/Reflection.cpp" Condition="REFLECTION" />
+    <ProcessFile HeaderFile="uno/Reflection.h" Condition="REFLECTION" />
 
     <!-- Platform headers -->
     <ProcessFile HeaderFile="uPlatform/GraphicsContext.h" Condition="!MOBILE" />
@@ -29,7 +29,7 @@
     <ProcessFile SourceFile="main-mobile.cpp" Condition="MOBILE" />
 
     <!-- Deprecated headers -->
-    <ProcessFile HeaderFile="Uno/Graphics/GLHelper.h" Condition="ANDROID" />
-    <ProcessFile HeaderFile="Uno/Uno.h" Condition="APPLE" />
+    <ProcessFile HeaderFile="uno/graphics/GLHelper.h" Condition="ANDROID" />
+    <ProcessFile HeaderFile="uno/uno.h" Condition="APPLE" />
 
 </Extensions>

@@ -14,7 +14,7 @@ namespace Uno.Threading
     }
 
     [TargetSpecificType]
-    [Set("Include", "Uno/Support.h")]
+    [Set("Include", "uno/Support.h")]
     [Set("TypeName", "uThreadLocal*")]
     extern(CPLUSPLUS) struct ThreadLocal
     {

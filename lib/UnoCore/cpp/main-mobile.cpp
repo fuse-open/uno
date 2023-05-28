@@ -1,7 +1,7 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
 
-#include <Uno/ObjectModel.h>
+#include <uno/ObjectModel.h>
 
 // See @{Uno.Environment.GetCommandLineArgs():Call()}
 int uArgc = 0;

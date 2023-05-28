@@ -2,7 +2,7 @@
 // @(MSG_EDIT_WARNING)
 
 #pragma once
-#include <Uno/_config.h>
+#include <uno/_config.h>
 struct uArray;
 struct uArrayType;
 struct uByRefType;

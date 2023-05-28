@@ -1,7 +1,7 @@
 // @(MSG_ORIGIN)
 // @(MSG_EDIT_WARNING)
 
-#include <Uno/ObjectModel.h>
+#include <uno/ObjectModel.h>
 #include <unordered_map>
 #include <vector>
 
