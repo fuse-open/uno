@@ -94,7 +94,7 @@ namespace Uno.Build
                     Filter = _options.TestFilter
                 };
             }
-            else if (project.OutputType == OutputType.Test)
+            else if (project.OutputType == OutputType.Test || project.OutputType == OutputType.AppTest)
             {
                 Log.Warning(project.Source, ErrorCode.W0000, "Test projects should be built & run using \"uno test\"");
             }

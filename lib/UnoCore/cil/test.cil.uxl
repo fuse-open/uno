@@ -1,4 +1,4 @@
-<Extensions Backend="CIL" Condition="TEST">
+<Extensions Backend="CIL" Condition="TEST && !APPTEST">
 
     <Set AppLoader.Assembly="@(Config.AppLoader.Console:Path)/uno-app.dll" />
     <Set AppLoader.Class="Uno.AppLoader.Program" />
