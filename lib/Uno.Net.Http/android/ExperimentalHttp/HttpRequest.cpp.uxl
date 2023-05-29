@@ -503,8 +503,6 @@ COMMIT_REG_MTD(@{_javaProxyClass});
 </Body>
         </Method>
         <Require Source.Declaration>
-//~Callbacks forHttpRequest
-
 #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):IsStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnDataReceived44285,jlong ujPtr, jobject arg0, jint arg1, jlong arg2, jlong arg3) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});

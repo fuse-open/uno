@@ -38,7 +38,6 @@
         <Require Entity="JNI.LoadClass(JNIEnvPtr,ConstCharPtr)" />
         <Require Header.Include="@{Android.Base.AndroidBindingMacros:Include}" />
         <Require Header.Declaration>
-        //~
         #define MAYBEPROXIFYARG(NUM,ID,NEW) bool subclassed ## NUM = (!ID) ? false : (@{Android.Base.Wrappers.IJWrapper:Of(ID)._IsSubclassed():Call()}); jobject _iProx ## NUM = (!ID) ? nullptr : (subclassed ## NUM ? NEW : @{Android.Base.Wrappers.IJWrapper:Of(ID)._GetJavaObject():Call()});
 
         #define FREEPROXIED(NUM)if (subclassed ## NUM) { U_JNIVAR->DeleteLocalRef(_iProx ## NUM); }
@@ -97,7 +96,6 @@ return result;
         </Method>
 
         <Require Source.Declaration>
-//~
         bool __JWrapper_WeakCallback(uWeakStateIntercept::Event e, uObject* obj)
         {
             @{Android.Base.JNI.CheckException():Call()};
@@ -134,7 +132,6 @@ return result;
         }
         </Require>
         <Require Source.Declaration>
-//~
         bool __JWrapper_Callbacks_Registered = false;
         void __JWrapper_Finalizer(JNIEnv *env , jclass clazz, jlong ptr)
         {
