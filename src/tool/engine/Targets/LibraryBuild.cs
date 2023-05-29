@@ -17,6 +17,11 @@ namespace Uno.Build.Targets
             return new DefaultBackend { BuildType = BuildType.Library };
         }
 
+        public override void Initialize(IEnvironment env)
+        {
+            env.Define("LIBRARY");
+        }
+
         public override void Configure(ICompiler compiler)
         {
             new BundleGenerator(

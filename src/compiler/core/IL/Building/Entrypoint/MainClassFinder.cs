@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Compiler.API.Domain.IL.Members;
@@ -26,7 +27,7 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
                     break;
                 case 0:
                     // Auto-generate main-class when building a library.
-                    if (Environment.IsLibrary)
+                    if (Environment.IsLibrary || Backend.BuildType == BuildType.Library)
                     {
                         var type = new ClassType(Bundle.Source, Data.IL, null, Modifiers.Generated | Modifiers.Public, Bundle.Name.ToIdentifier() + "_app");
                         type.SetBase(Essentials.Application);
