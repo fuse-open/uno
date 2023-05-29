@@ -303,7 +303,9 @@ namespace Uno.Diagnostics
                     {
                         if (!proc.HasExited)
                         {
-                            Log.Default.Verbose("Killing process " + proc.MainModule.FileName.Quote() + " (" + proc.Id + ")");
+                            Log.Default.Verbose("Killing process " +
+                                (proc.MainModule?.FileName ?? "(null)").Quote() +
+                                " (" + proc.Id + ")");
                             proc.KillTree();
                         }
                     }
