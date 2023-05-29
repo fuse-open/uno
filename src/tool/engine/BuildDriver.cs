@@ -258,7 +258,7 @@ namespace Uno.Build
 
         public void BuildNative()
         {
-            using (Log.StartAnimation("Building " + _target.ToString().ToLower() + (
+            using (Log.StartAnimation("Building " + _target.ToString().ToLower() + " " + (
                         _env.IsTest
                             ? "test" :
                         _env.IsConsole
