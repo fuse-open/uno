@@ -23,7 +23,7 @@ namespace Uno.Build.Libraries
             RootDirectory = Path.Combine(sourceDir, "build", project.Name);
             CacheDirectory = Path.Combine(RootDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
-            ManifestFile = Path.Combine(CacheDirectory, "package");
+            ManifestFile = Path.Combine(CacheDirectory, "manifest");
         }
 
         LibraryProject(LibraryProject lib)
@@ -32,7 +32,7 @@ namespace Uno.Build.Libraries
             RootDirectory = lib.RootDirectory;
             CacheDirectory = Path.Combine(RootDirectory, ".uno");
             ConfigFile = Path.Combine(CacheDirectory, "config");
-            ManifestFile = Path.Combine(CacheDirectory, "package");
+            ManifestFile = Path.Combine(CacheDirectory, "manifest");
         }
 
         public bool TryGetExistingBuild(out LibraryProject existing)

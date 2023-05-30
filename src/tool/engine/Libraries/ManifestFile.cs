@@ -10,7 +10,14 @@ namespace Uno.Build.Libraries
     {
         internal static string GetName(string dir)
         {
-            return Path.Combine(dir, ".uno", "package");
+            var manifest = Path.Combine(dir, ".uno", "manifest");
+            var package = Path.Combine(dir, ".uno", "package");
+
+            // Legacy: This file used to be called "package" before v3.0.
+            if (!File.Exists(manifest) && File.Exists(package))
+                return package;
+
+            return manifest;
         }
 
         public static bool Exists(string dir)
