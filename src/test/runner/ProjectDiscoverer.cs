@@ -71,6 +71,7 @@ namespace Uno.TestRunner
 
             switch (outputType)
             {
+                case OutputType.AppTest:
                 case OutputType.Test:
                     return true;
 

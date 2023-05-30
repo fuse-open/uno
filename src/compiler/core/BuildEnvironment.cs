@@ -27,7 +27,7 @@ namespace Uno.Compiler.Core
         public bool Strip => Options.Strip;
         public bool IsConsole => IsDefined("CONSOLE");
         public bool IsLibrary => IsDefined("LIBRARY");
-        public bool IsTest => IsDefined("TEST");
+        public bool IsTest => IsDefined("TEST") || IsDefined("APPTEST");
         public bool IsGeneratingCode => Step == BuildStep.Generating;
         public bool CanCacheIL => Options.CanCacheIL;
         public bool HasCustomEntrypoint => Options.MainClass != null;
