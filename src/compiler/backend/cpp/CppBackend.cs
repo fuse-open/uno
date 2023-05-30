@@ -71,8 +71,8 @@ namespace Uno.Compiler.Backends.CPlusPlus
             HeaderDirectory = Environment.GetOutputPath("HeaderDirectory");
             SourceDirectory = Environment.GetOutputPath("SourceDirectory");
 
-            // On Android, truncate lengths of filenames to avoid problem with Gradle on Windows.
-            if (Environment.IsDefined("ANDROID"))
+            // Android: Truncate filenames to workaround build problems with Gradle on Windows
+            if (Environment.IsDefined("ANDROID") && OperatingSystem.IsWindows())
                 MaxExportNameLength = 30;
         }
 

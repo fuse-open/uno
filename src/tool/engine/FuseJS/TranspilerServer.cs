@@ -28,9 +28,11 @@ namespace Uno.Build.FuseJS
         bool _disposed;
         bool _isFaulted;
 
-        public TranspilerServer(Log log, UnoConfig config)
+        public TranspilerServer(Log log, UnoConfig config = null)
             : base(log)
         {
+            config ??= UnoConfig.Current;
+
             var script = Path.Combine(
                 config.GetNodeModuleDirectory("@fuse-open/transpiler"),
                 "server.min.js");

@@ -642,6 +642,8 @@ namespace Uno
                 case "iPhone":
                 case "iOS":
                 case "qIdentifier":
+                case "dotNet":
+                case "unoDoc":
                     return str.ToLowerInvariant();
             }
 

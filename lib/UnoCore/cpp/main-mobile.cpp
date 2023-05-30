@@ -3,7 +3,7 @@
 
 #include <uno/ObjectModel.h>
 
-// See @{Uno.Environment.GetCommandLineArgs():Call()}
+// Used by Uno.Environment.GetCommandLineArgs()
 int uArgc = 0;
 char** uArgv = nullptr;
 
