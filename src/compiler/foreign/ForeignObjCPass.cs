@@ -505,7 +505,7 @@ namespace Uno.Compiler.Foreign.ObjC
             if (!visitedTypes.Contains(dt))
             {
                 visitedTypes.Add(dt);
-                var includes = Helpers.GetForeignIncludes(dt, "ObjC", Environment);
+                var includes = Helpers.GetForeignIncludes(dt, "ObjC");
                 if (includes.Count > 0)
                     Helpers.SourceInclude(includes, dt);
             }

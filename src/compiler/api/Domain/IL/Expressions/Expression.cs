@@ -16,7 +16,12 @@ namespace Uno.Compiler.API.Domain.IL
         public Expression Address => !ReturnType.IsReferenceType ? this as AddressOf ?? new AddressOf(this) : ActualValue;
         public virtual Expression ActualValue => this;
         public virtual object ConstantValue => null;
-        public string ConstantString => ConstantValue as string ?? ConstantValue?.ToString();
+        public string ConstantString => ConstantValue as string ?? (
+                                            ConstantValue is object[]
+                                                ? ToString() // Use disassembler for arrays
+                                                : ConstantValue?.ToString()
+                                        );
+
         public override StatementType StatementType => StatementType.Expression;
 
         protected Expression(Source src)

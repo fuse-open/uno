@@ -13,7 +13,19 @@ namespace Uno.Compiler.API.Domain.IL.Expressions
 
         public override DataType ReturnType => ArrayType;
 
-        private NewArray(Source src, RefArrayType arrayType, Expression size, Expression[] initializers)
+        public override object ConstantValue => GetInitalizerConstants();
+
+        object[] GetInitalizerConstants()
+        {
+            var result = new object[Initializers.Length];
+
+            for (int i = 0; i < result.Length; i++)
+                result[i] = Initializers[i].ConstantValue;
+
+            return result;
+        }
+
+        NewArray(Source src, RefArrayType arrayType, Expression size, Expression[] initializers)
             : base(src)
         {
             ArrayType = arrayType;

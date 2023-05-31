@@ -17,18 +17,6 @@ namespace Uno.Compiler.API.Domain.IL.Expressions
             Arguments = args;
         }
 
-        public object[] GetArgumentValues()
-        {
-            var result = new object[Arguments.Length];
-
-            for (int i = 0; i < result.Length; i++)
-                result[i] = Arguments[i] is Constant
-                    ? (Arguments[i] as Constant).Value
-                    : null;
-
-            return result;
-        }
-
         public override ExpressionType ExpressionType => ExpressionType.NewObject;
 
         public override void Disassemble(StringBuilder sb, ExpressionUsage u)

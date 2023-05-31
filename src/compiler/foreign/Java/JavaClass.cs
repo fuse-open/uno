@@ -35,7 +35,7 @@ namespace Uno.Compiler.Foreign.Java
                 var split = FullName.LastIndexOf(".", StringComparison.Ordinal);
                 _name = FullName.Substring(split + 1);
                 _package = FullName.Substring(0, split);
-                _usings.AddRange(helpers.GetForeignIncludes(dt, "Java", env));
+                _usings.AddRange(helpers.GetForeignIncludes(dt, "Java"));
                 _nested = dt.IsNestedType;
             }
 

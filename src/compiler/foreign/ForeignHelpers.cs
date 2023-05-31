@@ -51,7 +51,7 @@ namespace Uno.Compiler.Foreign
             return null;
         }
 
-        public List<string> GetForeignIncludes(DataType dt, string language, IEnvironment env)
+        public List<string> GetForeignIncludes(DataType dt, string language)
         {
             var result = new HashSet<string>();
 
@@ -64,7 +64,7 @@ namespace Uno.Compiler.Foreign
                     {
                         foreach (var arg in attr.Arguments.Skip(1))
                         {
-                            result.Add(env.Expand(dt.Source, (string)arg.ConstantValue));
+                            result.Add(Environment.Expand(dt.Source, (string)arg.ConstantValue));
                         }
                     }
                 }
@@ -81,7 +81,7 @@ namespace Uno.Compiler.Foreign
                         {
                             foreach (var arg in attr.Arguments.Skip(1))
                             {
-                                result.Add(env.Expand(f.Source, (string)arg.ConstantValue));
+                                result.Add(Environment.Expand(f.Source, (string)arg.ConstantValue));
                             }
                         }
                     }
