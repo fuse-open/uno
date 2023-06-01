@@ -6,7 +6,6 @@ using Android.Base.Primitives;
 namespace Uno.Compiler.ExportTargetInterop
 {
     [ForeignTypeName("::NSData*")]
-    [ForeignInclude(Language.ObjC, "Foundation/Foundation.h")]
     public extern(FOREIGN_OBJC_SUPPORTED) class ForeignDataView : ObjC.Object
     {
         ForeignDataView() { }
@@ -36,6 +35,7 @@ namespace Uno.Compiler.ExportTargetInterop
         }
 
         [Foreign(Language.ObjC)]
+        [ForeignInclude(Language.ObjC, "Foundation/Foundation.h")]
         static ObjC.Object CreateNSDataFromByteArray(IntPtr rawUnoArray)
         @{
             auto unoArray = (\@{byte[]})rawUnoArray;

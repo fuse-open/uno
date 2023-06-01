@@ -45,27 +45,20 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
 
                 if (attribute.Arguments.Length > 0)
                 {
-                    sb.Append("(");
+                    sb.Append('(');
 
                     for (var i = 0; i < attribute.Arguments.Length; i++)
                     {
-                        var arg = (Constant)attribute.Arguments[i];
+                        var arg = attribute.Arguments[i].ConstantValue;
                         var param = attribute.Constructor.Parameters[i];
 
                         if (i > 0) sb.Append(", ");
                         sb.Append(param.Name);
                         sb.Append(" = ");
-                        if (arg.Value is string)
-                        {
-                            sb.Append("\"" + arg.Value + "\"");
-                        }
-                        else
-                        {
-                            sb.Append(arg.Value);
-                        }
+                        BuildParameterValue(arg, sb);
                     }
 
-                    sb.Append(")");
+                    sb.Append(')');
                 }
 
                 sb.AppendLine("]");
@@ -75,6 +68,32 @@ namespace Uno.Compiler.Backends.UnoDoc.Builders.Syntax
             return result.Any()
                            ? string.Join("\n", result)
                            : null;
+        }
+
+        static void BuildParameterValue(object arg, StringBuilder sb)
+        {
+            if (arg is object[] array)
+            {
+                sb.Append("new[] {");
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (i > 0)
+                        sb.Append(", ");
+
+                    BuildParameterValue(array[i], sb);
+                }
+
+                sb.Append('}');
+            }
+            else if (arg is string)
+            {
+                sb.Append("\"" + arg + "\"");
+            }
+            else
+            {
+                sb.Append(arg);
+            }
         }
 
         protected string BuildModifiers(List<string> modifiers)

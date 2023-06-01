@@ -23,7 +23,6 @@ namespace Uno.Compiler.Foreign
         Function _context;
         Source _source;
 
-
         public ForeignHelpers(IEnvironment environment, IEssentials essentials, CppBackend backend, IBuildData data)
         {
             Environment = environment;
@@ -52,9 +51,9 @@ namespace Uno.Compiler.Foreign
             return null;
         }
 
-        public List<string> GetForeignIncludes(DataType dt, string language, IEnvironment env)
+        public List<string> GetForeignIncludes(DataType dt, string language)
         {
-            var result = new List<string>();
+            var result = new HashSet<string>();
 
             if (dt.HasAttribute(Essentials.ForeignIncludeAttribute))
             {
@@ -63,15 +62,33 @@ namespace Uno.Compiler.Foreign
                     if (attr.ReferencedType == Essentials.ForeignIncludeAttribute &&
                         Essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == language)
                     {
-                        foreach (var arg in attr.Arguments.Skip(1))
+                        foreach (var arg in (object[])attr.Arguments[1].ConstantValue)
                         {
-                            result.Add(env.Expand(dt.Source, (string)arg.ConstantValue));
+                            result.Add(Environment.Expand(dt.Source, (string)arg));
                         }
                     }
                 }
             }
 
-            return result;
+            foreach (var f in dt.EnumerateFunctions())
+            {
+                if (f.HasAttribute(Essentials.ForeignIncludeAttribute))
+                {
+                    foreach (var attr in f.Attributes)
+                    {
+                        if (attr.ReferencedType == Essentials.ForeignIncludeAttribute &&
+                            Essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == language)
+                        {
+                            foreach (var arg in (object[])attr.Arguments[1].ConstantValue)
+                            {
+                                result.Add(Environment.Expand(f.Source, (string)arg));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result.ToList();
         }
 
         public List<string> GetForeignAnnotations(Function f, string language)
@@ -85,9 +102,9 @@ namespace Uno.Compiler.Foreign
                     if (attr.ReferencedType == Essentials.ForeignAnnotationAttribute &&
                         Essentials.Language.Literals[(int)attr.Arguments[0].ConstantValue].Name == language)
                     {
-                        foreach (var arg in attr.Arguments.Skip(1))
+                        foreach (var arg in (object[])attr.Arguments[1].ConstantValue)
                         {
-                            result.Add((string)arg.ConstantValue);
+                            result.Add((string)arg);
                         }
                     }
                 }
@@ -269,7 +286,6 @@ namespace Uno.Compiler.Foreign
                 dt == Essentials.Short ||
                 dt == Essentials.UShort;
         }
-
 
         public Expression StringExpr(DataType dt, string e)
         {

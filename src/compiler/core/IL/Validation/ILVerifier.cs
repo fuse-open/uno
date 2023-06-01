@@ -446,12 +446,18 @@ namespace Uno.Compiler.Core.IL.Validation
                 if (!attr.ReturnType.IsSubclassOf(Essentials.Attribute))
                     Log.Error(attr.Source, ErrorCode.E0000, attr.ReturnType.AttributeString + " cannot be used as an attribute because it does not inherit " + Essentials.Attribute.Quote());
 
-                foreach (var arg in attr.Arguments)
-                    if (arg.ExpressionType != ExpressionType.Constant)
-                        Log.Error(arg.Source, ErrorCode.E0000, "Attribute argument must be constant");
-
+                VeryfyArgumentsAreConstant(attr.Arguments);
                 VerifyAttributeUsage(attr.Source, owner, attr.ReturnType);
             }
+        }
+
+        void VeryfyArgumentsAreConstant(Expression[] args)
+        {
+            foreach (var arg in args)
+                if (arg.ExpressionType == ExpressionType.NewArray)
+                    VeryfyArgumentsAreConstant(((NewArray)arg).Initializers);
+                else if (arg.ExpressionType != ExpressionType.Constant)
+                    Log.Error(arg.Source, ErrorCode.E0000, "Attribute argument must be constant or an array of constants");
         }
 
         void VerifyAttributeUsage(Source src, SourceObject owner, DataType attribute)

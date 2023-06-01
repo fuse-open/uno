@@ -84,9 +84,8 @@ namespace Uno.Compiler.Core.Syntax.Compilers
         public static NewObject TryCompileSuffixedObject(this Compiler compiler, Namescope scope, AstExpression type, string suffix, IReadOnlyList<AstArgument> args)
         {
             var sym = CompileExpression(compiler, new AstNew(type.Source, GetSuffixedTypeExpression(type, suffix), args), scope);
-            var result = sym as NewObject;
 
-            if (result == null)
+            if (sym is not NewObject result)
             {
                 if (!sym.IsInvalid)
                     compiler.Log.Error(type.Source, ErrorCode.I0045, "Compiled expression was not a 'NewObject' node");
@@ -94,23 +93,32 @@ namespace Uno.Compiler.Core.Syntax.Compilers
                 return null;
             }
 
-            for (int i = 0; i < result.Arguments.Length; i++)
+            compiler.MakeSureArgumentsAreConstantOrArray(result.Arguments);
+            return result;
+        }
+
+        static void MakeSureArgumentsAreConstantOrArray(this Compiler compiler, Expression[] args)
+        {
+            for (int i = 0; i < args.Length; i++)
             {
-                if (result.Arguments[i].ExpressionType != ExpressionType.Constant)
+                if (args[i].ExpressionType == ExpressionType.NewArray)
                 {
-                    var c = compiler.ConstantFolder.TryMakeConstant(result.Arguments[i]);
+                    var newArray = (NewArray)args[i];
+                    compiler.MakeSureArgumentsAreConstantOrArray(newArray.Initializers);
+                }
+                else if (args[i].ExpressionType != ExpressionType.Constant)
+                {
+                    var c = compiler.ConstantFolder.TryMakeConstant(args[i]);
 
                     if (c == null)
                     {
-                        compiler.Log.Error(result.Arguments[i].Source, ErrorCode.E0000, "Argument must be a constant value");
+                        compiler.Log.Error(args[i].Source, ErrorCode.E0000, "Argument must be a constant value or an array of constant values");
                         continue;
                     }
 
-                    result.Arguments[i] = c;
+                    args[i] = c;
                 }
             }
-
-            return result;
         }
 
         public static NewObject[] CompileAttributes(this Compiler compiler, Namescope scope, IReadOnlyList<AstAttribute> attributes)
