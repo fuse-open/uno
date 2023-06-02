@@ -21,7 +21,6 @@ namespace Uno.ProjectFormat
             {"description", PropertyType.String},
             {"copyright", PropertyType.String, "Copyright (C) " + DateTime.Now.Year + " $(publisher)"},
             {"publisher", PropertyType.String, "[Publisher]"},
-            {"unoCoreReference", PropertyType.Bool, true},
             {"isTransitive", PropertyType.Bool, false},
             {"mobile.keepAlive", PropertyType.Bool, false},
             {"mobile.showStatusbar", PropertyType.Bool, true},
@@ -99,7 +98,6 @@ namespace Uno.ProjectFormat
             {"buildDir", "buildDirectory"},
             {"cacheDir", "cacheDirectory"},
             {"versionCount", "versionCode"},
-            {"referenceUnoCore", "unoCoreReference"},
             {"ios.icons.ios-marketing_1024_1x", "ios.icons.ios_marketing_1024_1x"},
         };
 
