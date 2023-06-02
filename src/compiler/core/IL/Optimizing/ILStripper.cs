@@ -1101,7 +1101,7 @@ namespace Uno.Compiler.Core.IL.Optimizing
             NormalizeRefsRecursive(Data.IL);
             OptimizeRefsRecursive(Data.IL);
 
-            if (!Environment.Strip || Backend.BuildType == BuildType.Library || !Log.IsVerbose)
+            if (!Environment.Strip || !Log.IsVerbose)
                 return;
 
             PrintCounter(_namespacesStripped, "namespaces stripped");

@@ -27,8 +27,7 @@ namespace Uno.Disasm.ILView
             Build(build.IL);
             Build(build, build.Compiler.Environment, build.Compiler.Data.Extensions);
 
-            if (build.Compiler.Backend.BuildType == BuildType.Executable &&
-                build.Entrypoint != null)
+            if (build.Entrypoint != null)
                 GetPackage(build.Compiler.Input.Package)
                     .GetNamespace(build.IL)
                     .AddChild(new FunctionItem(build.Entrypoint));
