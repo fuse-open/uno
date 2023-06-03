@@ -75,6 +75,7 @@ namespace Uno.TestRunner
                     Environment.SetEnvironmentVariable("UNO_WINDOW_HIDDEN", "1");
 
                     var targetLog = new Log(new DebugLogTestFilter(Console.Out, _testRun), Console.Error);
+                    targetLog.WriteLine();
 
                     Task runTask = null;
                     try
@@ -100,8 +101,10 @@ namespace Uno.TestRunner
                 finally
                 {
                     _logger.ProjectEnded(tests);
+
                     if (!runFinished)
                         cts.Cancel();
+
                     cts.Dispose();
                 }
             }

@@ -34,12 +34,12 @@ namespace Uno.TestRunner
 
             if (tests.Any())
             {
-                logger.Log("Specified unoproj:\n " + string.Join("\n ", explicitProjects));
+                logger.Log("Specified unoproj:\n " + string.Join("\n ", explicitProjects) + "\n");
             }
 
             if (searchDirectories.Length > 0)
             {
-                logger.Log("Searching for tests in:\n " + string.Join("\n ", searchDirectories));
+                logger.Log("Searching for tests in:\n " + string.Join("\n ", searchDirectories) + "\n");
 
                 foreach (var searchDirectory in searchDirectories)
                 {

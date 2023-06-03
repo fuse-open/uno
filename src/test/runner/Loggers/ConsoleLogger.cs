@@ -79,30 +79,36 @@ namespace Uno.TestRunner.Loggers
         {
             Write();
             ColorHelper.SetForeground(ConsoleColor.Cyan);
+
             if (_microseconds != 0)
                 Write("Built & ran {0} tests in {1:0.00} seconds ({2:#,0} μs)", tests.Count(t => t.Ended), _watch.Elapsed.TotalSeconds, _microseconds);
             else
                 Write("Built & ran {0} tests in {1:0.00} seconds", tests.Count(t => t.Ended), _watch.Elapsed.TotalSeconds);
 
             int notRun = tests.Count(t => t.Ended == false);
+            int failures = tests.Count(t => t.Failed);
+            int ignores = tests.Count(t => t.WasIgnored);
+
             if (notRun> 0)
             {
                 ColorHelper.SetForeground(ConsoleColor.Red);
                 Write("Not run: {0}", notRun);
             }
-            int failures = tests.Count(t => t.Failed);
+
             if (failures > 0)
             {
                 ColorHelper.SetForeground(ConsoleColor.Red);
                 Write("Failures: {0}", failures);
             }
-            int ignores = tests.Count(t => t.WasIgnored);
+
             if (ignores > 0)
             {
                 ColorHelper.SetForeground(ConsoleColor.Yellow);
                 Write("Ignored:  {0}", ignores);
             }
+
             ColorHelper.SetDefault();
+            Write();
         }
 
         public override void Log(string message)
