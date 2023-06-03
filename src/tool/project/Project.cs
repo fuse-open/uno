@@ -130,7 +130,6 @@ namespace Uno.ProjectFormat
         }
 
         public string BuildCondition => GetString("buildCondition");
-        public bool UnoCoreReference => GetBool("unoCoreReference");
         public bool IsTransitive => GetBool("isTransitive");
 
         public static Project Load(string filename)

@@ -27,7 +27,7 @@ namespace Uno.Compiler.Core.IL.Building.Entrypoint
                     break;
                 case 0:
                     // Auto-generate main-class when building a library.
-                    if (Environment.IsLibrary || Backend.BuildType == BuildType.Library)
+                    if (Environment.IsLibrary)
                     {
                         var type = new ClassType(Bundle.Source, Data.IL, null, Modifiers.Generated | Modifiers.Public, Bundle.Name.ToIdentifier() + "_app");
                         type.SetBase(Essentials.Application);

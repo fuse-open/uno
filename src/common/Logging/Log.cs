@@ -290,7 +290,6 @@ namespace Uno.Logging
                 WriteLine($"{ErrorCount,5} error".Plural(ErrorCount), ConsoleColor.Red);
         }
 
-        // Nullable (ConsoleColor?) on second parameter makes Mono 4.X fail in overload resolution.
         public IDisposable StartAnimation(string line, ConsoleColor color = ConsoleColor.Green)
         {
             Skip();

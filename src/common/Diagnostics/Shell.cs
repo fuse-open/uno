@@ -111,6 +111,9 @@ namespace Uno.Diagnostics
                         Log.WriteErrorLine(e.Data);
                     else if (e.Data.IndexOf("error:", StringComparison.InvariantCultureIgnoreCase) != -1)
                         Log.WriteErrorLine(e.Data, ConsoleColor.Red);
+                    else if (e.Data.StartsWith("Note: Some input files use or override a deprecated API.") ||
+                             e.Data.StartsWith("Note: Recompile with -Xlint:deprecation for details."))
+                        return; // Silence Gradle warnings
                     else
                         Log.WriteErrorLine(e.Data, ConsoleColor.Yellow);
                 },

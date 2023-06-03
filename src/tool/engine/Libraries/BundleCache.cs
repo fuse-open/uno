@@ -14,7 +14,7 @@ namespace Uno.Build.Libraries
 {
     public class BundleCache : DiskObject
     {
-        // For use by UXNinja & tests in Fuse Studio
+        // For use by UXNinja & tests in Fuse X
         public static SourceBundle GetBundle(Log log, Project project)
         {
             // Passing null to disable FuseJS transpiler.
@@ -136,7 +136,7 @@ namespace Uno.Build.Libraries
             result = project.CreateBundle(startup);
             _cache[project.Name] = null;
 
-            if (project.UnoCoreReference)
+            if (project.Name != "UnoCore")
                 result.References.Add(GetBundle(new LibraryReference(project.Source, "UnoCore")));
 
             foreach (var r in project.PackageReferences)

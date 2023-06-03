@@ -1,4 +1,5 @@
-﻿using Uno.Compiler.API.Backends;
+﻿using Uno.Compiler.API;
+using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.CIL;
 using Uno.Compiler.Graphics.OpenGL;
 
@@ -14,6 +15,11 @@ namespace Uno.Build.Targets
         public override Backend CreateBackend()
         {
             return new MetadataBackend(new GLBackend());
+        }
+
+        public override void Initialize(IEnvironment env)
+        {
+            env.Define("LIBRARY");
         }
     }
 }
