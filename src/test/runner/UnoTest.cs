@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using Uno.TestRunner.BasicTypes;
 using Uno.TestRunner.Loggers;
 
@@ -26,21 +24,27 @@ namespace Uno.TestRunner
 
             var tests = new List<Test>();
 
-            foreach (var unoproj in discoveredProjects)
-                tests.AddRange(new TestProjectRunner(unoproj, options, logger).RunTests());
+            foreach (var project in discoveredProjects)
+                tests.AddRange(new TestProjectRunner(project, options, logger).RunTests());
+
+            var failedCount = tests.Count(t => t.Failed);
 
             if (discoveredProjects.Length > 1)
             {
-                logger.Log("");
                 logger.Log("Since you ran multiple projects, here is a summary:");
-                logger.Log("From {0} projects, ran {1} tests, {2} failed.", discoveredProjects.Length, tests.Count, tests.Count(t => t.Failed));
+                logger.Log("From {0} projects, ran {1} tests, {2} failed.", discoveredProjects.Length, tests.Count, failedCount);
                 logger.Log("");
 
-                foreach (var test in tests.Where(t => t.Failed))
-                    logger.Log("  Failed:  {0}", test.Name);
+                if (failedCount > 0)
+                {
+                    foreach (var test in tests.Where(t => t.Failed))
+                        logger.Log("  Failed:  {0}", test.Name);
+
+                    logger.Log("");
+                }
             }
 
-            return tests.Count(t => t.Failed);
+            return failedCount;
         }
     }
 }
