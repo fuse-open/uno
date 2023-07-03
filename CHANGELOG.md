@@ -4,6 +4,89 @@ Uno Changelog
 Unreleased
 ----------
 
+### Architecture
+- Port codebase to .NET 6.0 and Visual Studio 2022 (#424)
+- Update default output directory (#435)
+- Update packaging for .NET 6.0 (#436)
+- Remove version directory inside built libraries (#437)
+- Update terminology on library vs. package (#440)
+- Print `arm` and `arm64` architectures in lowercase (#468)
+- Use the new `HttpClient` class on .NET 6.0 (#467)
+- Export API to run `uno` from JavaScript/TypeScript (#469)
+- Replace `System.Drawing` on macOS and Linux (#470)
+- Hide output from external image converters (#480)
+- Make sure the `uno` command is executable (#481)
+- Swallow `InvalidOperationException` in `KillTree()` (#484)
+- Whitespace fix-up pass (#490)
+- Beta recovery & tweaks (#493)
+- Rename manifest file in libraries (#495)
+- More tweaks (#496)
+
+### unoconfig
+- Remove `IsRoot` and `SkipIfRoot` properties (#451)
+- Rename `Packages` -> `SearchPaths` properties (#453)
+- Rename `Packages.Default` -> `References.Default` (#464)
+
+### unoproj
+- Rename `Packages` -> `References` (#454)
+- Accept `lowerCamelCase` property names (#466)
+- Update unoproj and unoconfig files (#474)
+- Add `outputType` property (#483)
+- Add `outputType.appTest` value (#494)
+
+### Android
+- Make `arm64` default for debug builds (#475)
+
+### iOS
+- Make iOS 11 the default deployment target (#476)
+
+### macOS
+- Use Microsoft.macOS.SDK in app loader (#438)
+- Remove macOS binaries from package (#439)
+- Get macOS app loader from NuGet (#450)
+- Remove xamarin-mac dependency (#479)
+
+### Compiler
+- Remove `GRADLE` and `UNO_TEST` defines (#455)
+- Define `TEST` when running tests (#463)
+- Require XML attribute values to be quoted (#465)
+- Return "if-test and throw" when compiling `assert` statements (#477)
+- Remove a temp hack and some old TODOs (#485)
+- Build console apps with `Main()` entrypoints (#489)
+- Accept `ForeignInclude` attributes on methods (#491)
+- Accept array arguments in attributes (#491)
+- Refactor build queue classes (#497)
+
+### C++ backend
+- Use a comparer when sorting in `IncludeResolver` (#461)
+- Fix Android compile errors on macOS (#478)
+- Move Android C++ files to `uDroid/` (#456)
+- Move platform-related code to `uPlatform/` (#457)
+- Add back deprecated header on Android (#462)
+- Verify v-tables when `DEBUG_UNSAFE` is defined (#488)
+- Reorganize source files (#492)
+
+### UX compiler
+- Transpile TypeScript and JavaScript code in UX files (#482)
+
+### Test runner
+- Use console app loader on .NET by default (#486)
+- Use more newlines in the log output (#498)
+
+### UnoCore
+- Remove legacy `Uno.Buffer` class (#441)
+- Remove legacy `Uno.Diagnostics.Debug` class (#442)
+- Publish `FuseOpen.UnoCore` package on NuGet (#460)
+- Use `params` in Foreign attributes (#491)
+
+### Uno.Graphics.Utils
+- Remove reference to `Experimental.TextureLoader` (#444)
+
+### Uno.Permissions
+- Remove legacy `Uno.Permissions` library (#443)
+
+[`v2.8.0...beta-3.0`](https://github.com/fuse-open/uno/compare/v2.8.0...beta-3.0)
+
 2.8
 ---
 
