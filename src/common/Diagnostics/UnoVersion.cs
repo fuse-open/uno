@@ -40,7 +40,7 @@ namespace Uno.Diagnostics
                 var config = GetAttribute<AssemblyConfigurationAttribute>()?.Configuration;
                 return !string.IsNullOrEmpty(config)
                     ? config
-                    : "N/A";
+                    : "n/a";
             }
         }
 
