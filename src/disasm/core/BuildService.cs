@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Uno.Build;
-using Uno.CLI.Projects;
+using Uno.CLI.Building;
 using Uno.Disasm.ILView;
 using Uno.Logging;
 

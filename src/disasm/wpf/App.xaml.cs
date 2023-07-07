@@ -25,7 +25,7 @@ namespace Uno.Disasm
             MessageBox.Show("The application has crashed because of an unhandled exception:\n\n" + e.ExceptionObject, "Fatal Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Environment.Exit(1);
         }
-
+/*
         App(string[] args)
         {
             InitializeComponent();
@@ -41,5 +41,6 @@ namespace Uno.Disasm
         {
             return new App(args).Run();
         }
+*/
     }
 }
