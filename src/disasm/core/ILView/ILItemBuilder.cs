@@ -2,7 +2,6 @@
 using Uno.Build;
 using Uno.Compiler;
 using Uno.Compiler.API;
-using Uno.Compiler.API.Backends;
 using Uno.Compiler.API.Domain.Extensions;
 using Uno.Compiler.API.Domain.Graphics;
 using Uno.Compiler.API.Domain.IL;
@@ -28,11 +27,11 @@ namespace Uno.Disasm.ILView
             Build(build, build.Compiler.Environment, build.Compiler.Data.Extensions);
 
             if (build.Entrypoint != null)
-                GetPackage(build.Compiler.Input.Package)
+                GetBundle(build.Compiler.Input.Bundle)
                     .GetNamespace(build.IL)
                     .AddChild(new FunctionItem(build.Entrypoint));
 
-            GetPackage(build.Compiler.Input.Package)
+            GetBundle(build.Compiler.Input.Bundle)
                 .AddResources(build.Compiler.Data.Extensions.BundleFiles);
 
             ExpandItems();
@@ -68,9 +67,9 @@ namespace Uno.Disasm.ILView
             foreach (var ns in root.Namespaces)
                 Build(ns);
             foreach (var block in root.Blocks)
-                Build(GetPackage(block.Source.Bundle).GetNamespace(root), block);
+                Build(GetBundle(block.Source.Bundle).GetNamespace(root), block);
             foreach (var dt in root.Types)
-                Build(GetPackage(dt.Source.Bundle).GetNamespace(root), dt);
+                Build(GetBundle(dt.Source.Bundle).GetNamespace(root), dt);
         }
 
         void Build(ILItem parent, DataType dt)
@@ -134,7 +133,7 @@ namespace Uno.Disasm.ILView
             return item;
         }
 
-        PackageItem GetPackage(SourceBundle bundle)
+        PackageItem GetBundle(SourceBundle bundle)
         {
             PackageItem result;
             if (!_packageMap.TryGetValue(bundle, out result))

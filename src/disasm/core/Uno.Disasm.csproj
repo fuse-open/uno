@@ -7,10 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\tool\project\Uno.ProjectFormat.csproj" />
-    <ProjectReference Include="..\..\tool\engine\Uno.Build.csproj" />
-    <ProjectReference Include="..\..\common\Uno.Common.csproj" />
-    <ProjectReference Include="..\..\compiler\api\Uno.Compiler.API.csproj" />
-    <ProjectReference Include="..\..\tool\cli\uno.csproj" />
+    <Reference Include="uno">
+      <HintPath>..\..\..\bin\net6.0\uno.dll</HintPath>
+    </Reference>
+    <Reference Include="Uno.Build">
+      <HintPath>..\..\..\bin\net6.0\Uno.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="Uno.Common">
+      <HintPath>..\..\..\bin\net6.0\Uno.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Uno.Compiler.API">
+      <HintPath>..\..\..\bin\net6.0\Uno.Compiler.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Uno.ProjectFormat">
+      <HintPath>..\..\..\bin\net6.0\Uno.ProjectFormat.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

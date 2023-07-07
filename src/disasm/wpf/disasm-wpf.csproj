@@ -5,12 +5,11 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>Uno.Disasm</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\tool\engine\Uno.Build.csproj" />
-    <ProjectReference Include="..\..\common\Uno.Common.csproj" />
     <ProjectReference Include="..\core\Uno.Disasm.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -18,5 +17,13 @@
     <PackageReference Include="ControlzEx" Version="3.0.2.4" />
     <PackageReference Include="MahApps.Metro" Version="1.6.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Uno.Build">
+      <HintPath>..\..\..\bin\net6.0\Uno.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="Uno.Common">
+      <HintPath>..\..\..\bin\net6.0\Uno.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
