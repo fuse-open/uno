@@ -10,6 +10,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Syntax\Foreign.xshd" />
+    <EmbeddedResource Include="Syntax\Stuff.xshd" />
+    <EmbeddedResource Include="Syntax\Uno.xshd" />
+    <EmbeddedResource Include="Syntax\UXL.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UnoIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\core\Uno.Disasm.csproj" />
   </ItemGroup>
   <ItemGroup>

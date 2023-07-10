@@ -7,6 +7,93 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="ILView\Icons\ApplicationDocument.png" />
+    <EmbeddedResource Include="ILView\Icons\ApplicationDocumentExcludedFromBuild.png" />
+    <EmbeddedResource Include="ILView\Icons\Block.png" />
+    <EmbeddedResource Include="ILView\Icons\BlockFactory.png" />
+    <EmbeddedResource Include="ILView\Icons\BlockNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Cast.png" />
+    <EmbeddedResource Include="ILView\Icons\Class.png" />
+    <EmbeddedResource Include="ILView\Icons\ClassNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Component.png" />
+    <EmbeddedResource Include="ILView\Icons\Constant.png" />
+    <EmbeddedResource Include="ILView\Icons\ConstantNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Constructor.png" />
+    <EmbeddedResource Include="ILView\Icons\ConstructorNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\ConstructorStatic.png" />
+    <EmbeddedResource Include="ILView\Icons\ConstructorStaticNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Delegate.png" />
+    <EmbeddedResource Include="ILView\Icons\DelegateNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Delete.png" />
+    <EmbeddedResource Include="ILView\Icons\DrawablePath.png" />
+    <EmbeddedResource Include="ILView\Icons\Enum.png" />
+    <EmbeddedResource Include="ILView\Icons\EnumNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Error.png" />
+    <EmbeddedResource Include="ILView\Icons\Event.png" />
+    <EmbeddedResource Include="ILView\Icons\EventNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\EventStatic.png" />
+    <EmbeddedResource Include="ILView\Icons\EventStaticNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Expandable.png" />
+    <EmbeddedResource Include="ILView\Icons\Expanded.png" />
+    <EmbeddedResource Include="ILView\Icons\Field.png" />
+    <EmbeddedResource Include="ILView\Icons\FieldNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\FieldStatic.png" />
+    <EmbeddedResource Include="ILView\Icons\FieldStaticNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\File.png" />
+    <EmbeddedResource Include="ILView\Icons\FolderClosed.png" />
+    <EmbeddedResource Include="ILView\Icons\FolderOpen.png" />
+    <EmbeddedResource Include="ILView\Icons\GenericParameterizations.png" />
+    <EmbeddedResource Include="ILView\Icons\History.png" />
+    <EmbeddedResource Include="ILView\Icons\Importer.png" />
+    <EmbeddedResource Include="ILView\Icons\Indexer.png" />
+    <EmbeddedResource Include="ILView\Icons\Interface.png" />
+    <EmbeddedResource Include="ILView\Icons\InterfaceNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\Keyword.png" />
+    <EmbeddedResource Include="ILView\Icons\Message.png" />
+    <EmbeddedResource Include="ILView\Icons\MetaProperty.png" />
+    <EmbeddedResource Include="ILView\Icons\Method.png" />
+    <EmbeddedResource Include="ILView\Icons\MethodNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\MethodStatic.png" />
+    <EmbeddedResource Include="ILView\Icons\MethodStaticNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\MissingFile.png" />
+    <EmbeddedResource Include="ILView\Icons\Namespace.png" />
+    <EmbeddedResource Include="ILView\Icons\NewFile.png" />
+    <EmbeddedResource Include="ILView\Icons\NewFolder.png" />
+    <EmbeddedResource Include="ILView\Icons\NonIncludedFile.png" />
+    <EmbeddedResource Include="ILView\Icons\NonIncludedFolderClosed.png" />
+    <EmbeddedResource Include="ILView\Icons\NonIncludedFolderOpen.png" />
+    <EmbeddedResource Include="ILView\Icons\OK.png" />
+    <EmbeddedResource Include="ILView\Icons\Operator.png" />
+    <EmbeddedResource Include="ILView\Icons\Project.png" />
+    <EmbeddedResource Include="ILView\Icons\ProjectPackageReference.png" />
+    <EmbeddedResource Include="ILView\Icons\ProjectProjectReference.png" />
+    <EmbeddedResource Include="ILView\Icons\ProjectReferenceCollection.png" />
+    <EmbeddedResource Include="ILView\Icons\Property.png" />
+    <EmbeddedResource Include="ILView\Icons\PropertyNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\PropertyStatic.png" />
+    <EmbeddedResource Include="ILView\Icons\PropertyStaticNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\ResourceLibrary.png" />
+    <EmbeddedResource Include="ILView\Icons\SceneDocument.png" />
+    <EmbeddedResource Include="ILView\Icons\SceneDocumentExcludedFromBuild.png" />
+    <EmbeddedResource Include="ILView\Icons\Solution.png" />
+    <EmbeddedResource Include="ILView\Icons\SolutionFolder.png" />
+    <EmbeddedResource Include="ILView\Icons\Static.png" />
+    <EmbeddedResource Include="ILView\Icons\Struct.png" />
+    <EmbeddedResource Include="ILView\Icons\StructNonPublic.png" />
+    <EmbeddedResource Include="ILView\Icons\SwizzlerType.png" />
+    <EmbeddedResource Include="ILView\Icons\Texture2D.png" />
+    <EmbeddedResource Include="ILView\Icons\TimelineDocument.png" />
+    <EmbeddedResource Include="ILView\Icons\TimelineDocumentExcludedFromBuild.png" />
+    <EmbeddedResource Include="ILView\Icons\UnitTest.png" />
+    <EmbeddedResource Include="ILView\Icons\UnoDocument.png" />
+    <EmbeddedResource Include="ILView\Icons\UnoDocumentExcludedFromBuild.png" />
+    <EmbeddedResource Include="ILView\Icons\UnoDocumentPartialClass.png" />
+    <EmbeddedResource Include="ILView\Icons\UxlDocument.png" />
+    <EmbeddedResource Include="ILView\Icons\UxlDocumentExcludedFromBuild.png" />
+    <EmbeddedResource Include="ILView\Icons\Warning.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="uno">
       <HintPath>..\..\..\bin\net6.0\uno.dll</HintPath>
     </Reference>
