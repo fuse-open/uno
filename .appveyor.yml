@@ -28,6 +28,7 @@ install:
 
 build_script:
   - npm pack --silent
+  - dotnet build disasm.sln /clp:ErrorsOnly
 
 after_build:
   - ps: |

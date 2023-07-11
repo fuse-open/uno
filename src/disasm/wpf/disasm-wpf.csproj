@@ -10,13 +10,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Syntax\Foreign.xshd" />
+    <EmbeddedResource Include="Syntax\Stuff.xshd" />
+    <EmbeddedResource Include="Syntax\Uno.xshd" />
+    <EmbeddedResource Include="Syntax\UXL.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UnoIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\core\Uno.Disasm.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AvalonEdit" Version="6.0.1" />
+    <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
     <PackageReference Include="ControlzEx" Version="3.0.2.4" />
     <PackageReference Include="MahApps.Metro" Version="1.6.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Uno.Build">
