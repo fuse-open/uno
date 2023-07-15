@@ -1,4 +1,4 @@
-<Extensions Backend="CIL" Condition="!CONSOLE && !LIBRARY && !TEST || APPTEST">
+<Extensions Backend="CIL" Condition="!CONSOLE && !LIBRARY && !PREVIEW && !TEST || APPTEST">
 
     <Set AppDirectory="@(Project.Name).app" Condition="HOST_MAC" />
     <Set AssemblyDirectory="@(HOST_MAC:Defined:Test('@(AppDirectory)/Contents/MonoBundle', '.'))" />
