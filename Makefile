@@ -3,9 +3,9 @@
 default:
 	@bash scripts/build.sh
 lib:
-	@bin/net6.0/uno doctor -e lib
+	@bin/uno doctor -e lib
 unocore:
-	@bin/net6.0/uno build lib/UnoCore
+	@bin/uno build lib/UnoCore
 uno:
 	@dotnet build uno.sln -v m
 disasm:

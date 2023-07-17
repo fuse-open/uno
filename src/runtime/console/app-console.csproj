@@ -5,6 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Uno.AppLoader</RootNamespace>
     <AssemblyName>uno-app</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>$(SolutionDir)bin\console</OutputPath>
     <OutputType>Exe</OutputType>
   </PropertyGroup>

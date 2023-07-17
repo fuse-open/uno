@@ -43,12 +43,12 @@ function restoreFiles(src, dst) {
 
 function makeExecutable(path) {
     if (os.platform() !== "win32" && fs.existsSync(path))
-        fs.chmodSync(path, 0755)
+        fs.chmodSync(path, 0o755)
 }
 
 // Restore OpenTK and ANGLE (Windows only)
 const opentk = findNodeModule("@fuse-open/opentk")
-restoreFiles(opentk, path.join(__dirname, "..", "bin", "win", "net6.0-windows"))
+restoreFiles(opentk, path.join(__dirname, "..", "bin", "win"))
 
 // Make sure the shell script is executable
-makeExecutable(path.join(__dirname, "..", "bin", "net6.0", "uno"))
+makeExecutable(path.join(__dirname, "..", "bin", "uno"))

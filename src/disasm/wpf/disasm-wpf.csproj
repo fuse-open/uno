@@ -31,10 +31,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Uno.Build">
-      <HintPath>..\..\..\bin\net6.0\Uno.Build.dll</HintPath>
+      <HintPath>..\..\..\bin\Uno.Build.dll</HintPath>
     </Reference>
     <Reference Include="Uno.Common">
-      <HintPath>..\..\..\bin\net6.0\Uno.Common.dll</HintPath>
+      <HintPath>..\..\..\bin\Uno.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
