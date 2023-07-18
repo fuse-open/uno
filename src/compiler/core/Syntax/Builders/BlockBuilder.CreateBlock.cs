@@ -30,7 +30,8 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 Log.Error(src, ErrorCode.E3214, "Block declaration is not allowed in this scope");
 
             _processedBlocks.Add(ast, result);
-            _queue.EnqueueBlock(result, x => PopulateBlock(ast, x));
+            EnqueueBlock(result, x => PopulateBlock(ast, x));
+
             return result;
         }
 
@@ -75,7 +76,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
                     return MetaBlock.Invalid;
             }
 
-            _queue.EnqueueBlock(result, x => PopulateBlock(ast, x));
+            EnqueueBlock(result, x => PopulateBlock(ast, x));
             return result;
         }
     }

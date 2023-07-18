@@ -29,23 +29,23 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 Log.Error(src, ErrorCode.I3019, "'delegate' cannot contain members");
 
             if (ast.Attributes.Count > 0)
-                _queue.EnqueueAttributes(result,
-                    _ => result.SetAttributes(_compiler.CompileAttributes(parent, ast.Attributes)));
+                EnqueueAttributes(result,
+                    x => result.SetAttributes(_compiler.CompileAttributes(result.Parent, ast.Attributes)));
 
-            _queue.EnqueueType(result,
+            EnqueueType(result,
                 assignBaseType: x =>
                 {
                     var deferredActions = new List<Action>();
-                    var parameterizedType = Parameterize(x);
+                    var parameterizedType = Parameterize(result);
 
                     result.SetBase(_ilf.Essentials.Delegate);
-                    result.SetReturnType(_resolver.GetType(x, ast.ReturnType));
-                    result.SetParameters(_compiler.CompileParameterList(x, ast.Parameters, deferredActions));
+                    result.SetReturnType(_resolver.GetType(result, ast.ReturnType));
+                    result.SetParameters(_compiler.CompileParameterList(result, ast.Parameters, deferredActions));
 
                     if (parameterizedType != result)
                     {
                         var parameterizedDelegate = (DelegateType)parameterizedType;
-                        parameterizedDelegate.SetBase(x.Base);
+                        parameterizedDelegate.SetBase(result.Base);
                         parameterizedDelegate.SetReturnType(result.ReturnType);
                         parameterizedDelegate.SetParameters(result.Parameters);
                     }
