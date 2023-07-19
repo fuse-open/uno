@@ -24,11 +24,11 @@ Unreleased
 
 ### unoconfig
 - Remove `IsRoot` and `SkipIfRoot` properties (#451)
-- Rename `Packages` -> `SearchPaths` properties (#453)
-- Rename `Packages.Default` -> `References.Default` (#464)
+- Rename `Packages` -> `searchPaths` properties (#453)
+- Rename `Packages.Default` -> `references.default` (#464)
 
 ### unoproj
-- Rename `Packages` -> `References` (#454)
+- Rename `Packages` -> `references` (#454)
 - Accept `lowerCamelCase` property names (#466)
 - Update unoproj and unoconfig files (#474)
 - Add `outputType` property (#483)

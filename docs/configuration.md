@@ -14,7 +14,7 @@ C:\> git clone https://github.com/fuse-open/fuselibs.git
 ```
 
 ```javascript
-SearchPaths.Sources += `C:\fuselibs\Source`
+searchPaths.sources += `C:\fuselibs\Source`
 ```
 
 (Replace `C:\fuselibs\Source` with your own location.)
@@ -26,15 +26,15 @@ Run `uno doctor` to build your standard library.
 Use the following `.unoconfig` properties to add additional Uno libraries (or projects) to your search paths.
 
 ```javascript
-SearchPaths += find/my/packages/here
-SearchPaths.Sources += build/these/projects
+searchPaths += find/my/packages/here
+searchPaths.sources += build/these/projects
 ```
 
 ### Conditional inclusion
 
 ```javascript
 if (DEV) {
-    SearchPaths.Sources += `C:\fuselibs\Source`
+    searchPaths.sources += `C:\fuselibs\Source`
 }
 ```
 
@@ -53,16 +53,16 @@ specify other locations as demonstrated below.
 ### Windows
 
 ```javascript
-Android.NDK: `%LOCALAPPDATA%\Android\sdk\ndk-bundle`
-Android.SDK: `%LOCALAPPDATA%\Android\sdk`
-Java.JDK: `%PROGRAMFILES%\Java\jdk1.8.0_40`
+android.ndk: `%LOCALAPPDATA%\Android\sdk\ndk-bundle`
+android.sdk: `%LOCALAPPDATA%\Android\sdk`
+java.jdk: `%PROGRAMFILES%\Java\jdk1.8.0_40`
 ```
 
 ### macOS
 
 ```javascript
-Android.NDK: ~/Library/Android/sdk/ndk-bundle
-Android.SDK: ~/Library/Android/sdk
+android.ndk: ~/Library/Android/sdk/ndk-bundle
+android.sdk: ~/Library/Android/sdk
 ```
 
 ### iOS
@@ -74,7 +74,7 @@ To support building iOS apps, we need macOS and Xcode.
 This is usually automatically detected, but configuring a signing identity can be useful.
 
 ```javascript
-iOS.DeveloperTeam: ABCD012345
+ios.developerTeam: ABCD012345
 ```
 
 ### Native

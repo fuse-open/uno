@@ -5,7 +5,7 @@ source scripts/common.sh
 
 # Clean stdlib
 IFS=$'\n'
-for dir in `uno config SearchPaths.Sources`; do
+for dir in `uno config searchPaths.sources`; do
     if [ -d "$dir" ]; then
         rm -rf "$dir/build"
         uno clean --recursive "$dir"
