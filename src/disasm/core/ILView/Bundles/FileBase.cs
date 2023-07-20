@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
     public abstract class FileBase : ILItem
     {

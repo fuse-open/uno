@@ -1,6 +1,6 @@
 using Uno.Compiler.API.Domain.Extensions;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
     public class BundleFileItem : FileBase
     {

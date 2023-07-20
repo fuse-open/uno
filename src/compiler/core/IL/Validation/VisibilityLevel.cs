@@ -4,7 +4,7 @@ namespace Uno.Compiler.Core.IL.Validation
     {
         Global = 1,
         Bundle,
-        SameTypeOrSubclassOfOrPackage,
+        SameTypeOrSubclassOfOrBundle,
         SameTypeOrSubclass,
         SameType
     }

@@ -5,19 +5,19 @@ using Uno.Compiler.API.Domain.IL;
 using Uno.Disasm.ILView.Commands;
 using Uno.Disasm.ILView.Namespaces;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
-    public class PackageItem : FileBase, IFile
+    public class BundleItem : FileBase, IFile
     {
         public readonly Dictionary<string, NamespaceItem> Namespaces = new Dictionary<string, NamespaceItem>();
         public readonly ReferenceCollection References = new ReferenceCollection();
         public readonly ResourceCollection Resources = new ResourceCollection();
-        public readonly PackageFolderItem SourceFiles;
-        public readonly PackageFolderItem ExtensionsFiles;
-        public readonly PackageFolderItem BundleFiles;
-        public readonly PackageFolderItem ForeignSourceFiles;
-        public readonly PackageFolderItem AdditionalFiles;
-        public readonly PackageFolderItem StuffFiles;
+        public readonly BundleFolderItem SourceFiles;
+        public readonly BundleFolderItem ExtensionsFiles;
+        public readonly BundleFolderItem BundleFiles;
+        public readonly BundleFolderItem ForeignSourceFiles;
+        public readonly BundleFolderItem AdditionalFiles;
+        public readonly BundleFolderItem StuffFiles;
         public readonly SourceBundle Bundle;
 
         public override string DisplayName => Bundle.Name;
@@ -25,15 +25,15 @@ namespace Uno.Disasm.ILView.Packages
         public override Syntax Syntax => Syntax.Stuff;
         public override string FullName => Bundle.Source.FullPath;
 
-        public PackageItem(SourceBundle bundle)
+        public BundleItem(SourceBundle bundle)
         {
             Bundle = bundle;
-            SourceFiles = new PackageFolderItem(bundle, "Source Files");
-            ExtensionsFiles = new PackageFolderItem(bundle, "Extensions Files");
-            BundleFiles = new PackageFolderItem(bundle, "Bundle Files");
-            ForeignSourceFiles = new PackageFolderItem(bundle, "Foreign Source Files");
-            AdditionalFiles = new PackageFolderItem(bundle, "Additional Files");
-            StuffFiles = new PackageFolderItem(bundle, "Stuff Files");
+            SourceFiles = new BundleFolderItem(bundle, "Source Files");
+            ExtensionsFiles = new BundleFolderItem(bundle, "Extensions Files");
+            BundleFiles = new BundleFolderItem(bundle, "Bundle Files");
+            ForeignSourceFiles = new BundleFolderItem(bundle, "Foreign Source Files");
+            AdditionalFiles = new BundleFolderItem(bundle, "Additional Files");
+            StuffFiles = new BundleFolderItem(bundle, "Stuff Files");
 
             if (bundle.Version != null)
                 Suffix = "(" + bundle.Version + ")";

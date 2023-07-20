@@ -38,10 +38,10 @@ namespace Uno.Compiler.Frontend
             _env = env;
             AstCache = new AstCache(log, _filenames);
             UxlCache = new UxlCache(log, _filenames);
-            ResolvePackageOrder(bundle, new HashSet<SourceBundle>());
+            ResolveBundleOrder(bundle, new HashSet<SourceBundle>());
         }
 
-        void ResolvePackageOrder(SourceBundle bundle, HashSet<SourceBundle> visited)
+        void ResolveBundleOrder(SourceBundle bundle, HashSet<SourceBundle> visited)
         {
             if (visited.Contains(bundle))
                 return;
@@ -50,7 +50,7 @@ namespace Uno.Compiler.Frontend
 
             // Add non-top-level bundles first
             foreach (var p in bundle.References)
-                ResolvePackageOrder(p, visited);
+                ResolveBundleOrder(p, visited);
 
             _bundles.Add(bundle);
         }

@@ -236,7 +236,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             return result;
         }
 
-        // Files in this directory are written by PackageCache.cs
+        // Files in this directory are written by BundleCache.cs
         const string FuseJSPrefix = ".uno/fusejs/";
     }
 }

@@ -73,7 +73,7 @@ namespace Uno.Build.Libraries
                 {
                     var result = cache.EnumerateVersions(p).ToArray();
                     if (result.Length == 0)
-                        Log.Warning("Package " + p.Quote() + " was not found");
+                        Log.Warning("Library " + p.Quote() + " was not found");
                     else
                         foreach (var dir in result)
                             yield return dir;

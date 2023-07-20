@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Uno.Diagnostics;
-using Uno.Disasm.ILView.Packages;
+using Uno.Disasm.ILView.Bundles;
 
 namespace Uno.Disasm.ILView.Commands
 {

@@ -1,7 +1,7 @@
 using System.IO;
 using Uno.Disasm.ILView.Commands;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
     public class FolderItem : FolderBase, IFile
     {

@@ -7,7 +7,7 @@ using Uno.Compiler.API.Domain.IL.Members;
 using Uno.Disasm.ILView.Commands;
 using Uno.Disasm.ILView.Members;
 using Uno.Disasm.ILView.Namespaces;
-using Uno.Disasm.ILView.Packages;
+using Uno.Disasm.ILView.Bundles;
 
 namespace Uno.Disasm.ILView
 {
@@ -124,7 +124,7 @@ namespace Uno.Disasm.ILView
                         block == null && this is BlockItem ||
                         this is DefinitionCollection) ||
                     flags.HasFlag(VisibilityFlags.ProjectOnly) &&
-                        this is PackageItem && !((PackageItem) this).Bundle.Flags.HasFlag(SourceBundleFlags.Startup) ||
+                        this is BundleItem && !((BundleItem) this).Bundle.Flags.HasFlag(SourceBundleFlags.Startup) ||
                     Children.Count == 0 && (
                         this is ReferenceCollection ||
                         this is ResourceCollection ||
@@ -137,7 +137,7 @@ namespace Uno.Disasm.ILView
 
         static int GetOrderIndex(ILItem item)
         {
-            if (item is PackageItem) return -4;
+            if (item is BundleItem) return -4;
             if (item is BuildItem) return -3;
             if (item is ReferenceCollection) return -2;
             if (item is ResourceCollection) return -2;

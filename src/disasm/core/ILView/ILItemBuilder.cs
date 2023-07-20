@@ -7,13 +7,13 @@ using Uno.Compiler.API.Domain.Graphics;
 using Uno.Compiler.API.Domain.IL;
 using Uno.Disasm.ILView.Members;
 using Uno.Disasm.ILView.Namespaces;
-using Uno.Disasm.ILView.Packages;
+using Uno.Disasm.ILView.Bundles;
 
 namespace Uno.Disasm.ILView
 {
     public class ILItemBuilder
     {
-        readonly Dictionary<SourceBundle, PackageItem> _packageMap = new Dictionary<SourceBundle, PackageItem>();
+        readonly Dictionary<SourceBundle, BundleItem> _bundleMap = new Dictionary<SourceBundle, BundleItem>();
         readonly BuildItem _buildItem;
 
         public ILItemBuilder(BuildItem buildItem)
@@ -49,7 +49,7 @@ namespace Uno.Disasm.ILView
                 {
                     var key = p.Key.Replace(".TargetDirectory", "");
                     var containingDir = env.GetOutputPath(p.Key);
-                    var folder = new PackageFolderItem(containingDir, key.Replace("File", " Files"));
+                    var folder = new BundleFolderItem(containingDir, key.Replace("File", " Files"));
 
                     foreach (var f in build.Compiler.Environment.Enumerate(key))
                         folder.AddFile(containingDir, f.String);
@@ -133,14 +133,14 @@ namespace Uno.Disasm.ILView
             return item;
         }
 
-        PackageItem GetBundle(SourceBundle bundle)
+        BundleItem GetBundle(SourceBundle bundle)
         {
-            PackageItem result;
-            if (!_packageMap.TryGetValue(bundle, out result))
+            BundleItem result;
+            if (!_bundleMap.TryGetValue(bundle, out result))
             {
-                result = new PackageItem(bundle);
-                _packageMap.Add(bundle, result);
-                _buildItem.Packages.Add(result);
+                result = new BundleItem(bundle);
+                _bundleMap.Add(bundle, result);
+                _buildItem.Bundles.Add(result);
             }
 
             return result;
@@ -148,9 +148,9 @@ namespace Uno.Disasm.ILView
 
         void ExpandItems()
         {
-            foreach (var packageItem in _packageMap.Values)
+            foreach (var bundleItem in _bundleMap.Values)
             {
-                foreach (var nsItem in packageItem.Namespaces.Values)
+                foreach (var nsItem in bundleItem.Namespaces.Values)
                 {
                     foreach (var child in nsItem.Children)
                     {
@@ -164,7 +164,7 @@ namespace Uno.Disasm.ILView
                     }
                 }
 
-                packageItem.Expand();
+                bundleItem.Expand();
             }
 
             _buildItem.Expand();

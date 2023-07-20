@@ -13,7 +13,7 @@
         internal const string UxComponentsAttributeName = "Uno.UX.UXComponentsAttribute";
         internal const string GenericListInterfaceTypeUri = "uno/collections/ilist_1";
 
-        internal static readonly string[] AllowedPackagePrefixes =
+        internal static readonly string[] AllowedBundlePrefixes =
         {
             "Experimental",
             "Fuse",

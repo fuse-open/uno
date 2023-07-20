@@ -48,7 +48,7 @@ namespace Uno.ProjectFormat
         public Source Source => new Source(_fullPath);
         public UnoConfig Config => UnoConfig.GetUpToDate(_config) ?? (_config = UnoConfig.Get(_fullPath));
 
-        public IReadOnlyList<LibraryReference> PackageReferences => (IReadOnlyList<LibraryReference>)_doc.OptionalLibraryReferences ?? new LibraryReference[0];
+        public IReadOnlyList<LibraryReference> LibraryReferences => (IReadOnlyList<LibraryReference>)_doc.OptionalLibraryReferences ?? new LibraryReference[0];
         public IReadOnlyList<ProjectReference> ProjectReferences => GetFlattenedProjects();
         public IReadOnlyList<SourceValue> InternalsVisibleTo => (IReadOnlyList<SourceValue>)_doc.OptionalInternalsVisibleTo ?? new SourceValue[0];
         public IReadOnlyList<IncludeItem> IncludeItems => (IReadOnlyList<IncludeItem>)_doc.Includes ?? new IncludeItem[0];
