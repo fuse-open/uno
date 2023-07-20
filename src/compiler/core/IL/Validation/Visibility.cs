@@ -13,7 +13,7 @@ namespace Uno.Compiler.Core.IL.Validation
             return
                 Level == VisibilityLevel.Global ||
                 (Level == VisibilityLevel.Bundle && Bundle.Equals(bundle)) ||
-                (Level == VisibilityLevel.SameTypeOrSubclassOfOrPackage && Bundle.Equals(bundle)) ||
+                (Level == VisibilityLevel.SameTypeOrSubclassOfOrBundle && Bundle.Equals(bundle)) ||
                 Bundle.InternalsVisibleTo.Contains(bundle.Name);
         }
 
@@ -30,9 +30,9 @@ namespace Uno.Compiler.Core.IL.Validation
                 case VisibilityLevel.Global:
                     return dt.IsVisibleGlobally();
                 case VisibilityLevel.Bundle:
-                    return dt.IsVisibleInPackage(Bundle);
-                case VisibilityLevel.SameTypeOrSubclassOfOrPackage:
-                    return dt.IsVisibleInPackage(Bundle) &&
+                    return dt.IsVisibleInBundle(Bundle);
+                case VisibilityLevel.SameTypeOrSubclassOfOrBundle:
+                    return dt.IsVisibleInBundle(Bundle) &&
                            dt.IsVisibleInType(Type) &&
                            dt.IsVisibleInSubclassesOf(Type);
                 case VisibilityLevel.SameTypeOrSubclass:
@@ -47,7 +47,7 @@ namespace Uno.Compiler.Core.IL.Validation
 
         public override string ToString()
         {
-            return Level + " (Type: " + Type + ", Package: " + Bundle + ")";
+            return Level + " (Type: " + Type + ", Bundle: " + Bundle + ")";
         }
     }
 }

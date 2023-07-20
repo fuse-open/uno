@@ -1,7 +1,7 @@
 using System.IO;
 using Uno.Compiler;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
     public class ReferenceItem : ILItem
     {
@@ -11,7 +11,7 @@ namespace Uno.Disasm.ILView.Packages
         public override string DisplayName => Bundle.Name;
         public override ILIcon Icon => Path.GetExtension(Bundle.Source.FullPath).ToUpperInvariant() == ".UNOPROJ"
             ? ILIcon.ProjectProjectReference
-            : ILIcon.ProjectPackageReference;
+            : ILIcon.ProjectLibraryReference;
 
         public ReferenceItem(SourceBundle bundle)
         {

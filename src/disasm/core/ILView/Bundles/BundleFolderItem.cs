@@ -1,15 +1,15 @@
 using Uno.Compiler;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
-    public class PackageFolderItem : FolderBase
+    public class BundleFolderItem : FolderBase
     {
-        public PackageFolderItem(SourceBundle bundle, string name)
+        public BundleFolderItem(SourceBundle bundle, string name)
             : base(bundle.SourceDirectory, name)
         {
         }
 
-        public PackageFolderItem(string outputDir, string name)
+        public BundleFolderItem(string outputDir, string name)
             : base(outputDir, name)
         {
         }

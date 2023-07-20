@@ -69,7 +69,7 @@
 
         ApplicationDocument,
         ProjectReferenceCollection,
-        ProjectPackageReference,
+        ProjectLibraryReference,
         ProjectProjectReference,
         ResourceLibrary,
         SolutionFolder,

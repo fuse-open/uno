@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Uno.Disasm.ILView.Packages
+namespace Uno.Disasm.ILView.Bundles
 {
     public abstract class FolderBase : ILItem
     {
@@ -74,7 +74,7 @@ namespace Uno.Disasm.ILView.Packages
             FolderItem folder;
             if (!_subFolders.TryGetValue(unixDir, out folder))
             {
-                folder = new FolderItem(SourceDirectory, this is PackageFolderItem ? unixDir : UnixName + "/" + unixDir);
+                folder = new FolderItem(SourceDirectory, this is BundleFolderItem ? unixDir : UnixName + "/" + unixDir);
                 _subFolders.Add(unixDir, folder);
                 AddChild(folder);
             }

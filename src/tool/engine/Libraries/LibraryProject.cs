@@ -65,7 +65,7 @@ namespace Uno.Build.Libraries
             get
             {
                 return _refs ?? (_refs =
-                           Project.PackageReferences.Select(x => x.LibraryName.ToUpperInvariant()).Concat(
+                           Project.LibraryReferences.Select(x => x.LibraryName.ToUpperInvariant()).Concat(
                            Project.ProjectReferences.Select(x => x.ProjectName.ToUpperInvariant()).Concat(
                            Project.Name != "UnoCore" ? new[] { "UnoCore".ToUpperInvariant() } : new string[0])
                        ).ToArray());

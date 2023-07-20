@@ -65,7 +65,7 @@
     <EmbeddedResource Include="ILView\Icons\OK.png" />
     <EmbeddedResource Include="ILView\Icons\Operator.png" />
     <EmbeddedResource Include="ILView\Icons\Project.png" />
-    <EmbeddedResource Include="ILView\Icons\ProjectPackageReference.png" />
+    <EmbeddedResource Include="ILView\Icons\ProjectLibraryReference.png" />
     <EmbeddedResource Include="ILView\Icons\ProjectProjectReference.png" />
     <EmbeddedResource Include="ILView\Icons\ProjectReferenceCollection.png" />
     <EmbeddedResource Include="ILView\Icons\Property.png" />

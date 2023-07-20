@@ -211,13 +211,13 @@ namespace Uno.Disasm
                 foreach (var e in build.Folders)
                     build.AddChild(e);
 
-                if (build.Packages.Count > 0)
+                if (build.Bundles.Count > 0)
                 {
                     Items.Clear();
                     Items.Add(build);
                 }
 
-                foreach (var e in build.Packages)
+                foreach (var e in build.Bundles)
                 {
                     e.UpdateVisibility(((VisibilityMode) VisibilityBox.SelectedItem).Flags);
                     Items.Add(e);
@@ -226,7 +226,7 @@ namespace Uno.Disasm
                 build.Select();
                 Build_Cancel.OnCanExecuteChanged();
 
-                if (build.Packages.Count == 0 || !State.RestoreView())
+                if (build.Bundles.Count == 0 || !State.RestoreView())
                 {
                     ((TreeViewItem)TreeView.ItemContainerGenerator.ContainerFromItem(build))
                         .BringIntoView();

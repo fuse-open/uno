@@ -6,8 +6,8 @@ namespace Uno.Disasm
         {
             new VisibilityMode("Project Only, Public Only", VisibilityFlags.ProjectOnly | VisibilityFlags.PublicOnly),
             new VisibilityMode("Project Only, All Members", VisibilityFlags.ProjectOnly),
-            new VisibilityMode("All Packages, Public Only", VisibilityFlags.PublicOnly),
-            new VisibilityMode("All Packages, All Members", VisibilityFlags.None),
+            new VisibilityMode("All Bundles, Public Only", VisibilityFlags.PublicOnly),
+            new VisibilityMode("All Bundles, All Members", VisibilityFlags.None),
         };
 
         public readonly string Name;

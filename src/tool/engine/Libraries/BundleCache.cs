@@ -139,7 +139,7 @@ namespace Uno.Build.Libraries
             if (project.Name != "UnoCore")
                 result.References.Add(GetBundle(new LibraryReference(project.Source, "UnoCore")));
 
-            foreach (var r in project.PackageReferences)
+            foreach (var r in project.LibraryReferences)
                 result.References.Add(GetBundle(r));
             foreach (var r in project.ProjectReferences)
                 result.References.Add(GetBundle(r.Source,

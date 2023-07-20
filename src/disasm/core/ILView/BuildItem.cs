@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Uno.Disasm.ILView.Packages;
+using Uno.Disasm.ILView.Bundles;
 
 namespace Uno.Disasm.ILView
 {
     public class BuildItem : ILItem
     {
-        public readonly List<PackageFolderItem> Folders = new List<PackageFolderItem>();
-        public readonly List<PackageItem> Packages = new List<PackageItem>();
+        public readonly List<BundleFolderItem> Folders = new List<BundleFolderItem>();
+        public readonly List<BundleItem> Bundles = new List<BundleItem>();
 
         public string TargetName { get; }
         public string BuildLog { get; set; }
