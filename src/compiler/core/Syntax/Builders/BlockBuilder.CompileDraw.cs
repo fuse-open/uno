@@ -32,8 +32,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
             var result = new DrawBlock(draw.Source, parent, method, FlattenVariableScopes(vscopeStack));
             method.DrawBlocks.Add(result);
-            _queue.EnqueueBlock(result, x => PopulateBlock(draw.Block, x));
-            _queue.EnqueueDrawClass(method.DeclaringType);
+
+            EnqueueBlock(result, x => PopulateBlock(draw.Block, x));
+            _enqueuedDrawClasses.Add(method.DeclaringType);
+
             return result.DrawScope;
         }
 

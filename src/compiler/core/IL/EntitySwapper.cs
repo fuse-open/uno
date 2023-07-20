@@ -65,6 +65,7 @@ namespace Uno.Compiler.Core.IL
                                 args[i] = GetType(dt.FlattenedArguments[i]);
 
                             result = TypeBuilder.Parameterize(result.Source, def, args);
+                            TypeBuilder.BuildTypes();
                             SwapTypes.Add(dt, result);
                             return result;
                         }
@@ -98,6 +99,7 @@ namespace Uno.Compiler.Core.IL
 
                 var def = result.IsGenericDefinition ? result : GetType(dt.GenericDefinition);
                 result = TypeBuilder.Parameterize(dt.Source, def, args);
+                TypeBuilder.BuildTypes();
             }
 
             SwapTypes.Add(dt, result);

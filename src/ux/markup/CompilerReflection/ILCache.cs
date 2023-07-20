@@ -35,7 +35,7 @@ namespace Uno.UX.Markup.CompilerReflection
 
             try
             {
-                compiler.Queue.BuildTypes();
+                compiler.TypeBuilder.BuildTypes();
             }
             catch (Exception)
             {
