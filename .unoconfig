@@ -1,16 +1,16 @@
 // Core config
-appLoader.console: bin/console/net6.0
-appLoader.windows: bin/win/net6.0-windows
+appLoader.console: bin/console
+appLoader.windows: bin/win
 
 if WIN32 {
-    appLoader.assembly: bin/win/net6.0-windows/uno-app.dll
-    uno.command: bin/net6.0/uno.exe
+    appLoader.assembly: bin/win/uno-app.dll
+    uno.command: bin/uno.exe
 } else if MAC {
-    // appLoader.assembly is not used to create macOS apps
-    uno.command: bin/net6.0/uno
+    // appLoader.assembly is not used on macOS
+    uno.command: bin/uno
 } else {
-    appLoader.assembly: bin/console/net6.0/uno-app.dll
-    uno.command: bin/net6.0/uno
+    appLoader.assembly: bin/console/uno-app.dll
+    uno.command: bin/uno
 }
 
 // Standard library

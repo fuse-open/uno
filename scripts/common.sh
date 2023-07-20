@@ -2,7 +2,7 @@
 set -e
 
 function uno {
-    dotnet bin/net6.0/uno.dll "$@"
+    dotnet bin/uno.dll "$@"
 }
 
 function h1 {

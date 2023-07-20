@@ -20,10 +20,10 @@
     "prepack": "bash scripts/pack.sh",
     "test": "bash scripts/test.sh",
     "version": "bash scripts/version.sh",
-    "uno": "node bin/net6.0/uno.js"
+    "uno": "node bin/uno.js"
   },
   "bin": {
-    "uno": "bin/net6.0/uno.js"
+    "uno": "bin/uno.js"
   },
   "files": [
     ".unoconfig",

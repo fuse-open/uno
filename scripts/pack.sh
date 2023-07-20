@@ -82,7 +82,7 @@ function rm-identical {
 h1 "Optimizing package"
 
 # OpenTK will be added back by restore.js
-rm-identical bin/win/net6.0-windows node_modules/@fuse-open/opentk *.dll
+rm-identical bin/win node_modules/@fuse-open/opentk *.dll
 
 # Remove needless build artifacts
 rm-all bin *.config *.pdb *.xml
