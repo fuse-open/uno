@@ -4,6 +4,18 @@ Uno Changelog
 Unreleased
 ----------
 
+2.9
+---
+
+### Android
+- Set target API -> 33 (#504)
+- Set minumum API -> 19 (#504)
+
+### macOS
+- Upgrade xamarin-mac -> 9.3.0 (bbe196a)
+
+[`v2.8.0...v2.9.0`](https://github.com/fuse-open/uno/compare/v2.8.0...v2.9.0)
+
 2.8
 ---
 
@@ -18,7 +30,7 @@ Unreleased
 
 ### Other changes
 - Upgrade transpiler -> 1.18 (8c9670e)
-- Upgrade xamarin-mac -> 9.10 (f6fa289)
+- Upgrade xamarin-mac -> 9.1.0 (f6fa289)
 - Upgrade nodejs -> 16 (#449)
 
 [`v2.7.0...v2.8.0`](https://github.com/fuse-open/uno/compare/v2.7.0...v2.8.0)
