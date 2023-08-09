@@ -18,7 +18,7 @@ install:
   - ps: Install-Product node $env:nodejs_version
   - ps: |
       if ($env:TARGET -eq "android") {
-        Invoke-Expression "npm install android-build-tools@1.x -g"
+        Invoke-Expression "npm install android-build-tools@2.x -g"
       }
   - ps: |
       if ($env:TARGET -eq "native") {
