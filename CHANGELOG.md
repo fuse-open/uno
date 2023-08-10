@@ -10,11 +10,13 @@ Unreleased
 ### Android
 - Set target API -> 33 (#504)
 - Set minumum API -> 19 (#504)
+- Upgrade gradle-plugin -> 7.4.2 (#506)
+- Upgrade gradle -> 7.6.2 (#507)
 
 ### macOS
 - Upgrade xamarin-mac -> 9.3.0 (bbe196a)
 
-[`v2.8.0...v2.9.0`](https://github.com/fuse-open/uno/compare/v2.8.0...v2.9.0)
+[`v2.8.0...v2.9.1`](https://github.com/fuse-open/uno/compare/v2.8.0...v2.9.1)
 
 2.8
 ---
