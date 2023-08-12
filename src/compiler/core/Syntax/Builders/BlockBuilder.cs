@@ -22,20 +22,19 @@ namespace Uno.Compiler.Core.Syntax.Builders
         readonly ILFactory _ilf;
         readonly NameResolver _resolver;
         readonly Compiler _compiler;
+        readonly BuildQueue _queue;
         readonly Dictionary<AstBlockBase, Block> _processedBlocks = new Dictionary<AstBlockBase, Block>();
-        readonly List<BlockBase> _enqueuedBlocks = new List<BlockBase>();
-        readonly List<KeyValuePair<AstMetaProperty, MetaProperty>> _enqueuedProperties = new List<KeyValuePair<AstMetaProperty, MetaProperty>>();
-        readonly HashSet<DataType> _enqueuedDrawClasses = new HashSet<DataType>();
 
         Block _terminals;
         readonly HashSet<string> _terminalNames = new HashSet<string>();
 
-        public BlockBuilder(
+        internal BlockBuilder(
             Backend backend,
             Namespace il,
             ILFactory ilf,
             NameResolver resolver,
-            Compiler compiler)
+            Compiler compiler,
+            BuildQueue queue)
             : base(compiler)
         {
             _backend = backend;
@@ -43,33 +42,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
             _ilf = ilf;
             _resolver = resolver;
             _compiler = compiler;
-        }
-
-        void EnqueueBlock(BlockBase b, Action<BlockBase> populate)
-        {
-            b.Populating = populate;
-            _enqueuedBlocks.Add(b);
-        }
-
-        public void Build()
-        {
-            FlattenTypes();
-
-            for (int i = 0; i < _enqueuedBlocks.Count; i++)
-                if (!_enqueuedBlocks[i].Source.Bundle.CanLink)
-                    _enqueuedBlocks[i].Populate();
-
-            _enqueuedBlocks.Clear();
-
-            for (int i = 0; i < _enqueuedProperties.Count; i++)
-                CompileMetaPropertyDefinitions(_enqueuedProperties[i].Key, _enqueuedProperties[i].Value);
-
-            _enqueuedProperties.Clear();
-
-            foreach (var dt in _enqueuedDrawClasses)
-                DrawCallGenerator.GenerateDrawCalls(_compiler, dt);
-
-            _enqueuedDrawClasses.Clear();
+            _queue = queue;
         }
 
         public Block TerminalProperties
@@ -83,7 +56,6 @@ namespace Uno.Compiler.Core.Syntax.Builders
 
                     foreach (var t in _backend.ShaderBackend.InputProperties)
                         CompileTerminalProperty(t);
-
                     foreach (var t in _backend.ShaderBackend.OutputProperties)
                         CompileTerminalProperty(t);
                 }

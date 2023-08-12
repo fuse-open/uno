@@ -8,7 +8,7 @@ namespace Uno.Compiler.Core.Syntax.Builders
     {
         internal readonly Dictionary<DataType, HashSet<DataType>> FlattenedTypes = new Dictionary<DataType, HashSet<DataType>>();
 
-        void FlattenTypes()
+        internal void FlattenTypes()
         {
             FlattenTypes(_il);
 
