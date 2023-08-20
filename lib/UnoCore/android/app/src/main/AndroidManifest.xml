@@ -5,7 +5,7 @@
           package="@(Activity.Package)">
 
     #if @(Project.Android.SupportsScreens.Resizable:IsSet) || @(Project.Android.SupportsScreens.SmallScreens:IsSet) || @(Project.Android.SupportsScreens.NormalScreens:IsSet) || @(Project.Android.SupportsScreens.LargeScreens:IsSet) || @(Project.Android.SupportsScreens.XLargeScreens:IsSet) || @(Project.Android.SupportsScreens.AnyDensity:IsSet) || @(Project.Android.SupportsScreens.RequiresSmallestWidthDp:IsSet) || @(Project.Android.SupportsScreens.CompatibleWidthLimitDp:IsSet) || @(Project.Android.SupportsScreens.LargestWidthLimitDp:IsSet)
-    <supports-screens 
+    <supports-screens
                   #if @(Project.Android.SupportsScreens.Resizable:IsSet)
                   android:resizeable="@(Project.Android.SupportsScreens.Resizable:ToLower)"
                   #endif
@@ -35,7 +35,7 @@
                   #endif
                   />
     #endif
-    
+
 #if @(Project.Android.SupportsAndroidGo:Test(1, 0))
     <uses-feature android:name="android.hardware.ram.low" android:required="true"/>
 #endif
@@ -70,6 +70,11 @@
 #endif
 #if @(Project.Android.UsesFeatures.AndroidSoftwareWebview:IsSet)
     <uses-feature android:name="android.software.webview" android:required="@(Project.Android.UsesFeatures.AndroidSoftwareWebview:Bool:ToLower)"/>
+#endif
+#if @(Project.Android.Geo.ApiKey:IsSet)
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
 #endif
 
     @(AndroidManifest.Permission:Join('\n    ', '<uses-permission android:name="', '" />'))
@@ -143,7 +148,7 @@
 #endif
                 @(AndroidManifest.Activity.ViewIntentFilter:Join('\n    ', '<data ', '/>'))
             </intent-filter>
-            
+
 #if @(Project.Android.AssociatedDomains:IsSet)
             <intent-filter android:autoVerify="true">
               <action android:name="android.intent.action.VIEW" />
