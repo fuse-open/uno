@@ -45,6 +45,9 @@ namespace Uno.Compiler.Core.IL.Testing
 
             _appClass = Essentials.Application;
 
+            // Lazy populate app class
+            _appClass.PopulateMembers();
+
             _source = Bundle.Source;
             _testRegistryType = ILFactory.GetType("Uno.Testing.Registry");
             _mainClass = new ClassType(_source, Data.IL, null, Modifiers.Generated | Modifiers.Public, "MainClass");

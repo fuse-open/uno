@@ -254,6 +254,7 @@ namespace Uno.Compiler.Core.Syntax
                 return;
             }
 
+            dt.AssignAttributes();
             if (!dt.IsIntrinsic &&
                 !dt.HasAttribute(_ilf.Essentials.TargetSpecificImplementationAttribute) &&
                 !dt.HasAttribute(_ilf.Essentials.TargetSpecificTypeAttribute))
@@ -326,6 +327,7 @@ namespace Uno.Compiler.Core.Syntax
             else if (!method.ReturnType.IsVoid)
                 Log.Error(uxl.Signature.Source, ErrorCode.E0000, "Requiring return type for " + method.Quote() + " (" + method.ReturnType + ")");
 
+            method.AssignAttributes();
             if (!method.HasAttribute(_ilf.Essentials.TargetSpecificImplementationAttribute) &&
                 !method.IsIntrinsic)
                 Log.Error(uxl.Signature.Source, ErrorCode.E0000, method.Quote() + " cannot be extended because it does not specify " + _ilf.Essentials.TargetSpecificImplementationAttribute.AttributeString);

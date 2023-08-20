@@ -56,6 +56,7 @@ namespace Uno.Compiler.API.Domain.Graphics
                 Block = block;
                 Top = top;
                 Bottom = bottom;
+                Block.Populate();
             }
 
             public Node(Expression obj, BlockBase block)

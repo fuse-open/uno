@@ -241,6 +241,10 @@ namespace Uno.Compiler.Core.Syntax.Builders
                 {
                     bool innerTypeFound = false;
 
+                    // Lazy populate nested types
+                    if (p.NestedTypes.Count == 0)
+                        ParameterizeInnerTypes(p.MasterDefinition, p.MasterDefinition, map, p);
+
                     foreach (var it in p.NestedTypes)
                     {
                         if (arg.MasterDefinition == it.MasterDefinition)
