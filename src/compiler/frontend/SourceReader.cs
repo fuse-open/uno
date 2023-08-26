@@ -7,7 +7,6 @@ using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.AST;
 using Uno.Compiler.API.Domain.AST.Expressions;
 using Uno.Compiler.API.Domain.UXL;
-using Uno.Compiler.Frontend.Analysis;
 using Uno.IO;
 using Uno.Logging;
 

@@ -134,6 +134,23 @@ namespace Uno.Compiler.Core
                 if (Backend.CanLink(bundle))
                     bundle.Flags |= SourceBundleFlags.CanLink;
 
+            // Make sure all references of linkable bundles are also linkable
+            foreach (var bundle in Input.Bundles)
+            {
+                if (bundle.CanLink)
+                {
+                    foreach (var reference in bundle.References)
+                    {
+                        if (!reference.CanLink)
+                        {
+                            Log.Verbose(bundle.Name + ": Removing CanLink flag because " + reference.Name + " can't link");
+                            bundle.Flags &= ~SourceBundleFlags.CanLink;
+                            break;
+                        }
+                    }
+                }
+            }
+
             using (Log.StartProfiler(Queue))
                 Queue.BuildTypesAndFunctions();
 
