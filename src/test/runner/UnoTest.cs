@@ -29,7 +29,7 @@ namespace Uno.TestRunner
 
             var failedCount = tests.Count(t => t.Failed);
 
-            if (discoveredProjects.Length > 1)
+            if (discoveredProjects.Length > 1 && tests.Count > 0)
             {
                 logger.Log("Since you ran multiple projects, here is a summary:");
                 logger.Log("From {0} projects, ran {1} tests, {2} failed.", discoveredProjects.Length, tests.Count, failedCount);
