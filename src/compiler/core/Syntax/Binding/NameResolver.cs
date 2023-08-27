@@ -205,6 +205,9 @@ namespace Uno.Compiler.Core.Syntax.Binding
                         var fieldSizeSum = 0;
                         var fieldAlignMax = 1;
 
+                        // Lazy populate fields
+                        dt.PopulateMembers();
+
                         foreach (var f in dt.EnumerateFields())
                         {
                             int fieldSize;

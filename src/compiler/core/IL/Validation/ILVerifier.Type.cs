@@ -348,6 +348,10 @@ namespace Uno.Compiler.Core.IL.Validation
                             break;
                     }
 
+                    // Skip lazy populated type
+                    if (at.CanLink && at.Constructors.Count == 0)
+                        continue;
+
                     var defCtor = at.TryGetDefaultConstructor();
 
                     if (gt.Constructors.Count > 0 && (

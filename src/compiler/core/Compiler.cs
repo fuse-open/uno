@@ -49,6 +49,7 @@ namespace Uno.Compiler.Core
         public readonly NameResolver NameResolver;
 
         // Building
+        public readonly BuildQueue Queue;
         public readonly BlockBuilder BlockBuilder;
         public readonly BundleBuilder BundleBuilder;
         public readonly TypeBuilder TypeBuilder;
@@ -91,8 +92,9 @@ namespace Uno.Compiler.Core
             var data = Data = new BuildData(il, extensions, ilf);
             var environment = Environment = new BuildEnvironment(backend, bundle, options, extensions, ilf, this);
             var input = Input = new SourceReader(log, bundle, environment);
-            var blockBuilder = BlockBuilder = new BlockBuilder(backend, il, ilf, resolver, this);
-            var typeBuilder = TypeBuilder = new TypeBuilder(environment, ilf, resolver, this);
+            var queue = Queue = new BuildQueue(log, environment, backend, this);
+            var blockBuilder = BlockBuilder = new BlockBuilder(backend, il, ilf, resolver, this, queue);
+            var typeBuilder = TypeBuilder = new TypeBuilder(environment, ilf, resolver, this, queue);
             BundleBuilder = new BundleBuilder(backend, environment, ilf, this);
             AstProcessor = new AstProcessor(il, blockBuilder, typeBuilder, resolver, environment);
             UxlProcessor = new UxlProcessor(disk, backend.Name, il, extensions, environment, ilf);
@@ -132,20 +134,40 @@ namespace Uno.Compiler.Core
                 if (Backend.CanLink(bundle))
                     bundle.Flags |= SourceBundleFlags.CanLink;
 
-            using (Log.StartProfiler(TypeBuilder))
-                TypeBuilder.Build();
-            if (Log.HasErrors)
-                return;
+            // Make sure all references of linkable bundles are also linkable
+            foreach (var bundle in Input.Bundles)
+            {
+                if (bundle.CanLink)
+                {
+                    foreach (var reference in bundle.References)
+                    {
+                        if (!reference.CanLink)
+                        {
+                            Log.Verbose(bundle.Name + ": Removing CanLink flag because " + reference.Name + " can't link");
+                            bundle.Flags &= ~SourceBundleFlags.CanLink;
+                            break;
+                        }
+                    }
+                }
+            }
 
-            Backend.ShaderBackend.Initialize(this, BundleBuilder);
+            using (Log.StartProfiler(Queue))
+                Queue.BuildTypesAndFunctions();
 
-            using (Log.StartProfiler(BlockBuilder))
-                BlockBuilder.Build();
             if (Log.HasErrors)
                 return;
 
             using (Log.StartProfiler(UxlProcessor))
                 UxlProcessor.CompileDocuments();
+
+            if (Log.HasErrors)
+                return;
+
+            Backend.ShaderBackend.Initialize(this, BundleBuilder);
+
+            using (Log.StartProfiler(Queue))
+                Queue.BuildEverything();
+
             if (Log.HasErrors)
                 return;
 
@@ -205,7 +227,6 @@ namespace Uno.Compiler.Core
             UxlProcessor.CompileRequirements();
             ILStripper.Begin();
             Run(_transforms);
-            TypeBuilder.BuildTypes();
 
             using (Log.StartProfiler(ILStripper))
                 ILStripper.End();

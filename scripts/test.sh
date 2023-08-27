@@ -17,11 +17,12 @@ uno config -v
 h1 "Starting test suite"
 ########################
 
-# Run uno tests
+# Run library tests
 if [[ "$SKIP_LIB_TESTS" != 1 ]]; then
     uno test $TARGET lib $UNO_TEST_ARGS
 fi
 
+# Run uno/ux tests
 if [[ "$SKIP_UNO_TESTS" != 1 ]]; then
     uno test $TARGET tests/src/{Uno,UX}Test $UNO_TEST_ARGS
 fi
@@ -41,3 +42,20 @@ if [[ "$TARGET" == dotnet ]]; then
         src/test/tests/bin/$CONFIGURATION/net6.0/Uno.TestRunner.Tests.dll \
         src/ux/tests/bin/$CONFIGURATION/net6.0/Uno.UX.Markup.Tests.dll
 fi
+
+if [[ "$SKIP_SUBSEQUENT" == 1 ]]; then
+    exit 0
+fi
+
+h1 "Testing subsequent builds"
+##############################
+
+if [[ "$SKIP_LIB_TESTS" != 1 ]]; then
+    uno test $TARGET lib $UNO_TEST_ARGS --build-only
+fi
+
+if [[ "$SKIP_UNO_TESTS" != 1 ]]; then
+    uno test $TARGET tests/src/{Uno,UX}Test $UNO_TEST_ARGS --build-only
+fi
+
+uno build $TARGET --no-strip tests/libtest

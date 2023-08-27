@@ -94,6 +94,8 @@ namespace Uno.Compiler.Core.Syntax.Generators
 
         static void GenerateDrawCalls(Compiler compiler, Method initMethod, Method freeMethod, DrawBlock drawBlock, HashSet<Scope> drawScopes)
         {
+            compiler.Queue.BuildMetaProperties();
+
             foreach (var drawable in drawBlock.Drawables)
             {
                 new ShaderGenerator(compiler, drawable, initMethod.Body, freeMethod.Body, drawBlock.DrawScope).Generate();
