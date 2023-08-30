@@ -15,5 +15,7 @@
         "*.exe": true,
         "*.pkg": true,
         "*.tgz": true
-    }
+    },
+    "cmake.configureOnOpen": false,
+    "dotnet.defaultSolution": "disable"
 }
