@@ -4,20 +4,34 @@ Uno Changelog
 Unreleased
 ----------
 
+2.9.2
+-----
+
+### Android
+- Fix Google Maps package visibility (#508)
+
+[`v2.9.1...v2.9.2`](https://github.com/fuse-open/uno/compare/v2.9.1...v2.9.2)
+
+2.9.1
+---
+
+### Android
+- Upgrade gradle-plugin -> 7.4.2 (#506)
+- Upgrade gradle -> 7.6.2 (#507)
+
+[`v2.9.0...v2.9.1`](https://github.com/fuse-open/uno/compare/v2.9.0...v2.9.1)
+
 2.9
 ---
 
 ### Android
 - Set target API -> 33 (#504)
 - Set minumum API -> 19 (#504)
-- Upgrade gradle-plugin -> 7.4.2 (#506)
-- Upgrade gradle -> 7.6.2 (#507)
-- Fix Google Maps package visibility (#508)
 
 ### macOS
 - Upgrade xamarin-mac -> 9.3.0 (bbe196a)
 
-[`v2.8.0...v2.9.21`](https://github.com/fuse-open/uno/compare/v2.8.0...v2.9.2)
+[`v2.8.0...v2.9.0`](https://github.com/fuse-open/uno/compare/v2.8.0...v2.9.0)
 
 2.8
 ---
