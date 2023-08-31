@@ -71,6 +71,11 @@
 #if @(Project.Android.UsesFeatures.AndroidSoftwareWebview:IsSet)
     <uses-feature android:name="android.software.webview" android:required="@(Project.Android.UsesFeatures.AndroidSoftwareWebview:Bool:ToLower)"/>
 #endif
+#if @(Project.Android.Geo.ApiKey:IsSet)
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+#endif
 
     @(AndroidManifest.Permission:Join('\n    ', '<uses-permission android:name="', '" />'))
     @(AndroidManifest.RootElement:Join('\n    '))
