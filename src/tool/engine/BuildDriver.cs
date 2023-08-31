@@ -38,9 +38,8 @@ namespace Uno.Build
         readonly LazyTranspiler _transpiler;
         IDisposable _anim;
 
-        public bool IsUpToDate => !_options.Force && _file.Exists &&
-                                  !_input.HasAnythingChangedSince(_file.Timestamp) &&
-                                  _file.Load() == GetHashCode();
+        public bool IsUpToDate => !_options.Force && _env.HasUpToDateOptions &&
+                                  !_input.HasAnythingChangedSince(_file.Timestamp);
         public bool CanBuildNative => _options.NativeBuild && _target.CanBuild(_file) && (
                                       _options.Force ||
                                       !_file.IsProductUpToDate);
@@ -87,6 +86,14 @@ namespace Uno.Build
                 CanCacheIL = _options.BundleCache != null
             };
 
+            if (_options.Defines.Contains("LAZY"))
+            {
+                if (!target.SupportsLazy)
+                    Log.Warning("The build target " + target.Quote() + " does not support lazy compilation.");
+                else
+                    _compilerOptions.Lazy = true;
+            }
+
             if (_options.Test)
             {
                 _options.Defines.Add("TEST");
@@ -116,6 +123,7 @@ namespace Uno.Build
                 _compiler.Disk.DeleteDirectory(_env.OutputDirectory);
 
             _file = new BuildFile(_env.OutputDirectory);
+            _env.HasUpToDateOptions = _file.Exists && _file.Load() == GetHashCode();
         }
 
         SourceBundle GetBundle()

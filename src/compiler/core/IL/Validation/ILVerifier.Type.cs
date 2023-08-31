@@ -12,7 +12,7 @@ namespace Uno.Compiler.Core.IL.Validation
     {
         public override bool Begin(DataType dt)
         {
-            if (dt.CanLink || dt.Bundle.IsVerified)
+            if (dt.CanLink || dt.IsLazy || dt.Bundle.IsVerified)
                 return false;
 
             var validModifiers = (
@@ -314,7 +314,7 @@ namespace Uno.Compiler.Core.IL.Validation
 
             foreach (var pt in dt.GenericParameterizations)
             {
-                if (!Environment.IsGeneratingCode)
+                if (!Environment.IsGeneratingCode && !pt.IsLazy)
                     if (pt.Fields.Count != dt.Fields.Count ||
                         pt.Methods.Count != dt.Methods.Count ||
                         pt.Properties.Count != dt.Properties.Count ||

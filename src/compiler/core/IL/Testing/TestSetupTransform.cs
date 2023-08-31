@@ -44,6 +44,7 @@ namespace Uno.Compiler.Core.IL.Testing
             _testSetupType = ILFactory.GetType("Uno.Testing.TestSetup");
 
             _appClass = Essentials.Application;
+            _appClass.PopulateMembers();
 
             // Lazy populate app class
             _appClass.PopulateMembers();
