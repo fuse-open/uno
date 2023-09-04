@@ -14,7 +14,7 @@ namespace Uno.Build.Targets.Generators
 {
     class XcodeGenerator
     {
-        internal static void Configure(IEnvironment env, IEnumerable<BundleFile> bundleFiles)
+        internal static void Configure(IEnvironment env, IEnumerable<BundleFile> bundleFiles, Shell shell)
         {
             {
                 // Files
@@ -142,7 +142,7 @@ namespace Uno.Build.Targets.Generators
                 if (string.IsNullOrEmpty(devTeam))
                     devTeam = UnoConfig.Current.GetString("iOS.DevelopmentTeam");
                 if (string.IsNullOrEmpty(devTeam))
-                    devTeam = FindCodeSigningDevelopmentTeam();
+                    devTeam = FindCodeSigningDevelopmentTeam(shell);
                 if (!string.IsNullOrEmpty(devTeam))
                     env.Set("Pbxproj.DevelopmentTeam", devTeam.QuoteSpace());
             }
@@ -204,7 +204,7 @@ namespace Uno.Build.Targets.Generators
 
         static string Indent(int c) => new string('\t', c);
 
-        static string FindCodeSigningDevelopmentTeam()
+        static string FindCodeSigningDevelopmentTeam(Shell shell)
         {
             // Can only run on Mac
             if (!OperatingSystem.IsMacOS())
@@ -213,23 +213,16 @@ namespace Uno.Build.Targets.Generators
                 return null;
             }
 
-            // Avoid getting SIGSEGV when not running a 64-bit process.
-            if (IntPtr.Size != 8)
-            {
-                Log.Default.Warning("Finding a development team for signing failed: This operation requires running in 64-bit mode ");
-                return null;
-            }
-
             try
             {
-                var res = new DevelopmentTeamExtractor().FindAllDevelopmentTeams();
+                var res = new DevelopmentTeamExtractor().FindAllDevelopmentTeams(shell);
                 return res
                     ?.FirstOrDefault(x =>
-                        x.OrganizationalUnit != null &&
-                        x.OrganizationalUnit.All(char.IsLetterOrDigit))
-                    ?.OrganizationalUnit;
+                        x.organizationalUnit != null &&
+                        x.organizationalUnit.All(char.IsLetterOrDigit))
+                    ?.organizationalUnit;
             }
-            catch(DevelopmentTeamExtractorFailure e)
+            catch (DevelopmentTeamExtractorFailure e)
             {
                 Log.Default.Warning("Finding a development team for signing failed: " + e);
                 return null;

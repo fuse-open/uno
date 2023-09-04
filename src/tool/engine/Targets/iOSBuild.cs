@@ -25,7 +25,7 @@ namespace Uno.Build.Targets
 
         public override void Configure(ICompiler compiler)
         {
-            XcodeGenerator.Configure(compiler.Environment, compiler.Data.Extensions.BundleFiles);
+            XcodeGenerator.Configure(compiler.Environment, compiler.Data.Extensions.BundleFiles, compiler.Shell);
         }
     }
 }
