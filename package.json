@@ -7,7 +7,8 @@
   "dependencies": {
     "@fuse-open/opentk": "^3.2.0",
     "@fuse-open/transpiler": "^1.18.0",
-    "dotnet-run": "^2.0.0"
+    "dotnet-run": "^2.0.0",
+    "xcode-devteams": "^1.0.1"
   },
   "devDependencies": {
     "filecompare": "^1.0.4",

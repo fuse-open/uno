@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
+using Uno.Configuration;
+using Uno.Diagnostics;
 
 namespace Uno.Build.Targets.Utilities
 {
     class DevTeam
     {
-        public readonly string Name;
-        public readonly string OrganizationName;
-        public readonly string OrganizationalUnit; // Cert: OU
-
-        public DevTeam(string name, string organizationName, string organizationalUnit)
-        {
-            Name = name;
-            OrganizationName = organizationName;
-            OrganizationalUnit = organizationalUnit;
-        }
+        public string name;
+        public string organizationName;
+        public string organizationalUnit; // Cert: OU
 
         public override string ToString()
         {
-            return "{ Name: " + Name + ", OrganizationName: " + OrganizationName + ", OrganizationalUnit: " + OrganizationalUnit + " }";
+            return JsonConvert.SerializeObject(this);
         }
     }
 
@@ -28,11 +25,22 @@ namespace Uno.Build.Targets.Utilities
 
     class DevelopmentTeamExtractor
     {
-        public IEnumerable<DevTeam> FindAllDevelopmentTeams()
+        public IEnumerable<DevTeam> FindAllDevelopmentTeams(Shell shell)
         {
-            // FIXME: Can't use Xamarin.Mac so we need to come up with something
-            // better... Time to develop native command-line tool in Swift?
-            yield break;
+            try
+            {
+                var json = shell.GetOutput(
+                    Path.Combine(UnoConfig.Current.GetNodeModuleDirectory("xcode-devteams"), "bin", "xcode-devteams"),
+                    "",
+                    RunFlags.NoOutput);
+
+                return JsonConvert.DeserializeObject<DevTeam[]>(json);
+            }
+            catch (Exception e)
+            {
+                shell.Log.Trace(e);
+                throw new DevelopmentTeamExtractorFailure();
+            }
         }
     }
 }
