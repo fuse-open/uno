@@ -16,6 +16,7 @@ namespace Uno.TestRunner
         public bool DontUninstall;
         public bool UpdateLibrary;
         public string OutputDirectory;
+        public bool Clean;
         public readonly List<string> Defines = new List<string>();
         public readonly List<string> Undefines = new List<string>();
     }

@@ -45,6 +45,7 @@ namespace Uno.CLI.Building
             WriteRow("-D, --define=STRING",         "Add define, to enable a feature");
             WriteRow("-U, --undefine=STRING",       "Remove define, to disable a feature");
             WriteRow("-o, --out-dir=PATH",          "Override output directory");
+            WriteRow("-z, --clean",                 "Clean the output directory before building");
 
             WriteHead("Available build targets", 19);
 
@@ -115,6 +116,7 @@ namespace Uno.CLI.Building
                 { "U=|undefine=",           options.Undefines.Add },
                 { "o=|out-dir=|output-dir=",    v => options.OutputDirectory = v },
                 { "libs",                   v => options.UpdateLibrary = true },
+                { "z|clean",                v => options.Clean = true },
             };
 
             try
