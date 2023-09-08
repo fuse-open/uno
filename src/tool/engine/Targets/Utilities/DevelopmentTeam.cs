@@ -9,9 +9,9 @@ namespace Uno.Build.Targets.Utilities
 {
     class DevTeam
     {
-        public string name;
-        public string organizationName;
-        public string organizationalUnit; // Cert: OU
+        public string name = null;
+        public string organizationName = null;
+        public string organizationalUnit = null; // Cert: OU
 
         public override string ToString()
         {
