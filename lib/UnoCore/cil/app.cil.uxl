@@ -213,16 +213,38 @@
     <CopyFile Name="@(LoaderDirectory)/libSystem.Net.Security.Native.dylib" TargetName="@(AssemblyDirectory)/libSystem.Net.Security.Native.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libSystem.Security.Cryptography.Native.Apple.dylib" TargetName="@(AssemblyDirectory)/libSystem.Security.Cryptography.Native.Apple.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libSystem.Security.Cryptography.Native.OpenSsl.dylib" TargetName="@(AssemblyDirectory)/libSystem.Security.Cryptography.Native.OpenSsl.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libX11.6.dylib" TargetName="@(AssemblyDirectory)/libX11.6.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libXau.6.dylib" TargetName="@(AssemblyDirectory)/libXau.6.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libXdmcp.6.dylib" TargetName="@(AssemblyDirectory)/libXdmcp.6.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libXext.6.dylib" TargetName="@(AssemblyDirectory)/libXext.6.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libXrender.1.dylib" TargetName="@(AssemblyDirectory)/libXrender.1.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libcairo.2.dylib" TargetName="@(AssemblyDirectory)/libcairo.2.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libclrjit.dylib" TargetName="@(AssemblyDirectory)/libclrjit.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libcoreclr.dylib" TargetName="@(AssemblyDirectory)/libcoreclr.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libdbgshim.dylib" TargetName="@(AssemblyDirectory)/libdbgshim.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libfontconfig.1.dylib" TargetName="@(AssemblyDirectory)/libfontconfig.1.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libfreetype.6.dylib" TargetName="@(AssemblyDirectory)/libfreetype.6.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libgdiplus.0.dylib" TargetName="@(AssemblyDirectory)/libgdiplus.0.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libgdiplus.dylib" TargetName="@(AssemblyDirectory)/libgdiplus.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libgif.dylib" TargetName="@(AssemblyDirectory)/libgif.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libglib-2.0.0.dylib" TargetName="@(AssemblyDirectory)/libglib-2.0.0.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libhostfxr.dylib" TargetName="@(AssemblyDirectory)/libhostfxr.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libhostpolicy.dylib" TargetName="@(AssemblyDirectory)/libhostpolicy.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libintl.8.dylib" TargetName="@(AssemblyDirectory)/libintl.8.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libjpeg.9.dylib" TargetName="@(AssemblyDirectory)/libjpeg.9.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libmscordaccore.dylib" TargetName="@(AssemblyDirectory)/libmscordaccore.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/libmscordbi.dylib" TargetName="@(AssemblyDirectory)/libmscordbi.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libpcre.1.dylib" TargetName="@(AssemblyDirectory)/libpcre.1.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libpixman-1.0.dylib" TargetName="@(AssemblyDirectory)/libpixman-1.0.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libpng16.16.dylib" TargetName="@(AssemblyDirectory)/libpng16.16.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libtiff.5.dylib" TargetName="@(AssemblyDirectory)/libtiff.5.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libxcb-render.0.dylib" TargetName="@(AssemblyDirectory)/libxcb-render.0.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libxcb-shm.0.dylib" TargetName="@(AssemblyDirectory)/libxcb-shm.0.dylib" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/libxcb.1.dylib" TargetName="@(AssemblyDirectory)/libxcb.1.dylib" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/mscorlib.dll" TargetName="@(AssemblyDirectory)/mscorlib.dll" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/netstandard.dll" TargetName="@(AssemblyDirectory)/netstandard.dll" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/plist-cil.dll" TargetName="@(AssemblyDirectory)/plist-cil.dll" Condition="HOST_MAC" />
+    <CopyFile Name="@(LoaderDirectory)/runtime.osx.10.10-x64.CoreCompat.System.Drawing.dll" TargetName="@(AssemblyDirectory)/runtime.osx.10.10-x64.CoreCompat.System.Drawing.dll" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/runtimeconfig.bin" TargetName="@(AssemblyDirectory)/runtimeconfig.bin" Condition="HOST_MAC" />
     <CopyFile Name="@(LoaderDirectory)/uno-app-loader.dll" TargetName="@(AssemblyDirectory)/uno-app-loader.dll" Condition="HOST_MAC" />
 
