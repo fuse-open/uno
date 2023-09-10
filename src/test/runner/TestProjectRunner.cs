@@ -44,7 +44,8 @@ namespace Uno.TestRunner
                     TestFilter = _options.Filter,
                     OutputDirectory = outputDirectory,
                     WarningLevel = 1,
-                    UpdateLibrary = _options.UpdateLibrary
+                    UpdateLibrary = _options.UpdateLibrary,
+                    Clean = _options.Clean
                 };
 
                 options.Defines.AddRange(_options.Defines);
