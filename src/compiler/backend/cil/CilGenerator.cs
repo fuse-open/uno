@@ -7,6 +7,7 @@ using IKVM.Reflection;
 using IKVM.Reflection.Emit;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Domain.IL;
+using Uno.Diagnostics;
 using Uno.IO;
 
 namespace Uno.Compiler.Backends.CIL
@@ -53,20 +54,28 @@ namespace Uno.Compiler.Backends.CIL
         public void Configure(bool debug)
         {
             if (debug)
-                _assembly.SetCustomAttribute(
-                    new CustomAttributeBuilder(
-                        _linker.System_Diagnostics_DebuggableAttribute_ctor,
-                        new object[] {DebuggableAttribute.DebuggingModes.DisableOptimizations | DebuggableAttribute.DebuggingModes.Default}));
+                AddAssemblyAttribute(
+                    _linker.System_Diagnostics_DebuggableAttribute_ctor,
+                    DebuggableAttribute.DebuggingModes.DisableOptimizations | DebuggableAttribute.DebuggingModes.Default);
 
             foreach (var name in _bundle.InternalsVisibleTo)
-                _assembly.SetCustomAttribute(
-                    new CustomAttributeBuilder(
-                        _linker.System_Runtime_CompilerServices_InternalsVisibleToAttribute_ctor,
-                        new object[] {name}));
+                AddAssemblyAttribute(
+                    _linker.System_Runtime_CompilerServices_InternalsVisibleToAttribute_ctor,
+                    name);
+
+            AddAssemblyAttribute(
+                _linker.System_Reflection_AssemblyMetadataAttribute_ctor,
+                "Uno.Version", UnoVersion.InformationalVersion);
         }
+
 
         public void Save()
         {
+            // Whether to enable DllImportResolver in app-loaders
+            AddAssemblyAttribute(
+                _linker.System_Reflection_AssemblyMetadataAttribute_ctor,
+                "Uno.DllImportResolver", _linker.PInvoke.ToString());
+
             var streams = new List<Stream>();
 
             try
@@ -78,11 +87,11 @@ namespace Uno.Compiler.Backends.CIL
                         continue;
 
                     var stream = File.OpenRead(file.SourcePath);
-                    streams.Add(stream); // Add it here before we give the stream away
+                    streams.Add(stream);
                     _module.DefineManifestResource(file.TargetName, stream, ResourceAttributes.Public);
                 }
 
-                // Output assembly
+                // Save assembly
                 Disk.CreateDirectory(_outputDir);
                 _assembly.Save(_assembly.GetName().Name + ".dll");
             }
@@ -103,7 +112,7 @@ namespace Uno.Compiler.Backends.CIL
                     foreach (var m in asm.GetModules())
                     {
                         var dll = m.FullyQualifiedName;
-                        var pdb = dll.Substring(dll.Length - 4) + ".pdb";
+                        var pdb = string.Concat(dll.AsSpan(dll.Length - 4), ".pdb");
 
                         if (File.Exists(dll))
                             Disk.CopyFile(dll, Path.Combine(_outputDir, Path.GetFileName(dll)));
@@ -113,6 +122,11 @@ namespace Uno.Compiler.Backends.CIL
                     }
                 }
             }
+        }
+
+        void AddAssemblyAttribute(ConstructorInfo ctor, params object[] args)
+        {
+            _assembly.SetCustomAttribute(new CustomAttributeBuilder(ctor, args));
         }
 
         void AddLocation(int ilOffset, string path, int line, int column)

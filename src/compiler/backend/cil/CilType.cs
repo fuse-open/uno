@@ -129,6 +129,7 @@ namespace Uno.Compiler.Backends.CIL
                     m.SetBody(null);
                     Methods.Add(new CilMember<MethodBuilder, Function>(mb, m));
                     _linker.AddMethod(m, mb);
+                    _linker.PInvoke = true;
                 }
                 else
                 {
@@ -213,6 +214,8 @@ namespace Uno.Compiler.Backends.CIL
                     var pb = PInvokeBackend.DefineCilDelegateParameter(_linker.Universe, _essentials, mb, p, i);
                     PopulateParameter(p, pb);
                 }
+
+                _linker.PInvoke = true;
             }
             else
             {
@@ -252,7 +255,7 @@ namespace Uno.Compiler.Backends.CIL
             }
 
             if (p.Modifier == ParameterModifier.Params)
-                pb.SetCustomAttribute(new CustomAttributeBuilder(_linker.System_ParamAttribute_ctor, new object[0]));
+                pb.SetCustomAttribute(new CustomAttributeBuilder(_linker.System_ParamArrayAttribute_ctor, new object[0]));
         }
 
         void SetConstraints(GenericTypeParameterBuilder builder, GenericParameterType definition)
