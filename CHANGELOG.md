@@ -9,7 +9,7 @@ Unreleased
 - Update default output directory (#435)
 - Update packaging for .NET 6.0 (#436)
 - Remove version directory inside built libraries (#437)
-- Update terminology on library vs. package (#440)
+- Update terminology on library vs. package (#440, #502)
 - Print `arm` and `arm64` architectures in lowercase (#468)
 - Use the new `HttpClient` class on .NET 6.0 (#467)
 - Export API to run `uno` from JavaScript/TypeScript (#469)
@@ -17,22 +17,21 @@ Unreleased
 - Hide output from external image converters (#480)
 - Make sure the `uno` command is executable (#481)
 - Swallow `InvalidOperationException` in `KillTree()` (#484)
-- Whitespace fix-up pass (#490)
-- Beta recovery & tweaks (#493)
 - Rename manifest file in libraries (#495)
-- More tweaks (#496)
+- Remove framework directory from output path (#501)
+- Various tweaks and improvements (#490, #493, #496)
 
 ### unoconfig
-- Remove `IsRoot` and `SkipIfRoot` properties (#451)
-- Rename `Packages` -> `searchPaths` properties (#453)
-- Rename `Packages.Default` -> `references.default` (#464)
+- Remove `isRoot` and `skipIfRoot` properties (#451)
+- Rename `packages` -> `searchPaths` properties (#453)
+- Rename `packages.default` -> `references.default` (#464)
 
 ### unoproj
-- Rename `Packages` -> `references` (#454)
+- Rename `packages` -> `references` (#454)
 - Accept `lowerCamelCase` property names (#466)
 - Update unoproj and unoconfig files (#474)
 - Add `outputType` property (#483)
-- Add `outputType.appTest` value (#494)
+- Add `outputType.appTest` option (#494)
 
 ### Android
 - Make `arm64` default for debug builds (#475)
@@ -45,6 +44,8 @@ Unreleased
 - Remove macOS binaries from package (#439)
 - Get macOS app loader from NuGet (#450)
 - Remove xamarin-mac dependency (#479)
+- Use xcode-devteams for information (#511)
+- Fix native library loading on .NET 6.0 (#513)
 
 ### Compiler
 - Remove `GRADLE` and `UNO_TEST` defines (#455)
@@ -55,7 +56,8 @@ Unreleased
 - Build console apps with `Main()` entrypoints (#489)
 - Accept `ForeignInclude` attributes on methods (#491)
 - Accept array arguments in attributes (#491)
-- Refactor build queue classes (#497)
+- Refactor build queue classes (#497, #503, #509)
+- Lazy compilation for .NET targets (opt-in) (#487)
 
 ### C++ backend
 - Use a comparer when sorting in `IncludeResolver` (#461)
@@ -72,6 +74,12 @@ Unreleased
 ### Test runner
 - Use console app loader on .NET by default (#486)
 - Use more newlines in the log output (#498)
+- Don't print stats with `--build-only` (#510)
+- Add `--clean` parameter (#512)
+
+### Disassembler
+- Fix solution on .NET 6.0 (#499)
+- Embed resources and upgrade packages (#500)
 
 ### UnoCore
 - Remove legacy `Uno.Buffer` class (#441)
@@ -85,7 +93,7 @@ Unreleased
 ### Uno.Permissions
 - Remove legacy `Uno.Permissions` library (#443)
 
-[`v2.8.0...beta-3.0`](https://github.com/fuse-open/uno/compare/v2.8.0...beta-3.0)
+[`v2.9.2...v3.0.0-beta.9`](https://github.com/fuse-open/uno/compare/v2.9.2...v3.0.0-beta.9)
 
 2.9.2
 -----
