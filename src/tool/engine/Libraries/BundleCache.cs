@@ -72,11 +72,17 @@ namespace Uno.Build.Libraries
                 result = new List<DirectoryInfo>();
                 _library.Add(library, result);
 
-                foreach (var feed in SearchPaths)
+                foreach (var searchPath in SearchPaths)
                 {
                     DirectoryInfo dir;
-                    if (!GetLibraryDirectories(feed).TryGetValue(library, out dir))
+                    if (!GetLibraryDirectories(searchPath).TryGetValue(library, out dir))
                         continue;
+
+                    if (ManifestFile.Exists(dir.FullName))
+                    {
+                        result.Add(dir);
+                        continue;
+                    }
 
                     var versions = dir.GetDirectories();
                     Array.Sort(versions, (left, right) => VersionRange.Compare(right.Name, left.Name));
