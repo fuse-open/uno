@@ -46,22 +46,20 @@ which might have unintended side-effects.
 
 ### Android
 
-To support building Android apps, we need to know where your [Android SDKs](https://developer.android.com/studio/index.html)
-are installed. Running `npm install -g android-build-tools@1.x` will set this up automatically, or you can
+To support building Android apps, we need to know where your [Android SDK](https://developer.android.com/studio/index.html)
+is installed. Running `npm install android-build-tools@2.x -g` will set this up automatically, or you can
 specify other locations as demonstrated below.
 
 ### Windows
 
 ```javascript
-android.ndk: `%LOCALAPPDATA%\Android\sdk\ndk-bundle`
 android.sdk: `%LOCALAPPDATA%\Android\sdk`
-java.jdk: `%PROGRAMFILES%\Java\jdk1.8.0_40`
+java.jdk: `%PROGRAMFILES%\Java\jdk17`
 ```
 
 ### macOS
 
 ```javascript
-android.ndk: ~/Library/Android/sdk/ndk-bundle
 android.sdk: ~/Library/Android/sdk
 ```
 

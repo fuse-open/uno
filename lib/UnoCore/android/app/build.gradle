@@ -42,10 +42,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion = @(SDK.CompileVersion)
-    buildToolsVersion = '@(SDK.BuildToolsVersion)'
-
+    compileSdkVersion @(SDK.CompileVersion)
+    buildToolsVersion '@(SDK.BuildToolsVersion)'
     ndkVersion '@(NDK.Version)'
+
+    namespace '@(Activity.Package)'
 
     defaultConfig {
 #if !@(LIBRARY:Defined)
