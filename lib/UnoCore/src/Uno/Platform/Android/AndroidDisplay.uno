@@ -40,7 +40,7 @@ namespace Uno.Platform
         @{
             final UnoObject display = _this;
             if (@{_initialized}) return;
-            @{_initialized:Set(true)};
+            @{_initialized:set(true)};
 
             if (android.os.Build.VERSION.SDK_INT >= 16)
             {
@@ -54,7 +54,7 @@ namespace Uno.Platform
                             _choreographer.postFrameCallback(this);
                         double currentTime = frameTimeNanos * 1e-9;
                         double deltaTime = (frameTimeNanos - _previousTimeNanos) * 1e-9;
-                        @{AndroidDisplay:Of(display).OnFrameCallback(double,double):Call(currentTime,deltaTime)};
+                        @{AndroidDisplay:of(display).OnFrameCallback(double,double):call(currentTime,deltaTime)};
                         _previousTimeNanos = frameTimeNanos;
                     }
                 });
@@ -67,7 +67,7 @@ namespace Uno.Platform
                 {
                     public void onTimeUpdate(android.animation.TimeAnimator animation, long totalTime, long deltaTime)
                     {
-                        @{AndroidDisplay:Of(display).OnFrameCallback(double,double):Call(totalTime / 1000.0, deltaTime / 1000.0)};
+                        @{AndroidDisplay:of(display).OnFrameCallback(double,double):call(totalTime / 1000.0, deltaTime / 1000.0)};
                     }
                 });
                 timeAnimator.start();

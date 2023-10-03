@@ -24,5 +24,5 @@ fi
 # remove cache in case -G was specified on command line
 rm -f CMakeCache.txt
 
-cmake -DCMAKE_BUILD_TYPE=@(PInvoke.Configuration) "$@" .
+cmake -DCMAKE_BUILD_TYPE=@(pinvoke.configuration) "$@" .
 cmake --build . --use-stderr -- $BUILD_ARGS

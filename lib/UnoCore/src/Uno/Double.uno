@@ -74,8 +74,8 @@ namespace Uno
 
         [extern(CPLUSPLUS) Require("Source.Include", "cctype")]
         [extern(CPLUSPLUS) Require("Source.Include", "errno.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:Include}")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:Include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:include}")]
         public static double Parse(string str)
         {
             if (str == null)
@@ -94,10 +94,10 @@ namespace Uno
                     end++;
 
                 if (errno == ERANGE)
-                    U_THROW(@{OverflowException(string):New(uString::Const("Value was either too large or too small for double"))});
+                    U_THROW(@{OverflowException(string):new(uString::Const("Value was either too large or too small for double"))});
 
                 if (!strlen(trimmed) || strlen(end))
-                    U_THROW(@{FormatException(string):New(uString::Const("Unable to convert string to double"))});
+                    U_THROW(@{FormatException(string):new(uString::Const("Unable to convert string to double"))});
 
                 return retval;
             @}

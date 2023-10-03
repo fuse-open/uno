@@ -183,7 +183,7 @@ namespace Uno
             buffer.order(java.nio.ByteOrder.BIG_ENDIAN);
             buffer.putLong(guid.getLeastSignificantBits());
             byte[] result = buffer.array();
-            return @{Guid(byte[]):New(new ByteArray(result))};
+            return @{Guid(byte[]):new(new ByteArray(result))};
         @}
 
         [Require("Source.Include", "Foundation/Foundation.h")]

@@ -29,9 +29,9 @@ namespace Uno.Compiler.Foreign.Java
             CppHeadersForDeclaringType = new List<string> {
                     "jni.h",
                     "uDroid/JNIHelper.h",
-                    "@{global::Android.Base.Wrappers.JWrapper:Include}",
-                    "@{global::Android.Base.Wrappers.JavaObjectHelper:Include}",
-                    "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ":Include}"
+                    "@{global::Android.Base.Wrappers.JWrapper:include}",
+                    "@{global::Android.Base.Wrappers.JavaObjectHelper:include}",
+                    "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ":include}"
             };
             Annotations = annotations;
             ValidateMethod(f, essentials);

@@ -1,16 +1,16 @@
 #include <Uno-iOS/Context.h>
 #include <Uno-iOS/Uno-iOS.h>
 #include <uObjC.Foreign.h>
-@{Uno.Platform.CoreApp:IncludeDirective}
-@{Uno.Platform.iOS.Application:IncludeDirective}
-@{Uno.Platform.EventSources.InterAppInvoke:IncludeDirective}
-@(uContext.SourceFile.Declaration:Join())
+@{Uno.Platform.CoreApp:includeDirective}
+@{Uno.Platform.iOS.Application:includeDirective}
+@{Uno.Platform.EventSources.InterAppInvoke:includeDirective}
+@(uContext.sourceFile.declaration:join())
 
 @interface uContext()
 {
 @private
     uRuntime* _uno;
-#if @(METAL:Defined)
+#if @(METAL:defined)
     MGLContext* _glContext;
 #else
     EAGLContext* _glContext;
@@ -81,7 +81,7 @@ static uContext* instance = nil;
     if (self = [super init])
     {
         _uno = new uRuntime();
-#if @(METAL:Defined)
+#if @(METAL:defined)
         _glContext = [[MGLContext alloc] initWithAPI:kMGLRenderingAPIOpenGLES2];
         [MGLContext setCurrentContext:_glContext];
 #else
@@ -122,63 +122,63 @@ static uContext* instance = nil;
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    @{Uno.Platform.CoreApp.Start():Call()};
-    @{Uno.Platform.iOS.Application.LaunchOptions:Set(launchOptions)};
+    @{Uno.Platform.CoreApp.Start():call()};
+    @{Uno.Platform.iOS.Application.LaunchOptions:set(launchOptions)};
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):Call([url absoluteString])};
+    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call([url absoluteString])};
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary*)options
 {
-    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):Call([url absoluteString])};
+    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call([url absoluteString])};
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSURL *)url
 {
-    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):Call([url absoluteString])};
+    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call([url absoluteString])};
     return YES;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.EnterForeground():Call()};
-    @(uContext.SourceFile.DidFinishLaunching:Join('\n    '))
+    @{Uno.Platform.CoreApp.EnterForeground():call()};
+    @(uContext.sourceFile.didFinishLaunching:join('\n    '))
 }
 
 - (void)applicationWillEnterForeground:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.EnterForeground():Call()};
+    @{Uno.Platform.CoreApp.EnterForeground():call()};
 }
 
 - (void)applicationDidBecomeActive:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.EnterInteractive():Call()};
+    @{Uno.Platform.CoreApp.EnterInteractive():call()};
 }
 
 - (void)applicationWillResignActive:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.ExitInteractive():Call()};
+    @{Uno.Platform.CoreApp.ExitInteractive():call()};
 }
 
 - (void)applicationDidEnterBackground:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.EnterBackground():Call()};
+    @{Uno.Platform.CoreApp.EnterBackground():call()};
 }
 
 - (void)applicationWillTerminate:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.Terminate():Call()};
+    @{Uno.Platform.CoreApp.Terminate():call()};
 }
 
 - (void)applicationDidReceiveMemoryWarning:(NSNotification*)notification
 {
-    @{Uno.Platform.CoreApp.OnReceivedLowMemoryWarning():Call()};
+    @{Uno.Platform.CoreApp.OnReceivedLowMemoryWarning():call()};
 }
 
 @end

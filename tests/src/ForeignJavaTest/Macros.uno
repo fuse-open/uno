@@ -18,7 +18,7 @@ public extern(android) class Macros
     [Foreign(Language.Java)]
     public static bool RectStripped()
     @{
-        #if @{Uno.Rect:IsStripped}
+        #if @{Uno.Rect:isStripped}
         return false
         #else
         return true;

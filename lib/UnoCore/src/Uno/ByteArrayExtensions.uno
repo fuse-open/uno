@@ -46,7 +46,7 @@ namespace Uno
                 @{short} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -65,7 +65,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -86,7 +86,7 @@ namespace Uno
                 @{ushort} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -105,7 +105,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -126,7 +126,7 @@ namespace Uno
                 @{int} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -145,7 +145,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -166,7 +166,7 @@ namespace Uno
                 @{uint} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -185,7 +185,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -206,7 +206,7 @@ namespace Uno
                 @{long} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -225,7 +225,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -246,7 +246,7 @@ namespace Uno
                 @{ulong} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -265,7 +265,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -286,7 +286,7 @@ namespace Uno
                 @{float} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -305,7 +305,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)
@@ -326,7 +326,7 @@ namespace Uno
                 @{double} result;
                 memcpy(&result, (uint8_t*)$0->_ptr + $1, sizeof(result));
                 if (!$2)
-                    @{ReverseBytes(IntPtr, ulong):Call(&result, sizeof(result))};
+                    @{ReverseBytes(IntPtr, ulong):call(&result, sizeof(result))};
                 return result;
             @}
             else if defined(DOTNET)
@@ -345,7 +345,7 @@ namespace Uno
             if defined(CPLUSPLUS)
             @{
                 if (!$3)
-                    @{ReverseBytes(IntPtr, ulong):Call(&$2, sizeof($2))};
+                    @{ReverseBytes(IntPtr, ulong):call(&$2, sizeof($2))};
                 memcpy((uint8_t*)$0->_ptr + $1, &$2, sizeof($2));
             @}
             else if defined(DOTNET)

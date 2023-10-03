@@ -88,7 +88,7 @@ namespace Uno
                         $0->__type == $1->__type &&
                         $0->_func == $1->_func &&
                         $0->_this == $1->_this &&
-                        @{object.Equals(object,object):Call($0->_prev, $1->_prev)}
+                        @{object.Equals(object,object):call($0->_prev, $1->_prev)}
                     );
             @}
             else

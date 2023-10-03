@@ -30,9 +30,9 @@ namespace Uno
                 LPWSTR* cmdArgs = CommandLineToArgvW(GetCommandLineW(), &numArgs);
 
                 if (numArgs < 2)
-                    return uArray::New(@{string[]:TypeOf}, 0);
+                    return uArray::New(@{string[]:typeof}, 0);
 
-                @{string[]} args = uArray::New(@{string[]:TypeOf}, numArgs - 1);
+                @{string[]} args = uArray::New(@{string[]:typeof}, numArgs - 1);
 
                 for (int i = 1; i < numArgs; i++)
                     args->Strong<uString*>(i - 1) = uString::Utf16((const char16_t*) cmdArgs[i]);
@@ -42,9 +42,9 @@ namespace Uno
             else if defined(CPLUSPLUS)
             @{
                 if (uArgc < 2)
-                    return uArray::New(@{string[]:TypeOf}, 0);
+                    return uArray::New(@{string[]:typeof}, 0);
 
-                @{string[]} args = uArray::New(@{string[]:TypeOf}, uArgc - 1);
+                @{string[]} args = uArray::New(@{string[]:typeof}, uArgc - 1);
 
                 for (int i = 1; i < uArgc; i++)
                     args->Strong<uString*>(i - 1) = uString::Utf8(uArgv[i]);

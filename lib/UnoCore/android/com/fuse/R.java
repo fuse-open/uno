@@ -7,7 +7,7 @@ public final class R
     {
         try {
             int lastDot = path.lastIndexOf(".", path.length()-1);
-            Class<?> cls = Class.forName(@(Activity.Package).R.class.getName()+"$"+(((String)path.subSequence(0, lastDot)).replace('.','$')));
+            Class<?> cls = Class.forName(@(activity.package).R.class.getName()+"$"+(((String)path.subSequence(0, lastDot)).replace('.','$')));
             Field f = cls.getField((String)path.subSequence(lastDot+1, path.length()));
             return f.getInt(null);
         } catch (Exception e) {

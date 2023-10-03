@@ -26,10 +26,10 @@ namespace ForeignObjCTest
         [Foreign(Language.ObjC)]
         static int[] macroArray(int[] xs)
         @{
-            for (int i = 0; i < @{int[]:Of(xs).Length:Get()}; ++i)
+            for (int i = 0; i < @{int[]:of(xs).Length:get()}; ++i)
             {
-                int x = @{int[]:Of(xs).Get(i)};
-                @{int[]:Of(xs).Set(i, x + 1)};
+                int x = @{int[]:of(xs).Get(i)};
+                @{int[]:of(xs).Set(i, x + 1)};
             }
             return xs;
         @}
@@ -67,8 +67,8 @@ namespace ForeignObjCTest
             // Another comment
             for (int i = 0; i < [xs count]; ++i)
             {
-                @{byte} x = @{byte[]:Of(xs).Get(i)};
-                @{byte[]:Of(xs).Set(i, x + 1)};
+                @{byte} x = @{byte[]:of(xs).Get(i)};
+                @{byte[]:of(xs).Set(i, x + 1)};
             }
             return xs;
         @}
@@ -110,7 +110,7 @@ namespace ForeignObjCTest
             // Another comment
             for (int i = 0; i < [xs count]; ++i)
             {
-                @{MyObject:Of((@{MyObject})xs[i]).Field:Set(123)};
+                @{MyObject:of((@{MyObject})xs[i]).Field:set(123)};
             }
             return xs;
         @}

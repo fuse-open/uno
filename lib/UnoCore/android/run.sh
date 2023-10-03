@@ -11,20 +11,20 @@ debug)
     exit $?
     ;;
 uninstall)
-    echo "Uninstalling @(Activity.Package)"
-    @(uno) adb uninstall "@(Activity.Package)"
+    echo "Uninstalling @(activity.package)"
+    @(uno) adb uninstall "@(activity.package)"
     exit $?
     ;;
 esac
 
-#if @(LIBRARY:Defined)
-echo "ERROR: @(Product) is a library and cannot be run directly." >&2
+#if @(LIBRARY:defined)
+echo "ERROR: @(product) is a library and cannot be run directly." >&2
 exit 1
 #else
-@(uno) launch-apk "@(Product)" \
-    --package=@(Activity.Package) \
-    --activity=@(Activity.Name) \
+@(uno) launch-apk "@(product)" \
+    --package=@(activity.package) \
+    --activity=@(activity.name) \
     --sym-dir="app/src/main/.uno" \
-    @(ANDROID_EMU:Defined:Test('--emulator', '')) \
+    @(ANDROID_EMU:defined:test('--emulator', '')) \
     "$@"
 #endif

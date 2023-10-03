@@ -140,13 +140,13 @@ namespace Uno.Reflection
         public static CppField[] GetFields(Type type)
         {
             extern "uPtr($0)";
-            return extern<CppField[]> "uArray::New(@{CppField[]:TypeOf}, $0->Reflection.FieldCount, $0->Reflection.Fields)";
+            return extern<CppField[]> "uArray::New(@{CppField[]:typeof}, $0->Reflection.FieldCount, $0->Reflection.Fields)";
         }
 
         public static CppFunction[] GetFunctions(Type type)
         {
             extern "uPtr($0)";
-            return extern<CppFunction[]> "uArray::New(@{CppFunction[]:TypeOf}, $0->Reflection.FunctionCount, $0->Reflection.Functions)";
+            return extern<CppFunction[]> "uArray::New(@{CppFunction[]:typeof}, $0->Reflection.FunctionCount, $0->Reflection.Functions)";
         }
 
         public static CppField FindField(Type type, string name)

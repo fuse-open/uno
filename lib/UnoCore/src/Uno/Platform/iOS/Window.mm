@@ -1,7 +1,7 @@
 #include <uno.h>
 #include <Uno-iOS/Uno-iOS.h>
 #include <Window.h>
-@{Uno.Platform.iOSDisplay:IncludeDirective}
+@{Uno.Platform.iOSDisplay:includeDirective}
 
 @implementation uWindow
 - (void)setFrame:(CGRect)frame
@@ -11,7 +11,7 @@
     if (self.uDisplay)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.iOSDisplay:Of(((@{Uno.Platform.iOSDisplay})self.uDisplay)).OnFrameChanged():Call()};
+        @{Uno.Platform.iOSDisplay:of(((@{Uno.Platform.iOSDisplay})self.uDisplay)).OnFrameChanged():call()};
     }
 }
 @end

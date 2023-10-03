@@ -31,46 +31,46 @@ public extern(android) class Fields
     [Foreign(Language.Java)]
     public extern(android) bool Test0()
     @{
-        return @{_staticInt} == 0 && @{_staticInt:Get()} == 0;
+        return @{_staticInt} == 0 && @{_staticInt:get()} == 0;
     @}
 
     [Foreign(Language.Java)]
     public extern(android) bool Test1()
     @{
-        return @{_staticJavaObj} == null && @{_staticJavaObj:Get()} == null;
+        return @{_staticJavaObj} == null && @{_staticJavaObj:get()} == null;
     @}
 
     [Foreign(Language.Java)]
     public extern(android) bool Test2()
     @{
-        return (@{Fields:Of(_this)._instanceInt} == 1) &&
-               (@{Fields:Of(_this)._instanceInt:Get()} == 1);
+        return (@{Fields:of(_this)._instanceInt} == 1) &&
+               (@{Fields:of(_this)._instanceInt:get()} == 1);
     @}
 
     [Foreign(Language.Java)]
     public extern(android) bool Test3()
     @{
-        return (@{Fields:Of(_this)._instanceJavaObj} == null) &&
-               (@{Fields:Of(_this)._instanceJavaObj:Get()} == null);
+        return (@{Fields:of(_this)._instanceJavaObj} == null) &&
+               (@{Fields:of(_this)._instanceJavaObj:get()} == null);
     @}
 
     [Foreign(Language.Java)]
     public extern(android) bool Test4()
     @{
-        return @{Fields:Of(_this)._instanceJavaObjProperty:Get()} == null;
+        return @{Fields:of(_this)._instanceJavaObjProperty:get()} == null;
     @}
 
     [Foreign(Language.Java)]
     public extern(android) bool Test5()
     @{
-        @{Fields:Of(_this)._instanceInt:Set(10)};
-        return (@{Fields:Of(_this)._instanceInt} == 10);
+        @{Fields:of(_this)._instanceInt:set(10)};
+        return (@{Fields:of(_this)._instanceInt} == 10);
     @}
 
     [Foreign(Language.Java)]
     public extern(android) bool Test6()
     @{
-        @{_staticInt:Set(20)};
+        @{_staticInt:set(20)};
         return @{_staticInt} == 20;
     @}
 
@@ -78,7 +78,7 @@ public extern(android) class Fields
     [ForeignInclude(Language.Java, "java.util.ArrayList")]
     public extern(android) bool Test7()
     @{
-        @{_staticJavaObj:Set(new ArrayList<String>())};
+        @{_staticJavaObj:set(new ArrayList<String>())};
         return @{_staticJavaObj} != null;
     @}
 }

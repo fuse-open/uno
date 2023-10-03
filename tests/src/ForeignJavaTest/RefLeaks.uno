@@ -100,7 +100,7 @@ public extern(android) class Leaks
     @{
         // pass string to uno 800 times"
         for (int i=0; i < 800; i++)
-            @{Leaks:Of(_this).LeakD(string):Call("test")};
+            @{Leaks:of(_this).LeakD(string):call("test")};
         return true;
     @}
 
@@ -109,7 +109,7 @@ public extern(android) class Leaks
     @{
         // pass Object to uno 800 times"
         for (int i=0; i < 800; i++)
-            @{Leaks:Of(_this).LeakE(object):Call(_this)};
+            @{Leaks:of(_this).LeakE(object):call(_this)};
         return true;
     @}
 
@@ -119,7 +119,7 @@ public extern(android) class Leaks
         // pass Java.Object to uno 800 times"
         Object testObj = (Object)1;
         for (int i=0; i < 800; i++)
-            @{Leaks:Of(_this).LeakF(Java.Object):Call(testObj)};
+            @{Leaks:of(_this).LeakF(Java.Object):call(testObj)};
         return true;
     @}
 
@@ -146,12 +146,12 @@ public extern(android) class Leaks
     [Foreign(Language.Java)]
     private extern(Android) Leaker LeakObjectNew()
     @{
-        return @{Leaker():New()};
+        return @{Leaker():new()};
     @}
 
     [Foreign(Language.Java)]
     private extern(Android) int2 LeakStructNew()
     @{
-        return @{int2(int,int):New(1,2)};
+        return @{int2(int,int):new(1,2)};
     @}
 }

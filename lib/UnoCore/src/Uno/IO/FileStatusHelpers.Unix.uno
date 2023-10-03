@@ -20,7 +20,7 @@ namespace Uno.IO
             struct stat s;
 
             if (stat(uCString(path).Ptr, &s) == -1)
-                return @{FileStatus():New()};
+                return @{FileStatus():new()};
 
             @{FileAttributes} attributes = 0;
 
@@ -46,9 +46,9 @@ namespace Uno.IO
             // so we'll just use lastWriteTime.
             // TODO: It seems like this might be possible on macOS though, in some non-posix way..
             @{ZonedDateTime} lastWriteTime =
-                @{UnixTimeToZoned(long):Call(s.st_mtime)};
+                @{UnixTimeToZoned(long):call(s.st_mtime)};
             @{ZonedDateTime} lastAccessTime =
-                @{UnixTimeToZoned(long):Call(s.st_atime)};
+                @{UnixTimeToZoned(long):call(s.st_atime)};
 
             return @{FileStatus(long, FileAttributes, ZonedDateTime, ZonedDateTime, ZonedDateTime):New(
                 s.st_size,

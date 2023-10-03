@@ -1,5 +1,5 @@
-apply plugin: 'com.android.@(LIBRARY:Defined:Test('library', 'application'))'
-#if @(KOTLIN:Defined)
+apply plugin: 'com.android.@(LIBRARY:defined:test('library', 'application'))'
+#if @(KOTLIN:defined)
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 #endif
@@ -8,11 +8,11 @@ configurations { native_implementation }
 
 dependencies {
     implementation fileTree(dir: 'src/main/libs', include: ['*.jar'])
-    @(Gradle.Dependency.Implementation:Join('\n    ', 'implementation \'', '\''))
-    @(Gradle.Dependency.DebugImplementation:Join('\n    ', 'debugImplementation \'', '\''))
-    @(Gradle.Dependency.ReleaseImplementation:Join('\n    ', 'releaseImplementation \'', '\''))
-    @(Gradle.Dependency.NativeImplementation:Join('\n    ', 'native_implementation \'', '\''))
-    @(Gradle.Dependency:Join('\n    '))
+    @(gradle.dependency.implementation:join('\n    ', 'implementation \'', '\''))
+    @(gradle.dependency.debugImplementation:join('\n    ', 'debugImplementation \'', '\''))
+    @(gradle.dependency.releaseImplementation:join('\n    ', 'releaseImplementation \'', '\''))
+    @(gradle.dependency.nativeImplementation:join('\n    ', 'native_implementation \'', '\''))
+    @(gradle.dependency:join('\n    '))
 }
 
 // Extracts native libraries from AARs in the native_implementation configuration.
@@ -31,40 +31,40 @@ task extractNativeLibraries() {
 
 tasks.whenTaskAdded {
     task-> if (task.name.contains('external') && !task.name.contains('Clean')) {
-#if @(Gradle.Dependency.NativeImplementation:IsRequired)
+#if @(gradle.dependency.nativeImplementation:isRequired)
         task.dependsOn(extractNativeLibraries)
 #endif
     }
 }
 
 repositories {
-    @(Gradle.Repository:Join('\n    '))
+    @(gradle.repository:join('\n    '))
 }
 
 android {
-    compileSdkVersion @(SDK.CompileVersion)
-    buildToolsVersion '@(SDK.BuildToolsVersion)'
-    ndkVersion '@(NDK.Version)'
+    compileSdkVersion @(sdk.compileVersion)
+    buildToolsVersion '@(sdk.buildToolsVersion)'
+    ndkVersion '@(ndk.version)'
 
-    namespace '@(Activity.Package)'
+    namespace '@(activity.package)'
 
     defaultConfig {
-#if !@(LIBRARY:Defined)
-        applicationId = '@(Activity.Package)'
+#if !@(LIBRARY:defined)
+        applicationId = '@(activity.package)'
 #endif
-        minSdkVersion @(SDK.MinVersion)
-        targetSdkVersion @(SDK.TargetVersion)
-        versionCode = @(Project.Android.VersionCode)
-        versionName = '@(Project.Android.VersionName)'
-        multiDexEnabled @(Project.Android.MultiDexEnabled:IsSet:Test(@(Project.Android.MultiDexEnabled:Bool),true))
+        minSdkVersion @(sdk.minVersion)
+        targetSdkVersion @(sdk.targetVersion)
+        versionCode = @(project.android.versionCode)
+        versionName = '@(project.android.versionName)'
+        multiDexEnabled @(project.android.multiDexEnabled:isSet:test(@(project.android.multiDexEnabled:bool),true))
 
         ndk {
-#if @(ANDROID_EMU:Defined)
-            abiFilters = ["@(Config.Android.Emulator.Architecture || 'x86_64')"]
-#elif @(DEBUG:Defined)
-            abiFilters = [@(Project.Android.Architectures.Debug:Join(', ', '\'', '\''))]
+#if @(ANDROID_EMU:defined)
+            abiFilters = ["@(config.android.emulator.architecture || 'x86_64')"]
+#elif @(DEBUG:defined)
+            abiFilters = [@(project.android.architectures.debug:join(', ', '\'', '\''))]
 #else
-            abiFilters = [@(Project.Android.Architectures.Release:Join(', ', '\'', '\''))]
+            abiFilters = [@(project.android.architectures.release:join(', ', '\'', '\''))]
 #endif
         }
 
@@ -76,40 +76,40 @@ android {
                 // default means we are giving users a bad experience by default. Native debug
                 // binaries are only really useful when actually debugging generated C++ code.
                 // Running 'uno build android --debug' will produce debuggable C++ code.
-                arguments '-DCMAKE_BUILD_TYPE=@(Native.Configuration)',
-                          '-DANDROID_PLATFORM=android-@(NDK.PlatformVersion)',
+                arguments '-DCMAKE_BUILD_TYPE=@(native.configuration)',
+                          '-DANDROID_PLATFORM=android-@(ndk.platformVersion)',
                           '-DANDROID_STL=@(STL)',
                           '-DANDROID_TOOLCHAIN=clang'
             }
         }
 
-#if @(Project.Android.SupportedLanguages:IsSet)
-        resConfigs @(Project.Android.SupportedLanguages:Join(', ', '\"', '\"'))
+#if @(project.android.supportedLanguages:isSet)
+        resConfigs @(project.android.supportedLanguages:join(', ', '\"', '\"'))
 #endif
 
     }
 
-#if @(Project.Android.Bundle.Language.EnableSplit:IsSet) || @(Project.Android.Bundle.Density.EnableSplit:IsSet) || @(Project.Android.Bundle.ABI.EnableSplit:IsSet)
+#if @(project.android.bundle.language.enableSplit:isSet) || @(project.android.bundle.density.enableSplit:isSet) || @(project.android.bundle.abi.enableSplit:isSet)
     bundle {
-        #if @(Project.Android.Bundle.Language.EnableSplit:IsSet)
+        #if @(project.android.bundle.language.enableSplit:isSet)
         language {
             // Specifies that the app bundle should not support
             // configuration APKs for language resources. These
             // resources are instead packaged with each base and
             // dynamic feature APK.
-            enableSplit = @(Project.Android.Bundle.Language.EnableSplit:ToLower)
+            enableSplit = @(project.android.bundle.language.enableSplit:toLower)
         }
         #endif
-        #if @(Project.Android.Bundle.Density.EnableSplit:IsSet)
+        #if @(project.android.bundle.density.enableSplit:isSet)
         density {
             // This property is set to true by default.
-            enableSplit = @(Project.Android.Bundle.Density.EnableSplit:ToLower)
+            enableSplit = @(project.android.bundle.density.enableSplit:toLower)
         }
         #endif
-        #if @(Project.Android.Bundle.ABI.EnableSplit:IsSet)
+        #if @(project.android.bundle.abi.enableSplit:isSet)
         abi {
             // This property is set to true by default.
-            enableSplit = @(Project.Android.Bundle.ABI.EnableSplit:ToLower)
+            enableSplit = @(project.android.bundle.abi.enableSplit:toLower)
         }
         #endif
     }
@@ -121,22 +121,22 @@ android {
         }
     }
 
-#if @(Project.Android.Key.Store:IsSet)
+#if @(project.android.key.store:isSet)
     signingConfigs {
         release {
-            keyAlias '@(Project.Android.Key.Alias)'
-            keyPassword '@(Project.Android.Key.AliasPassword)'
-            storeFile file('@(Project.Android.Key.Store:Path)')
-            storePassword '@(Project.Android.Key.StorePassword)'
+            keyAlias '@(project.android.key.alias)'
+            keyPassword '@(project.android.key.aliasPassword)'
+            storeFile file('@(project.android.key.store:path)')
+            storePassword '@(project.android.key.storePassword)'
         }
     }
 #endif
 
     buildTypes {
         release {
-#if @(DEBUG:Defined)
+#if @(DEBUG:defined)
             debuggable = true
-#elif @(Project.Android.Key.Store:IsSet)
+#elif @(project.android.key.store:isSet)
             signingConfig = signingConfigs.release
 #endif
             minifyEnabled = false
@@ -153,4 +153,4 @@ android {
     }
 }
 
-@(Gradle.BuildFile.End:Join('\n'))
+@(gradle.buildFile.end:join('\n'))

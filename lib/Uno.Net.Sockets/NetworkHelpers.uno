@@ -38,7 +38,7 @@ namespace Uno.Net
             WSADATA wsaData;
             int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
             if (result != 0)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("WSAStartup failed"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("WSAStartup failed"))});
 
             winsockInitialized = true;
         @}

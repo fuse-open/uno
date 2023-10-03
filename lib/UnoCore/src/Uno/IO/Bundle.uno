@@ -61,9 +61,9 @@ namespace Uno.IO
                 // Give up after four levels. This is enough to find BUILD_DIR/data, for example when the executable is located
                 // in any of the following trees, or similar: BUILD_DIR, BUILD_DIR/bin/Debug or BUILD_DIR/bin/x64/Debug.
                 if (string.IsNullOrEmpty(parent) || i++ == 4)
-                    throw new FileNotFoundException("Bundle not found: " + @(BundleDirectory), @(BundleDirectory));
+                    throw new FileNotFoundException("Bundle not found: " + @(bundleDirectory), @(bundleDirectory));
 
-                var test = Path.Combine(parent, @(BundleDirectory));
+                var test = Path.Combine(parent, @(bundleDirectory));
                 if (Directory.Exists(test))
                     return test;
             }
@@ -413,7 +413,7 @@ namespace Uno.IO
         {
             get
             @{
-                @{$$.CheckDisposed():Call()};
+                @{$$.CheckDisposed():call()};
                 return AAsset_getLength(@{$$._fp});
             @}
         }
@@ -422,12 +422,12 @@ namespace Uno.IO
         {
             get
             @{
-                @{$$.CheckDisposed():Call()};
+                @{$$.CheckDisposed():call()};
                 return AAsset_getLength(@{$$._fp}) - AAsset_getRemainingLength(@{$$._fp});
             @}
             set
             @{
-                @{$$.CheckDisposed():Call()};
+                @{$$.CheckDisposed():call()};
                 AAsset_seek(@{$$._fp}, $0, SEEK_SET);
             @}
         }
@@ -453,7 +453,7 @@ namespace Uno.IO
 
         public override long Seek(long byteOffset, SeekOrigin origin)
         @{
-            @{$$.CheckDisposed():Call()};
+            @{$$.CheckDisposed():call()};
 
             switch ($1)
             {

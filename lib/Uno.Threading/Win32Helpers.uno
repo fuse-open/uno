@@ -23,13 +23,13 @@ namespace Uno.Threading
         }
 
         [Require("Source.Include", "uno/WinAPI.h")]
-        [Require("Source.Include", "@{Uno.Exception:Include}")]
+        [Require("Source.Include", "@{Uno.Exception:include}")]
         public static MutexHandle CreateMutex()
         @{
             HANDLE mutexHandle = ::CreateMutexW(nullptr, false, nullptr);
 
             if (mutexHandle == nullptr)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("CreateMutex failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("CreateMutex failed!"))});
 
             return mutexHandle;
         @}
@@ -58,7 +58,7 @@ namespace Uno.Threading
             HANDLE semaphoreHandle = ::CreateSemaphoreW(nullptr, $0, $1, nullptr);
 
             if (semaphoreHandle == nullptr)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("CreateSemaphoreW failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("CreateSemaphoreW failed!"))});
 
             return semaphoreHandle;
         @}
@@ -77,7 +77,7 @@ namespace Uno.Threading
         @{
             LONG res;
             if (!::ReleaseSemaphore(semaphoreHandle, releaseCount, &res))
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("ReleaseSemaphore failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("ReleaseSemaphore failed!"))});
             return res;
         @}
 
@@ -93,7 +93,7 @@ namespace Uno.Threading
             HANDLE resetEventHandle = ::CreateEvent(nullptr, autoReset, initialState, nullptr);
 
             if (resetEventHandle == nullptr)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("CreateEvent failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("CreateEvent failed!"))});
 
             return resetEventHandle;
         @}

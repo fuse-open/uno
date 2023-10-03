@@ -9,22 +9,22 @@
     <Set HeaderDirectory="app/src/main/include" />
     <Set SourceDirectory="app/src/main/jni" />
     <Set BinaryDirectory="app/src/main/jniLibs" />
-    <Set PathSeparator="@(HOST_WIN32:Defined:Test(';', ':'))" />
+    <Set PathSeparator="@(HOST_WIN32:defined:test(';', ':'))" />
 
     <!-- Deprecated -->
     <Set ABI="${ANDROID_ABI}" />
-    <Set NDK.Directory="@(Config.Android.NDK:Path || Config.Android.NDK.Directory:Path || ANDROID_NDK:Env)" />
+    <Set NDK.Directory="@(config.android.ndk:path || config.android.ndk.directory:path || ANDROID_NDK:env)" />
 
     <!-- Build tools config -->
 
-    <Set JDK.Directory="@(Config.Java.JDK:Path || Config.Java.JDK.Directory:Path || JAVA_HOME:Env)" />
-    <Set NDK.PlatformVersion="@(Project.Android.NDK.PlatformVersion || Config.Android.NDK.PlatformVersion || '16')" />
-    <Set NDK.Version="@(Project.Android.NDK.Version || Config.Android.NDK.Version || '21.4.7075529')" />
-    <Set SDK.BuildToolsVersion="@(Project.Android.SDK.BuildToolsVersion || Config.Android.SDK.BuildToolsVersion || '33.0.1')" />
-    <Set SDK.CompileVersion="@(Project.Android.SDK.CompileVersion || Config.Android.SDK.CompileVersion || '33')" />
-    <Set SDK.Directory="@(Config.Android.SDK:Path || Config.Android.SDK.Directory:Path || ANDROID_SDK:Env)" />
-    <Set SDK.MinVersion="@(Project.Android.SDK.MinVersion || Config.Android.SDK.MinVersion || '19')" />
-    <Set SDK.TargetVersion="@(Project.Android.SDK.TargetVersion || Config.Android.SDK.TargetVersion || '33')" />
+    <Set JDK.Directory="@(config.java.jdk:path || config.java.jdk.directory:path || JAVA_HOME:env)" />
+    <Set NDK.PlatformVersion="@(project.android.ndk.platformVersion || config.android.ndk.platformVersion || '16')" />
+    <Set NDK.Version="@(project.android.ndk.version || config.android.ndk.version || '21.4.7075529')" />
+    <Set SDK.BuildToolsVersion="@(project.android.sdk.buildToolsVersion || config.android.sdk.buildToolsVersion || '33.0.1')" />
+    <Set SDK.CompileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '33')" />
+    <Set SDK.Directory="@(config.android.sdk:path || config.android.sdk.directory:path || ANDROID_SDK:env)" />
+    <Set SDK.MinVersion="@(project.android.sdk.minVersion || config.android.sdk.minVersion || '19')" />
+    <Set SDK.TargetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '33')" />
 
     <!-- Build properties -->
 
@@ -72,20 +72,20 @@
     <Require AndroidManifest.Permission="android.permission.VIBRATE" />
 
     <Set Activity.BaseClass="androidx.appcompat.app.AppCompatActivity" />
-    <Set Activity.Name="@(Project.Android.Activity || Project.Name:Identifier)" />
-    <Set Activity.Package="@(Project.Android.Package || 'com.apps.@(Project.Name:QIdentifier:ToLower)')" />
+    <Set Activity.Name="@(project.android.activity || project.name:identifier)" />
+    <Set Activity.Package="@(project.android.package || 'com.apps.@(project.name:qidentifier:toLower)')" />
 
     <!-- Build configuration -->
 
-    <Set Condition="LIBRARY" Build.Configuration="@('!@(DEBUG:Defined)':Test('Release', 'Debug'))" />
-    <Set Condition="!LIBRARY" Build.Configuration="@('!@(DEBUG:Defined) && @(Project.Android.Key.Store:IsSet)':Test('Release', 'Debug'))" />
+    <Set Condition="LIBRARY" Build.Configuration="@('!@(DEBUG:defined)':test('Release', 'Debug'))" />
+    <Set Condition="!LIBRARY" Build.Configuration="@('!@(DEBUG:defined) && @(project.android.key.store:isSet)':test('Release', 'Debug'))" />
 
-    <Set Gradle.AssembleTask="assemble@(Build.Configuration)" />
-    <Set Gradle.BundleTask="bundle@(Build.Configuration)" />
+    <Set Gradle.AssembleTask="assemble@(build.configuration)" />
+    <Set Gradle.BundleTask="bundle@(build.configuration)" />
 
-    <Set Outputs.AAR="app/build/outputs/aar/app-@(Build.Configuration:ToLower).aar" />
-    <Set Outputs.APK="app/build/outputs/apk/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).apk" />
-    <Set Outputs.Bundle="app/build/outputs/bundle/@(Build.Configuration:ToLower)/app-@(Build.Configuration:ToLower).aab" />
+    <Set Outputs.AAR="app/build/outputs/aar/app-@(build.configuration:toLower).aar" />
+    <Set Outputs.APK="app/build/outputs/apk/@(build.configuration:toLower)/app-@(build.configuration:toLower).apk" />
+    <Set Outputs.Bundle="app/build/outputs/bundle/@(build.configuration:toLower)/app-@(build.configuration:toLower).aab" />
 
     <!-- Run-time properties -->
 
@@ -97,9 +97,9 @@
 
     <!-- Output files -->
 
-    <Set Condition="LIBRARY" Product="@(Project.Name).aar" />
-    <Set Condition="!LIBRARY" Product="@(Project.Name).apk" />
-    <Set Condition="!LIBRARY" Bundle="@(Project.Name).aab" />
+    <Set Condition="LIBRARY" Product="@(project.name).aar" />
+    <Set Condition="!LIBRARY" Product="@(project.name).apk" />
+    <Set Condition="!LIBRARY" Bundle="@(project.name).aab" />
 
     <!-- Deprecated properties -->
 
@@ -124,13 +124,13 @@
     <!-- Java source -->
 
     <Set Java.ProjectDirectory="app/src" />
-    <Set Java.LibsDirectory="@(Java.ProjectDirectory)/main/libs" />
-    <Set Java.SourceDirectory="@(Java.ProjectDirectory)/main/java" />
-    <Set Java.PackageDirectory="@(Java.SourceDirectory)/@(Activity.Package:Replace('.', '/'))" />
+    <Set Java.LibsDirectory="@(java.projectDirectory)/main/libs" />
+    <Set Java.SourceDirectory="@(java.projectDirectory)/main/java" />
+    <Set Java.PackageDirectory="@(java.sourceDirectory)/@(activity.package:replace('.', '/'))" />
 
-    <Declare Element="JavaFile" TargetDirectory="@(Java.SourceDirectory)" />
+    <Declare Element="JavaFile" TargetDirectory="@(java.sourceDirectory)" />
 
-    <ProcessFile Name="@(Java.PackageDirectory)/@(Activity.Name).java" />
+    <ProcessFile Name="@(java.packageDirectory)/@(activity.name).java" />
     <ProcessFile JavaFile="com/foreign/UnoWrapped.java" />
     <ProcessFile JavaFile="com/fuse/Activity.java" />
     <ProcessFile JavaFile="com/fuse/ActivityNativeEntryPoints.java" />
@@ -142,45 +142,45 @@
 
     <!-- Icons -->
 
-    <ImageFile Name="@(Project.Android.Icons.LDPI:Path || '@//assets/icon.png')"
+    <ImageFile Name="@(project.android.icons.ldpi:path || '@//assets/icon.png')"
         TargetWidth="36" TargetName="app/src/main/res/mipmap-ldpi/icon.png" />
-    <ImageFile Name="@(Project.Android.Icons.MDPI:Path || '@//assets/icon.png')"
+    <ImageFile Name="@(project.android.icons.mdpi:path || '@//assets/icon.png')"
         TargetWidth="48" TargetName="app/src/main/res/mipmap-mdpi/icon.png" />
-    <ImageFile Name="@(Project.Android.Icons.HDPI:Path || '@//assets/icon.png')"
+    <ImageFile Name="@(project.android.icons.hdpi:path || '@//assets/icon.png')"
         TargetWidth="72" TargetName="app/src/main/res/mipmap-hdpi/icon.png" />
-    <ImageFile Name="@(Project.Android.Icons.XHDPI:Path || '@//assets/icon.png')"
+    <ImageFile Name="@(project.android.icons.xhdpi:path || '@//assets/icon.png')"
         TargetWidth="96" TargetName="app/src/main/res/mipmap-xhdpi/icon.png" />
-    <ImageFile Name="@(Project.Android.Icons.XXHDPI:Path || '@//assets/icon.png')"
+    <ImageFile Name="@(project.android.icons.xxhdpi:path || '@//assets/icon.png')"
         TargetWidth="144" TargetName="app/src/main/res/mipmap-xxhdpi/icon.png" />
-    <ImageFile Name="@(Project.Android.Icons.XXXHDPI:Path || '@//assets/icon.png')"
+    <ImageFile Name="@(project.android.icons.xxxhdpi:path || '@//assets/icon.png')"
         TargetWidth="192" TargetName="app/src/main/res/mipmap-xxxhdpi/icon.png" />
-    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.ANYDPI_v26:Path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon.xml" />
+    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.anydpi_v26:path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon.xml" />
 
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.MDPI_Round:Path || '@//assets/adaptive_icon/mipmap-mdpi/icon_round.png')"
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.mdpi_round:path || '@//assets/adaptive_icon/mipmap-mdpi/icon_round.png')"
         TargetWidth="48" TargetName="app/src/main/res/mipmap-mdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.HDPI_Round:Path || '@//assets/adaptive_icon/mipmap-hdpi/icon_round.png')"
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.hdpi_round:path || '@//assets/adaptive_icon/mipmap-hdpi/icon_round.png')"
         TargetWidth="72" TargetName="app/src/main/res/mipmap-hdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.XHDPI_Round:Path || '@//assets/adaptive_icon/mipmap-xhdpi/icon_round.png')"
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.xhdpi_round:path || '@//assets/adaptive_icon/mipmap-xhdpi/icon_round.png')"
         TargetWidth="96" TargetName="app/src/main/res/mipmap-xhdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.XXHDPI_Round:Path || '@//assets/adaptive_icon/mipmap-xxhdpi/icon_round.png')"
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.xxhdpi_round:path || '@//assets/adaptive_icon/mipmap-xxhdpi/icon_round.png')"
         TargetWidth="144" TargetName="app/src/main/res/mipmap-xxhdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.XXXHDPI_Round:Path || '@//assets/adaptive_icon/mipmap-xxxhdpi/icon_round.png')"
+    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.xxxhdpi_round:path || '@//assets/adaptive_icon/mipmap-xxxhdpi/icon_round.png')"
         TargetWidth="192" TargetName="app/src/main/res/mipmap-xxxhdpi/icon_round.png" />
-    <CopyFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.ANYDPI_v26_Round:Path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon_round.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon_round.xml" />
+    <CopyFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.anydpi_v26_round:path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon_round.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon_round.xml" />
 
-    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.foreground:Path || '@//assets/adaptive_icon/drawable/icon_foreground.xml')" TargetName="app/src/main/res/drawable/icon_foreground.xml" />
-    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(Project.Android.Icons.background:Path || '@//assets/adaptive_icon/drawable/icon_background.xml')" TargetName="app/src/main/res/drawable/icon_background.xml" />
+    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.foreground:path || '@//assets/adaptive_icon/drawable/icon_foreground.xml')" TargetName="app/src/main/res/drawable/icon_foreground.xml" />
+    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.background:path || '@//assets/adaptive_icon/drawable/icon_background.xml')" TargetName="app/src/main/res/drawable/icon_background.xml" />
 
     <!-- Build system -->
 
-    <Set Commands.Build="@(HOST_WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
-    <Set Commands.Run="@(HOST_WIN32:Defined:Test('run.bat', 'bash run.sh'))" />
+    <Set Commands.Build="@(HOST_WIN32:defined:test('build.bat', 'bash build.sh'))" />
+    <Set Commands.Run="@(HOST_WIN32:defined:test('run.bat', 'bash run.sh'))" />
 
     <ProcessFile Name="app/build.gradle" />
     <ProcessFile Name="app/src/main/AndroidManifest.xml" />
     <ProcessFile Name="app/src/main/CMakeLists.txt" />
-    <CopyFile Condition="Android" Name="@(Project.Android.Splash.SplashLogo:Path || '@//assets/icon.png')" TargetName="app/src/main/res/drawable/splash_logo.png" />
-    <CopyFile Condition="Android" Name="@(Project.Android.Icons.Vector:Path || '@//assets/icon.xml')" TargetName="app/src/main/res/drawable/icon.xml" />
+    <CopyFile Condition="Android" Name="@(project.android.splash.splashLogo:path || '@//assets/icon.png')" TargetName="app/src/main/res/drawable/splash_logo.png" />
+    <CopyFile Condition="Android" Name="@(project.android.icons.vector:path || '@//assets/icon.xml')" TargetName="app/src/main/res/drawable/icon.xml" />
     <ProcessFile Name="app/src/main/res/drawable/splash_background.xml" />
     <ProcessFile Name="app/src/main/res/values/colors.xml" />
     <ProcessFile Name="app/src/main/res/values/strings.xml" />

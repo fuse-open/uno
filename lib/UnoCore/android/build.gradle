@@ -1,16 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
-        @(Gradle.BuildScript.Repository:Join('\n        '))
+        @(gradle.buildScript.repository:join('\n        '))
     }
     dependencies {
-        @(Gradle.Dependency.ClassPath:Join('\n        ', 'classpath \'', '\''))
+        @(gradle.dependency.classPath:join('\n        ', 'classpath \'', '\''))
     }
 }
 
 allprojects {
     repositories {
-        @(Gradle.AllProjects.Repository:Join('\n        '))
+        @(gradle.allProjects.repository:join('\n        '))
     }
 }
 

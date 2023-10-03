@@ -39,7 +39,7 @@ namespace Uno
             result = default(TEnum);
             if defined(CPLUSPLUS)
             @{
-                return uEnum::TryParse(@{TEnum:TypeOf}, $0, $1, $2);
+                return uEnum::TryParse(@{TEnum:typeof}, $0, $1, $2);
             @}
             else
                 return false;

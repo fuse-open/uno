@@ -9,7 +9,7 @@ namespace Uno
         {
             if defined(CPLUSPLUS)
             @{
-                uType* type = @{T:TypeOf};
+                uType* type = @{T:typeof};
                 return U_IS_OBJECT(type)
                         ? (uObject*)$0 == (uObject*)$1 || (
                                 (uObject*)$0 &&

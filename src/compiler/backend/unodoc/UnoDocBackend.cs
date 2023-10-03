@@ -23,7 +23,7 @@ namespace Uno.Compiler.Backends.UnoDoc
 
         public override BackendResult Build()
         {
-            var renderToPath = Environment.ExpandSingleLine("@(referenceOutputPath:NativePath)");
+            var renderToPath = Environment.ExpandSingleLine("@(referenceOutputPath:nativePath)");
             var skipDeleteDeprecated = Environment.ExpandSingleLine("@(referenceSkipDeleteDeprecated)") == "true";
 
             if (string.IsNullOrEmpty(renderToPath))

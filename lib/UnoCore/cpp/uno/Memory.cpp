@@ -6,8 +6,8 @@
 #include <uno/ThreadUtils.h>
 #include <string>
 #include <sstream>
-@{Uno.Type:IncludeDirective}
-@{string:IncludeDirective}
+@{Uno.Type:includeDirective}
+@{string:includeDirective}
 
 static bool _Initialized;
 static std::mutex _Mutex;
@@ -19,7 +19,7 @@ static std::unordered_map<uObject*, bool>* _HeapObjects;
 
 static bool uTryClearWeak(uObject*);
 
-#if @(REFLECTION:Defined)
+#if @(REFLECTION:defined)
 void uInitReflection();
 void uFreeReflection();
 void uRegisterIntrinsics();
@@ -59,11 +59,11 @@ uRuntime::uRuntime()
 #endif
 
     uAutoReleasePool pool;
-#if @(REFLECTION:Defined)
+#if @(REFLECTION:defined)
     uInitReflection();
 #endif
     uInitObjectModel();
-#if @(REFLECTION:Defined)
+#if @(REFLECTION:defined)
     uRegisterIntrinsics();
 #endif
 }
@@ -71,7 +71,7 @@ uRuntime::uRuntime()
 uRuntime::~uRuntime()
 {
     uFreeObjectModel();
-#if @(REFLECTION:Defined)
+#if @(REFLECTION:defined)
     uFreeReflection();
 #endif
 #ifdef DEBUG_DUMPS
@@ -384,7 +384,7 @@ void uRelease(uObject* object)
             _HeapObjects->erase(object);
             _Mutex.unlock();
 #endif
-            U_ASSERT(object->__type != @{Uno.Type:TypeOf});
+            U_ASSERT(object->__type != @{Uno.Type:typeof});
             free(object);
             return;
         }
@@ -726,7 +726,7 @@ uObject* uNew(uType* type, size_t size)
 static uString* uInitString(size_t length)
 {
     size_t size = sizeof(uString) + sizeof(char16_t) * length + sizeof(char16_t);
-    uString* string = (uString*)uInitObject(@{string:TypeOf}, calloc(1, size), size);
+    uString* string = (uString*)uInitObject(@{string:typeof}, calloc(1, size), size);
     string->_ptr = (char16_t*)((uint8_t*)string + sizeof(uString));
     string->_length = length;
     return string;
@@ -814,7 +814,7 @@ static void uDumpObjectAndStrongRefs(FILE* fp, uObject* object)
     uType* type = object->GetType();
 
     // type-info is not "real" types that we care about in this respect
-    if (type == @{Uno.Type:TypeOf})
+    if (type == @{Uno.Type:typeof})
         return;
 
     uDumpObject(fp, object, type->FullName);
@@ -888,7 +888,7 @@ static void uDumpObjectAndStrongRefs(FILE* fp, uObject* object)
 
 static void uDumpStaticStrongRefs(FILE* fp, uType* type)
 {
-    if (type == @{Uno.Type:TypeOf})
+    if (type == @{Uno.Type:typeof})
         return;
 
     const uReflection& reflection = type->Reflection;

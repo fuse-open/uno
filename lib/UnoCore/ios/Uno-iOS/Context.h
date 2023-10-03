@@ -1,7 +1,7 @@
 #pragma once
 #ifdef __OBJC__
 #include <UIKit/UIKit.h>
-#if @(METAL:Defined)
+#if @(METAL:defined)
 #include <MetalANGLE/MGLKit.h>
 #else
 #include <OpenGLES/EAGL.h>
@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSURL *)url;
 
 @property (readonly) UIWindow* window;
-#if @(METAL:Defined)
+#if @(METAL:defined)
 @property (readonly) MGLContext *glContext;
 #else
 @property (readonly) EAGLContext *glContext;

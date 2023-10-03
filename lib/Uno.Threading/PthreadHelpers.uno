@@ -15,7 +15,7 @@ namespace Uno.Threading
         public static void CreateMutex(ref MutexHandle mutexHandle)
         @{
             if (!uPthreadCreateMutex(mutexHandle) != 0)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPthreadCreateMutex failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("uPthreadCreateMutex failed!"))});
         @}
 
         [Require("Source.Include", "uThread/posix_mutex.h")]
@@ -47,7 +47,7 @@ namespace Uno.Threading
             uPosixSemaphore* semaphoreHandle = uPosixCreateSemaphore(initialCount, maxCount);
 
             if (semaphoreHandle == nullptr)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPosixCreateSemaphore() failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("uPosixCreateSemaphore() failed!"))});
 
             return semaphoreHandle;
         @}
@@ -63,7 +63,7 @@ namespace Uno.Threading
         @{
             int ret = uPosixReleaseSemaphore(semaphoreHandle, releaseCount);
             if (ret < 0)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPosixReleaseSemaphore() failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("uPosixReleaseSemaphore() failed!"))});
             return ret;
         @}
 
@@ -84,7 +84,7 @@ namespace Uno.Threading
             uPosixResetEvent *resetEventHandle = uPosixCreateResetEvent(initialState, autoReset);
 
             if (resetEventHandle == nullptr)
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("uPosixCreateResetEvent() failed!"))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("uPosixCreateResetEvent() failed!"))});
 
             return resetEventHandle;
         @}

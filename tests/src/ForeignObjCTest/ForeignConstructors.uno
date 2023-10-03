@@ -24,7 +24,7 @@ namespace ForeignObjCTest
             public ForeignConstructorClass()
             @{
                 // inside the foreign constructor
-                @{ForeignConstructorClass:Of(_this).Proof3:Set(@"PROOF3")};
+                @{ForeignConstructorClass:of(_this).Proof3:set(@"PROOF3")};
             @}
 
             public void TestForeignConstructor()
@@ -49,7 +49,7 @@ namespace ForeignObjCTest
             static ForeignStaticConstructorClass()
             @{
                 NSString* str = @{_test};
-                @{_test:Set(@"haaa")};
+                @{_test:set(@"haaa")};
             @}
 
             public static void TestForeignConstructor()

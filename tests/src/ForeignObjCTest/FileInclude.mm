@@ -4,7 +4,7 @@
 NSString* string_from_file_include()
 {
     NSString* str1 = @"lollercoaster tycoon";
-    NSString* str2 = @{string:Of(str1).ToString():Call()};
+    NSString* str2 = @{string:of(str1).ToString():call()};
 
     return str2;
 }

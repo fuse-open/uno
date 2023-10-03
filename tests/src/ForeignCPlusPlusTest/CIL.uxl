@@ -1,4 +1,4 @@
 <Extensions Backend="CIL">
-    <CopyFile Condition="HOST_OSX && ENABLE_CIL_TESTS" Name="@('build/PInvoke/Release/libForeignCPlusPlusTest-PInvoke.dylib':Path)" TargetName="@(AssemblyDirectory)" />
+    <CopyFile Condition="HOST_OSX && ENABLE_CIL_TESTS" Name="@('build/PInvoke/Release/libForeignCPlusPlusTest-PInvoke.dylib':path)" TargetName="@(assemblyDirectory)" />
 </Extensions>
 

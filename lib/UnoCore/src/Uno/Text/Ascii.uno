@@ -14,7 +14,7 @@ namespace Uno.Text
                     throw new ArgumentNullException(nameof(value));
 
                 @{
-                    uArray* res = uArray::New(@{byte[]:TypeOf}, value->_length);
+                    uArray* res = uArray::New(@{byte[]:typeof}, value->_length);
 
                     for (size_t i = 0; i < value->_length; i++)
                         res->Unsafe<uint8_t>(i) = (uint8_t)(value->_ptr[i] < 128 ? value->_ptr[i] : '?');

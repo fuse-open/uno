@@ -188,11 +188,11 @@ namespace Uno.Compiler.Foreign.Java.Converters
                 if (unoType == _essentials.String)
                     return "JniHelper::JavaToUnoString((jstring)" + line + ")";
                 if (IsJavaObject(unoType))
-                    return "(@{" + unoType.FullName + "})@{global::Android.Base.Wrappers.JavaObjectHelper.JObjectToJWrapper(global::Android.Base.Primitives.ujobject,bool):Call(" + line + ", " + stackArg.ToString().ToLower() + ")}";
+                    return "(@{" + unoType.FullName + "})@{global::Android.Base.Wrappers.JavaObjectHelper.JObjectToJWrapper(global::Android.Base.Primitives.ujobject,bool):call(" + line + ", " + stackArg.ToString().ToLower() + ")}";
                 if (unoType.IsStruct)
-                    return _helpers.UnboxStruct(unoType, "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + "." + unbox + "(global::Android.Base.Primitives.ujobject):Call(" + line + ")}");
+                    return _helpers.UnboxStruct(unoType, "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + "." + unbox + "(global::Android.Base.Primitives.ujobject):call(" + line + ")}");
                 if (!IsVoid(unoType))
-                    return _helpers.CastTo(unoType, "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + "." + unbox + "(global::Android.Base.Primitives.ujobject):Call(" + line + ")}");
+                    return _helpers.CastTo(unoType, "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + "." + unbox + "(global::Android.Base.Primitives.ujobject):call(" + line + ")}");
                 throw new InvalidCastException("ForeignCode: Could not establish how to convert from '" + line + "' to the uno type '" + unoType + "'");
             }
 
@@ -238,24 +238,24 @@ namespace Uno.Compiler.Foreign.Java.Converters
                 }
                 else if (convert.Type.IsJavaObject(dt))
                 {
-                    cast = "(" + unoTmpVarName + "==nullptr ? nullptr : U_JNIVAR->NewLocalRef(@{global::Android.Base.Wrappers.IJWrapper:Of((@{global::Android.Base.Wrappers.IJWrapper})" + unoTmpVarName + ")._GetJavaObject():Call()}))";
+                    cast = "(" + unoTmpVarName + "==nullptr ? nullptr : U_JNIVAR->NewLocalRef(@{global::Android.Base.Wrappers.IJWrapper:of((@{global::Android.Base.Wrappers.IJWrapper})" + unoTmpVarName + ")._GetJavaObject():call()}))";
                 }
                 else if (dt.IsSubclassOfOrEqual(essentials.Delegate))
                 {
                     var d = (DelegateType)dt;
-                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".BoxDelegate(object,global::Android.Base.Primitives.ConstCharPtr):Call((@{object})" + unoTmpVarName + ", \"" + convert.Name.JavaDelegateName(d, true) + "\")}";
+                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".BoxDelegate(object,global::Android.Base.Primitives.ConstCharPtr):call((@{object})" + unoTmpVarName + ", \"" + convert.Name.JavaDelegateName(d, true) + "\")}";
                 }
                 else if (convert.Type.HasJavaEquivalent(dt))
                 {
-                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".Box(" + dt.FullName + "):Call(" + unoTmpVarName + ")}";
+                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".Box(" + dt.FullName + "):call(" + unoTmpVarName + ")}";
                 }
                 else if (dt.IsStruct)
                 {
-                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".Box(object):Call(" + helpers.BoxStruct(dt, unoTmpVarName) + ")}";
+                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".Box(object):call(" + helpers.BoxStruct(dt, unoTmpVarName) + ")}";
                 }
                 else
                 {
-                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".Box(object):Call(" + unoTmpVarName + ")}";
+                    cast = "@{" + ForeignJavaPass.UnoToJavaBoxingClass.FullName + ".Box(object):call(" + unoTmpVarName + ")}";
                 }
 
                 if (typeUsuallyFreed)

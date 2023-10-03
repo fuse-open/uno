@@ -125,7 +125,7 @@ namespace ForeignObjCTest
         [Foreign(Language.ObjC)]
         static double macroDelegate(Func<int, double> f)
         @{
-            double g = @{Func<int, double>:Of(f):Call(12)};
+            double g = @{Func<int, double>:of(f):call(12)};
             return g;
         @}
 

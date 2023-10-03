@@ -82,13 +82,13 @@ namespace Uno.Compiler.Foreign.Java
             {
                 var preCall = declaringType.FullName + "(" + string.Join(",", callTypes) + ")";
 
-                return "@{" + preCall + ":New(" + string.Join(",", callArgs) + ")}";
+                return "@{" + preCall + ":new(" + string.Join(",", callArgs) + ")}";
             }
             else
             {
                 var preCall = declaringType.FullName + (isDelegate ? of : of + "." + name + "(" + string.Join(",", callTypes) + ")");
 
-                return "@{" + preCall + ":Call(" + string.Join(",", callArgs) + ")}";
+                return "@{" + preCall + ":call(" + string.Join(",", callArgs) + ")}";
             }
         }
 
@@ -102,14 +102,14 @@ namespace Uno.Compiler.Foreign.Java
                 if (IsGetter)
                     return "@{" + declaringType.FullName + "." + name + "}";
                 else
-                    return "@{" + declaringType.FullName + "." + name + ":Set(" + string.Join(",", callArgs) + ")}";
+                    return "@{" + declaringType.FullName + "." + name + ":set(" + string.Join(",", callArgs) + ")}";
             }
             else
             {
                 if (IsGetter)
-                    return "@{" + declaringType.FullName + ":Of(" + uparams[0].UnoArgName + ")." + name + ":Get()}";
+                    return "@{" + declaringType.FullName + ":of(" + uparams[0].UnoArgName + ")." + name + ":get()}";
                 else
-                    return "@{" + declaringType.FullName + ":Of(" + uparams[0].UnoArgName + ")." + name + ":Set(" + string.Join(",", callArgs) + ")}";
+                    return "@{" + declaringType.FullName + ":of(" + uparams[0].UnoArgName + ")." + name + ":set(" + string.Join(",", callArgs) + ")}";
             }
         }
 

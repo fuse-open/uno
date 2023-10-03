@@ -224,67 +224,67 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
         [Foreign(Language.Java), ForeignFixedName]
         public static bool getBool(object array, int index)
         @{
-            return @{GetBool(object,int):Call(array, index)};
+            return @{GetBool(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static sbyte getByte(object array, int index)
         @{
-            return @{GetByte(object,int):Call(array, index)};
+            return @{GetByte(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static sbyte getUByte(object array, int index)
         @{
-            return @{GetUByte(object,int):Call(array, index)};
+            return @{GetUByte(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static char getChar(object array, int index)
         @{
-            return @{GetChar(object,int):Call(array, index)};
+            return @{GetChar(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static short getShort(object array, int index)
         @{
-            return @{GetShort(object,int):Call(array, index)};
+            return @{GetShort(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static int getInt(object array, int index)
         @{
-            return @{GetInt(object,int):Call(array, index)};
+            return @{GetInt(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long getLong(object array, int index)
         @{
-            return @{GetLong(object,int):Call(array, index)};
+            return @{GetLong(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static float getFloat(object array, int index)
         @{
-            return @{GetFloat(object,int):Call(array, index)};
+            return @{GetFloat(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static double getDouble(object array, int index)
         @{
-            return @{GetDouble(object,int):Call(array, index)};
+            return @{GetDouble(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static string getString(object array, int index)
         @{
-            return @{GetString(object,int):Call(array, index)};
+            return @{GetString(object,int):call(array, index)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static object getObject(object array, int index)
         @{
-            return @{GetObject(object,int):Call(array, index)};
+            return @{GetObject(object,int):call(array, index)};
         @}
 
 
@@ -292,134 +292,134 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
         [Foreign(Language.Java), ForeignFixedName]
         public static bool setBool(object array, int index, bool val)
         @{
-            return @{SetBool(object,int,bool):Call(array, index, val)};
+            return @{SetBool(object,int,bool):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static sbyte setByte(object array, int index, sbyte val)
         @{
-            return @{SetByte(object,int,sbyte):Call(array, index, val)};
+            return @{SetByte(object,int,sbyte):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static sbyte setUByte(object array, int index, sbyte val)
         @{
-            return @{SetUByte(object,int,sbyte):Call(array, index, val)};
+            return @{SetUByte(object,int,sbyte):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static char setChar(object array, int index, char val)
         @{
-            return @{SetChar(object,int,char):Call(array, index, val)};
+            return @{SetChar(object,int,char):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static short setShort(object array, int index, short val)
         @{
-            return @{SetShort(object,int,short):Call(array, index, val)};
+            return @{SetShort(object,int,short):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static int setInt(object array, int index, int val)
         @{
-            return @{SetInt(object,int,int):Call(array, index, val)};
+            return @{SetInt(object,int,int):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long setLong(object array, int index, long val)
         @{
-            return @{SetLong(object,int,long):Call(array, index, val)};
+            return @{SetLong(object,int,long):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static float setFloat(object array, int index, float val)
         @{
-            return @{SetFloat(object,int,float):Call(array, index, val)};
+            return @{SetFloat(object,int,float):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static double setDouble(object array, int index, double val)
         @{
-            return @{SetDouble(object,int,double):Call(array, index, val)};
+            return @{SetDouble(object,int,double):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static string setString(object array, int index, string val)
         @{
-            return @{SetString(object,int,string):Call(array, index, val)};
+            return @{SetString(object,int,string):call(array, index, val)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static object setObject(object array, int index, object val)
         @{
-            return @{SetObject(object,int,object):Call(array, index, val)};
+            return @{SetObject(object,int,object):call(array, index, val)};
         @}
 
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyBoolArray(object array)
         @{
-            return @{CopyBoolArray(object):Call(array)};
+            return @{CopyBoolArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyByteArray(object array)
         @{
-            return @{CopyByteArray(object):Call(array)};
+            return @{CopyByteArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyUByteArray(object array)
         @{
-            return @{CopyUByteArray(object):Call(array)};
+            return @{CopyUByteArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyCharArray(object array)
         @{
-            return @{CopyCharArray(object):Call(array)};
+            return @{CopyCharArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyShortArray(object array)
         @{
-            return @{CopyShortArray(object):Call(array)};
+            return @{CopyShortArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyIntArray(object array)
         @{
-            return @{CopyIntArray(object):Call(array)};
+            return @{CopyIntArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyLongArray(object array)
         @{
-            return @{CopyLongArray(object):Call(array)};
+            return @{CopyLongArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyFloatArray(object array)
         @{
-            return @{CopyFloatArray(object):Call(array)};
+            return @{CopyFloatArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyDoubleArray(object array)
         @{
-            return @{CopyDoubleArray(object):Call(array)};
+            return @{CopyDoubleArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyStringArray(object array)
         @{
-            return @{CopyStringArray(object):Call(array)};
+            return @{CopyStringArray(object):call(array)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static Java.Object copyObjectArray(object array)
         @{
-            return @{CopyObjectArray(object):Call(array)};
+            return @{CopyObjectArray(object):call(array)};
         @}
 
 
@@ -427,61 +427,61 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
         [Foreign(Language.Java), ForeignFixedName]
         public static long newBoolArrayPtr(int length)
         @{
-            return @{NewBoolArrayPtr(int):Call(length)};
+            return @{NewBoolArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newByteArrayPtr(int length, bool unoIsUnsigned)
         @{
-            return @{NewByteArrayPtr(int,bool):Call(length, unoIsUnsigned)};
+            return @{NewByteArrayPtr(int,bool):call(length, unoIsUnsigned)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newCharArrayPtr(int length)
         @{
-            return @{NewCharArrayPtr(int):Call(length)};
+            return @{NewCharArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newShortArrayPtr(int length)
         @{
-            return @{NewShortArrayPtr(int):Call(length)};
+            return @{NewShortArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newIntArrayPtr(int length)
         @{
-            return @{NewIntArrayPtr(int):Call(length)};
+            return @{NewIntArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newLongArrayPtr(int length)
         @{
-            return @{NewLongArrayPtr(int):Call(length)};
+            return @{NewLongArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newFloatArrayPtr(int length)
         @{
-            return @{NewFloatArrayPtr(int):Call(length)};
+            return @{NewFloatArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newDoubleArrayPtr(int length)
         @{
-            return @{NewDoubleArrayPtr(int):Call(length)};
+            return @{NewDoubleArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newStringArrayPtr(int length)
         @{
-            return @{NewStringArrayPtr(int):Call(length)};
+            return @{NewStringArrayPtr(int):call(length)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long newObjectArrayPtr(int length)
         @{
-            return @{NewObjectArrayPtr(int):Call(length)};
+            return @{NewObjectArrayPtr(int):call(length)};
         @}
 
         public static long NewBoolArrayPtr(int length)
@@ -563,49 +563,49 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
         [Foreign(Language.Java), ForeignFixedName]
         public static long boolArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{BoolArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{BoolArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long charArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{CharArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{CharArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long byteArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{ByteArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{ByteArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long shortArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{ShortArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{ShortArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long intArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{IntArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{IntArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long longArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{LongArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{LongArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long floatArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{FloatArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{FloatArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         [Foreign(Language.Java), ForeignFixedName]
         public static long doubleArrayToUnoArrayPtr(Java.Object arr)
         @{
-            return @{DoubleArrayToUnoArrayPtr(Java.Object):Call(arr)};
+            return @{DoubleArrayToUnoArrayPtr(Java.Object):call(arr)};
         @}
 
         public static long BoolArrayToUnoArrayPtr(Java.Object jarr)

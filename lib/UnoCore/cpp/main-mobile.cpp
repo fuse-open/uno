@@ -7,23 +7,23 @@
 int uArgc = 0;
 char** uArgv = nullptr;
 
-@(TypeObjects.Declaration:JoinSorted())
+@(typeObjects.declaration:joinSorted())
 void uInitTypes(uType*(*factories[])());
 
 void uInitTypes()
 {
     static uType*(*factories[])() =
     {
-        @(TypeObjects.FunctionPointer:JoinSorted('\n        ', '', ','))
+        @(typeObjects.functionPointer:joinSorted('\n        ', '', ','))
         nullptr
     };
 
     uInitTypes(factories);
 }
 
-@(Main.Include:JoinSorted('\n', '#include <', '>'))
+@(main.include:joinSorted('\n', '#include <', '>'))
 
 void uStartApp()
 {
-    @(Main.Body:Indent(' ', 4))
+    @(main.body:indent(' ', 4))
 }

@@ -1,18 +1,18 @@
 <resources>
-    <style name="AppTheme" parent="@(Project.Android.Theme:IsSet:Test('@android:style/@(Project.Android.Theme)', '@style/Theme.AppCompat.Light'))">
+    <style name="AppTheme" parent="@(project.android.theme:isSet:test('@android:style/@(project.android.theme)', '@style/Theme.AppCompat.Light'))">
         <item name="windowNoTitle">true</item>
 
-#if !@(Project.Mobile.ShowStatusbar)
+#if !@(project.mobile.showStatusbar)
         <item name="android:windowFullscreen">true</item>
 #endif
 
-#if @(Project.Android.Splash.Enabled:Test(1, 0))
-        <item name="android:windowBackground">@drawable/@(Project.Android.Splash.SplashFileName || 'splash_background')</item>
+#if @(project.android.splash.enabled:test(1, 0))
+        <item name="android:windowBackground">@drawable/@(project.android.splash.splashFileName || 'splash_background')</item>
 #else
         <item name="android:windowBackground">@android:color/transparent</item>
 #endif
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsTranslucent">@(Project.Android.WindowIsTranslucent || 'false')</item>
+        <item name="android:windowIsTranslucent">@(project.android.windowIsTranslucent || 'false')</item>
     </style>
 
 </resources>

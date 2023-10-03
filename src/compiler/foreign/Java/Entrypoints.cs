@@ -90,10 +90,10 @@ namespace Uno.Compiler.Foreign.Java
 
         readonly HashSet<string> _externBlockIncludes = new HashSet<string>() {
             "jni.h",
-            "@{Uno.Exception:Include}",
-            "@{global::Android.Base.JNI:Include}",
-            "@{global::Android.Base.Wrappers.JWrapper:Include}",
-            "@{global::Android.Base.Wrappers.JavaObjectHelper:Include}"
+            "@{Uno.Exception:include}",
+            "@{global::Android.Base.JNI:include}",
+            "@{global::Android.Base.Wrappers.JWrapper:include}",
+            "@{global::Android.Base.Wrappers.JavaObjectHelper:include}"
         };
 
         public void Include(DataType dt)
@@ -102,7 +102,7 @@ namespace Uno.Compiler.Foreign.Java
             if (dt.IsArray)
                 Include(dt.ElementType);
             else
-                _externBlockIncludes.Add("@{" + dt.FullName + ":Include}");
+                _externBlockIncludes.Add("@{" + dt.FullName + ":include}");
         }
 
         public void Include(IEnumerable<DataType> types)

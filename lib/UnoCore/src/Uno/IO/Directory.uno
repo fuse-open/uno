@@ -207,7 +207,7 @@ namespace Uno.IO
 
         [extern(DOTNET) DotNetOverride]
         [extern(APPLE) Require("Source.Import", "Foundation/Foundation.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{Path:Include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{Path:include}")]
         internal static string GetBaseDirectory()
         {
             if defined(WIN32)
@@ -216,7 +216,7 @@ namespace Uno.IO
                 DWORD result = GetModuleFileNameW(GetModuleHandle(0), buf, sizeof(buf));
 
                 if (result < sizeof(buf))
-                    return @{Path.GetDirectoryName(string):Call(uString::Utf16((const char16_t*) buf, result))};
+                    return @{Path.GetDirectoryName(string):call(uString::Utf16((const char16_t*) buf, result))};
 
                 U_THROW_IOE("GetModuleFileNameW() buffer overrun");
             @}
@@ -224,7 +224,7 @@ namespace Uno.IO
             @{
                 NSArray* arguments = [[NSProcessInfo processInfo] arguments];
                 NSString* exe = [arguments objectAtIndex:0];
-                return @{Path.GetDirectoryName(string):Call(uString::Utf8([exe UTF8String]))};
+                return @{Path.GetDirectoryName(string):call(uString::Utf8([exe UTF8String]))};
             @}
             else if defined(CPLUSPLUS)
             @{
@@ -234,7 +234,7 @@ namespace Uno.IO
                 snprintf(path, sizeof(path), "/proc/%d/exe", pid);
 
                 if (readlink(path, dest, sizeof(dest)) != -1)
-                    return @{Path.GetDirectoryName(string):Call(uString::Utf8(dest))};
+                    return @{Path.GetDirectoryName(string):call(uString::Utf8(dest))};
 
                 U_THROW_IOE("GetBaseDirectory() failed");
             @}

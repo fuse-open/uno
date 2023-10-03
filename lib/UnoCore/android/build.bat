@@ -4,7 +4,7 @@
 pushd "%~dp0"
 setlocal
 
-#if !@(SDK.Directory:IsSet)
+#if !@(sdk.directory:isSet)
 echo ERROR: Could not locate the Android SDK. >&2
 echo. >&2
 echo This dependency can be acquired by installing 'android-build-tools': >&2
@@ -18,12 +18,12 @@ echo. >&2
 goto ERROR
 #endif
 
-#if @(JDK.Directory:IsSet)
-set JAVA_HOME=@(JDK.Directory:NativePath)
+#if @(jdk.directory:isSet)
+set JAVA_HOME=@(jdk.directory:nativePath)
 #endif
 
 :: Make sure ninja.exe and cmake.exe are in PATH.
-for /D %%D in ("@(SDK.Directory:NativePath)\cmake\*") do (
+for /D %%D in ("@(sdk.directory:nativePath)\cmake\*") do (
     if exist "%%D\bin" (
         echo Using %%D
         set PATH="%%D\bin;%PATH%"
@@ -32,15 +32,15 @@ for /D %%D in ("@(SDK.Directory:NativePath)\cmake\*") do (
 )
 
 :BUILD
-call gradlew @(Gradle.AssembleTask) %* || goto ERROR
+call gradlew @(gradle.assembleTask) %* || goto ERROR
 
-#if @(LIBRARY:Defined)
-copy /Y @(Outputs.AAR:QuoteSpace:Replace('/', '\\')) @(Product:QuoteSpace) || goto ERROR
+#if @(LIBRARY:defined)
+copy /Y @(outputs.aar:quoteSpace:replace('/', '\\')) @(product:quoteSpace) || goto ERROR
 #else
-copy /Y @(Outputs.APK:QuoteSpace:Replace('/', '\\')) @(Product:QuoteSpace) || goto ERROR
-# if !@(DEBUG:Defined)
-call gradlew @(Gradle.BundleTask) %* || goto ERROR
-copy /Y @(Outputs.Bundle:QuoteSpace:Replace('/', '\\')) @(Bundle:QuoteSpace) || goto ERROR
+copy /Y @(outputs.apk:quoteSpace:replace('/', '\\')) @(product:quoteSpace) || goto ERROR
+# if !@(DEBUG:defined)
+call gradlew @(gradle.bundleTask) %* || goto ERROR
+copy /Y @(outputs.bundle:quoteSpace:replace('/', '\\')) @(bundle:quoteSpace) || goto ERROR
 # endif
 #endif
 

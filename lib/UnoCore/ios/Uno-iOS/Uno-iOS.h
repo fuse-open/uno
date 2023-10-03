@@ -1,10 +1,10 @@
 #pragma once
 
-@{Uno.Byte:IncludeDirective}
-@{Uno.Int2:IncludeDirective}
-@{Uno.Float2:IncludeDirective}
-@{Uno.Rect:IncludeDirective}
-@{Uno.Recti:IncludeDirective}
+@{Uno.Byte:includeDirective}
+@{Uno.Int2:includeDirective}
+@{Uno.Float2:includeDirective}
+@{Uno.Rect:includeDirective}
+@{Uno.Recti:includeDirective}
 
 #include <objc/objc.h>
 #include <CoreGraphics/CoreGraphics.h>

@@ -2,8 +2,8 @@
 // @(MSG_EDIT_WARNING)
 
 #include <uno/ObjectModel.h>
-@(Main.IncludeDirective)
-@(TypeObjects.Declaration:JoinSorted())
+@(main.includeDirective)
+@(typeObjects.declaration:joinSorted())
 void uInitTypes(uType*(*factories[])());
 
 // Used by Uno.Environment.GetCommandLineArgs()
@@ -19,10 +19,10 @@ int main(int argc, char* argv[])
     uAutoReleasePool pool;
 
     uType* (*factories[])() = {
-        @(TypeObjects.FunctionPointer:JoinSorted('\n        ', '', ','))
+        @(typeObjects.functionPointer:joinSorted('\n        ', '', ','))
         nullptr
     };
 
     uInitTypes(factories);
-    return @(Main.Entrypoint);
+    return @(main.entrypoint);
 }

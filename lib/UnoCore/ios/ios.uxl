@@ -34,21 +34,21 @@
     <Declare Element="uContext.SourceFile.Declaration" />
     <Declare Element="uContext.SourceFile.DidFinishLaunching" />
 
-    <Set Product="build/@(Pbxproj.Configuration)-iphoneos/@(Project.Name).app/@(Project.Name)" />
-    <Set BundleIdentifier="@(Project.iOS.BundleIdentifier || 'com.apps.@(Project.Name:QIdentifier:Replace('_', '-'):ToLower)')" />
-    <Set Pbxproj.Configuration="@(DEBUG_NATIVE:Defined:Test('Debug', 'Release'))" />
+    <Set Product="build/@(pbxproj.configuration)-iphoneos/@(project.name).app/@(project.name)" />
+    <Set BundleIdentifier="@(project.ios.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" />
+    <Set Pbxproj.Configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
 
     <!-- Project and build scripts -->
 
     <Set Commands.Build="bash build.sh" Condition="HOST_MAC" />
     <Set Commands.Run="bash run.sh" Condition="HOST_MAC" />
 
-    <ProcessFile Name="@(Project.Name).xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
-    <ProcessFile Name="@(Project.Name).xcodeproj/project.pbxproj" />
-    <ProcessFile Name="@(Project.Name)/@(Project.Name)-Info.plist" />
-    <ProcessFile Name="@(Project.Name)/@(Project.Name)-Prefix.pch" />
-    <ProcessFile Name="@(Project.Name)/@(Project.Name).entitlements" />
-    <ProcessFile Name="@(Project.Name)/LaunchScreen.storyboard" />
+    <ProcessFile Name="@(project.name).xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
+    <ProcessFile Name="@(project.name).xcodeproj/project.pbxproj" />
+    <ProcessFile Name="@(project.name)/@(project.name)-Info.plist" />
+    <ProcessFile Name="@(project.name)/@(project.name)-Prefix.pch" />
+    <ProcessFile Name="@(project.name)/@(project.name).entitlements" />
+    <ProcessFile Name="@(project.name)/LaunchScreen.storyboard" />
     <ProcessFile Name="build.sh" IsExecutable="true" />
     <ProcessFile Name="run.sh" IsExecutable="true" />
     <ProcessFile Name="Podfile" Condition="COCOAPODS" />
@@ -56,59 +56,59 @@
     <!-- Icons -->
 
     <!-- Image for Launch Screen Storyboard -->
-    <CopyFile Name="@(Project.iOS.LaunchScreen.Image:Path || '@//assets/icon.png')"
-        TargetName="@(Project.Name)/LaunchScreen.png" />
+    <CopyFile Name="@(project.ios.launchScreen.image:path || '@//assets/icon.png')"
+        TargetName="@(project.name)/LaunchScreen.png" />
 
-    <Set Icons="@(Project.Name)/Images.xcassets/AppIcon.appiconset" />
-    <ProcessFile Name="@(Icons)/Contents.json" />
+    <Set Icons="@(project.name)/Images.xcassets/AppIcon.appiconset" />
+    <ProcessFile Name="@(icons)/Contents.json" />
 
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_20_2x:Path || '@//assets/icon.png')"
-        TargetWidth="40" TargetName="@(Icons)/iPhone_20_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_20_3x:Path || '@//assets/icon.png')"
-        TargetWidth="60" TargetName="@(Icons)/iPhone_20_3x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_29_2x:Path || '@//assets/icon.png')"
-        TargetWidth="58" TargetName="@(Icons)/iPhone_29_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_29_3x:Path || '@//assets/icon.png')"
-        TargetWidth="87" TargetName="@(Icons)/iPhone_29_3x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_40_2x:Path || '@//assets/icon.png')"
-        TargetWidth="80" TargetName="@(Icons)/iPhone_40_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_40_3x:Path || '@//assets/icon.png')"
-        TargetWidth="120" TargetName="@(Icons)/iPhone_40_3x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_60_2x:Path || '@//assets/icon.png')"
-        TargetWidth="120" TargetName="@(Icons)/iPhone_60_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPhone_60_3x:Path || '@//assets/icon.png')"
-        TargetWidth="180" TargetName="@(Icons)/iPhone_60_3x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_20_1x:Path || '@//assets/icon.png')"
-        TargetWidth="20" TargetName="@(Icons)/iPad_20_1x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_20_2x:Path || '@//assets/icon.png')"
-        TargetWidth="40" TargetName="@(Icons)/iPad_20_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_29_1x:Path || '@//assets/icon.png')"
-        TargetWidth="29" TargetName="@(Icons)/iPad_29_1x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_29_2x:Path || '@//assets/icon.png')"
-        TargetWidth="58" TargetName="@(Icons)/iPad_29_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_40_1x:Path || '@//assets/icon.png')"
-        TargetWidth="40" TargetName="@(Icons)/iPad_40_1x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_40_2x:Path || '@//assets/icon.png')"
-        TargetWidth="80" TargetName="@(Icons)/iPad_40_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_76_1x:Path || '@//assets/icon.png')"
-        TargetWidth="76" TargetName="@(Icons)/iPad_76_1x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_76_2x:Path || '@//assets/icon.png')"
-        TargetWidth="152" TargetName="@(Icons)/iPad_76_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iPad_83.5_2x:Path || '@//assets/icon.png')"
-        TargetWidth="167" TargetName="@(Icons)/iPad_83.5_2x.png" />
-    <ImageFile Name="@(Project.iOS.Icons.iOS_Marketing_1024_1x:Path || '@//assets/icon.png')"
-        TargetWidth="1024" TargetName="@(Icons)/iOS_Marketing_1024_1x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_20_2x:path || '@//assets/icon.png')"
+        TargetWidth="40" TargetName="@(icons)/iPhone_20_2x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_20_3x:path || '@//assets/icon.png')"
+        TargetWidth="60" TargetName="@(icons)/iPhone_20_3x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_29_2x:path || '@//assets/icon.png')"
+        TargetWidth="58" TargetName="@(icons)/iPhone_29_2x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_29_3x:path || '@//assets/icon.png')"
+        TargetWidth="87" TargetName="@(icons)/iPhone_29_3x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_40_2x:path || '@//assets/icon.png')"
+        TargetWidth="80" TargetName="@(icons)/iPhone_40_2x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_40_3x:path || '@//assets/icon.png')"
+        TargetWidth="120" TargetName="@(icons)/iPhone_40_3x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_60_2x:path || '@//assets/icon.png')"
+        TargetWidth="120" TargetName="@(icons)/iPhone_60_2x.png" />
+    <ImageFile Name="@(project.ios.icons.iphone_60_3x:path || '@//assets/icon.png')"
+        TargetWidth="180" TargetName="@(icons)/iPhone_60_3x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_20_1x:path || '@//assets/icon.png')"
+        TargetWidth="20" TargetName="@(icons)/iPad_20_1x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_20_2x:path || '@//assets/icon.png')"
+        TargetWidth="40" TargetName="@(icons)/iPad_20_2x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_29_1x:path || '@//assets/icon.png')"
+        TargetWidth="29" TargetName="@(icons)/iPad_29_1x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_29_2x:path || '@//assets/icon.png')"
+        TargetWidth="58" TargetName="@(icons)/iPad_29_2x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_40_1x:path || '@//assets/icon.png')"
+        TargetWidth="40" TargetName="@(icons)/iPad_40_1x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_40_2x:path || '@//assets/icon.png')"
+        TargetWidth="80" TargetName="@(icons)/iPad_40_2x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_76_1x:path || '@//assets/icon.png')"
+        TargetWidth="76" TargetName="@(icons)/iPad_76_1x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_76_2x:path || '@//assets/icon.png')"
+        TargetWidth="152" TargetName="@(icons)/iPad_76_2x.png" />
+    <ImageFile Name="@(project.ios.icons.ipad_83.5_2x:path || '@//assets/icon.png')"
+        TargetWidth="167" TargetName="@(icons)/iPad_83.5_2x.png" />
+    <ImageFile Name="@(project.ios.icons.ios_marketing_1024_1x:path || '@//assets/icon.png')"
+        TargetWidth="1024" TargetName="@(icons)/iOS_Marketing_1024_1x.png" />
 
     <!-- Default plist descriptions -->
 
-    <Set PListDefaults.NSCameraUsageDescription="@(Project.Name) would like to take pictures or recordings with the camera." />
-    <Set PListDefaults.NSMicrophoneUsageDescription="@(Project.Name) uses audio recordings in its user experience." />
-    <Set PListDefaults.NSPhotoLibraryUsageDescription="@(Project.Name) allows importing images from the PhotoLibrary." />
+    <Set PListDefaults.NSCameraUsageDescription="@(project.name) would like to take pictures or recordings with the camera." />
+    <Set PListDefaults.NSMicrophoneUsageDescription="@(project.name) uses audio recordings in its user experience." />
+    <Set PListDefaults.NSPhotoLibraryUsageDescription="@(project.name) allows importing images from the PhotoLibrary." />
 
     <!-- Create schemes for Release build in Xcode -->
 
-    <Set Schemes="@(Project.Name).xcodeproj/xcuserdata/@(LOGNAME:Env).xcuserdatad/xcschemes" />
-    <ProcessFile Name="@(Schemes)/@(Project.Name).xcscheme" Overwrite="false" />
-    <ProcessFile Name="@(Schemes)/xcschememanagement.plist" Overwrite="false" />
+    <Set Schemes="@(project.name).xcodeproj/xcuserdata/@(LOGNAME:env).xcuserdatad/xcschemes" />
+    <ProcessFile Name="@(schemes)/@(project.name).xcscheme" Overwrite="false" />
+    <ProcessFile Name="@(schemes)/xcschememanagement.plist" Overwrite="false" />
 
 </Extensions>

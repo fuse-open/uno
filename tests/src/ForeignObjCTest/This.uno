@@ -15,9 +15,9 @@ namespace ForeignObjCTest
         @{
             /* I'm a comment */
             // Another comment
-            NSString* str = @{This:Of(_this).Field:Get()};
-            @{This:Of(_this).Field:Set([str stringByAppendingString:@"123"])};
-            return @{This:Of(_this).Field:Get()};
+            NSString* str = @{This:of(_this).Field:get()};
+            @{This:of(_this).Field:set([str stringByAppendingString:@"123"])};
+            return @{This:of(_this).Field:get()};
             /* I'm a comment */
             // Another comment
         @}
@@ -41,36 +41,36 @@ namespace ForeignObjCTest
             [Foreign(Language.ObjC)]
             public string Test1()
             @{
-                @{_staticField:Set(@"Test1")};
-                return @{_staticField:Get()};
+                @{_staticField:set(@"Test1")};
+                return @{_staticField:get()};
             @}
 
             [Foreign(Language.ObjC)]
             public string Test2()
             @{
-                @{_staticField:Set(@"Test2")};
+                @{_staticField:set(@"Test2")};
                 return @{_staticField};
             @}
 
             [Foreign(Language.ObjC)]
             public string Test3()
             @{
-                @{ThisField:Of(_this)._someField:Set(@"Test3")};
-                return @{ThisField:Of(_this)._someField:Get()};
+                @{ThisField:of(_this)._someField:set(@"Test3")};
+                return @{ThisField:of(_this)._someField:get()};
             @}
 
             [Foreign(Language.ObjC)]
             public string Test4()
             @{
-                @{ThisField:Of(_this)._someField:Set(@"Test4")};
-                return @{ThisField:Of(_this)._someField};
+                @{ThisField:of(_this)._someField:set(@"Test4")};
+                return @{ThisField:of(_this)._someField};
             @}
 
             [Foreign(Language.ObjC)]
             public string Test5()
             @{
-                @{ThisField:Of(_this)._someProperty:Set(@"Test5")};
-                return @{ThisField:Of(_this)._someProperty:Get()};
+                @{ThisField:of(_this)._someProperty:set(@"Test5")};
+                return @{ThisField:of(_this)._someProperty:get()};
             @}
         }
 

@@ -80,7 +80,7 @@ namespace Uno.Compiler.Foreign.Java
                     ftw.WriteLines(Convert);
                     foreach (var line in TearDown)
                         ftw.WriteLine(line);
-                    ftw.WriteLine("@{global::Android.Base.JNI.CheckException():Call()};");
+                    ftw.WriteLine("@{global::Android.Base.JNI.CheckException():call()};");
                     ftw.WriteLines(Return);
                     ftw.Unindent("}");
                     return tw.ToString();

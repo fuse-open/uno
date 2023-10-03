@@ -1,8 +1,8 @@
 #include <uno.h>
 
-#include <@{Uno.Byte:Include}>
-#include <@{Uno.String:Include}>
-#include <@{Uno.Net.Http.HttpMessageHandlerRequest:Include}>
+#include <@{Uno.Byte:include}>
+#include <@{Uno.String:include}>
+#include <@{Uno.Net.Http.HttpMessageHandlerRequest:include}>
 
 #include <Foundation/Foundation.h>
 
@@ -106,7 +106,7 @@ struct HttpRequest::Private
         [task() cancel];
 
         uAutoReleasePool pool;
-        @{Uno.Net.Http.HttpMessageHandlerRequest:Of(this_->unoRequest_).OnAborted():Call()};
+        @{Uno.Net.Http.HttpMessageHandlerRequest:of(this_->unoRequest_).OnAborted():call()};
     }
 
     void Completed(NSData *data, NSHTTPURLResponse *response, NSError *error)
@@ -117,7 +117,7 @@ struct HttpRequest::Private
 
         if (data && data.length)
         {
-            switch (@{Uno.Net.Http.HttpMessageHandlerRequest:Of(this_->unoRequest_).HttpResponseType:Get()})
+            switch (@{Uno.Net.Http.HttpMessageHandlerRequest:of(this_->unoRequest_).HttpResponseType:get()})
             {
                 case @{Uno.Net.Http.HttpResponseType.String}:       // String
                     this_->responseContent_ = uString::Utf8(
@@ -126,7 +126,7 @@ struct HttpRequest::Private
 
                 case @{Uno.Net.Http.HttpResponseType.ByteArray}:    // ByteArray
                     this_->responseContent_ = uArray::New(
-                        @{byte:TypeOf}->Array(), (int) data.length, data.bytes);
+                        @{byte:typeof}->Array(), (int) data.length, data.bytes);
                     break;
 
                 default:
@@ -139,17 +139,17 @@ struct HttpRequest::Private
             if (error.code == NSURLErrorTimedOut
                     && [error.domain isEqualToString:NSURLErrorDomain])
             {
-                @{Uno.Net.Http.HttpMessageHandlerRequest:Of(this_->unoRequest_).OnTimeout():Call()};
+                @{Uno.Net.Http.HttpMessageHandlerRequest:of(this_->unoRequest_).OnTimeout():call()};
             }
             else
             {
                 uString *message = NSString2uString(error.localizedDescription);
-                @{Uno.Net.Http.HttpMessageHandlerRequest:Of(this_->unoRequest_).OnError(string):Call(message)};
+                @{Uno.Net.Http.HttpMessageHandlerRequest:of(this_->unoRequest_).OnError(string):call(message)};
             }
         }
         else
         {
-            @{Uno.Net.Http.HttpMessageHandlerRequest:Of(this_->unoRequest_).OnDone():Call()};
+            @{Uno.Net.Http.HttpMessageHandlerRequest:of(this_->unoRequest_).OnDone():call()};
         }
     }
 
@@ -295,13 +295,13 @@ uString *HttpRequest::GetResponseHeaders() const
 uString *HttpRequest::GetResponseContentString() const
 {
     return uAs< uString *>(
-        (uObject *&)responseContent_, @{string:TypeOf});
+        (uObject *&)responseContent_, @{string:typeof});
 }
 
 uArray *HttpRequest::GetResponseContentByteArray() const
 {
     return uAs< uArray *>(
-        (uObject *&)responseContent_, @{byte[]:TypeOf});
+        (uObject *&)responseContent_, @{byte[]:typeof});
 }
 
 }}}} // namespace Uno::Net::Http::Implementation::iOS

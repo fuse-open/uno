@@ -6,12 +6,12 @@
 #include <uDroid/GLHelper.h>
 #include <uDroid/JNIHelper.h>
 
-@{Android.Base.JNI:IncludeDirective}
-@{Uno.Platform.CoreApp:IncludeDirective}
-@{Uno.Platform.TimerEventArgs:IncludeDirective}
-@{Uno.Platform.EventSources.HardwareKeys:IncludeDirective}
-@{Uno.Platform.EventSources.InterAppInvoke:IncludeDirective}
-@{Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost:IncludeDirective}
+@{Android.Base.JNI:includeDirective}
+@{Uno.Platform.CoreApp:includeDirective}
+@{Uno.Platform.TimerEventArgs:includeDirective}
+@{Uno.Platform.EventSources.HardwareKeys:includeDirective}
+@{Uno.Platform.EventSources.InterAppInvoke:includeDirective}
+@{Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost:includeDirective}
 
 //void uStartApp();
 
@@ -21,12 +21,12 @@ extern "C"
 {
     void JNICALL cppOnReceiveURI (JNIEnv* env , jobject obj, jstring data)
     {
-        data = (jstring)@{Android.Base.JNI.NewGlobalRef(Android.Base.Primitives.ujobject):Call((jobject)data)};
+        data = (jstring)@{Android.Base.JNI.NewGlobalRef(Android.Base.Primitives.ujobject):call((jobject)data)};
         uAutoReleasePool pool;
         @{string} unoUri = JniHelper::JavaToUnoString(data);
         JniHelper jni;
         jni->DeleteGlobalRef(data);
-        @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):Call(unoUri)};
+        @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call(unoUri)};
     }
 }
 
@@ -37,7 +37,7 @@ extern "C"
     bool JNICALL cppOnKeyUp (JNIEnv* env, jobject obj, jint key)
     {
         uAutoReleasePool pool;
-        return @{Uno.Platform.EventSources.HardwareKeys.OnKeyUp(Uno.Platform.Key,Uno.Platform.EventModifiers):Call(key,0)};
+        return @{Uno.Platform.EventSources.HardwareKeys.OnKeyUp(Uno.Platform.Key,Uno.Platform.EventModifiers):call(key,0)};
     }
 }
 
@@ -48,7 +48,7 @@ extern "C"
     bool JNICALL cppOnKeyDown (JNIEnv* env, jobject obj, jint key)
     {
         uAutoReleasePool pool;
-        return @{Uno.Platform.EventSources.HardwareKeys.OnKeyDown(Uno.Platform.Key,Uno.Platform.EventModifiers):Call(key,0)};
+        return @{Uno.Platform.EventSources.HardwareKeys.OnKeyDown(Uno.Platform.Key,Uno.Platform.EventModifiers):call(key,0)};
     }
 }
 
@@ -62,9 +62,9 @@ extern "C"
 
         try
         {
-            @{Android.Base.JNI.Init(Android.Base.Primitives.ujobject):Call(activity)};
-            @{Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost.RegisterFunctions():Call()};
-            @{Uno.Platform.CoreApp.Start():Call()};
+            @{Android.Base.JNI.Init(Android.Base.Primitives.ujobject):call(activity)};
+            @{Uno.Compiler.ExportTargetInterop.Foreign.Android.ExternBlockHost.RegisterFunctions():call()};
+            @{Uno.Platform.CoreApp.Start():call()};
         }
         catch (const uThrowable& t)
         {
@@ -108,7 +108,7 @@ extern "C"
     void JNICALL cppOnResume(JNIEnv *env , jobject obj)
     {
          uAutoReleasePool pool;
-         @{Uno.Platform.CoreApp.EnterForeground():Call()};
+         @{Uno.Platform.CoreApp.EnterForeground():call()};
     }
 }
 
@@ -119,7 +119,7 @@ extern "C"
     void JNICALL cppOnPause(JNIEnv *env , jobject obj)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.EnterBackground():Call()};
+        @{Uno.Platform.CoreApp.EnterBackground():call()};
     }
 }
 
@@ -130,7 +130,7 @@ extern "C"
     void JNICALL cppOnDestroy(JNIEnv *env , jobject obj)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.Terminate():Call()};
+        @{Uno.Platform.CoreApp.Terminate():call()};
         // {NOTE} We dont call GLHelper::DeInitGL() here as there is no reliable way to
         //        tell if it really is a destory or if we are going to get ressurected
         //        and we really want to survive that with gl intact if possible
@@ -144,7 +144,7 @@ extern "C"
     void JNICALL cppOnLowMemory(JNIEnv *env , jobject obj)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.OnReceivedLowMemoryWarning():Call()};
+        @{Uno.Platform.CoreApp.OnReceivedLowMemoryWarning():call()};
     }
 }
 
@@ -157,9 +157,9 @@ extern "C"
         uAutoReleasePool pool;
         if ((bool)hasFocus)
         {
-            @{Uno.Platform.CoreApp.EnterInteractive():Call()};
+            @{Uno.Platform.CoreApp.EnterInteractive():call()};
         } else {
-            @{Uno.Platform.CoreApp.ExitInteractive():Call()};
+            @{Uno.Platform.CoreApp.ExitInteractive():call()};
         }
     }
 }
@@ -205,7 +205,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
         U_LOG("&&&&&&& GetEnv failed &&&&&&");
         return -1;
     }
-    jclass activityClass = env->FindClass("@(Activity.Package:Replace('.', '/'))/@(Activity.Name)");
+    jclass activityClass = env->FindClass("@(activity.package:replace('.', '/'))/@(activity.name)");
     jclass entryPointsClass = env->FindClass("com/fuse/ActivityNativeEntryPoints");
     jclass nativeExternClass = env->FindClass("com/foreign/ExternedBlockHost");
 
@@ -220,7 +220,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     JniHelper::Init(vm, env, activityClass, nativeExternClass);
     uBase::BaseLib::Init();
     Xli::PlatformSpecific::Android::PostInit();
-    Xli::PlatformSpecific::Android::SetLogTag("@(Activity.Name)");
+    Xli::PlatformSpecific::Android::SetLogTag("@(activity.name)");
 
 
     // java callbacks

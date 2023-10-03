@@ -96,7 +96,7 @@ namespace Uno
             uString* s = uString::New($$->_length);
 
             for (int i = 0; i < $$->_length; i++)
-                s->_ptr[i] = @{Char.ToLower(char):Call($$->_ptr[i])};
+                s->_ptr[i] = @{Char.ToLower(char):call($$->_ptr[i])};
 
             return s;
         @}
@@ -106,7 +106,7 @@ namespace Uno
             uString* s = uString::New($$->_length);
 
             for (int i = 0; i < $$->_length; i++)
-                s->_ptr[i] = @{Char.ToUpper(char):Call($$->_ptr[i])};
+                s->_ptr[i] = @{Char.ToUpper(char):call($$->_ptr[i])};
 
             return s;
         @}

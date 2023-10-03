@@ -1,16 +1,16 @@
 ﻿<Extensions Backend="CPlusPlus" Condition="ANDROID">
     <Using Namespace="Android.com.fuse.ExperimentalHttp" />
     <Type Name="HttpRequest">
-        <Require Source.Include="@{Android.Base.AndroidBindingMacros:Include}" />
-        <Require Android.Bindings.Bootstrapper.Include="#include <@{Android.com.fuse.ExperimentalHttp.HttpRequest:Include}>" />
-        <Require Android.Bindings.Bootstrapper.Statement="@{Android.Base.Types.Bridge.RegisterUnoType(Android.Base.Primitives.ConstCharPtr,int,Uno.Type):Call(&quot;com.fuse.ExperimentalHttp.HttpRequest&quot;,37,@{Android.com.fuse.ExperimentalHttp.HttpRequest:TypeOf})};" />
-        <Require Source.Include="@{Android.Base.Wrappers.JWrapper:Include}" />
-        <Require Source.Include="@{Android.Base.JNI:Include}" />
-        <Require Source.Include="@{Uno.Exception:Include}" />
+        <Require Source.Include="@{Android.Base.AndroidBindingMacros:include}" />
+        <Require Android.Bindings.Bootstrapper.Include="#include <@{Android.com.fuse.ExperimentalHttp.HttpRequest:include}>" />
+        <Require Android.Bindings.Bootstrapper.Statement="@{Android.Base.Types.Bridge.RegisterUnoType(Android.Base.Primitives.ConstCharPtr,int,Uno.Type):call(&quot;com.fuse.ExperimentalHttp.HttpRequest&quot;,37,@{Android.com.fuse.ExperimentalHttp.HttpRequest:typeof})};" />
+        <Require Source.Include="@{Android.Base.Wrappers.JWrapper:include}" />
+        <Require Source.Include="@{Android.Base.JNI:include}" />
+        <Require Source.Include="@{Uno.Exception:include}" />
         <Method Signature="HttpResponseTypeNone_GET_44276():int">
             <Body>
 INIT_JNI;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 if (uEnterCriticalIfNull(&@{HttpResponseTypeNone_44276_ID})) {
     CACHE_FIELD(@{HttpResponseTypeNone_44276_ID},@{_javaClass},"HttpResponseTypeNone","I",GetStaticFieldID,"Id for field HttpRequest.HttpResponseTypeNone could not be cached",65);
     uExitCritical();
@@ -24,7 +24,7 @@ return result;
         <Method Signature="HttpResponseTypeString_GET_44277():int">
             <Body>
 INIT_JNI;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 if (uEnterCriticalIfNull(&@{HttpResponseTypeString_44277_ID})) {
     CACHE_FIELD(@{HttpResponseTypeString_44277_ID},@{_javaClass},"HttpResponseTypeString","I",GetStaticFieldID,"Id for field HttpRequest.HttpResponseTypeString could not be cached",67);
     uExitCritical();
@@ -38,7 +38,7 @@ return result;
         <Method Signature="HttpResponseTypeByteArray_GET_44278():int">
             <Body>
 INIT_JNI;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 if (uEnterCriticalIfNull(&@{HttpResponseTypeByteArray_44278_ID})) {
     CACHE_FIELD(@{HttpResponseTypeByteArray_44278_ID},@{_javaClass},"HttpResponseTypeByteArray","I",GetStaticFieldID,"Id for field HttpRequest.HttpResponseTypeByteArray could not be cached",70);
     uExitCritical();
@@ -52,12 +52,12 @@ return result;
         <Method Signature="InstallCache_IMPL_44279(Android.Base.Wrappers.IJWrapper,long):bool">
             <Body>
 INIT_JNI;
-jobject _obArg0 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
+jobject _obArg0 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($0)._GetJavaObject():call()});
 @{bool} result;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{InstallCache_44279_ID},@{_javaClass},"InstallCache","(Landroid/app/Activity;J)Z",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.InstallCache could not be cached",93);
 result = ((@{bool})U_JNIVAR->CallStaticBooleanMethod(@{_javaClass}, @{InstallCache_44279_ID}, _obArg0, ((jlong)$1)));
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 return result;
 
@@ -66,11 +66,11 @@ return result;
         <Method Signature="CacheRenew_IMPL_44280(Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg0 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg0 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($0)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{CacheRenew_44280_ID},@{_javaClass},"CacheRenew","(Landroid/app/Activity;)V",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheRenew could not be cached",91);
 U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheRenew_44280_ID}, _obArg0);
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -79,10 +79,10 @@ U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheRenew_44280_ID}, _obArg0);
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{CacheClose_44281_ID},@{_javaClass},"CacheClose","()V",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheClose could not be cached",91);
 U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheClose_44281_ID});
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -91,10 +91,10 @@ U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheClose_44281_ID});
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{CacheDelete_44282_ID},@{_javaClass},"CacheDelete","()V",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheDelete could not be cached",92);
 U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheDelete_44282_ID});
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -103,41 +103,41 @@ U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheDelete_44282_ID});
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{CacheFlush_44283_ID},@{_javaClass},"CacheFlush","()V",GetStaticMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheFlush could not be cached",91);
 U_JNIVAR->CallStaticVoidMethod(@{_javaClass}, @{CacheFlush_44283_ID});
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
         </Method>
         <Method Signature="HttpRequest_IMPL_44284(Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper):Android.Base.Primitives.ujobject">
-            <ProcessFile Name="Android_com_fuse_ExperimentalHttp_HttpRequest.java" TargetName="@(Java.SourceDirectory)/com/foreign/Android_com_fuse_ExperimentalHttp_HttpRequest.java" />
-            <ProcessFile Name="HttpRequest.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/HttpRequest.java" />
-            <ProcessFile Name="PRNGFixes.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/PRNGFixes.java" />
-            <ProcessFile Name="UploadTask.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/UploadTask.java" />
-            <ProcessFile Name="DownloadTask.java" TargetName="@(Java.SourceDirectory)/com/fuse/ExperimentalHttp/DownloadTask.java" />
+            <ProcessFile Name="Android_com_fuse_ExperimentalHttp_HttpRequest.java" TargetName="@(java.sourceDirectory)/com/foreign/Android_com_fuse_ExperimentalHttp_HttpRequest.java" />
+            <ProcessFile Name="HttpRequest.java" TargetName="@(java.sourceDirectory)/com/fuse/ExperimentalHttp/HttpRequest.java" />
+            <ProcessFile Name="PRNGFixes.java" TargetName="@(java.sourceDirectory)/com/fuse/ExperimentalHttp/PRNGFixes.java" />
+            <ProcessFile Name="UploadTask.java" TargetName="@(java.sourceDirectory)/com/fuse/ExperimentalHttp/UploadTask.java" />
+            <ProcessFile Name="DownloadTask.java" TargetName="@(java.sourceDirectory)/com/fuse/ExperimentalHttp/DownloadTask.java" />
             <Body>
 INIT_JNI;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{HttpRequest_44284_ID_c},@{_javaClass},"<init>","(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.<init> could not be cached",87);
 if ($0) {
-    CLASS_INIT(@{_javaProxyClass},@{_InitProxy():Call()});
+    CLASS_INIT(@{_javaProxyClass},@{_InitProxy():call()});
     CACHE_METHOD(@{HttpRequest_44284_ID_c_prox},@{_javaProxyClass},"<init>","(JLandroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V",GetMethodID,"Proxy Id for method Android_com_fuse_ExperimentalHttp_HttpRequest.HttpRequest_44284_ID_c_prox could not be cached",113);
 }
-jobject _obArg1 = ((!$1) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($1)._GetJavaObject():Call()});
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
+jobject _obArg1 = ((!$1) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($1)._GetJavaObject():call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($3)._GetJavaObject():call()});
 jobject result;
 jobject _tmp;
 if (!$0) {
     _tmp = U_JNIVAR->NewObject(@{_javaClass}, @{HttpRequest_44284_ID_c}, _obArg1, _obArg2, _obArg3);
     result = NEW_GLOBAL_REF(jobject,_tmp);
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 } else {
         _tmp = U_JNIVAR->NewObject(@{_javaProxyClass}, @{HttpRequest_44284_ID_c_prox}, (jlong)$0->__weakptr, _obArg1, _obArg2, _obArg3);
     result = NEW_GLOBAL_REF(jobject,_tmp);
-    @{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+    @{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 }
 
 U_JNIVAR->DeleteLocalRef(_tmp);
@@ -149,7 +149,7 @@ return result;
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SetResponseType_44292_ID},@{_javaClass},"SetResponseType","(I)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SetResponseType could not be cached",96);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SetResponseType_44292_ID}, ((jint)$2));
@@ -158,7 +158,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SetResponseType_44292_ID}, ((jint)$2));
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -166,9 +166,9 @@ else
         <Method Signature="SetHeader_IMPL_44293(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($3)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SetHeader_44293_ID},@{_javaClass},"SetHeader","(Ljava/lang/String;Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SetHeader could not be cached",90);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SetHeader_44293_ID}, _obArg2, _obArg3);
@@ -177,7 +177,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SetHeader_44293_ID}, _obArg2, _obArg3);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -186,7 +186,7 @@ else
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SetTimeout_44294_ID},@{_javaClass},"SetTimeout","(I)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SetTimeout could not be cached",91);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SetTimeout_44294_ID}, ((jint)$2));
@@ -195,7 +195,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SetTimeout_44294_ID}, ((jint)$2));
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -204,7 +204,7 @@ else
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SetCaching_44295_ID},@{_javaClass},"SetCaching","(Z)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SetCaching could not be cached",91);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SetCaching_44295_ID}, ((jboolean)$2));
@@ -213,7 +213,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SetCaching_44295_ID}, ((jboolean)$2));
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -221,8 +221,8 @@ else
         <Method Signature="CacheResponseString_IMPL_44296(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{CacheResponseString_44296_ID},@{_javaClass},"CacheResponseString","(Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.CacheResponseString could not be cached",100);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{CacheResponseString_44296_ID}, _obArg2);
@@ -231,7 +231,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{CacheResponseString_44296_ID}, _obArg2);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -241,16 +241,16 @@ else
 INIT_JNI;
 
 @{Android.Base.Wrappers.IJWrapper} result;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{GetResponseString_44297_ID},@{_javaClass},"GetResponseString","()Ljava/lang/String;",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.GetResponseString could not be cached",98);
 if ($0) {
-    NEW_UNO(U_JNIVAR->CallNonvirtualObjectMethod($1, @{_javaClass}, @{GetResponseString_44297_ID}),result,@{Android.Base.Wrappers.JWrapper:TypeOf},@{Android.Base.Wrappers.JWrapper},false,false);
+    NEW_UNO(U_JNIVAR->CallNonvirtualObjectMethod($1, @{_javaClass}, @{GetResponseString_44297_ID}),result,@{Android.Base.Wrappers.JWrapper:typeof},@{Android.Base.Wrappers.JWrapper},false,false);
 }
 else
 {
-    NEW_UNO(U_JNIVAR->CallObjectMethod($1, @{GetResponseString_44297_ID}),result,@{Android.Base.Wrappers.JWrapper:TypeOf},@{Android.Base.Wrappers.JWrapper},false,false);
+    NEW_UNO(U_JNIVAR->CallObjectMethod($1, @{GetResponseString_44297_ID}),result,@{Android.Base.Wrappers.JWrapper:typeof},@{Android.Base.Wrappers.JWrapper},false,false);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 return result;
 
@@ -260,7 +260,7 @@ return result;
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SendAsync_44299_ID},@{_javaClass},"SendAsync","()V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SendAsync could not be cached",90);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SendAsync_44299_ID});
@@ -269,7 +269,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SendAsync_44299_ID});
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -277,8 +277,8 @@ else
         <Method Signature="SendAsyncBuf_IMPL_44300(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SendAsyncBuf_44300_ID},@{_javaClass},"SendAsyncBuf","(Ljava/nio/ByteBuffer;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SendAsyncBuf could not be cached",93);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SendAsyncBuf_44300_ID}, _obArg2);
@@ -287,7 +287,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SendAsyncBuf_44300_ID}, _obArg2);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -295,8 +295,8 @@ else
         <Method Signature="SendAsyncStr_IMPL_44301(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{SendAsyncStr_44301_ID},@{_javaClass},"SendAsyncStr","(Ljava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.SendAsyncStr could not be cached",93);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{SendAsyncStr_44301_ID}, _obArg2);
@@ -305,7 +305,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{SendAsyncStr_44301_ID}, _obArg2);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -313,10 +313,10 @@ else
         <Method Signature="UploadDone_IMPL_44302(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper,Android.Base.Wrappers.IJWrapper,int,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($3)._GetJavaObject():Call()});
-jobject _obArg5 = ((!$5) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($5)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+jobject _obArg3 = ((!$3) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($3)._GetJavaObject():call()});
+jobject _obArg5 = ((!$5) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($5)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{UploadDone_44302_ID},@{_javaClass},"UploadDone","(Ljava/io/BufferedInputStream;Ljava/util/HashMap;ILjava/lang/String;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.UploadDone could not be cached",91);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{UploadDone_44302_ID}, _obArg2, _obArg3, ((jint)$4), _obArg5);
@@ -325,7 +325,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{UploadDone_44302_ID}, _obArg2, _obArg3, ((jint)$4), _obArg5);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -334,7 +334,7 @@ else
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{DownloadDone_44303_ID},@{_javaClass},"DownloadDone","()V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.DownloadDone could not be cached",93);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{DownloadDone_44303_ID});
@@ -343,7 +343,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{DownloadDone_44303_ID});
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -351,8 +351,8 @@ else
         <Method Signature="StartDownload_IMPL_44304(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper)">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{StartDownload_44304_ID},@{_javaClass},"StartDownload","(Ljava/io/InputStream;)V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.StartDownload could not be cached",94);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{StartDownload_44304_ID}, _obArg2);
@@ -361,7 +361,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{StartDownload_44304_ID}, _obArg2);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -370,7 +370,7 @@ else
             <Body>
 INIT_JNI;
 
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{Abort_44305_ID},@{_javaClass},"Abort","()V",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.Abort could not be cached",86);
 if ($0) {
     U_JNIVAR->CallNonvirtualVoidMethod($1, @{_javaClass}, @{Abort_44305_ID});
@@ -379,7 +379,7 @@ else
 {
     U_JNIVAR->CallVoidMethod($1, @{Abort_44305_ID});
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 
 </Body>
@@ -389,7 +389,7 @@ else
 INIT_JNI;
 
 @{int} result;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{GetResponseStatus_44306_ID},@{_javaClass},"GetResponseStatus","()I",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.GetResponseStatus could not be cached",98);
 if ($0) {
     result = ((@{int})U_JNIVAR->CallNonvirtualIntMethod($1, @{_javaClass}, @{GetResponseStatus_44306_ID}));
@@ -398,7 +398,7 @@ else
 {
     result = ((@{int})U_JNIVAR->CallIntMethod($1, @{GetResponseStatus_44306_ID}));
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 return result;
 
@@ -407,18 +407,18 @@ return result;
         <Method Signature="GetResponseHeader_IMPL_44307(bool,Android.Base.Primitives.ujobject,Android.Base.Wrappers.IJWrapper):Android.Base.Wrappers.IJWrapper">
             <Body>
 INIT_JNI;
-jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($2)._GetJavaObject():Call()});
+jobject _obArg2 = ((!$2) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($2)._GetJavaObject():call()});
 @{Android.Base.Wrappers.IJWrapper} result;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{GetResponseHeader_44307_ID},@{_javaClass},"GetResponseHeader","(Ljava/lang/String;)Ljava/lang/String;",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.GetResponseHeader could not be cached",98);
 if ($0) {
-    NEW_UNO(U_JNIVAR->CallNonvirtualObjectMethod($1, @{_javaClass}, @{GetResponseHeader_44307_ID}, _obArg2),result,@{Android.Base.Wrappers.JWrapper:TypeOf},@{Android.Base.Wrappers.JWrapper},false,false);
+    NEW_UNO(U_JNIVAR->CallNonvirtualObjectMethod($1, @{_javaClass}, @{GetResponseHeader_44307_ID}, _obArg2),result,@{Android.Base.Wrappers.JWrapper:typeof},@{Android.Base.Wrappers.JWrapper},false,false);
 }
 else
 {
-    NEW_UNO(U_JNIVAR->CallObjectMethod($1, @{GetResponseHeader_44307_ID}, _obArg2),result,@{Android.Base.Wrappers.JWrapper:TypeOf},@{Android.Base.Wrappers.JWrapper},false,false);
+    NEW_UNO(U_JNIVAR->CallObjectMethod($1, @{GetResponseHeader_44307_ID}, _obArg2),result,@{Android.Base.Wrappers.JWrapper:typeof},@{Android.Base.Wrappers.JWrapper},false,false);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 return result;
 
@@ -429,16 +429,16 @@ return result;
 INIT_JNI;
 
 @{Android.Base.Wrappers.IJWrapper} result;
-CLASS_INIT(@{_javaClass},@{_Init():Call()});
+CLASS_INIT(@{_javaClass},@{_Init():call()});
 CACHE_METHOD(@{GetResponseHeaders_44308_ID},@{_javaClass},"GetResponseHeaders","()Ljava/lang/String;",GetMethodID,"Id for fallback method com.fuse.ExperimentalHttp.HttpRequest.GetResponseHeaders could not be cached",99);
 if ($0) {
-    NEW_UNO(U_JNIVAR->CallNonvirtualObjectMethod($1, @{_javaClass}, @{GetResponseHeaders_44308_ID}),result,@{Android.Base.Wrappers.JWrapper:TypeOf},@{Android.Base.Wrappers.JWrapper},false,false);
+    NEW_UNO(U_JNIVAR->CallNonvirtualObjectMethod($1, @{_javaClass}, @{GetResponseHeaders_44308_ID}),result,@{Android.Base.Wrappers.JWrapper:typeof},@{Android.Base.Wrappers.JWrapper},false,false);
 }
 else
 {
-    NEW_UNO(U_JNIVAR->CallObjectMethod($1, @{GetResponseHeaders_44308_ID}),result,@{Android.Base.Wrappers.JWrapper:TypeOf},@{Android.Base.Wrappers.JWrapper},false,false);
+    NEW_UNO(U_JNIVAR->CallObjectMethod($1, @{GetResponseHeaders_44308_ID}),result,@{Android.Base.Wrappers.JWrapper:typeof},@{Android.Base.Wrappers.JWrapper},false,false);
 }
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 
 return result;
 
@@ -462,7 +462,7 @@ return false;
 if (@{_javaClass}) { return; }
 INIT_JNI;
 @{_javaClass} = NEW_GLOBAL_REF(jclass,LOAD_SYS_CLASS("com/fuse/ExperimentalHttp/HttpRequest"));
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 if (!@{_javaClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'com.fuse.ExperimentalHttp.HttpRequest'", 61);; }
 
 
@@ -472,30 +472,30 @@ if (!@{_javaClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'com.fuse.Exper
             <Body>
 if (@{_javaProxyClass}) { return; }
 INIT_JNI;
-@{_javaProxyClass} = NEW_GLOBAL_REF(jclass,@{Android.Base.JNI.LoadClass(Android.Base.Primitives.JNIEnvPtr,Android.Base.Primitives.ConstCharPtr):Call(jni, "com.foreign.Android_com_fuse_ExperimentalHttp_HttpRequest")});
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{_javaProxyClass} = NEW_GLOBAL_REF(jclass,@{Android.Base.JNI.LoadClass(Android.Base.Primitives.JNIEnvPtr,Android.Base.Primitives.ConstCharPtr):call(jni, "com.foreign.Android_com_fuse_ExperimentalHttp_HttpRequest")});
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 if (!@{_javaProxyClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'Android_com_fuse_ExperimentalHttp_HttpRequest'", 69);; }
 
 BEGIN_REG_MTD(7);
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):isStripped}
 REG_MTD(0,"__n_OnDataReceived","(J[BIJJ)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnDataReceived44285);
 #endif
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnAborted():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnAborted():isStripped}
 REG_MTD(1,"__n_OnAborted","(J)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnAborted44286);
 #endif
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnError(Android.Base.Wrappers.IJWrapper):IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnError(Android.Base.Wrappers.IJWrapper):isStripped}
 REG_MTD(2,"__n_OnError","(JLjava/lang/String;J)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnError44287);
 #endif
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnTimeout():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnTimeout():isStripped}
 REG_MTD(3,"__n_OnTimeout","(J)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnTimeout44288);
 #endif
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDone():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDone():isStripped}
 REG_MTD(4,"__n_OnDone","(J)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnDone44289);
 #endif
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnHeadersReceived():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnHeadersReceived():isStripped}
 REG_MTD(5,"__n_OnHeadersReceived","(J)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnHeadersReceived44290);
 #endif
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnProgress(int,int,bool):IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnProgress(int,int,bool):isStripped}
 REG_MTD(6,"__n_OnProgress","(JIIZJJJ)V",::Android_com_fuse_ExperimentalHttp_HttpRequest__OnProgress44291);
 #endif
 COMMIT_REG_MTD(@{_javaProxyClass});
@@ -503,70 +503,70 @@ COMMIT_REG_MTD(@{_javaProxyClass});
 </Body>
         </Method>
         <Require Source.Declaration>
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnDataReceived44285,jlong ujPtr, jobject arg0, jint arg1, jlong arg2, jlong arg3) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
 
-    JARG_TO_UNO(arg2,@{Android.Base.Wrappers.IJWrapper},((@{Android.Base.Wrappers.JWrapper})@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool,bool):New(arg0,(@{Uno.Type})@{Android.Base.Wrappers.JWrapper:TypeOf}, false, false, true)}));
+    JARG_TO_UNO(arg2,@{Android.Base.Wrappers.IJWrapper},((@{Android.Base.Wrappers.JWrapper})@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool,bool):new(arg0,(@{Uno.Type})@{Android.Base.Wrappers.JWrapper:typeof}, false, false, true)}));
 
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnDataReceived(Android.Base.Wrappers.IJWrapper,int):Call(tmparg2, ((@{int})arg1))};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnDataReceived(Android.Base.Wrappers.IJWrapper,int):call(tmparg2, ((@{int})arg1))};
 
     JCATCH
 }
 #endif
 
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnAborted():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnAborted():isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnAborted44286,jlong ujPtr) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnAborted():Call()};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnAborted():call()};
     JCATCH
 }
 #endif
 
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnError(Android.Base.Wrappers.IJWrapper):IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnError(Android.Base.Wrappers.IJWrapper):isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnError44287,jlong ujPtr, jobject arg0, jlong arg1) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
-    JARG_TO_UNO(arg1,@{Android.Base.Wrappers.IJWrapper},((@{Android.Base.Wrappers.JWrapper})@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool,bool):New(arg0,(@{Uno.Type})@{Android.Base.Wrappers.JWrapper:TypeOf}, false, false, true)}));
+    JARG_TO_UNO(arg1,@{Android.Base.Wrappers.IJWrapper},((@{Android.Base.Wrappers.JWrapper})@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool,bool):new(arg0,(@{Uno.Type})@{Android.Base.Wrappers.JWrapper:typeof}, false, false, true)}));
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnError(Android.Base.Wrappers.IJWrapper):Call(tmparg1)};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnError(Android.Base.Wrappers.IJWrapper):call(tmparg1)};
     JCATCH
 }
 #endif
 
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnTimeout():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnTimeout():isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnTimeout44288,jlong ujPtr) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnTimeout():Call()};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnTimeout():call()};
     JCATCH
 }
 #endif
 
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDone():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDone():isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnDone44289,jlong ujPtr) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnDone():Call()};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnDone():call()};
     JCATCH
 }
 #endif
 
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnHeadersReceived():IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnHeadersReceived():isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnHeadersReceived44290,jlong ujPtr) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnHeadersReceived():Call()};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnHeadersReceived():call()};
     JCATCH
 }
 #endif
 
-#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnProgress(int,int,bool):IsStripped}
+#if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnProgress(int,int,bool):isStripped}
 JNFUN(void,Android_com_fuse_ExperimentalHttp_HttpRequest__OnProgress44291,jlong ujPtr, jint arg0, jint arg1, jboolean arg2, jlong arg3, jlong arg4, jlong arg5) {
     INITCALLBACK(uPtr,@{Android.com.fuse.ExperimentalHttp.HttpRequest});
     JTRY
-    @{Android.com.fuse.ExperimentalHttp.HttpRequest:Of(uPtr).OnProgress(int,int,bool):Call(((@{int})arg0), ((@{int})arg1), ((@{bool})arg2))};
+    @{Android.com.fuse.ExperimentalHttp.HttpRequest:of(uPtr).OnProgress(int,int,bool):call(((@{int})arg0), ((@{int})arg1), ((@{bool})arg2))};
     JCATCH
 }
 #endif

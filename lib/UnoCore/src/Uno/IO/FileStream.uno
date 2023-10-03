@@ -18,14 +18,14 @@ namespace Uno.IO
             @{
                 FILE* retval;
                 if (_wfopen_s(&retval, (const wchar_t*) $0->Ptr(), (const wchar_t*) $1->Ptr()) != 0)
-                    @{Throw(string):Call($0)};
+                    @{Throw(string):call($0)};
                 return retval;
             @}
             else
             @{
                 FILE* retval = fopen(uCString($0).Ptr, uCString($1).Ptr);
                 if (!retval)
-                    @{Throw(string):Call($0)};
+                    @{Throw(string):call($0)};
                 return retval;
             @}
         }

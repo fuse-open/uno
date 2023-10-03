@@ -17,7 +17,7 @@ public extern(android) class Structs
     [Foreign(Language.Java)]
     static float4 Float4RoundTrip(float4 structArg)
     @{
-        return @{StructToUno(float4):Call(structArg)};
+        return @{StructToUno(float4):call(structArg)};
     @}
 
     static float4 StructToUno(float4 x)
@@ -36,6 +36,6 @@ public extern(android) class Structs
     @{
         int width = 10;
         int height = 20;
-        return @{int2(int, int):New(width, (height))};
+        return @{int2(int, int):new(width, (height))};
     @}
 }

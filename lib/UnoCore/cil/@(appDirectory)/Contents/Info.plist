@@ -5,15 +5,15 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>@(Project.Name)</string>
+	<string>@(project.name)</string>
 	<key>CFBundleIconFile</key>
 	<string>Icon</string>
 	<key>CFBundleIdentifier</key>
-	<string>@(BundleIdentifier)</string>
+	<string>@(bundleIdentifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>@(Project.Name)</string>
+	<string>@(project.name)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>@(PACKAGE_VERSION)</string>
 	<key>CFBundleVersion</key>
@@ -27,5 +27,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UATitle</key>
+	<string>@(project.title)</string>
+	<key>UAAssembly</key>
+	<string>@(project.name).dll</string>
+	<key>UAMainClass</key>
+	<string>@(mainClass)</string>
 </dict>
 </plist>

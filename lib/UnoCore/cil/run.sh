@@ -5,10 +5,10 @@ set -e
 cd "`dirname "$0"`"
 
 #if @(LIBRARY:defined) || @(PREVIEW:defined)
-echo "ERROR: @(Product) is a library and cannot be run directly." >&2
+echo "ERROR: @(product) is a library and cannot be run directly." >&2
 exit 1
 #elif @(CONSOLE:defined) || @(TEST:defined) && !@(APPTEST:defined) || !@(HOST_MAC:defined)
-exec dotnet @(Product:QuoteSpace) "$@"
+exec dotnet @(product:quoteSpace) "$@"
 #else
-exec @(Product:QuoteSpace) "$@"
+exec @(product:quoteSpace) "$@"
 #endif

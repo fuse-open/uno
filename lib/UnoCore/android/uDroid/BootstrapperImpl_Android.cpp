@@ -1,7 +1,7 @@
 #include <BootstrapperImpl_Android.h>
-#include <@{Android.Base.JNI:Include}>
-#include <@{Android.Base.Types.Bridge:Include}>
-@(Android.Bindings.Bootstrapper.Include:Join())
+#include <@{Android.Base.JNI:include}>
+#include <@{Android.Base.Types.Bridge:include}>
+@(android.bindings.bootstrapper.include:join())
 void BootstrapperImpl() {
-    @(Android.Bindings.Bootstrapper.Statement:Join())
+    @(android.bindings.bootstrapper.statement:join())
 }
