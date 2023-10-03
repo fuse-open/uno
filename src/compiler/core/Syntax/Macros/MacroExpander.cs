@@ -814,7 +814,7 @@ namespace Uno.Compiler.Core.Syntax.Macros
                             ? macroCall.Arguments[0]
                             : InvalidArgumentsError(src, macroCall, "TYPE").String;
                 }
-                case "typeOf":
+                case "typeof":
                 {
                     dt = _ilf.Essentials.Type;
                     return macroCall.Arguments == null && entity is DataType
