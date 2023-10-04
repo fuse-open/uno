@@ -6,15 +6,15 @@ namespace Uno.Compiler.API.Domain.Extensions
 {
     public class ExtensionRoot : ExtensionEntity
     {
-        public readonly LowerCamelDictionary<Element> Properties = new LowerCamelDictionary<Element>();
-        public readonly Dictionary<string, ExtensionEntity> Templates = new Dictionary<string, ExtensionEntity>();
-        public readonly Dictionary<DataType, TypeExtension> TypeExtensions = new Dictionary<DataType, TypeExtension>();
-        public readonly HashSet<string> ElementDefinitions = new HashSet<string> { "Entity", "Template" };
-        public readonly HashSet<string> TypeElementDefinitions = new HashSet<string>();
-        public readonly HashSet<string> TypePropertyDefinitions = new HashSet<string>();
-        public readonly HashSet<string> MethodPropertyDefinitions = new HashSet<string>();
-        public readonly HashSet<string> Defines = new HashSet<string>();
-        public readonly List<BundleFile> BundleFiles = new List<BundleFile>();
+        public readonly LowerCamelDictionary<Element> Properties = new();
+        public readonly LowerCamelDictionary<ExtensionEntity> Templates = new();
+        public readonly Dictionary<DataType, TypeExtension> TypeExtensions = new();
+        public readonly LowerCamelSet ElementDefinitions = new LowerCamelSet { "entity", "template" };
+        public readonly LowerCamelSet TypeElementDefinitions = new();
+        public readonly LowerCamelSet TypePropertyDefinitions = new();
+        public readonly LowerCamelSet MethodPropertyDefinitions = new();
+        public readonly HashSet<string> Defines = new();
+        public readonly List<BundleFile> BundleFiles = new();
 
         public ExtensionRoot()
             : base(Source.Unknown, "<root>", 0)

@@ -26,8 +26,8 @@ namespace Uno.Compiler.Core.Syntax
         readonly UxlBackendType _backendType;
         readonly Namespace _il;
         readonly ILFactory _ilf;
-        readonly List<UxlDocument> _documents = new List<UxlDocument>();
-        readonly Dictionary<string, string> _deprecated = new Dictionary<string, string>();
+        readonly List<UxlDocument> _documents = new();
+        readonly Dictionary<string, string> _deprecated = new();
 
         public UxlProcessor(
             Disk disk,
@@ -269,8 +269,7 @@ namespace Uno.Compiler.Core.Syntax
 
             foreach (var e in uxl.Elements)
             {
-                string key;
-                if (!TryGetKey(e, out key) || !Test(e.Condition))
+                if (!TryGetKey(e, out string key) || !Test(e.Condition))
                     continue;
 
                 if (e.Type == UxlElementType.Set && _root.TypePropertyDefinitions.Contains(key))
@@ -441,7 +440,7 @@ namespace Uno.Compiler.Core.Syntax
             return !cond.HasValue || _env.Test(cond.Value.Source, cond.Value.String);
         }
 
-        HashSet<string> GetDeclarationSet(UxlDeclareType type)
+        LowerCamelSet GetDeclarationSet(UxlDeclareType type)
         {
             switch (type)
             {
@@ -469,7 +468,7 @@ namespace Uno.Compiler.Core.Syntax
 
                 if (ns is Namespace)
                     result[i++] = ns as Namespace;
-                else if (!(ns is InvalidType))
+                else if (ns is not InvalidType)
                     Log.Error(e.Source, ErrorCode.E0000, e.String.Quote() + " is not a namespace");
             }
 
@@ -497,9 +496,8 @@ namespace Uno.Compiler.Core.Syntax
         Namescope[] GetMethodScopes(Function func, Namescope[] typeScopes)
         {
             var result = typeScopes;
-            var method = func as Method;
 
-            if (method != null && method.IsGenericDefinition)
+            if (func is Method method && method.IsGenericDefinition)
             {
                 result = new Namescope[typeScopes.Length + 1];
                 result[0] = method.GenericType;
