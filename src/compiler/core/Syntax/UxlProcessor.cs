@@ -147,8 +147,7 @@ namespace Uno.Compiler.Core.Syntax
 
                 foreach (var e in doc.Elements)
                 {
-                    string key;
-                    if (!TryGetKey(e, out key) || !Test(e.Condition))
+                    if (!TryGetKey(e, out string key) || !Test(e.Condition))
                         continue;
 
                     if (e.Type == UxlElementType.Set)
@@ -179,19 +178,16 @@ namespace Uno.Compiler.Core.Syntax
 
         void CompileRequirements(ExtensionEntity ext)
         {
-            ListDictionary<string, Element> deprecated = null;
+            LowerCamelListDictionary<Element> deprecated = null;
 
             foreach (var e in ext.Requirements)
             {
-                string key;
-                if (_deprecated.TryGetValue(e.Key, out key))
+                if (_deprecated.TryGetValue(e.Key, out string key))
                 {
                     foreach (var req in e.Value)
                         Log.Warning(req.Source, ErrorCode.W0000, e.Key.Quote() + " is deprecated -- please replace with " + key.Quote());
 
-                    if (deprecated == null)
-                        deprecated = new ListDictionary<string, Element>();
-
+                    deprecated ??= new LowerCamelListDictionary<Element>();
                     deprecated.Add(key, e.Value);
                 }
             }
@@ -200,8 +196,7 @@ namespace Uno.Compiler.Core.Syntax
                 foreach (var e in deprecated)
                     ext.Requirements.AddRange(e.Key, e.Value);
 
-            List<Element> elms;
-            if (ext.Requirements.TryGetValue("Entity", out elms))
+            if (ext.Requirements.TryGetValue("Entity", out List<Element> elms))
                 foreach (var e in elms)
                     ext.RequiredEntities.Add(_ilf.GetEntity(e.Source, e.String, e.Usings));
 
@@ -228,8 +223,7 @@ namespace Uno.Compiler.Core.Syntax
 
             foreach (var e in uxl.Elements)
             {
-                string key;
-                if (!TryGetKey(e, out key) || !Test(e.Condition))
+                if (!TryGetKey(e, out string key) || !Test(e.Condition))
                     continue;
 
                 CompileExtensionElement(template, "Template", key, e, usings);
@@ -308,7 +302,7 @@ namespace Uno.Compiler.Core.Syntax
             if (entity is InvalidType)
                 return;
 
-            if (!(entity is Function))
+            if (entity is not Function)
             {
                 Log.Error(uxl.Signature.Source, ErrorCode.E0000, uxl.Signature.String.Quote() + " is not a method signature");
                 return;
@@ -321,7 +315,7 @@ namespace Uno.Compiler.Core.Syntax
             {
                 var rt = _ilf.GetEntity(uxl.Signature.Source, returnTypeString, methodScopes);
 
-                if (!(rt is InvalidType) && method.ReturnType != rt)
+                if (rt is not InvalidType && method.ReturnType != rt)
                     Log.Error(uxl.Signature.Source, ErrorCode.E0000, "Inconsistent return type for " + method.Quote() + " (" + method.ReturnType + ")");
             }
             else if (!method.ReturnType.IsVoid)
@@ -355,8 +349,7 @@ namespace Uno.Compiler.Core.Syntax
 
             foreach (var e in uxl.Elements)
             {
-                string key;
-                if (!TryGetKey(e, out key) || !Test(e.Condition))
+                if (!TryGetKey(e, out string key) || !Test(e.Condition))
                     continue;
 
                 if (e.Type == UxlElementType.Set && _root.MethodPropertyDefinitions.Contains(key))
@@ -377,8 +370,7 @@ namespace Uno.Compiler.Core.Syntax
 
                 if (e.Type != null)
                 {
-                    string newType;
-                    if (!_deprecated.TryGetValue(e.Type.Value.String, out newType))
+                    if (!_deprecated.TryGetValue(e.Type.Value.String, out string newType))
                         newType = e.Type.Value.String;
 
                     ext.CopyFiles.Add(new CopyFile(e.SourceName, e.Flags, e.TargetName, e.Condition, new SourceValue(e.Type.Value.Source, newType)));
@@ -428,8 +420,7 @@ namespace Uno.Compiler.Core.Syntax
         void Apply<TKey, TValue>(string elmType, TKey key, TValue value, IDictionary<TKey, TValue> map)
             where TValue : IDisambiguable
         {
-            TValue old;
-            if (!map.TryGetValue(key, out old))
+            if (!map.TryGetValue(key, out TValue old))
                 map.Add(key, value);
             else if (old.Disambiguation != Disambiguation.Override && (
                         value.Source.Bundle != old.Source.Bundle ||
@@ -712,8 +703,7 @@ namespace Uno.Compiler.Core.Syntax
 
             var src = _env.ExpandSingleLine(sourceName.Source, sourceName.String).UnixToNative();
 
-            SourceValue dir;
-            if (type != null && _env.TryGetValue(type.Value.String + ".TargetDirectory", out dir))
+            if (type != null && _env.TryGetValue(type.Value.String + ".targetDirectory", out SourceValue dir))
                 return Path.Combine(dir.String.UnixToNative(), src);
 
             return src;
