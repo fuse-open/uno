@@ -66,6 +66,7 @@ namespace Uno.Compiler.Foreign.Java
                         if (!_nested)
                         {
                             ftw.WriteLine("package " + _package + ";\n");
+
                             ftw.WriteLine("// fuse defined imports");
                             ftw.WriteLine("import com.uno.UnoObject;");
                             ftw.WriteLine("import com.uno.BoolArray;");
@@ -100,7 +101,7 @@ namespace Uno.Compiler.Foreign.Java
                             ftw.WriteLine("@Deprecated");
                             ftw.WriteLine("static void debug_log(Object message)");
                             ftw.Indent("{");
-                            ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("Activity.Name") + "\", (message==null ? \"null\" : message.toString()));");
+                            ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("Activity.Name") + "\", (message == null ? \"null\" : message.toString()));");
                             ftw.Unindent("}\n");
                         }
 

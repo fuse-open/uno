@@ -223,7 +223,7 @@ namespace Uno.Compiler.Foreign.Java.Converters
             {
                 JniVarName = jniTmpVarName;
                 UnoTmpVarName = unoTmpVarName;
-                UnoTmpVarLet = line => "@{" + dt.FullName + "} " + unoTmpVarName + "=" + line + ";";
+                UnoTmpVarLet = line => "@{" + dt.FullName + "} " + unoTmpVarName + " = " + line + ";";
                 var typeUsuallyFreed = true;
                 string cast;
 
@@ -238,7 +238,7 @@ namespace Uno.Compiler.Foreign.Java.Converters
                 }
                 else if (convert.Type.IsJavaObject(dt))
                 {
-                    cast = "(" + unoTmpVarName + "==nullptr ? nullptr : U_JNIVAR->NewLocalRef(@{global::Android.Base.Wrappers.IJWrapper:of((@{global::Android.Base.Wrappers.IJWrapper})" + unoTmpVarName + ")._GetJavaObject():call()}))";
+                    cast = "(" + unoTmpVarName + " == nullptr ? nullptr : U_JNIVAR->NewLocalRef(@{global::Android.Base.Wrappers.IJWrapper:of((@{global::Android.Base.Wrappers.IJWrapper})" + unoTmpVarName + ")._GetJavaObject():call()}))";
                 }
                 else if (dt.IsSubclassOfOrEqual(essentials.Delegate))
                 {
@@ -263,13 +263,13 @@ namespace Uno.Compiler.Foreign.Java.Converters
                     switch (free)
                     {
                         case JniFreeingTechnique.Default:
-                            Free = "if (" + JniVarName + "!=nullptr) { U_JNIVAR->DeleteLocalRef(" + JniVarName + "); }";
+                            Free = "if (" + JniVarName + " != nullptr) { U_JNIVAR->DeleteLocalRef(" + JniVarName + "); }";
                             break;
                         case JniFreeingTechnique.WithScope:
                             if (dt.IsStruct) // no null check needed if is uno struct
                                 cast = "U_JNIVAR->NewLocalRef((" + cast + "))";
                             else
-                                cast = "(" + unoTmpVarName + "==nullptr ? nullptr : U_JNIVAR->NewLocalRef((" + cast + ")))";
+                                cast = "(" + unoTmpVarName + " == nullptr ? nullptr : U_JNIVAR->NewLocalRef((" + cast + ")))";
                             Free = "";
                             break;
                         case JniFreeingTechnique.None:
