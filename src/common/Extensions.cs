@@ -648,6 +648,7 @@ namespace Uno
             switch (str)
             {
                 case "cMake":
+                case "cPlusPlus":
                 case "dotNet":
                 case "iOS":
                 case "iPad":
@@ -658,6 +659,8 @@ namespace Uno
                 case "typeOf":
                 case "unoDoc":
                     return str.ToLowerInvariant();
+                case "pListDefaults":
+                    return "plistDefaults";
                 case "typeOfFunction":
                     return "typeofFunction";
                 case "typeOfType":

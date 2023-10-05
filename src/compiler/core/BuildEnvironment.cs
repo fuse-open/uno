@@ -38,8 +38,8 @@ namespace Uno.Compiler.Core
         public string BundleDirectory { get; }
         public string OutputDirectory { get; }
 
-        readonly Dictionary<string, bool> _cachedTests = new Dictionary<string, bool>();
-        readonly Dictionary<Key, Result> _cachedProperties = new Dictionary<Key, Result>();
+        readonly Dictionary<string, bool> _cachedTests = new();
+        readonly Dictionary<Key, Result> _cachedProperties = new();
 
         internal BuildEnvironment(
             Backend backend,
@@ -295,7 +295,7 @@ namespace Uno.Compiler.Core
 
         public string GetOutputPath(string key)
         {
-            return Path.Combine(OutputDirectory, GetString(key).UnixToNative());
+            return Path.Combine(OutputDirectory, (GetString(key) ?? "null").UnixToNative());
         }
 
         public string Combine(string path0, string path1, string path2)
@@ -415,9 +415,11 @@ namespace Uno.Compiler.Core
         public HashSet<string> GetWords(string key)
         {
             var result = new HashSet<string>();
+            var words = GetString(key);
 
-            foreach (var word in GetString(key).Split(' '))
-                result.Add(word.Trim());
+            if (!string.IsNullOrEmpty(words))
+                foreach (var word in words.Split(' '))
+                    result.Add(word.Trim());
 
             return result;
         }
