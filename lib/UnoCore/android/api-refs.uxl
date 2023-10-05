@@ -27,8 +27,8 @@
     <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(string[])" />
     <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Box(object[])" />
     <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.BoxDelegate(object,Android.Base.Primitives.ConstCharPtr)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.UnBox(Android.Base.Primitives.ujobject)" />
-    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.UnBoxFreeingLocalRef(Android.Base.Primitives.ujobject)" />
+    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.Unbox(Android.Base.Primitives.ujobject)" />
+    <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaUnoObject.UnboxFreeingLocalRef(Android.Base.Primitives.ujobject)" />
     <Require Entity="Uno.Platform.EventSources.InterAppInvoke.ReceivedURI" />
     <Require Entity="Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string)" />
     <Require Entity="Uno.Compiler.ExportTargetInterop.Foreign.Android.JavaToUnoArrayEntrypoints.GetBool(object,int)" />

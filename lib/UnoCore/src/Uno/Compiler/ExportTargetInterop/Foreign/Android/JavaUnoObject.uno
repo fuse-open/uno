@@ -225,7 +225,7 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
             return boxed;
         }
 
-        public static object UnBox(ujobject javaObject)
+        public static object Unbox(ujobject javaObject)
         {
             if (JNI.IsSameObject(javaObject, ujobject.Null)) return null;
             var longPtr = extern<long>(JNI.GetEnvPtr(),javaObject,_unoObjectGetRetainedUnoPtr) "(@{long})$0->CallLongMethod($1,$2)";
@@ -233,7 +233,7 @@ namespace Uno.Compiler.ExportTargetInterop.Foreign.Android
             return extern<object>(longPtr) "(@{object})$0";
         }
 
-        public static object UnBoxFreeingLocalRef(ujobject javaObject)
+        public static object UnboxFreeingLocalRef(ujobject javaObject)
         {
             if (JNI.IsSameObject(javaObject, ujobject.Null)) return null;
             var longPtr = extern<long>(JNI.GetEnvPtr(),javaObject,_unoObjectGetRetainedUnoPtr) "(@{long})$0->CallLongMethod($1,$2)";

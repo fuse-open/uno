@@ -182,7 +182,7 @@ namespace Uno.Compiler.Foreign.Java.Converters
 
             public string CastJniToUno(DataType unoType, string line, bool stackArg)
             {
-                var unbox = stackArg ? "UnBox" : "UnBoxFreeingLocalRef";
+                var unbox = stackArg ? "Unbox" : "UnboxFreeingLocalRef";
                 if (_helpers.IsPrimitive(unoType) || unoType.IsEnum)
                     return "(@{" + unoType.FullName + "})" + line;
                 if (unoType == _essentials.String)
