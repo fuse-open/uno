@@ -82,13 +82,13 @@
 	@(xcode.plist.element:join('\n\t'))
 
 	<key>NSCameraUsageDescription</key>
-	<string>@(project.ios.plist.NSCameraUsageDescription || pListDefaults.NSCameraUsageDescription)</string>
+	<string>@(project.ios.plist.NSCameraUsageDescription || plistDefaults.NSCameraUsageDescription)</string>
 
 	<key>NSMicrophoneUsageDescription</key>
-	<string>@(project.ios.plist.NSMicrophoneUsageDescription || pListDefaults.NSMicrophoneUsageDescription)</string>
+	<string>@(project.ios.plist.NSMicrophoneUsageDescription || plistDefaults.NSMicrophoneUsageDescription)</string>
 
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>@(project.ios.plist.NSPhotoLibraryUsageDescription || pListDefaults.NSPhotoLibraryUsageDescription)</string>
+	<string>@(project.ios.plist.NSPhotoLibraryUsageDescription || plistDefaults.NSPhotoLibraryUsageDescription)</string>
 
 #if @(project.ios.plist.MKDirectionsApplicationSupportedModes:isSet)
 	<key>MKDirectionsApplicationSupportedModes</key>

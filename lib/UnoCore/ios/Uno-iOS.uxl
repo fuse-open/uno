@@ -1,13 +1,13 @@
-<Extensions Backend="CPlusPlus" Condition="iOS">
+<extensions backend="cplusplus" condition="IOS">
 
-    <ProcessFile HeaderFile="Uno-iOS/AppDelegate.h" />
-    <ProcessFile SourceFile="Uno-iOS/AppDelegate.mm" />
-    <ProcessFile HeaderFile="Uno-iOS/Context.h" />
-    <CopyFile SourceFile="Uno-iOS/Main.mm" />
-    <ProcessFile HeaderFile="Uno-iOS/Uno-iOS.h" />
-    <ProcessFile SourceFile="Uno-iOS/Uno-iOS.mm" />
+    <processFile headerFile="Uno-iOS/AppDelegate.h" />
+    <processFile sourceFile="Uno-iOS/AppDelegate.mm" />
+    <processFile headerFile="Uno-iOS/Context.h" />
+    <copyFile sourceFile="Uno-iOS/Main.mm" />
+    <processFile headerFile="Uno-iOS/Uno-iOS.h" />
+    <processFile sourceFile="Uno-iOS/Uno-iOS.mm" />
 
-    <Require Condition="LIBRARY" Xcode.PublicHeader="Uno-iOS/Context.h" />
-    <Require Condition="!METAL" PreprocessorDefinition="GLES_SILENCE_DEPRECATION" />
+    <require condition="LIBRARY" xcode.publicHeader="Uno-iOS/Context.h" />
+    <require condition="!METAL" preprocessorDefinition="GLES_SILENCE_DEPRECATION" />
 
-</Extensions>
+</extensions>

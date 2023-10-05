@@ -1,9 +1,9 @@
-<Extensions Backend="CPlusPlus" Condition="IOS && METAL">
+<extensions backend="cplusplus" condition="IOS && METAL">
 
-    <Require Condition="!IOS_SIMULATOR" Xcode.Framework="@('MetalANGLE.framework.ios/MetalANGLE.framework':path)" />
-    <Require Condition=" IOS_SIMULATOR" Xcode.Framework="@('MetalANGLE.framework.ios.simulator/MetalANGLE.framework':path)" />
+    <require condition="!IOS_SIMULATOR" xcode.framework="@('MetalANGLE.framework.ios/MetalANGLE.framework':path)" />
+    <require condition=" IOS_SIMULATOR" xcode.framework="@('MetalANGLE.framework.ios.simulator/MetalANGLE.framework':path)" />
 
-    <Require Condition="!IOS_SIMULATOR" Xcode.EmbeddedFramework="@('MetalANGLE.framework.ios/MetalANGLE.framework':path)" />
-    <Require Condition=" IOS_SIMULATOR" Xcode.EmbeddedFramework="@('MetalANGLE.framework.ios.simulator/MetalANGLE.framework':path)" />
+    <require condition="!IOS_SIMULATOR" xcode.embeddedFramework="@('MetalANGLE.framework.ios/MetalANGLE.framework':path)" />
+    <require condition=" IOS_SIMULATOR" xcode.embeddedFramework="@('MetalANGLE.framework.ios.simulator/MetalANGLE.framework':path)" />
 
-</Extensions>
+</extensions>

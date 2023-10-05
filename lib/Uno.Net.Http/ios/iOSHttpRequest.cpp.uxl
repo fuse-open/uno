@@ -1,15 +1,15 @@
-<Extensions Backend="CPlusPlus" Condition="APPLE">
-    <Using Namespace="Uno.Net.Http.Implementation" />
+<extensions backend="cplusplus" condition="APPLE">
+    <using namespace="Uno.Net.Http.Implementation" />
 
-    <Type Name="iOSHttpRequestHandle"
-        TypeName="::Uno::Net::Http::iOS::HttpRequest*"
-        Include="HttpRequest.h" />
+    <type name="iOSHttpRequestHandle"
+        typeName="::Uno::Net::Http::iOS::HttpRequest*"
+        include="HttpRequest.h" />
 
-    <Type Name="iOSHttpRequest">
-        <ProcessFile HeaderFile="HttpRequest.h" />
-        <ProcessFile SourceFile="HttpRequest.mm" />
+    <type name="iOSHttpRequest">
+        <processFile headerFile="HttpRequest.h" />
+        <processFile sourceFile="HttpRequest.mm" />
 
-        <Require Condition="IOS" Xcode.Plist.Element>
+        <require condition="IOS" xcode.plist.element>
             <![CDATA[
                 <key>NSAppTransportSecurity</key>
                 <dict>
@@ -17,6 +17,6 @@
                     <true/>
                 </dict>
             ]]>
-        </Require>
-    </Type>
-</Extensions>
+        </require>
+    </type>
+</extensions>

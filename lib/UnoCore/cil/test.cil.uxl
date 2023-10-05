@@ -1,20 +1,20 @@
-<Extensions Backend="CIL" Condition="TEST && !APPTEST">
+<extensions backend="cil" condition="TEST && !APPTEST">
 
-    <Set AppLoader.Assembly="@(config.appLoader.console:path)/uno-app.dll" />
-    <Set AppLoader.Class="Uno.AppLoader.Program" />
-    <Set AppLoader.Method="UnoGenerated" />
+    <set appLoader.assembly="@(config.appLoader.console:path)/uno-app.dll" />
+    <set appLoader.class="Uno.AppLoader.Program" />
+    <set appLoader.method="UnoGenerated" />
 
-    <CopyFile Name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json"
-        TargetName="@(project.name).exe.runtimeconfig.json" />
+    <copyFile name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json"
+        targetName="@(project.name).exe.runtimeconfig.json" />
 
-    <Set Product="@(project.name).exe.dll" />
+    <set product="@(project.name).exe.dll" />
 
     <!-- Windows -->
-    <Set Commands.Run="run.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
+    <set commands.run="run.bat" condition="HOST_WIN32" />
+    <processFile name="run.bat" condition="HOST_WIN32" />
 
     <!-- UNIX -->
-    <Set Commands.Run="run.sh" Condition="HOST_UNIX" />
-    <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable="true" />
+    <set commands.run="run.sh" condition="HOST_UNIX" />
+    <processFile name="run.sh" condition="HOST_UNIX" isExecutable="true" />
 
-</Extensions>
+</extensions>

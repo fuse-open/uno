@@ -1,25 +1,25 @@
-<Extensions Backend="CPlusPlus" Condition="Android">
-    <Using Namespace="Uno.Compiler.ExportTargetInterop.Foreign.Android" />
+<extensions backend="cplusplus" condition="ANDROID">
+    <using namespace="Uno.Compiler.ExportTargetInterop.Foreign.Android" />
 
-    <Type Name="ExternBlockHost" Condition="Android">
-        <ProcessFile Name="UnoObject.java" TargetName="@(java.sourceDirectory)/com/uno/UnoObject.java" />
-        <ProcessFile Name="BoolArray.java" TargetName="@(java.sourceDirectory)/com/uno/BoolArray.java" />
-        <ProcessFile Name="ByteArray.java" TargetName="@(java.sourceDirectory)/com/uno/ByteArray.java" />
-        <ProcessFile Name="CharArray.java" TargetName="@(java.sourceDirectory)/com/uno/CharArray.java" />
-        <ProcessFile Name="ShortArray.java" TargetName="@(java.sourceDirectory)/com/uno/ShortArray.java" />
-        <ProcessFile Name="IntArray.java" TargetName="@(java.sourceDirectory)/com/uno/IntArray.java" />
-        <ProcessFile Name="LongArray.java" TargetName="@(java.sourceDirectory)/com/uno/LongArray.java" />
-        <ProcessFile Name="FloatArray.java" TargetName="@(java.sourceDirectory)/com/uno/FloatArray.java" />
-        <ProcessFile Name="DoubleArray.java" TargetName="@(java.sourceDirectory)/com/uno/DoubleArray.java" />
-        <ProcessFile Name="StringArray.java" TargetName="@(java.sourceDirectory)/com/uno/StringArray.java" />
-        <ProcessFile Name="ObjectArray.java" TargetName="@(java.sourceDirectory)/com/uno/ObjectArray.java" />
-        <ProcessFile Name="UnoBackedByteBuffer.java" TargetName="@(java.sourceDirectory)/com/uno/UnoBackedByteBuffer.java" />
+    <type name="ExternBlockHost" condition="ANDROID">
+        <processFile name="UnoObject.java" targetName="@(java.sourceDirectory)/com/uno/UnoObject.java" />
+        <processFile name="BoolArray.java" targetName="@(java.sourceDirectory)/com/uno/BoolArray.java" />
+        <processFile name="ByteArray.java" targetName="@(java.sourceDirectory)/com/uno/ByteArray.java" />
+        <processFile name="CharArray.java" targetName="@(java.sourceDirectory)/com/uno/CharArray.java" />
+        <processFile name="ShortArray.java" targetName="@(java.sourceDirectory)/com/uno/ShortArray.java" />
+        <processFile name="IntArray.java" targetName="@(java.sourceDirectory)/com/uno/IntArray.java" />
+        <processFile name="LongArray.java" targetName="@(java.sourceDirectory)/com/uno/LongArray.java" />
+        <processFile name="FloatArray.java" targetName="@(java.sourceDirectory)/com/uno/FloatArray.java" />
+        <processFile name="DoubleArray.java" targetName="@(java.sourceDirectory)/com/uno/DoubleArray.java" />
+        <processFile name="StringArray.java" targetName="@(java.sourceDirectory)/com/uno/StringArray.java" />
+        <processFile name="ObjectArray.java" targetName="@(java.sourceDirectory)/com/uno/ObjectArray.java" />
+        <processFile name="UnoBackedByteBuffer.java" targetName="@(java.sourceDirectory)/com/uno/UnoBackedByteBuffer.java" />
 
-        <Method Signature="RegisterFunctions()">
-            <Body><![CDATA[
+        <method signature="RegisterFunctions()">
+            <body><![CDATA[
                 JniHelper jni;
                 @(java.extern.registerFunction:join('\n'):trim())
-            ]]></Body>
-        </Method>
-    </Type>
-</Extensions>
+            ]]></body>
+        </method>
+    </type>
+</extensions>

@@ -1,16 +1,16 @@
-<Extensions Backend="CIL" Condition="CONSOLE">
+<extensions backend="cil" condition="CONSOLE">
 
-    <CopyFile Name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json"
-        TargetName="@(project.name).runtimeconfig.json" />
+    <copyFile name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json"
+        targetName="@(project.name).runtimeconfig.json" />
 
-    <Set Product="@(project.name).dll" />
+    <set product="@(project.name).dll" />
 
     <!-- Windows -->
-    <Set Commands.Run="run.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
+    <set commands.run="run.bat" condition="HOST_WIN32" />
+    <processFile name="run.bat" condition="HOST_WIN32" />
 
     <!-- UNIX -->
-    <Set Commands.Run="run.sh" Condition="HOST_UNIX" />
-    <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable="true" />
+    <set commands.run="run.sh" condition="HOST_UNIX" />
+    <processFile name="run.sh" condition="HOST_UNIX" isExecutable="true" />
 
-</Extensions>
+</extensions>

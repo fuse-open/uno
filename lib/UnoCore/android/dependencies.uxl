@@ -1,18 +1,18 @@
-<Extensions Backend="CPlusPlus" Condition="ANDROID">
+<extensions backend="cplusplus" condition="ANDROID">
 
-    <Require Gradle.AllProjects.Repository="google()" />
-    <Require Gradle.AllProjects.Repository="mavenCentral()" />
-    <Require Gradle.BuildScript.Repository="google()" />
-    <Require Gradle.BuildScript.Repository="mavenCentral()" />
-    <Require Gradle.Repository="maven { url 'https://maven.google.com' }" />
+    <require gradle.allProjects.repository="google()" />
+    <require gradle.allProjects.repository="mavenCentral()" />
+    <require gradle.buildScript.repository="google()" />
+    <require gradle.buildScript.repository="mavenCentral()" />
+    <require gradle.repository="maven { url 'https://maven.google.com' }" />
 
-    <Require Gradle.Dependency.ClassPath="com.android.tools.build:gradle:8.1.0" />
-    <Require Gradle.Dependency.Implementation="androidx.appcompat:appcompat:1.4.2" />
-    <Require Gradle.Dependency.Implementation="com.google.android.material:material:1.6.1" />
+    <require gradle.dependency.classPath="com.android.tools.build:gradle:8.1.0" />
+    <require gradle.dependency.implementation="androidx.appcompat:appcompat:1.4.2" />
+    <require gradle.dependency.implementation="com.google.android.material:material:1.6.1" />
 
     <!-- Kotlin support. -->
-    <Require Condition="KOTLIN" Gradle.Dependency.Implementation="androidx.core:core-ktx:+" />
-    <Require Condition="KOTLIN" Gradle.Dependency.Implementation="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.70" />
-    <Require Condition="KOTLIN" Gradle.Dependency.ClassPath="org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70" />
+    <require condition="KOTLIN" gradle.dependency.implementation="androidx.core:core-ktx:+" />
+    <require condition="KOTLIN" gradle.dependency.implementation="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.70" />
+    <require condition="KOTLIN" gradle.dependency.classPath="org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70" />
 
-</Extensions>
+</extensions>

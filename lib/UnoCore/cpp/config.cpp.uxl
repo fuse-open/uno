@@ -1,71 +1,71 @@
-<Extensions Backend="CPlusPlus">
+<extensions backend="cplusplus">
 
-    <Define REFLECTION="DEBUG_DUMPS" />
-    <Define DEBUG_NATIVE="O0" />
+    <define REFLECTION="DEBUG_DUMPS" />
+    <define DEBUG_NATIVE="O0" />
 
     <!-- Output configuration -->
-    <Set BundleDirectory="data" IsDefault="true" />
-    <Set HeaderDirectory="include" IsDefault="true" />
-    <Set SourceDirectory="src" IsDefault="true" />
-    <Set BinaryDirectory="." IsDefault="true" />
+    <set bundleDirectory="data" isDefault="true" />
+    <set headerDirectory="include" isDefault="true" />
+    <set sourceDirectory="src" isDefault="true" />
+    <set binaryDirectory="." isDefault="true" />
 
     <!-- Codegen extensions -->
-    <Declare TypeElement="Header.Declaration" />
-    <Declare TypeElement="Header.Include" />
-    <Declare TypeElement="Header.Import" />
-    <Declare TypeElement="Source.Declaration" />
-    <Declare TypeElement="Source.Include" />
-    <Declare TypeElement="Source.Import" />
-    <Declare TypeProperty="ForwardDeclaration" />
-    <Declare TypeProperty="Include" />
-    <Declare TypeProperty="TypeName" />
-    <Declare TypeProperty="DefaultValue" />
-    <Declare TypeProperty="TypeOfType" />
-    <Declare TypeProperty="TypeOfFunction" />
-    <Declare TypeProperty="BaseType" />
-    <Declare TypeProperty="BoxFunction" />
-    <Declare TypeProperty="FileExtension" />
-    <Declare MethodProperty="IsIntrinsic" />
-    <Declare MethodProperty="FunctionName" />
+    <declare typeElement="header.declaration" />
+    <declare typeElement="header.include" />
+    <declare typeElement="header.import" />
+    <declare typeElement="source.declaration" />
+    <declare typeElement="source.include" />
+    <declare typeElement="source.import" />
+    <declare typeProperty="forwardDeclaration" />
+    <declare typeProperty="include" />
+    <declare typeProperty="typeName" />
+    <declare typeProperty="defaultValue" />
+    <declare typeProperty="typeofType" />
+    <declare typeProperty="typeofFunction" />
+    <declare typeProperty="baseType" />
+    <declare typeProperty="boxFunction" />
+    <declare typeProperty="fileExtension" />
+    <declare methodProperty="isIntrinsic" />
+    <declare methodProperty="functionName" />
 
     <!-- File types -->
-    <Declare Element="FontFile" TargetDirectory="@(bundleDirectory)" />
-    <Declare Element="HeaderFile" TargetDirectory="@(headerDirectory)" />
-    <Declare Element="SourceFile" TargetDirectory="@(sourceDirectory)" />
+    <declare element="fontFile" targetDirectory="@(bundleDirectory)" />
+    <declare element="headerFile" targetDirectory="@(headerDirectory)" />
+    <declare element="sourceFile" targetDirectory="@(sourceDirectory)" />
 
     <!-- Build extensions -->
-    <Declare Element="IncludeDirectory" />
-    <Declare Element="LinkDirectory" />
-    <Declare Element="LinkLibrary" />
-    <Declare Element="PreprocessorDefinition" />
+    <declare element="includeDirectory" />
+    <declare element="linkDirectory" />
+    <declare element="linkLibrary" />
+    <declare element="preprocessorDefinition" />
 
-    <Set CppStandard="c++17" IsDefault="true" />
-    <Set CStandard="c99" IsDefault="true" />
+    <set cppStandard="c++17" isDefault="true" />
+    <set cStandard="c99" isDefault="true" />
 
-    <Require PreprocessorDefinition="DEBUG_ARC=0" Condition="DEBUG_ARC0" />
-    <Require PreprocessorDefinition="DEBUG_ARC=1" Condition="DEBUG_ARC1" />
-    <Require PreprocessorDefinition="DEBUG_ARC=2" Condition="DEBUG_ARC2" />
-    <Require PreprocessorDefinition="DEBUG_ARC=3" Condition="DEBUG_ARC3" />
-    <Require PreprocessorDefinition="DEBUG_ARC=4" Condition="DEBUG_ARC4" />
-    <Require PreprocessorDefinition="DEBUG_DUMPS=1" Condition="DEBUG_DUMPS" />
-    <Require PreprocessorDefinition="DEBUG_GC=1" Condition="DEBUG_GC" />
-    <Require PreprocessorDefinition="DEBUG_UNSAFE=1" Condition="DEBUG_UNSAFE" />
+    <require preprocessorDefinition="DEBUG_ARC=0" condition="DEBUG_ARC0" />
+    <require preprocessorDefinition="DEBUG_ARC=1" condition="DEBUG_ARC1" />
+    <require preprocessorDefinition="DEBUG_ARC=2" condition="DEBUG_ARC2" />
+    <require preprocessorDefinition="DEBUG_ARC=3" condition="DEBUG_ARC3" />
+    <require preprocessorDefinition="DEBUG_ARC=4" condition="DEBUG_ARC4" />
+    <require preprocessorDefinition="DEBUG_DUMPS=1" condition="DEBUG_DUMPS" />
+    <require preprocessorDefinition="DEBUG_GC=1" condition="DEBUG_GC" />
+    <require preprocessorDefinition="DEBUG_UNSAFE=1" condition="DEBUG_UNSAFE" />
 
     <!-- UnoCore extensions -->
-    <Declare Element="Main.Include" />
-    <Declare Element="TypeObjects.Declaration" />
-    <Declare Element="TypeObjects.FunctionPointer" />
+    <declare element="main.include" />
+    <declare element="typeObjects.declaration" />
+    <declare element="typeObjects.functionPointer" />
 
     <!-- Native build -->
-    <Set Native.Configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
+    <set native.configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
 
     <!-- Mobile settings -->
-    <Set Mobile.DisableStatusbar="@('@(MOBILE:defined) && !@(project.mobile.showStatusbar)':test(1, 0))" />
-    <Set Mobile.DisableBatterySaver="@('@(MOBILE:defined) && @(project.mobile.keepAlive)':test(1, 0))" />
-    <Set Mobile.DisableBackgroundProcess="@('@(MOBILE:defined) && !@(project.mobile.runsInBackground)':test(1, 0))" />
+    <set mobile.disableStatusbar="@('@(MOBILE:defined) && !@(project.mobile.showStatusbar)':test(1, 0))" />
+    <set mobile.disableBatterySaver="@('@(MOBILE:defined) && @(project.mobile.keepAlive)':test(1, 0))" />
+    <set mobile.disableBackgroundProcess="@('@(MOBILE:defined) && !@(project.mobile.runsInBackground)':test(1, 0))" />
 
     <!-- Keywords -->
-    <Set Keywords>
+    <set keywords>
         alignas alignof and and_eq asm auto bitand bitor bool
         break case catch char char16_t char32_t class compl concept
         const constexpr const_cast continue decltype default delete do
@@ -82,6 +82,6 @@
         int8_t int16_t int32_t int64_t uint8_t uint16_t uint32_t
         uint64_t DBL_MAX DBL_INF DBL_NAN FLT_INF FLT_NAN
         op_Implicit op_Explicit
-    </Set>
+    </set>
 
-</Extensions>
+</extensions>

@@ -1,31 +1,31 @@
-<Extensions Backend="CPlusPlus">
+<extensions backend="cplusplus">
 
-    <Require Template="XliPlatform" />
+    <require template="XliPlatform" />
 
     <!-- Core source code -->
-    <ProcessFile HeaderFile="uno.h" />
-    <ProcessFile HeaderFile="uno/_internal.h" />
-    <ProcessFile SourceFile="uno/_invoke.cpp" />
-    <ProcessFile HeaderFile="uno/Config.h" />
-    <ProcessFile SourceFile="uno/Memory.cpp" />
-    <ProcessFile HeaderFile="uno/Memory.h" />
-    <ProcessFile SourceFile="uno/ObjectModel.cpp" />
-    <ProcessFile HeaderFile="uno/ObjectModel.h" />
-    <ProcessFile HeaderFile="uno/ObjectMonitor.h" />
-    <ProcessFile SourceFile="uno/Reflection.cpp" Condition="REFLECTION" />
-    <ProcessFile HeaderFile="uno/Reflection.h" Condition="REFLECTION" />
-    <ProcessFile SourceFile="uno/Support.cpp" />
-    <ProcessFile SourceFile="uno/Support.mm" Condition="APPLE" />
-    <ProcessFile HeaderFile="uno/ThreadUtils.h" />
-    <ProcessFile HeaderFile="uno/WinAPI.h" Condition="WIN32" />
+    <processFile headerFile="uno.h" />
+    <processFile headerFile="uno/_internal.h" />
+    <processFile sourceFile="uno/_invoke.cpp" />
+    <processFile headerFile="uno/Config.h" />
+    <processFile sourceFile="uno/Memory.cpp" />
+    <processFile headerFile="uno/Memory.h" />
+    <processFile sourceFile="uno/ObjectModel.cpp" />
+    <processFile headerFile="uno/ObjectModel.h" />
+    <processFile headerFile="uno/ObjectMonitor.h" />
+    <processFile sourceFile="uno/Reflection.cpp" condition="REFLECTION" />
+    <processFile headerFile="uno/Reflection.h" condition="REFLECTION" />
+    <processFile sourceFile="uno/Support.cpp" />
+    <processFile sourceFile="uno/Support.mm" condition="APPLE" />
+    <processFile headerFile="uno/ThreadUtils.h" />
+    <processFile headerFile="uno/WinAPI.h" condition="WIN32" />
 
     <!-- Graphics headers -->
-    <ProcessFile HeaderFile="uPlatform/GraphicsContext.h" Condition="!MOBILE && OPENGL" />
-    <ProcessFile HeaderFile="uPlatform/GLHelper.h" Condition="OPENGL" />
+    <processFile headerFile="uPlatform/GraphicsContext.h" condition="!MOBILE && OPENGL" />
+    <processFile headerFile="uPlatform/GLHelper.h" condition="OPENGL" />
 
     <!-- Entrypoint -->
-    <ProcessFile SourceFile="main-app.cpp" Condition="!MOBILE && !CONSOLE"/>
-    <ProcessFile SourceFile="main-console.cpp" Condition="!MOBILE && CONSOLE"/>
-    <ProcessFile SourceFile="main-mobile.cpp" Condition="MOBILE" />
+    <processFile sourceFile="main-app.cpp" condition="!MOBILE && !CONSOLE"/>
+    <processFile sourceFile="main-console.cpp" condition="!MOBILE && CONSOLE"/>
+    <processFile sourceFile="main-mobile.cpp" condition="MOBILE" />
 
-</Extensions>
+</extensions>

@@ -1,4 +1,4 @@
-<Extensions Backend="CPlusPlus">
-    <Define REFLECTION />
-    <Define ARC_DEBUG />
-</Extensions>
+<extensions backend="cplusplus">
+    <define REFLECTION />
+    <define ARC_DEBUG />
+</extensions>

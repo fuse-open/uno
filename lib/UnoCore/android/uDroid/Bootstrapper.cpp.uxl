@@ -1,10 +1,10 @@
-﻿<Extensions Backend="CPlusPlus" Condition="ANDROID">
-    <Using Namespace="Android" />
-    <Using Namespace="Android.Base.Primitives" />
-    <Declare Element="Android.Bindings.Bootstrapper.Include" />
-    <Declare Element="Android.Bindings.Bootstrapper.Statement" />
-    <Type Name="Bootstrapper">
-        <ProcessFile SourceFile="BootstrapperImpl_Android.cpp" />
-        <ProcessFile HeaderFile="BootstrapperImpl_Android.h" />
-    </Type>
-</Extensions>
+﻿<extensions backend="cplusplus" condition="ANDROID">
+    <using namespace="Android" />
+    <using namespace="Android.Base.Primitives" />
+    <declare element="android.bindings.bootstrapper.include" />
+    <declare element="android.bindings.bootstrapper.statement" />
+    <type name="Bootstrapper">
+        <processFile sourceFile="BootstrapperImpl_Android.cpp" />
+        <processFile headerFile="BootstrapperImpl_Android.h" />
+    </type>
+</extensions>

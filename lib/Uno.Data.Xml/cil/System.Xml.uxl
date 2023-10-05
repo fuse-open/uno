@@ -1,4 +1,4 @@
-<Extensions Backend="CIL">
-    <Require Assembly="System.Xml" />
-    <Require Assembly="System.Xml.Linq" />
-</Extensions>
+<extensions backend="cil">
+    <require assembly="System.Xml" />
+    <require assembly="System.Xml.Linq" />
+</extensions>
