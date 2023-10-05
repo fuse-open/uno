@@ -55,7 +55,7 @@ namespace Uno.Build.Targets.Generators
             manifest.Save();
             File.WriteAllText(
                 Path.Combine(manifest.CacheDirectory, "config"),
-                _env.GetString("Configuration"));
+                _env.GetString("configuration"));
         }
     }
 }

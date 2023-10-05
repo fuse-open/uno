@@ -58,7 +58,7 @@ namespace Uno.TestRunner.Tests
 
         private static NameValueCollection MakeReadyEvent(int testCount)
         {
-            return new NameValueCollection{{"event","ready"}, {"testCount", testCount.ToString()}};
+            return new NameValueCollection{{"event", "ready"}, {"testCount", testCount.ToString()}};
         }
 
         private static NameValueCollection MakeTestStartedEvent(string name)
@@ -68,12 +68,12 @@ namespace Uno.TestRunner.Tests
 
         private static NameValueCollection MakeTestPassedEvent(string name)
         {
-            return new NameValueCollection{{"event","testPassed"}, {"testName", name}};
+            return new NameValueCollection {{"event", "testPassed"}, {"testName", name}};
         }
 
         private static NameValueCollection MakeTestAssertedEvent(string name)
         {
-            return new NameValueCollection{{"event","testAsserted"}, {"testName", name}};
+            return new NameValueCollection {{"event", "testAsserted"}, {"testName", name}};
         }
     }
 }

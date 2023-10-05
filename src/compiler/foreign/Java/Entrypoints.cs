@@ -113,7 +113,7 @@ namespace Uno.Compiler.Foreign.Java
 
         public void WriteJava()
         {
-            var path = _environment.Combine(_environment.GetString("Java.SourceDirectory"), "com", "foreign");
+            var path = _environment.Combine(_environment.GetString("java.sourceDirectory"), "com", "foreign");
             var filePath = Path.Combine(path, "ExternedBlockHost.java");
             _disk.WriteAllText(filePath, GenJavaClassCode());
         }
@@ -140,7 +140,7 @@ namespace Uno.Compiler.Foreign.Java
             lines.Add("}");
             var finalCode = string.Join("\n", lines);
 
-            _environment.Require(UnoType, "Java.Extern.RegisterFunction", UnoType.Source, finalCode);
+            _environment.Require(UnoType, "java.extern.registerFunction", UnoType.Source, finalCode);
         }
 
         string GenJavaClassCode()
@@ -167,7 +167,7 @@ namespace Uno.Compiler.Foreign.Java
                     ftw.WriteLine("@Deprecated");
                     ftw.WriteLine("static void debug_log(Object message)");
                     ftw.Indent("{");
-                    ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("Activity.Name") + "\", (message == null ? \"null\" : message.toString()));");
+                    ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("activity.name") + "\", (message == null ? \"null\" : message.toString()));");
                     ftw.Unindent("}");
 
                     foreach (var method in NativeJavaMethods)

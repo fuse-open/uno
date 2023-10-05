@@ -10,8 +10,8 @@ namespace Uno.Build.Adb
 {
     public class AdbRunner
     {
-        static string SdkDirectory => UnoConfig.Current.GetFullPath("Android.SDK", "Android.SDK.Directory");
-        static bool IgnoreNetworkDevices => UnoConfig.Current.GetBool("Android.IgnoreNetworkDevices");
+        static string SdkDirectory => UnoConfig.Current.GetFullPath("android.sdk", "android.sdk.directory");
+        static bool IgnoreNetworkDevices => UnoConfig.Current.GetBool("android.ignoreNetworkDevices");
 
         readonly Shell _shell;
         public readonly string Location = Path.Combine(SdkDirectory, "platform-tools",

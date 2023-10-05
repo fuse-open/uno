@@ -82,7 +82,7 @@ namespace Uno.Compiler.Foreign
             var fullJavaSourcePath = fsource.UnixPath.UnixToNative()
                     .ToFullPath(projectSource.Bundle.SourceDirectory);
             var packageName = GetJavaPackageName(fullJavaSourcePath);
-            return new SourceValue(projectSource, Environment.GetString("Java.SourceDirectory") + "/" + packageName.Replace('.', '/') + Path.GetFileName(fsource.UnixPath));
+            return new SourceValue(projectSource, Environment.GetString("java.sourceDirectory") + "/" + packageName.Replace('.', '/') + Path.GetFileName(fsource.UnixPath));
         }
 
         string GetJavaPackageName(string path)

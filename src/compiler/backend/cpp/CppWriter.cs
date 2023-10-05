@@ -750,7 +750,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             }
 
             SourceValue intrinsicName;
-            if (Environment.TryGetValue(func, "FunctionName", out intrinsicName))
+            if (Environment.TryGetValue(func, "functionName", out intrinsicName))
             {
                 Write(intrinsicName.String);
                 WriteArguments(func, obj, args, storage, u);
@@ -1426,7 +1426,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
         public override void WriteBox(Source src, DataType dt, Expression s, bool stack, ExpressionUsage u)
         {
             SourceValue result;
-            if (Environment.TryGetValue(s.ReturnType, "BoxFunction", out result))
+            if (Environment.TryGetValue(s.ReturnType, "boxFunction", out result))
                 Write(result.String + "(");
             else if (IsConstrained(s.ReturnType))
                 Write("uBoxPtr(" + GetTypeOf(s.ReturnType) + ", ");

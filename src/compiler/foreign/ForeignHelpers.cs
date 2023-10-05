@@ -205,7 +205,7 @@ namespace Uno.Compiler.Foreign
         {
             if (s == null)
                 s = target.Source;
-            Environment.Require(target, "Source.Declaration",
+            Environment.Require(target, "source.declaration",
                 declarations.Select(d => new Element(s, d)).ToArray());
         }
 
@@ -220,7 +220,7 @@ namespace Uno.Compiler.Foreign
         {
             if (s == null)
                 s = target.Source;
-            Environment.Require(target, "Source.Include",
+            Environment.Require(target, "source.include",
                 includes.Select(d => new Element(s, d)).ToArray());
         }
 
@@ -235,7 +235,7 @@ namespace Uno.Compiler.Foreign
         {
             if (s == null)
                 s = target.Source;
-            Environment.Require(target, "Entity",
+            Environment.Require(target, "entity",
                 types.Select(t => new Element(s, t.FullName)).ToArray());
         }
 
@@ -250,7 +250,7 @@ namespace Uno.Compiler.Foreign
         {
             if (s == null)
                 s = target.Source;
-            Environment.Require(target, "Entity",
+            Environment.Require(target, "entity",
                 members.Select(f => new Element(s, UnoSignature(f))).ToArray());
         }
 

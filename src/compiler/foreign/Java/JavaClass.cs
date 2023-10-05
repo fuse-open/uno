@@ -101,7 +101,7 @@ namespace Uno.Compiler.Foreign.Java
                             ftw.WriteLine("@Deprecated");
                             ftw.WriteLine("static void debug_log(Object message)");
                             ftw.Indent("{");
-                            ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("Activity.Name") + "\", (message == null ? \"null\" : message.toString()));");
+                            ftw.WriteLine("android.util.Log.d(\"" + _environment.GetString("activity.name") + "\", (message == null ? \"null\" : message.toString()));");
                             ftw.Unindent("}\n");
                         }
 
@@ -127,7 +127,7 @@ namespace Uno.Compiler.Foreign.Java
                     throw new Exception("ForeignCode: Attempted to write dedicated javae file for nested class.");
 
                 var filePath = FullName.Replace(".", "/") + ".java";
-                var path = _environment.Combine(_environment.GetString("Java.SourceDirectory"), filePath);
+                var path = _environment.Combine(_environment.GetString("java.sourceDirectory"), filePath);
                 disk.WriteAllText(path, GenJavaClassCode());
             }
         }

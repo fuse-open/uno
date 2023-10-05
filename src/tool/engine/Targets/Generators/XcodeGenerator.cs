@@ -18,9 +18,9 @@ namespace Uno.Build.Targets.Generators
         {
             {
                 // Files
-                var publicHeaders = new HashSet<string>(env.GetSet("Xcode.PublicHeader", true));
+                var publicHeaders = new HashSet<string>(env.GetSet("xcode.publicHeader", true));
 
-                var headers = env.GetSet("HeaderFile", true)
+                var headers = env.GetSet("headerFile", true)
                     .Distinct()
                     .Select(f => new XcodeFile(
                         "@(headerDirectory)/" + f,
@@ -29,12 +29,12 @@ namespace Uno.Build.Targets.Generators
                         publicHeaders.Contains(f) ? "{ATTRIBUTES = (Public, ); }" : null))
                     .ToList();
 
-                var sources = env.GetSet("SourceFile", true)
+                var sources = env.GetSet("sourceFile", true)
                     .Distinct()
                     .Select(f => new XcodeFile("@(sourceDirectory)/" + f, "Sources", "<group>"))
                     .ToList();
 
-                var frameworks = env.GetSet("Xcode.Framework", true)
+                var frameworks = env.GetSet("xcode.framework", true)
                     .Select(f =>
                     {
                         var eframework = Path.HasExtension(f) ? f : (f + ".framework");
@@ -48,18 +48,18 @@ namespace Uno.Build.Targets.Generators
                     .Select(x => x.First())
                     .ToList();
 
-                var embeddedFrameworks = env.GetSet("Xcode.EmbeddedFramework", true)
+                var embeddedFrameworks = env.GetSet("xcode.embeddedFramework", true)
                     .Distinct()
                     .Select(f => new XcodeFile(f, "Embed Frameworks", "<absolute>", "{ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }"))
                     .ToList();
 
                 var allFiles = headers.Concat(sources).Concat(frameworks).Concat(embeddedFrameworks);
 
-                var frameworkDirs = env.GetSet("Xcode.Framework", true)
-                    .Concat(env.GetSet("Xcode.EmbeddedFramework", true))
+                var frameworkDirs = env.GetSet("xcode.framework", true)
+                    .Concat(env.GetSet("xcode.embeddedFramework", true))
                     .Where(Path.IsPathRooted)
                     .Select(Path.GetDirectoryName)
-                    .Concat(env.GetSet("Xcode.FrameworkDirectory", true))
+                    .Concat(env.GetSet("xcode.frameworkDirectory", true))
                     .Distinct()
                     .Select(dir => dir.QuoteSpace().QuoteSpace());
 
@@ -72,7 +72,7 @@ namespace Uno.Build.Targets.Generators
                             " /* " + f.Path + " */ = {isa = PBXFileReference; name = " + f.Name.QuoteSpace() +
                             "; path = " + f.Path.QuoteSpace() +
                             "; sourceTree = " + f.SourceTree.QuoteSpace() + "; };");
-                    env.Set("Pbxproj.PBXFileReferences", fileReferences.ToString().Trim());
+                    env.Set("pbxproj.PBXFileReferences", fileReferences.ToString().Trim());
                 }
                 {
                     // Build files
@@ -83,7 +83,7 @@ namespace Uno.Build.Targets.Generators
                             " */ = {isa = PBXBuildFile; fileRef = " + f.FileReferenceUUID + " /* " + f.Name + " */; " +
                             (f.Settings == null ? "" : "settings = " + f.Settings + "; ") + "};");
 
-                    env.Set("Pbxproj.PBXBuildFiles", buildFiles.ToString().Trim());
+                    env.Set("pbxproj.PBXBuildFiles", buildFiles.ToString().Trim());
                 }
                 {
                     // Sources
@@ -96,8 +96,8 @@ namespace Uno.Build.Targets.Generators
                             Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
 
-                    env.Set("Pbxproj.PBXGroupSources", groupSources.ToString().Trim());
-                    env.Set("Pbxproj.PBXSourcesBuildPhaseFiles", sourcesBuildPhaseFiles.ToString().Trim());
+                    env.Set("pbxproj.PBXGroupSources", groupSources.ToString().Trim());
+                    env.Set("pbxproj.PBXSourcesBuildPhaseFiles", sourcesBuildPhaseFiles.ToString().Trim());
                 }
                 {
                     // Headers
@@ -110,8 +110,8 @@ namespace Uno.Build.Targets.Generators
                             Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
 
-                    env.Set("Pbxproj.PBXGroupHeaders", groupHeaders.ToString().Trim());
-                    env.Set("Pbxproj.PBXHeadersBuildPhaseFiles", headersBuildPhaseFiles.ToString().Trim());
+                    env.Set("pbxproj.PBXGroupHeaders", groupHeaders.ToString().Trim());
+                    env.Set("pbxproj.PBXHeadersBuildPhaseFiles", headersBuildPhaseFiles.ToString().Trim());
                 }
                 {
                     // Frameworks
@@ -128,30 +128,30 @@ namespace Uno.Build.Targets.Generators
                         groupFrameworks.AppendLine(Indent(4) + f.FileReferenceUUID + " /* " + f.Path + " */,");
                         embedFrameworksBuildPhaseFiles.AppendLine(Indent(4) + f.BuildFileUUID + " /* " + f.Name + " in " + f.Category + " */,");
                     }
-                    env.Set("Pbxproj.PBXGroupFrameworks", groupFrameworks.ToString().Trim());
-                    env.Set("Pbxproj.PBXFrameworksBuildPhaseFiles", frameworksBuildPhaseFiles.ToString().Trim());
-                    env.Set("Pbxproj.PBXEmbedFrameworksBuildPhaseFiles", embedFrameworksBuildPhaseFiles.ToString().Trim());
+                    env.Set("pbxproj.PBXGroupFrameworks", groupFrameworks.ToString().Trim());
+                    env.Set("pbxproj.PBXFrameworksBuildPhaseFiles", frameworksBuildPhaseFiles.ToString().Trim());
+                    env.Set("pbxproj.PBXEmbedFrameworksBuildPhaseFiles", embedFrameworksBuildPhaseFiles.ToString().Trim());
 
-                    env.Set("Pbxproj.FrameworkDirectories", string.Join(", ", frameworkDirs));
+                    env.Set("pbxproj.frameworkDirectories", string.Join(", ", frameworkDirs));
                 }
             }
 
             {
                 // Development Team
-                var devTeam = env.GetString("Project.iOS.DevelopmentTeam");
+                var devTeam = env.GetString("project.ios.developmentTeam");
                 if (string.IsNullOrEmpty(devTeam))
-                    devTeam = UnoConfig.Current.GetString("iOS.DevelopmentTeam");
+                    devTeam = UnoConfig.Current.GetString("ios.developmentTeam");
                 if (string.IsNullOrEmpty(devTeam))
                     devTeam = FindCodeSigningDevelopmentTeam(shell);
                 if (!string.IsNullOrEmpty(devTeam))
-                    env.Set("Pbxproj.DevelopmentTeam", devTeam.QuoteSpace());
+                    env.Set("pbxproj.developmentTeam", devTeam.QuoteSpace());
             }
 
             {
                 // ShellScripts
                 var buildPhases = new StringBuilder();
                 var shellScripts = new StringBuilder();
-                foreach (var script in env.GetSet("Xcode.ShellScript"))
+                foreach (var script in env.GetSet("xcode.shellScript"))
                 {
                     var uuid = XcodeFile.CreateUUID();
                     buildPhases.AppendLine(Indent(4) + uuid + " /* ShellScript */,");
@@ -159,33 +159,33 @@ namespace Uno.Build.Targets.Generators
                         " /* ShellScript */ = {isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (); inputPaths = (); outputPaths = (); runOnlyForDeploymentPostprocessing = 0; shellPath = /bin/sh; shellScript = " +
                         script.ToLiteral() + "; };");
                 }
-                env.Set("Pbxproj.PBXNativeTargetBuildPhases", buildPhases.ToString().Trim());
-                env.Set("Pbxproj.PBXShellScriptBuildPhase", shellScripts.ToString().Trim());
+                env.Set("pbxproj.PBXNativeTargetBuildPhases", buildPhases.ToString().Trim());
+                env.Set("pbxproj.PBXShellScriptBuildPhase", shellScripts.ToString().Trim());
             }
 
             {
                 // Include dirs
                 var includeDirs = new StringBuilder();
                 includeDirs.AppendLine(Indent(5) + "@(headerDirectory),");
-                foreach (var e in env.GetSet("IncludeDirectory", true))
+                foreach (var e in env.GetSet("includeDirectory", true))
                     includeDirs.AppendLine(Indent(5) + e.QuoteSpace().QuoteSpace() + ",");
-                env.Set("Pbxproj.IncludeDirectories", includeDirs.ToString().Trim());
+                env.Set("pbxproj.includeDirectories", includeDirs.ToString().Trim());
             }
 
             {
                 // Link dirs
                 var linkDirs = new StringBuilder();
-                foreach (var e in env.GetSet("LinkDirectory", true))
+                foreach (var e in env.GetSet("linkDirectory", true))
                     linkDirs.AppendLine(Indent(5) + e.QuoteSpace().QuoteSpace() + ",");
-                env.Set("Pbxproj.LinkDirectories", linkDirs.ToString().Trim());
+                env.Set("pbxproj.linkDirectories", linkDirs.ToString().Trim());
             }
 
             {
                 // Link flags
                 var linkFlags = new StringBuilder();
-                foreach (var e in env.GetSet("LinkLibrary", true))
+                foreach (var e in env.GetSet("linkLibrary", true))
                     linkFlags.Append(" -l" + e);
-                env.Set("Pbxproj.LinkLibraries", linkFlags.ToString().Trim());
+                env.Set("pbxproj.linkLibraries", linkFlags.ToString().Trim());
             }
 
             // Bundle files
@@ -197,7 +197,7 @@ namespace Uno.Build.Targets.Generators
                     // them up.
                     case ".OTF":
                     case ".TTF":
-                        env.Require("FontFile", e.TargetName);
+                        env.Require("fontFile", e.TargetName);
                         break;
                 }
         }
