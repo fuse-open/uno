@@ -2,16 +2,16 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Diagnostics
 {
-    [extern(CPLUSPLUS) Require("Source.Include", "time.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/time.h")]
+    [extern(CPLUSPLUS) Require("source.include", "time.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "sys/time.h")]
     public static class Clock
     {
         extern(DOTNET)
         static System.Diagnostics.Stopwatch _watch = System.Diagnostics.Stopwatch.StartNew();
 
-        [extern(CPLUSPLUS && APPLE) Require("Source.Include", "mach/mach.h")]
-        [extern(CPLUSPLUS && APPLE) Require("Source.Include", "mach/mach_time.h")]
-        [extern(CPLUSPLUS && WIN32) Require("Source.Include", "uno/WinAPI.h")]
+        [extern(CPLUSPLUS && APPLE) Require("source.include", "mach/mach.h")]
+        [extern(CPLUSPLUS && APPLE) Require("source.include", "mach/mach_time.h")]
+        [extern(CPLUSPLUS && WIN32) Require("source.include", "uno/WinAPI.h")]
         public static double GetSeconds()
         {
             if defined(CPLUSPLUS && WIN32)
@@ -50,7 +50,7 @@ namespace Uno.Diagnostics
                 build_error;
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "chrono")]
+        [extern(CPLUSPLUS) Require("source.include", "chrono")]
         public static long GetTicks()
         {
             if defined(CPLUSPLUS)

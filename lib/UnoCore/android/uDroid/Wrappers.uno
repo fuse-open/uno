@@ -138,7 +138,7 @@ namespace Android.Base.Wrappers
 
     public extern(android) static class JavaObjectHelper
     {
-        [Require("Source.Include", "jni.h")]
+        [Require("source.include", "jni.h")]
         public static IJWrapper JObjectToJWrapper(ujobject tmpRes, bool stackArg)
         {
             Android.Base.JNI.CheckException();

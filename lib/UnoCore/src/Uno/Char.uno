@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Char")]
-    [extern(CPLUSPLUS) Set("TypeName", "char16_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "char16_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     /** Represents a character as a UTF-16 code unit. */
     public intrinsic struct Char
     {

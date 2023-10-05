@@ -7,24 +7,24 @@ using Uno.Math;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.String")]
-    [extern(CPLUSPLUS) Set("TypeName", "uString*")]
+    [extern(CPLUSPLUS) Set("typeName", "uString*")]
     /** Represents text as a sequence of UTF-16 code units. */
     public sealed intrinsic class String : IEnumerable<char>
     {
         public static readonly string Empty = "";
 
-        [extern(CPLUSPLUS) Set("FunctionName", "uString::CharArray")]
-        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("functionName", "uString::CharArray")]
+        [extern(CPLUSPLUS) Set("isIntrinsic", "true")]
         public extern String(char[] str);
 
-        [extern(CPLUSPLUS) Set("FunctionName", "uString::CharArrayRange")]
-        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("functionName", "uString::CharArrayRange")]
+        [extern(CPLUSPLUS) Set("isIntrinsic", "true")]
         public extern String(char[] str, int startIndex, int length);
 
-        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("isIntrinsic", "true")]
         public extern int Length { get; }
 
-        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("isIntrinsic", "true")]
         public extern char this[int index] { get; }
 
         public override int GetHashCode()

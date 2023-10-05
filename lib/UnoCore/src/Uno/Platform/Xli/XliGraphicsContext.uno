@@ -4,13 +4,13 @@ using OpenGL;
 namespace Uno.Platform.Xli
 {
     [TargetSpecificType]
-    [Set("TypeName", "uGraphicsContext")]
-    [Set("Include", "uPlatform/GraphicsContext.h")]
+    [Set("typeName", "uGraphicsContext")]
+    [Set("include", "uPlatform/GraphicsContext.h")]
     extern(CPLUSPLUS && !MOBILE) struct XliGraphicsContextPtr
     {
     }
 
-    [Require("Header.Include", "uPlatform/GraphicsContext.h")]
+    [Require("header.include", "uPlatform/GraphicsContext.h")]
     extern(CPLUSPLUS && !MOBILE) class XliGraphicsContext : GraphicsContextBackend
     {
         readonly XliGraphicsContextPtr _ptr;

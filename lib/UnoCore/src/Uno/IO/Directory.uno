@@ -20,12 +20,12 @@ namespace Uno.IO
     }
 
     [extern(DOTNET) DotNetType("System.IO.Directory")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "errno.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "fcntl.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/stat.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/types.h")]
-    [extern(CPLUSPLUS && WIN32) Require("Source.Include", "uno/WinAPI.h")]
-    [extern(CPLUSPLUS && APPLE) Require("Source.FileExtension", "mm")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "errno.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "fcntl.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "sys/stat.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "sys/types.h")]
+    [extern(CPLUSPLUS && WIN32) Require("source.include", "uno/WinAPI.h")]
+    [extern(CPLUSPLUS && APPLE) Require("source.fileExtension", "mm")]
     public static class Directory
     {
         [DotNetOverride]
@@ -206,8 +206,8 @@ namespace Uno.IO
         @}
 
         [extern(DOTNET) DotNetOverride]
-        [extern(APPLE) Require("Source.Import", "Foundation/Foundation.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{Path:include}")]
+        [extern(APPLE) Require("source.import", "Foundation/Foundation.h")]
+        [extern(CPLUSPLUS) Require("source.include", "@{Path:include}")]
         internal static string GetBaseDirectory()
         {
             if defined(WIN32)
@@ -421,7 +421,7 @@ namespace Uno.IO
             }
         }
 
-        [extern(CPLUSPLUS && UNIX) Require("Source.Include", "dirent.h")]
+        [extern(CPLUSPLUS && UNIX) Require("source.include", "dirent.h")]
         class Enumerator : IEnumerator<string>
         {
             extern(WIN32) readonly string _filter;

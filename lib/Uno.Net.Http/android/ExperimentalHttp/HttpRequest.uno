@@ -4,7 +4,7 @@ using Android.Base.Wrappers;
 namespace Android.com.fuse.ExperimentalHttp
 {
     [TargetSpecificImplementation, NativeClass("Java", "HttpRequest")]
-    [Require("AndroidManifest.ApplicationElement", "<uses-library android:name=\"org.apache.http.legacy\" android:required=\"false\" />")]
+    [Require("androidManifest.applicationElement", "<uses-library android:name=\"org.apache.http.legacy\" android:required=\"false\" />")]
     public extern(ANDROID) abstract  class HttpRequest : Android.Base.Wrappers.JWrapper
     {
         internal static new ujclass _javaClass;

@@ -3,10 +3,10 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Object")]
-    [extern(CPLUSPLUS) Set("TypeName", "uObject*")]
-    [extern(CPLUSPLUS) Set("BaseType", "uObject")]
-    [extern(CPLUSPLUS) Set("TypeOfType", "uType")]
-    [extern(CPLUSPLUS) Set("TypeOfFunction", "uObject_typeof")]
+    [extern(CPLUSPLUS) Set("typeName", "uObject*")]
+    [extern(CPLUSPLUS) Set("baseType", "uObject")]
+    [extern(CPLUSPLUS) Set("typeofType", "uType")]
+    [extern(CPLUSPLUS) Set("typeofFunction", "uObject_typeof")]
     public intrinsic class Object
     {
         public Type GetType()

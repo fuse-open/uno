@@ -37,7 +37,7 @@ namespace UnoTest.General
         }
     }
 
-    [Set("TypeName", "int")]
+    [Set("typeName", "int")]
     extern(CPLUSPLUS) struct CppValueHandle
     {
     }

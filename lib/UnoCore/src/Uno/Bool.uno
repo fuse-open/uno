@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Boolean")]
-    [extern(CPLUSPLUS) Set("TypeName", "bool")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "bool")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     /** Represents a boolean (`true` or `false`) value */
     public intrinsic struct Bool
     {

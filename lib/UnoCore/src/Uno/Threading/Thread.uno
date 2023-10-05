@@ -6,16 +6,16 @@ using System.Globalization;
 namespace Uno.Threading
 {
     [TargetSpecificType]
-    [extern(UNIX) Set("Include", "pthread.h")]
-    [extern(UNIX) Set("TypeName", "pthread_t")]
-    [extern(WIN32) Set("TypeName", "void*")] // "HANDLE" in WinAPI
+    [extern(UNIX) Set("include", "pthread.h")]
+    [extern(UNIX) Set("typeName", "pthread_t")]
+    [extern(WIN32) Set("typeName", "void*")] // "HANDLE" in WinAPI
     extern(CPLUSPLUS) struct ThreadHandle
     {
     }
 
     [TargetSpecificType]
-    [Set("Include", "uno/ThreadUtils.h")]
-    [Set("TypeName", "uThreadLocal*")]
+    [Set("include", "uno/ThreadUtils.h")]
+    [Set("typeName", "uThreadLocal*")]
     extern(CPLUSPLUS) struct ThreadLocal
     {
     }
@@ -32,14 +32,14 @@ namespace Uno.Threading
     }
 
     [DotNetType("System.Threading.Thread")]
-    [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):call((@{Thread}) arg)}; return nullptr; }")]
-    [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):call((@{Thread}) lpParam)}; return 0; }")]
-    [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
+    [extern(UNIX) Require("source.declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):call((@{Thread}) arg)}; return nullptr; }")]
+    [extern(WIN32) Require("source.declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):call((@{Thread}) lpParam)}; return 0; }")]
+    [extern(WIN32) Require("source.include", "uno/WinAPI.h")]
     public sealed class Thread
     {
         extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";
 
-        [Require("Source.Include", "@{Uno.Exception:include}")]
+        [Require("source.include", "@{Uno.Exception:include}")]
         extern(CPLUSPLUS) static void ThreadMain(Thread thread)
         @{
             uAutoReleasePool pool;
@@ -153,7 +153,7 @@ namespace Uno.Threading
             }
         }
 
-        [extern(UNIX) Require("Source.Include", "unistd.h")]
+        [extern(UNIX) Require("source.include", "unistd.h")]
         public static void Sleep(int millis)
         {
             if defined(UNIX)

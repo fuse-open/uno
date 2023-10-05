@@ -3,10 +3,10 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Environment")]
-    [extern(CPLUSPLUS) Require("Source.Include", "cstdlib")]
-    [extern(CPLUSPLUS && !WIN32) Require("Source.Declaration", "extern int uArgc;")]
-    [extern(CPLUSPLUS && !WIN32) Require("Source.Declaration", "extern char** uArgv;")]
-    [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
+    [extern(CPLUSPLUS) Require("source.include", "cstdlib")]
+    [extern(CPLUSPLUS && !WIN32) Require("source.declaration", "extern int uArgc;")]
+    [extern(CPLUSPLUS && !WIN32) Require("source.declaration", "extern char** uArgv;")]
+    [extern(WIN32) Require("source.include", "uno/WinAPI.h")]
     public static class Environment
     {
         public static string NewLine

@@ -345,15 +345,15 @@ namespace Uno.IO
     }
 
     [TargetSpecificType]
-    [Set("TypeName", "::AAsset*")]
-    [Set("Include", "android/asset_manager.h")]
+    [Set("typeName", "::AAsset*")]
+    [Set("include", "android/asset_manager.h")]
     extern(ANDROID) struct AAssetPtr
     {
     }
 
     [TargetSpecificType]
-    [Set("TypeName", "::AAssetManager*")]
-    [Set("Include", "android/asset_manager.h")]
+    [Set("typeName", "::AAssetManager*")]
+    [Set("include", "android/asset_manager.h")]
     extern(ANDROID) struct AAssetManagerPtr
     {
     }
@@ -370,7 +370,7 @@ namespace Uno.IO
             return retval;
         }
 
-        [Require("Source.Include", "android/asset_manager_jni.h")]
+        [Require("source.include", "android/asset_manager_jni.h")]
         static AAssetManagerPtr GetPtr()
         {
             var env = JNI.GetEnvPtr();

@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno.Threading
 {
     [extern(DOTNET) DotNetType("System.Threading.Monitor")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uno/ObjectMonitor.h")]
-    [extern(CPLUSPLUS) Require("Source.Include", "uno/ThreadUtils.h")]
+    [extern(CPLUSPLUS) Require("source.include", "uno/ObjectMonitor.h")]
+    [extern(CPLUSPLUS) Require("source.include", "uno/ThreadUtils.h")]
     public static class Monitor
     {
         public static void Enter(object obj)

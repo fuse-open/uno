@@ -4,7 +4,7 @@ using Uno.Testing;
 
 namespace ForeignCPlusPlusTest
 {
-    [Require("Source.Include", "cheader.h")]
+    [Require("source.include", "cheader.h")]
     public extern(CPlusPlus || PInvoke || ENABLE_CIL_TESTS) class Basics
     {
         [Foreign(Language.CPlusPlus)]

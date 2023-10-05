@@ -6,12 +6,12 @@ using Uno.Net.Sockets;
 namespace Uno.Net
 {
     [DotNetType("System.Net.Dns")]
-    [extern(APPLE || LINUX) Require("Source.Include", "ifaddrs.h")]
-    [extern(UNIX) Require("Source.Include", "sys/socket.h")]
-    [extern(UNIX) Require("Source.Include", "netdb.h")]
-    [extern(UNIX) Require("Source.Include", "netinet/in.h")]
-    [extern(MSVC) Require("Source.Include", "ws2tcpip.h")]
-    [Require("Source.Include", "vector")]
+    [extern(APPLE || LINUX) Require("source.include", "ifaddrs.h")]
+    [extern(UNIX) Require("source.include", "sys/socket.h")]
+    [extern(UNIX) Require("source.include", "netdb.h")]
+    [extern(UNIX) Require("source.include", "netinet/in.h")]
+    [extern(MSVC) Require("source.include", "ws2tcpip.h")]
+    [Require("source.include", "vector")]
     public class Dns
     {
         extern(APPLE || LINUX) static IPAddress[] GetLocalAddresses()

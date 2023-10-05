@@ -3,12 +3,12 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno.IO
 {
     [TargetSpecificType]
-    [Set("TypeName", "FILE*")]
-    [Set("Include", "cstdio")]
+    [Set("typeName", "FILE*")]
+    [Set("include", "cstdio")]
     extern(CPLUSPLUS)
     struct FILEPtr
     {
-        [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
+        [extern(WIN32) Require("source.include", "uno/WinAPI.h")]
         public static FILEPtr OpenOrThrow(string filename, string mode)
         {
             if (filename == null)

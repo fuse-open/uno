@@ -27,7 +27,7 @@ namespace Uno.Reflection
     }
 
     [TargetSpecificType]
-    [Set("TypeName", "uField*")]
+    [Set("typeName", "uField*")]
     extern(CPLUSPLUS && REFLECTION)
     public struct CppField : IField
     {
@@ -73,7 +73,7 @@ namespace Uno.Reflection
     }
 
     [TargetSpecificType]
-    [Set("TypeName", "uFunction*")]
+    [Set("typeName", "uFunction*")]
     extern(CPLUSPLUS && REFLECTION)
     public struct CppFunction : IFunction
     {

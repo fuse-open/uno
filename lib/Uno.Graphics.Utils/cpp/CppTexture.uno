@@ -5,16 +5,16 @@ using OpenGL;
 
 namespace Uno.Graphics.Utils.Cpp
 {
-    [Require("Source.Include", "@{texture2D:include}")]
-    [Require("Source.Include", "@{Exception:include}")]
-    [Require("Source.Include", "uPlatform/GLHelper.h")]
-    [Require("Source.Include", "uBase/Buffer.h")]
-    [Require("Source.Include", "uBase/BufferStream.h")]
-    [Require("Source.Include", "uBase/Memory.h")]
-    [Require("Source.Include", "uImage/Jpeg.h")]
-    [Require("Source.Include", "uImage/Png.h")]
-    [Require("Source.Include", "uImage/Texture.h")]
-    [Require("Template", "uImage")]
+    [Require("source.include", "@{texture2D:include}")]
+    [Require("source.include", "@{Exception:include}")]
+    [Require("source.include", "uPlatform/GLHelper.h")]
+    [Require("source.include", "uBase/Buffer.h")]
+    [Require("source.include", "uBase/BufferStream.h")]
+    [Require("source.include", "uBase/Memory.h")]
+    [Require("source.include", "uImage/Jpeg.h")]
+    [Require("source.include", "uImage/Png.h")]
+    [Require("source.include", "uImage/Texture.h")]
+    [Require("template", "uImage")]
     extern(CPLUSPLUS) static class CppTexture
     {
         public static textureCube LoadCube(string filename, byte[] data)
@@ -101,15 +101,15 @@ namespace Uno.Graphics.Utils.Cpp
         @}
 
         [TargetSpecificType]
-        [Set("TypeName", "::uImage::Texture*")]
-        [Set("Include", "uImage/Texture.h")]
+        [Set("typeName", "::uImage::Texture*")]
+        [Set("include", "uImage/Texture.h")]
         struct TexturePtr
         {
         }
 
         [TargetSpecificType]
-        [Set("TypeName", "::uImage::Format")]
-        [Set("Include", "uImage/Format.h")]
+        [Set("typeName", "::uImage::Format")]
+        [Set("include", "uImage/Format.h")]
         struct NativeFormat
         {
         }
@@ -123,7 +123,7 @@ namespace Uno.Graphics.Utils.Cpp
             int MipCount;
         }
 
-        [Require("Source.Include", "uBase/Path.h")]
+        [Require("source.include", "uBase/Path.h")]
         static TexturePtr LoadTextureData(string filename, byte[] data)
         @{
             uCString temp($0);

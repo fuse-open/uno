@@ -4,7 +4,7 @@ using Uno.IO;
 namespace Uno.Native
 {
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) class NativeObject : IDisposable
     {
         public extern void Dispose();
@@ -14,7 +14,7 @@ namespace Uno.Native
 namespace Uno.Native.Fonts
 {
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) class FontFace : NativeObject
     {
         public extern string FamilyName { get; private set; }
@@ -32,7 +32,7 @@ namespace Uno.Native.Fonts
     }
 
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) struct RenderedGlyph
     {
         public float AdvanceX, AdvanceY;
@@ -43,7 +43,7 @@ namespace Uno.Native.Fonts
     }
 
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) enum FontRenderMode
     {
         None,
@@ -55,7 +55,7 @@ namespace Uno.Native.Fonts
 namespace Uno.Native.Textures
 {
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) enum TextureFileFormat
     {
         Unknown,
@@ -65,7 +65,7 @@ namespace Uno.Native.Textures
     }
 
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) enum TextureType
     {
         Texture2D,
@@ -74,7 +74,7 @@ namespace Uno.Native.Textures
     }
 
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) enum PixelFormat
     {
         Unspecified = 0,
@@ -180,7 +180,7 @@ namespace Uno.Native.Textures
     }
 
     [extern(CIL) DotNetType]
-    [extern(CIL) Require("Template", "Uno.Native")]
+    [extern(CIL) Require("template", "Uno.Native")]
     extern(DOTNET) class Texture : NativeObject
     {
         public extern int Width { get; }

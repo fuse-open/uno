@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Uno.Collections;
 using Uno.Compiler.API.Domain.IL;
 
 namespace Uno.Compiler.API.Domain.Extensions
 {
     public class FunctionExtension : ExtensionEntity
     {
-        public readonly Dictionary<string, Element> Properties = new Dictionary<string, Element>();
+        public readonly LowerCamelDictionary<Element> Properties = new();
         public readonly Namescope[] Scopes;
 
         public Source ImplementationSource { get; private set; }

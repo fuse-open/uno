@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Byte")]
-    [extern(CPLUSPLUS) Set("TypeName", "uint8_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "uint8_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     /** Represents an 8-bit unsigned integer.
         The value can only be in the range 0 to 255. Storage size is 1 byte. */
     public intrinsic struct Byte
@@ -27,7 +27,7 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
+        [extern(CPLUSPLUS) Require("source.include", "cstdio")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

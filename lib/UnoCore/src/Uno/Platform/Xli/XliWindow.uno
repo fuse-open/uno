@@ -3,15 +3,15 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno.Platform.Xli
 {
     [TargetSpecificType]
-    [Set("TypeName", "::Xli::Window*")]
-    [Set("ForwardDeclaration", "namespace Xli { class Window; }")]
-    [Require("Header.Include", "XliPlatform/Window.h")]
+    [Set("typeName", "::Xli::Window*")]
+    [Set("forwardDeclaration", "namespace Xli { class Window; }")]
+    [Require("header.include", "XliPlatform/Window.h")]
     extern(CPLUSPLUS && !MOBILE) struct XliWindowPtr
     {
     }
 
-    [Require("Source.Include", "XliPlatform/Display.h")]
-    [Require("Source.Declaration", "extern ::Xli::Window* _XliWindowPtr;")]
+    [Require("source.include", "XliPlatform/Display.h")]
+    [Require("source.declaration", "extern ::Xli::Window* _XliWindowPtr;")]
     extern(CPLUSPLUS && !MOBILE) class XliWindow : WindowBackend
     {
         readonly XliWindowPtr _ptr;

@@ -7,8 +7,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno.Platform.iOS
 {
     [TargetSpecificImplementation]
-    [Require("Source.Include", "Uno-iOS/AppDelegate.h")]
-    [Set("FileExtension", "mm")]
+    [Require("source.include", "Uno-iOS/AppDelegate.h")]
+    [Set("fileExtension", "mm")]
     public extern(IOS) static class Application
     {
         public static bool IsIdleTimerEnabled

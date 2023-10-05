@@ -4,9 +4,9 @@ using Uno.Text;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Guid")]
-    [Require("Source.Include", "sstream")]
-    [Require("Source.Include", "iostream")]
-    [extern(APPLE) Set("FileExtension", "mm")]
+    [Require("source.include", "sstream")]
+    [Require("source.include", "iostream")]
+    [extern(APPLE) Set("fileExtension", "mm")]
     public struct Guid
     {
         uint Data1;
@@ -146,8 +146,8 @@ namespace Uno
         extern(DOTNET)
         public static Guid NewGuid();
 
-        [Require("LinkLibrary", "Rpcrt4")]
-        [Require("Source.Include", "uno/WinAPI.h")]
+        [Require("linkLibrary", "Rpcrt4")]
+        [Require("source.include", "uno/WinAPI.h")]
         extern(MSVC)
         public static Guid NewGuid()
         @{
@@ -186,7 +186,7 @@ namespace Uno
             return @{Guid(byte[]):new(new ByteArray(result))};
         @}
 
-        [Require("Source.Include", "Foundation/Foundation.h")]
+        [Require("source.include", "Foundation/Foundation.h")]
         extern(APPLE)
         public static Guid NewGuid()
         @{
@@ -207,8 +207,8 @@ namespace Uno
                               (@{byte})buf[15])};
         @}
 
-        [Require("Source.Include", "uuid/uuid.h")]
-        [Require("LinkLibrary", "uuid")]
+        [Require("source.include", "uuid/uuid.h")]
+        [Require("linkLibrary", "uuid")]
         extern(LINUX)
         public static Guid NewGuid()
         @{

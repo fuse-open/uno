@@ -4,7 +4,7 @@ using Uno.Time;
 
 namespace Uno.IO
 {
-    [Require("Source.Include", "uno/WinAPI.h")]
+    [Require("source.include", "uno/WinAPI.h")]
     extern(MSVC) internal static class FileStatusHelpers
     {
         extern(MSVC) private static ZonedDateTime FileTimeToZoned(uint fileTimeHigh, uint fileTimeLow)
