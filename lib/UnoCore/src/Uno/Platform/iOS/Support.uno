@@ -28,11 +28,11 @@ namespace Uno.Platform.iOS
     }
 
 
-    [Require("Source.Include", "@{Uno.Platform.iOS.Application:include}")]
-    [Require("Source.Include", "Foundation/Foundation.h")]
-    [Require("Source.Include", "CoreGraphics/CoreGraphics.h")]
-    [Require("Source.Include", "UIKit/UIKit.h")]
-    [Set("FileExtension", "mm")]
+    [Require("source.include", "@{Uno.Platform.iOS.Application:include}")]
+    [Require("source.include", "Foundation/Foundation.h")]
+    [Require("source.include", "CoreGraphics/CoreGraphics.h")]
+    [Require("source.include", "UIKit/UIKit.h")]
+    [Set("fileExtension", "mm")]
     extern(iOS)
     public static class Support
     {

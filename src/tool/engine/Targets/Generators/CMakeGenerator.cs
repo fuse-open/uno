@@ -16,9 +16,9 @@ namespace Uno.Build.Targets.Generators
 
         public void Configure()
         {
-            foreach (var f in _env.GetSet("HeaderFile", true))
+            foreach (var f in _env.GetSet("headerFile", true))
                 Add("Header Files", "@(headerDirectory)", f);
-            foreach (var f in _env.GetSet("SourceFile", true))
+            foreach (var f in _env.GetSet("sourceFile", true))
                 Add("Source Files", "@(sourceDirectory)", f);
 
             var lines = new List<string>();
@@ -26,7 +26,7 @@ namespace Uno.Build.Targets.Generators
             foreach (var g in _groups)
                 lines.Add("source_group(" + g.Key.QuoteSpace() + " FILES \"" + string.Join("\" \"", g.Value) + "\")");
 
-            _env.Set("CMake.SourceGroups", string.Join("\n", lines));
+            _env.Set("cmake.sourceGroups", string.Join("\n", lines));
         }
 
         void Add(string group, string dir, string name)

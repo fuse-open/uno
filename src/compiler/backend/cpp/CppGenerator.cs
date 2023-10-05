@@ -89,8 +89,8 @@ namespace Uno.Compiler.Backends.CPlusPlus
             var cppFilename = basename + "." + _backend.GetFileExtension(dt);
             var hFilename = basename + ".h";
 
-            _env.Require("SourceFile", cppFilename);
-            _env.Require("HeaderFile", hFilename);
+            _env.Require("sourceFile", cppFilename);
+            _env.Require("headerFile", hFilename);
 
             _cpp = CreateWriter(Path.Combine(_backend.SourceDirectory, cppFilename.UnixToNative()));
             _h = CreateWriter(Path.Combine(_backend.HeaderDirectory, hFilename.UnixToNative()));
@@ -168,7 +168,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 Array.Sort(declarations, DeclarationComparer.Singleton);
 
                 var cppFilename = key + "." + ext.Key;
-                _env.Require("SourceFile", cppFilename);
+                _env.Require("sourceFile", cppFilename);
 
                 _cpp?.Dispose();
                 _cpp = CreateWriter(Path.Combine(_backend.SourceDirectory, cppFilename.UnixToNative()));
@@ -185,7 +185,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 {
                     var dt = ext.Value[i];
                     var hFilename = _backend.GetExportName(dt) + ".h";
-                    _env.Require("HeaderFile", hFilename);
+                    _env.Require("headerFile", hFilename);
 
                     _h?.Dispose();
                     _h = CreateWriter(Path.Combine(_backend.HeaderDirectory, hFilename.UnixToNative()));
@@ -762,8 +762,8 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
         void RequireTypeOf(DataType dt)
         {
-            _env.Require("TypeObjects.Declaration", _backend.GetTypeOfDeclaration(dt));
-            _env.Require("TypeObjects.FunctionPointer", _backend.GetTypeOfPointer(dt));
+            _env.Require("typeObjects.declaration", _backend.GetTypeOfDeclaration(dt));
+            _env.Require("typeObjects.functionPointer", _backend.GetTypeOfPointer(dt));
         }
 
         void DefineField(Field f)

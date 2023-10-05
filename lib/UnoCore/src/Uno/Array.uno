@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Array")]
-    [extern(CPLUSPLUS) Set("TypeName", "uArray*")]
+    [extern(CPLUSPLUS) Set("typeName", "uArray*")]
     public class Array
     {
-        [extern(CPLUSPLUS) Set("IsIntrinsic", "true")]
+        [extern(CPLUSPLUS) Set("isIntrinsic", "true")]
         public extern int Length { get; }
 
         [DotNetOverride]

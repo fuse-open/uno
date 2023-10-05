@@ -153,8 +153,8 @@ namespace Uno.Internal
             return FormatFixedPoint(d, desiredDigits);
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "stdio.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "errno.h")]
+        [extern(CPLUSPLUS) Require("source.include", "stdio.h")]
+        [extern(CPLUSPLUS) Require("source.include", "errno.h")]
         private static string FormatFixedPoint(double d, int desiredDigits)
         {
             if defined(CIL)

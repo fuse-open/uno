@@ -2,9 +2,9 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace Uno.Net
 {
-    [extern(MSVC) Require("Source.Include", "winsock2.h")]
-    [extern(MSVC) Require("LinkLibrary", "ws2_32")]
-    [extern(UNIX) Require("Source.Include", "errno.h")]
+    [extern(MSVC) Require("source.include", "winsock2.h")]
+    [extern(MSVC) Require("linkLibrary", "ws2_32")]
+    [extern(UNIX) Require("source.include", "errno.h")]
     extern(CPLUSPLUS) internal class NetworkHelpers
     {
         extern(MSVC) public static string GetError()

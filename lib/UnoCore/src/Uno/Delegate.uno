@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Delegate")]
-    [extern(CPLUSPLUS) Set("TypeName", "uDelegate*")]
-    [extern(CPLUSPLUS) Set("BaseType", "uDelegate")]
+    [extern(CPLUSPLUS) Set("typeName", "uDelegate*")]
+    [extern(CPLUSPLUS) Set("baseType", "uDelegate")]
     public class Delegate
     {
         private Delegate()

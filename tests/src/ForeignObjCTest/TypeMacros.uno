@@ -7,7 +7,7 @@ namespace ForeignObjCTest
     public extern(FOREIGN_OBJC_SUPPORTED) class TypeMacros
     {
         [Foreign(Language.ObjC)]
-        [Require("Source.Include", "@{Rect:include}")]
+        [Require("source.include", "@{Rect:include}")]
         int typeMacros()
         @{
             @{string} a;

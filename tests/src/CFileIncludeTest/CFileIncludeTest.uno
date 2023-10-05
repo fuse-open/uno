@@ -6,7 +6,7 @@ namespace CFileIncludeTest
     public extern(CPlusPlus) class SimpleFileInclude
     {
         [Test]
-        [Require("Source.Include", "example.h")]
+        [Require("source.include", "example.h")]
         public void GetCString()
         {
             var str = extern<string> "uString::Ansi(hello_world())";

@@ -83,14 +83,14 @@ namespace Uno.Compiler.Backends.CIL
         public override void EndBuild()
         {
             if (Data.MainClass != null)
-                Environment.Set("MainClass", Data.MainClass.CilTypeName());
+                Environment.Set("mainClass", Data.MainClass.CilTypeName());
 
             if (Environment.IsDefined("X64"))
                 foreach (var e in Environment.Enumerate("UnmanagedLibrary.x64"))
-                    Environment.Require("UnmanagedLibrary", e);
+                    Environment.Require("unmanagedLibrary", e);
             else if (Environment.IsDefined("X86"))
                 foreach (var e in Environment.Enumerate("UnmanagedLibrary.x86"))
-                    Environment.Require("UnmanagedLibrary", e);
+                    Environment.Require("unmanagedLibrary", e);
 
             // Copy native libraries
             foreach (var e in Environment.Enumerate("UnmanagedLibrary"))
@@ -98,14 +98,14 @@ namespace Uno.Compiler.Backends.CIL
 
             // Check if we need AppLoader
             if (Environment.IsConsole || Environment.IsLibrary ||
-                    string.IsNullOrEmpty(Environment.GetString("AppLoader.Assembly")))
+                    string.IsNullOrEmpty(Environment.GetString("appLoader.assembly")))
                 return;
 
             // Create an executable for given architecture (-DX86 or -DX64)
             using (Log.StartProfiler(typeof(AppLoader)))
             {
-                var loader = new AppLoader(Environment.GetString("AppLoader.Assembly"));
-                var executable = Environment.Combine(Environment.GetString("Product").TrimPath());
+                var loader = new AppLoader(Environment.GetString("appLoader.assembly"));
+                var executable = Environment.Combine(Environment.GetString("product").TrimPath());
 
                 if (Environment.IsDefined("X64"))
                     loader.SetX64();
@@ -118,8 +118,8 @@ namespace Uno.Compiler.Backends.CIL
                     Environment.GetString);
                 loader.SetMainClass(Data.MainClass.CilTypeName(),
                     Path.Combine(_outputDir, Input.Bundle.Name + ".dll"),
-                    Environment.GetString("AppLoader.Class"),
-                    Environment.GetString("AppLoader.Method"));
+                    Environment.GetString("appLoader.class"),
+                    Environment.GetString("appLoader.method"));
                 loader.ClearPublicKey();
                 loader.Save(executable);
             }

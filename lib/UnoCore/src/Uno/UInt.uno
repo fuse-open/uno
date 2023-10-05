@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.UInt32")]
-    [extern(CPLUSPLUS) Set("TypeName", "uint32_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "uint32_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     public intrinsic struct UInt
     {
         public const uint MinValue = 0;
@@ -25,7 +25,7 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
+        [extern(CPLUSPLUS) Require("source.include", "cstdio")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

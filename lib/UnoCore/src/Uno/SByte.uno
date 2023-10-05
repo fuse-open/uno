@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.SByte")]
-    [extern(CPLUSPLUS) Set("TypeName", "int8_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "int8_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     /** Represents an 8-bit signed integer. */
     public intrinsic struct SByte
     {
@@ -26,7 +26,7 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
+        [extern(CPLUSPLUS) Require("source.include", "cstdio")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

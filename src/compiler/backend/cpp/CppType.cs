@@ -114,7 +114,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     {
                         var prototype = f.Prototype;
 
-                        if (!prototype.IsPublic || env.GetBool(f, "IsIntrinsic"))
+                        if (!prototype.IsPublic || env.GetBool(f, "isIntrinsic"))
                             continue;
                         switch (prototype.MemberType)
                         {
@@ -210,7 +210,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
         void AddFunction(IEnvironment env, Function f)
         {
             if (f == null || f.IsAbstract ||
-                env.GetBool(f, "IsIntrinsic"))
+                env.GetBool(f, "isIntrinsic"))
                 return;
 
             Functions.Add(f);
@@ -222,7 +222,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
             if (m == null || m.IsStatic ||
                 m.ImplementedMethod != null ||
-                env.GetBool(m, "IsIntrinsic"))
+                env.GetBool(m, "isIntrinsic"))
                 return;
 
             if (m.IsVirtual)

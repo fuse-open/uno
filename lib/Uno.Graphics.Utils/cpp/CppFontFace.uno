@@ -5,17 +5,17 @@ using Uno.IO;
 namespace Uno.Graphics.Utils.Cpp
 {
     [TargetSpecificType]
-    [Set("TypeName", "uImage::FontFace*")]
-    [Set("ForwardDeclaration", "namespace uImage { class FontFace; }")]
-    [Require("Header.Include", "uImage/FontFace.h")]
+    [Set("typeName", "uImage::FontFace*")]
+    [Set("forwardDeclaration", "namespace uImage { class FontFace; }")]
+    [Require("header.include", "uImage/FontFace.h")]
     extern(CPLUSPLUS)
     struct CppFontFaceHandle
     {
     }
 
-    [Require("Source.Include", "uBase/BufferStream.h")]
-    [Require("Source.Include", "uBase/Bundle.h")]
-    [Require("Template", "uImage")]
+    [Require("source.include", "uBase/BufferStream.h")]
+    [Require("source.include", "uBase/Bundle.h")]
+    [Require("template", "uImage")]
     extern(CPLUSPLUS)
     class CppFontFace : FontFace
     {
@@ -88,7 +88,7 @@ namespace Uno.Graphics.Utils.Cpp
             return @{$$._handle}->ContainsGlyph($0, $1);
         @}
 
-        [Require("Source.Include", "uImage/Bitmap.h")]
+        [Require("source.include", "uImage/Bitmap.h")]
         public override RenderedGlyph RenderGlyph(float size, char glyph)
         @{
             uBase::Vector2 advance, bearing;

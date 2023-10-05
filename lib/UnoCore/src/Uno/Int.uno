@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Int32")]
-    [extern(CPLUSPLUS) Set("TypeName", "int32_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "int32_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     /** Represents a 32-bit signed integer. */
     public intrinsic struct Int
     {
@@ -26,7 +26,7 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
+        [extern(CPLUSPLUS) Require("source.include", "cstdio")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)
@@ -39,11 +39,11 @@ namespace Uno
                 return base.ToString();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cctype")]
-        [extern(CPLUSPLUS) Require("Source.Include", "climits")]
-        [extern(CPLUSPLUS) Require("Source.Include", "errno.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:include}")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:include}")]
+        [extern(CPLUSPLUS) Require("source.include", "cctype")]
+        [extern(CPLUSPLUS) Require("source.include", "climits")]
+        [extern(CPLUSPLUS) Require("source.include", "errno.h")]
+        [extern(CPLUSPLUS) Require("source.include", "@{FormatException:include}")]
+        [extern(CPLUSPLUS) Require("source.include", "@{OverflowException:include}")]
         public static int Parse(string str)
         {
             if (str == null)
@@ -73,9 +73,9 @@ namespace Uno
                 build_error;
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cctype")]
-        [extern(CPLUSPLUS) Require("Source.Include", "climits")]
-        [extern(CPLUSPLUS) Require("Source.Include", "errno.h")]
+        [extern(CPLUSPLUS) Require("source.include", "cctype")]
+        [extern(CPLUSPLUS) Require("source.include", "climits")]
+        [extern(CPLUSPLUS) Require("source.include", "errno.h")]
         public static bool TryParse(string str, out int result)
         {
             if (str == null)

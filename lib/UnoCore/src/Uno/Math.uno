@@ -3,7 +3,7 @@ using Uno.Compiler.ShaderGenerator;
 
 namespace Uno
 {
-    [extern(CPLUSPLUS) Require("Source.Include", "cmath")]
+    [extern(CPLUSPLUS) Require("source.include", "cmath")]
     public static class Math
     {
         public const double PI = 3.14159265358979323846;

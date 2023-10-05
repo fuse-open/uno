@@ -225,7 +225,7 @@ namespace Uno.IO
         }
 
         [extern(APPLE) Foreign(Language.ObjC)]
-        [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
+        [extern(WIN32) Require("source.include", "uno/WinAPI.h")]
         public static string GetTempPath()
         {
             if defined(WIN32)

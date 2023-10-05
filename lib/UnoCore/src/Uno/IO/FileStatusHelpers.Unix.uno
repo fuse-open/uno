@@ -4,9 +4,9 @@ using Uno.Time;
 
 namespace Uno.IO
 {
-    [Require("Source.Include", "sys/types.h")]
-    [Require("Source.Include", "sys/stat.h")]
-    [Require("Source.Include", "unistd.h")]
+    [Require("source.include", "sys/types.h")]
+    [Require("source.include", "sys/stat.h")]
+    [Require("source.include", "unistd.h")]
     extern(UNIX) internal static class FileStatusHelpers
     {
         extern(UNIX) private static ZonedDateTime UnixTimeToZoned(long sec)

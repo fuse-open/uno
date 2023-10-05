@@ -196,11 +196,11 @@ namespace Uno.Compiler.Core.Syntax
                 foreach (var e in deprecated)
                     ext.Requirements.AddRange(e.Key, e.Value);
 
-            if (ext.Requirements.TryGetValue("Entity", out List<Element> elms))
+            if (ext.Requirements.TryGetValue("entity", out List<Element> elms))
                 foreach (var e in elms)
                     ext.RequiredEntities.Add(_ilf.GetEntity(e.Source, e.String, e.Usings));
 
-            if (ext.Requirements.TryGetValue("Template", out elms))
+            if (ext.Requirements.TryGetValue("template", out elms))
             {
                 foreach (var e in elms)
                 {
@@ -638,7 +638,7 @@ namespace Uno.Compiler.Core.Syntax
 
                     using var originalImg = Image.FromFile(src);
 
-                    if (_env.IsDefined("iOS") && Image.IsAlphaPixelFormat(originalImg.PixelFormat))
+                    if (_env.IsDefined("IOS") && Image.IsAlphaPixelFormat(originalImg.PixelFormat))
                     {
                         var source = new Source(src);
                         Log.Warning(source, ErrorCode.W0000, "iOS App Store doesn't accept Images with transparency.");

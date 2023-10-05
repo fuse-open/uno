@@ -18,8 +18,8 @@ namespace Uno.Platform
 
     public delegate void ApplicationStateTransitionHandler(ApplicationState newState);
 
-    [extern(CPlusPlus) Require("Source.Declaration","void uInitTypes();")]
-    [extern(CPlusPlus) Require("Source.Declaration","void uStartApp();")]
+    [extern(CPlusPlus) Require("source.declaration", "void uInitTypes();")]
+    [extern(CPlusPlus) Require("source.declaration", "void uStartApp();")]
     public abstract class CoreApp
     {
         public static CoreApp Current
@@ -117,7 +117,7 @@ namespace Uno.Platform
                 throw new InvalidOperationException("CoreApp: Invalid state");
         }
 
-        [extern(android) Require("Source.Include", "uDroid/GLHelper.h")]
+        [extern(android) Require("source.include", "uDroid/GLHelper.h")]
         internal static void EnterInteractive()
         {
             if defined(Android) {

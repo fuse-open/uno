@@ -658,6 +658,10 @@ namespace Uno
                 case "typeOf":
                 case "unoDoc":
                     return str.ToLowerInvariant();
+                case "typeOfFunction":
+                    return "typeofFunction";
+                case "typeOfType":
+                    return "typeofType";
             }
 
             return str;

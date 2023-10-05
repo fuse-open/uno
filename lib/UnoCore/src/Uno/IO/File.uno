@@ -6,11 +6,11 @@ using Uno.Text;
 namespace Uno.IO
 {
     [extern(DOTNET) DotNetType("System.IO.File")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "fcntl.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "unistd.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/stat.h")]
-    [extern(CPLUSPLUS && UNIX) Require("Source.Include", "sys/types.h")]
-    [extern(CPLUSPLUS && WIN32) Require("Source.Include", "uno/WinAPI.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "fcntl.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "unistd.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "sys/stat.h")]
+    [extern(CPLUSPLUS && UNIX) Require("source.include", "sys/types.h")]
+    [extern(CPLUSPLUS && WIN32) Require("source.include", "uno/WinAPI.h")]
     public static class File
     {
         public static FileStream Open(string filename, FileMode filemode)
@@ -222,7 +222,7 @@ namespace Uno.IO
         }
     }
 
-    [Require("Source.Include", "uno/WinAPI.h")]
+    [Require("source.include", "uno/WinAPI.h")]
     extern(WIN32) static class WinAPI
     {
         public static string GetLastErrorString()

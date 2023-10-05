@@ -47,12 +47,12 @@ namespace Uno.Net.Sockets
         None = 0
     }
 
-    [extern(UNIX) Require("Source.Include", "sys/socket.h")]
-    [extern(MSVC) Require("Source.Declaration", "typedef ULONG in_addr_t;")]
-    [extern(MSVC) Require("Source.Declaration", "#define SHUT_RD SD_RECEIVE")]
-    [extern(MSVC) Require("Source.Declaration", "#define SHUT_WR SD_SEND")]
-    [extern(MSVC) Require("Source.Declaration", "#define SHUT_RDWR SD_BOTH")]
-    [extern(UNIX) Require("Source.Include", "errno.h")]
+    [extern(UNIX) Require("source.include", "sys/socket.h")]
+    [extern(MSVC) Require("source.declaration", "typedef ULONG in_addr_t;")]
+    [extern(MSVC) Require("source.declaration", "#define SHUT_RD SD_RECEIVE")]
+    [extern(MSVC) Require("source.declaration", "#define SHUT_WR SD_SEND")]
+    [extern(MSVC) Require("source.declaration", "#define SHUT_RDWR SD_BOTH")]
+    [extern(UNIX) Require("source.include", "errno.h")]
     extern(CPLUSPLUS) internal class SocketHelpers
     {
         public static int GetFamily(AddressFamily addressFamily)
@@ -251,22 +251,22 @@ namespace Uno.Net.Sockets
     }
 
     [DotNetType("System.Net.Sockets.Socket")]
-    [extern(MSVC) Require("Header.Include", "ws2tcpip.h")]
-    [extern(MSVC) Require("LinkLibrary", "ws2_32")]
-    [extern(ANDROID) Require("Source.Include", "arpa/inet.h")]
-    [extern(UNIX) Require("Source.Include", "netdb.h")]
-    [extern(UNIX) Require("Source.Include", "netinet/in.h")]
-    [extern(UNIX) Require("Source.Include", "sys/ioctl.h")]
-    [extern(UNIX) Require("Source.Include", "sys/socket.h")]
-    [extern(UNIX) Require("Source.Include", "sys/types.h")]
-    [extern(UNIX) Require("Source.Include", "unistd.h")]
+    [extern(MSVC) Require("header.include", "ws2tcpip.h")]
+    [extern(MSVC) Require("linkLibrary", "ws2_32")]
+    [extern(ANDROID) Require("source.include", "arpa/inet.h")]
+    [extern(UNIX) Require("source.include", "netdb.h")]
+    [extern(UNIX) Require("source.include", "netinet/in.h")]
+    [extern(UNIX) Require("source.include", "sys/ioctl.h")]
+    [extern(UNIX) Require("source.include", "sys/socket.h")]
+    [extern(UNIX) Require("source.include", "sys/types.h")]
+    [extern(UNIX) Require("source.include", "unistd.h")]
     public class Socket : IDisposable
     {
         [TargetSpecificType]
-        [extern(MSVC) Set("TypeName", "SOCKET")]
-        [extern(MSVC) Set("DefaultValue", "INVALID_SOCKET")]
-        [extern(CPLUSPLUS && UNIX) Set("TypeName", "int")]
-        [extern(CPLUSPLUS && UNIX) Set("DefaultValue", "-1")]
+        [extern(MSVC) Set("typeName", "SOCKET")]
+        [extern(MSVC) Set("defaultValue", "INVALID_SOCKET")]
+        [extern(CPLUSPLUS && UNIX) Set("typeName", "int")]
+        [extern(CPLUSPLUS && UNIX) Set("defaultValue", "-1")]
         extern(CPLUSPLUS) internal struct SocketHandle
         {
             public static readonly SocketHandle Invalid;

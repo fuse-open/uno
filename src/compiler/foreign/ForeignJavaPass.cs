@@ -73,7 +73,7 @@ namespace Uno.Compiler.Foreign.Java
             foreach (var d in DelegatesSeen.Keys)
             {
                 var filePath = Convert.Name.JavaDelegateName(d, true).Replace(".", "/") + ".java";
-                var path = Environment.Combine(Environment.GetString("Java.SourceDirectory"), filePath);
+                var path = Environment.Combine(Environment.GetString("java.sourceDirectory"), filePath);
                 Disk.WriteAllText(path, DelegatesSeen[d]);
             }
         }

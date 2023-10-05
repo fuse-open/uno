@@ -46,8 +46,8 @@ namespace Uno.Compiler.Backends.CIL
 
         public override void Configure()
         {
-            SourceDirectory = Environment.GetOutputPath("SourceDirectory");
-            HeaderDirectory = Environment.GetOutputPath("HeaderDirectory");
+            SourceDirectory = Environment.GetOutputPath("sourceDirectory");
+            HeaderDirectory = Environment.GetOutputPath("headerDirectory");
             Types.Add(Essentials.Bool, "bool");
             Types.Add(Essentials.Byte, "uint8_t");
             Types.Add(Essentials.Char, "char16_t");
@@ -77,11 +77,11 @@ namespace Uno.Compiler.Backends.CIL
 
             foreach (var sourceFile in sourceFiles)
             {
-                Environment.Require("SourceFile", sourceFile);
+                Environment.Require("sourceFile", sourceFile);
             }
             foreach (var headerFile in headerFiles)
             {
-                Environment.Require("HeaderFile", headerFile);
+                Environment.Require("headerFile", headerFile);
             }
 
             return null;
@@ -121,10 +121,10 @@ namespace Uno.Compiler.Backends.CIL
 
                 var declarations = new List<string>();
 
-                foreach (var e in Environment.GetSet(dt, "Source.Declaration"))
+                foreach (var e in Environment.GetSet(dt, "source.declaration"))
                     declarations.Add(e.Trim());
 
-                foreach (var e in Environment.GetSet(dt, "Source.Include"))
+                foreach (var e in Environment.GetSet(dt, "source.include"))
                     declarations.Add("#include <" + e.Trim() + ">");
 
                 declarations.Sort();

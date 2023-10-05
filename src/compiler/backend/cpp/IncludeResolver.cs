@@ -93,24 +93,24 @@ namespace Uno.Compiler.Backends.CPlusPlus
             if (hIncludes.Count == 0)
                 hIncludes.Add("uno.h");
 
-            foreach (var e in _env.GetSet(dt, "Header.Declaration"))
+            foreach (var e in _env.GetSet(dt, "header.declaration"))
                 hDeclarations.Add(e.Trim());
-            foreach (var e in _env.GetSet(dt, "Header.Include"))
+            foreach (var e in _env.GetSet(dt, "header.include"))
                 hIncludes.Add(e.Trim());
-            foreach (var e in _env.GetSet(dt, "Header.Import"))
+            foreach (var e in _env.GetSet(dt, "header.import"))
                 hDeclarations.Add("#import <" + e.Trim() + ">");
 
-            foreach (var e in _env.GetSet(dt, "Source.Declaration"))
+            foreach (var e in _env.GetSet(dt, "source.declaration"))
                 cppDeclarations.Add(e.Trim());
-            foreach (var e in _env.GetSet(dt, "Source.Include"))
+            foreach (var e in _env.GetSet(dt, "source.include"))
                 cppIncludes.Add(e.Trim());
-            foreach (var e in _env.GetSet(dt, "Source.Import"))
+            foreach (var e in _env.GetSet(dt, "source.import"))
                 cppDeclarations.Add("#import <" + e.Trim() + ">");
 
             SourceValue val;
-            if (_env.TryGetValue(dt, "ForwardDeclaration", out val))
+            if (_env.TryGetValue(dt, "forwardDeclaration", out val))
                 hDeclarations.Add(val.String.Trim());
-            if (_env.TryGetValue(dt, "Include", out val))
+            if (_env.TryGetValue(dt, "include", out val))
                 hIncludes.Add(val.String.Trim());
 
             foreach (var e in hIncludes)

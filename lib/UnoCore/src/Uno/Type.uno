@@ -30,8 +30,8 @@ namespace System.Reflection
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Type")]
-    [extern(CPLUSPLUS) Set("TypeName", "uType*")]
-    [extern(CPLUSPLUS) Set("TypeOfType", "uType")]
+    [extern(CPLUSPLUS) Set("typeName", "uType*")]
+    [extern(CPLUSPLUS) Set("typeofType", "uType")]
     public sealed class Type
     {
         public static readonly Type[] EmptyTypes = new Type[0];

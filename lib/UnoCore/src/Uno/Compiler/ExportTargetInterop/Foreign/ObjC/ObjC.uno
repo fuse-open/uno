@@ -3,10 +3,10 @@ using Uno.Compiler.ExportTargetInterop;
 
 namespace ObjC
 {
-    [Set("FileExtension", "mm")]
-    [Set("TypeName", "::id")]
-    [Set("DefaultValue", "nullptr")]
-    [Set("Include", "objc/objc.h")]
+    [Set("fileExtension", "mm")]
+    [Set("typeName", "::id")]
+    [Set("defaultValue", "nullptr")]
+    [Set("include", "objc/objc.h")]
     public extern(FOREIGN_OBJC_SUPPORTED) struct ID
     {
         IntPtr _dummy;
@@ -33,7 +33,7 @@ namespace ObjC
         }
     }
 
-    [Set("FileExtension", "mm")]
+    [Set("fileExtension", "mm")]
     public extern(FOREIGN_OBJC_SUPPORTED) class Object
     {
         public ID Handle;

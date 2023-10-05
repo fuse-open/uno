@@ -20,14 +20,14 @@ namespace Uno.Build.Targets.Generators
         public void Configure()
         {
             // List of string literals given to @(activity).java for dlload()-ing
-            var jniLibs = GetLibraries("LoadLibrary");
-            jniLibs.AddRange(GetLibraries("SharedLibrary"));
+            var jniLibs = GetLibraries("loadLibrary");
+            jniLibs.AddRange(GetLibraries("sharedLibrary"));
 
             for (int i = 0; i < jniLibs.Count; i++)
                 jniLibs[i] = GetModuleName(jniLibs[i]).ToLiteral();
 
-            _env.Set("LoadLibraryStrings", string.Join(", ", jniLibs));
-            _env.Set("LinkOrderedStaticLibraries", string.Join("\n", GetLibraries("StaticLibrary", true)));
+            _env.Set("loadLibraryStrings", string.Join(", ", jniLibs));
+            _env.Set("linkOrderedStaticLibraries", string.Join("\n", GetLibraries("staticLibrary", true)));
         }
 
         List<string> GetLibraries(string type, bool reverse = false)

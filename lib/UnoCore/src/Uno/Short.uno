@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.Int16")]
-    [extern(CPLUSPLUS) Set("TypeName", "int16_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "int16_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     /** Represents a 16-bit signed integer. */
     public intrinsic struct Short
     {
@@ -26,7 +26,7 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "cstdio")]
+        [extern(CPLUSPLUS) Require("source.include", "cstdio")]
         public override string ToString()
         {
             if defined(CPLUSPLUS)

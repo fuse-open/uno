@@ -4,8 +4,8 @@ using Uno;
 namespace OpenGL
 {
     [extern(!DOTNET) TargetSpecificType]
-    [extern(CPLUSPLUS) Set("TypeName", "uint32_t")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "0")]
+    [extern(CPLUSPLUS) Set("typeName", "uint32_t")]
+    [extern(CPLUSPLUS) Set("defaultValue", "0")]
     public extern(OPENGL) struct GLProgramHandle
     {
         public static readonly GLProgramHandle Zero;

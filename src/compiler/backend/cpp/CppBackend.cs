@@ -64,12 +64,12 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
         public override void Configure()
         {
-            _keywords = Environment.GetWords("Keywords");
+            _keywords = Environment.GetWords("keywords");
             EnableReflection = Environment.IsDefined("REFLECTION");
             EnableDebugDumps = Environment.IsDefined("DEBUG_DUMPS");
             EnableStackTrace = Environment.IsDefined("STACKTRACE") || Environment.IsDefined("CPPSTACKTRACE");
-            HeaderDirectory = Environment.GetOutputPath("HeaderDirectory");
-            SourceDirectory = Environment.GetOutputPath("SourceDirectory");
+            HeaderDirectory = Environment.GetOutputPath("headerDirectory");
+            SourceDirectory = Environment.GetOutputPath("sourceDirectory");
 
             // Android: Truncate filenames to workaround build problems with Gradle on Windows
             if (Environment.IsDefined("ANDROID") && OperatingSystem.IsWindows())
@@ -78,12 +78,12 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
         public override bool CanLink(Function f)
         {
-            return Environment.GetBool(f, "IsIntrinsic");
+            return Environment.GetBool(f, "isIntrinsic");
         }
 
         public override BackendResult Build()
         {
-            ExportBundle(Environment.GetString("BundleDirectory"));
+            ExportBundle(Environment.GetString("bundleDirectory"));
             new CppPrecalc(this).Run();
             ExportNamespace(Data.IL);
 
@@ -103,15 +103,15 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 if (Data.Entrypoint.ReturnType.IsVoid)
                     main = "(" + main + ", 0)";
 
-                Environment.Set("Main.IncludeDirective", includes);
-                Environment.Set("Main.Entrypoint", main);
+                Environment.Set("main.includeDirective", includes);
+                Environment.Set("main.entrypoint", main);
             }
             else
             {
                 foreach (var e in IncludeResolver.GetIncludes(Data.Entrypoint))
-                    Environment.Require("Main.Include", e);
+                    Environment.Require("main.include", e);
 
-                Environment.Set("Main.Body", Decompiler.GetScope(Data.StartupCode, Data.Entrypoint));
+                Environment.Set("main.body", Decompiler.GetScope(Data.StartupCode, Data.Entrypoint));
             }
 
             return null;
@@ -254,7 +254,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
                 default:
                     SourceValue result;
-                    if (Environment.TryGetValue(dt, "TypeName", out result))
+                    if (Environment.TryGetValue(dt, "typeName", out result))
                         return result.String;
                     if (!inline && IsConstrained(dt) ||
                         dt.HasAttribute(Essentials.TargetSpecificTypeAttribute))
@@ -332,7 +332,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
         public string GetBaseType(DataType dt, Namescope parent)
         {
             SourceValue result;
-            return Environment.TryGetValue(dt, "BaseType", out result)
+            return Environment.TryGetValue(dt, "baseType", out result)
                     ? result.String
                     : GetStaticName(dt, parent);
         }
@@ -352,7 +352,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     return "uInterfaceType";
                 default:
                     SourceValue result;
-                    return Environment.TryGetValue(dt, "TypeOfType", out result)
+                    return Environment.TryGetValue(dt, "typeofType", out result)
                             ? result.String :
                         GetType(dt).EmitTypeStruct
                             ? GetStaticName(dt, parent) + "_type" :
@@ -498,7 +498,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                     }
 
                     SourceValue result;
-                    return Environment.TryGetValue(dt, "TypeOfFunction", out result)
+                    return Environment.TryGetValue(dt, "typeofFunction", out result)
                         ? result.String + "()"
                         : GetStaticName(dt, parent) + "_typeof()";
                 }
@@ -557,7 +557,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
             return !f.IsStatic && (
                     f.DeclaringType.IsInterface ||
                     f.DeclaringType.HasAttribute(Essentials.TargetSpecificTypeAttribute) || (
-                        !Environment.GetBool(f, "IsIntrinsic") &&
+                        !Environment.GetBool(f, "isIntrinsic") &&
                         Environment.HasProperty(f.DeclaringType, "TypeName") && (
                             !f.DeclaringType.IsReferenceType ||
                             !f.IsVirtualOverride)));
@@ -645,7 +645,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 dt = dt.Base;
 
             SourceValue result;
-            return Environment.TryGetValue(dt, "DefaultValue", out result)
+            return Environment.TryGetValue(dt, "defaultValue", out result)
                     ? result.String :
                 dt.IsReferenceType
                     ? "nullptr" :
@@ -695,11 +695,11 @@ namespace Uno.Compiler.Backends.CPlusPlus
                 result = GetForwardDeclaration(dt.MasterDefinition);
             else if (IsOpaque(dt))
             {
-                result = Environment.GetString(dt, "ForwardDeclaration");
+                result = Environment.GetString(dt, "forwardDeclaration");
 
                 if (string.IsNullOrEmpty(result))
                 {
-                    result = Environment.GetString(dt, "Include");
+                    result = Environment.GetString(dt, "include");
 
                     if (!string.IsNullOrEmpty(result))
                         result = "#include <" + result + ">";
@@ -731,7 +731,7 @@ namespace Uno.Compiler.Backends.CPlusPlus
 
         public string GetFileExtension(DataType dt)
         {
-            return (Environment.GetString(dt, "FileExtension") ?? "cpp").TrimStart('.').ToLower();
+            return (Environment.GetString(dt, "fileExtension") ?? "cpp").TrimStart('.').ToLower();
         }
 
         public string GetFunctionPointer(Function f, Namescope parent = null, string suffix = "_fn")

@@ -131,12 +131,10 @@ namespace Uno.Compiler.Core
             if (string.IsNullOrEmpty(optionalCond))
                 return true;
 
-            bool result;
-            if (_cachedTests.TryGetValue(optionalCond, out result))
+            if (_cachedTests.TryGetValue(optionalCond, out bool result))
                 return result;
 
-            string id;
-            while (optionalCond.FindIdentifier(out id) != -1)
+            while (optionalCond.FindIdentifier(out string id) != -1)
                 optionalCond = optionalCond.ReplaceWord(id, IsDefined(id) ? "1" : "0");
 
             if (Preprocessor.TryParseCondition(optionalCond, out result))

@@ -55,7 +55,7 @@ namespace Uno.Compiler.Foreign.ObjC
 
             Environment.Require(
                 f.DeclaringType,
-                "Source.Include",
+                "source.include",
                 f.Source,
                 "uObjC.Foreign.h");
 

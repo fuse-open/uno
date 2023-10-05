@@ -128,7 +128,7 @@ namespace Uno.Compiler.Core.Syntax.Generators
             foreach (var e in errors)
                 Log.Error(Path.Source, e.ErrorCode, e.Message);
 
-            var filename = System.IO.Path.Combine(Environment.CacheDirectory, "Traces", Path.DrawBlock.Method.DeclaringType.ToString().ToIdentifier() + "." + CreateLocalName(mp, loc).ToIdentifier() + ".unotrace");
+            var filename = System.IO.Path.Combine(Environment.CacheDirectory, "traces", Path.DrawBlock.Method.DeclaringType.ToString().ToIdentifier() + "." + CreateLocalName(mp, loc).ToIdentifier() + ".unotrace");
 
             using (var f = Compiler.Disk.CreateText(filename))
             {

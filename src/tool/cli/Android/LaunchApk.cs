@@ -12,7 +12,7 @@ namespace Uno.CLI.Android
 {
     class LaunchApk : Command
     {
-        static string NdkDirectory => UnoConfig.Current.GetFullPath("Android.NDK", "Android.NDK.Directory");
+        static string NdkDirectory => UnoConfig.Current.GetFullPath("android.ndk", "android.ndk.directory");
 
         const int Timeout = 7;
 

@@ -3,8 +3,8 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.IntPtr")]
-    [extern(CPLUSPLUS) Set("TypeName", "void*")]
-    [extern(CPLUSPLUS) Set("DefaultValue", "nullptr")]
+    [extern(CPLUSPLUS) Set("typeName", "void*")]
+    [extern(CPLUSPLUS) Set("defaultValue", "nullptr")]
     /** A platform-specific type that is used to represent a pointer or a handle. */
     public intrinsic struct IntPtr
     {
@@ -89,8 +89,8 @@ namespace Uno
                 return base.GetHashCode();
         }
 
-        [extern(CPLUSPLUS) Require("Source.Include", "inttypes.h")] // Needed for PRIxPTR
-        [extern(ANDROID) Require("PreprocessorDefinition", "__STDC_FORMAT_MACROS")] // Needed for PRIxPTR
+        [extern(CPLUSPLUS) Require("source.include", "inttypes.h")] // Needed for PRIxPTR
+        [extern(ANDROID) Require("preprocessorDefinition", "__STDC_FORMAT_MACROS")] // Needed for PRIxPTR
         public override string ToString()
         {
             if defined(CPLUSPLUS)

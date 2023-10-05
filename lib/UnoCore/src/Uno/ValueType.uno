@@ -3,7 +3,7 @@ using Uno.Compiler.ExportTargetInterop;
 namespace Uno
 {
     [extern(DOTNET) DotNetType("System.ValueType")]
-    [extern(CPLUSPLUS) Set("TypeName", "uObject*")]
+    [extern(CPLUSPLUS) Set("typeName", "uObject*")]
     public abstract class ValueType
     {
         public override int GetHashCode()

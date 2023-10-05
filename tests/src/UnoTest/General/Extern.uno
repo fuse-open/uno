@@ -41,7 +41,7 @@ namespace UnoTest.General
         }
 
         [Test]
-        [Require("Source.Include", "thread")]
+        [Require("source.include", "thread")]
         static void Cpp14()
         @{
             // Standard user-defined literals were introduced in C++14.
