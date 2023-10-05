@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           @(androidManifest.manifestAttribute:join('\n          '))
-          package="@(activity.package)">
+          >
 
     #if @(project.android.supportsScreens.resizable:isSet) || @(project.android.supportsScreens.smallScreens:isSet) || @(project.android.supportsScreens.normalScreens:isSet) || @(project.android.supportsScreens.largeScreens:isSet) || @(project.android.supportsScreens.xLargeScreens:isSet) || @(project.android.supportsScreens.anyDensity:isSet) || @(project.android.supportsScreens.requiresSmallestWidthDp:isSet) || @(project.android.supportsScreens.compatibleWidthLimitDp:isSet) || @(project.android.supportsScreens.largestWidthLimitDp:isSet)
     <supports-screens
@@ -102,7 +102,6 @@
                  android:allowBackup="@(project.android.allowBackup:isSet:test(@(project.android.allowBackup:bool),false))"
                  android:usesCleartextTraffic="@(project.android.usesCleartextTraffic:isSet:test(@(project.android.usesCleartextTraffic:bool),false))"
                  android:hardwareAccelerated="@(project.android.hardwareAccelerated:isSet:test(@(project.android.hardwareAccelerated:bool),true))"
-                 android:extractNativeLibs="@(project.android.extractNativeLibs:isSet:test(@(project.android.extractNativeLibs:bool),true))"
                  android:requestLegacyExternalStorage="@(project.android.requestLegacyExternalStorage:isSet:test(@(project.android.requestLegacyExternalStorage:bool),false))"
                  @(androidManifest.applicationAttribute:join('\n                 '))
                  >
