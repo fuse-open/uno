@@ -76,19 +76,19 @@ namespace Uno.Compiler.Foreign.Java
             var callArgs = uparams.Where(x => !x.IsThis).Select(x => x.CallForm);
             var callTypes = uparams.Where(x => !x.IsThis).Select(x => x.Type.FullName);
 
-            var of = isStatic ? "" : ":Of(" + uparams[0].UnoArgName + ")";
+            var of = isStatic ? "" : ":of(" + uparams[0].UnoArgName + ")";
 
             if (isConstructor)
             {
                 var preCall = declaringType.FullName + "(" + string.Join(",", callTypes) + ")";
 
-                return "@{" + preCall + ":New(" + string.Join(",", callArgs) + ")}";
+                return "@{" + preCall + ":new(" + string.Join(",", callArgs) + ")}";
             }
             else
             {
                 var preCall = declaringType.FullName + (isDelegate ? of : of + "." + name + "(" + string.Join(",", callTypes) + ")");
 
-                return "@{" + preCall + ":Call(" + string.Join(",", callArgs) + ")}";
+                return "@{" + preCall + ":call(" + string.Join(",", callArgs) + ")}";
             }
         }
 
@@ -102,14 +102,14 @@ namespace Uno.Compiler.Foreign.Java
                 if (IsGetter)
                     return "@{" + declaringType.FullName + "." + name + "}";
                 else
-                    return "@{" + declaringType.FullName + "." + name + ":Set(" + string.Join(",", callArgs) + ")}";
+                    return "@{" + declaringType.FullName + "." + name + ":set(" + string.Join(", ", callArgs) + ")}";
             }
             else
             {
                 if (IsGetter)
-                    return "@{" + declaringType.FullName + ":Of(" + uparams[0].UnoArgName + ")." + name + ":Get()}";
+                    return "@{" + declaringType.FullName + ":of(" + uparams[0].UnoArgName + ")." + name + ":get()}";
                 else
-                    return "@{" + declaringType.FullName + ":Of(" + uparams[0].UnoArgName + ")." + name + ":Set(" + string.Join(",", callArgs) + ")}";
+                    return "@{" + declaringType.FullName + ":of(" + uparams[0].UnoArgName + ")." + name + ":set(" + string.Join(", ", callArgs) + ")}";
             }
         }
 
@@ -119,7 +119,7 @@ namespace Uno.Compiler.Foreign.Java
         {
             var args = Params.Select(x => x.JavaTypedName).ToList();
             args.AddRange(Params.Where(x => x.HasPointerArg).Select(x => "long " + x.CppArgName));
-            return "public static native " + _convert.Type.UnoToJavaType(ReturnType, false) + " " + name + "(" + string.Join(",", args) + ");";
+            return "public static native " + _convert.Type.UnoToJavaType(ReturnType, false) + " " + name + "(" + string.Join(", ", args) + ");";
         }
 
 
@@ -130,7 +130,7 @@ namespace Uno.Compiler.Foreign.Java
                 if (Params[i].HasPointerArg)
                     javaArgs.Add("UnoHelper.GetUnoObjectRef(" + javaArgs[i] + ")");
 
-            return "ExternedBlockHost." + entrypointName + "(" + string.Join(",", javaArgs) + ")";
+            return "ExternedBlockHost." + entrypointName + "(" + string.Join(", ", javaArgs) + ")";
         }
 
         IEnumerable<DataType> CalcImportsForExternBlock(ParametersMember func)

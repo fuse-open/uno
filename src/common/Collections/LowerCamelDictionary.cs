@@ -8,7 +8,7 @@ namespace Uno.Collections
      */
     public class LowerCamelDictionary<T> : IDictionary<string, T>
     {
-        readonly Dictionary<string, T> _base = new Dictionary<string, T>();
+        readonly Dictionary<string, T> _base = new();
 
         public T this[string key]
         {

@@ -5,8 +5,8 @@ using OpenGL;
 
 namespace Uno.Graphics.Utils.Cpp
 {
-    [Require("Source.Include", "@{texture2D:Include}")]
-    [Require("Source.Include", "@{Exception:Include}")]
+    [Require("Source.Include", "@{texture2D:include}")]
+    [Require("Source.Include", "@{Exception:include}")]
     [Require("Source.Include", "uPlatform/GLHelper.h")]
     [Require("Source.Include", "uBase/Buffer.h")]
     [Require("Source.Include", "uBase/BufferStream.h")]
@@ -19,7 +19,7 @@ namespace Uno.Graphics.Utils.Cpp
     {
         public static textureCube LoadCube(string filename, byte[] data)
         @{
-            uBase::Auto<uImage::Texture> tex = @{LoadTextureData(string, byte[]):Call($0, $1)};
+            uBase::Auto<uImage::Texture> tex = @{LoadTextureData(string, byte[]):call($0, $1)};
 
             if (tex->Faces.Length() == 1)
             {
@@ -28,12 +28,12 @@ namespace Uno.Graphics.Utils.Cpp
             }
 
             @{GLTextureInfo} info;
-            GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):Call(tex, true, &info)};
+            GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):call(tex, true, &info)};
 
             if (info.GLTarget != GL_TEXTURE_CUBE_MAP)
                 U_THROW_IOE("Invalid cube map");
 
-            return @{textureCube(GLTextureHandle,int,int,Format):New(handle, info.Width, info.MipCount, @{Format.Unknown})};
+            return @{textureCube(GLTextureHandle,int,int,Format):new(handle, info.Width, info.MipCount, @{Format.Unknown})};
         @}
 
         public static texture2D Load2DJpeg(byte[] bytes)
@@ -57,14 +57,14 @@ namespace Uno.Graphics.Utils.Cpp
                 uBase::Auto<uImage::Texture> tex = uImage::Texture::Create(bmp);
 
                 @{GLTextureInfo} info;
-                GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):Call(tex, false, &info)};
+                GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):call(tex, false, &info)};
 
-                return @{texture2D(GLTextureHandle,int2,int,Format):New(handle, @{int2(int,int):New(originalWidth, originalHeight)}, info.MipCount, @{Format.Unknown})};
+                return @{texture2D(GLTextureHandle,int2,int,Format):new(handle, @{int2(int,int):new(originalWidth, originalHeight)}, info.MipCount, @{Format.Unknown})};
             }
             catch (const uBase::Exception &e)
             {
                 const auto temp = e.GetMessage();
-                U_THROW(@{Exception(string):New(uString::Utf8(temp.Ptr(), temp.Length()))});
+                U_THROW(@{Exception(string):new(uString::Utf8(temp.Ptr(), temp.Length()))});
             }
         @}
 
@@ -89,14 +89,14 @@ namespace Uno.Graphics.Utils.Cpp
                 uBase::Auto<uImage::Texture> tex = uImage::Texture::Create(bmp);
 
                 @{GLTextureInfo} info;
-                GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):Call(tex, false, &info)};
+                GLuint handle = @{CreateGLTexture(TexturePtr, bool, ref GLTextureInfo):call(tex, false, &info)};
 
-                return @{texture2D(GLTextureHandle,int2,int,Format):New(handle, @{int2(int,int):New(originalWidth, originalHeight)}, info.MipCount, @{Format.Unknown})};
+                return @{texture2D(GLTextureHandle,int2,int,Format):new(handle, @{int2(int,int):new(originalWidth, originalHeight)}, info.MipCount, @{Format.Unknown})};
             }
             catch (const uBase::Exception &e)
             {
                 const auto temp = e.GetMessage();
-                U_THROW(@{Exception(string):New(uString::Utf8(temp.Ptr(), temp.Length()))});
+                U_THROW(@{Exception(string):new(uString::Utf8(temp.Ptr(), temp.Length()))});
             }
         @}
 
@@ -174,7 +174,7 @@ namespace Uno.Graphics.Utils.Cpp
                     uBase::Auto<uImage::Bitmap> bmp = mip->ToBitmap();
 
                     GLenum glFormat, glType;
-                    if (!@{TryGetGLFormat(NativeFormat, ref uint, ref uint):Call(bmp->GetFormat(), &glFormat, &glType)})
+                    if (!@{TryGetGLFormat(NativeFormat, ref uint, ref uint):call(bmp->GetFormat(), &glFormat, &glType)})
                         U_THROW_IOE("Unsupported texture format");
 
                     glTexImage2D(texFace, j, glFormat, bmp->GetWidth(), bmp->GetHeight(), 0, glFormat, glType, bmp->GetPtr());

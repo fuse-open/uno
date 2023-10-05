@@ -42,8 +42,8 @@ namespace Uno
         [extern(CPLUSPLUS) Require("Source.Include", "cctype")]
         [extern(CPLUSPLUS) Require("Source.Include", "climits")]
         [extern(CPLUSPLUS) Require("Source.Include", "errno.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:Include}")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:Include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:include}")]
         public static int Parse(string str)
         {
             if (str == null)
@@ -62,10 +62,10 @@ namespace Uno
                     end++;
 
                 if (errno == ERANGE || retval > INT_MAX || retval < INT_MIN)
-                    U_THROW(@{OverflowException(string):New(uString::Const("Value was either too large or too small for int"))});
+                    U_THROW(@{OverflowException(string):new(uString::Const("Value was either too large or too small for int"))});
 
                 if (!strlen(trimmed) || strlen(end))
-                    U_THROW(@{FormatException(string):New(uString::Const("Unable to convert string to int"))});
+                    U_THROW(@{FormatException(string):new(uString::Const("Unable to convert string to int"))});
 
                 return (int)retval;
             @}

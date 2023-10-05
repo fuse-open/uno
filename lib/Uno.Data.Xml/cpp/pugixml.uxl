@@ -11,7 +11,7 @@
         <Require Source.Include="pugixml.hpp" />
 
         <Method Signature="Parse(string):XmlNodeHandle">
-            <Require Source.Include="@{Uno.Data.Xml.XmlException:Include}" />
+            <Require Source.Include="@{Uno.Data.Xml.XmlException:include}" />
             <Body>
                 pugi::xml_document doc;
                 pugi::xml_parse_result parseResult = doc.load_string(uCString($0).Ptr, pugi::parse_full);
@@ -19,7 +19,7 @@
                 if (parseResult.status == 0)
                 {
                     pugi::xml_node root = doc.root();
-                    return @{Uno.Data.Xml.XmlNodeImpl.GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):Call(@{Uno.Data.Xml.TargetSpecificXmlNode:Of(&(root))})};
+                    return @{Uno.Data.Xml.XmlNodeImpl.GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):call(@{Uno.Data.Xml.TargetSpecificXmlNode:of(&(root))})};
                 }
                 else
                 {
@@ -30,7 +30,7 @@
                                                      "There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)",
                                                      "Unable to append nodes since root type is not node_element or node_document (exclusive to xml_node::append_buffer)", "Parsing resulted in a document without element nodes" };
 
-                    U_THROW(@{Uno.Data.Xml.XmlException(string):New(uString::Utf8(errorMessages[parseResult.status]))});
+                    U_THROW(@{Uno.Data.Xml.XmlException(string):new(uString::Utf8(errorMessages[parseResult.status]))});
                 }
             </Body>
         </Method>
@@ -42,13 +42,13 @@
 
                 if (node.type() == pugi::node_declaration)
                 {
-                    return @{Uno.Data.Xml.XmlNodeHandle(string,string):New(uString::Utf8(node.attribute("version").as_string()), uString::Utf8(node.attribute("encoding").as_string()))};
+                    return @{Uno.Data.Xml.XmlNodeHandle(string,string):new(uString::Utf8(node.attribute("version").as_string()), uString::Utf8(node.attribute("encoding").as_string()))};
                 }
 
                 if (node.type() == pugi::node_document)
                 {
                     //create empty root element
-                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle():New()};
+                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle():new()};
                 }
                 else
                 {
@@ -72,20 +72,20 @@
                             break;
                     }
 
-                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle(string,string,int):New(uString::Utf8(node.name()), uString::Utf8(node.value()), mappedNodeType)};
+                    nodeHandle = @{Uno.Data.Xml.XmlNodeHandle(string,string,int):new(uString::Utf8(node.name()), uString::Utf8(node.value()), mappedNodeType)};
 
                     for (pugi::xml_attribute_iterator attrib = node.attributes_begin(); attrib != node.attributes_end(); attrib++)
                     {
                         pugi::xml_attribute attribute = (*attrib);
-                        @{Uno.Data.Xml.XmlAttributeHandle} attributeHandle = @{Uno.Data.Xml.XmlAttributeHandle(string,string):New(uString::Utf8(attribute.name()), uString::Utf8(attribute.value()))};
-                        @{Uno.Data.Xml.XmlNodeImpl.AddAttribute(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlAttributeHandle):Call(nodeHandle, attributeHandle)};
+                        @{Uno.Data.Xml.XmlAttributeHandle} attributeHandle = @{Uno.Data.Xml.XmlAttributeHandle(string,string):new(uString::Utf8(attribute.name()), uString::Utf8(attribute.value()))};
+                        @{Uno.Data.Xml.XmlNodeImpl.AddAttribute(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlAttributeHandle):call(nodeHandle, attributeHandle)};
                     }
                 }
 
                 for (pugi::xml_node_iterator child = node.children().begin(); child != node.children().end(); child++)
                 {
                     pugi::xml_node childNode = (*child);
-                    @{Uno.Data.Xml.XmlNodeImpl.AppendChild(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlNodeHandle):Call(nodeHandle, @{Uno.Data.Xml.XmlNodeImpl.GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):Call(@{Uno.Data.Xml.TargetSpecificXmlNode:Of(&(childNode))})})};
+                    @{Uno.Data.Xml.XmlNodeImpl.AppendChild(Uno.Data.Xml.XmlNodeHandle,Uno.Data.Xml.XmlNodeHandle):call(nodeHandle, @{Uno.Data.Xml.XmlNodeImpl.GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):call(@{Uno.Data.Xml.TargetSpecificXmlNode:of(&(childNode))})})};
                 }
 
                 return nodeHandle;

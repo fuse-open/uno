@@ -2,7 +2,7 @@
 #include <uDroid/JNIHelper.h>
 #include <uBase/Console.h>
 #include <jni.h>
-@{Uno.Exception:IncludeDirective}
+@{Uno.Exception:includeDirective}
 
 EGLDisplay GLHelper::_eglDisplay;
 
@@ -267,6 +267,6 @@ void GLHelper::AssertValidContext()
     EGLContext cntx = eglGetCurrentContext();
     if (cntx != GLHelper::_eglPBufferContext && cntx != GLHelper::_eglSurfaceContext)
     {
-        U_THROW(@{Uno.Exception(string):New(uString::Utf8("GLHelper::AssertValidContext: Invalid GL context. Not our pbuffer context or surface context",92))});
+        U_THROW(@{Uno.Exception(string):new(uString::Utf8("GLHelper::AssertValidContext: Invalid GL context. Not our pbuffer context or surface context",92))});
     }
 }

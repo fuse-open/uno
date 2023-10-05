@@ -61,7 +61,7 @@ namespace Uno.Net.Sockets
             {
                 case @{AddressFamily.InterNetwork}: return AF_INET;
                 case @{AddressFamily.InterNetworkV6}: return AF_INET6;
-                default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for AddressFamily"))});
+                default: U_THROW(@{Uno.Exception(string):new(uString::Utf8("Invalid value for AddressFamily"))});
             }
         @}
 
@@ -70,7 +70,7 @@ namespace Uno.Net.Sockets
             switch (socketType)
             {
                 case @{SocketType.Stream}: return SOCK_STREAM;
-                default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for SocketType"))});
+                default: U_THROW(@{Uno.Exception(string):new(uString::Utf8("Invalid value for SocketType"))});
             }
         @}
 
@@ -79,7 +79,7 @@ namespace Uno.Net.Sockets
             switch (protocolType)
             {
                 case @{ProtocolType.Tcp}: return IPPROTO_TCP;
-                default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for ProtocolType"))});
+                default: U_THROW(@{Uno.Exception(string):new(uString::Utf8("Invalid value for ProtocolType"))});
             }
         @}
 
@@ -90,7 +90,7 @@ namespace Uno.Net.Sockets
                 case @{SocketShutdown.Receive}: return SHUT_RD;
                 case @{SocketShutdown.Send}: return SHUT_WR;
                 case @{SocketShutdown.Both}: return SHUT_RDWR;
-                default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for SocketShutdown"))});
+                default: U_THROW(@{Uno.Exception(string):new(uString::Utf8("Invalid value for SocketShutdown"))});
             }
         @}
 
@@ -107,16 +107,16 @@ namespace Uno.Net.Sockets
             @{IPAddress} ipAddress;
             if (sa->sin_family == AF_INET)
             {
-                @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 4, &sa->sin_addr.s_addr);
-                ipAddress = @{IPAddress(byte[]):New(tmp)};
+                @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 4, &sa->sin_addr.s_addr);
+                ipAddress = @{IPAddress(byte[]):new(tmp)};
             }
             else
             {
                 sockaddr_in6 *sa6 = (sockaddr_in6 *)&ss;
-                @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 16, &sa6->sin6_addr);
-                ipAddress = @{IPAddress(byte[], long):New(tmp, sa6->sin6_scope_id)};
+                @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 16, &sa6->sin6_addr);
+                ipAddress = @{IPAddress(byte[], long):new(tmp, sa6->sin6_scope_id)};
             }
-            return @{IPEndPoint(IPAddress, int):New(ipAddress, ntohs(sa->sin_port))};
+            return @{IPEndPoint(IPAddress, int):new(ipAddress, ntohs(sa->sin_port))};
         @}
 
         public static IPEndPoint GetRemoteEndPoint(Socket.SocketHandle sock)
@@ -132,16 +132,16 @@ namespace Uno.Net.Sockets
             @{IPAddress} ipAddress;
             if (sa->sin_family == AF_INET)
             {
-                @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 4, &sa->sin_addr.s_addr);
-                ipAddress = @{IPAddress(byte[]):New(tmp)};
+                @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 4, &sa->sin_addr.s_addr);
+                ipAddress = @{IPAddress(byte[]):new(tmp)};
             }
             else
             {
                 sockaddr_in6 *sa6 = (sockaddr_in6 *)&ss;
-                @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 16, &sa6->sin6_addr);
-                ipAddress = @{IPAddress(byte[], long):New(tmp, sa6->sin6_scope_id)};
+                @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 16, &sa6->sin6_addr);
+                ipAddress = @{IPAddress(byte[], long):new(tmp, sa6->sin6_scope_id)};
             }
-            return @{IPEndPoint(IPAddress, int):New(ipAddress, ntohs(sa->sin_port))};
+            return @{IPEndPoint(IPAddress, int):new(ipAddress, ntohs(sa->sin_port))};
         @}
 
         public static int Connect(Socket.SocketHandle sock, int family, byte[] address, long scopeId, int port)
@@ -211,7 +211,7 @@ namespace Uno.Net.Sockets
                 case @{SelectMode.Read}:  return select((int)sock + 1, &fds, nullptr, nullptr, &timeout);
                 case @{SelectMode.Write}: return select((int)sock + 1, nullptr, &fds, nullptr, &timeout);
                 case @{SelectMode.Error}: return select((int)sock + 1, nullptr, nullptr, &fds, &timeout);
-                default: U_THROW(@{Uno.Exception(string):New(uString::Utf8("Invalid value for ProtocolType"))});
+                default: U_THROW(@{Uno.Exception(string):new(uString::Utf8("Invalid value for ProtocolType"))});
             }
         @}
 

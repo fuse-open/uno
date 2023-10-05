@@ -91,7 +91,7 @@ public class App {
         ActivityNativeEntryPoints.cppOnCreate(RootActivity);
 
         // reset window background for app switcher to be able to take a screenshot of app content
-#if @(Project.Android.Splash.Enabled:Test(1, 0))
+#if @(project.android.splash.enabled:test(1, 0))
         RootActivity.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 #endif
 
@@ -189,7 +189,7 @@ public class App {
     public void onConfigurationChanged(Configuration arg0) {
         com.fuse.Activity.onConfigurationChanged(arg0);
         if (!activityState.Destroyed) {
-            @(Activity.OnConfigurationChanged.Declaration:Join())
+            @(activity.onConfigurationChanged.declaration:join())
         }
     }
 
@@ -198,7 +198,7 @@ public class App {
     public void onLowMemory() {
         if (!activityState.Destroyed) {
             ActivityNativeEntryPoints.cppOnLowMemory();
-            @(Activity.OnLowMemory.Declaration:Join())
+            @(activity.onLowMemory.declaration:join())
         }
     }
 
@@ -208,7 +208,7 @@ public class App {
     {
         if (!HasCreated) return;
         com.fuse.Activity._onActivityResult(arg0, arg1, arg2);
-        @(Activity.OnActivityResult.Declaration:Join())
+        @(activity.onActivityResult.declaration:join())
     }
 
     //------------------------------------------------------------
@@ -217,15 +217,15 @@ public class App {
 
     public void onNewIntent (Intent intent)
     {
-#if @(Project.Mobile.UriScheme:IsSet)
-        if (intent!=null && intent.getScheme()!=null && intent.getScheme().equals("@(Project.Mobile.UriScheme)"))
+#if @(project.mobile.uriScheme:isSet)
+        if (intent!=null && intent.getScheme()!=null && intent.getScheme().equals("@(project.mobile.uriScheme)"))
         {
             pendingURI = intent.getDataString();
         }
 #endif
 
-#if @(Project.Android.AssociatedDomains:IsSet)
-        String[] associatedDomains = new String[]{@(Project.Android.AssociatedDomains:SplitAndJoin(',','"','"'))};
+#if @(project.android.associatedDomains:isSet)
+        String[] associatedDomains = new String[]{@(project.android.associatedDomains:splitAndJoin(',','"','"'))};
 
         for (int i = 0; i < associatedDomains.length; i++) {
 
@@ -237,7 +237,7 @@ public class App {
         }
 #endif
         com.fuse.Activity._onActivityIntent(intent);
-        @(Activity.OnNewIntent.Declaration:Join())
+        @(activity.onNewIntent.declaration:join())
     }
 
     //------------------------------------------------------------
@@ -251,7 +251,7 @@ public class App {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return ActivityNativeEntryPoints.cppOnKeyUp(201);
         }
-        @(Activity.OnKeyUp.Declaration:Join())
+        @(activity.onKeyUp.declaration:join())
         {
             return false;
         }
@@ -266,7 +266,7 @@ public class App {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return ActivityNativeEntryPoints.cppOnKeyDown(201);
         }
-        @(Activity.OnKeyDown.Declaration:Join())
+        @(activity.onKeyDown.declaration:join())
         {
             return false;
         }
@@ -276,7 +276,7 @@ public class App {
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
-        @(Activity.OnPermissionsResult:Join())
+        @(activity.onPermissionsResult:join())
     }
 
     //------------------------------------------------------------

@@ -1,3 +1,3 @@
 <Extensions Backend="CIL" Condition="LIBRARY">
-    <Set Product="@(Project.Name).dll" />
+    <Set Product="@(project.name).dll" />
 </Extensions>

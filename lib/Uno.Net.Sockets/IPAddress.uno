@@ -144,7 +144,7 @@ namespace Uno.Net
             if (err != 1)
                 return nullptr;
 
-            return uArray::New(@{byte[]:TypeOf}, int(sizeof(struct in6_addr)), buf);
+            return uArray::New(@{byte[]:typeof}, int(sizeof(struct in6_addr)), buf);
         @}
 
         public static IPAddress Parse(string address)

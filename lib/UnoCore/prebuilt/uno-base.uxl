@@ -1,37 +1,37 @@
 <Extensions Backend="CPlusPlus">
 
-    <Set Base.Directory="@('Android':Path)" Condition="ANDROID" />
-    <Set Base.Directory="@('iOS':Path)" Condition="IOS" />
-    <Set Base.Directory="@('OSX':Path)" Condition="OSX" />
-    <Set Base.Directory="@('Win32':Path)" Condition="WIN32" />
-    <Set Base.Directory="@('Linux':Path)" Condition="LINUX" />
-    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/${ANDROID_ABI}" Condition="ANDROID" />
-    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" Condition="IOS" />
-    <Set Base.LinkDirectory="@(Base.Directory:Path)/lib" />
-    <Set Base.IncludeDirectory="@(Base.Directory:Path)/include" />
+    <Set Base.Directory="@('Android':path)" Condition="ANDROID" />
+    <Set Base.Directory="@('iOS':path)" Condition="IOS" />
+    <Set Base.Directory="@('OSX':path)" Condition="OSX" />
+    <Set Base.Directory="@('Win32':path)" Condition="WIN32" />
+    <Set Base.Directory="@('Linux':path)" Condition="LINUX" />
+    <Set Base.LinkDirectory="@(base.directory:path)/lib/${ANDROID_ABI}" Condition="ANDROID" />
+    <Set Base.LinkDirectory="@(base.directory:path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" Condition="IOS" />
+    <Set Base.LinkDirectory="@(base.directory:path)/lib" />
+    <Set Base.IncludeDirectory="@(base.directory:path)/include" />
 
-    <Require IncludeDirectory="@(Base.IncludeDirectory)" />
-    <Require LinkDirectory="@(Base.LinkDirectory)" />
+    <Require IncludeDirectory="@(base.includeDirectory)" />
+    <Require LinkDirectory="@(base.linkDirectory)" />
 
     <Template Name="freetype">
         <Require IncludeDirectory="/usr/include/freetype2" Condition="LINUX" />
         <Require LinkLibrary="freetype" Condition="!ANDROID" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libfreetype.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libfreetype.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="jpeg">
         <Require LinkLibrary="jpeg" Condition="!ANDROID" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libjpeg.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libjpeg.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="png">
         <Require LinkLibrary="png" Condition="!ANDROID" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libpng.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libpng.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="uBase">
         <Require LinkLibrary="uBase" Condition="!ANDROID" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libuBase.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libuBase.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="uImage">
@@ -42,7 +42,7 @@
         <Require LinkLibrary="uImage" Condition="!ANDROID" />
         <Require LinkLibrary="z" />
         <Require LinkLibrary="bz2" Condition="OSX" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libuImage.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libuImage.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="XliPlatform">
@@ -54,7 +54,7 @@
         <Require LinkLibrary="SDL2" Condition="OSX || LINUX" />
         <Require LinkLibrary="GL" Condition="LINUX" />
         <Require LinkLibrary="pthread" Condition="LINUX" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libXliPlatform.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libXliPlatform.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="XliHttpClient">
@@ -64,14 +64,14 @@
         <Require LinkLibrary="ws2_32" Condition="MSVC" />
         <Require LinkLibrary="wldap32" Condition="MSVC" />
         <Require LinkLibrary="advapi32" Condition="MSVC" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libXliHttpClient.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libXliHttpClient.a" Condition="ANDROID" />
     </Template>
 
     <Template Name="XliSoundPlayer">
         <Require Template="uBase" />
         <Require LinkLibrary="XliSoundPlayer" Condition="!ANDROID" />
         <Require LinkLibrary="OpenSLES" Condition="ANDROID" />
-        <Require StaticLibrary="@(Base.LinkDirectory)/libXliSoundPlayer.a" Condition="ANDROID" />
+        <Require StaticLibrary="@(base.linkDirectory)/libXliSoundPlayer.a" Condition="ANDROID" />
     </Template>
 
     <Require Condition="ANDROID" LinkLibrary="android" />

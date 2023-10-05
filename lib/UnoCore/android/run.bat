@@ -4,29 +4,29 @@
 pushd "%~dp0"
 
 if "%1" == "debug" (
-#if @(JDK.Directory:IsSet)
-    set JAVA_HOME=@(JDK.Directory:NativePath)
+#if @(jdk.directory:isSet)
+    set JAVA_HOME=@(jdk.directory:nativePath)
 #endif
     echo Opening Android Studio
-    @(uno) open -a"Android Studio" -t"@(Project.Name)" "%~dp0"
+    @(uno) open -a"Android Studio" -t"@(project.name)" "%~dp0"
     exit /b %ERRORLEVEL%
 )
 
-#if @(LIBRARY:Defined)
-echo ERROR: @(Product) is a library and cannot be run directly.
+#if @(LIBRARY:defined)
+echo ERROR: @(product) is a library and cannot be run directly.
 exit /b 1
 #else
 if "%1" == "uninstall" (
-    echo Uninstalling @(Activity.Package)
-    @(uno) adb uninstall @(Activity.Package)
+    echo Uninstalling @(activity.package)
+    @(uno) adb uninstall @(activity.package)
     exit /b %ERRORLEVEL%
 )
 
-@(uno) launch-apk "%~dp0@(Product)" ^
-    --package=@(Activity.Package) ^
-    --activity=@(Activity.Name) ^
+@(uno) launch-apk "%~dp0@(product)" ^
+    --package=@(activity.package) ^
+    --activity=@(activity.name) ^
     --sym-dir="%~dp0src\main\.uno" ^
-    @(ANDROID_EMU:Defined:Test('--emulator', '')) ^
+    @(ANDROID_EMU:defined:test('--emulator', '')) ^
     %*
 exit /b %ERRORLEVEL%
 #endif

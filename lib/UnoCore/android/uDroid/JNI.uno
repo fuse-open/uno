@@ -68,7 +68,7 @@ namespace Android.Base
         [Foreign(Language.Java)]
         static Java.Object GetActivityClassInner()
         @{
-            return @(Activity.Package).@(Activity.Name).class;
+            return @(activity.package).@(activity.name).class;
         @}
 
         public static extern ujclass GetActivityClass()
@@ -137,7 +137,7 @@ namespace Android.Base
 
         public static extern ujobject NewGlobalRef(ujobject obj)
         @{
-            return reinterpret_cast<jobject>(@{GetEnvPtr():Call()}->NewGlobalRef($0));
+            return reinterpret_cast<jobject>(@{GetEnvPtr():call()}->NewGlobalRef($0));
         @}
 
 
@@ -266,19 +266,19 @@ namespace Android.Base
 
         public static void DeleteLocalRef(ujobject obj)
         {
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(obj) "jni->DeleteLocalRef($0)";
         }
 
         public static void DeleteLocalRef(ujclass obj)
         {
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(obj) "jni->DeleteLocalRef($0)";
         }
 
         public static void DeleteLocalRef(ujstring obj)
         {
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(obj) "jni->DeleteLocalRef($0)";
         }
 
@@ -362,7 +362,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetBooleanArrayRegion((jbooleanArray)$0,$1,$2,(@{ujboolean}*)$3->_ptr)";
         }
 
@@ -370,7 +370,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetByteArrayRegion((jbyteArray)$0,$1,$2,(@{ujbyte}*)$3->_ptr)";
         }
 
@@ -378,7 +378,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetByteArrayRegion((jbyteArray)$0,$1,$2,(@{ujbyte}*)$3->_ptr)";
         }
 
@@ -386,7 +386,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetCharArrayRegion((jcharArray)$0,$1,$2,(@{ujchar}*)$3->_ptr)";
         }
 
@@ -394,7 +394,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetShortArrayRegion((jshortArray)$0,$1,$2,(@{ujshort}*)$3->_ptr)";
         }
 
@@ -402,7 +402,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetIntArrayRegion((jintArray)$0,$1,$2,(@{ujint}*)$3->_ptr)";
         }
 
@@ -410,7 +410,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetLongArrayRegion((jlongArray)$0,$1,$2,(@{ujlong}*)$3->_ptr)";
         }
 
@@ -418,7 +418,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetFloatArrayRegion((jfloatArray)$0,$1,$2,(@{ujfloat}*)$3->_ptr)";
         }
 
@@ -426,7 +426,7 @@ namespace Android.Base
         {
             if (len==-1)
                 len = Math.Min(GetArrayLength(javaArr), unoArr.Length);
-            extern "JNIEnv* jni = @{GetEnvPtr():Call()}";
+            extern "JNIEnv* jni = @{GetEnvPtr():call()}";
             extern(javaArr, start, len, unoArr) "jni->SetDoubleArrayRegion((jdoubleArray)$0,$1,$2,(@{ujdouble}*)$3->_ptr)";
         }
 

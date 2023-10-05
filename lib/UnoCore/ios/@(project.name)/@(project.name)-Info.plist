@@ -1,0 +1,235 @@
+<!-- @(MSG_ORIGIN) -->
+<!-- @(MSG_EDIT_WARNING) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>@(project.ios.bundleName)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>@(project.ios.bundleShortVersionString)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+#if @(project.mobile.uriScheme:isSet)
+				<string>@(project.mobile.uriScheme)</string>
+#endif
+#if @(project.ios.plist.uriSchemes:isSet)
+				@(project.ios.plist.uriSchemes:splitAndJoin('\n\t\t\t\t', '<string>', '</string>'))
+#endif
+			</array>
+		</dict>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+
+	<key>CFBundleVersion</key>
+	<string>@(project.ios.bundleVersion)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+#if @(project.ios.plist.UIRequiredDeviceCapabilities:isSet)
+		@(project.ios.plist.UIRequiredDeviceCapabilities:splitAndJoin('\n\t\t', '<string>', '</string>'))
+#endif
+	</array>
+
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+#if @(project.mobile.orientations:equals('Auto')) || @(project.mobile.orientations:equals('Portrait'))
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+#endif
+#if @(project.mobile.orientations:equals('Auto')) || @(project.mobile.orientations:equals('Landscape'))
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+#endif
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+#if @(project.mobile.orientations:equals('Auto')) || @(project.mobile.orientations:equals('Portrait'))
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+#endif
+#if @(project.mobile.orientations:equals('Auto')) || @(project.mobile.orientations:equals('Landscape'))
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+#endif
+	</array>
+
+	@(xcode.plist.element:join('\n\t'))
+
+	<key>NSCameraUsageDescription</key>
+	<string>@(project.ios.plist.NSCameraUsageDescription || pListDefaults.NSCameraUsageDescription)</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>@(project.ios.plist.NSMicrophoneUsageDescription || pListDefaults.NSMicrophoneUsageDescription)</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>@(project.ios.plist.NSPhotoLibraryUsageDescription || pListDefaults.NSPhotoLibraryUsageDescription)</string>
+
+#if @(project.ios.plist.MKDirectionsApplicationSupportedModes:isSet)
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array>
+		@(project.ios.plist.MKDirectionsApplicationSupportedModes:splitAndJoin('\n\t\t', '<string>', '</string>'))
+	</array>
+#endif
+
+#if @(project.ios.plist.NSHealthShareUsageDescription:isSet)
+	<key>NSHealthShareUsageDescription</key>
+	<string>@(project.ios.plist.NSHealthShareUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSHealthUpdateUsageDescription:isSet)
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>@(project.ios.plist.NSHealthUpdateUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSCalendarsUsageDescription:isSet)
+	<key>NSCalendarsUsageDescription</key>
+	<string>@(project.ios.plist.NSCalendarsUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSBluetoothPeripheralUsageDescription:isSet)
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>@(project.ios.plist.NSBluetoothPeripheralUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSAppleMusicUsageDescription:isSet)
+	<key>NSAppleMusicUsageDescription</key>
+	<string>@(project.ios.plist.NSAppleMusicUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSContactsUsageDescription:isSet)
+	<key>NSContactsUsageDescription</key>
+	<string>@(project.ios.plist.NSContactsUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSHomeKitUsageDescription:isSet)
+	<key>NSHomeKitUsageDescription</key>
+	<string>@(project.ios.plist.NSHomeKitUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSLocationAlwaysUsageDescription:isSet)
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>@(project.ios.plist.NSLocationAlwaysUsageDescription)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>@(project.ios.plist.NSLocationAlwaysUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSLocationUsageDescription:isSet)
+	<key>NSLocationUsageDescription</key>
+	<string>@(project.ios.plist.NSLocationUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSLocationWhenInUseUsageDescription:isSet)
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>@(project.ios.plist.NSLocationWhenInUseUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSMotionUsageDescription:isSet)
+	<key>NSMotionUsageDescription</key>
+	<string>@(project.ios.plist.NSMotionUsageDescription)</string>
+#endif
+
+#if @(project.ios.plist.NSFaceIDUsageDescription:isSet)
+	<key>NSFaceIDUsageDescription</key>
+	<string>@(project.ios.plist.NSFaceIDUsageDescription)</string>
+#endif
+
+#if @(fontFile:isRequired)
+	<key>UIAppFonts</key>
+	<array>
+		@(fontFile:join('\n\t\t', '<string>@(bundleDirectory)/', '</string>'))
+	</array>
+#endif
+
+#if @(project.ios.plist.UIApplicationExitsOnSuspend:isSet)
+	<key>UIApplicationExitsOnSuspend</key>
+	<@(project.ios.plist.UIApplicationExitsOnSuspend:bool)/>
+#endif
+
+	<key>UIBackgroundModes</key>
+	<array>
+#if @(ios.backgroundModes:isRequired)
+		@(ios.backgroundModes:join('\n\t\t', '<string>', '</string>'))
+#endif
+#if @(project.ios.plist.UIBackgroundModes:isSet)
+		@(project.ios.plist.UIBackgroundModes:splitAndJoin('\n\t\t', '<string>', '</string>'))
+#endif
+#if @(project.ios.systemCapabilities.location:test(1, 0))
+		<string>location</string>
+#endif
+#if @(project.ios.systemCapabilities.push:test(1, 0))
+		<string>remote-notification</string>
+#endif
+	</array>
+
+#if @(project.ios.plist.UIFileSharingEnabled:isSet)
+	<key>UIFileSharingEnabled</key>
+	<@(project.ios.plist.UIFileSharingEnabled:bool)/>
+#endif
+
+#if @(project.ios.plist.UINewsstandApp:isSet)
+	<key>UINewsstandApp</key>
+	<@(project.ios.plist.UINewsstandApp:bool)/>
+#endif
+
+#if @(project.ios.plist.UIPrerenderedIcon:isSet)
+	<key>UIPrerenderedIcon</key>
+	<@(project.ios.plist.UIPrerenderedIcon:bool)/>
+#endif
+
+#if @(project.ios.plist.UIRequiresPersistentWiFi:isSet)
+	<key>UIRequiresPersistentWiFi</key>
+	<@(project.ios.plist.UIRequiresPersistentWiFi:bool)/>
+#endif
+
+	<key>UIStatusBarHidden</key>
+	<@(project.ios.statusBarHidden:bool)/>
+
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyle@(project.ios.statusBarStyle)</string>
+
+#if @(project.ios.plist.UISupportedExternalAccessoryProtocols:isSet)
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		@(project.ios.plist.UISupportedExternalAccessoryProtocols:splitAndJoin('\n\t\t', '<string>', '</string>'))
+	</array>
+#endif
+
+#if @(project.ios.plist.UIViewControllerBasedStatusBarAppearance:isSet)
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<@(project.ios.plist.UIViewControllerBasedStatusBarAppearance:bool)/>
+#endif
+
+#if @(project.ios.plist.UIViewEdgeAntialiasing:isSet)
+	<key>UIViewEdgeAntialiasing</key>
+	<@(project.ios.plist.UIViewEdgeAntialiasing:bool)/>
+#endif
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+</dict>
+</plist>

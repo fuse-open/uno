@@ -29,9 +29,9 @@ namespace UnoTest.General
             // Access struct member #250
             Bar bar;
             extern(bar) "@{$0.String}";
-            extern(bar) "@{Bar:Of($0).String}";
-            extern(bar) "@{Bar:Of($0).String:Get()}";
-            extern(bar) "@{Bar:Of($0).StringProp:Get()}";
+            extern(bar) "@{Bar:of($0).String}";
+            extern(bar) "@{Bar:of($0).String:get()}";
+            extern(bar) "@{Bar:of($0).StringProp:get()}";
         }
 
         struct Bar

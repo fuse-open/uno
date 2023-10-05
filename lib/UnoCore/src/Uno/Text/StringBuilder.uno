@@ -22,8 +22,8 @@ namespace Uno.Text
 
         public override string ToString()
         @{
-            uArray* data = @{$$._strings:Get()._data};
-            size_t count = @{$$._strings:Get()._used};
+            uArray* data = @{$$._strings:get()._data};
+            size_t count = @{$$._strings:get()._used};
 
             switch (count)
             {

@@ -15,11 +15,11 @@ namespace ForeignObjCTest
             {
                 get
                 @{
-                    return @{ForeignPropClass:Of(_this)._foo};
+                    return @{ForeignPropClass:of(_this)._foo};
                 @}
                 set
                 @{
-                    @{ForeignPropClass:Of(_this)._foo:Set(value)};
+                    @{ForeignPropClass:of(_this)._foo:set(value)};
                 @}
             }
 
@@ -30,11 +30,11 @@ namespace ForeignObjCTest
             {
                 get
                 @{
-                    return @{ForeignPropClass:Of(_this)._bar};
+                    return @{ForeignPropClass:of(_this)._bar};
                 @}
                 set
                 @{
-                    @{ForeignPropClass:Of(_this)._bar:Set(value)};
+                    @{ForeignPropClass:of(_this)._bar:set(value)};
                 @}
             }
         }

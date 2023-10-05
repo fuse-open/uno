@@ -1,7 +1,7 @@
 #include <Uno-iOS/AppDelegate.h>
 #include <Uno-iOS/Context.h>
 #include <Window.h>
-@(AppDelegate.SourceFile.Declaration:Join())
+@(appDelegate.sourceFile.declaration:join())
 
 @interface uAppDelegate()
 {
@@ -34,7 +34,7 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#if @(METAL:Defined)
+#if @(METAL:defined)
     [MGLContext setCurrentContext:self.context];
 #else
     [EAGLContext setCurrentContext:self.context];
@@ -51,7 +51,7 @@
         openURL:url
         sourceApplication:sourceApplication
         annotation:annotation];
-    @(AppDelegate.SourceFile.OpenURL:Join('\n    '));
+    @(appDelegate.sourceFile.openURL:join('\n    '));
     return result;
 }
 
@@ -61,14 +61,14 @@
         application:app
         openURL:url
         options:options];
-    @(AppDelegate.SourceFile.OpenURLLegacy:Join('\n    '));
+    @(appDelegate.sourceFile.openURLLegacy:join('\n    '));
     return result;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     uAutoReleasePool pool;
-    @(AppDelegate.SourceFile.DidFinishLaunchingWithOptions:Join('\n    '))
+    @(appDelegate.sourceFile.didFinishLaunchingWithOptions:join('\n    '))
     return YES;
 }
 
@@ -82,7 +82,7 @@
     if ([userActivity.activityType isEqualToString: NSUserActivityTypeBrowsingWeb]) {
         NSURL *url = userActivity.webpageURL;
 
-#if @(METAL:Defined)
+#if @(METAL:defined)
         [MGLContext setCurrentContext:self.context];
 #else
         [EAGLContext setCurrentContext:self.context];
@@ -95,7 +95,7 @@
 }
 
 
-#if @(AppDelegate.PushNotificationMethods:Defined)
+#if @(APPDELEGATE.PUSHNOTIFICATIONMETHODS:defined)
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     id cxt = _unoContext;
@@ -125,7 +125,7 @@
 }
 #endif
 
-#if @(AppDelegate.LocalNotificationMethods:Defined)
+#if @(APPDELEGATE.LOCALNOTIFICATIONMETHODS:defined)
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     id cxt = _unoContext;
@@ -134,6 +134,6 @@
 }
 #endif
 
-@(AppDelegate.SourceFile.ImplementationScope:Join())
+@(appDelegate.sourceFile.implementationScope:join())
 
 @end

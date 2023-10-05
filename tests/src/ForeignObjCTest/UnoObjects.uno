@@ -22,7 +22,7 @@ namespace ForeignObjCTest
             [Foreign(Language.ObjC)]
             public MyClass(string i)
             @{
-                @{MyClass:Of(_this).Field:Set(i)};
+                @{MyClass:of(_this).Field:set(i)};
             @}
         }
 
@@ -65,7 +65,7 @@ namespace ForeignObjCTest
         [Foreign(Language.ObjC)]
         static MyStruct structCreate()
         @{
-            return @{MyStruct(int):New(123)};
+            return @{MyStruct(int):new(123)};
         @}
 
         [Test]
@@ -78,7 +78,7 @@ namespace ForeignObjCTest
         static MyClass objectCreate()
         @{
             NSString *str = @"aaabbb";
-            return @{MyClass(string):New(str)}; // comment
+            return @{MyClass(string):new(str)}; // comment
         @}
 
         [Test]
@@ -91,7 +91,7 @@ namespace ForeignObjCTest
         static string macroCall(MyClass o)
         @{
             NSString *str = @"xxx"; // comment
-            return @{MyClass:Of(o).Function(string):Call(str)};
+            return @{MyClass:of(o).Function(string):call(str)};
         @}
 
         [Test]
@@ -104,8 +104,8 @@ namespace ForeignObjCTest
         static string macroSetGet(MyClass o)
         @{
             NSString* str = @"Hello!";
-            @{MyClass:Of(o).Field:Set(str)}; // comment
-            return @{MyClass:Of(o).Field:Get()};
+            @{MyClass:of(o).Field:set(str)}; // comment
+            return @{MyClass:of(o).Field:get()};
         @}
 
         [Test]
@@ -118,8 +118,8 @@ namespace ForeignObjCTest
         static string macroField(MyClass o)
         @{
             NSString* str = @"Hello!";
-            @{MyClass:Of(o).Field:Set(str)}; // comment
-            return @{MyClass:Of(o).Field};
+            @{MyClass:of(o).Field:set(str)}; // comment
+            return @{MyClass:of(o).Field};
         @}
 
         [Test]

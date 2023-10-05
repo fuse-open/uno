@@ -18,5 +18,5 @@ pushd "%~dp0"
 cmake -G"Visual Studio 17 2022" .
 if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
-cmake --build . -- /p:Configuration=@(Native.Configuration) /m
+cmake --build . -- /p:Configuration=@(native.configuration) /m
 popd && exit /b %ERRORLEVEL%

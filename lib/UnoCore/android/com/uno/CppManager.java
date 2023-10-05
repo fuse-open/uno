@@ -7,7 +7,7 @@ public class CppManager {
     @SuppressWarnings("unused")
     public static void LoadLibraries()
     {
-        String[] libs = new String[] { @(LoadLibraryStrings) };
+        String[] libs = new String[] { @(loadLibraryStrings) };
 
         if (loadLibrariesInternal(libs) != 0)
         {
@@ -22,9 +22,9 @@ public class CppManager {
                     sb.append(", ");
                 sb.append(libs[i]);
             }
-            Log.wtf("@(Activity.Name)", sb.toString());
+            Log.wtf("@(activity.name)", sb.toString());
         }
-        System.loadLibrary("@(Activity.Name)");
+        System.loadLibrary("@(activity.name)");
     }
 
     static int loadLibrariesInternal(String[] libs)

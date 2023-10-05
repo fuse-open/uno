@@ -13,7 +13,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnDataReceived(long arg0, byte[] arg1, int arg2, long arg3, long arg4);
     public  void OnDataReceived(byte[] arg0, int arg1)  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDataReceived(Android.Base.Wrappers.IJWrapper,int):isStripped}
         try {
             __n_OnDataReceived(_unoRef,arg0, arg1, UnoHelper.GetUnoObjectRef(arg0), -1);
         } catch (UnsatisfiedLinkError e) {
@@ -26,7 +26,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnAborted(long arg0);
     public  void OnAborted()  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnAborted():IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnAborted():isStripped}
         try {
             __n_OnAborted(_unoRef);
         } catch (UnsatisfiedLinkError e) {
@@ -39,7 +39,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnError(long arg0, java.lang.String arg1, long arg2);
     public  void OnError(java.lang.String arg0)  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnError(Android.Base.Wrappers.IJWrapper):IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnError(Android.Base.Wrappers.IJWrapper):isStripped}
         try {
             __n_OnError(_unoRef,arg0, UnoHelper.GetUnoObjectRef(arg0));
         } catch (UnsatisfiedLinkError e) {
@@ -52,7 +52,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnTimeout(long arg0);
     public  void OnTimeout()  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnTimeout():IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnTimeout():isStripped}
         try {
             __n_OnTimeout(_unoRef);
         } catch (UnsatisfiedLinkError e) {
@@ -65,7 +65,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnDone(long arg0);
     public  void OnDone()  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDone():IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnDone():isStripped}
         try {
             __n_OnDone(_unoRef);
         } catch (UnsatisfiedLinkError e) {
@@ -78,7 +78,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnHeadersReceived(long arg0);
     public  void OnHeadersReceived()  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnHeadersReceived():IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnHeadersReceived():isStripped}
         try {
             __n_OnHeadersReceived(_unoRef);
         } catch (UnsatisfiedLinkError e) {
@@ -91,7 +91,7 @@ public class Android_com_fuse_ExperimentalHttp_HttpRequest extends com.fuse.Expe
 
     public static native void __n_OnProgress(long arg0, int arg1, int arg2, boolean arg3, long arg4, long arg5, long arg6);
     public  void OnProgress(int arg0, int arg1, boolean arg2)  {
-        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnProgress(int,int,bool):IsStripped}
+        #if !@{Android.com.fuse.ExperimentalHttp.HttpRequest.OnProgress(int,int,bool):isStripped}
         try {
             __n_OnProgress(_unoRef,arg0, arg1, arg2, -1, -1, -1);
         } catch (UnsatisfiedLinkError e) {

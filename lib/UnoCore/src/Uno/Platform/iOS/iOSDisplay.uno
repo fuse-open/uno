@@ -9,7 +9,7 @@ namespace Uno.Platform
     [Require("Source.Include", "Uno-iOS/AppDelegate.h")]
     [Require("Source.Include", "Window.h")]
     [Require("Source.Include", "Uno-iOS/Context.h")]
-    [Require("Source.Include", "@{Uno.Platform.iOSDisplay:Include}")]
+    [Require("Source.Include", "@{Uno.Platform.iOSDisplay:include}")]
     public extern(iOS) class iOSDisplay : Uno.Platform.Display
     {
         ObjC.Object _displayLink = null;
@@ -69,7 +69,7 @@ namespace Uno.Platform
             uWindow* window = (uWindow*)[[uContext sharedContext] window];
             window.rootViewController = (UIViewController*)[[UIApplication sharedApplication] delegate];
             [window makeKeyAndVisible];
-            return @{iOSDisplay(ObjC.Object):New(window)};
+            return @{iOSDisplay(ObjC.Object):new(window)};
         @}
 
         [Foreign(Language.ObjC)]
@@ -86,7 +86,7 @@ namespace Uno.Platform
                     userInfo: nil];
                 @throw windowNilException;
             }
-            return @{iOSDisplay(ObjC.Object):New(window)};
+            return @{iOSDisplay(ObjC.Object):new(window)};
         @}
 
         [Foreign(Language.ObjC)]
@@ -94,7 +94,7 @@ namespace Uno.Platform
         @{
             UIWindow* _window = (UIWindow*)window;
             UIScreen* screen = _window.screen;
-            return @{GetDensityOfScreen(ObjC.Object):Call(screen)};
+            return @{GetDensityOfScreen(ObjC.Object):call(screen)};
         @}
 
         [Foreign(Language.ObjC)]
@@ -111,7 +111,7 @@ namespace Uno.Platform
         [Foreign(Language.ObjC)]
         protected override void SetTicksPerSecond(uint fps)
         @{
-            CADisplayLink* displayLink = @{iOSDisplay:Of(_this)._displayLink:Get()};
+            CADisplayLink* displayLink = @{iOSDisplay:of(_this)._displayLink:get()};
 
             CFTimeInterval duration = displayLink.duration;
             if (duration == 0)
@@ -141,14 +141,14 @@ namespace Uno.Platform
             }
 
             displayLink.frameInterval = frameInterval;
-            @{iOSDisplay:Of(_this)._ticksPerSecond:Set(actualFps)};
+            @{iOSDisplay:of(_this)._ticksPerSecond:set(actualFps)};
         @}
 
         [Foreign(Language.ObjC)]
         protected override void EnableTicks()
         @{
-            CADisplayLink* displayLink = @{iOSDisplay:Of(_this)._displayLink};
-            UIWindow* window = (UIWindow*)@{iOSDisplay:Of(_this)._handle};
+            CADisplayLink* displayLink = @{iOSDisplay:of(_this)._displayLink};
+            UIWindow* window = (UIWindow*)@{iOSDisplay:of(_this)._handle};
 
             if (!displayLink)
             {
@@ -159,9 +159,9 @@ namespace Uno.Platform
                 [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
                 [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:UITrackingRunLoopMode];
 
-                @{iOSDisplay:Of(_this)._displayLink:Set(displayLink)};
+                @{iOSDisplay:of(_this)._displayLink:set(displayLink)};
 
-                @{iOSDisplay:Of(_this).SetTicksPerSecond(uint):Call(@{iOSDisplay:Of(_this)._ticksPerSecond})};
+                @{iOSDisplay:of(_this).SetTicksPerSecond(uint):call(@{iOSDisplay:of(_this)._ticksPerSecond})};
             }
 
             displayLink.paused = NO;
@@ -170,7 +170,7 @@ namespace Uno.Platform
         [Foreign(Language.ObjC)]
         protected override void DisableTicks()
         @{
-            CADisplayLink* displayLink = @{iOSDisplay:Of(_this)._displayLink};
+            CADisplayLink* displayLink = @{iOSDisplay:of(_this)._displayLink};
             displayLink.paused = YES;
         @}
     }

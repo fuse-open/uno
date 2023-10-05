@@ -21,11 +21,11 @@ public extern(android) class Properties
     {
         get
         @{
-            return @{Properties:Of(_this).val};
+            return @{Properties:of(_this).val};
         @}
         set
         @{
-            @{Properties:Of(_this).val:Set(value)};
+            @{Properties:of(_this).val:set(value)};
         @}
     }
 }

@@ -7,7 +7,7 @@
 struct NSObject;
 #endif
 
-@{Uno.Net.Http.HttpMessageHandlerRequest:ForwardDeclaration}
+@{Uno.Net.Http.HttpMessageHandlerRequest:forwardDeclaration}
 
 namespace Uno {
 namespace Net {

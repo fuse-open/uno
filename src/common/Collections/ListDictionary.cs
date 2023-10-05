@@ -16,8 +16,7 @@ namespace Uno.Collections
 
         public List<TValue> GetList(TKey key)
         {
-            List<TValue> list;
-            if (!TryGetValue(key, out list))
+            if (!TryGetValue(key, out List<TValue> list))
             {
                 list = new List<TValue>();
                 Add(key, list);

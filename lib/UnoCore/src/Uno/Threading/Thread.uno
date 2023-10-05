@@ -32,14 +32,14 @@ namespace Uno.Threading
     }
 
     [DotNetType("System.Threading.Thread")]
-    [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):Call((@{Thread}) arg)}; return nullptr; }")]
-    [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):Call((@{Thread}) lpParam)}; return 0; }")]
+    [extern(UNIX) Require("Source.Declaration", "static void* _ThreadFunc(void* arg) { @{ThreadMain(Thread):call((@{Thread}) arg)}; return nullptr; }")]
+    [extern(WIN32) Require("Source.Declaration", "static DWORD WINAPI _ThreadFunc(LPVOID lpParam) { @{ThreadMain(Thread):call((@{Thread}) lpParam)}; return 0; }")]
     [extern(WIN32) Require("Source.Include", "uno/WinAPI.h")]
     public sealed class Thread
     {
         extern(CPLUSPLUS) static ThreadLocal _currentThread = extern<ThreadLocal> "uCreateThreadLocal(nullptr)";
 
-        [Require("Source.Include", "@{Uno.Exception:Include}")]
+        [Require("Source.Include", "@{Uno.Exception:include}")]
         extern(CPLUSPLUS) static void ThreadMain(Thread thread)
         @{
             uAutoReleasePool pool;
@@ -47,12 +47,12 @@ namespace Uno.Threading
 
             try
             {
-                @{$0._threadStart:Call()};
+                @{$0._threadStart:call()};
             }
             catch (const uThrowable& t)
             {
                 // TODO: Use some kind of exception callback..
-                U_ERROR("Unhandled exception in thread: %s", uCString(@{Exception:Of(t.Exception).ToString():Call()}).Ptr);
+                U_ERROR("Unhandled exception in thread: %s", uCString(@{Exception:of(t.Exception).ToString():call()}).Ptr);
             }
             catch (const std::exception& e)
             {

@@ -5,8 +5,8 @@
 #endif
 
 #include <uno.h>
-#include <@{global::ObjC.ID:Include}>
-#include <@{global::ObjC.Object:Include}>
+#include <@{global::ObjC.ID:include}>
+#include <@{global::ObjC.Object:include}>
 #include "uObjC.Box.h"
 #include "uObjC.Function.h"
 #include "uObjC.String.h"

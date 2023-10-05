@@ -10,11 +10,11 @@
 
     <Set HeaderDirectory="include" />
     <Set SourceDirectory="src" />
-    <Set Commands.Build="@(HOST_WIN32:Defined:Test('build.bat', 'bash build.sh'))" />
-    <Set PInvoke.Configuration="@(DEBUG_NATIVE:Defined:Test('Debug', 'Release'))" />
+    <Set Commands.Build="@(HOST_WIN32:defined:test('build.bat', 'bash build.sh'))" />
+    <Set PInvoke.Configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
 
-    <Declare Element="SourceFile" TargetDirectory="@(SourceDirectory)" />
-    <Declare Element="HeaderFile" TargetDirectory="@(HeaderDirectory)" />
+    <Declare Element="SourceFile" TargetDirectory="@(sourceDirectory)" />
+    <Declare Element="HeaderFile" TargetDirectory="@(headerDirectory)" />
 
     <Declare Element="IncludeDirectory" />
     <Declare Element="LinkDirectory" />

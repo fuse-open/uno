@@ -30,19 +30,19 @@ namespace Uno.Net
                 if (sa->sa_family == AF_INET)
                 {
                     sockaddr_in *sa4 = (sockaddr_in *)sa;
-                    @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 4, &sa4->sin_addr);
-                    addresses.push_back(@{IPAddress(byte[]):New(tmp)});
+                    @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 4, &sa4->sin_addr);
+                    addresses.push_back(@{IPAddress(byte[]):new(tmp)});
                 }
                 else if (sa->sa_family == AF_INET6)
                 {
                     sockaddr_in6 *sa6 = (sockaddr_in6 *)sa;
-                    @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 16, &sa6->sin6_addr);
-                    addresses.push_back(@{IPAddress(byte[]):New(tmp)});
+                    @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 16, &sa6->sin6_addr);
+                    addresses.push_back(@{IPAddress(byte[]):new(tmp)});
                 }
             }
             freeifaddrs(addr);
 
-            return uArray::New(@{IPAddress[]:TypeOf}, addresses.size(), &addresses[0]);
+            return uArray::New(@{IPAddress[]:typeof}, addresses.size(), &addresses[0]);
         @}
 
         [Foreign(Language.Java)]
@@ -71,7 +71,7 @@ namespace Uno.Net
                                 hostAddress += inet6Address.getScopeId();
                             }
                         }
-                        @{List<string>:Of(addresses).Add(string):Call(hostAddress)};
+                        @{List<string>:of(addresses).Add(string):call(hostAddress)};
                     }
                 }
             }
@@ -111,19 +111,19 @@ namespace Uno.Net
                 if (curr->ai_family == AF_INET)
                 {
                     struct sockaddr_in *sa = (struct sockaddr_in *)curr->ai_addr;
-                    @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 4, &sa->sin_addr);
-                    addresses.push_back(@{IPAddress(byte[]):New(tmp)});
+                    @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 4, &sa->sin_addr);
+                    addresses.push_back(@{IPAddress(byte[]):new(tmp)});
                 }
                 else if (curr->ai_family == AF_INET6)
                 {
                     struct sockaddr_in6 *sa = (struct sockaddr_in6 *)curr->ai_addr;
-                    @{byte[]} tmp = uArray::New(@{byte[]:TypeOf}, 16, &sa->sin6_addr);
-                    addresses.push_back(@{IPAddress(byte[]):New(tmp)});
+                    @{byte[]} tmp = uArray::New(@{byte[]:typeof}, 16, &sa->sin6_addr);
+                    addresses.push_back(@{IPAddress(byte[]):new(tmp)});
                 }
             }
             freeaddrinfo(addr);
 
-            return uArray::New(@{IPAddress[]:TypeOf}, addresses.size(), &addresses[0]);
+            return uArray::New(@{IPAddress[]:typeof}, addresses.size(), &addresses[0]);
         @}
 
         public static IPAddress[] GetHostAddresses(string hostNameOrAddress)

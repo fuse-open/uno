@@ -3,8 +3,8 @@
 
 #include <uno/ThreadUtils.h>
 #include <mutex>
-@{Uno.IntPtr:IncludeDirective}
-@{byte:IncludeDirective}
+@{Uno.IntPtr:includeDirective}
+@{byte:includeDirective}
 
 #ifdef ANDROID
 #include <android/log.h>
@@ -48,7 +48,7 @@ void uLogv(int level, const char* format, va_list args)
         ANDROID_LOG_ERROR,  // uLogLevelError
         ANDROID_LOG_FATAL   // uLogLevelFatal
     };
-    __android_log_vprint(logs[level], "@(Project.Name)", format, args);
+    __android_log_vprint(logs[level], "@(project.name)", format, args);
 #else
     static const char* strings[] = {
         "",             // uLogLevelDebug
@@ -162,7 +162,7 @@ uArray* uGetNativeStackTrace(int skipFrames)
 {
     void* callStack[64];
     int callStackDepth = backtrace(callStack, sizeof(callStack) / sizeof(callStack[0]));
-    return uArray::New(@{Uno.IntPtr[]:TypeOf}, callStackDepth - skipFrames, callStack + skipFrames);
+    return uArray::New(@{Uno.IntPtr[]:typeof}, callStackDepth - skipFrames, callStack + skipFrames);
 }
 
 #elif defined(__GNUC__) && !defined(ANDROID)
@@ -208,7 +208,7 @@ uArray* uGetNativeStackTrace(int skipFrames)
     };
 
     _Unwind_Backtrace(uUnwindCallback, &state);
-    return uArray::New(@{Uno.IntPtr[]:TypeOf}, state._callStackDepth, state._callStack);
+    return uArray::New(@{Uno.IntPtr[]:typeof}, state._callStackDepth, state._callStack);
 }
 
 #elif defined(WIN32)
@@ -220,7 +220,7 @@ uArray* uGetNativeStackTrace(int skipFrames)
 {
     void* callStack[64];
     int callStackDepth = CaptureStackBackTrace(skipFrames, sizeof(callStack) / sizeof(callStack[0]), callStack, nullptr);
-    return uArray::New(@{Uno.IntPtr[]:TypeOf}, callStackDepth, callStack);
+    return uArray::New(@{Uno.IntPtr[]:typeof}, callStackDepth, callStack);
 }
 
 #else

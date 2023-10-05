@@ -101,7 +101,7 @@ namespace Uno.Collections
 
                 if defined(CPLUSPLUS)
                 @{
-                    uType* type = @{T:TypeOf};
+                    uType* type = @{T:typeof};
                     size_t size = type->ValueSize;
                     uint8_t* src = (uint8_t*) @{$$._data}->Ptr();
                     uint8_t* dst = (uint8_t*) newData->Ptr();
@@ -144,7 +144,7 @@ namespace Uno.Collections
 
             if defined(CPLUSPLUS)
             @{
-                uType* type = @{T:TypeOf};
+                uType* type = @{T:typeof};
                 size_t size = type->ValueSize;
                 uint8_t* src = (uint8_t*) @{$$._data}->Ptr() + size * $0;
                 memmove(src + size, src, size * (@{$$._used} - $0));
@@ -191,7 +191,7 @@ namespace Uno.Collections
 
             if defined(CPLUSPLUS)
             @{
-                uType* type = @{T:TypeOf};
+                uType* type = @{T:typeof};
                 size_t size = type->ValueSize;
                 uint8_t* dst = (uint8_t*) @{$$._data}->Ptr() + size * $0;
 

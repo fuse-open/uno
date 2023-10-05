@@ -95,14 +95,14 @@ namespace ForeignObjCTest
         [Foreign(Language.ObjC)]
         void arrayOutParam(ref string[] arr1, out string[] arr2)
         @{
-            *arr1 = @{string[]:New(3)};
+            *arr1 = @{string[]:new(3)};
             (*arr1)[0] = @"elem1";
             (*arr1)[1] = @"elem2";
             (*arr1)[2] = @"elem3";
             /* I'm a comment */
             // Another comment
 
-            *arr2 = @{string[]:New(3)};
+            *arr2 = @{string[]:new(3)};
             (*arr2)[0] = @"elem1";
             (*arr2)[1] = @"elem2";
             (*arr2)[2] = @"elem3";
@@ -132,10 +132,10 @@ namespace ForeignObjCTest
         @{
             /* I'm a comment */
             // Another comment
-            *obj1 = @{MyClass(string):New(@"Out1")};
+            *obj1 = @{MyClass(string):new(@"Out1")};
             /* I'm a comment */
             // Another comment
-            *obj2 = @{MyClass(string):New(@"Out2")};
+            *obj2 = @{MyClass(string):new(@"Out2")};
             /* I'm a comment */
             // Another comment
         @}
@@ -296,13 +296,13 @@ namespace ForeignObjCTest
         @{
             *f = ^ void (id<UnoArray>* a)
             {
-                *a = @{string[]:New(2)};
+                *a = @{string[]:new(2)};
                 (*a)[0] = @"abc";
                 (*a)[1] = @"123";
             };
             *g = ^ void (id<UnoArray>* a)
             {
-                *a = @{string[]:New(2)};
+                *a = @{string[]:new(2)};
                 (*a)[0] = @"abc";
                 (*a)[1] = @"123";
             };
@@ -334,11 +334,11 @@ namespace ForeignObjCTest
             // Another comment
             *f = ^ void (id<UnoObject>* a)
             {
-                *a = @{MyClass(string):New(@"abc")};
+                *a = @{MyClass(string):new(@"abc")};
             };
             *g = ^ void (id<UnoObject>* a)
             {
-                *a = @{MyClass(string):New(@"123")};
+                *a = @{MyClass(string):new(@"123")};
             };
             /* I'm a comment */
             // Another comment

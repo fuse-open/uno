@@ -1,4 +1,4 @@
-package @(Activity.Package);
+package @(activity.package);
 
 import android.os.Build;
 import android.util.Log;
@@ -30,14 +30,14 @@ import androidx.core.app.ActivityCompat;
 import android.view.View.OnLayoutChangeListener;
 import com.fuse.Activity.ActivityListener;
 
-@(Activity.File.Declaration:Join())
+@(activity.file.declaration:join())
 
-public class @(Activity.Name) extends @(Activity.BaseClass) implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class @(activity.name) extends @(activity.baseClass) implements ActivityCompat.OnRequestPermissionsResultCallback {
 
-#if !@(LIBRARY:Defined)
+#if !@(LIBRARY:defined)
     private static com.fuse.App fuseApp;
 
-    public @(Activity.Name)() {
+    public @(activity.name)() {
         super();
         fuseApp = com.fuse.App.Create(this);
     }

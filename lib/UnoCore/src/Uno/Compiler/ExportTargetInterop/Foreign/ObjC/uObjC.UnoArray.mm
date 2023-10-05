@@ -82,7 +82,7 @@
 - (NSUInteger)count
 {
     uForeignPool autoReleasePool;
-    return (NSUInteger)@{byte[]:Of(_unoArray).Length:Get()};
+    return (NSUInteger)@{byte[]:of(_unoArray).Length:get()};
 }
 
 - (void)dealloc

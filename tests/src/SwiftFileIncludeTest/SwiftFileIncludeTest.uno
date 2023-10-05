@@ -7,7 +7,7 @@ namespace SwiftFileIncludeTest
     public extern(iOS) class SimpleFileInclude
     {
         [Foreign(Language.ObjC)]
-        [ForeignInclude(Language.ObjC, "@(Project.Name)-Swift.h")]
+        [ForeignInclude(Language.ObjC, "@(project.name)-Swift.h")]
         string GetTheString()
         @{
             HelloSwiftWorld* x = [[HelloSwiftWorld alloc] init];

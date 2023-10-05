@@ -12,13 +12,13 @@
 #include <sstream>
 #include <string>
 #include <thread>
-@{Uno.Diagnostics.Clock:IncludeDirective}
-@{Uno.Exception:IncludeDirective}
-@{Uno.Platform.CoreApp:IncludeDirective}
-@{Uno.Platform.WindowBackend:IncludeDirective}
-@{Uno.Platform.Internal.Bootstrapper:IncludeDirective}
-@{Uno.Application:IncludeDirective}
-@{string:IncludeDirective}
+@{Uno.Diagnostics.Clock:includeDirective}
+@{Uno.Exception:includeDirective}
+@{Uno.Platform.CoreApp:includeDirective}
+@{Uno.Platform.WindowBackend:includeDirective}
+@{Uno.Platform.Internal.Bootstrapper:includeDirective}
+@{Uno.Application:includeDirective}
+@{string:includeDirective}
 
 #if WIN32
 #include <uno/WinAPI.h>
@@ -54,7 +54,7 @@ struct uMainLoop : Xli::WindowEventHandler
                     ? settings.RefreshRate
                     : 60;
 
-        uBase::Auto<Xli::Window> wnd = Xli::Window::Create(uBase::Vector2i(375, 667), "@(Project.Title)", Xli::WindowFlagsResizeable);
+        uBase::Auto<Xli::Window> wnd = Xli::Window::Create(uBase::Vector2i(375, 667), "@(project.title)", Xli::WindowFlagsResizeable);
 
 #if WIN32
         HWND hWnd = (HWND)wnd->GetNativeHandle();
@@ -90,11 +90,11 @@ struct uMainLoop : Xli::WindowEventHandler
 
         wnd->SetEventHandler(this);
         Xli::Window::ProcessMessages();
-        @{Uno.Platform.CoreApp.Start():Call()};
+        @{Uno.Platform.CoreApp.Start():call()};
 
         while (!wnd->IsClosed())
         {
-            double startTime = @{Uno.Diagnostics.Clock.GetSeconds():Call()};
+            double startTime = @{Uno.Diagnostics.Clock.GetSeconds():call()};
 
             Xli::Window::ProcessMessages();
             OnUpdate(wnd);
@@ -105,7 +105,7 @@ struct uMainLoop : Xli::WindowEventHandler
             if (maxFps > 0)
             {
                 double targetTime = 1.0 / (double)maxFps;
-                double renderTime = @{Uno.Diagnostics.Clock.GetSeconds():Call()} - startTime;
+                double renderTime = @{Uno.Diagnostics.Clock.GetSeconds():call()} - startTime;
                 int msTimeout = (int)((targetTime - renderTime) * 1000.0 + 0.5);
 
                 if (msTimeout > 0)
@@ -117,7 +117,7 @@ struct uMainLoop : Xli::WindowEventHandler
     virtual void OnUpdate(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.Internal.Bootstrapper.OnUpdate():Call()};
+        @{Uno.Platform.Internal.Bootstrapper.OnUpdate():call()};
     }
 
     virtual void OnDraw(Xli::Window* wnd)
@@ -125,9 +125,9 @@ struct uMainLoop : Xli::WindowEventHandler
         {
             uAutoReleasePool pool;
 
-            if (@{Uno.Application.Current:Get()} && @{Uno.Application.Current:Get().NeedsRedraw:Get()})
+            if (@{Uno.Application.Current:get()} && @{Uno.Application.Current:get().NeedsRedraw:get()})
             {
-                @{Uno.Platform.Internal.Bootstrapper.OnDraw():Call()};
+                @{Uno.Platform.Internal.Bootstrapper.OnDraw():call()};
                 _XliGLContextPtr->SwapBuffers();
             }
         }
@@ -144,7 +144,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnKeyDown(Uno.Platform.WindowBackend,Uno.Platform.Key):Call(@{Uno.Platform.WindowBackend.Instance}, key)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnKeyDown(Uno.Platform.WindowBackend,Uno.Platform.Key):call(@{Uno.Platform.WindowBackend.Instance}, key)})
             return true;
 
 #ifdef WIN32
@@ -162,7 +162,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnKeyUp(Uno.Platform.WindowBackend,Uno.Platform.Key):Call(@{Uno.Platform.WindowBackend.Instance}, key)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnKeyUp(Uno.Platform.WindowBackend,Uno.Platform.Key):call(@{Uno.Platform.WindowBackend.Instance}, key)})
             return true;
 
         return false;
@@ -172,7 +172,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnTextInput(Uno.Platform.WindowBackend,string):Call(@{Uno.Platform.WindowBackend.Instance}, uString::Utf8(text.Ptr()))})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnTextInput(Uno.Platform.WindowBackend,string):call(@{Uno.Platform.WindowBackend.Instance}, uString::Utf8(text.Ptr()))})
             return true;
 
         return false;
@@ -182,7 +182,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseDown(Uno.Platform.WindowBackend,int,int,Uno.Platform.MouseButton):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, button)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseDown(Uno.Platform.WindowBackend,int,int,Uno.Platform.MouseButton):call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, button)})
             return true;
 
         return false;
@@ -192,7 +192,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseUp(Uno.Platform.WindowBackend,int,int,Uno.Platform.MouseButton):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, button)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseUp(Uno.Platform.WindowBackend,int,int,Uno.Platform.MouseButton):call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, button)})
             return true;
 
         return false;
@@ -202,7 +202,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseMove(Uno.Platform.WindowBackend,int,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseMove(Uno.Platform.WindowBackend,int,int):call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y)})
             return true;
 
         return false;
@@ -212,7 +212,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseWheel(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, (float)delta.X, (float)delta.Y, 1)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnMouseWheel(Uno.Platform.WindowBackend,float,float,int):call(@{Uno.Platform.WindowBackend.Instance}, (float)delta.X, (float)delta.Y, 1)})
             return true;
 
         return false;
@@ -222,7 +222,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnTouchDown(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnTouchDown(Uno.Platform.WindowBackend,float,float,int):call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
             return true;
 
         return false;
@@ -232,7 +232,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnTouchMove(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnTouchMove(Uno.Platform.WindowBackend,float,float,int):call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
             return true;
 
         return false;
@@ -242,7 +242,7 @@ struct uMainLoop : Xli::WindowEventHandler
     {
         uAutoReleasePool pool;
 
-        if (@{Uno.Platform.Internal.Bootstrapper.OnTouchUp(Uno.Platform.WindowBackend,float,float,int):Call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
+        if (@{Uno.Platform.Internal.Bootstrapper.OnTouchUp(Uno.Platform.WindowBackend,float,float,int):call(@{Uno.Platform.WindowBackend.Instance}, pos.X, pos.Y, id)})
             return true;
 
         return false;
@@ -256,7 +256,7 @@ struct uMainLoop : Xli::WindowEventHandler
     virtual void OnSizeChanged(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.Internal.Bootstrapper.OnWindowSizeChanged(Uno.Platform.WindowBackend):Call(@{Uno.Platform.WindowBackend.Instance})};
+        @{Uno.Platform.Internal.Bootstrapper.OnWindowSizeChanged(Uno.Platform.WindowBackend):call(@{Uno.Platform.WindowBackend.Instance})};
 #if WIN32 || OSX
         if (wnd->GetMouseButtonState(Xli::MouseButtonLeft))
         {
@@ -269,38 +269,38 @@ struct uMainLoop : Xli::WindowEventHandler
     virtual bool OnClosing(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.EnterBackground():Call()};
+        @{Uno.Platform.CoreApp.EnterBackground():call()};
         return false;
     }
 
     virtual void OnClosed(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.Terminate():Call()};
+        @{Uno.Platform.CoreApp.Terminate():call()};
     }
 
     virtual void OnAppLowMemory(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.OnReceivedLowMemoryWarning():Call()};
+        @{Uno.Platform.CoreApp.OnReceivedLowMemoryWarning():call()};
     }
 
     virtual void OnAppTerminating(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.Terminate():Call()};
+        @{Uno.Platform.CoreApp.Terminate():call()};
     }
 
     virtual void OnAppDidEnterForeground(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.EnterInteractive():Call()};
+        @{Uno.Platform.CoreApp.EnterInteractive():call()};
     }
 
     virtual void OnAppDidEnterBackground(Xli::Window* wnd)
     {
         uAutoReleasePool pool;
-        @{Uno.Platform.CoreApp.EnterBackground():Call()};
+        @{Uno.Platform.CoreApp.EnterBackground():call()};
     }
 };
 
@@ -362,25 +362,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 #endif
 
-@(TypeObjects.Declaration:JoinSorted())
+@(typeObjects.declaration:joinSorted())
 void uInitTypes(uType*(*factories[])());
 
 void uInitTypes()
 {
     static uType*(*factories[])() =
     {
-        @(TypeObjects.FunctionPointer:JoinSorted('\n        ', '', ','))
+        @(typeObjects.functionPointer:joinSorted('\n        ', '', ','))
         nullptr
     };
 
     uInitTypes(factories);
 }
 
-@(Main.Include:JoinSorted('\n', '#include <', '>'))
+@(main.include:joinSorted('\n', '#include <', '>'))
 
 void uStartApp()
 {
-    @(Main.Body:Indent(' ', 4))
+    @(main.body:indent(' ', 4))
 }
 
 /** @} */

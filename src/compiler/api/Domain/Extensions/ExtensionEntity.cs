@@ -10,11 +10,11 @@ namespace Uno.Compiler.API.Domain.Extensions
         public readonly Source Source;
         public readonly object Object;
         public readonly Disambiguation Disambiguation;
-        public readonly List<CopyFile> CopyFiles = new List<CopyFile>();
-        public readonly List<ImageFile> ImageFiles = new List<ImageFile>();
-        public readonly ListDictionary<string, Element> Requirements = new ListDictionary<string, Element>();
-        public readonly HashSet<IEntity> RequiredEntities = new HashSet<IEntity>();
-        public readonly HashSet<ExtensionEntity> RequiredTemplates = new HashSet<ExtensionEntity>();
+        public readonly List<CopyFile> CopyFiles = new();
+        public readonly List<ImageFile> ImageFiles = new();
+        public readonly LowerCamelListDictionary<Element> Requirements = new();
+        public readonly HashSet<IEntity> RequiredEntities = new();
+        public readonly HashSet<ExtensionEntity> RequiredTemplates = new();
 
         Source IDisambiguable.Source => Source;
         Disambiguation IDisambiguable.Disambiguation => Disambiguation;

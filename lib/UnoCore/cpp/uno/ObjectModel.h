@@ -6,12 +6,12 @@
 #include <cstdarg>
 #include <cstdlib>
 #include <exception>
-#if @(REFLECTION:Defined)
+#if @(REFLECTION:defined)
 #include <uno/Reflection.h>
 #else
 #include <uno/Memory.h>
 #endif
-@{Uno.Exception:ForwardDeclaration}
+@{Uno.Exception:forwardDeclaration}
 struct uObjectMonitor;
 
 /**
@@ -186,7 +186,7 @@ struct uType : uObject
     uObjectRefs Refs;
 
     // Reflection
-#if @(REFLECTION:Defined)
+#if @(REFLECTION:defined)
     uReflection Reflection;
 #endif
 

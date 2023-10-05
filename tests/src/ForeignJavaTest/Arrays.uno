@@ -93,7 +93,7 @@ public extern(android) class Arrays
     [Foreign(Language.Java)]
     public bool PassToJava0(int[] intArr, string[] strArr)
     @{
-        return @{PassToJava1(int[],string[]):Call(intArr, strArr)};
+        return @{PassToJava1(int[],string[]):call(intArr, strArr)};
     @}
 
     public static bool PassToJava1(int[] intArr, string[] strArr)
@@ -152,7 +152,7 @@ public extern(android) class Arrays
         StringArray freshStringArr = new StringArray(100);
         ByteArray freshByteArr = new ByteArray(10,false);
         ByteArray freshUByteArr = new ByteArray(10,true);
-        return @{CheckArraysFromJava0(short[], string[], sbyte[], byte[]):Call(freshShortArr, freshStringArr, freshByteArr, freshUByteArr)};
+        return @{CheckArraysFromJava0(short[], string[], sbyte[], byte[]):call(freshShortArr, freshStringArr, freshByteArr, freshUByteArr)};
     @}
 
     static bool CheckArraysFromJava0(short[] a, string[] b, sbyte[] c, byte[] d)

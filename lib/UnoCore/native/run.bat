@@ -21,14 +21,14 @@ if "%1" == "debug" (
     if not %ERRORLEVEL% == 0 (popd && exit /b %ERRORLEVEL%)
 
     echo Opening Visual Studio 2019
-    @(uno) open -a"Visual Studio 2019" -t"@(Project.Name) - Microsoft Visual Studio" "@(Project.Name).sln"
+    @(uno) open -a"Visual Studio 2019" -t"@(project.name) - Microsoft Visual Studio" "@(project.name).sln"
     popd && exit /b %ERRORLEVEL%
 )
 
-#if @(LIBRARY:Defined)
-echo ERROR: @(Product) is a library and cannot be run directly.
+#if @(LIBRARY:defined)
+echo ERROR: @(product) is a library and cannot be run directly.
 exit /b 1
 #else
-"%~dp0@(Product:Replace('/', '\\'))" %*
+"%~dp0@(product:replace('/', '\\'))" %*
 exit /b %ERRORLEVEL%
 #endif

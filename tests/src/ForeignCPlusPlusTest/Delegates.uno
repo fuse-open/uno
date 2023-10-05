@@ -27,7 +27,7 @@ namespace ForeignCPlusPlusTest
         static void UseAction(MyAction f)
         @{
             @{MyAction} g = f;
-            @{MyAction:Of(g):Call()};
+            @{MyAction:of(g):call()};
         @}
 
         bool _ran;
@@ -49,7 +49,7 @@ namespace ForeignCPlusPlusTest
         static int UsePrimitiveDelegate(MyPrimitiveDelegate f)
         @{
             @{MyPrimitiveDelegate} g = f;
-            auto result = @{MyPrimitiveDelegate:Of(g):Call(123, 456, 23)};
+            auto result = @{MyPrimitiveDelegate:of(g):call(123, 456, 23)};
             return result;
         @}
 
@@ -77,7 +77,7 @@ namespace ForeignCPlusPlusTest
             str[5] = 0;
             for (@{int} i = 0; i < len; ++i)
                 str[i] = (@{char})('a' + i);
-            auto result = @{MyStringDelegate:Of(g):Call(str)};
+            auto result = @{MyStringDelegate:of(g):call(str)};
             return result;
         @}
 
@@ -107,7 +107,7 @@ namespace ForeignCPlusPlusTest
             @{byte} buf[5];
             for (@{int} i = 0; i < len; ++i)
                 buf[i] = (@{byte})i;
-            auto result = @{MyArrayDelegate:Of(g):Call(buf, len)};
+            auto result = @{MyArrayDelegate:of(g):call(buf, len)};
             return result;
         @}
 
@@ -142,7 +142,7 @@ namespace ForeignCPlusPlusTest
             @{int} buf2[10];
             for (@{int} i = 0; i < buf2Len; ++i)
                 buf2[i] = i * i;
-            auto result = @{MyMultiArrayDelegate:Of(g):Call(buf, bufLen, buf2, buf2Len)};
+            auto result = @{MyMultiArrayDelegate:of(g):call(buf, bufLen, buf2, buf2Len)};
             return result;
         @}
 
@@ -175,10 +175,10 @@ namespace ForeignCPlusPlusTest
             @{MyOutParamDelegate} g = f;
             @{int} x1;
             @{bool} y1 = true;
-            @{MyOutParamDelegate:Of(g):Call(&x1, &y1)};
+            @{MyOutParamDelegate:of(g):call(&x1, &y1)};
             @{int} x2;
             @{bool} y2 = false;
-            @{MyOutParamDelegate:Of(g):Call(&x2, &y2)};
+            @{MyOutParamDelegate:of(g):call(&x2, &y2)};
             return (y1 ? x1 : -x1) * (y2 ? x2 : -x2);
         @}
 

@@ -45,8 +45,8 @@ namespace Uno
 
         [extern(CPLUSPLUS) Require("Source.Include", "cctype")]
         [extern(CPLUSPLUS) Require("Source.Include", "errno.h")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:Include}")]
-        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:Include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{FormatException:include}")]
+        [extern(CPLUSPLUS) Require("Source.Include", "@{OverflowException:include}")]
         public static float Parse(string str)
         {
             if (str == null)
@@ -65,10 +65,10 @@ namespace Uno
                     end++;
 
                 if (errno == ERANGE || retval > @{MaxValue} || retval < @{MinValue})
-                    U_THROW(@{OverflowException(string):New(uString::Const("Value was either too large or too small for float"))});
+                    U_THROW(@{OverflowException(string):new(uString::Const("Value was either too large or too small for float"))});
 
                 if (!strlen(trimmed) || strlen(end))
-                    U_THROW(@{FormatException(string):New(uString::Const("Unable to convert string to float"))});
+                    U_THROW(@{FormatException(string):new(uString::Const("Unable to convert string to float"))});
 
                 return (float)retval;
             @}

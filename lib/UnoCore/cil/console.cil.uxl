@@ -1,9 +1,9 @@
 <Extensions Backend="CIL" Condition="CONSOLE">
 
-    <CopyFile Name="@(Config.AppLoader.Console:Path)/uno-app.runtimeconfig.json"
-        TargetName="@(Project.Name).runtimeconfig.json" />
+    <CopyFile Name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json"
+        TargetName="@(project.name).runtimeconfig.json" />
 
-    <Set Product="@(Project.Name).dll" />
+    <Set Product="@(project.name).dll" />
 
     <!-- Windows -->
     <Set Commands.Run="run.bat" Condition="HOST_WIN32" />

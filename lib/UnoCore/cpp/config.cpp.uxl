@@ -29,9 +29,9 @@
     <Declare MethodProperty="FunctionName" />
 
     <!-- File types -->
-    <Declare Element="FontFile" TargetDirectory="@(BundleDirectory)" />
-    <Declare Element="HeaderFile" TargetDirectory="@(HeaderDirectory)" />
-    <Declare Element="SourceFile" TargetDirectory="@(SourceDirectory)" />
+    <Declare Element="FontFile" TargetDirectory="@(bundleDirectory)" />
+    <Declare Element="HeaderFile" TargetDirectory="@(headerDirectory)" />
+    <Declare Element="SourceFile" TargetDirectory="@(sourceDirectory)" />
 
     <!-- Build extensions -->
     <Declare Element="IncludeDirectory" />
@@ -57,12 +57,12 @@
     <Declare Element="TypeObjects.FunctionPointer" />
 
     <!-- Native build -->
-    <Set Native.Configuration="@(DEBUG_NATIVE:Defined:Test('Debug', 'Release'))" />
+    <Set Native.Configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
 
     <!-- Mobile settings -->
-    <Set Mobile.DisableStatusbar="@('@(MOBILE:Defined) && !@(Project.Mobile.ShowStatusbar)':Test(1, 0))" />
-    <Set Mobile.DisableBatterySaver="@('@(MOBILE:Defined) && @(Project.Mobile.KeepAlive)':Test(1, 0))" />
-    <Set Mobile.DisableBackgroundProcess="@('@(MOBILE:Defined) && !@(Project.Mobile.RunsInBackground)':Test(1, 0))" />
+    <Set Mobile.DisableStatusbar="@('@(MOBILE:defined) && !@(project.mobile.showStatusbar)':test(1, 0))" />
+    <Set Mobile.DisableBatterySaver="@('@(MOBILE:defined) && @(project.mobile.keepAlive)':test(1, 0))" />
+    <Set Mobile.DisableBackgroundProcess="@('@(MOBILE:defined) && !@(project.mobile.runsInBackground)':test(1, 0))" />
 
     <!-- Keywords -->
     <Set Keywords>

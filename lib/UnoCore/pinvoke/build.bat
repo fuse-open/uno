@@ -4,5 +4,5 @@
 
 pushd "%~dp0"
 cmake -G"Visual Studio 15 2017" . || popd && exit /b 1
-cmake --build . -- "@(Project.Name).sln" /p:Configuration=@(PInvoke.Configuration) /m
+cmake --build . -- "@(project.name).sln" /p:Configuration=@(pinvoke.configuration) /m
 popd && exit /b %ERRORLEVEL%

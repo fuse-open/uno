@@ -20,7 +20,7 @@ namespace Uno.IO
             WIN32_FILE_ATTRIBUTE_DATA data;
 
             if (!GetFileAttributesEx((LPCWSTR) $0->Ptr(), GetFileExInfoStandard, &data))
-                return @{FileStatus():New()};
+                return @{FileStatus():new()};
 
             uint64_t size = ((uint64_t)data.nFileSizeHigh << 32) | data.nFileSizeLow;
             @{FileAttributes} attributes = 0;
@@ -44,11 +44,11 @@ namespace Uno.IO
                 size,
                 attributes,
                 // CreationTime
-                @{FileTimeToZoned(uint, uint):Call(data.ftCreationTime.dwHighDateTime, data.ftCreationTime.dwLowDateTime)},
+                @{FileTimeToZoned(uint, uint):call(data.ftCreationTime.dwHighDateTime, data.ftCreationTime.dwLowDateTime)},
                 // LastAccessTime
-                @{FileTimeToZoned(uint, uint):Call(data.ftLastAccessTime.dwHighDateTime, data.ftLastAccessTime.dwLowDateTime)},
+                @{FileTimeToZoned(uint, uint):call(data.ftLastAccessTime.dwHighDateTime, data.ftLastAccessTime.dwLowDateTime)},
                 // LastWriteTime
-                @{FileTimeToZoned(uint, uint):Call(data.ftLastWriteTime.dwHighDateTime, data.ftLastWriteTime.dwLowDateTime)}
+                @{FileTimeToZoned(uint, uint):call(data.ftLastWriteTime.dwHighDateTime, data.ftLastWriteTime.dwLowDateTime)}
             )};
         @}
     }

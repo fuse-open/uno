@@ -3,9 +3,9 @@
 @echo off
 
 #if @(LIBRARY:defined) || @(PREVIEW:defined)
-echo ERROR: @(Product) is a library and cannot be run directly.
+echo ERROR: @(product) is a library and cannot be run directly.
 exit /b 1
 #else
-dotnet "%~dp0@(Product:Replace('/', '\\'))" %*
+dotnet "%~dp0@(product:replace('/', '\\'))" %*
 exit /b %ERRORLEVEL%
 #endif

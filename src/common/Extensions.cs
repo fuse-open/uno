@@ -616,20 +616,29 @@ namespace Uno
 
             if (char.IsUpper(str[0]))
             {
-                var allIsUpper = true;
+                var allIsUpperOrIncludesUnderscore = true;
 
                 for (int i = 1; i < str.Length; i++)
                 {
-                    if (!char.IsUpper(str[i]))
+                    if (str[i] == '_')
                     {
-                        allIsUpper = false;
+                        break;
+                    }
+                    else if (char.IsLower(str[i]))
+                    {
+                        allIsUpperOrIncludesUnderscore = false;
                         break;
                     }
                 }
 
                 // Convert all-upper-case to all-lower-case
-                if (allIsUpper)
+                if (allIsUpperOrIncludesUnderscore)
                     return str.ToLowerInvariant();
+
+                // Return identifiers with three uppercase characters as-is
+                if (str.Length > 2 && char.IsUpper(str[1])
+                                   && char.IsUpper(str[2]))
+                    return str;
 
                 // Make first character lower-case
                 str = char.ToLowerInvariant(str[0]) + str.Substring(1);
@@ -638,11 +647,15 @@ namespace Uno
             // Convert some identifers to all-lower-case
             switch (str)
             {
+                case "cMake":
+                case "dotNet":
+                case "iOS":
                 case "iPad":
                 case "iPhone":
-                case "iOS":
+                case "pInvoke":
+                case "pList":
                 case "qIdentifier":
-                case "dotNet":
+                case "typeOf":
                 case "unoDoc":
                     return str.ToLowerInvariant();
             }

@@ -231,8 +231,7 @@ namespace Uno.Compiler.Core
 
         public bool HasImplementation(Function function)
         {
-            FunctionExtension methodExt;
-            return TryGetExtension(function, out methodExt) && methodExt.HasImplementation;
+            return TryGetExtension(function, out FunctionExtension methodExt) && methodExt.HasImplementation;
         }
 
         public void Require(Function function, string key, params Element[] elements)
@@ -262,23 +261,21 @@ namespace Uno.Compiler.Core
 
         public bool TryGetValue(string propertyName, out SourceValue result, bool escape = false)
         {
-            Result value;
-            Key key = new Key(propertyName, escape);
-            if (_cachedProperties.TryGetValue(key, out value))
+            Key key = new(propertyName, escape);
+            if (_cachedProperties.TryGetValue(key, out Result value))
             {
                 result = value.Value;
                 return value.HasValue;
             }
 
-            Element elm;
-            if (Extensions.Properties.TryGetValue(propertyName, out elm))
+            if (Extensions.Properties.TryGetValue(propertyName, out Element elm))
             {
                 result = new SourceValue(elm.Source, ExpandSingleLine(elm.Source, elm.String, escape, null, elm.Usings));
                 _cachedProperties[key] = new Result(result, true);
                 return true;
             }
 
-            result = default(SourceValue);
+            result = default;
             _cachedProperties[key] = new Result(result, false);
             return false;
         }
@@ -290,14 +287,12 @@ namespace Uno.Compiler.Core
 
         public string GetString(string propertyName, bool escape = false)
         {
-            SourceValue result;
-            return TryGetValue(propertyName, out result, escape) ? result.String : null;
+            return TryGetValue(propertyName, out SourceValue result, escape) ? result.String : null;
         }
 
         public bool GetBool(string propertyName, bool defaultValue = false)
         {
-            SourceValue result;
-            return TryGetValue(propertyName, out result) ? CompileBool(result) : defaultValue;
+            return TryGetValue(propertyName, out SourceValue result) ? CompileBool(result) : defaultValue;
         }
 
         public string GetOutputPath(string key)
@@ -322,86 +317,72 @@ namespace Uno.Compiler.Core
 
         public bool HasProperty(DataType dt, string propertyName)
         {
-            TypeExtension typeExt;
-            return TryGetExtension(dt, out typeExt) && typeExt.Properties.ContainsKey(propertyName);
+            return TryGetExtension(dt, out TypeExtension typeExt) && typeExt.Properties.ContainsKey(propertyName);
         }
 
         public bool TryGetValue(DataType dt, string propertyName, out SourceValue result, bool escape = false)
         {
-            Element elm;
-            TypeExtension typeExt;
-            if (Extensions.TypeExtensions.TryGetValue(dt.Prototype, out typeExt) &&
-                typeExt.Properties.TryGetValue(propertyName, out elm))
+            if (Extensions.TypeExtensions.TryGetValue(dt.Prototype, out TypeExtension typeExt) &&
+                typeExt.Properties.TryGetValue(propertyName, out Element elm))
             {
                 result = new SourceValue(elm.Source, ExpandSingleLine(elm.Source, elm.String, escape, null, elm.Usings));
                 return true;
             }
 
-            result = default(SourceValue);
+            result = default;
             return false;
         }
 
         public string GetString(DataType dt, string propertyName, bool escape = false)
         {
-            SourceValue result;
-            return TryGetValue(dt, propertyName, out result, escape) ? result.String : null;
+            return TryGetValue(dt, propertyName, out SourceValue result, escape) ? result.String : null;
         }
 
         public bool GetBool(DataType dt, string propertyName, bool defaultValue = false)
         {
-            SourceValue result;
-            return TryGetValue(dt, propertyName, out result) ? CompileBool(result) : defaultValue;
+            return TryGetValue(dt, propertyName, out SourceValue result) ? CompileBool(result) : defaultValue;
         }
 
         public bool HasProperty(Function f, string propertyName)
         {
-            FunctionExtension methodExt;
-            return TryGetExtension(f, out methodExt) && methodExt.Properties.ContainsKey(propertyName);
+            return TryGetExtension(f, out FunctionExtension methodExt) && methodExt.Properties.ContainsKey(propertyName);
         }
 
         public bool TryGetValue(Function f, string propertyName, out SourceValue result, bool escape = false)
         {
-            Element elm;
-            TypeExtension typeExt;
-            FunctionExtension methodExt;
-            if (Extensions.TypeExtensions.TryGetValue(f.DeclaringType.Prototype, out typeExt) &&
-                typeExt.MethodExtensions.TryGetValue(f.Prototype, out methodExt) &&
-                methodExt.Properties.TryGetValue(propertyName, out elm))
+            if (Extensions.TypeExtensions.TryGetValue(f.DeclaringType.Prototype, out TypeExtension typeExt) &&
+                typeExt.MethodExtensions.TryGetValue(f.Prototype, out FunctionExtension methodExt) &&
+                methodExt.Properties.TryGetValue(propertyName, out Element elm))
             {
                 result = new SourceValue(elm.Source, ExpandSingleLine(elm.Source, elm.String, escape, f, elm.Usings));
                 return true;
             }
 
-            result = default(SourceValue);
+            result = default;
             return false;
         }
 
         public string GetString(Function f, string propertyName, bool escape = false)
         {
-            SourceValue result;
-            return TryGetValue(f, propertyName, out result, escape) ? result.String : null;
+            return TryGetValue(f, propertyName, out SourceValue result, escape) ? result.String : null;
         }
 
         public bool GetBool(Function f, string propertyName, bool defaultValue = false)
         {
-            SourceValue result;
-            return TryGetValue(f, propertyName, out result) ? CompileBool(result) : defaultValue;
+            return TryGetValue(f, propertyName, out SourceValue result) ? CompileBool(result) : defaultValue;
         }
 
         public IEnumerable<SourceValue> Enumerate(string elementType, bool escape = false)
         {
-            List<Element> elms;
-            if (Extensions.Requirements.TryGetValue(elementType, out elms))
+            if (Extensions.Requirements.TryGetValue(elementType, out List<Element> elms))
                 foreach (var e in elms)
                     yield return new SourceValue(e.Source, Expand(e.Source, e.String, escape, null, e.Usings));
         }
 
         public IEnumerable<SourceValue> Enumerate(DataType dt, string elementType, bool escape = false)
         {
-            List<Element> elms;
-            TypeExtension typeExt;
-            if (TryGetExtension(dt, out typeExt) &&
-                typeExt.Requirements.TryGetValue(elementType, out elms))
+            if (TryGetExtension(dt, out TypeExtension typeExt) &&
+                typeExt.Requirements.TryGetValue(elementType, out List<Element> elms))
                 foreach (var e in elms)
                     yield return new SourceValue(e.Source, Expand(e.Source, e.String, escape, null, e.Usings));
         }
@@ -445,9 +426,8 @@ namespace Uno.Compiler.Core
 
         bool CompileBool(SourceValue sourceValue)
         {
-            bool result;
             if (!string.IsNullOrEmpty(sourceValue.String) &&
-                Preprocessor.TryParseCondition(sourceValue.String, out result))
+                Preprocessor.TryParseCondition(sourceValue.String, out bool result))
                 return result;
 
             Log.Error(sourceValue.Source, ErrorCode.E0000, sourceValue.String.Quote() + " could not be evaluated to 'bool'");
@@ -490,7 +470,7 @@ namespace Uno.Compiler.Core
         const int MaxVerboseMessages = 20;
         public bool SkipVerboseErrors => !Options.CodeCompletionMode && _verboseMessageCount++ > MaxVerboseMessages;
 
-        struct Key
+        readonly struct Key
         {
             public readonly string String;
             public readonly bool Bool;
@@ -508,7 +488,7 @@ namespace Uno.Compiler.Core
             }
         }
 
-        struct Result
+        readonly struct Result
         {
             public readonly SourceValue Value;
             public readonly bool HasValue;

@@ -4,8 +4,8 @@
     <Using Namespace="Android.Base.Primitives" />
 
     <Type Name="Android.Base.Wrappers.JWrapper">
-        <Require Header.Include="@{Android.Base.JNI:Include}" />
-        <Require Header.Include="@{Uno.Exception:Include}" />
+        <Require Header.Include="@{Android.Base.JNI:include}" />
+        <Require Header.Include="@{Uno.Exception:include}" />
 
         <Require Entity="IJWrapper._GetJavaObject()" />
         <Require Entity="IJWrapper._IsSubclassed()" />
@@ -36,22 +36,22 @@
         <Require Entity="Android.Base.Primitives.jfieldID" />
         <Require Entity="Android.Base.AndroidBindingMacros" />
         <Require Entity="JNI.LoadClass(JNIEnvPtr,ConstCharPtr)" />
-        <Require Header.Include="@{Android.Base.AndroidBindingMacros:Include}" />
+        <Require Header.Include="@{Android.Base.AndroidBindingMacros:include}" />
         <Require Header.Declaration>
-        #define MAYBEPROXIFYARG(NUM,ID,NEW) bool subclassed ## NUM = (!ID) ? false : (@{Android.Base.Wrappers.IJWrapper:Of(ID)._IsSubclassed():Call()}); jobject _iProx ## NUM = (!ID) ? nullptr : (subclassed ## NUM ? NEW : @{Android.Base.Wrappers.IJWrapper:Of(ID)._GetJavaObject():Call()});
+        #define MAYBEPROXIFYARG(NUM,ID,NEW) bool subclassed ## NUM = (!ID) ? false : (@{Android.Base.Wrappers.IJWrapper:of(ID)._IsSubclassed():call()}); jobject _iProx ## NUM = (!ID) ? nullptr : (subclassed ## NUM ? NEW : @{Android.Base.Wrappers.IJWrapper:of(ID)._GetJavaObject():call()});
 
         #define FREEPROXIED(NUM)if (subclassed ## NUM) { U_JNIVAR->DeleteLocalRef(_iProx ## NUM); }
 
-        #define UNOCALLANDRETURN(CALL) @{Android.Base.Primitives.JNIEnvPtr} _cb_jni = @{Android.Base.JNI.GetEnvPtr():Call()};@{Android.Base.Wrappers.JWrapper} _res = (@{Android.Base.Wrappers.JWrapper})CALL;if (_res) { return _cb_jni->NewLocalRef(@{Android.Base.Wrappers.JWrapper:Of(_res)._javaObject}); } else { return nullptr; }
+        #define UNOCALLANDRETURN(CALL) @{Android.Base.Primitives.JNIEnvPtr} _cb_jni = @{Android.Base.JNI.GetEnvPtr():call()};@{Android.Base.Wrappers.JWrapper} _res = (@{Android.Base.Wrappers.JWrapper})CALL;if (_res) { return _cb_jni->NewLocalRef(@{Android.Base.Wrappers.JWrapper:of(_res)._javaObject}); } else { return nullptr; }
 
-        #define NEW_UNO(LINE,RETURNVAR,TYPEOF,UNOTYPE,FALLBACK,RESOLVE) U_JOBJECT tmpRes = LINE; @{Android.Base.JNI.CheckException():Call()}; @{long} unoRef = @{Android.Base.JNI.GetUnoRef(Android.Base.Primitives.ujobject):Call(tmpRes)}; if (unoRef==0) { RETURNVAR = nullptr; } else if (unoRef>0) { RETURNVAR = (UNOTYPE)uLoadWeak((uWeakObject*)unoRef); @{Android.Base.Primitives.JNIEnvPtr} __cb_jni = @{Android.Base.JNI.GetEnvPtr():Call()}; if (__cb_jni->GetObjectRefType(tmpRes)==JNILocalRefType) { __cb_jni->DeleteLocalRef(tmpRes); }} else { RETURNVAR = ((UNOTYPE)@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool):New(tmpRes, (@{Uno.Type})TYPEOF, FALLBACK, RESOLVE)}); }
+        #define NEW_UNO(LINE,RETURNVAR,TYPEOF,UNOTYPE,FALLBACK,RESOLVE) U_JOBJECT tmpRes = LINE; @{Android.Base.JNI.CheckException():call()}; @{long} unoRef = @{Android.Base.JNI.GetUnoRef(Android.Base.Primitives.ujobject):call(tmpRes)}; if (unoRef==0) { RETURNVAR = nullptr; } else if (unoRef>0) { RETURNVAR = (UNOTYPE)uLoadWeak((uWeakObject*)unoRef); @{Android.Base.Primitives.JNIEnvPtr} __cb_jni = @{Android.Base.JNI.GetEnvPtr():call()}; if (__cb_jni->GetObjectRefType(tmpRes)==JNILocalRefType) { __cb_jni->DeleteLocalRef(tmpRes); }} else { RETURNVAR = ((UNOTYPE)@{Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool):new(tmpRes, (@{Uno.Type})TYPEOF, FALLBACK, RESOLVE)}); }
         </Require>
 
         <Method Signature="_DisposeJavaObject()">
             <Body>
 
                      if (!@{$$._javaObject}) return;
-                     @{JNI.DeleteGlobalRef(ujobject):Call(@{$$._javaObject})};
+                     @{JNI.DeleteGlobalRef(ujobject):call(@{$$._javaObject})};
                      @{$$._javaObject} = 0;
 
             </Body>
@@ -62,7 +62,7 @@
 if (@{_jlangObjectClass}) { return; }
 INIT_JNI;
 @{_jlangObjectClass} = NEW_GLOBAL_REF(jclass,LOAD_SYS_CLASS("java/lang/Object"));
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 if (!@{_jlangObjectClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'java.lang.Object' for JWrapper", 53); }
 </Body>
         </Method>
@@ -71,11 +71,11 @@ if (!@{_jlangObjectClass}) { THROW_UNO_EXCEPTION("Unable to cache class 'java.la
             <Body>
 
 INIT_JNI;
-jobject _obArg2 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:Of($0)._GetJavaObject():Call()});
-CLASS_INIT(@{_jlangObjectClass},@{_Init():Call()});
+jobject _obArg2 = ((!$0) ? nullptr : @{Android.Base.Wrappers.IJWrapper:of($0)._GetJavaObject():call()});
+CLASS_INIT(@{_jlangObjectClass},@{_Init():call()});
 CACHE_METHOD(@{_jlangObjectEqualsMid},@{_jlangObjectClass},"equals","(Ljava/lang/Object;)Z",GetMethodID,"Id for method java.lang.Object.equals could not be cached for jwrapper",79);
 @{bool} result = ((@{bool})U_JNIVAR->CallBooleanMethod(@{$$._javaObject}, @{_jlangObjectEqualsMid}, _obArg2));
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 return result;
 
 
@@ -86,10 +86,10 @@ return result;
             <Body>
 
 INIT_JNI;
-CLASS_INIT(@{_jlangObjectClass},@{_Init():Call()});
+CLASS_INIT(@{_jlangObjectClass},@{_Init():call()});
 CACHE_METHOD(@{_jlangObjectHashCodeMid},@{_jlangObjectClass},"hashCode","()I",GetMethodID,"Id for method java.lang.Object.hashCode could not be cached for jwrapper",81);
 @{int} result = ((@{int})U_JNIVAR->CallIntMethod(@{$$._javaObject}, @{_jlangObjectHashCodeMid}));
-@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):Call(U_JNIVAR)};
+@{Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr):call(U_JNIVAR)};
 return result;
 
             </Body>
@@ -98,18 +98,18 @@ return result;
         <Require Source.Declaration>
         bool __JWrapper_WeakCallback(uWeakStateIntercept::Event e, uObject* obj)
         {
-            @{Android.Base.JNI.CheckException():Call()};
+            @{Android.Base.JNI.CheckException():call()};
             @{JWrapper} wrapper = (@{JWrapper})obj;
-            jobject jobj = @{JWrapper:Of(wrapper)._javaObject};
+            jobject jobj = @{JWrapper:of(wrapper)._javaObject};
             if (!jobj) return true;
 
-            bool subclassed = @{JWrapper:Of(wrapper)._subclassed};
+            bool subclassed = @{JWrapper:of(wrapper)._subclassed};
 
             if (e == uWeakStateIntercept::OnLoad) {
                 // retain went from 0 to 1
                 if (subclassed) {
-                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
-                    @{JWrapper:Of(wrapper)._javaObject} = jni->NewGlobalRef(jobj);
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():call()};
+                    @{JWrapper:of(wrapper)._javaObject} = jni->NewGlobalRef(jobj);
                     jni->DeleteWeakGlobalRef(jobj);
                     return true;
                 } else {
@@ -118,12 +118,12 @@ return result;
             } else {
                 // retain went from 1 to 0
                 if (subclassed) {
-                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
-                    @{JWrapper:Of(wrapper)._javaObject} = jni->NewWeakGlobalRef(jobj);
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():call()};
+                    @{JWrapper:of(wrapper)._javaObject} = jni->NewWeakGlobalRef(jobj);
                     jni->DeleteGlobalRef(jobj);
                     return false;
                 } else {
-                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+                    @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():call()};
                     jni->DeleteGlobalRef(jobj);
                     return true;
                 }
@@ -142,12 +142,12 @@ return result;
         }
         void __Register_Finalizer()
         {
-            @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():Call()};
+            @{JNIEnvPtr} jni = @{JNI.GetEnvPtr():call()};
             JNINativeMethod nativeFunc = {(char* const)"Finalize", (char* const)"(J)V", (void *)&__JWrapper_Finalizer};
-            jclass cls = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr):Call(@{JNI.GetEnvPtr():Call()}, "com.foreign.UnoHelper")}));
-            jint attached = @{JNI.GetEnvPtr():Call()}->RegisterNatives(cls, &nativeFunc, 1);
+            jclass cls = reinterpret_cast<jclass>(jni->NewGlobalRef(@{JNI.LoadClass(JNIEnvPtr,ConstCharPtr):call(@{JNI.GetEnvPtr():call()}, "com.foreign.UnoHelper")}));
+            jint attached = @{JNI.GetEnvPtr():call()}->RegisterNatives(cls, &nativeFunc, 1);
             if (attached < 0) {
-                U_THROW(@{Uno.Exception(string):New(uString::Utf8("Could not register the instantiation callback function",54))});
+                U_THROW(@{Uno.Exception(string):new(uString::Utf8("Could not register the instantiation callback function",54))});
             }
         }
         </Require>

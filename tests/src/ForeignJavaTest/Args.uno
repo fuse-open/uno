@@ -51,7 +51,7 @@ public extern(android) class Args
     [Foreign(Language.Java)]
     public bool CallInstanceMethod0()
     @{
-        @{Args:Of(_this).ExampleInstanceMtd():Call()};
+        @{Args:of(_this).ExampleInstanceMtd():call()};
         return true;
     @}
 
@@ -72,7 +72,7 @@ public extern(android) class Args
             }
         };
 
-        return (rrr == @{Args.StaticIdentity(Java.Object):Call(rrr)});
+        return (rrr == @{Args.StaticIdentity(Java.Object):call(rrr)});
     @}
 
     public static Java.Object StaticIdentity(Java.Object r)
@@ -90,21 +90,21 @@ public extern(android) class Args
     [Foreign(Language.Java)]
     public bool JavaToUnoCall0()
     @{
-        @{Args:Of(_this).TestCallable(int, string):Call(1234, "state.name()")};
+        @{Args:of(_this).TestCallable(int, string):call(1234, "state.name()")};
         return true;
     @}
 
     [Foreign(Language.Java)]
     public bool JavaToUnoCall1()
     @{
-        @{Args:Of(_this).TestCallable(int, long):Call(1234, 123456789)};
+        @{Args:of(_this).TestCallable(int, long):call(1234, 123456789)};
         return true;
     @}
 
     [Foreign(Language.Java)]
     public bool JavaToUnoCall2()
     @{
-        @{Args.StaticTestCallable(int):Call(1234)};
+        @{Args.StaticTestCallable(int):call(1234)};
         return true;
     @}
 
@@ -125,13 +125,13 @@ public extern(android) class Args
     [Foreign(Language.Java)]
     public bool JavaToJavaCall0()
     @{
-        return @{ChainedCall0(int):Call(1)};
+        return @{ChainedCall0(int):call(1)};
     @}
 
     [Foreign(Language.Java)]
     public static extern(android) bool ChainedCall0(int a)
     @{
-        return @{ChainedCall1(TestNestedClass0):Call(@{TestNestedClass0(int,int):New(1, 2)})};
+        return @{ChainedCall1(TestNestedClass0):call(@{TestNestedClass0(int,int):new(1, 2)})};
     @}
 
     public static bool ChainedCall1(TestNestedClass0 x)
@@ -156,7 +156,7 @@ public extern(android) class Args
     [Foreign(Language.Java)]
     public static extern(android) bool ChainedCall2(object bar)
     @{
-        return @{ChainedCall3(object):Call(bar)};
+        return @{ChainedCall3(object):call(bar)};
     @}
 
     public static bool ChainedCall3(object x)

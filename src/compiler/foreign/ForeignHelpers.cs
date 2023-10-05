@@ -336,7 +336,7 @@ namespace Uno.Compiler.Foreign
             // there is no real reason that this couldnt be used on more types.
             // however this is a quick fix and I am not gonna risk that.
             if (!dt.IsStruct)
-                throw new Exception("Called UnBoxStruct on non-struct datatype " + dt.FullName);
+                throw new Exception("Called UnboxStruct on non-struct datatype " + dt.FullName);
             return "uUnbox<@{" + dt.FullName + "}>(" + TypeOf(dt) + ", " + str + ")";
         }
 
