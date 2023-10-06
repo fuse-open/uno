@@ -11,6 +11,7 @@
     "xcode-devteams": "^1.0.1"
   },
   "devDependencies": {
+    "concurrently": "^8.2.1",
     "filecompare": "^1.0.4",
     "xbash": "^1.6.0"
   },
@@ -20,6 +21,7 @@
     "postpack": "node scripts/restore.js",
     "prepack": "bash scripts/pack.sh",
     "test": "bash scripts/test.sh",
+    "test-with-timeout": "concurrently -k -r -s first -P \"node scripts/timeout.js\" \"npm test -- {@}\" --",
     "version": "bash scripts/version.sh",
     "uno": "node bin/uno.js"
   },

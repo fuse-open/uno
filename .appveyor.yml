@@ -6,13 +6,16 @@ environment:
   matrix:
   - TARGET: dotnet
     UNO_TEST_ARGS: -DLAZY
+    LOG_TRACE: 1
   - TARGET: native
     UNO_TEST_ARGS: -DDEBUG_UNSAFE
     SKIP_UNO_TESTS: 1
-  # - TARGET: android
-  #   UNO_TEST_ARGS: -DDEBUG_UNSAFE --build-only
-  #   GRADLE_OPTS: -Dorg.gradle.daemon=false
-  #   SKIP_LIB_TESTS: 1
+    LOG_TRACE: 1
+# - TARGET: android
+#   UNO_TEST_ARGS: -DDEBUG_UNSAFE --build-only
+#   GRADLE_OPTS: -Dorg.gradle.daemon=false
+#   SKIP_LIB_TESTS: 1
+#   LOG_TRACE: 1
 
 install:
   - ps: Install-Product node $env:nodejs_version
@@ -48,4 +51,4 @@ before_test:
       }
 
 test_script:
-  - npm test %TARGET% Release
+  - npm run test-with-timeout -- %TARGET% Release
