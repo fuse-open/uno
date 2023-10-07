@@ -1,104 +1,104 @@
-<Extensions Backend="CPlusPlus">
+<extensions backend="cplusplus">
 
-    <Set Base.Directory="@('Android':path)" Condition="ANDROID" />
-    <Set Base.Directory="@('iOS':path)" Condition="IOS" />
-    <Set Base.Directory="@('OSX':path)" Condition="OSX" />
-    <Set Base.Directory="@('Win32':path)" Condition="WIN32" />
-    <Set Base.Directory="@('Linux':path)" Condition="LINUX" />
-    <Set Base.LinkDirectory="@(base.directory:path)/lib/${ANDROID_ABI}" Condition="ANDROID" />
-    <Set Base.LinkDirectory="@(base.directory:path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" Condition="IOS" />
-    <Set Base.LinkDirectory="@(base.directory:path)/lib" />
-    <Set Base.IncludeDirectory="@(base.directory:path)/include" />
+    <set base.directory="@('Android':path)" condition="ANDROID" />
+    <set base.directory="@('iOS':path)" condition="IOS" />
+    <set base.directory="@('OSX':path)" condition="OSX" />
+    <set base.directory="@('Win32':path)" condition="WIN32" />
+    <set base.directory="@('Linux':path)" condition="LINUX" />
+    <set base.linkDirectory="@(base.directory:path)/lib/${ANDROID_ABI}" condition="ANDROID" />
+    <set base.linkDirectory="@(base.directory:path)/lib/$CONFIGURATION$EFFECTIVE_PLATFORM_NAME" condition="IOS" />
+    <set base.linkDirectory="@(base.directory:path)/lib" />
+    <set base.includeDirectory="@(base.directory:path)/include" />
 
-    <Require IncludeDirectory="@(base.includeDirectory)" />
-    <Require LinkDirectory="@(base.linkDirectory)" />
+    <require includeDirectory="@(base.includeDirectory)" />
+    <require linkDirectory="@(base.linkDirectory)" />
 
-    <Template Name="freetype">
-        <Require IncludeDirectory="/usr/include/freetype2" Condition="LINUX" />
-        <Require LinkLibrary="freetype" Condition="!ANDROID" />
-        <Require StaticLibrary="@(base.linkDirectory)/libfreetype.a" Condition="ANDROID" />
-    </Template>
+    <template name="freetype">
+        <require includeDirectory="/usr/include/freetype2" condition="LINUX" />
+        <require linkLibrary="freetype" condition="!ANDROID" />
+        <require staticLibrary="@(base.linkDirectory)/libfreetype.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="jpeg">
-        <Require LinkLibrary="jpeg" Condition="!ANDROID" />
-        <Require StaticLibrary="@(base.linkDirectory)/libjpeg.a" Condition="ANDROID" />
-    </Template>
+    <template name="jpeg">
+        <require linkLibrary="jpeg" condition="!ANDROID" />
+        <require staticLibrary="@(base.linkDirectory)/libjpeg.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="png">
-        <Require LinkLibrary="png" Condition="!ANDROID" />
-        <Require StaticLibrary="@(base.linkDirectory)/libpng.a" Condition="ANDROID" />
-    </Template>
+    <template name="png">
+        <require linkLibrary="png" condition="!ANDROID" />
+        <require staticLibrary="@(base.linkDirectory)/libpng.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="uBase">
-        <Require LinkLibrary="uBase" Condition="!ANDROID" />
-        <Require StaticLibrary="@(base.linkDirectory)/libuBase.a" Condition="ANDROID" />
-    </Template>
+    <template name="uBase">
+        <require linkLibrary="uBase" condition="!ANDROID" />
+        <require staticLibrary="@(base.linkDirectory)/libuBase.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="uImage">
-        <Require Template="uBase" />
-        <Require Template="freetype" />
-        <Require Template="jpeg" />
-        <Require Template="png" />
-        <Require LinkLibrary="uImage" Condition="!ANDROID" />
-        <Require LinkLibrary="z" />
-        <Require LinkLibrary="bz2" Condition="OSX" />
-        <Require StaticLibrary="@(base.linkDirectory)/libuImage.a" Condition="ANDROID" />
-    </Template>
+    <template name="uImage">
+        <require template="uBase" />
+        <require template="freetype" />
+        <require template="jpeg" />
+        <require template="png" />
+        <require linkLibrary="uImage" condition="!ANDROID" />
+        <require linkLibrary="z" />
+        <require linkLibrary="bz2" condition="OSX" />
+        <require staticLibrary="@(base.linkDirectory)/libuImage.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="XliPlatform">
-        <Require Template="uBase" />
-        <Require LinkLibrary="XliPlatform" Condition="!ANDROID" />
-        <Require LinkLibrary="EGL" Condition="ANDROID || LINUX && ARM" />
-        <Require LinkLibrary="GLESv2" Condition="ANDROID || LINUX && ARM" />
-        <Require LinkLibrary="GLEW" Condition="OSX || LINUX && !ARM || WIN32" />
-        <Require LinkLibrary="SDL2" Condition="OSX || LINUX" />
-        <Require LinkLibrary="GL" Condition="LINUX" />
-        <Require LinkLibrary="pthread" Condition="LINUX" />
-        <Require StaticLibrary="@(base.linkDirectory)/libXliPlatform.a" Condition="ANDROID" />
-    </Template>
+    <template name="XliPlatform">
+        <require template="uBase" />
+        <require linkLibrary="XliPlatform" condition="!ANDROID" />
+        <require linkLibrary="EGL" condition="ANDROID || LINUX && ARM" />
+        <require linkLibrary="GLESv2" condition="ANDROID || LINUX && ARM" />
+        <require linkLibrary="GLEW" condition="OSX || LINUX && !ARM || WIN32" />
+        <require linkLibrary="SDL2" condition="OSX || LINUX" />
+        <require linkLibrary="GL" condition="LINUX" />
+        <require linkLibrary="pthread" condition="LINUX" />
+        <require staticLibrary="@(base.linkDirectory)/libXliPlatform.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="XliHttpClient">
-        <Require Template="uBase" />
-        <Require LinkLibrary="XliHttpClient" Condition="!ANDROID" />
-        <Require LinkLibrary="curl" Condition="OSX || LINUX || WIN32" />
-        <Require LinkLibrary="ws2_32" Condition="MSVC" />
-        <Require LinkLibrary="wldap32" Condition="MSVC" />
-        <Require LinkLibrary="advapi32" Condition="MSVC" />
-        <Require StaticLibrary="@(base.linkDirectory)/libXliHttpClient.a" Condition="ANDROID" />
-    </Template>
+    <template name="XliHttpClient">
+        <require template="uBase" />
+        <require linkLibrary="XliHttpClient" condition="!ANDROID" />
+        <require linkLibrary="curl" condition="OSX || LINUX || WIN32" />
+        <require linkLibrary="ws2_32" condition="MSVC" />
+        <require linkLibrary="wldap32" condition="MSVC" />
+        <require linkLibrary="advapi32" condition="MSVC" />
+        <require staticLibrary="@(base.linkDirectory)/libXliHttpClient.a" condition="ANDROID" />
+    </template>
 
-    <Template Name="XliSoundPlayer">
-        <Require Template="uBase" />
-        <Require LinkLibrary="XliSoundPlayer" Condition="!ANDROID" />
-        <Require LinkLibrary="OpenSLES" Condition="ANDROID" />
-        <Require StaticLibrary="@(base.linkDirectory)/libXliSoundPlayer.a" Condition="ANDROID" />
-    </Template>
+    <template name="XliSoundPlayer">
+        <require template="uBase" />
+        <require linkLibrary="XliSoundPlayer" condition="!ANDROID" />
+        <require linkLibrary="OpenSLES" condition="ANDROID" />
+        <require staticLibrary="@(base.linkDirectory)/libXliSoundPlayer.a" condition="ANDROID" />
+    </template>
 
-    <Require Condition="ANDROID" LinkLibrary="android" />
-    <Require Condition="ANDROID" LinkLibrary="log" />
+    <require condition="ANDROID" linkLibrary="android" />
+    <require condition="ANDROID" linkLibrary="log" />
 
-    <Require Condition="IOS" Xcode.Framework="AudioToolbox" />
-    <Require Condition="IOS" Xcode.Framework="AVFoundation" />
-    <Require Condition="IOS" Xcode.Framework="CFNetwork" />
-    <Require Condition="IOS" Xcode.Framework="CoreAudio" />
-    <Require Condition="IOS" Xcode.Framework="CoreGraphics" />
-    <Require Condition="IOS" Xcode.Framework="CoreMotion" />
-    <Require Condition="IOS" Xcode.Framework="Foundation" />
-    <Require Condition="IOS && !METAL" Xcode.Framework="OpenGLES" />
-    <Require Condition="IOS" Xcode.Framework="QuartzCore" />
-    <Require Condition="IOS" Xcode.Framework="UIKit" />
+    <require condition="IOS" xcode.framework="AudioToolbox" />
+    <require condition="IOS" xcode.framework="AVFoundation" />
+    <require condition="IOS" xcode.framework="CFNetwork" />
+    <require condition="IOS" xcode.framework="CoreAudio" />
+    <require condition="IOS" xcode.framework="CoreGraphics" />
+    <require condition="IOS" xcode.framework="CoreMotion" />
+    <require condition="IOS" xcode.framework="Foundation" />
+    <require condition="IOS && !METAL" xcode.framework="OpenGLES" />
+    <require condition="IOS" xcode.framework="QuartzCore" />
+    <require condition="IOS" xcode.framework="UIKit" />
 
-    <Require Condition="OSX" LinkLibrary="m" />
-    <Require Condition="OSX" LinkLibrary="iconv" />
-    <Require Condition="OSX" Xcode.Framework="OpenGL" />
-    <Require Condition="OSX" Xcode.Framework="ForceFeedback" />
-    <Require Condition="OSX" Xcode.Framework="Cocoa" />
-    <Require Condition="OSX" Xcode.Framework="Carbon" />
-    <Require Condition="OSX" Xcode.Framework="IOKit" />
-    <Require Condition="OSX" Xcode.Framework="CoreAudio" />
-    <Require Condition="OSX" Xcode.Framework="CoreVideo" />
-    <Require Condition="OSX" Xcode.Framework="AudioToolbox" />
-    <Require Condition="OSX" Xcode.Framework="AudioUnit" />
-    <Require Condition="OSX" Xcode.Framework="AVFoundation" />
+    <require condition="OSX" linkLibrary="m" />
+    <require condition="OSX" linkLibrary="iconv" />
+    <require condition="OSX" xcode.framework="OpenGL" />
+    <require condition="OSX" xcode.framework="ForceFeedback" />
+    <require condition="OSX" xcode.framework="Cocoa" />
+    <require condition="OSX" xcode.framework="Carbon" />
+    <require condition="OSX" xcode.framework="IOKit" />
+    <require condition="OSX" xcode.framework="CoreAudio" />
+    <require condition="OSX" xcode.framework="CoreVideo" />
+    <require condition="OSX" xcode.framework="AudioToolbox" />
+    <require condition="OSX" xcode.framework="AudioUnit" />
+    <require condition="OSX" xcode.framework="AVFoundation" />
 
-</Extensions>
+</extensions>

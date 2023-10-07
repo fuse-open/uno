@@ -35,19 +35,19 @@ namespace Uno.Compiler.Frontend
 
         bool Parse(List<UxlDocument> result)
         {
-            switch (FindRootElement())
+            switch (FindRootElement().ToLowerCamelCase())
             {
-                case "Extensions":
+                case "extensions":
                     result.Add(ParseDocument());
                     return Log.ErrorCount - StartErrorCount == 0;
 
-                case "Package":
+                case "package":
                     ParseAttributes(x => false);
                     ParseElements(name =>
                     {
-                        switch (name)
+                        switch (name.ToLowerCamelCase())
                         {
-                            case "Extensions":
+                            case "extensions":
                                 result.Add(ParseDocument());
                                 return true;
                             default:
@@ -58,7 +58,7 @@ namespace Uno.Compiler.Frontend
                     return Log.ErrorCount - StartErrorCount == 0;
 
                 default:
-                    Log.Error(GetSource(), ErrorCode.E0000, "Expected <Extensions> element");
+                    Log.Error(GetSource(), ErrorCode.E0000, "Expected <extensions> element");
                     return false;
             }
         }
@@ -71,12 +71,12 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Backend":
+                        case "backend":
                             backend = GetValue();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
                         default:
@@ -87,8 +87,8 @@ namespace Uno.Compiler.Frontend
             UxlBackendType backendType = 0;
 
             if (backend == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Backend' attribute on <Extensions>");
-            else if (!Enum.TryParse(backend.Value.String, out backendType) || backendType == UxlBackendType.Unknown)
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'backend' attribute on <extensions>");
+            else if (!Enum.TryParse(backend.Value.String, true, out backendType) || backendType == UxlBackendType.Unknown)
                 Log.Error(backend.Value.Source, ErrorCode.E0000, "Unknown backend " + backend.Value.String.Quote());
 
             var result = new UxlDocument(File.Bundle, backendType, cond);
@@ -96,36 +96,36 @@ namespace Uno.Compiler.Frontend
             ParseElements(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Using":
+                        case "using":
                             ParseUsing(result);
                             return true;
-                        case "Define":
+                        case "define":
                             ParseDefine(result);
                             return true;
-                        case "Declare":
+                        case "declare":
                             ParseDeclare(result);
                             return true;
-                        case "Deprecate":
+                        case "deprecate":
                             ParseDeprecate(result);
                             return true;
-                        case "Definition":
-                            Log.Warning(GetSource(), ErrorCode.W0000, "<Definition> is deprecated, replace with <Declare>");
+                        case "definition":
+                            Log.Warning(GetSource(), ErrorCode.W0000, "<definition> is deprecated, replace with <declare>");
                             ParseDeclare(result);
                             return true;
-                        case "Type":
+                        case "type":
                             ParseType(name, result);
                             return true;
-                        case "Template":
+                        case "template":
                             ParseTemplate(name, result.Templates);
                             return true;
-                        case "Library":
-                            Log.Warning(GetSource(), ErrorCode.W0000, "<Library> is deprecated, replace with <Template>");
+                        case "library":
+                            Log.Warning(GetSource(), ErrorCode.W0000, "<library> is deprecated, replace with <template>");
                             ParseTemplate(name, result.Templates);
                             return true;
-                        case "Property":
-                            Log.Warning(GetSource(), ErrorCode.W0000, "<Property> is deprecated, replace with <Set>");
+                        case "property":
+                            Log.Warning(GetSource(), ErrorCode.W0000, "<property> is deprecated, replace with <set>");
                             ParseSet(name, result.Elements);
                             return true;
                         default:
@@ -143,9 +143,9 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Namespace":
+                        case "namespace":
                             doc.Usings.Add(GetValue());
                             return foundNamespace = true;
                         default:
@@ -154,7 +154,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (!foundNamespace)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Namespace' attribute on <Using>");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'namespace' attribute on <using>");
 
             ParseEmptyElement();
         }
@@ -167,7 +167,7 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    if (define == null && name != "Condition")
+                    if (define == null && name.ToLowerCamelCase() != "condition")
                     {
                         define = name;
                         expression = GetValue();
@@ -183,7 +183,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (define == null || !expression.HasValue)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected a (Name)=\"(Expression)\" attribute on <Define>");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected a (name)=\"(expression)\" attribute on <define>");
             else
                 doc.Defines.Add(new UxlDefine(define, expression.Value));
 
@@ -201,20 +201,20 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "TargetDirectory":
+                        case "targetDirectory":
                             targetDir = GetValue();
                             return true;
                         default:
                             UxlDeclareType et;
-                            if (Enum.TryParse(name, out et) && et != UxlDeclareType.Unknown)
+                            if (Enum.TryParse(name, true, out et) && et != UxlDeclareType.Unknown)
                             {
                                 if (type != 0)
-                                    Log.Error(GetSource(), ErrorCode.E0000, "A (ElementType)=\"(Key)\" attribute was already found on <Declare>");
+                                    Log.Error(GetSource(), ErrorCode.E0000, "A (elementType)=\"(key)\" attribute was already found on <declare>");
 
                                 src = GetSource();
                                 type = et;
@@ -227,12 +227,12 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (type == 0)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected a (ElementType)=\"(Key)\" attribute on <Declare>");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected a (elementType)=\"(key)\" attribute on <declare>");
             else
                 doc.Declarations.Add(new UxlDeclare(src, type, key ?? new SourceValue(), cond));
 
             if (targetDir != null && key != null)
-                doc.Elements.Add(new UxlElement(UxlElementType.Set, new SourceValue(targetDir.Value.Source, key.Value.String + ".TargetDirectory"), targetDir.Value, null, false));
+                doc.Elements.Add(new UxlElement(UxlElementType.Set, new SourceValue(targetDir.Value.Source, key.Value.String + ".targetDirectory"), targetDir.Value, null, false));
 
             ParseEmptyElement();
         }
@@ -245,7 +245,7 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    if (oldName == null && newName == null && name != "Condition")
+                    if (oldName == null && newName == null && name.ToLowerCamelCase() != "condition")
                     {
                         oldName = name;
                         newName = GetValue().String;
@@ -259,7 +259,7 @@ namespace Uno.Compiler.Frontend
             ParseEmptyElement();
         }
 
-        // TODO: Deprecated
+        // Deprecated
         void ParseUnoReference(List<UxlElement> parent)
         {
             var foundEntity = false;
@@ -267,10 +267,10 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Entity":
-                            parent.Add(new UxlElement(UxlElementType.Require, new SourceValue(GetSource(), "Entity"), GetValue(), null, false));
+                        case "entity":
+                            parent.Add(new UxlElement(UxlElementType.Require, new SourceValue(GetSource(), "entity"), GetValue(), null, false));
                             return foundEntity = true;
                         default:
                             return false;
@@ -278,7 +278,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (!foundEntity)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Entity' attribute on <UnoReference>");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'entity' attribute on <unoReference>");
 
             ParseEmptyElement();
         }
@@ -295,29 +295,29 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Name":
+                        case "name":
                             sourceName = GetValue();
                             return true;
-                        case "TargetName":
+                        case "targetName":
                             targetName = GetValue();
                             return true;
-                        case "IsExecutable":
+                        case "isExecutable":
                             isExecutable = GetBool();
                             return true;
-                        case "Overwrite":
+                        case "overwrite":
                             overwrite = GetBool();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "Type":
+                        case "type":
                             type = GetValue();
                             return true;
                         default:
                             if (type != null || sourceName != null)
-                                Log.Error(GetSource(), ErrorCode.E0000, "A (Type)=\"(Name)\" was already found on <" + elmName + ">");
+                                Log.Error(GetSource(), ErrorCode.E0000, "A (type)=\"(name)\" was already found on <" + elmName + ">");
 
                             type = new SourceValue(GetSource(), name);
                             sourceName = GetValue();
@@ -327,7 +327,7 @@ namespace Uno.Compiler.Frontend
 
             if (sourceName == null)
             {
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected a 'Name' attribute on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected a 'name' attribute on <" + elmName + ">");
             }
             else
             {
@@ -357,15 +357,15 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Name":
+                        case "name":
                             sourceName = GetValue();
                             return true;
-                        case "TargetName":
+                        case "targetName":
                             targetName = GetValue();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
                         default:
@@ -374,7 +374,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (sourceName == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Name' attribute on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'name' attribute on <" + elmName + ">");
             else
                 parent.Add(new CopyFile(sourceName.Value, CopyFileFlags.IsDirectory, targetName, cond));
 
@@ -392,21 +392,21 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Name":
+                        case "name":
                             sourceName = GetValue();
                             return true;
-                        case "TargetName":
+                        case "targetName":
                             targetName = GetValue();
                             return true;
-                        case "TargetWidth":
+                        case "targetWidth":
                             targetWidth = GetInt();
                             return true;
-                        case "TargetHeight":
+                        case "targetHeight":
                             targetHeight = GetInt();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
                         default:
@@ -415,7 +415,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (sourceName == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Name' attribute on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'name' attribute on <" + elmName + ">");
             else
                 parent.Add(new ImageFile(sourceName.Value, cond, targetName, targetWidth, targetHeight));
 
@@ -431,25 +431,25 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "Key":
+                        case "key":
                             key = GetValue();
-                            Log.Warning(GetSource(), ErrorCode.W0000, "'Key' attribute is deprecated -- use (Key)=\"(Value)\" or set inner text");
+                            Log.Warning(GetSource(), ErrorCode.W0000, "'key' attribute is deprecated -- use (key)=\"(value)\" or set inner text");
                             return true;
-                        case "Type":
-                            Log.Warning(GetSource(), ErrorCode.W0000, "'Type' attribute is deprecated -- use (Type)=\"(Value)\" or set inner text");
+                        case "type":
+                            Log.Warning(GetSource(), ErrorCode.W0000, "'Type' attribute is deprecated -- use (type)=\"(value)\" or set inner text");
                             key = GetValue();
                             return true;
-                        case "Value":
-                            Log.Error(GetSource(), ErrorCode.E0000, "'Value' attribute is not allowed -- use (Name)=\"(Value)\" or set inner text on <" + elmName + ">");
+                        case "value":
+                            Log.Error(GetSource(), ErrorCode.E0000, "'value' attribute is not allowed -- use (name)=\"(value)\" or set inner text on <" + elmName + ">");
                             return true;
                         default:
                             if (key != null)
-                                Log.Error(GetSource(), ErrorCode.E0000, "A (Name)=\"(Value)\" was attribute already found on <" + elmName + ">");
+                                Log.Error(GetSource(), ErrorCode.E0000, "A (name)=\"(value)\" was attribute already found on <" + elmName + ">");
 
                             key = new SourceValue(GetSource(), name);
                             value = GetValue();
@@ -464,7 +464,7 @@ namespace Uno.Compiler.Frontend
                 ParseTextElement(true, out src, out text);
 
                 if (text == null && value == null)
-                    Log.Error(GetSource(), ErrorCode.E0000, "Expected (Name)=\"(Value)\" or inner text on <" + elmName + ">");
+                    Log.Error(GetSource(), ErrorCode.E0000, "Expected (name)=\"(value)\" or inner text on <" + elmName + ">");
                 else if (text != null)
                     value = new SourceValue(src, text);
             }
@@ -472,12 +472,12 @@ namespace Uno.Compiler.Frontend
                 ParseEmptyElement();
 
             if (key == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected (Name)=\"(Value)\" or inner text on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected (vame)=\"(value)\" or inner text on <" + elmName + ">");
             else
                 parent.Add(new UxlElement(UxlElementType.Require, key.Value, value ?? new SourceValue(), cond, false));
         }
 
-        // TODO: Deprecated method
+        // Deprecated
         void ParseLinkLibrary(string elmName, List<UxlElement> parent)
         {
             SourceValue? libraryName = null;
@@ -485,9 +485,9 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Name":
+                        case "name":
                             libraryName = GetValue();
                             return true;
                         default:
@@ -496,46 +496,46 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (libraryName == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Name' attribute on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'name' attribute on <" + elmName + ">");
             else
-                parent.Add(new UxlElement(UxlElementType.Require, new SourceValue(GetSource(), "Template"), libraryName.Value, null, false));
+                parent.Add(new UxlElement(UxlElementType.Require, new SourceValue(GetSource(), "template"), libraryName.Value, null, false));
 
             ParseEmptyElement();
         }
 
         bool TryParseEntity(string elmName, UxlEntity parent)
         {
-            switch (elmName)
+            switch (elmName.ToLowerCamelCase())
             {
-                case "Set":
+                case "set":
                     ParseSet(elmName, parent.Elements);
                     return true;
-                case "Require":
+                case "require":
                     ParseRequire(elmName, parent.Elements);
                     return true;
-                case "CopyFile":
+                case "copyFile":
                     ParseCopyFile(elmName, parent, false);
                     return true;
-                case "ProcessFile":
+                case "processFile":
                     ParseCopyFile(elmName, parent, true);
                     return true;
-                case "CopyDirectory":
+                case "copyDirectory":
                     ParseCopyDirectory(elmName, parent.CopyFiles);
                     return true;
-                case "ImageFile":
+                case "imageFile":
                     ParseImageFile(elmName, parent.ImageFiles);
                     return true;
                     // TODO: Remove deprecated stuff below
-                case "Element":
-                    Log.Warning(GetSource(), ErrorCode.W0000, "<Element> is deprecated, replace with <Require>");
+                case "element":
+                    Log.Warning(GetSource(), ErrorCode.W0000, "<element> is deprecated, replace with <require>");
                     ParseRequire(elmName, parent.Elements);
                     return true;
-                case "LinkLibrary":
-                    Log.Warning(GetSource(), ErrorCode.W0000, "<LinkLibrary> is deprecated, replace with <Require Template=\"$(name)\">");
+                case "linkLibrary":
+                    Log.Warning(GetSource(), ErrorCode.W0000, "<linkLibrary> is deprecated, replace with <require template=\"$(name)\">");
                     ParseLinkLibrary(elmName, parent.Elements);
                     return true;
-                case "UnoReference":
-                    Log.Warning(GetSource(), ErrorCode.W0000, "<UnoReference> is deprecated, replace with <Require Entity=\"$(entity)\">");
+                case "unoReference":
+                    Log.Warning(GetSource(), ErrorCode.W0000, "<unoReference> is deprecated, replace with <require entity=\"$(name)\">");
                     ParseUnoReference(parent.Elements);
                     return true;
                 default:
@@ -543,13 +543,13 @@ namespace Uno.Compiler.Frontend
             }
         }
 
-        // TODO: Deprecated method
+        // Deprecated
         bool TryParseTypeEntity(string elmName, UxlEntity parent)
         {
-            switch (elmName)
+            switch (elmName.ToLowerCamelCase())
             {
-                case "TypeElement":
-                    Log.Warning(GetSource(), ErrorCode.W0000, "<TypeElement> is deprecated, replace with <Require>");
+                case "typeElement":
+                    Log.Warning(GetSource(), ErrorCode.W0000, "<typeElement> is deprecated, replace with <require>");
                     ParseRequire(elmName, parent.Elements);
                     return true;
                 default:
@@ -566,15 +566,15 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Name":
+                        case "name":
                             templateName = GetValue();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "IsDefault":
+                        case "isDefault":
                             def = GetBool();
                             return true;
                         default:
@@ -585,7 +585,7 @@ namespace Uno.Compiler.Frontend
             var result = new UxlTemplate(templateName ?? new SourceValue(), cond, def);
 
             if (templateName == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Name' attribute on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'name' attribute on <" + elmName + ">");
             else
                 parent.Add(result);
 
@@ -602,28 +602,28 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Key":
+                        case "key":
                             key = GetValue();
-                            Log.Warning(GetSource(), ErrorCode.W0000, "'Key' attribute is deprecated -- use (Key)=\"(Value)\" or inner text");
+                            Log.Warning(GetSource(), ErrorCode.W0000, "'key' attribute is deprecated -- use (key)=\"(value)\" or inner text");
                             return true;
-                        case "Name":
+                        case "name":
                             key = GetValue();
-                            Log.Warning(GetSource(), ErrorCode.W0000, "'Name' attribute is deprecated -- use (Name)=\"(Value)\" or inner text");
+                            Log.Warning(GetSource(), ErrorCode.W0000, "'name' attribute is deprecated -- use (name)=\"(value)\" or inner text");
                             return true;
-                        case "Value":
-                            Log.Error(GetSource(), ErrorCode.E0000, "'Value' attribute is not supported -- use (Name)=\"(Value)\" or inner text");
+                        case "value":
+                            Log.Error(GetSource(), ErrorCode.E0000, "'value' attribute is not supported -- use (name)=\"(value)\" or inner text");
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "IsDefault":
+                        case "isDefault":
                             def = GetBool();
                             return true;
                         default:
                             if (key != null)
-                                Log.Error(GetSource(), ErrorCode.E0000, "A (Name)=\"(Value)\" attribute was already found on <" + elmName + ">");
+                                Log.Error(GetSource(), ErrorCode.E0000, "A (name)=\"(value)\" attribute was already found on <" + elmName + ">");
 
                             key = new SourceValue(GetSource(), name);
                             value = GetValue();
@@ -638,7 +638,7 @@ namespace Uno.Compiler.Frontend
                 ParseTextElement(true, out src, out text);
 
                 if (text == null && value == null)
-                    Log.Error(GetSource(), ErrorCode.E0000, "Expected a (Name)=\"(Value)\" attribute or non-empty inner text on <" + elmName + ">");
+                    Log.Error(GetSource(), ErrorCode.E0000, "Expected a (name)=\"(value)\" attribute or non-empty inner text on <" + elmName + ">");
                 else if (text != null)
                     value = new SourceValue(src, text);
             }
@@ -646,7 +646,7 @@ namespace Uno.Compiler.Frontend
                 ParseEmptyElement();
 
             if (key == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected a (Name) attribute on <" + elmName + ">");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected a (name) attribute on <" + elmName + ">");
             else
                 parent.Add(new UxlElement(UxlElementType.Set, key.Value, value ?? new SourceValue(), cond, def));
         }
@@ -660,12 +660,12 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "IsDefault":
+                        case "isDefault":
                             def = GetBool();
                             return true;
                         default:
@@ -697,15 +697,15 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Signature":
+                        case "signature":
                             sig = GetValue();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "IsDefault":
+                        case "isDefault":
                             def = GetBool();
                             return true;
                         default:
@@ -719,19 +719,19 @@ namespace Uno.Compiler.Frontend
             ParseElements(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Body":
+                        case "body":
                             ParseImplementation(ImplementationType.Body, result.Implementations);
                             return true;
-                        case "EmptyBody":
+                        case "emptyBody":
                             ParseImplementation(ImplementationType.EmptyBody, result.Implementations);
                             return true;
-                        case "Expression":
+                        case "expression":
                             ParseImplementation(ImplementationType.Expression, result.Implementations);
                             return true;
-                        case "MethodProperty":
-                            Log.Warning(GetSource(), ErrorCode.W0000, "<MethodProperty> is deprecated, replace with <Set>");
+                        case "methodProperty":
+                            Log.Warning(GetSource(), ErrorCode.W0000, "<methodProperty> is deprecated, replace with <set>");
                             ParseSet(name, result.Elements);
                             return true;
                         default:
@@ -740,7 +740,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (sig == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Signature' attribute on <" + elmName + "> element");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'signature' attribute on <" + elmName + "> element");
             else
                 parent.Methods.Add(result);
         }
@@ -755,15 +755,15 @@ namespace Uno.Compiler.Frontend
             ParseAttributes(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Name":
+                        case "name":
                             typeName = GetValue();
                             return true;
-                        case "Condition":
+                        case "condition":
                             cond = GetValue();
                             return true;
-                        case "IsDefault":
+                        case "isDefault":
                             def = GetBool();
                             return true;
                         default:
@@ -777,13 +777,13 @@ namespace Uno.Compiler.Frontend
             ParseElements(
                 name =>
                 {
-                    switch (name)
+                    switch (name.ToLowerCamelCase())
                     {
-                        case "Method":
+                        case "method":
                             ParseMethod(name, result);
                             return true;
-                        case "TypeProperty":
-                            Log.Warning(GetSource(), ErrorCode.W0000, "<TypeProperty> is deprecated, replace with <Set>");
+                        case "typeProperty":
+                            Log.Warning(GetSource(), ErrorCode.W0000, "<typeProperty> is deprecated, replace with <Set>");
                             ParseSet(name, result.Elements);
                             return true;
                         default:
@@ -792,7 +792,7 @@ namespace Uno.Compiler.Frontend
                 });
 
             if (typeName == null)
-                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'Name' attribute on <" + elmName + "> element");
+                Log.Error(GetSource(), ErrorCode.E0000, "Expected 'name' attribute on <" + elmName + "> element");
             else
                 doc.Types.Add(result);
         }

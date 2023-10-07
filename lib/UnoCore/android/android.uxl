@@ -1,221 +1,221 @@
-<Extensions Backend="CPlusPlus" Condition="ANDROID">
+<extensions backend="cplusplus" condition="ANDROID">
 
     <!-- Backend config -->
 
-    <Define MOBILE />
-    <Define UNIX />
+    <define MOBILE />
+    <define UNIX />
 
-    <Set BundleDirectory="app/src/main/assets" />
-    <Set HeaderDirectory="app/src/main/include" />
-    <Set SourceDirectory="app/src/main/jni" />
-    <Set BinaryDirectory="app/src/main/jniLibs" />
-    <Set PathSeparator="@(HOST_WIN32:defined:test(';', ':'))" />
+    <set bundleDirectory="app/src/main/assets" />
+    <set headerDirectory="app/src/main/include" />
+    <set sourceDirectory="app/src/main/jni" />
+    <set binaryDirectory="app/src/main/jniLibs" />
+    <set pathSeparator="@(HOST_WIN32:defined:test(';', ':'))" />
 
     <!-- Deprecated -->
-    <Set ABI="${ANDROID_ABI}" />
-    <Set NDK.Directory="@(config.android.ndk:path || config.android.ndk.directory:path || ANDROID_NDK:env)" />
+    <set ABI="${ANDROID_ABI}" />
+    <set ndk.directory="@(config.android.ndk:path || config.android.ndk.directory:path || ANDROID_NDK:env)" />
 
     <!-- Build tools config -->
 
-    <Set JDK.Directory="@(config.java.jdk:path || config.java.jdk.directory:path || JAVA_HOME:env)" />
-    <Set NDK.PlatformVersion="@(project.android.ndk.platformVersion || config.android.ndk.platformVersion || '16')" />
-    <Set NDK.Version="@(project.android.ndk.version || config.android.ndk.version || '21.4.7075529')" />
-    <Set SDK.BuildToolsVersion="@(project.android.sdk.buildToolsVersion || config.android.sdk.buildToolsVersion || '33.0.1')" />
-    <Set SDK.CompileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '33')" />
-    <Set SDK.Directory="@(config.android.sdk:path || config.android.sdk.directory:path || ANDROID_SDK:env)" />
-    <Set SDK.MinVersion="@(project.android.sdk.minVersion || config.android.sdk.minVersion || '19')" />
-    <Set SDK.TargetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '33')" />
+    <set jdk.directory="@(config.java.jdk:path || config.java.jdk.directory:path || JAVA_HOME:env)" />
+    <set ndk.platformVersion="@(project.android.ndk.platformVersion || config.android.ndk.platformVersion || '16')" />
+    <set ndk.version="@(project.android.ndk.version || config.android.ndk.version || '21.4.7075529')" />
+    <set sdk.buildToolsVersion="@(project.android.sdk.buildToolsVersion || config.android.sdk.buildToolsVersion || '33.0.1')" />
+    <set sdk.compileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '33')" />
+    <set sdk.directory="@(config.android.sdk:path || config.android.sdk.directory:path || ANDROID_SDK:env)" />
+    <set sdk.minVersion="@(project.android.sdk.minVersion || config.android.sdk.minVersion || '19')" />
+    <set sdk.targetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '33')" />
 
     <!-- Build properties -->
 
-    <Declare Element="Activity.Class.Declaration" />
-    <Declare Element="Activity.File.Declaration" />
-    <Declare Element="Activity.OnActivityResult.Declaration" />
-    <Declare Element="Activity.OnConfigurationChanged.Declaration" />
-    <Declare Element="Activity.OnKeyDown.Declaration" />
-    <Declare Element="Activity.OnKeyUp.Declaration" />
-    <Declare Element="Activity.OnLowMemory.Declaration" />
-    <Declare Element="Activity.OnPermissionsResult" />
-    <Declare Element="Activity.OnNewIntent.Declaration" />
-    <Declare Element="Activity.OnWindowFocusChanged.Declaration" />
-    <Declare Element="Android.ResStrings.Declaration" />
-    <Declare Element="AndroidManifest.ActivityAttribute" />
-    <Declare Element="AndroidManifest.ActivityElement" />
-    <Declare Element="AndroidManifest.ApplicationAttribute" />
-    <Declare Element="AndroidManifest.ApplicationElement" />
-    <Declare Element="AndroidManifest.ManifestAttribute" />
-    <Declare Element="AndroidManifest.Permission" />
-    <Declare Element="AndroidManifest.RootElement" />
-    <Declare Element="AndroidManifest.Activity.ViewIntentFilter" />
-    <Declare Element="Gradle.Properties" />
-    <Declare Element="Gradle.Settings" />
-    <Declare Element="Gradle.Dependency" />
-    <Declare Element="Gradle.Dependency.ClassPath" />
-    <Declare Element="Gradle.Dependency.Implementation" />
-    <Declare Element="Gradle.Dependency.DebugImplementation" />
-    <Declare Element="Gradle.Dependency.ReleaseImplementation" />
-    <Declare Element="Gradle.Dependency.NativeImplementation" />
-    <Declare Element="Gradle.BuildFile.End" />
-    <Declare Element="Gradle.Repository" />
-    <Declare Element="Gradle.BuildScript.Repository" />
-    <Declare Element="Gradle.AllProjects.Repository" />
-    <Declare Element="Java.Extern.RegisterFunction" />
-    <Declare Element="SharedLibrary" />
-    <Declare Element="StaticLibrary" />
-    <Declare Element="LoadLibrary" />
-    <Declare Element="Project.Property" />
+    <declare element="activity.class.declaration" />
+    <declare element="activity.file.declaration" />
+    <declare element="activity.onActivityResult.declaration" />
+    <declare element="activity.onConfigurationChanged.declaration" />
+    <declare element="activity.onKeyDown.declaration" />
+    <declare element="activity.onKeyUp.declaration" />
+    <declare element="activity.onLowMemory.declaration" />
+    <declare element="activity.onPermissionsResult" />
+    <declare element="activity.onNewIntent.declaration" />
+    <declare element="activity.onWindowFocusChanged.declaration" />
+    <declare element="android.resStrings.declaration" />
+    <declare element="androidManifest.activityAttribute" />
+    <declare element="androidManifest.activityElement" />
+    <declare element="androidManifest.applicationAttribute" />
+    <declare element="androidManifest.applicationElement" />
+    <declare element="androidManifest.manifestAttribute" />
+    <declare element="androidManifest.permission" />
+    <declare element="androidManifest.rootElement" />
+    <declare element="androidManifest.activity.viewIntentFilter" />
+    <declare element="gradle.properties" />
+    <declare element="gradle.settings" />
+    <declare element="gradle.dependency" />
+    <declare element="gradle.dependency.classPath" />
+    <declare element="gradle.dependency.implementation" />
+    <declare element="gradle.dependency.debugImplementation" />
+    <declare element="gradle.dependency.releaseImplementation" />
+    <declare element="gradle.dependency.nativeImplementation" />
+    <declare element="gradle.buildFile.end" />
+    <declare element="gradle.repository" />
+    <declare element="gradle.buildScript.repository" />
+    <declare element="gradle.allProjects.repository" />
+    <declare element="java.extern.registerFunction" />
+    <declare element="sharedLibrary" />
+    <declare element="staticLibrary" />
+    <declare element="loadLibrary" />
+    <declare element="project.property" />
 
-    <Require AndroidManifest.Permission="android.permission.WAKE_LOCK" />
-    <Require AndroidManifest.Permission="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <Require AndroidManifest.Permission="android.permission.INTERNET" />
-    <Require AndroidManifest.Permission="android.permission.ACCESS_NETWORK_STATE" />
-    <Require AndroidManifest.Permission="android.permission.VIBRATE" />
+    <require androidManifest.permission="android.permission.WAKE_LOCK" />
+    <require androidManifest.permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <require androidManifest.permission="android.permission.INTERNET" />
+    <require androidManifest.permission="android.permission.ACCESS_NETWORK_STATE" />
+    <require androidManifest.permission="android.permission.VIBRATE" />
 
-    <Set Activity.BaseClass="androidx.appcompat.app.AppCompatActivity" />
-    <Set Activity.Name="@(project.android.activity || project.name:identifier)" />
-    <Set Activity.Package="@(project.android.package || 'com.apps.@(project.name:qidentifier:toLower)')" />
+    <set activity.baseClass="androidx.appcompat.app.AppCompatActivity" />
+    <set activity.name="@(project.android.activity || project.name:identifier)" />
+    <set activity.package="@(project.android.package || 'com.apps.@(project.name:qidentifier:toLower)')" />
 
     <!-- Build configuration -->
 
-    <Set Condition="LIBRARY" Build.Configuration="@('!@(DEBUG:defined)':test('Release', 'Debug'))" />
-    <Set Condition="!LIBRARY" Build.Configuration="@('!@(DEBUG:defined) && @(project.android.key.store:isSet)':test('Release', 'Debug'))" />
+    <set condition="LIBRARY" build.configuration="@('!@(DEBUG:defined)':test('Release', 'Debug'))" />
+    <set condition="!LIBRARY" build.configuration="@('!@(DEBUG:defined) && @(project.android.key.store:isSet)':test('Release', 'Debug'))" />
 
-    <Set Gradle.AssembleTask="assemble@(build.configuration)" />
-    <Set Gradle.BundleTask="bundle@(build.configuration)" />
+    <set gradle.assembleTask="assemble@(build.configuration)" />
+    <set gradle.bundleTask="bundle@(build.configuration)" />
 
-    <Set Outputs.AAR="app/build/outputs/aar/app-@(build.configuration:toLower).aar" />
-    <Set Outputs.APK="app/build/outputs/apk/@(build.configuration:toLower)/app-@(build.configuration:toLower).apk" />
-    <Set Outputs.Bundle="app/build/outputs/bundle/@(build.configuration:toLower)/app-@(build.configuration:toLower).aab" />
+    <set outputs.aar="app/build/outputs/aar/app-@(build.configuration:toLower).aar" />
+    <set outputs.apk="app/build/outputs/apk/@(build.configuration:toLower)/app-@(build.configuration:toLower).apk" />
+    <set outputs.bundle="app/build/outputs/bundle/@(build.configuration:toLower)/app-@(build.configuration:toLower).aab" />
 
     <!-- Run-time properties -->
 
-    <Set Runtime.CatchCppExceptions="2" />
-    <Set Runtime.CppMainLoop="Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN" />
-    <Set Runtime.DebugPauseMilliseconds="0" />
-    <Set Runtime.KillActivityOnDestroy="true" />
-    <Set Runtime.SeperateUnoThread="AppRuntimeSettings.CppMainLoop" />
+    <set runtime.catchCppExceptions="2" />
+    <set runtime.cppMainLoop="Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN" />
+    <set runtime.debugPauseMilliseconds="0" />
+    <set runtime.killActivityOnDestroy="true" />
+    <set runtime.seperateUnoThread="AppRuntimeSettings.CppMainLoop" />
 
     <!-- Output files -->
 
-    <Set Condition="LIBRARY" Product="@(project.name).aar" />
-    <Set Condition="!LIBRARY" Product="@(project.name).apk" />
-    <Set Condition="!LIBRARY" Bundle="@(project.name).aab" />
+    <set condition="LIBRARY" product="@(project.name).aar" />
+    <set condition="!LIBRARY" product="@(project.name).apk" />
+    <set condition="!LIBRARY" bundle="@(project.name).aab" />
 
     <!-- Deprecated properties -->
 
-    <Deprecate Gradle.Dependency.Compile="Gradle.Dependency.Implementation" />
-    <Deprecate Gradle.Model.Repository="Gradle.Repository" />
-    <Deprecate JNI.SharedLibrary="SharedLibrary" />
-    <Deprecate JNI.StaticLibrary="StaticLibrary" />
-    <Deprecate JNI.SystemLibrary="LoadLibrary" />
+    <deprecate gradle.dependency.compile="Gradle.Dependency.Implementation" />
+    <deprecate gradle.model.repository="Gradle.Repository" />
+    <deprecate jni.sharedLibrary="SharedLibrary" />
+    <deprecate jni.staticLibrary="StaticLibrary" />
+    <deprecate jni.systemLibrary="LoadLibrary" />
 
     <!-- STL config -->
 
-    <Set STL="c++_static" />
+    <set STL="c++_static" />
 
     <!-- C++ source -->
 
-    <ProcessFile SourceFile="uDroid/EntryPoints.cpp" />
-    <ProcessFile HeaderFile="uDroid/GLHelper.h" />
-    <ProcessFile SourceFile="uDroid/GLHelper.cpp" />
-    <ProcessFile HeaderFile="uDroid/JNIHelper.h" />
-    <ProcessFile SourceFile="uDroid/JNIHelper.cpp" />
+    <processFile sourceFile="uDroid/EntryPoints.cpp" />
+    <processFile headerFile="uDroid/GLHelper.h" />
+    <processFile sourceFile="uDroid/GLHelper.cpp" />
+    <processFile headerFile="uDroid/JNIHelper.h" />
+    <processFile sourceFile="uDroid/JNIHelper.cpp" />
 
     <!-- Java source -->
 
-    <Set Java.ProjectDirectory="app/src" />
-    <Set Java.LibsDirectory="@(java.projectDirectory)/main/libs" />
-    <Set Java.SourceDirectory="@(java.projectDirectory)/main/java" />
-    <Set Java.PackageDirectory="@(java.sourceDirectory)/@(activity.package:replace('.', '/'))" />
+    <set java.projectDirectory="app/src" />
+    <set java.libsDirectory="@(java.projectDirectory)/main/libs" />
+    <set java.sourceDirectory="@(java.projectDirectory)/main/java" />
+    <set java.packageDirectory="@(java.sourceDirectory)/@(activity.package:replace('.', '/'))" />
 
-    <Declare Element="JavaFile" TargetDirectory="@(java.sourceDirectory)" />
+    <declare element="javaFile" targetDirectory="@(java.sourceDirectory)" />
 
-    <ProcessFile Name="@(java.packageDirectory)/@(activity.name).java" />
-    <ProcessFile JavaFile="com/foreign/UnoWrapped.java" />
-    <ProcessFile JavaFile="com/fuse/Activity.java" />
-    <ProcessFile JavaFile="com/fuse/ActivityNativeEntryPoints.java" />
-    <ProcessFile JavaFile="com/fuse/ActivityState.java" />
-    <ProcessFile JavaFile="com/fuse/App.java" />
-    <ProcessFile JavaFile="com/fuse/AppRuntimeSettings.java" />
-    <ProcessFile JavaFile="com/fuse/R.java" />
-    <ProcessFile JavaFile="com/uno/CppManager.java" />
+    <processFile name="@(java.packageDirectory)/@(activity.name).java" />
+    <processFile javaFile="com/foreign/UnoWrapped.java" />
+    <processFile javaFile="com/fuse/Activity.java" />
+    <processFile javaFile="com/fuse/ActivityNativeEntryPoints.java" />
+    <processFile javaFile="com/fuse/ActivityState.java" />
+    <processFile javaFile="com/fuse/App.java" />
+    <processFile javaFile="com/fuse/AppRuntimeSettings.java" />
+    <processFile javaFile="com/fuse/R.java" />
+    <processFile javaFile="com/uno/CppManager.java" />
 
     <!-- Icons -->
 
-    <ImageFile Name="@(project.android.icons.ldpi:path || '@//assets/icon.png')"
-        TargetWidth="36" TargetName="app/src/main/res/mipmap-ldpi/icon.png" />
-    <ImageFile Name="@(project.android.icons.mdpi:path || '@//assets/icon.png')"
-        TargetWidth="48" TargetName="app/src/main/res/mipmap-mdpi/icon.png" />
-    <ImageFile Name="@(project.android.icons.hdpi:path || '@//assets/icon.png')"
-        TargetWidth="72" TargetName="app/src/main/res/mipmap-hdpi/icon.png" />
-    <ImageFile Name="@(project.android.icons.xhdpi:path || '@//assets/icon.png')"
-        TargetWidth="96" TargetName="app/src/main/res/mipmap-xhdpi/icon.png" />
-    <ImageFile Name="@(project.android.icons.xxhdpi:path || '@//assets/icon.png')"
-        TargetWidth="144" TargetName="app/src/main/res/mipmap-xxhdpi/icon.png" />
-    <ImageFile Name="@(project.android.icons.xxxhdpi:path || '@//assets/icon.png')"
-        TargetWidth="192" TargetName="app/src/main/res/mipmap-xxxhdpi/icon.png" />
-    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.anydpi_v26:path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon.xml" />
+    <imageFile name="@(project.android.icons.ldpi:path || '@//assets/icon.png')"
+        targetWidth="36" targetName="app/src/main/res/mipmap-ldpi/icon.png" />
+    <imageFile name="@(project.android.icons.mdpi:path || '@//assets/icon.png')"
+        targetWidth="48" targetName="app/src/main/res/mipmap-mdpi/icon.png" />
+    <imageFile name="@(project.android.icons.hdpi:path || '@//assets/icon.png')"
+        targetWidth="72" targetName="app/src/main/res/mipmap-hdpi/icon.png" />
+    <imageFile name="@(project.android.icons.xhdpi:path || '@//assets/icon.png')"
+        targetWidth="96" targetName="app/src/main/res/mipmap-xhdpi/icon.png" />
+    <imageFile name="@(project.android.icons.xxhdpi:path || '@//assets/icon.png')"
+        targetWidth="144" targetName="app/src/main/res/mipmap-xxhdpi/icon.png" />
+    <imageFile name="@(project.android.icons.xxxhdpi:path || '@//assets/icon.png')"
+        targetWidth="192" targetName="app/src/main/res/mipmap-xxxhdpi/icon.png" />
+    <copyFile condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.anydpi_v26:path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon.xml')" targetName="app/src/main/res/mipmap-anydpi-v26/icon.xml" />
 
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.mdpi_round:path || '@//assets/adaptive_icon/mipmap-mdpi/icon_round.png')"
-        TargetWidth="48" TargetName="app/src/main/res/mipmap-mdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.hdpi_round:path || '@//assets/adaptive_icon/mipmap-hdpi/icon_round.png')"
-        TargetWidth="72" TargetName="app/src/main/res/mipmap-hdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.xhdpi_round:path || '@//assets/adaptive_icon/mipmap-xhdpi/icon_round.png')"
-        TargetWidth="96" TargetName="app/src/main/res/mipmap-xhdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.xxhdpi_round:path || '@//assets/adaptive_icon/mipmap-xxhdpi/icon_round.png')"
-        TargetWidth="144" TargetName="app/src/main/res/mipmap-xxhdpi/icon_round.png" />
-    <ImageFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.xxxhdpi_round:path || '@//assets/adaptive_icon/mipmap-xxxhdpi/icon_round.png')"
-        TargetWidth="192" TargetName="app/src/main/res/mipmap-xxxhdpi/icon_round.png" />
-    <CopyFile Condition="USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.anydpi_v26_round:path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon_round.xml')" TargetName="app/src/main/res/mipmap-anydpi-v26/icon_round.xml" />
+    <imageFile condition="USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.mdpi_round:path || '@//assets/adaptive_icon/mipmap-mdpi/icon_round.png')"
+        targetWidth="48" targetName="app/src/main/res/mipmap-mdpi/icon_round.png" />
+    <imageFile condition="USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.hdpi_round:path || '@//assets/adaptive_icon/mipmap-hdpi/icon_round.png')"
+        targetWidth="72" targetName="app/src/main/res/mipmap-hdpi/icon_round.png" />
+    <imageFile condition="USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.xhdpi_round:path || '@//assets/adaptive_icon/mipmap-xhdpi/icon_round.png')"
+        targetWidth="96" targetName="app/src/main/res/mipmap-xhdpi/icon_round.png" />
+    <imageFile condition="USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.xxhdpi_round:path || '@//assets/adaptive_icon/mipmap-xxhdpi/icon_round.png')"
+        targetWidth="144" targetName="app/src/main/res/mipmap-xxhdpi/icon_round.png" />
+    <imageFile condition="USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.xxxhdpi_round:path || '@//assets/adaptive_icon/mipmap-xxxhdpi/icon_round.png')"
+        targetWidth="192" targetName="app/src/main/res/mipmap-xxxhdpi/icon_round.png" />
+    <copyFile condition="USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.anydpi_v26_round:path || '@//assets/adaptive_icon/mipmap-anydpi-v26/icon_round.xml')" targetName="app/src/main/res/mipmap-anydpi-v26/icon_round.xml" />
 
-    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.foreground:path || '@//assets/adaptive_icon/drawable/icon_foreground.xml')" TargetName="app/src/main/res/drawable/icon_foreground.xml" />
-    <CopyFile Condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" Name="@(project.android.icons.background:path || '@//assets/adaptive_icon/drawable/icon_background.xml')" TargetName="app/src/main/res/drawable/icon_background.xml" />
+    <copyFile condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.foreground:path || '@//assets/adaptive_icon/drawable/icon_foreground.xml')" targetName="app/src/main/res/drawable/icon_foreground.xml" />
+    <copyFile condition="USE_ADAPTIVE_ICON || USE_ROUND_ADAPTIVE_ICON" name="@(project.android.icons.background:path || '@//assets/adaptive_icon/drawable/icon_background.xml')" targetName="app/src/main/res/drawable/icon_background.xml" />
 
     <!-- Build system -->
 
-    <Set Commands.Build="@(HOST_WIN32:defined:test('build.bat', 'bash build.sh'))" />
-    <Set Commands.Run="@(HOST_WIN32:defined:test('run.bat', 'bash run.sh'))" />
+    <set commands.build="@(HOST_WIN32:defined:test('build.bat', 'bash build.sh'))" />
+    <set commands.run="@(HOST_WIN32:defined:test('run.bat', 'bash run.sh'))" />
 
-    <ProcessFile Name="app/build.gradle" />
-    <ProcessFile Name="app/src/main/AndroidManifest.xml" />
-    <ProcessFile Name="app/src/main/CMakeLists.txt" />
-    <CopyFile Condition="Android" Name="@(project.android.splash.splashLogo:path || '@//assets/icon.png')" TargetName="app/src/main/res/drawable/splash_logo.png" />
-    <CopyFile Condition="Android" Name="@(project.android.icons.vector:path || '@//assets/icon.xml')" TargetName="app/src/main/res/drawable/icon.xml" />
-    <ProcessFile Name="app/src/main/res/drawable/splash_background.xml" />
-    <ProcessFile Name="app/src/main/res/values/colors.xml" />
-    <ProcessFile Name="app/src/main/res/values/strings.xml" />
-    <ProcessFile Name="app/src/main/res/values/styles.xml" />
-    <ProcessFile Name="build.gradle" />
-    <CopyFile Name="gradle/wrapper/gradle-wrapper.jar" />
-    <ProcessFile Name="gradle/wrapper/gradle-wrapper.properties" />
-    <ProcessFile Name="gradlew.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="gradlew" Condition="HOST_UNIX" IsExecutable="true" />
-    <ProcessFile Name="settings.gradle" />
+    <processFile name="app/build.gradle" />
+    <processFile name="app/src/main/AndroidManifest.xml" />
+    <processFile name="app/src/main/CMakeLists.txt" />
+    <copyFile condition="ANDROID" name="@(project.android.splash.splashLogo:path || '@//assets/icon.png')" targetName="app/src/main/res/drawable/splash_logo.png" />
+    <copyFile condition="ANDROID" name="@(project.android.icons.vector:path || '@//assets/icon.xml')" targetName="app/src/main/res/drawable/icon.xml" />
+    <processFile name="app/src/main/res/drawable/splash_background.xml" />
+    <processFile name="app/src/main/res/values/colors.xml" />
+    <processFile name="app/src/main/res/values/strings.xml" />
+    <processFile name="app/src/main/res/values/styles.xml" />
+    <processFile name="build.gradle" />
+    <copyFile name="gradle/wrapper/gradle-wrapper.jar" />
+    <processFile name="gradle/wrapper/gradle-wrapper.properties" />
+    <processFile name="gradlew.bat" condition="HOST_WIN32" />
+    <processFile name="gradlew" condition="HOST_UNIX" isExecutable="true" />
+    <processFile name="settings.gradle" />
 
-    <ProcessFile Name="build.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable="true" />
+    <processFile name="build.bat" condition="HOST_WIN32" />
+    <processFile name="build.sh" condition="HOST_UNIX" isExecutable="true" />
 
-    <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="run.sh" Condition="HOST_UNIX" IsExecutable="true" />
-    <ProcessFile Name="gradle.properties" />
-    <ProcessFile Name="local.properties" />
-    <ProcessFile Name="gradlew.bat" />
-    <ProcessFile Name="gradlew" />
-    <ProcessFile Name="build.gradle" />
+    <processFile name="run.bat" condition="HOST_WIN32" />
+    <processFile name="run.sh" condition="HOST_UNIX" isExecutable="true" />
+    <processFile name="gradle.properties" />
+    <processFile name="local.properties" />
+    <processFile name="gradlew.bat" />
+    <processFile name="gradlew" />
+    <processFile name="build.gradle" />
 
     <!-- Android Studio project -->
 
-    <ProcessFile Name=".idea/copyright/profiles_settings.xml" Overwrite="false" />
-    <ProcessFile Name=".idea/.name" Overwrite="false" />
-    <ProcessFile Name=".idea/compiler.xml" Overwrite="false" />
-    <ProcessFile Name=".idea/gradle.xml" Overwrite="false" />
-    <ProcessFile Name=".idea/misc.xml" Overwrite="false" />
-    <ProcessFile Name=".idea/modules.xml" Overwrite="false" />
-    <ProcessFile Name=".idea/runConfigurations.xml" Overwrite="false" />
-    <ProcessFile Name=".idea/vcs.xml" Overwrite="false" />
+    <processFile name=".idea/copyright/profiles_settings.xml" overwrite="false" />
+    <processFile name=".idea/.name" overwrite="false" />
+    <processFile name=".idea/compiler.xml" overwrite="false" />
+    <processFile name=".idea/gradle.xml" overwrite="false" />
+    <processFile name=".idea/misc.xml" overwrite="false" />
+    <processFile name=".idea/modules.xml" overwrite="false" />
+    <processFile name=".idea/runConfigurations.xml" overwrite="false" />
+    <processFile name=".idea/vcs.xml" overwrite="false" />
 
     <!-- Git ignore -->
 
-    <ProcessFile Name="gitignore" TargetName=".gitignore" />
+    <processFile name="gitignore" targetName=".gitignore" />
 
-</Extensions>
+</extensions>

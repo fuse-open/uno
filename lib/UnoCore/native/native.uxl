@@ -1,57 +1,57 @@
-<Extensions Backend="CPlusPlus" Condition="NATIVE">
+<extensions backend="cplusplus" condition="NATIVE">
 
     <!-- Platform -->
-    <Define APPLE="HOST_MAC" />
-    <Define LINUX="HOST_LINUX" />
-    <Define MAC="HOST_MAC" />
-    <Define OSX="HOST_OSX" />
-    <Define UNIX="HOST_UNIX" />
-    <Define WIN32="HOST_WIN32" />
+    <define APPLE="HOST_MAC" />
+    <define LINUX="HOST_LINUX" />
+    <define MAC="HOST_MAC" />
+    <define OSX="HOST_OSX" />
+    <define UNIX="HOST_UNIX" />
+    <define WIN32="HOST_WIN32" />
 
     <!-- Environment -->
-    <Define MSVC="HOST_WIN32" />
+    <define MSVC="HOST_WIN32" />
 
     <!-- Architecture (override by -DX86 or -DX64) -->
-    <Define ARM="HOST_ARM" />
-    <Define X86="HOST_X86 && !X64" />
-    <Define X64="HOST_X64 && !X86" />
+    <define ARM="HOST_ARM" />
+    <define X86="HOST_X86 && !X64" />
+    <define X64="HOST_X64 && !X86" />
 
     <!-- Build system -->
-    <Declare Element="LinkLibrary.Debug" />
-    <Declare Element="LinkLibrary.Release" />
-    <Declare Element="SharedLibrary" />
-    <Declare Element="SharedLibrary.x86" />
-    <Declare Element="SharedLibrary.x64" />
-    <Declare Element="Xcode.Framework" />
+    <declare element="linkLibrary.debug" />
+    <declare element="linkLibrary.release" />
+    <declare element="sharedLibrary" />
+    <declare element="sharedLibrary.x86" />
+    <declare element="sharedLibrary.x64" />
+    <declare element="xcode.framework" />
 
-    <Set AppDirectory="@(project.name).app" Condition="MAC && !LIBRARY" />
-    <Set BinaryDirectory="@(appDirectory)/MacOS" Condition="MAC && !LIBRARY" />
-    <Set BundleDirectory="@(binaryDirectory)/data" Condition="MAC && !LIBRARY" />
+    <set appDirectory="@(project.name).app" condition="MAC && !LIBRARY" />
+    <set binaryDirectory="@(appDirectory)/MacOS" condition="MAC && !LIBRARY" />
+    <set bundleDirectory="@(binaryDirectory)/data" condition="MAC && !LIBRARY" />
 
-    <Set Condition="!WIN32 && !LIBRARY" Product="@(binaryDirectory)/@(project.name)" />
-    <Set Condition="!WIN32 && LIBRARY" Product="@(binaryDirectory)/lib@(project.name).@(MAC:defined:test('dylib', 'so'))" />
-    <Set Condition="WIN32" Product="@(binaryDirectory)/@(project.name).@(LIBRARY:defined:test('dll', 'exe'))" />
+    <set condition="!WIN32 && !LIBRARY" product="@(binaryDirectory)/@(project.name)" />
+    <set condition="!WIN32 && LIBRARY" product="@(binaryDirectory)/lib@(project.name).@(MAC:defined:test('dylib', 'so'))" />
+    <set condition="WIN32" product="@(binaryDirectory)/@(project.name).@(LIBRARY:defined:test('dll', 'exe'))" />
 
-    <Set Commands.Build="@(WIN32:defined:test('build.bat', 'bash build.sh'))" />
-    <Set Commands.Run="@(WIN32:defined:test('run.bat', 'bash run.sh'))" />
+    <set commands.build="@(WIN32:defined:test('build.bat', 'bash build.sh'))" />
+    <set commands.run="@(WIN32:defined:test('run.bat', 'bash run.sh'))" />
 
-    <ProcessFile Name="build.sh" Condition="UNIX" IsExecutable="true" />
-    <ProcessFile Name="run.sh" Condition="UNIX" IsExecutable="true" />
-    <ProcessFile Name="build.bat" Condition="WIN32" />
-    <ProcessFile Name="run.bat" Condition="WIN32" />
-    <ProcessFile Name="CMakeLists.txt" />
+    <processFile name="build.sh" condition="UNIX" isExecutable="true" />
+    <processFile name="run.sh" condition="UNIX" isExecutable="true" />
+    <processFile name="build.bat" condition="WIN32" />
+    <processFile name="run.bat" condition="WIN32" />
+    <processFile name="CMakeLists.txt" />
 
     <!-- macOS bundle -->
-    <Set BundleIdentifier="@(project.mac.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" Condition="MAC && !LIBRARY" />
-    <ProcessFile Name="@(appDirectory)/Contents/Info.plist" Condition="MAC && !LIBRARY" />
-    <CopyFile Name="@(project.mac.icon:path || @//assets/icon.icns)" TargetName="@(appDirectory)/Contents/Resources/Icon.icns" Condition="MAC && !LIBRARY" />
+    <set bundleIdentifier="@(project.mac.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" condition="MAC && !LIBRARY" />
+    <processFile name="@(appDirectory)/Contents/Info.plist" condition="MAC && !LIBRARY" />
+    <copyFile name="@(project.mac.icon:path || @//assets/icon.icns)" targetName="@(appDirectory)/Contents/Resources/Icon.icns" condition="MAC && !LIBRARY" />
 
     <!-- Win32 resources -->
-    <CopyFile Name="@(project.windows.icon:path || @//assets/icon.ico)" TargetName="rc/icon.ico" Condition="WIN32 && !LIBRARY" />
-    <CopyFile Name="rc/icon.rc" Condition="WIN32 && !LIBRARY" />
+    <copyFile name="@(project.windows.icon:path || @//assets/icon.ico)" targetName="rc/icon.ico" condition="WIN32 && !LIBRARY" />
+    <copyFile name="rc/icon.rc" condition="WIN32 && !LIBRARY" />
 
     <!-- VC++ debugger visualizers -->
-    <CopyFile Condition="MSVC" Name="natvis/uno.natstepfilter" />
-    <CopyFile Condition="MSVC" Name="natvis/uno.natvis" />
+    <copyFile condition="MSVC" name="natvis/uno.natstepfilter" />
+    <copyFile condition="MSVC" name="natvis/uno.natvis" />
 
-</Extensions>
+</extensions>

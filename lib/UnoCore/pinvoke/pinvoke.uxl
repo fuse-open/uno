@@ -1,34 +1,34 @@
-<Extensions Backend="PInvoke">
+<extensions backend="pinvoke">
 
-    <Define APPLE="HOST_MAC" />
-    <Define ARM="HOST_ARM" />
-    <Define LINUX="HOST_LINUX" />
-    <Define MAC="HOST_MAC" />
-    <Define OSX="HOST_OSX" />
-    <Define UNIX="HOST_UNIX" />
-    <Define WIN32="HOST_WIN32" />
+    <define APPLE="HOST_MAC" />
+    <define ARM="HOST_ARM" />
+    <define LINUX="HOST_LINUX" />
+    <define MAC="HOST_MAC" />
+    <define OSX="HOST_OSX" />
+    <define UNIX="HOST_UNIX" />
+    <define WIN32="HOST_WIN32" />
 
-    <Set HeaderDirectory="include" />
-    <Set SourceDirectory="src" />
-    <Set Commands.Build="@(HOST_WIN32:defined:test('build.bat', 'bash build.sh'))" />
-    <Set PInvoke.Configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
+    <set headerDirectory="include" />
+    <set sourceDirectory="src" />
+    <set commands.build="@(HOST_WIN32:defined:test('build.bat', 'bash build.sh'))" />
+    <set pinvoke.configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
 
-    <Declare Element="SourceFile" TargetDirectory="@(sourceDirectory)" />
-    <Declare Element="HeaderFile" TargetDirectory="@(headerDirectory)" />
+    <declare element="sourceFile" targetDirectory="@(sourceDirectory)" />
+    <declare element="headerFile" targetDirectory="@(headerDirectory)" />
 
-    <Declare Element="IncludeDirectory" />
-    <Declare Element="LinkDirectory" />
-    <Declare Element="LinkLibrary" />
-    <Declare Element="PreprocessorDefinition" />
+    <declare element="includeDirectory" />
+    <declare element="linkDirectory" />
+    <declare element="linkLibrary" />
+    <declare element="preprocessorDefinition" />
 
-    <Set CppStandard="c++17" IsDefault="true" />
-    <Set CStandard="c99" IsDefault="true" />
+    <set cppStandard="c++17" isDefault="true" />
+    <set cStandard="c99" isDefault="true" />
 
-    <Declare Element="Xcode.Framework" />
-    <Declare Element="Xcode.FrameworkDirectory" />
+    <declare element="xcode.framework" />
+    <declare element="xcode.frameworkDirectory" />
 
-    <ProcessFile Name="build.sh" Condition="HOST_UNIX" IsExecutable="true" />
-    <ProcessFile Name="build.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="CMakeLists.txt" />
+    <processFile name="build.sh" condition="HOST_UNIX" isExecutable="true" />
+    <processFile name="build.bat" condition="HOST_WIN32" />
+    <processFile name="CMakeLists.txt" />
 
-</Extensions>
+</extensions>

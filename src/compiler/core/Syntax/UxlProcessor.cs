@@ -116,12 +116,12 @@ namespace Uno.Compiler.Core.Syntax
 
                     if (def == null)
                     {
-                        Log.Error(e.Source, ErrorCode.E0000, "Unknown 'Type' attribute on <Declare> element (" + e.Type + ")");
+                        Log.Error(e.Source, ErrorCode.E0000, "Unknown 'type' attribute on <declare> element (" + e.Type + ")");
                         continue;
                     }
 
                     if (def.Contains(e.Key.String))
-                        Log.Error(e.Key.Source, ErrorCode.E0000, "A <Declare> element for " + e.Key.String.Quote() + " already exists");
+                        Log.Error(e.Key.Source, ErrorCode.E0000, "A <declare> element for " + e.Key.String.Quote() + " already exists");
                     else
                         def.Add(e.Key.String);
                 }
@@ -129,7 +129,7 @@ namespace Uno.Compiler.Core.Syntax
                 foreach (var e in doc.Deprecations)
                 {
                     if (_deprecated.ContainsKey(e.OldName))
-                        Log.Error(e.Source, ErrorCode.E0000, "A <Deprecate> element for " + e.OldName.Quote() + " already exists");
+                        Log.Error(e.Source, ErrorCode.E0000, "A <deprecate> element for " + e.OldName.Quote() + " already exists");
                     else
                         _deprecated.Add(e.OldName, e.NewName);
                 }
@@ -151,9 +151,9 @@ namespace Uno.Compiler.Core.Syntax
                         continue;
 
                     if (e.Type == UxlElementType.Set)
-                        Apply("Set", key, new Element(e.Value.Source, e.Value.String, e.Disambiguation, usings), _root.Properties);
+                        Apply("set", key, new Element(e.Value.Source, e.Value.String, e.Disambiguation, usings), _root.Properties);
                     else
-                        CompileExtensionElement(_root, "Extensions", key, e, usings);
+                        CompileExtensionElement(_root, "extensions", key, e, usings);
                 }
 
                 CompileFiles(_root, doc);
@@ -206,7 +206,7 @@ namespace Uno.Compiler.Core.Syntax
                 {
                     ExtensionEntity template;
                     if (!_root.Templates.TryGetValue(e.String, out template))
-                        Log.Error(e.Source, ErrorCode.E0000, "Template " + e.String.Quote() + " is not defined (on this backend)");
+                        Log.Error(e.Source, ErrorCode.E0000, "template " + e.String.Quote() + " is not defined (on this backend)");
                     else
                         ext.RequiredTemplates.Add(template);
                 }
@@ -219,14 +219,14 @@ namespace Uno.Compiler.Core.Syntax
                 return;
 
             var template = new ExtensionEntity(uxl.Name.Source, uxl.Name.String, uxl.Disambiguation);
-            Apply("Template", uxl.Name.String, template, _root.Templates);
+            Apply("template", uxl.Name.String, template, _root.Templates);
 
             foreach (var e in uxl.Elements)
             {
                 if (!TryGetKey(e, out string key) || !Test(e.Condition))
                     continue;
 
-                CompileExtensionElement(template, "Template", key, e, usings);
+                CompileExtensionElement(template, "template", key, e, usings);
             }
 
             CompileFiles(template, uxl);
@@ -262,7 +262,7 @@ namespace Uno.Compiler.Core.Syntax
 
             var typeScopes = GetTypeScopes(dt, usings);
             var typeExt = new TypeExtension(uxl.Name.Source, dt, uxl.Disambiguation);
-            Apply("Type", dt, typeExt, _root.TypeExtensions);
+            Apply("type", dt, typeExt, _root.TypeExtensions);
 
             foreach (var e in uxl.Methods)
                 CompileMethod(e, dt, typeExt, typeScopes);
@@ -273,9 +273,9 @@ namespace Uno.Compiler.Core.Syntax
                     continue;
 
                 if (e.Type == UxlElementType.Set && _root.TypePropertyDefinitions.Contains(key))
-                    Apply("Set", key, new Element(e.Value.Source, e.Value.String, e.Disambiguation, typeScopes), typeExt.Properties);
+                    Apply("set", key, new Element(e.Value.Source, e.Value.String, e.Disambiguation, typeScopes), typeExt.Properties);
                 else
-                    CompileTypeElement(typeExt, "Type", key, e, typeScopes);
+                    CompileTypeElement(typeExt, "type", key, e, typeScopes);
             }
 
             CompileFiles(typeExt, uxl);
@@ -332,7 +332,7 @@ namespace Uno.Compiler.Core.Syntax
                 return;
 
             var methodExt = new FunctionExtension(uxl.Signature.Source, method, uxl.Disambiguation, methodScopes);
-            Apply("Method", method, methodExt, typeExt.MethodExtensions);
+            Apply("method", method, methodExt, typeExt.MethodExtensions);
 
             foreach (var impl in uxl.Implementations)
             {
@@ -352,9 +352,9 @@ namespace Uno.Compiler.Core.Syntax
                     continue;
 
                 if (e.Type == UxlElementType.Set && _root.MethodPropertyDefinitions.Contains(key))
-                    Apply("Set", key, new Element(e.Value.Source, e.Value.String, e.Disambiguation, methodScopes), methodExt.Properties);
+                    Apply("set", key, new Element(e.Value.Source, e.Value.String, e.Disambiguation, methodScopes), methodExt.Properties);
                 else
-                    CompileTypeElement(methodExt, "Method", key, e, methodScopes);
+                    CompileTypeElement(methodExt, "method", key, e, methodScopes);
             }
 
             CompileFiles(typeExt, uxl);
@@ -396,14 +396,14 @@ namespace Uno.Compiler.Core.Syntax
             if (elm.Type == UxlElementType.Require && _root.ElementDefinitions.Contains(key))
                 ext.Requirements.Add(key, new Element(elm.Value.Source, elm.Value.String, elm.Disambiguation, usings));
             else
-                Log.Error(elm.Source, ErrorCode.E0000, "<" + elm.Type + " Key=\"" + key + "\"> is not valid in <" + type + "> (on this backend)");
+                Log.Error(elm.Source, ErrorCode.E0000, "<" + elm.Type + " key=\"" + key + "\"> is not valid in <" + type + "> (on this backend)");
         }
 
         bool TryGetKey(UxlElement e, out string key)
         {
             if (string.IsNullOrEmpty(e.Key.String))
             {
-                Log.Error(e.Key.Source, ErrorCode.E0000, "<" + e.Type + "> must provide a non-empty 'Key' attribute");
+                Log.Error(e.Key.Source, ErrorCode.E0000, "<" + e.Type + "> must provide a non-empty 'key' attribute");
                 key = null;
                 return false;
             }

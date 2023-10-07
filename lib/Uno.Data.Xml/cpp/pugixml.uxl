@@ -1,18 +1,18 @@
-<Extensions Backend="CPlusPlus">
+<extensions backend="cplusplus">
 
-    <Type Name="Uno.Data.Xml.TargetSpecificXmlNode" />
-    <Type Name="Uno.Data.Xml.XmlNodeHandle" />
-    <Type Name="Uno.Data.Xml.XmlAttributeHandle" />
-    <Type Name="Uno.Data.Xml.XmlNodeImpl">
-        <CopyFile Type="HeaderFile" Name="pugixml.hpp" />
-        <CopyFile Type="HeaderFile" Name="pugiconfig.hpp" />
-        <CopyFile Type="SourceFile" Name="pugixml.cpp" />
+    <type name="Uno.Data.Xml.TargetSpecificXmlNode" />
+    <type name="Uno.Data.Xml.XmlNodeHandle" />
+    <type name="Uno.Data.Xml.XmlAttributeHandle" />
+    <type name="Uno.Data.Xml.XmlNodeImpl">
+        <copyFile type="headerFile" name="pugixml.hpp" />
+        <copyFile type="headerFile" name="pugiconfig.hpp" />
+        <copyFile type="sourceFile" name="pugixml.cpp" />
 
-        <Require Source.Include="pugixml.hpp" />
+        <require source.include="pugixml.hpp" />
 
-        <Method Signature="Parse(string):XmlNodeHandle">
-            <Require Source.Include="@{Uno.Data.Xml.XmlException:include}" />
-            <Body>
+        <method signature="Parse(string):XmlNodeHandle">
+            <require source.include="@{Uno.Data.Xml.XmlException:include}" />
+            <body>
                 pugi::xml_document doc;
                 pugi::xml_parse_result parseResult = doc.load_string(uCString($0).Ptr, pugi::parse_full);
 
@@ -32,11 +32,11 @@
 
                     U_THROW(@{Uno.Data.Xml.XmlException(string):new(uString::Utf8(errorMessages[parseResult.status]))});
                 }
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):XmlNodeHandle">
-            <Body>
+        <method signature="GenerateXMLTree(Uno.Data.Xml.TargetSpecificXmlNode):XmlNodeHandle">
+            <body>
                 pugi::xml_node node = *((pugi::xml_node*)$0);
                 @{Uno.Data.Xml.XmlNodeHandle} nodeHandle;
 
@@ -89,9 +89,9 @@
                 }
 
                 return nodeHandle;
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-    </Type>
+    </type>
 
-</Extensions>
+</extensions>

@@ -1,22 +1,22 @@
-<Extensions Backend="CPlusPlus" Condition="iOS">
-    <ProcessFile SourceFile="Display.mm" />
-    <ProcessFile HeaderFile="Window.h" />
-    <ProcessFile SourceFile="Window.mm" />
+<extensions backend="cplusplus" condition="IOS">
+    <processFile sourceFile="Display.mm" />
+    <processFile headerFile="Window.h" />
+    <processFile sourceFile="Window.mm" />
 
-    <Type Name="Uno.Platform.iOS.UIImage"
-        TypeName="::UIImage *"
-        Include="Uno-iOS/Uno-iOS.h" />
+    <type name="Uno.Platform.iOS.UIImage"
+          typeName="::UIImage *"
+          include="Uno-iOS/Uno-iOS.h" />
 
-    <Type Name="Uno.Platform.iOS.uCGRect"
-        TypeName="CGRect"
-        Include="CoreGraphics/CoreGraphics.h" />
+    <type name="Uno.Platform.iOS.uCGRect"
+          typeName="CGRect"
+          include="CoreGraphics/CoreGraphics.h" />
 
-    <Type Name="Uno.Platform.iOS.uCGSize"
-        TypeName="CGSize"
-        Include="CoreGraphics/CoreGraphics.h" />
+    <type name="Uno.Platform.iOS.uCGSize"
+          typeName="CGSize"
+          include="CoreGraphics/CoreGraphics.h" />
 
-    <Type Name="Uno.Platform.iOS.uCGPoint"
-        TypeName="CGPoint"
-        Include="CoreGraphics/CoreGraphics.h" />
+    <type name="Uno.Platform.iOS.uCGPoint"
+          typeName="CGPoint"
+          include="CoreGraphics/CoreGraphics.h" />
 
-</Extensions>
+</extensions>

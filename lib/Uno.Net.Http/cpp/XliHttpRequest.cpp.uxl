@@ -1,39 +1,39 @@
-<Extensions Backend="CPlusPlus" Condition="LINUX || MSVC">
+<extensions backend="cplusplus" condition="LINUX || MSVC">
 
-    <Using Namespace="Uno.Net.Http.Implementation" />
+    <using namespace="Uno.Net.Http.Implementation" />
 
-    <Type Name="XliHttpClientHandle"
-        TypeName="::Xli::HttpClient*"
-        Include="XliHttpClient/HttpClient.h" />
+    <type name="XliHttpClientHandle"
+        typeName="::Xli::HttpClient*"
+        include="XliHttpClient/HttpClient.h" />
 
-    <Type Name="XliHttpRequestHandle"
-        TypeName="::Xli::HttpRequest*"
-        Include="XliHttpClient/HttpClient.h" />
+    <type name="XliHttpRequestHandle"
+        typeName="::Xli::HttpRequest*"
+        include="XliHttpClient/HttpClient.h" />
 
-    <Type Name="XliHttpMessageHandler">
-        <ProcessFile HeaderFile="XliHttpEventHandler.h" />
+    <type name="XliHttpMessageHandler">
+        <processFile headerFile="XliHttpEventHandler.h" />
 
-        <Require Source.Include="XliHttpClient/HttpClient.h" />
-        <Require Source.Include="XliHttpEventHandler.h" />
-    </Type>
+        <require source.include="XliHttpClient/HttpClient.h" />
+        <require source.include="XliHttpEventHandler.h" />
+    </type>
 
-    <Type Name="XliHttpRequest">
-        <Require Template="XliHttpClient" />
+    <type name="XliHttpRequest">
+        <require template="XliHttpClient" />
 
-        <Require Source.Include="XliHttpClient/HttpClient.h" />
+        <require source.include="XliHttpClient/HttpClient.h" />
 
-        <Method Signature="GetResponseHeader(string):string">
-            <Body>
+        <method signature="GetResponseHeader(string):string">
+            <body>
                 uBase::String result;
                 if (@{$$._requestHandle}->TryGetResponseHeader(uCString($0).Ptr, result))
                     return uString::Utf8(result.Ptr());
                 else
                     return nullptr;
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="GetResponseHeaders():string">
-            <Body>
+        <method signature="GetResponseHeaders():string">
+            <body>
                 Xli::HttpRequest* req = @{$$._requestHandle};
                 uBase::String result = "";
                 bool first = true;
@@ -47,8 +47,8 @@
                 }
 
                 return uString::Utf8(result.Ptr());
-            </Body>
-        </Method>
-    </Type>
+            </body>
+        </method>
+    </type>
 
-</Extensions>
+</extensions>

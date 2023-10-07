@@ -1,119 +1,119 @@
-<Extensions Backend="CPlusPlus" Condition="ANDROID">
-    <Using Namespace="Android.Base" />
-    <Using Namespace="Android.Base.Primitives" />
-    <Using Namespace="Android.Base.Wrappers" />
+<extensions backend="cplusplus" condition="ANDROID">
+    <using namespace="Android.Base" />
+    <using namespace="Android.Base.Primitives" />
+    <using namespace="Android.Base.Wrappers" />
 
-    <Require Entity="Android.Base.Primitives.JNIEnvPtr" />
+    <require entity="Android.Base.Primitives.JNIEnvPtr" />
 
-    <Require Entity="Uno.Exception" />
-    <Require Entity="Uno.Exception.Message" />
+    <require entity="Uno.Exception" />
+    <require entity="Uno.Exception.Message" />
 
-    <Require Entity="Android.Base.Wrappers.IJWrapper" />
-    <Require Entity="Android.Base.Wrappers.IJWrapper._IsSubclassed()" />
-    <Require Entity="Android.Base.Wrappers.IJWrapper._GetJavaObject()" />
+    <require entity="Android.Base.Wrappers.IJWrapper" />
+    <require entity="Android.Base.Wrappers.IJWrapper._IsSubclassed()" />
+    <require entity="Android.Base.Wrappers.IJWrapper._GetJavaObject()" />
 
-    <Require Entity="Android.Base.Wrappers.JWrapper" />
-    <Require Entity="Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool)" />
+    <require entity="Android.Base.Wrappers.JWrapper" />
+    <require entity="Android.Base.Wrappers.JWrapper(Android.Base.Primitives.ujobject,Uno.Type,bool,bool)" />
 
-    <Require Entity="Android.Base.JNI.GetEnvPtr()" />
-    <Require Entity="Android.Base.JNI.GetUnoRef(Android.Base.Primitives.ujobject)" />
-    <Require Entity="Android.Base.JNI.ThrowNewException(string)" />
-    <Require Entity="Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr)" />
+    <require entity="Android.Base.JNI.GetEnvPtr()" />
+    <require entity="Android.Base.JNI.GetUnoRef(Android.Base.Primitives.ujobject)" />
+    <require entity="Android.Base.JNI.ThrowNewException(string)" />
+    <require entity="Android.Base.JNI.CheckException(Android.Base.Primitives.JNIEnvPtr)" />
 
-    <Type Name="JNI">
-        <Require Header.Include="android/log.h" />
-        <Require Header.Include="jni.h" />
-        <Require Header.Include="uDroid/JNIHelper.h" />
-        <Require Header.Include="@{Uno.Exception:include}" />
-        <Require Entity="Android.Base.Types.Bridge" />
-        <Require Entity="Android.Base.Types.ByteBuffer" />
-        <Require Entity="Android.Base.Types.String" />
-        <Require Entity="Android.Base.Types.Arrays" />
-        <Require Entity="Android.Base.Wrappers.JWrapper" />
-        <Require Entity="Android.Base.Wrappers.IJWrapper" />
+    <type name="JNI">
+        <require header.include="android/log.h" />
+        <require header.include="jni.h" />
+        <require header.include="uDroid/JNIHelper.h" />
+        <require header.include="@{Uno.Exception:include}" />
+        <require entity="Android.Base.Types.Bridge" />
+        <require entity="Android.Base.Types.ByteBuffer" />
+        <require entity="Android.Base.Types.String" />
+        <require entity="Android.Base.Types.Arrays" />
+        <require entity="Android.Base.Wrappers.JWrapper" />
+        <require entity="Android.Base.Wrappers.IJWrapper" />
 
-        <Require Entity="JNI.GetVM()" />
-        <Require Entity="JNI.GetEnvPtr()" />
-        <Require Entity="JNI.GetActivityObject()" />
-        <Require Entity="JNI.GetActivityClass()" />
-        <Require Entity="JNI.NewGlobalRef(ujobject)" />
-        <Require Entity="JNI.NewWeakGlobalRef(ujobject)" />
-        <Require Entity="JNI.DeleteGlobalRef(ujobject)" />
-        <Require Entity="JNI.DeleteWeakGlobalRef(ujobject)" />
-        <Require Entity="JNI.IsSameObject(ujobject,ujobject)" />
-        <Require Entity="JNI.CheckException(JNIEnvPtr)" />
-        <Require Entity="JNI.ThrowNewException(string)" />
+        <require entity="JNI.GetVM()" />
+        <require entity="JNI.GetEnvPtr()" />
+        <require entity="JNI.GetActivityObject()" />
+        <require entity="JNI.GetActivityClass()" />
+        <require entity="JNI.NewGlobalRef(ujobject)" />
+        <require entity="JNI.NewWeakGlobalRef(ujobject)" />
+        <require entity="JNI.DeleteGlobalRef(ujobject)" />
+        <require entity="JNI.DeleteWeakGlobalRef(ujobject)" />
+        <require entity="JNI.IsSameObject(ujobject,ujobject)" />
+        <require entity="JNI.CheckException(JNIEnvPtr)" />
+        <require entity="JNI.ThrowNewException(string)" />
 
-        <Method Signature="GetEnvPtr():JNIEnvPtr">
-            <Body>
+        <method signature="GetEnvPtr():JNIEnvPtr">
+            <body>
 
                      JNIEnv* jni;
                      JniHelper::GetVM()->AttachCurrentThread(&jni, nullptr);
                      return jni;
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="GetVM():JavaVMPtr">
-            <Body>
+        <method signature="GetVM():JavaVMPtr">
+            <body>
 
                      return JniHelper::GetVM();
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="NewWeakGlobalRef(ujobject):ujobject">
-            <Body>
+        <method signature="NewWeakGlobalRef(ujobject):ujobject">
+            <body>
 
                      return (jobject)reinterpret_cast<jweak>(@{GetEnvPtr():call()}->NewWeakGlobalRef($0));
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="DeleteGlobalRef(ujobject)">
-            <Body>
+        <method signature="DeleteGlobalRef(ujobject)">
+            <body>
 
                      @{GetEnvPtr():call()}->DeleteGlobalRef($0);
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="DeleteWeakGlobalRef(ujobject)">
-            <Body>
+        <method signature="DeleteWeakGlobalRef(ujobject)">
+            <body>
 
                      @{GetEnvPtr():call()}->DeleteWeakGlobalRef($0);
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="IsSameObject(ujobject,ujobject):bool">
-            <Body>
+        <method signature="IsSameObject(ujobject,ujobject):bool">
+            <body>
 
                      return (bool)@{GetEnvPtr():call()}->IsSameObject($0,$1);
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="ThrowNewException(string)">
-            <Body>
+        <method signature="ThrowNewException(string)">
+            <body>
 
                          char* message = uAllocCStr($0);
                          @{GetEnvPtr():call()}->ThrowNew(@{exceptionClass}, message);
                          free(message);
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="GetArrayLength(ujobject):int">
-            <Body>
+        <method signature="GetArrayLength(ujobject):int">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      return (int)jni->GetArrayLength((jarray)$0);
 
-            </Body>
-        </Method>
-        <Method Signature="NewBooleanArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewBooleanArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewBooleanArray((jsize)$0);
@@ -121,10 +121,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewByteArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewByteArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewByteArray((jsize)$0);
@@ -132,10 +132,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewCharArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewCharArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewCharArray((jsize)$0);
@@ -143,10 +143,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewShortArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewShortArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewShortArray((jsize)$0);
@@ -154,10 +154,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewIntArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewIntArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewIntArray((jsize)$0);
@@ -165,10 +165,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewLongArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewLongArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewLongArray((jsize)$0);
@@ -176,10 +176,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewFloatArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewFloatArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewFloatArray((jsize)$0);
@@ -187,10 +187,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewDoubleArray(int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewDoubleArray(int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewDoubleArray((jsize)$0);
@@ -198,10 +198,10 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="NewObjectArray(ujclass,int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="NewObjectArray(ujclass,int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jobject rtn = jni->NewObjectArray((jsize)$1, $0, nullptr);
@@ -209,205 +209,205 @@
                      jni->DeleteLocalRef(rtn);
                      return newArray;
 
-            </Body>
-        </Method>
-        <Method Signature="GetBooleanArrayElement(IJWrapper,int):bool">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetBooleanArrayElement(IJWrapper,int):bool">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jboolean result;
                      jni->GetBooleanArrayRegion((jbooleanArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (bool)result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetByteArrayElement(IJWrapper,int):sbyte">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetByteArrayElement(IJWrapper,int):sbyte">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jbyte result;
                      jni->GetByteArrayRegion((jbyteArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{sbyte})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetCharArrayElement(IJWrapper,int):char">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetCharArrayElement(IJWrapper,int):char">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jchar result;
                      jni->GetCharArrayRegion((jcharArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{char})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetShortArrayElement(IJWrapper,int):short">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetShortArrayElement(IJWrapper,int):short">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jshort result;
                      jni->GetShortArrayRegion((jshortArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{short})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetIntArrayElement(IJWrapper,int):int">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetIntArrayElement(IJWrapper,int):int">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jint result;
                      jni->GetIntArrayRegion((jintArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{int})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetLongArrayElement(IJWrapper,int):long">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetLongArrayElement(IJWrapper,int):long">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jlong result;
                      jni->GetLongArrayRegion((jlongArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{long})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetFloatArrayElement(IJWrapper,int):float">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetFloatArrayElement(IJWrapper,int):float">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jfloat result;
                      jni->GetFloatArrayRegion((jfloatArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{float})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetDoubleArrayElement(IJWrapper,int):double">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetDoubleArrayElement(IJWrapper,int):double">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jdouble result;
                      jni->GetDoubleArrayRegion((jdoubleArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &result);
                      return (@{double})result;
 
-            </Body>
-        </Method>
-        <Method Signature="GetObjectArrayElement(IJWrapper,int):ujobject">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetObjectArrayElement(IJWrapper,int):ujobject">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      return reinterpret_cast<jobject>(jni->NewGlobalRef(jni->GetObjectArrayElement((jobjectArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1)));
 
-            </Body>
-        </Method>
-        <Method Signature="SetBooleanArrayElement(IJWrapper,int,bool)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetBooleanArrayElement(IJWrapper,int,bool)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jboolean val = (jboolean)$2;
                      jni->SetBooleanArrayRegion((jbooleanArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetByteArrayElement(IJWrapper,int,sbyte)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetByteArrayElement(IJWrapper,int,sbyte)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jbyte val = (jbyte)$2;
                      jni->SetByteArrayRegion((jbyteArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetByteArrayElement(IJWrapper,int,byte)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetByteArrayElement(IJWrapper,int,byte)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jbyte val = (jbyte)(@{sbyte})$2;
                      jni->SetByteArrayRegion((jbyteArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetCharArrayElement(IJWrapper,int,char)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetCharArrayElement(IJWrapper,int,char)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jchar val = (jchar)$2;
                      jni->SetCharArrayRegion((jcharArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetShortArrayElement(IJWrapper,int,short)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetShortArrayElement(IJWrapper,int,short)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jshort val = (jshort)$2;
                      jni->SetShortArrayRegion((jshortArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetIntArrayElement(IJWrapper,int,int)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetIntArrayElement(IJWrapper,int,int)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jint val = (jint)$2;
                      jni->SetIntArrayRegion((jintArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetLongArrayElement(IJWrapper,int,long)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetLongArrayElement(IJWrapper,int,long)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jlong val = (jlong)$2;
                      jni->SetLongArrayRegion((jlongArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetFloatArrayElement(IJWrapper,int,float)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetFloatArrayElement(IJWrapper,int,float)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jfloat val = (jfloat)$2;
                      jni->SetFloatArrayRegion((jfloatArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetDoubleArrayElement(IJWrapper,int,double)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetDoubleArrayElement(IJWrapper,int,double)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jdouble val = (jdouble)$2;
                      jni->SetDoubleArrayRegion((jdoubleArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, 1, &val);
 
-            </Body>
-        </Method>
-        <Method Signature="SetObjectArrayElement(IJWrapper,int,ujobject)">
-            <Body>
+            </body>
+        </method>
+        <method signature="SetObjectArrayElement(IJWrapper,int,ujobject)">
+            <body>
 
                      @{JNIEnvPtr} jni = @{Android.Base.JNI.GetEnvPtr():call()};
                      jni->SetObjectArrayElement((jobjectArray)@{IJWrapper:of($0)._GetJavaObject():call()}, $1, $2);
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-        <Method Signature="GetDefaultObject():ujobject">
-            <Body>
+        <method signature="GetDefaultObject():ujobject">
+            <body>
 
                     return (jobject)0;
 
-            </Body>
-        </Method>
-        <Method Signature="GetDefaultType():Uno.Type">
-            <Body>
+            </body>
+        </method>
+        <method signature="GetDefaultType():Uno.Type">
+            <body>
 
                     return (@{Uno.Type})0;
 
-            </Body>
-        </Method>
+            </body>
+        </method>
 
-    </Type>
+    </type>
 
-    <Type Name="AndroidBindingMacros">
-        <Require Header.Declaration>
+    <type name="AndroidBindingMacros">
+        <require header.declaration>
         #include <jni.h>
         #include <@{Uno.Type:include}>
         #include <@{Uno.Exception:include}>
@@ -456,6 +456,6 @@
         #define CACHE_FIELD(ID,CLASSFIELD,NAMESTR,SIGSTR,FLDGETFUNC,MTDEXCEPTIONMSG,MTDEXCEPTIONLEN) if (uEnterCriticalIfNull(&ID)) { ID = U_JNIVAR->FLDGETFUNC(CLASSFIELD, NAMESTR, SIGSTR); CHECK_JNI_EXCEPTIONS; if (((long)ID) == 0) { THROW_UNO_EXCEPTION(MTDEXCEPTIONMSG,MTDEXCEPTIONLEN); } uExitCritical(); }
 
         #define STATICACHE_FIELD(ID,CLASSFIELD,NAMESTR,SIGSTR,FLDGETFUNC,MTDEXCEPTIONMSG,MTDEXCEPTIONLEN) static jfieldID ID = U_JNIVAR->FLDGETFUNC(CLASSFIELD, NAMESTR, SIGSTR); if (uEnterCriticalIfNull(&ID)) { CHECK_JNI_EXCEPTIONS; if (!ID) { THROW_UNO_EXCEPTION(MTDEXCEPTIONMSG,MTDEXCEPTIONLEN); } uExitCritical(); }
-        </Require>
-    </Type>
-</Extensions>
+        </require>
+    </type>
+</extensions>

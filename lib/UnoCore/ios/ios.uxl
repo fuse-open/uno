@@ -1,114 +1,114 @@
-<Extensions Backend="CPlusPlus" Condition="IOS">
+<extensions backend="cplusplus" condition="IOS">
 
     <!-- Backend config -->
 
-    <Define APPLE />
-    <Define MOBILE />
-    <Define UNIX />
+    <define APPLE />
+    <define MOBILE />
+    <define UNIX />
 
     <!-- Build properties -->
 
-    <Declare Element="iOS.BackgroundModes" />
-    <Declare Element="Xcode.EmbeddedFramework" />
-    <Declare Element="Xcode.Framework" />
-    <Declare Element="Xcode.FrameworkDirectory" />
-    <Declare Element="Xcode.Plist.Element" />
-    <Declare Element="Xcode.PrefixHeader.Declaration" />
-    <Declare Element="Xcode.PublicHeader" />
-    <Declare Element="Xcode.ShellScript" />
-    <Declare Element="Cocoapods.Platform.Name" />
-    <Declare Element="Cocoapods.Platform.Version" />
-    <Declare Element="Cocoapods.Podfile.Pre" />
-    <Declare Element="Cocoapods.Podfile.Target" />
-    <Declare Element="Cocoapods.Podfile.Post" />
-    <Declare Element="AppDelegate.HeaderFile.Declaration" />
-    <Declare Element="AppDelegate.SourceFile.Declaration" />
-    <Declare Element="AppDelegate.SourceFile.ImplementationScope" />
-    <Declare Element="AppDelegate.SourceFile.DidFinishLaunchingWithOptions" />
-    <Declare Element="AppDelegate.SourceFile.OpenURLLegacy" />
-    <Declare Element="AppDelegate.SourceFile.OpenURL" />
+    <declare element="ios.backgroundModes" />
+    <declare element="xcode.embeddedFramework" />
+    <declare element="xcode.framework" />
+    <declare element="xcode.frameworkDirectory" />
+    <declare element="xcode.plist.element" />
+    <declare element="xcode.prefixHeader.declaration" />
+    <declare element="xcode.publicHeader" />
+    <declare element="xcode.shellScript" />
+    <declare element="cocoapods.platform.name" />
+    <declare element="cocoapods.platform.version" />
+    <declare element="cocoapods.podfile.pre" />
+    <declare element="cocoapods.podfile.target" />
+    <declare element="cocoapods.podfile.post" />
+    <declare element="appDelegate.headerFile.declaration" />
+    <declare element="appDelegate.sourceFile.declaration" />
+    <declare element="appDelegate.sourceFile.implementationScope" />
+    <declare element="appDelegate.sourceFile.didFinishLaunchingWithOptions" />
+    <declare element="appDelegate.sourceFile.openURLLegacy" />
+    <declare element="appDelegate.sourceFile.openURL" />
 
-    <Declare Element="AppDelegate.Implements" />
-    <Require AppDelegate.Implements="UIApplicationDelegate" />
+    <declare element="appDelegate.implements" />
+    <require appDelegate.implements="UIApplicationDelegate" />
 
-    <Declare Element="uContext.SourceFile.Declaration" />
-    <Declare Element="uContext.SourceFile.DidFinishLaunching" />
+    <declare element="uContext.sourceFile.declaration" />
+    <declare element="uContext.sourceFile.didFinishLaunching" />
 
-    <Set Product="build/@(pbxproj.configuration)-iphoneos/@(project.name).app/@(project.name)" />
-    <Set BundleIdentifier="@(project.ios.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" />
-    <Set Pbxproj.Configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
+    <set product="build/@(pbxproj.configuration)-iphoneos/@(project.name).app/@(project.name)" />
+    <set bundleIdentifier="@(project.ios.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" />
+    <set pbxproj.configuration="@(DEBUG_NATIVE:defined:test('Debug', 'Release'))" />
 
     <!-- Project and build scripts -->
 
-    <Set Commands.Build="bash build.sh" Condition="HOST_MAC" />
-    <Set Commands.Run="bash run.sh" Condition="HOST_MAC" />
+    <set commands.build="bash build.sh" condition="HOST_MAC" />
+    <set commands.run="bash run.sh" condition="HOST_MAC" />
 
-    <ProcessFile Name="@(project.name).xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
-    <ProcessFile Name="@(project.name).xcodeproj/project.pbxproj" />
-    <ProcessFile Name="@(project.name)/@(project.name)-Info.plist" />
-    <ProcessFile Name="@(project.name)/@(project.name)-Prefix.pch" />
-    <ProcessFile Name="@(project.name)/@(project.name).entitlements" />
-    <ProcessFile Name="@(project.name)/LaunchScreen.storyboard" />
-    <ProcessFile Name="build.sh" IsExecutable="true" />
-    <ProcessFile Name="run.sh" IsExecutable="true" />
-    <ProcessFile Name="Podfile" Condition="COCOAPODS" />
+    <processFile name="@(project.name).xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
+    <processFile name="@(project.name).xcodeproj/project.pbxproj" />
+    <processFile name="@(project.name)/@(project.name)-Info.plist" />
+    <processFile name="@(project.name)/@(project.name)-Prefix.pch" />
+    <processFile name="@(project.name)/@(project.name).entitlements" />
+    <processFile name="@(project.name)/LaunchScreen.storyboard" />
+    <processFile name="build.sh" isExecutable="true" />
+    <processFile name="run.sh" isExecutable="true" />
+    <processFile name="Podfile" condition="COCOAPODS" />
 
     <!-- Icons -->
 
     <!-- Image for Launch Screen Storyboard -->
-    <CopyFile Name="@(project.ios.launchScreen.image:path || '@//assets/icon.png')"
-        TargetName="@(project.name)/LaunchScreen.png" />
+    <copyFile name="@(project.ios.launchScreen.image:path || '@//assets/icon.png')"
+        targetName="@(project.name)/LaunchScreen.png" />
 
-    <Set Icons="@(project.name)/Images.xcassets/AppIcon.appiconset" />
-    <ProcessFile Name="@(icons)/Contents.json" />
+    <set icons="@(project.name)/Images.xcassets/AppIcon.appiconset" />
+    <processFile name="@(icons)/Contents.json" />
 
-    <ImageFile Name="@(project.ios.icons.iphone_20_2x:path || '@//assets/icon.png')"
-        TargetWidth="40" TargetName="@(icons)/iPhone_20_2x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_20_3x:path || '@//assets/icon.png')"
-        TargetWidth="60" TargetName="@(icons)/iPhone_20_3x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_29_2x:path || '@//assets/icon.png')"
-        TargetWidth="58" TargetName="@(icons)/iPhone_29_2x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_29_3x:path || '@//assets/icon.png')"
-        TargetWidth="87" TargetName="@(icons)/iPhone_29_3x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_40_2x:path || '@//assets/icon.png')"
-        TargetWidth="80" TargetName="@(icons)/iPhone_40_2x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_40_3x:path || '@//assets/icon.png')"
-        TargetWidth="120" TargetName="@(icons)/iPhone_40_3x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_60_2x:path || '@//assets/icon.png')"
-        TargetWidth="120" TargetName="@(icons)/iPhone_60_2x.png" />
-    <ImageFile Name="@(project.ios.icons.iphone_60_3x:path || '@//assets/icon.png')"
-        TargetWidth="180" TargetName="@(icons)/iPhone_60_3x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_20_1x:path || '@//assets/icon.png')"
-        TargetWidth="20" TargetName="@(icons)/iPad_20_1x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_20_2x:path || '@//assets/icon.png')"
-        TargetWidth="40" TargetName="@(icons)/iPad_20_2x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_29_1x:path || '@//assets/icon.png')"
-        TargetWidth="29" TargetName="@(icons)/iPad_29_1x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_29_2x:path || '@//assets/icon.png')"
-        TargetWidth="58" TargetName="@(icons)/iPad_29_2x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_40_1x:path || '@//assets/icon.png')"
-        TargetWidth="40" TargetName="@(icons)/iPad_40_1x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_40_2x:path || '@//assets/icon.png')"
-        TargetWidth="80" TargetName="@(icons)/iPad_40_2x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_76_1x:path || '@//assets/icon.png')"
-        TargetWidth="76" TargetName="@(icons)/iPad_76_1x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_76_2x:path || '@//assets/icon.png')"
-        TargetWidth="152" TargetName="@(icons)/iPad_76_2x.png" />
-    <ImageFile Name="@(project.ios.icons.ipad_83.5_2x:path || '@//assets/icon.png')"
-        TargetWidth="167" TargetName="@(icons)/iPad_83.5_2x.png" />
-    <ImageFile Name="@(project.ios.icons.ios_marketing_1024_1x:path || '@//assets/icon.png')"
-        TargetWidth="1024" TargetName="@(icons)/iOS_Marketing_1024_1x.png" />
+    <imageFile name="@(project.ios.icons.iphone_20_2x:path || '@//assets/icon.png')"
+        targetWidth="40" targetName="@(icons)/iPhone_20_2x.png" />
+    <imageFile name="@(project.ios.icons.iphone_20_3x:path || '@//assets/icon.png')"
+        targetWidth="60" targetName="@(icons)/iPhone_20_3x.png" />
+    <imageFile name="@(project.ios.icons.iphone_29_2x:path || '@//assets/icon.png')"
+        targetWidth="58" targetName="@(icons)/iPhone_29_2x.png" />
+    <imageFile name="@(project.ios.icons.iphone_29_3x:path || '@//assets/icon.png')"
+        targetWidth="87" targetName="@(icons)/iPhone_29_3x.png" />
+    <imageFile name="@(project.ios.icons.iphone_40_2x:path || '@//assets/icon.png')"
+        targetWidth="80" targetName="@(icons)/iPhone_40_2x.png" />
+    <imageFile name="@(project.ios.icons.iphone_40_3x:path || '@//assets/icon.png')"
+        targetWidth="120" targetName="@(icons)/iPhone_40_3x.png" />
+    <imageFile name="@(project.ios.icons.iphone_60_2x:path || '@//assets/icon.png')"
+        targetWidth="120" targetName="@(icons)/iPhone_60_2x.png" />
+    <imageFile name="@(project.ios.icons.iphone_60_3x:path || '@//assets/icon.png')"
+        targetWidth="180" targetName="@(icons)/iPhone_60_3x.png" />
+    <imageFile name="@(project.ios.icons.ipad_20_1x:path || '@//assets/icon.png')"
+        targetWidth="20" targetName="@(icons)/iPad_20_1x.png" />
+    <imageFile name="@(project.ios.icons.ipad_20_2x:path || '@//assets/icon.png')"
+        targetWidth="40" targetName="@(icons)/iPad_20_2x.png" />
+    <imageFile name="@(project.ios.icons.ipad_29_1x:path || '@//assets/icon.png')"
+        targetWidth="29" targetName="@(icons)/iPad_29_1x.png" />
+    <imageFile name="@(project.ios.icons.ipad_29_2x:path || '@//assets/icon.png')"
+        targetWidth="58" targetName="@(icons)/iPad_29_2x.png" />
+    <imageFile name="@(project.ios.icons.ipad_40_1x:path || '@//assets/icon.png')"
+        targetWidth="40" targetName="@(icons)/iPad_40_1x.png" />
+    <imageFile name="@(project.ios.icons.ipad_40_2x:path || '@//assets/icon.png')"
+        targetWidth="80" targetName="@(icons)/iPad_40_2x.png" />
+    <imageFile name="@(project.ios.icons.ipad_76_1x:path || '@//assets/icon.png')"
+        targetWidth="76" targetName="@(icons)/iPad_76_1x.png" />
+    <imageFile name="@(project.ios.icons.ipad_76_2x:path || '@//assets/icon.png')"
+        targetWidth="152" targetName="@(icons)/iPad_76_2x.png" />
+    <imageFile name="@(project.ios.icons.ipad_83.5_2x:path || '@//assets/icon.png')"
+        targetWidth="167" targetName="@(icons)/iPad_83.5_2x.png" />
+    <imageFile name="@(project.ios.icons.ios_marketing_1024_1x:path || '@//assets/icon.png')"
+        targetWidth="1024" targetName="@(icons)/iOS_Marketing_1024_1x.png" />
 
     <!-- Default plist descriptions -->
 
-    <Set PListDefaults.NSCameraUsageDescription="@(project.name) would like to take pictures or recordings with the camera." />
-    <Set PListDefaults.NSMicrophoneUsageDescription="@(project.name) uses audio recordings in its user experience." />
-    <Set PListDefaults.NSPhotoLibraryUsageDescription="@(project.name) allows importing images from the PhotoLibrary." />
+    <set plistDefaults.NSCameraUsageDescription="@(project.name) would like to take pictures or recordings with the camera." />
+    <set plistDefaults.NSMicrophoneUsageDescription="@(project.name) uses audio recordings in its user experience." />
+    <set plistDefaults.NSPhotoLibraryUsageDescription="@(project.name) allows importing images from the PhotoLibrary." />
 
     <!-- Create schemes for Release build in Xcode -->
 
-    <Set Schemes="@(project.name).xcodeproj/xcuserdata/@(LOGNAME:env).xcuserdatad/xcschemes" />
-    <ProcessFile Name="@(schemes)/@(project.name).xcscheme" Overwrite="false" />
-    <ProcessFile Name="@(schemes)/xcschememanagement.plist" Overwrite="false" />
+    <set schemes="@(project.name).xcodeproj/xcuserdata/@(LOGNAME:env).xcuserdatad/xcschemes" />
+    <processFile name="@(schemes)/@(project.name).xcscheme" overwrite="false" />
+    <processFile name="@(schemes)/xcschememanagement.plist" overwrite="false" />
 
-</Extensions>
+</extensions>

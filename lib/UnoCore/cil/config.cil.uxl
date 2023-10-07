@@ -1,35 +1,35 @@
-<Extensions Backend="CIL">
+<extensions backend="cil">
 
     <!-- Avoid warning when conflicting with the build target "dotnet" -->
-    <Define DOTNET="!DOTNET" />
+    <define DOTNET="!DOTNET" />
 
     <!-- Dependency support -->
-    <Declare Element="Assembly" />
-    <Declare Element="UnmanagedLibrary" />
-    <Declare Element="UnmanagedLibrary.x86" />
-    <Declare Element="UnmanagedLibrary.x64" />
+    <declare element="assembly" />
+    <declare element="unmanagedLibrary" />
+    <declare element="unmanagedLibrary.x86" />
+    <declare element="unmanagedLibrary.x64" />
 
     <!-- Architecture (override by -DX86 or -DX64) -->
-    <Define X86="HOST_X86 && !X64" />
-    <Define X64="HOST_X64 && !X86" />
+    <define X86="HOST_X86 && !X64" />
+    <define X64="HOST_X64 && !X86" />
 
     <!-- Assembly information -->
-    <Set AssemblyProduct="@(project.dotnet.assemblyProduct || project.name)" />
-    <Set AssemblyTitle="@(project.dotnet.assemblyTitle || project.title)" />
-    <Set AssemblyFileVersion="@(project.dotnet.assemblyFileVersion || project.version)" />
-    <Set AssemblyInformationalVersion="@(project.dotnet.assemblyInformationalVersion || project.version)" />
-    <Set AssemblyDescription="@(project.dotnet.assemblyDescription || project.description)" />
-    <Set AssemblyCompany="@(project.dotnet.assemblyCompany || project.publisher)" />
-    <Set AssemblyCopyright="@(project.dotnet.assemblyCopyright || project.copyright)" />
-    <Set AssemblyConfiguration="@(project.dotnet.assemblyConfiguration || configuration)" />
-    <Set AssemblyTrademark="@(project.dotnet.assemblyTrademark)" />
+    <set assemblyProduct="@(project.dotnet.assemblyProduct || project.name)" />
+    <set assemblyTitle="@(project.dotnet.assemblyTitle || project.title)" />
+    <set assemblyFileVersion="@(project.dotnet.assemblyFileVersion || project.version)" />
+    <set assemblyInformationalVersion="@(project.dotnet.assemblyInformationalVersion || project.version)" />
+    <set assemblyDescription="@(project.dotnet.assemblyDescription || project.description)" />
+    <set assemblyCompany="@(project.dotnet.assemblyCompany || project.publisher)" />
+    <set assemblyCopyright="@(project.dotnet.assemblyCopyright || project.copyright)" />
+    <set assemblyConfiguration="@(project.dotnet.assemblyConfiguration || configuration)" />
+    <set assemblyTrademark="@(project.dotnet.assemblyTrademark)" />
 
     <!-- Core assemblies -->
-    <Require Assembly="System" />
-    <Require Assembly="System.Core" />
-    <Require Assembly="System.Collections" />
-    <Require Assembly="System.Console" />
-    <Require Assembly="System.Runtime" />
-    <Require Assembly="System.Threading" />
+    <require assembly="System" />
+    <require assembly="System.Core" />
+    <require assembly="System.Collections" />
+    <require assembly="System.Console" />
+    <require assembly="System.Runtime" />
+    <require assembly="System.Threading" />
 
-</Extensions>
+</extensions>

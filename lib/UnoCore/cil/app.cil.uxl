@@ -1,251 +1,251 @@
-<Extensions Backend="CIL" Condition="!CONSOLE && !LIBRARY && !PREVIEW && !TEST || APPTEST">
+<extensions backend="cil" condition="!CONSOLE && !LIBRARY && !PREVIEW && !TEST || APPTEST">
 
-    <Set AppDirectory="@(project.name).app" Condition="HOST_MAC" />
-    <Set AssemblyDirectory="@(HOST_MAC:defined:test('@(appDirectory)/Contents/MonoBundle', '.'))" />
-    <Set Product="@(HOST_MAC:defined:test('@(appDirectory)/Contents/MacOS/@(project.name)', '@(project.name).exe.dll'))" />
+    <set appDirectory="@(project.name).app" condition="HOST_MAC" />
+    <set assemblyDirectory="@(HOST_MAC:defined:test('@(appDirectory)/Contents/MonoBundle', '.'))" />
+    <set product="@(HOST_MAC:defined:test('@(appDirectory)/Contents/MacOS/@(project.name)', '@(project.name).exe.dll'))" />
 
     <!-- AppLoader & dependencies -->
-    <Set AppLoader.Assembly="@(config.appLoader.assembly:path)" />
-    <Set AppLoader.Class="Uno.AppLoader.Program" />
-    <Set AppLoader.Method="UnoGenerated" />
+    <set appLoader.assembly="@(config.appLoader.assembly:path)" />
+    <set appLoader.class="Uno.AppLoader.Program" />
+    <set appLoader.method="UnoGenerated" />
 
     <!-- Windows -->
-    <Set Commands.Run="run.bat" Condition="HOST_WIN32" />
-    <ProcessFile Name="run.bat" Condition="HOST_WIN32" />
+    <set commands.run="run.bat" condition="HOST_WIN32" />
+    <processFile name="run.bat" condition="HOST_WIN32" />
 
-    <Require UnmanagedLibrary="@(config.appLoader.windows:path)/OpenTK.dll" Condition="HOST_WIN32" />
-    <Require UnmanagedLibrary="@(config.appLoader.windows:path)/libEGL.dll" Condition="HOST_WIN32" />
-    <Require UnmanagedLibrary="@(config.appLoader.windows:path)/libGLESv2.dll" Condition="HOST_WIN32" />
-    <Require UnmanagedLibrary="@(config.appLoader.windows:path)/d3dcompiler_47.dll" Condition="HOST_WIN32" />
-    <CopyFile Name="@(config.appLoader.windows:path)/uno-app.runtimeconfig.json" TargetName="@(assemblyDirectory)/@(project.name).exe.runtimeconfig.json" Condition="HOST_WIN32" />
+    <require unmanagedLibrary="@(config.appLoader.windows:path)/OpenTK.dll" condition="HOST_WIN32" />
+    <require unmanagedLibrary="@(config.appLoader.windows:path)/libEGL.dll" condition="HOST_WIN32" />
+    <require unmanagedLibrary="@(config.appLoader.windows:path)/libGLESv2.dll" condition="HOST_WIN32" />
+    <require unmanagedLibrary="@(config.appLoader.windows:path)/d3dcompiler_47.dll" condition="HOST_WIN32" />
+    <copyFile name="@(config.appLoader.windows:path)/uno-app.runtimeconfig.json" targetName="@(assemblyDirectory)/@(project.name).exe.runtimeconfig.json" condition="HOST_WIN32" />
 
     <!-- Linux -->
-    <Set Commands.Run="run.sh" Condition="HOST_LINUX" />
-    <ProcessFile Name="run.sh" Condition="HOST_LINUX" IsExecutable="true" />
+    <set commands.run="run.sh" condition="HOST_LINUX" />
+    <processFile name="run.sh" condition="HOST_LINUX" isExecutable="true" />
 
-    <CopyFile Name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json" TargetName="@(assemblyDirectory)/@(project.name).exe.runtimeconfig.json" Condition="HOST_LINUX" />
+    <copyFile name="@(config.appLoader.console:path)/uno-app.runtimeconfig.json" targetName="@(assemblyDirectory)/@(project.name).exe.runtimeconfig.json" condition="HOST_LINUX" />
 
     <!-- macOS -->
-    <Set Commands.Run="@('@(product)':quoteSpace)" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/../MacOS/uno-app-loader" TargetName="@(product)" Condition="HOST_MAC" IsExecutable="true" />
+    <set commands.run="@('@(product)':quoteSpace)" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/../MacOS/uno-app-loader" targetName="@(product)" condition="HOST_MAC" isExecutable="true" />
 
-    <Set BundleIdentifier="@(project.mac.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" Condition="HOST_MAC" />
-    <Set LoaderDirectory="@('mac-x64/uno-app-loader.app/Contents/MonoBundle':path)" Condition="HOST_MAC" />
-    <ProcessFile Name="@(appDirectory)/Contents/Info.plist" Condition="HOST_MAC" />
-    <CopyFile Name="@(project.mac.icon:path || @//assets/icon.icns)" TargetName="@(appDirectory)/Contents/Resources/Icon.icns" Condition="HOST_MAC" />
+    <set bundleIdentifier="@(project.mac.bundleIdentifier || 'com.apps.@(project.name:qidentifier:replace('_', '-'):toLower)')" condition="HOST_MAC" />
+    <set loaderDirectory="@('mac-x64/uno-app-loader.app/Contents/MonoBundle':path)" condition="HOST_MAC" />
+    <processFile name="@(appDirectory)/Contents/Info.plist" condition="HOST_MAC" />
+    <copyFile name="@(project.mac.icon:path || @//assets/icon.icns)" targetName="@(appDirectory)/Contents/Resources/Icon.icns" condition="HOST_MAC" />
 
-    <CopyFile Name="@(loaderDirectory)/Microsoft.CSharp.dll" TargetName="@(assemblyDirectory)/Microsoft.CSharp.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/Microsoft.VisualBasic.Core.dll" TargetName="@(assemblyDirectory)/Microsoft.VisualBasic.Core.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/Microsoft.VisualBasic.dll" TargetName="@(assemblyDirectory)/Microsoft.VisualBasic.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/Microsoft.Win32.Primitives.dll" TargetName="@(assemblyDirectory)/Microsoft.Win32.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/Microsoft.Win32.Registry.dll" TargetName="@(assemblyDirectory)/Microsoft.Win32.Registry.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/Microsoft.Win32.SystemEvents.dll" TargetName="@(assemblyDirectory)/Microsoft.Win32.SystemEvents.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/Microsoft.macOS.dll" TargetName="@(assemblyDirectory)/Microsoft.macOS.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/OpenTK.dll" TargetName="@(assemblyDirectory)/OpenTK.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.AppContext.dll" TargetName="@(assemblyDirectory)/System.AppContext.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Buffers.dll" TargetName="@(assemblyDirectory)/System.Buffers.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Collections.Concurrent.dll" TargetName="@(assemblyDirectory)/System.Collections.Concurrent.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Collections.Immutable.dll" TargetName="@(assemblyDirectory)/System.Collections.Immutable.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Collections.NonGeneric.dll" TargetName="@(assemblyDirectory)/System.Collections.NonGeneric.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Collections.Specialized.dll" TargetName="@(assemblyDirectory)/System.Collections.Specialized.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Collections.dll" TargetName="@(assemblyDirectory)/System.Collections.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ComponentModel.Annotations.dll" TargetName="@(assemblyDirectory)/System.ComponentModel.Annotations.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ComponentModel.DataAnnotations.dll" TargetName="@(assemblyDirectory)/System.ComponentModel.DataAnnotations.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ComponentModel.EventBasedAsync.dll" TargetName="@(assemblyDirectory)/System.ComponentModel.EventBasedAsync.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ComponentModel.Primitives.dll" TargetName="@(assemblyDirectory)/System.ComponentModel.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ComponentModel.TypeConverter.dll" TargetName="@(assemblyDirectory)/System.ComponentModel.TypeConverter.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ComponentModel.dll" TargetName="@(assemblyDirectory)/System.ComponentModel.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Configuration.ConfigurationManager.dll" TargetName="@(assemblyDirectory)/System.Configuration.ConfigurationManager.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Configuration.dll" TargetName="@(assemblyDirectory)/System.Configuration.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Console.dll" TargetName="@(assemblyDirectory)/System.Console.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Core.dll" TargetName="@(assemblyDirectory)/System.Core.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Data.Common.dll" TargetName="@(assemblyDirectory)/System.Data.Common.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Data.DataSetExtensions.dll" TargetName="@(assemblyDirectory)/System.Data.DataSetExtensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Data.dll" TargetName="@(assemblyDirectory)/System.Data.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.Contracts.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.Contracts.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.Debug.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.Debug.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.DiagnosticSource.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.DiagnosticSource.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.FileVersionInfo.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.FileVersionInfo.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.Process.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.Process.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.StackTrace.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.StackTrace.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.TextWriterTraceListener.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.TextWriterTraceListener.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.Tools.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.Tools.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.TraceSource.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.TraceSource.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Diagnostics.Tracing.dll" TargetName="@(assemblyDirectory)/System.Diagnostics.Tracing.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Drawing.Common.dll" TargetName="@(assemblyDirectory)/System.Drawing.Common.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Drawing.Primitives.dll" TargetName="@(assemblyDirectory)/System.Drawing.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Drawing.dll" TargetName="@(assemblyDirectory)/System.Drawing.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Dynamic.Runtime.dll" TargetName="@(assemblyDirectory)/System.Dynamic.Runtime.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Formats.Asn1.dll" TargetName="@(assemblyDirectory)/System.Formats.Asn1.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Globalization.Calendars.dll" TargetName="@(assemblyDirectory)/System.Globalization.Calendars.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Globalization.Extensions.dll" TargetName="@(assemblyDirectory)/System.Globalization.Extensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Globalization.dll" TargetName="@(assemblyDirectory)/System.Globalization.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.Compression.Brotli.dll" TargetName="@(assemblyDirectory)/System.IO.Compression.Brotli.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.Compression.FileSystem.dll" TargetName="@(assemblyDirectory)/System.IO.Compression.FileSystem.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.Compression.ZipFile.dll" TargetName="@(assemblyDirectory)/System.IO.Compression.ZipFile.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.Compression.dll" TargetName="@(assemblyDirectory)/System.IO.Compression.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.FileSystem.AccessControl.dll" TargetName="@(assemblyDirectory)/System.IO.FileSystem.AccessControl.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.FileSystem.DriveInfo.dll" TargetName="@(assemblyDirectory)/System.IO.FileSystem.DriveInfo.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.FileSystem.Primitives.dll" TargetName="@(assemblyDirectory)/System.IO.FileSystem.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.FileSystem.Watcher.dll" TargetName="@(assemblyDirectory)/System.IO.FileSystem.Watcher.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.FileSystem.dll" TargetName="@(assemblyDirectory)/System.IO.FileSystem.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.IsolatedStorage.dll" TargetName="@(assemblyDirectory)/System.IO.IsolatedStorage.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.MemoryMappedFiles.dll" TargetName="@(assemblyDirectory)/System.IO.MemoryMappedFiles.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.Pipes.AccessControl.dll" TargetName="@(assemblyDirectory)/System.IO.Pipes.AccessControl.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.Pipes.dll" TargetName="@(assemblyDirectory)/System.IO.Pipes.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.UnmanagedMemoryStream.dll" TargetName="@(assemblyDirectory)/System.IO.UnmanagedMemoryStream.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.IO.dll" TargetName="@(assemblyDirectory)/System.IO.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Linq.Expressions.dll" TargetName="@(assemblyDirectory)/System.Linq.Expressions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Linq.Parallel.dll" TargetName="@(assemblyDirectory)/System.Linq.Parallel.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Linq.Queryable.dll" TargetName="@(assemblyDirectory)/System.Linq.Queryable.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Linq.dll" TargetName="@(assemblyDirectory)/System.Linq.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Memory.dll" TargetName="@(assemblyDirectory)/System.Memory.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Http.Json.dll" TargetName="@(assemblyDirectory)/System.Net.Http.Json.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Http.dll" TargetName="@(assemblyDirectory)/System.Net.Http.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.HttpListener.dll" TargetName="@(assemblyDirectory)/System.Net.HttpListener.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Mail.dll" TargetName="@(assemblyDirectory)/System.Net.Mail.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.NameResolution.dll" TargetName="@(assemblyDirectory)/System.Net.NameResolution.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.NetworkInformation.dll" TargetName="@(assemblyDirectory)/System.Net.NetworkInformation.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Ping.dll" TargetName="@(assemblyDirectory)/System.Net.Ping.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Primitives.dll" TargetName="@(assemblyDirectory)/System.Net.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Quic.dll" TargetName="@(assemblyDirectory)/System.Net.Quic.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Requests.dll" TargetName="@(assemblyDirectory)/System.Net.Requests.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Security.dll" TargetName="@(assemblyDirectory)/System.Net.Security.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.ServicePoint.dll" TargetName="@(assemblyDirectory)/System.Net.ServicePoint.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.Sockets.dll" TargetName="@(assemblyDirectory)/System.Net.Sockets.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.WebClient.dll" TargetName="@(assemblyDirectory)/System.Net.WebClient.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.WebHeaderCollection.dll" TargetName="@(assemblyDirectory)/System.Net.WebHeaderCollection.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.WebProxy.dll" TargetName="@(assemblyDirectory)/System.Net.WebProxy.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.WebSockets.Client.dll" TargetName="@(assemblyDirectory)/System.Net.WebSockets.Client.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.WebSockets.dll" TargetName="@(assemblyDirectory)/System.Net.WebSockets.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Net.dll" TargetName="@(assemblyDirectory)/System.Net.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Numerics.Vectors.dll" TargetName="@(assemblyDirectory)/System.Numerics.Vectors.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Numerics.dll" TargetName="@(assemblyDirectory)/System.Numerics.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ObjectModel.dll" TargetName="@(assemblyDirectory)/System.ObjectModel.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Private.CoreLib.dll" TargetName="@(assemblyDirectory)/System.Private.CoreLib.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Private.DataContractSerialization.dll" TargetName="@(assemblyDirectory)/System.Private.DataContractSerialization.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Private.Uri.dll" TargetName="@(assemblyDirectory)/System.Private.Uri.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Private.Xml.Linq.dll" TargetName="@(assemblyDirectory)/System.Private.Xml.Linq.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Private.Xml.dll" TargetName="@(assemblyDirectory)/System.Private.Xml.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.DispatchProxy.dll" TargetName="@(assemblyDirectory)/System.Reflection.DispatchProxy.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.Emit.ILGeneration.dll" TargetName="@(assemblyDirectory)/System.Reflection.Emit.ILGeneration.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.Emit.Lightweight.dll" TargetName="@(assemblyDirectory)/System.Reflection.Emit.Lightweight.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.Emit.dll" TargetName="@(assemblyDirectory)/System.Reflection.Emit.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.Extensions.dll" TargetName="@(assemblyDirectory)/System.Reflection.Extensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.Metadata.dll" TargetName="@(assemblyDirectory)/System.Reflection.Metadata.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.Primitives.dll" TargetName="@(assemblyDirectory)/System.Reflection.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.TypeExtensions.dll" TargetName="@(assemblyDirectory)/System.Reflection.TypeExtensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Reflection.dll" TargetName="@(assemblyDirectory)/System.Reflection.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Resources.Reader.dll" TargetName="@(assemblyDirectory)/System.Resources.Reader.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Resources.ResourceManager.dll" TargetName="@(assemblyDirectory)/System.Resources.ResourceManager.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Resources.Writer.dll" TargetName="@(assemblyDirectory)/System.Resources.Writer.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.CompilerServices.Unsafe.dll" TargetName="@(assemblyDirectory)/System.Runtime.CompilerServices.Unsafe.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.CompilerServices.VisualC.dll" TargetName="@(assemblyDirectory)/System.Runtime.CompilerServices.VisualC.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Extensions.dll" TargetName="@(assemblyDirectory)/System.Runtime.Extensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Handles.dll" TargetName="@(assemblyDirectory)/System.Runtime.Handles.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.InteropServices.RuntimeInformation.dll" TargetName="@(assemblyDirectory)/System.Runtime.InteropServices.RuntimeInformation.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.InteropServices.dll" TargetName="@(assemblyDirectory)/System.Runtime.InteropServices.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Intrinsics.dll" TargetName="@(assemblyDirectory)/System.Runtime.Intrinsics.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Loader.dll" TargetName="@(assemblyDirectory)/System.Runtime.Loader.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Numerics.dll" TargetName="@(assemblyDirectory)/System.Runtime.Numerics.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Serialization.Formatters.dll" TargetName="@(assemblyDirectory)/System.Runtime.Serialization.Formatters.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Serialization.Json.dll" TargetName="@(assemblyDirectory)/System.Runtime.Serialization.Json.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Serialization.Primitives.dll" TargetName="@(assemblyDirectory)/System.Runtime.Serialization.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Serialization.Xml.dll" TargetName="@(assemblyDirectory)/System.Runtime.Serialization.Xml.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.Serialization.dll" TargetName="@(assemblyDirectory)/System.Runtime.Serialization.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Runtime.dll" TargetName="@(assemblyDirectory)/System.Runtime.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.AccessControl.dll" TargetName="@(assemblyDirectory)/System.Security.AccessControl.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Claims.dll" TargetName="@(assemblyDirectory)/System.Security.Claims.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.Algorithms.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.Algorithms.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.Cng.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.Cng.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.Csp.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.Csp.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.Encoding.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.Encoding.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.OpenSsl.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.OpenSsl.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.Primitives.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.Primitives.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.ProtectedData.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.ProtectedData.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Cryptography.X509Certificates.dll" TargetName="@(assemblyDirectory)/System.Security.Cryptography.X509Certificates.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Permissions.dll" TargetName="@(assemblyDirectory)/System.Security.Permissions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Principal.Windows.dll" TargetName="@(assemblyDirectory)/System.Security.Principal.Windows.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.Principal.dll" TargetName="@(assemblyDirectory)/System.Security.Principal.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.SecureString.dll" TargetName="@(assemblyDirectory)/System.Security.SecureString.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Security.dll" TargetName="@(assemblyDirectory)/System.Security.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ServiceModel.Web.dll" TargetName="@(assemblyDirectory)/System.ServiceModel.Web.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ServiceProcess.dll" TargetName="@(assemblyDirectory)/System.ServiceProcess.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Text.Encoding.CodePages.dll" TargetName="@(assemblyDirectory)/System.Text.Encoding.CodePages.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Text.Encoding.Extensions.dll" TargetName="@(assemblyDirectory)/System.Text.Encoding.Extensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Text.Encoding.dll" TargetName="@(assemblyDirectory)/System.Text.Encoding.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Text.Encodings.Web.dll" TargetName="@(assemblyDirectory)/System.Text.Encodings.Web.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Text.Json.dll" TargetName="@(assemblyDirectory)/System.Text.Json.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Text.RegularExpressions.dll" TargetName="@(assemblyDirectory)/System.Text.RegularExpressions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Channels.dll" TargetName="@(assemblyDirectory)/System.Threading.Channels.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Overlapped.dll" TargetName="@(assemblyDirectory)/System.Threading.Overlapped.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Tasks.Dataflow.dll" TargetName="@(assemblyDirectory)/System.Threading.Tasks.Dataflow.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Tasks.Extensions.dll" TargetName="@(assemblyDirectory)/System.Threading.Tasks.Extensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Tasks.Parallel.dll" TargetName="@(assemblyDirectory)/System.Threading.Tasks.Parallel.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Tasks.dll" TargetName="@(assemblyDirectory)/System.Threading.Tasks.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Thread.dll" TargetName="@(assemblyDirectory)/System.Threading.Thread.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.ThreadPool.dll" TargetName="@(assemblyDirectory)/System.Threading.ThreadPool.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.Timer.dll" TargetName="@(assemblyDirectory)/System.Threading.Timer.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Threading.dll" TargetName="@(assemblyDirectory)/System.Threading.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Transactions.Local.dll" TargetName="@(assemblyDirectory)/System.Transactions.Local.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Transactions.dll" TargetName="@(assemblyDirectory)/System.Transactions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.ValueTuple.dll" TargetName="@(assemblyDirectory)/System.ValueTuple.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Web.HttpUtility.dll" TargetName="@(assemblyDirectory)/System.Web.HttpUtility.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Web.dll" TargetName="@(assemblyDirectory)/System.Web.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Windows.Extensions.dll" TargetName="@(assemblyDirectory)/System.Windows.Extensions.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Windows.dll" TargetName="@(assemblyDirectory)/System.Windows.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.Linq.dll" TargetName="@(assemblyDirectory)/System.Xml.Linq.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.ReaderWriter.dll" TargetName="@(assemblyDirectory)/System.Xml.ReaderWriter.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.Serialization.dll" TargetName="@(assemblyDirectory)/System.Xml.Serialization.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.XDocument.dll" TargetName="@(assemblyDirectory)/System.Xml.XDocument.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.XPath.XDocument.dll" TargetName="@(assemblyDirectory)/System.Xml.XPath.XDocument.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.XPath.dll" TargetName="@(assemblyDirectory)/System.Xml.XPath.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.XmlDocument.dll" TargetName="@(assemblyDirectory)/System.Xml.XmlDocument.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.XmlSerializer.dll" TargetName="@(assemblyDirectory)/System.Xml.XmlSerializer.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.Xml.dll" TargetName="@(assemblyDirectory)/System.Xml.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/System.dll" TargetName="@(assemblyDirectory)/System.dll" Condition="HOST_MAC" />
-    <!--<CopyFile Name="@(loaderDirectory)/UnoCore.dll" TargetName="@(assemblyDirectory)/UnoCore.dll" Condition="HOST_MAC" />-->
-    <CopyFile Name="@(loaderDirectory)/WindowsBase.dll" TargetName="@(assemblyDirectory)/WindowsBase.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/createdump" TargetName="@(assemblyDirectory)/createdump" Condition="HOST_MAC" IsExecutable="true" />
-    <CopyFile Name="@(loaderDirectory)/libSystem.Globalization.Native.dylib" TargetName="@(assemblyDirectory)/libSystem.Globalization.Native.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libSystem.IO.Compression.Native.dylib" TargetName="@(assemblyDirectory)/libSystem.IO.Compression.Native.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libSystem.Native.dylib" TargetName="@(assemblyDirectory)/libSystem.Native.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libSystem.Net.Security.Native.dylib" TargetName="@(assemblyDirectory)/libSystem.Net.Security.Native.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libSystem.Security.Cryptography.Native.Apple.dylib" TargetName="@(assemblyDirectory)/libSystem.Security.Cryptography.Native.Apple.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libSystem.Security.Cryptography.Native.OpenSsl.dylib" TargetName="@(assemblyDirectory)/libSystem.Security.Cryptography.Native.OpenSsl.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libX11.6.dylib" TargetName="@(assemblyDirectory)/libX11.6.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libXau.6.dylib" TargetName="@(assemblyDirectory)/libXau.6.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libXdmcp.6.dylib" TargetName="@(assemblyDirectory)/libXdmcp.6.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libXext.6.dylib" TargetName="@(assemblyDirectory)/libXext.6.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libXrender.1.dylib" TargetName="@(assemblyDirectory)/libXrender.1.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libcairo.2.dylib" TargetName="@(assemblyDirectory)/libcairo.2.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libclrjit.dylib" TargetName="@(assemblyDirectory)/libclrjit.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libcoreclr.dylib" TargetName="@(assemblyDirectory)/libcoreclr.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libdbgshim.dylib" TargetName="@(assemblyDirectory)/libdbgshim.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libfontconfig.1.dylib" TargetName="@(assemblyDirectory)/libfontconfig.1.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libfreetype.6.dylib" TargetName="@(assemblyDirectory)/libfreetype.6.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libgdiplus.0.dylib" TargetName="@(assemblyDirectory)/libgdiplus.0.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libgdiplus.dylib" TargetName="@(assemblyDirectory)/libgdiplus.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libgif.dylib" TargetName="@(assemblyDirectory)/libgif.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libglib-2.0.0.dylib" TargetName="@(assemblyDirectory)/libglib-2.0.0.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libhostfxr.dylib" TargetName="@(assemblyDirectory)/libhostfxr.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libhostpolicy.dylib" TargetName="@(assemblyDirectory)/libhostpolicy.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libintl.8.dylib" TargetName="@(assemblyDirectory)/libintl.8.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libjpeg.9.dylib" TargetName="@(assemblyDirectory)/libjpeg.9.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libmscordaccore.dylib" TargetName="@(assemblyDirectory)/libmscordaccore.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libmscordbi.dylib" TargetName="@(assemblyDirectory)/libmscordbi.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libpcre.1.dylib" TargetName="@(assemblyDirectory)/libpcre.1.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libpixman-1.0.dylib" TargetName="@(assemblyDirectory)/libpixman-1.0.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libpng16.16.dylib" TargetName="@(assemblyDirectory)/libpng16.16.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libtiff.5.dylib" TargetName="@(assemblyDirectory)/libtiff.5.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libxcb-render.0.dylib" TargetName="@(assemblyDirectory)/libxcb-render.0.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libxcb-shm.0.dylib" TargetName="@(assemblyDirectory)/libxcb-shm.0.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/libxcb.1.dylib" TargetName="@(assemblyDirectory)/libxcb.1.dylib" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/mscorlib.dll" TargetName="@(assemblyDirectory)/mscorlib.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/netstandard.dll" TargetName="@(assemblyDirectory)/netstandard.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/plist-cil.dll" TargetName="@(assemblyDirectory)/plist-cil.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/runtime.osx.10.10-x64.CoreCompat.System.Drawing.dll" TargetName="@(assemblyDirectory)/runtime.osx.10.10-x64.CoreCompat.System.Drawing.dll" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/runtimeconfig.bin" TargetName="@(assemblyDirectory)/runtimeconfig.bin" Condition="HOST_MAC" />
-    <CopyFile Name="@(loaderDirectory)/uno-app-loader.dll" TargetName="@(assemblyDirectory)/uno-app-loader.dll" Condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.CSharp.dll" targetName="@(assemblyDirectory)/Microsoft.CSharp.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.VisualBasic.Core.dll" targetName="@(assemblyDirectory)/Microsoft.VisualBasic.Core.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.VisualBasic.dll" targetName="@(assemblyDirectory)/Microsoft.VisualBasic.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.Win32.Primitives.dll" targetName="@(assemblyDirectory)/Microsoft.Win32.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.Win32.Registry.dll" targetName="@(assemblyDirectory)/Microsoft.Win32.Registry.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.Win32.SystemEvents.dll" targetName="@(assemblyDirectory)/Microsoft.Win32.SystemEvents.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/Microsoft.macOS.dll" targetName="@(assemblyDirectory)/Microsoft.macOS.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/OpenTK.dll" targetName="@(assemblyDirectory)/OpenTK.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.AppContext.dll" targetName="@(assemblyDirectory)/System.AppContext.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Buffers.dll" targetName="@(assemblyDirectory)/System.Buffers.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Collections.Concurrent.dll" targetName="@(assemblyDirectory)/System.Collections.Concurrent.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Collections.Immutable.dll" targetName="@(assemblyDirectory)/System.Collections.Immutable.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Collections.NonGeneric.dll" targetName="@(assemblyDirectory)/System.Collections.NonGeneric.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Collections.Specialized.dll" targetName="@(assemblyDirectory)/System.Collections.Specialized.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Collections.dll" targetName="@(assemblyDirectory)/System.Collections.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ComponentModel.Annotations.dll" targetName="@(assemblyDirectory)/System.ComponentModel.Annotations.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ComponentModel.DataAnnotations.dll" targetName="@(assemblyDirectory)/System.ComponentModel.DataAnnotations.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ComponentModel.EventBasedAsync.dll" targetName="@(assemblyDirectory)/System.ComponentModel.EventBasedAsync.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ComponentModel.Primitives.dll" targetName="@(assemblyDirectory)/System.ComponentModel.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ComponentModel.TypeConverter.dll" targetName="@(assemblyDirectory)/System.ComponentModel.TypeConverter.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ComponentModel.dll" targetName="@(assemblyDirectory)/System.ComponentModel.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Configuration.ConfigurationManager.dll" targetName="@(assemblyDirectory)/System.Configuration.ConfigurationManager.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Configuration.dll" targetName="@(assemblyDirectory)/System.Configuration.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Console.dll" targetName="@(assemblyDirectory)/System.Console.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Core.dll" targetName="@(assemblyDirectory)/System.Core.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Data.Common.dll" targetName="@(assemblyDirectory)/System.Data.Common.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Data.DataSetExtensions.dll" targetName="@(assemblyDirectory)/System.Data.DataSetExtensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Data.dll" targetName="@(assemblyDirectory)/System.Data.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.Contracts.dll" targetName="@(assemblyDirectory)/System.Diagnostics.Contracts.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.Debug.dll" targetName="@(assemblyDirectory)/System.Diagnostics.Debug.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.DiagnosticSource.dll" targetName="@(assemblyDirectory)/System.Diagnostics.DiagnosticSource.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.FileVersionInfo.dll" targetName="@(assemblyDirectory)/System.Diagnostics.FileVersionInfo.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.Process.dll" targetName="@(assemblyDirectory)/System.Diagnostics.Process.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.StackTrace.dll" targetName="@(assemblyDirectory)/System.Diagnostics.StackTrace.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.TextWriterTraceListener.dll" targetName="@(assemblyDirectory)/System.Diagnostics.TextWriterTraceListener.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.Tools.dll" targetName="@(assemblyDirectory)/System.Diagnostics.Tools.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.TraceSource.dll" targetName="@(assemblyDirectory)/System.Diagnostics.TraceSource.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Diagnostics.Tracing.dll" targetName="@(assemblyDirectory)/System.Diagnostics.Tracing.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Drawing.Common.dll" targetName="@(assemblyDirectory)/System.Drawing.Common.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Drawing.Primitives.dll" targetName="@(assemblyDirectory)/System.Drawing.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Drawing.dll" targetName="@(assemblyDirectory)/System.Drawing.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Dynamic.Runtime.dll" targetName="@(assemblyDirectory)/System.Dynamic.Runtime.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Formats.Asn1.dll" targetName="@(assemblyDirectory)/System.Formats.Asn1.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Globalization.Calendars.dll" targetName="@(assemblyDirectory)/System.Globalization.Calendars.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Globalization.Extensions.dll" targetName="@(assemblyDirectory)/System.Globalization.Extensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Globalization.dll" targetName="@(assemblyDirectory)/System.Globalization.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.Compression.Brotli.dll" targetName="@(assemblyDirectory)/System.IO.Compression.Brotli.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.Compression.FileSystem.dll" targetName="@(assemblyDirectory)/System.IO.Compression.FileSystem.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.Compression.ZipFile.dll" targetName="@(assemblyDirectory)/System.IO.Compression.ZipFile.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.Compression.dll" targetName="@(assemblyDirectory)/System.IO.Compression.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.FileSystem.AccessControl.dll" targetName="@(assemblyDirectory)/System.IO.FileSystem.AccessControl.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.FileSystem.DriveInfo.dll" targetName="@(assemblyDirectory)/System.IO.FileSystem.DriveInfo.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.FileSystem.Primitives.dll" targetName="@(assemblyDirectory)/System.IO.FileSystem.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.FileSystem.Watcher.dll" targetName="@(assemblyDirectory)/System.IO.FileSystem.Watcher.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.FileSystem.dll" targetName="@(assemblyDirectory)/System.IO.FileSystem.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.IsolatedStorage.dll" targetName="@(assemblyDirectory)/System.IO.IsolatedStorage.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.MemoryMappedFiles.dll" targetName="@(assemblyDirectory)/System.IO.MemoryMappedFiles.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.Pipes.AccessControl.dll" targetName="@(assemblyDirectory)/System.IO.Pipes.AccessControl.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.Pipes.dll" targetName="@(assemblyDirectory)/System.IO.Pipes.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.UnmanagedMemoryStream.dll" targetName="@(assemblyDirectory)/System.IO.UnmanagedMemoryStream.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.IO.dll" targetName="@(assemblyDirectory)/System.IO.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Linq.Expressions.dll" targetName="@(assemblyDirectory)/System.Linq.Expressions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Linq.Parallel.dll" targetName="@(assemblyDirectory)/System.Linq.Parallel.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Linq.Queryable.dll" targetName="@(assemblyDirectory)/System.Linq.Queryable.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Linq.dll" targetName="@(assemblyDirectory)/System.Linq.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Memory.dll" targetName="@(assemblyDirectory)/System.Memory.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Http.Json.dll" targetName="@(assemblyDirectory)/System.Net.Http.Json.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Http.dll" targetName="@(assemblyDirectory)/System.Net.Http.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.HttpListener.dll" targetName="@(assemblyDirectory)/System.Net.HttpListener.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Mail.dll" targetName="@(assemblyDirectory)/System.Net.Mail.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.NameResolution.dll" targetName="@(assemblyDirectory)/System.Net.NameResolution.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.NetworkInformation.dll" targetName="@(assemblyDirectory)/System.Net.NetworkInformation.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Ping.dll" targetName="@(assemblyDirectory)/System.Net.Ping.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Primitives.dll" targetName="@(assemblyDirectory)/System.Net.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Quic.dll" targetName="@(assemblyDirectory)/System.Net.Quic.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Requests.dll" targetName="@(assemblyDirectory)/System.Net.Requests.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Security.dll" targetName="@(assemblyDirectory)/System.Net.Security.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.ServicePoint.dll" targetName="@(assemblyDirectory)/System.Net.ServicePoint.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.Sockets.dll" targetName="@(assemblyDirectory)/System.Net.Sockets.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.WebClient.dll" targetName="@(assemblyDirectory)/System.Net.WebClient.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.WebHeaderCollection.dll" targetName="@(assemblyDirectory)/System.Net.WebHeaderCollection.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.WebProxy.dll" targetName="@(assemblyDirectory)/System.Net.WebProxy.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.WebSockets.Client.dll" targetName="@(assemblyDirectory)/System.Net.WebSockets.Client.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.WebSockets.dll" targetName="@(assemblyDirectory)/System.Net.WebSockets.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Net.dll" targetName="@(assemblyDirectory)/System.Net.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Numerics.Vectors.dll" targetName="@(assemblyDirectory)/System.Numerics.Vectors.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Numerics.dll" targetName="@(assemblyDirectory)/System.Numerics.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ObjectModel.dll" targetName="@(assemblyDirectory)/System.ObjectModel.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Private.CoreLib.dll" targetName="@(assemblyDirectory)/System.Private.CoreLib.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Private.DataContractSerialization.dll" targetName="@(assemblyDirectory)/System.Private.DataContractSerialization.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Private.Uri.dll" targetName="@(assemblyDirectory)/System.Private.Uri.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Private.Xml.Linq.dll" targetName="@(assemblyDirectory)/System.Private.Xml.Linq.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Private.Xml.dll" targetName="@(assemblyDirectory)/System.Private.Xml.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.DispatchProxy.dll" targetName="@(assemblyDirectory)/System.Reflection.DispatchProxy.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.Emit.ILGeneration.dll" targetName="@(assemblyDirectory)/System.Reflection.Emit.ILGeneration.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.Emit.Lightweight.dll" targetName="@(assemblyDirectory)/System.Reflection.Emit.Lightweight.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.Emit.dll" targetName="@(assemblyDirectory)/System.Reflection.Emit.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.Extensions.dll" targetName="@(assemblyDirectory)/System.Reflection.Extensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.Metadata.dll" targetName="@(assemblyDirectory)/System.Reflection.Metadata.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.Primitives.dll" targetName="@(assemblyDirectory)/System.Reflection.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.TypeExtensions.dll" targetName="@(assemblyDirectory)/System.Reflection.TypeExtensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Reflection.dll" targetName="@(assemblyDirectory)/System.Reflection.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Resources.Reader.dll" targetName="@(assemblyDirectory)/System.Resources.Reader.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Resources.ResourceManager.dll" targetName="@(assemblyDirectory)/System.Resources.ResourceManager.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Resources.Writer.dll" targetName="@(assemblyDirectory)/System.Resources.Writer.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.CompilerServices.Unsafe.dll" targetName="@(assemblyDirectory)/System.Runtime.CompilerServices.Unsafe.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.CompilerServices.VisualC.dll" targetName="@(assemblyDirectory)/System.Runtime.CompilerServices.VisualC.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Extensions.dll" targetName="@(assemblyDirectory)/System.Runtime.Extensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Handles.dll" targetName="@(assemblyDirectory)/System.Runtime.Handles.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.InteropServices.RuntimeInformation.dll" targetName="@(assemblyDirectory)/System.Runtime.InteropServices.RuntimeInformation.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.InteropServices.dll" targetName="@(assemblyDirectory)/System.Runtime.InteropServices.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Intrinsics.dll" targetName="@(assemblyDirectory)/System.Runtime.Intrinsics.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Loader.dll" targetName="@(assemblyDirectory)/System.Runtime.Loader.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Numerics.dll" targetName="@(assemblyDirectory)/System.Runtime.Numerics.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Serialization.Formatters.dll" targetName="@(assemblyDirectory)/System.Runtime.Serialization.Formatters.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Serialization.Json.dll" targetName="@(assemblyDirectory)/System.Runtime.Serialization.Json.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Serialization.Primitives.dll" targetName="@(assemblyDirectory)/System.Runtime.Serialization.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Serialization.Xml.dll" targetName="@(assemblyDirectory)/System.Runtime.Serialization.Xml.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.Serialization.dll" targetName="@(assemblyDirectory)/System.Runtime.Serialization.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Runtime.dll" targetName="@(assemblyDirectory)/System.Runtime.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.AccessControl.dll" targetName="@(assemblyDirectory)/System.Security.AccessControl.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Claims.dll" targetName="@(assemblyDirectory)/System.Security.Claims.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.Algorithms.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.Algorithms.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.Cng.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.Cng.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.Csp.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.Csp.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.Encoding.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.Encoding.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.OpenSsl.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.OpenSsl.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.Primitives.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.Primitives.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.ProtectedData.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.ProtectedData.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Cryptography.X509Certificates.dll" targetName="@(assemblyDirectory)/System.Security.Cryptography.X509Certificates.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Permissions.dll" targetName="@(assemblyDirectory)/System.Security.Permissions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Principal.Windows.dll" targetName="@(assemblyDirectory)/System.Security.Principal.Windows.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.Principal.dll" targetName="@(assemblyDirectory)/System.Security.Principal.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.SecureString.dll" targetName="@(assemblyDirectory)/System.Security.SecureString.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Security.dll" targetName="@(assemblyDirectory)/System.Security.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ServiceModel.Web.dll" targetName="@(assemblyDirectory)/System.ServiceModel.Web.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ServiceProcess.dll" targetName="@(assemblyDirectory)/System.ServiceProcess.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Text.Encoding.CodePages.dll" targetName="@(assemblyDirectory)/System.Text.Encoding.CodePages.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Text.Encoding.Extensions.dll" targetName="@(assemblyDirectory)/System.Text.Encoding.Extensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Text.Encoding.dll" targetName="@(assemblyDirectory)/System.Text.Encoding.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Text.Encodings.Web.dll" targetName="@(assemblyDirectory)/System.Text.Encodings.Web.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Text.Json.dll" targetName="@(assemblyDirectory)/System.Text.Json.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Text.RegularExpressions.dll" targetName="@(assemblyDirectory)/System.Text.RegularExpressions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Channels.dll" targetName="@(assemblyDirectory)/System.Threading.Channels.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Overlapped.dll" targetName="@(assemblyDirectory)/System.Threading.Overlapped.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Tasks.Dataflow.dll" targetName="@(assemblyDirectory)/System.Threading.Tasks.Dataflow.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Tasks.Extensions.dll" targetName="@(assemblyDirectory)/System.Threading.Tasks.Extensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Tasks.Parallel.dll" targetName="@(assemblyDirectory)/System.Threading.Tasks.Parallel.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Tasks.dll" targetName="@(assemblyDirectory)/System.Threading.Tasks.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Thread.dll" targetName="@(assemblyDirectory)/System.Threading.Thread.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.ThreadPool.dll" targetName="@(assemblyDirectory)/System.Threading.ThreadPool.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.Timer.dll" targetName="@(assemblyDirectory)/System.Threading.Timer.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Threading.dll" targetName="@(assemblyDirectory)/System.Threading.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Transactions.Local.dll" targetName="@(assemblyDirectory)/System.Transactions.Local.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Transactions.dll" targetName="@(assemblyDirectory)/System.Transactions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.ValueTuple.dll" targetName="@(assemblyDirectory)/System.ValueTuple.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Web.HttpUtility.dll" targetName="@(assemblyDirectory)/System.Web.HttpUtility.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Web.dll" targetName="@(assemblyDirectory)/System.Web.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Windows.Extensions.dll" targetName="@(assemblyDirectory)/System.Windows.Extensions.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Windows.dll" targetName="@(assemblyDirectory)/System.Windows.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.Linq.dll" targetName="@(assemblyDirectory)/System.Xml.Linq.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.ReaderWriter.dll" targetName="@(assemblyDirectory)/System.Xml.ReaderWriter.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.Serialization.dll" targetName="@(assemblyDirectory)/System.Xml.Serialization.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.XDocument.dll" targetName="@(assemblyDirectory)/System.Xml.XDocument.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.XPath.XDocument.dll" targetName="@(assemblyDirectory)/System.Xml.XPath.XDocument.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.XPath.dll" targetName="@(assemblyDirectory)/System.Xml.XPath.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.XmlDocument.dll" targetName="@(assemblyDirectory)/System.Xml.XmlDocument.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.XmlSerializer.dll" targetName="@(assemblyDirectory)/System.Xml.XmlSerializer.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.Xml.dll" targetName="@(assemblyDirectory)/System.Xml.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/System.dll" targetName="@(assemblyDirectory)/System.dll" condition="HOST_MAC" />
+    <!--<copyFile name="@(loaderDirectory)/UnoCore.dll" targetName="@(assemblyDirectory)/UnoCore.dll" condition="HOST_MAC" />-->
+    <copyFile name="@(loaderDirectory)/WindowsBase.dll" targetName="@(assemblyDirectory)/WindowsBase.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/createdump" targetName="@(assemblyDirectory)/createdump" condition="HOST_MAC" isExecutable="true" />
+    <copyFile name="@(loaderDirectory)/libSystem.Globalization.Native.dylib" targetName="@(assemblyDirectory)/libSystem.Globalization.Native.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libSystem.IO.Compression.Native.dylib" targetName="@(assemblyDirectory)/libSystem.IO.Compression.Native.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libSystem.Native.dylib" targetName="@(assemblyDirectory)/libSystem.Native.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libSystem.Net.Security.Native.dylib" targetName="@(assemblyDirectory)/libSystem.Net.Security.Native.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libSystem.Security.Cryptography.Native.Apple.dylib" targetName="@(assemblyDirectory)/libSystem.Security.Cryptography.Native.Apple.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libSystem.Security.Cryptography.Native.OpenSsl.dylib" targetName="@(assemblyDirectory)/libSystem.Security.Cryptography.Native.OpenSsl.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libX11.6.dylib" targetName="@(assemblyDirectory)/libX11.6.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libXau.6.dylib" targetName="@(assemblyDirectory)/libXau.6.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libXdmcp.6.dylib" targetName="@(assemblyDirectory)/libXdmcp.6.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libXext.6.dylib" targetName="@(assemblyDirectory)/libXext.6.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libXrender.1.dylib" targetName="@(assemblyDirectory)/libXrender.1.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libcairo.2.dylib" targetName="@(assemblyDirectory)/libcairo.2.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libclrjit.dylib" targetName="@(assemblyDirectory)/libclrjit.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libcoreclr.dylib" targetName="@(assemblyDirectory)/libcoreclr.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libdbgshim.dylib" targetName="@(assemblyDirectory)/libdbgshim.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libfontconfig.1.dylib" targetName="@(assemblyDirectory)/libfontconfig.1.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libfreetype.6.dylib" targetName="@(assemblyDirectory)/libfreetype.6.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libgdiplus.0.dylib" targetName="@(assemblyDirectory)/libgdiplus.0.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libgdiplus.dylib" targetName="@(assemblyDirectory)/libgdiplus.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libgif.dylib" targetName="@(assemblyDirectory)/libgif.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libglib-2.0.0.dylib" targetName="@(assemblyDirectory)/libglib-2.0.0.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libhostfxr.dylib" targetName="@(assemblyDirectory)/libhostfxr.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libhostpolicy.dylib" targetName="@(assemblyDirectory)/libhostpolicy.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libintl.8.dylib" targetName="@(assemblyDirectory)/libintl.8.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libjpeg.9.dylib" targetName="@(assemblyDirectory)/libjpeg.9.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libmscordaccore.dylib" targetName="@(assemblyDirectory)/libmscordaccore.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libmscordbi.dylib" targetName="@(assemblyDirectory)/libmscordbi.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libpcre.1.dylib" targetName="@(assemblyDirectory)/libpcre.1.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libpixman-1.0.dylib" targetName="@(assemblyDirectory)/libpixman-1.0.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libpng16.16.dylib" targetName="@(assemblyDirectory)/libpng16.16.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libtiff.5.dylib" targetName="@(assemblyDirectory)/libtiff.5.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libxcb-render.0.dylib" targetName="@(assemblyDirectory)/libxcb-render.0.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libxcb-shm.0.dylib" targetName="@(assemblyDirectory)/libxcb-shm.0.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/libxcb.1.dylib" targetName="@(assemblyDirectory)/libxcb.1.dylib" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/mscorlib.dll" targetName="@(assemblyDirectory)/mscorlib.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/netstandard.dll" targetName="@(assemblyDirectory)/netstandard.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/plist-cil.dll" targetName="@(assemblyDirectory)/plist-cil.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/runtime.osx.10.10-x64.CoreCompat.System.Drawing.dll" targetName="@(assemblyDirectory)/runtime.osx.10.10-x64.CoreCompat.System.Drawing.dll" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/runtimeconfig.bin" targetName="@(assemblyDirectory)/runtimeconfig.bin" condition="HOST_MAC" />
+    <copyFile name="@(loaderDirectory)/uno-app-loader.dll" targetName="@(assemblyDirectory)/uno-app-loader.dll" condition="HOST_MAC" />
 
-</Extensions>
+</extensions>

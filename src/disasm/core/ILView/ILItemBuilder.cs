@@ -45,11 +45,11 @@ namespace Uno.Disasm.ILView
             // Find typed output files
             foreach (var p in root.Properties)
             {
-                if (p.Key.EndsWith(".TargetDirectory"))
+                if (p.Key.EndsWith(".targetDirectory"))
                 {
-                    var key = p.Key.Replace(".TargetDirectory", "");
+                    var key = p.Key.Replace(".targetDirectory", "");
                     var containingDir = env.GetOutputPath(p.Key);
-                    var folder = new BundleFolderItem(containingDir, key.Replace("File", " Files"));
+                    var folder = new BundleFolderItem(containingDir, key.Replace("File", " files"));
 
                     foreach (var f in build.Compiler.Environment.Enumerate(key))
                         folder.AddFile(containingDir, f.String);
