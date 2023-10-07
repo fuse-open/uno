@@ -8,7 +8,7 @@ Unreleased
 - Port codebase to .NET 6.0 and Visual Studio 2022 (#424)
 - Update default output directory (#435)
 - Update packaging for .NET 6.0 (#436)
-- Remove version directory inside built libraries (#437)
+- Remove version directory inside built libraries (#437, #515)
 - Update terminology on library vs. package (#440, #502)
 - Print `arm` and `arm64` architectures in lowercase (#468)
 - Use the new `HttpClient` class on .NET 6.0 (#467)
@@ -33,18 +33,22 @@ Unreleased
 - Add `outputType` property (#483)
 - Add `outputType.appTest` option (#494)
 
+### uxl
+- Use `lowerCamelCase` syntax (#517, #519, #520)
+
 ### Android
 - Make `arm64` default for debug builds (#475)
+- Upgrade to Gradle 8.2 and JDK17 (#516, #518)
 
 ### iOS
 - Make iOS 11 the default deployment target (#476)
 
 ### macOS
-- Use Microsoft.macOS.SDK in app loader (#438)
+- Use `Microsoft.macOS.SDK` in app loader (#438)
 - Remove macOS binaries from package (#439)
 - Get macOS app loader from NuGet (#450)
-- Remove xamarin-mac dependency (#479)
-- Use xcode-devteams for information (#511)
+- Remove `xamarin-mac` dependency (#479)
+- Use `xcode-devteams` for information (#511)
 - Fix native library loading on .NET 6.0 (#513)
 
 ### Compiler
@@ -93,7 +97,10 @@ Unreleased
 ### Uno.Permissions
 - Remove legacy `Uno.Permissions` library (#443)
 
-[`v2.9.2...v3.0.0-beta.9`](https://github.com/fuse-open/uno/compare/v2.9.2...v3.0.0-beta.9)
+### Other changes
+- Kill tests after 15 minutes on CI (#521)
+
+[`v2.9.2...v3.0.0-beta.10`](https://github.com/fuse-open/uno/compare/v2.9.2...v3.0.0-beta.10)
 
 2.9.2
 -----
