@@ -1,6 +1,6 @@
 {
   "name": "@fuse-open/uno",
-  "version": "3.0.0-beta.9",
+  "version": "3.0.0-beta.10",
   "description": "Extremely fast, native C#-dialect and powerful tooling for mobile and desktop developers.",
   "main": "index.js",
   "types": "index.d.ts",
