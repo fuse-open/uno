@@ -4,8 +4,8 @@
   "Publisher": "Fuse Open",
   "Includes": [
     "extensions/EmptyEnumerable.uno:Source",
-    "extensions/Enumerableextensions.uno:Source",
-    "extensions/IListextensions.uno:Source",
+    "extensions/EnumerableExtensions.uno:Source",
+    "extensions/IListExtensions.uno:Source",
     "extensions/OfType.uno:Source",
     "extensions/OrderBy.uno:Source",
     "extensions/Select.uno:Source",
