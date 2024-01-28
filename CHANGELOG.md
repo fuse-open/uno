@@ -4,6 +4,14 @@ Uno Changelog
 Unreleased
 ----------
 
+2.9.3
+-----
+
+### Uno.Collections
+- Fix case mismatch in project file (#523)
+
+[`v2.9.2...v2.9.3`](https://github.com/fuse-open/uno/compare/v2.9.2...v2.9.3)
+
 2.9.2
 -----
 
