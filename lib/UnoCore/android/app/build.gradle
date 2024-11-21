@@ -1,7 +1,6 @@
 apply plugin: 'com.android.@(LIBRARY:defined:test('library', 'application'))'
 #if @(KOTLIN:defined)
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 #endif
 
 configurations { native_implementation }
@@ -42,8 +41,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion @(sdk.compileVersion)
-    buildToolsVersion '@(sdk.buildToolsVersion)'
+    compileSdk @(sdk.compileVersion)
     ndkVersion '@(ndk.version)'
 
     namespace '@(activity.package)'
@@ -52,8 +50,8 @@ android {
 #if !@(LIBRARY:defined)
         applicationId = '@(activity.package)'
 #endif
-        minSdkVersion @(sdk.minVersion)
-        targetSdkVersion @(sdk.targetVersion)
+        minSdk @(sdk.minVersion)
+        targetSdk @(sdk.targetVersion)
         versionCode = @(project.android.versionCode)
         versionName = '@(project.android.versionName)'
         multiDexEnabled @(project.android.multiDexEnabled:isSet:test(@(project.android.multiDexEnabled:bool),true))
@@ -151,6 +149,18 @@ android {
     lintOptions {
         checkReleaseBuilds = false
     }
+
+#if @(KOTLIN:defined)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+#endif
+
+    @(gradle.android.end:join('\n'))
 }
 
 @(gradle.buildFile.end:join('\n'))

@@ -21,10 +21,10 @@
     <set ndk.platformVersion="@(project.android.ndk.platformVersion || config.android.ndk.platformVersion || '16')" />
     <set ndk.version="@(project.android.ndk.version || config.android.ndk.version || '21.4.7075529')" />
     <set sdk.buildToolsVersion="@(project.android.sdk.buildToolsVersion || config.android.sdk.buildToolsVersion || '33.0.1')" />
-    <set sdk.compileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '33')" />
+    <set sdk.compileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '34')" />
     <set sdk.directory="@(config.android.sdk:path || config.android.sdk.directory:path || ANDROID_SDK:env)" />
-    <set sdk.minVersion="@(project.android.sdk.minVersion || config.android.sdk.minVersion || '19')" />
-    <set sdk.targetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '33')" />
+    <set sdk.minVersion="@(project.android.sdk.minVersion || config.android.sdk.minVersion || '21')" />
+    <set sdk.targetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '34')" />
 
     <!-- Build properties -->
 
@@ -55,6 +55,7 @@
     <declare element="gradle.dependency.debugImplementation" />
     <declare element="gradle.dependency.releaseImplementation" />
     <declare element="gradle.dependency.nativeImplementation" />
+    <declare element="gradle.android.end" />
     <declare element="gradle.buildFile.end" />
     <declare element="gradle.repository" />
     <declare element="gradle.buildScript.repository" />

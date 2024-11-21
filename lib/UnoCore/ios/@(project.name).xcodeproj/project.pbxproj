@@ -518,7 +518,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = @(bundleIdentifier);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = @(project.ios.swiftVersion || "3.0");
+				SWIFT_VERSION = @(project.ios.swiftVersion || "5.0");
 			};
 			name = Debug;
 		};
@@ -567,7 +567,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = @(bundleIdentifier);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = @(project.ios.swiftVersion || "3.0");
+				SWIFT_VERSION = @(project.ios.swiftVersion || "5.0");
 #if @(LIBRARY:defined)
 				WRAPPER_EXTENSION = framework;
 #else
