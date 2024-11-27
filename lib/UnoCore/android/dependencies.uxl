@@ -6,13 +6,12 @@
     <require gradle.buildScript.repository="mavenCentral()" />
     <require gradle.repository="maven { url 'https://maven.google.com' }" />
 
-    <require gradle.dependency.classPath="com.android.tools.build:gradle:8.1.0" />
+    <require gradle.dependency.classPath="com.android.tools.build:gradle:8.1.4" />
     <require gradle.dependency.implementation="androidx.appcompat:appcompat:1.4.2" />
     <require gradle.dependency.implementation="com.google.android.material:material:1.6.1" />
 
     <!-- Kotlin support. -->
-    <require condition="KOTLIN" gradle.dependency.implementation="androidx.core:core-ktx:+" />
-    <require condition="KOTLIN" gradle.dependency.implementation="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.70" />
-    <require condition="KOTLIN" gradle.dependency.classPath="org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.70" />
+    <require condition="KOTLIN" gradle.dependency.implementation="androidx.core:core-ktx:1.10.1" />
+    <require condition="KOTLIN" gradle.dependency.classPath="org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.25" />
 
 </extensions>

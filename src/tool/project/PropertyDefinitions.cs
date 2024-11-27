@@ -58,7 +58,7 @@ namespace Uno.ProjectFormat
             {"ios.statusBarHidden", PropertyType.Bool, "!$(mobile.showStatusbar)"},
             {"ios.statusBarStyle", PropertyType.String, "Default"},
             {"ios.defines", PropertyType.String},
-            {"ios.deploymentTarget", PropertyType.String, "11.0"},
+            {"ios.deploymentTarget", PropertyType.String, "13.0"},
             {"ios.developmentTeam", PropertyType.String},
             {"ios.icons.iphone_20_2x", PropertyType.Path, "$(icon)"},
             {"ios.icons.iphone_20_3x", PropertyType.Path, "$(icon)"},
