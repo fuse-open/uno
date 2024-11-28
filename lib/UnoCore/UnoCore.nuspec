@@ -9,7 +9,7 @@
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/fuse-open/uno/</projectUrl>
     <description>UnoCore built for .NET 6.0</description>
-    <copyright>Copyright 2018-2023</copyright>
+    <copyright>Copyright 2018-2024</copyright>
   </metadata>
   <files>
     <file src="build\release\dotnet\*.dll" target="lib\net6.0" />
