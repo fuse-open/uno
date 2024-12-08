@@ -39,9 +39,12 @@ Unreleased
 ### Android
 - Make `arm64` default for debug builds (#475)
 - Upgrade to Gradle 8.2 and JDK17 (#516, #518)
+- Upgrade SDKs (target 34), Gradle plugin and Kotlin (#525)
 
 ### iOS
-- Make iOS 11 the default deployment target (#476)
+- ~~Make iOS 11 the default deployment target (#476)~~
+- Make iOS 13 the default deployment target (#525)
+- Upgrade Swift to version 5 (#525)
 
 ### macOS
 - Use `Microsoft.macOS.SDK` in app loader (#438)
@@ -100,7 +103,7 @@ Unreleased
 ### Other changes
 - Kill tests after 15 minutes on CI (#521)
 
-[`v2.9.2...v3.0.0-beta.10`](https://github.com/fuse-open/uno/compare/v2.9.2...v3.0.0-beta.10)
+[`v2.9.3...v3.0.0-beta.11`](https://github.com/fuse-open/uno/compare/v2.9.3...v3.0.0-beta.11)
 
 2.9.3
 -----
