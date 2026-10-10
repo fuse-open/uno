@@ -131,6 +131,8 @@
     "ios/Uno-iOS.uxl:extensions",
     "ios/Uno-iOS/AppDelegate.h:file",
     "ios/Uno-iOS/AppDelegate.mm:file",
+    "ios/Uno-iOS/SceneDelegate.h:file",
+    "ios/Uno-iOS/SceneDelegate.mm:file",
     "ios/Uno-iOS/Context.h:file",
     "ios/Uno-iOS/Context.mm:objcsource:iOS",
     "ios/Uno-iOS/Main.mm:file",
