@@ -38,8 +38,20 @@
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
 		<key>UISceneConfigurations</key>
-		<dict/>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>uApp</string>
+					<key>UISceneDelegateClassName</key>
+					<string>uAppSceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 
 	<key>CFBundleVersion</key>
