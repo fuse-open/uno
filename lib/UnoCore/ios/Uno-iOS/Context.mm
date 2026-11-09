@@ -127,21 +127,27 @@ static uContext* instance = nil;
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+// Delivers an incoming URI to the uno app, raising InterAppInvoke.OnReceivedURI.
+- (void)openURI:(NSURL *)url
 {
     @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call([url absoluteString])};
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    [self openURI:url];
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary*)options
 {
-    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call([url absoluteString])};
+    [self openURI:url];
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSURL *)url
 {
-    @{Uno.Platform.EventSources.InterAppInvoke.OnReceivedURI(string):call([url absoluteString])};
+    [self openURI:url];
     return YES;
 }
 

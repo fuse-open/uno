@@ -1,6 +1,13 @@
 #include <Uno-iOS/AppDelegate.h>
 #include <Uno-iOS/Context.h>
 #include <Window.h>
+
+// The scene delegate class must be declared at file scope; declaring it inside
+// @implementation uAppDelegate is not legal Objective-C.
+#if defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
+#include <Uno-iOS/SceneDelegate.h>
+#endif
+
 @(appDelegate.sourceFile.declaration:join())
 
 @interface uAppDelegate()
@@ -64,6 +71,30 @@
     @(appDelegate.sourceFile.openURLLegacy:join('\n    '));
     return result;
 }
+
+#if defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
+// Required for the UIScene life cycle (mandatory when linked against the
+// iOS 26 SDK and newer). UIKit asks for this configuration because
+// UIApplicationSceneManifest in the generated Info.plist declares an empty
+// UISceneConfigurations; the uno window itself is created by uAppDelegate
+// and attached to the scene by uAppSceneDelegate.
+- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options
+{
+    if (@available(iOS 13.0, *))
+    {
+        UISceneConfiguration* configuration = [UISceneConfiguration
+            configurationWithName:@"uApp"
+            sessionRole:connectingSceneSession.role];
+        configuration.delegateClass = [uAppSceneDelegate class];
+        return configuration;
+    }
+    return nil;
+}
+
+- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)discardedSceneSessions
+{
+}
+#endif
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
