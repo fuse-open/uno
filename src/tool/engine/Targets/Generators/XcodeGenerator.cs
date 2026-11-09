@@ -20,10 +20,21 @@ namespace Uno.Build.Targets.Generators
                 // Files
                 var publicHeaders = new HashSet<string>(env.GetSet("xcode.publicHeader", true));
 
+                // Xcode (since 27) requires PBXFileReference paths to match the actual
+                // capitalization on disk, even on case-insensitive volumes. The build
+                // copies all foreign sources/headers into a single output directory, so a
+                // casing inconsistency between packages (e.g. one declaring "iOS/..." and
+                // another "ios/...") can make the on-disk folder name differ from the path
+                // recorded in the pbxproj. Resolve the real on-disk casing here so the
+                // generated project always matches the filesystem.
+                var realCaseCache = new Dictionary<string, string>(StringComparer.Ordinal);
+                var headerDir = env.GetOutputPath("headerDirectory");
+                var sourceDir = env.GetOutputPath("sourceDirectory");
+
                 var headers = env.GetSet("headerFile", true)
                     .Distinct()
                     .Select(f => new XcodeFile(
-                        "@(headerDirectory)/" + f,
+                        "@(headerDirectory)/" + GetRealRelativePath(headerDir, f, realCaseCache),
                         "Headers",
                         "<group>",
                         publicHeaders.Contains(f) ? "{ATTRIBUTES = (Public, ); }" : null))
@@ -31,7 +42,7 @@ namespace Uno.Build.Targets.Generators
 
                 var sources = env.GetSet("sourceFile", true)
                     .Distinct()
-                    .Select(f => new XcodeFile("@(sourceDirectory)/" + f, "Sources", "<group>"))
+                    .Select(f => new XcodeFile("@(sourceDirectory)/" + GetRealRelativePath(sourceDir, f, realCaseCache), "Sources", "<group>"))
                     .ToList();
 
                 var frameworks = env.GetSet("xcode.framework", true)
@@ -203,6 +214,58 @@ namespace Uno.Build.Targets.Generators
         }
 
         static string Indent(int c) => new string('\t', c);
+
+        /// <summary>
+        /// Resolves the actual on-disk casing of a source/header file path relative to its
+        /// output directory, so the generated pbxproj matches the filesystem. Falls back to
+        /// the declared path if the file or any of its ancestor directories does not exist.
+        /// </summary>
+        static string GetRealRelativePath(string baseDir, string unixRelativePath, Dictionary<string, string> cache)
+        {
+            if (string.IsNullOrEmpty(unixRelativePath))
+                return unixRelativePath;
+
+            var parts = unixRelativePath.Split('/');
+            var current = baseDir;
+            var result = new string[parts.Length];
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                var part = parts[i];
+                var real = part;
+
+                if (!string.IsNullOrEmpty(part) && part != "." && part != ".." && current != null && Directory.Exists(current))
+                {
+                    if (!cache.TryGetValue(current, out var listing))
+                    {
+                        try { listing = string.Join("\0", Directory.EnumerateFileSystemEntries(current)); }
+                        catch { listing = string.Empty; }
+                        cache[current] = listing;
+                    }
+
+                    var fallback = (string)null;
+                    foreach (var e in listing.Split('\0'))
+                    {
+                        var name = Path.GetFileName(e);
+                        if (string.Equals(name, part, StringComparison.Ordinal))
+                        {
+                            real = name;
+                            fallback = null;
+                            break;
+                        }
+                        if (fallback == null && string.Equals(name, part, StringComparison.OrdinalIgnoreCase))
+                            fallback = name;
+                    }
+                    if (real == part && fallback != null)
+                        real = fallback;
+                }
+
+                result[i] = real;
+                current = current != null ? Path.Combine(current, real) : null;
+            }
+
+            return string.Join("/", result);
+        }
 
         static string FindCodeSigningDevelopmentTeam(Shell shell)
         {
