@@ -50,6 +50,9 @@ To support building Android apps, we need to know where your [Android SDK](https
 is installed. Running `npm install android-build-tools@2.x -g` will set this up automatically, or you can
 specify other locations as demonstrated below.
 
+If these are not configured, Uno looks for the Android SDK in the standard install locations, and for a
+JDK 17 or later in the Android Studio installation and in common JDK install directories.
+
 ### Windows
 
 ```javascript

@@ -1,7 +1,4 @@
 apply plugin: 'com.android.@(LIBRARY:defined:test('library', 'application'))'
-#if @(KOTLIN:defined)
-apply plugin: 'kotlin-android'
-#endif
 
 configurations { native_implementation }
 
@@ -151,12 +148,10 @@ android {
     }
 
 #if @(KOTLIN:defined)
+    // Kotlin is compiled by AGP itself, which requires Java 11 for the sources it compiles.
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 #endif
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Uno.Build.Targets.Utilities;
 using Uno.CLI;
 using Uno.Configuration;
 using Uno.Diagnostics;
@@ -10,7 +11,7 @@ namespace Uno.Build.Adb
 {
     public class AdbRunner
     {
-        static string SdkDirectory => UnoConfig.Current.GetFullPath("android.sdk", "android.sdk.directory");
+        static string SdkDirectory => AndroidToolchain.ResolveSdk();
         static bool IgnoreNetworkDevices => UnoConfig.Current.GetBool("android.ignoreNetworkDevices");
 
         readonly Shell _shell;

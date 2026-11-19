@@ -7,9 +7,13 @@ cd "`dirname "$0"`"
 #if !@(sdk.directory:isSet)
 echo "ERROR: Could not locate the Android SDK." >&2
 echo "" >&2
-echo "This dependency can be acquired by installing 'android-build-tools':" >&2
+echo "Install the Android SDK using Android Studio, then either install 'android-build-tools':" >&2
 echo "" >&2
 echo "    npm install android-build-tools@2.x -g" >&2
+echo "" >&2
+echo "or point Uno at an existing installation by adding this to ~/.unoconfig:" >&2
+echo "" >&2
+echo "    android.sdk: /path/to/Android/sdk" >&2
 echo "" >&2
 echo "After installing, pass --force to make sure the new configuration is picked up." >&2
 echo "" >&2

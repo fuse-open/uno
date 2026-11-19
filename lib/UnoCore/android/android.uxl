@@ -17,14 +17,14 @@
 
     <!-- Build tools config -->
 
-    <set jdk.directory="@(config.java.jdk:path || config.java.jdk.directory:path || JAVA_HOME:env)" />
-    <set ndk.platformVersion="@(project.android.ndk.platformVersion || config.android.ndk.platformVersion || '16')" />
-    <set ndk.version="@(project.android.ndk.version || config.android.ndk.version || '21.4.7075529')" />
-    <set sdk.buildToolsVersion="@(project.android.sdk.buildToolsVersion || config.android.sdk.buildToolsVersion || '33.0.1')" />
-    <set sdk.compileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '34')" />
-    <set sdk.directory="@(config.android.sdk:path || config.android.sdk.directory:path || ANDROID_SDK:env)" />
+    <set jdk.directory="@(java.jdk:path || config.java.jdk:path || config.java.jdk.directory:path || JAVA_HOME:env)" />
+    <set ndk.platformVersion="@(project.android.ndk.platformVersion || config.android.ndk.platformVersion || '21')" />
+    <set ndk.version="@(project.android.ndk.version || config.android.ndk.version || '30.0.16248370')" />
+    <set sdk.buildToolsVersion="@(project.android.sdk.buildToolsVersion || config.android.sdk.buildToolsVersion || '36.0.0')" />
+    <set sdk.compileVersion="@(project.android.sdk.compileVersion || config.android.sdk.compileVersion || '36')" />
+    <set sdk.directory="@(android.sdk:path || config.android.sdk:path || config.android.sdk.directory:path || ANDROID_SDK:env || ANDROID_HOME:env || ANDROID_SDK_ROOT:env)" />
     <set sdk.minVersion="@(project.android.sdk.minVersion || config.android.sdk.minVersion || '21')" />
-    <set sdk.targetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '34')" />
+    <set sdk.targetVersion="@(project.android.sdk.targetVersion || config.android.sdk.targetVersion || '36')" />
 
     <!-- Build properties -->
 
@@ -112,7 +112,7 @@
 
     <!-- STL config -->
 
-    <set STL="c++_static" />
+    <set STL="c++_shared" />
 
     <!-- C++ source -->
 
