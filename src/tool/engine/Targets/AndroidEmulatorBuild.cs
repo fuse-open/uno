@@ -9,7 +9,7 @@ namespace Uno.Build.Targets
 
         public override void Initialize(IEnvironment env)
         {
-            env.Define("ANDROID");
+            base.Initialize(env);
             env.Define("ANDROID_EMU");
         }
     }

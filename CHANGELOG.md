@@ -38,8 +38,15 @@ Unreleased
 
 ### Android
 - Make `arm64` default for debug builds (#475)
-- Upgrade to Gradle 8.2 and JDK17 (#516, #518)
-- Upgrade SDKs (target 34), Gradle plugin and Kotlin (#525)
+- Upgrade to Gradle 9.9, Android Gradle plugin 9.5 and JDK 17 (#516, #518)
+- Compile Kotlin sources with the built-in Kotlin support of AGP 9, instead of applying `kotlin-android` and pinning a Kotlin version
+- Compile against and target Android SDK 36 (#525)
+- Auto-detect the Android SDK and a JDK 17 or later when `android.sdk` and `java.jdk` are not configured
+- Point the generated Android Studio project at a JDK 17 or later, instead of the hardcoded 1.8
+- Upgrade the default NDK to 30, which aligns native libraries to 16 KB memory pages
+- Use the shared C++ standard library (`STL=c++_shared`)
+- Draw the app edge-to-edge, as Android 15 and later require, instead of insetting the window by the system bars
+- Require Android platform 21 in the native build (`ndk.platformVersion`) and CMake 3.22
 
 ### iOS
 - ~~Make iOS 11 the default deployment target (#476)~~

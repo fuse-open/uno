@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Uno.Build.Targets.Generators;
+using Uno.Build.Targets.Utilities;
 using Uno.Compiler.API;
 using Uno.Compiler.API.Backends;
 using Uno.Compiler.Backends.CPlusPlus;
@@ -25,6 +26,7 @@ namespace Uno.Build.Targets
         public override void Initialize(IEnvironment env)
         {
             env.Define("ANDROID");
+            AndroidToolchain.SetDefaults(env);
         }
 
         public override void Configure(ICompiler compiler)
