@@ -62,7 +62,12 @@ namespace Uno.Configuration.Format
                         {
                             StuffItem value;
                             if (TryGetValue(item.Key, out value))
+                            {
+                                while (value.Next != null)
+                                    value = value.Next;
+
                                 value.Next = item;
+                            }
                             else
                                 this[item.Key] = item;
                             break;
