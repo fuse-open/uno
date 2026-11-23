@@ -1,3 +1,6 @@
-if DOTNET && HOST_MAC && !CONSOLE && !LIBRARY && !PREVIEW {
+if DOTNET && HOST_MAC && !CONSOLE && !LIBRARY && !PREVIEW && HOST_X64 {
     "mac-x64": "https://www.nuget.org/api/v2/package/uno-mac-loader-x64/3.0.0-beta.2"
+}
+if DOTNET && HOST_MAC && !CONSOLE && !LIBRARY && !PREVIEW && HOST_ARM64 {
+    "mac-arm64": "https://www.nuget.org/api/v2/package/uno-mac-loader-arm64/3.0.0-beta.2"
 }
