@@ -129,7 +129,7 @@ namespace Uno.Build.Libraries
                     return new SourceBundle(project.Name);
                 }
 
-                if (result.Source.FullPath != project.FullPath || startup)
+                if (startup || result.Source.FullPath != project.FullPath && !IsBuildOf(result, project))
                 {
                     Log.Error(src, null, "Multiple projects or libraries with the name " + project.Name.Quote());
                     return new SourceBundle(project.Name);
@@ -201,6 +201,19 @@ namespace Uno.Build.Libraries
             }
 
             return Project.Load(filename);
+        }
+
+        // A library that is up to date is loaded from its build, also when other libraries refer to
+        // its project: it is the same library, as long as the build was made from that project.
+        static bool IsBuildOf(SourceBundle bundle, Project project)
+        {
+            if (bundle.IsProject || !bundle.IsCached || string.IsNullOrEmpty(bundle.SourceDirectory))
+                return false;
+
+            return string.Equals(
+                Path.GetFullPath(bundle.SourceDirectory).TrimEnd(Path.DirectorySeparatorChar),
+                Path.GetFullPath(project.RootDirectory).TrimEnd(Path.DirectorySeparatorChar),
+                StringComparison.Ordinal);
         }
 
         SourceBundle GetBundle(LibraryReference reference)

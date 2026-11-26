@@ -336,12 +336,6 @@ namespace Uno.Build.Libraries
                     return true;
                 }
 
-                if (Directory.EnumerateDirectories(lib.RootDirectory).Count() > 1)
-                {
-                    Log.Event(IOEvent.Build, lib.Project.Name, "old version(s) found");
-                    return true;
-                }
-
                 if (Configuration != null && (
                         !File.Exists(lib.ConfigFile) ||
                         File.ReadAllText(lib.ConfigFile).Trim() != Configuration.ToString()
