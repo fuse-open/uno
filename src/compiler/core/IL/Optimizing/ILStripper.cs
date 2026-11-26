@@ -1171,7 +1171,9 @@ namespace Uno.Compiler.Core.IL.Optimizing
 
             return dt.IsClass && dt.IsPublic && !dt.IsAbstract && (
                     dt.TryGetDefaultConstructor() != null ||
-                    dt.EnumerateMembersRecursive().OfType<Constructor>().Any(IsUXConstructor)
+                    dt.EnumerateMembersRecursive().OfType<Constructor>().Any(IsUXConstructor) ||
+                    // Backends that flatten constructors have already replaced them by now.
+                    dt.Methods.Any(m => m.Prototype is Constructor c && IsUXConstructor(c))
                 );
         }
 

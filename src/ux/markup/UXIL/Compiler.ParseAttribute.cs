@@ -116,8 +116,11 @@ namespace Uno.UX.Markup.UXIL
                     }
                 }
 
-                binding.AtomicProperties.First(x => x.Facet.Name == "Mode")
-                    .Value = new EnumValue((Reflection.IEnum)FindType("Fuse.Reactive.BindingMode"), mode, owner.Source);
+                // A preview reads type metadata from a finished build, where constructor parameters
+                // such as Mode have already been stripped; the UXDefaultValue on the constructor applies.
+                var modeProp = binding.AtomicProperties.FirstOrDefault(x => x.Facet.Name == "Mode");
+                if (modeProp != null)
+                    modeProp.Value = new EnumValue((Reflection.IEnum)FindType("Fuse.Reactive.BindingMode"), mode, owner.Source);
 
                 var exp = TransformExpression(e, contextProp, src, owner, identifierScope, true);
                 argumentProp.Bind(exp);

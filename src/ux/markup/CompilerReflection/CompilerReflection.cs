@@ -547,7 +547,14 @@ namespace Uno.UX.Markup.Reflection
 
             AutoGenericInfo = agi;
 
-            foreach (var ctor in UnoDataType.Constructors)
+            // Backends that flatten constructors (C++) replace them with an initializer and a
+            // static factory, so a finished build only has them as prototypes. Only the factory
+            // can construct, so a constructor whose factory was stripped is left out.
+            var ctors = UnoDataType.Constructors.Count > 0
+                ? UnoDataType.Constructors
+                : UnoDataType.Methods.Where(m => m.IsStatic).Select(m => m.Prototype).OfType<Constructor>().Distinct();
+
+            foreach (var ctor in ctors)
             {
                 if (ctor.Attributes.Any(x => x.Constructor.DeclaringType.GetCachedFullName() == "Uno.UX.UXConstructorAttribute"))
                 {
